@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libbayes-filters-lib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libbayes-filters-lib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libbayes-filters-lib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libbayes-filters-lib/work"
+      },
+      "hash": {
+        "hash": "7ac5ae9"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libbayes-filters-lib": {
+          "build_string": "h7ac5ae9_0",
+          "name": "libbayes-filters-lib",
+          "version": "0.10.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-11-25T15:48:50.878876519Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/bayes-filters-lib",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "A flexible, modern, C++ recursive Bayesian estimation library."
+      },
+      "build": {
+        "number": 0,
+        "script": "build.sh",
+        "string": "h7ac5ae9_0"
+      },
+      "context": {
+        "name": "libbayes-filters-lib",
+        "version": "0.10.1"
+      },
+      "extra": {
+        "feedstock-name": "bayes-filters-lib",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "libbayes-filters-lib",
+        "version": "0.10.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          "eigen"
+        ],
+        "run": [
+          "eigen"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libbayes-filters-lib",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "21eb22a6d03e8213c10c73e64baee01f08d6e61410375a57461f16411e5d742c",
+          "url": "https://github.com/robotology/bayes-filters-lib/archive/refs/tags/v0.10.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "BayesFilters/GaussianFilter.h"
+            ],
+            "lib": [
+              "BayesFilters"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14"
+            ]
+          },
+          "script": "cmake-package-check BayesFilters --targets BayesFilters::BayesFilters"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

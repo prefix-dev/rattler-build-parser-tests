@@ -1,0 +1,39 @@
+context:
+  version: "4.0.0"
+
+package:
+  name: inject-markdown
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/inject-markdown/-/inject-markdown-${{ version }}.tgz
+  sha256: 1cafd6883c83131331f29d8b45385b5b82b84017102837bf9f719c901733d3b3
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - inject-markdown --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Tool to inject files into markdown files.
+  homepage: https://github.com/streetsidesoftware/inject-markdown
+  repository: https://github.com/streetsidesoftware/inject-markdown
+
+extra:
+  recipe-maintainers:
+    - danielnachun

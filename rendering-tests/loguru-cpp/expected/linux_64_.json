@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_loguru-cpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_loguru-cpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_loguru-cpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_loguru-cpp/work"
+      },
+      "hash": {
+        "hash": "7aa8ee6"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "loguru-cpp": {
+          "build_string": "h7aa8ee6_1",
+          "name": "loguru-cpp",
+          "version": "2.1.0.post20230406.4adaa18"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-11-25T15:49:04.988829945Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/emilk/loguru",
+        "license": "Unlicense",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A lightweight C++ logging library"
+      },
+      "build": {
+        "number": 1,
+        "script": "cmake -GNinja \\\n      -DCMAKE_INSTALL_PREFIX=$PREFIX \\\n      -DBUILD_SHARED_LIBS=ON \\\n      -DLOGURU_WITH_STREAMS=ON \\\n      -DCMAKE_CXX_FLAGS=\"-Wno-type-limits\" \\\n      $SRC_DIR\nninja install\n",
+        "string": "h7aa8ee6_1"
+      },
+      "context": {
+        "git_hash": "4adaa18",
+        "git_hash_date": "20230406",
+        "name": "loguru-cpp",
+        "version": "2.1.0.post20230406.4adaa18"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "loguru-cpp",
+        "version": "2.1.0.post20230406.4adaa18"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "loguru-cpp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "da272cae7a177217a02fbb2622bd0ce80f3b0b6a4ffb71579c186d80ecf81f2e",
+          "url": "https://github.com/emilk/loguru/archive/4adaa18.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "*/loguru.pc",
+              "*/loguru-config-version.cmake",
+              "*/loguru-config.cmake",
+              "*/loguru-targets.cmake"
+            ],
+            "include": [
+              "loguru/loguru.hpp"
+            ],
+            "lib": [
+              "loguru"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

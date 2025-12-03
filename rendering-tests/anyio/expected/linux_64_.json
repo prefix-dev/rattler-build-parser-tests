@@ -1,0 +1,172 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_anyio",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_anyio/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_anyio/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_anyio/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "anyio": {
+          "build_string": "pyhcf101f3_0",
+          "name": "anyio",
+          "version": "4.11.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-11-25T15:48:47.591760723Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://anyio.readthedocs.io/",
+        "homepage": "https://github.com/agronholm/anyio",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "High level compatibility layer for multiple asynchronous event loop implementations on Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "4.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "CJ-Wright",
+          "dhirschfeld"
+        ]
+      },
+      "package": {
+        "name": "anyio",
+        "version": "4.11.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools >=77",
+          "setuptools-scm >=6.4"
+        ],
+        "run": [
+          "exceptiongroup >=1.0.2",
+          "idna >=2.8",
+          "python >=3.10",
+          "sniffio >=1.1",
+          "typing_extensions >=4.5"
+        ],
+        "run_constraints": [
+          "trio >=0.31.0",
+          "uvloop >=0.21"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "82a8d0b81e318cc5ce71a5f1f8b5c4e63619620b63141ef8c995fa0db95a57c4",
+          "url": "https://pypi.org/packages/source/a/anyio/anyio-4.11.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "anyio"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage >=7",
+              "exceptiongroup >=1.2.0",
+              "hypothesis >=4.0",
+              "psutil >=5.9",
+              "pytest >=7.0",
+              "pytest-mock >=3.14",
+              "python 3.10.*",
+              "python-blockbuster >=1.5.23",
+              "tomli",
+              "trio",
+              "trustme",
+              "truststore >=0.9.1",
+              "uvloop"
+            ]
+          },
+          "script": {
+            "content": [
+              "python run_test.py"
+            ],
+            "env": {
+              "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

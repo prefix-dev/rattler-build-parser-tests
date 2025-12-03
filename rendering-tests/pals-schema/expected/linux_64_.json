@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pals-schema",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pals-schema/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pals-schema/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pals-schema/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pals-schema": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pals-schema",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-11-25T15:49:08.669944494Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a Python implementation for the Particle Accelerator Lattice Standard (PALS).",
+        "documentation": "https://pals-project.readthedocs.io/",
+        "homepage": "https://github.com/campa-consortium/pals-python",
+        "license": "BSD-3-Clause-LBNL",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/campa-consortium/pals-python",
+        "summary": "Python Implementation for the Particle Accelerator Lattice Standard (PALS)"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "python -m pip install . --no-build-isolation --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "pals-schema",
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ax3l",
+          "EZoni"
+        ]
+      },
+      "package": {
+        "name": "pals-schema",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "pydantic",
+          "python 3.10.*",
+          "pyyaml",
+          "setuptools",
+          "toml"
+        ],
+        "run": [
+          "pydantic",
+          "python >=3.10",
+          "pyyaml",
+          "toml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e9ada66131cc28552c434cfc7461d4c3df325f7cf3562252c3f133440b828d2b",
+          "url": "https://pypi.org/packages/source/p/pals_schema/pals_schema-0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pals"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python 3.10.*"
+            ]
+          },
+          "script": "python -m pytest -v tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

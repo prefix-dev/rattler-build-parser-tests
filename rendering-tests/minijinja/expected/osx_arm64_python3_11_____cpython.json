@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minijinja",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minijinja/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minijinja/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minijinja/work"
+      },
+      "hash": {
+        "hash": "22b79a4",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "minijinja": {
+          "build_string": "py311h22b79a4_0",
+          "name": "minijinja",
+          "version": "2.13.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-02T12:53:36.036045653Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/mitsuhiko/minijinja",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "minijinja/LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mitsuhiko/minijinja",
+        "summary": "An experimental Python binding of the Rust MiniJinja template engine."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps"
+        ],
+        "string": "py311h22b79a4_0"
+      },
+      "context": {
+        "name": "minijinja",
+        "version": "2.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "minijinja",
+        "version": "2.13.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "crossenv",
+          "maturin >=1.5",
+          "rust_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.5",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "27e3307056ffb79c108a3ed5e8e7a783ec6963d1309d2b9fd16df2175c69ec12",
+          "url": "https://pypi.org/packages/source/m/minijinja/minijinja-2.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "minijinja"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

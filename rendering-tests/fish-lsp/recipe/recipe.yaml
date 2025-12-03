@@ -1,0 +1,54 @@
+context:
+  version: "1.0.9-1"
+
+package:
+  name: fish-lsp
+  version: ${{ version | replace('-', '_') }}
+
+source:
+  url: https://registry.npmjs.org/fish-lsp/-/fish-lsp-${{ version }}.tgz
+  sha256: c28799ee8b7e3a17b7892aa3f9d80ebe638313b9bce772ac364faee3ced5d43a
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - make
+    - fish
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+    - sed
+  host:
+    - nodejs
+  run:
+    - fish
+    - nodejs
+
+tests:
+  - script:
+      - npm list -g fish-lsp
+      - fish-lsp --help
+      - fish-lsp --version
+      - "fish-lsp info | grep Version"
+      - fish-lsp info
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: LSP implementation for the fish shell language
+  homepage: https://github.com/ndonfris/fish-lsp
+  repository: https://github.com/ndonfris/fish-lsp
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - danielnachun

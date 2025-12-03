@@ -1,0 +1,39 @@
+context:
+  version: "15.7.0"
+
+package:
+  name: cypress
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/cypress/-/cypress-${{ version }}.tgz
+  sha256: 037cf8b831e6652e14d41afbdde8db10e2c5dcbe3bbdcdc289447dfb4037383c
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - cypress --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Fast, easy and reliable testing for anything that runs in a browser.
+  homepage: https://github.com/cypress-io/cypress
+  repository: https://github.com/cypress-io/cypress
+
+extra:
+  recipe-maintainers:
+    - danielnachun

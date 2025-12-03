@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: pydoclint
+  version: "0.8.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydoclint-${{ version }}.tar.gz
+  sha256: 0c69c0ed92c6f6b5aec2a14371bbd9e0a77980da8e2fa0f708092aa06b3b20b3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pydoclint = pydoclint.main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=45
+    - setuptools-scm >=6.2
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click >=8.1.0
+    - docstring_parser_fork >=0.0.12
+    - tomli >=2.0.1
+
+tests:
+  - python:
+      imports:
+        - pydoclint
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pydoclint --help
+
+about:
+  homepage: https://github.com/jsh9/pydoclint
+  summary: A Python docstring linter that checks arguments, returns, yields, and raises sections
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,46 @@
+context:
+  name: certbot-dns-cloudflare
+  version: "5.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 6fea3d5e2c3db018f83bc074315a48588fb680c900f7fef3349eae6a2cfc4c6c
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - acme >=${{ version }}
+    - certbot >=${{ version }}
+    - cloudflare >=2.19,<2.20
+
+tests:
+  - python:
+      imports:
+        - certbot_dns_cloudflare
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://certbot.eff.org
+  summary: Cloudflare DNS Authenticator plugin for Certbot
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  documentation: https://certbot.eff.org
+  repository: https://github.com/certbot/certbot
+
+extra:
+  recipe-maintainers:
+    - pavelzw

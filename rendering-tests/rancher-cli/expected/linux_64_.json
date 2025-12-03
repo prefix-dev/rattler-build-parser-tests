@@ -1,0 +1,121 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rancher-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rancher-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rancher-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rancher-cli/work"
+      },
+      "hash": {
+        "hash": "1266ff2"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rancher-cli": {
+          "build_string": "h1266ff2_0",
+          "name": "rancher-cli",
+          "version": "2.13.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-02T12:53:40.206031598Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://ranchermanager.docs.rancher.com/reference-guides/cli-with-rancher/rancher-cli",
+        "homepage": "https://github.com/rancher/cli",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "summary": "The Rancher Command Line Interface (CLI) is a unified tool for interacting with your Rancher Server."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-rancher-cli"
+        },
+        "string": "h1266ff2_0"
+      },
+      "context": {
+        "version": "2.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "rancher-cli",
+        "version": "2.13.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6c36bdc3ae3158fc8d630382ec2d1c4542903224da5bd033f10ff1aff709c84b",
+          "url": "https://github.com/rancher/cli/archive/v2.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "rancher --help",
+            "rancher --version",
+            "rancher --version | grep -iE \"^rancher version v${{ version | replace(\".\", \"\\\\.\") }}$\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

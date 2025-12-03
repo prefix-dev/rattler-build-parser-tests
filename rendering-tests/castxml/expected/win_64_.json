@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_castxml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_castxml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_castxml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_castxml/work"
+      },
+      "hash": {
+        "hash": "bb60a54"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "castxml": {
+          "build_string": "hbb60a54_0",
+          "name": "castxml",
+          "version": "0.6.11"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-11-25T15:48:29.786278054Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2019",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/CastXML/CastXML",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "C-family Abstract Syntax Tree XML Output"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cmake -GNinja -S . -B build ${{ \"$CMAKE_ARGS\" if unix else \"%CMAKE_ARGS%\" }}",
+          "cmake --build build",
+          "${{ \"if %errorlevel% neq 0 exit 1\" if win }}",
+          "cmake --install build",
+          "${{ \"if %errorlevel% neq 0 exit 1\" if win }}"
+        ],
+        "string": "hbb60a54_0"
+      },
+      "context": {
+        "version": "0.6.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "castxml",
+        "version": "0.6.11"
+      },
+      "requirements": {
+        "build": [
+          "vs2019_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "clangdev 20.1.*",
+          "libclang-cpp",
+          "libllvm20",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fc5b49f802b67f98ecea10564bc171c660020836a48cecefc416681a2d2e1d3d",
+          "url": "https://github.com/CastXML/CastXML/archive/refs/tags/v0.6.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "castxml --version"
+        },
+        {
+          "files": {
+            "recipe": [
+              "test.cpp"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2019_win-64"
+            ]
+          },
+          "script": [
+            "castxml --castxml-cc-msvc %CXX% --castxml-gccxml -o test.xml test.cpp",
+            "if %errorlevel% neq 0 exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

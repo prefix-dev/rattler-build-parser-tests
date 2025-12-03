@@ -1,0 +1,41 @@
+context:
+  name: selfies
+  version: 2.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/selfies-${{ version }}.tar.gz
+  sha256: 68dc2a0d8ef507fc01919c4490d6b712c5e5edab8fb6b85c38223d55ac0c65e2
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - rdkit
+
+tests:
+  - python:
+      imports:
+        - selfies
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: SELFIES (SELF-referencIng Embedded Strings) is a general-purpose, sequence-based, robust representation of semantically constrained graphs.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/aspuru-guzik-group/selfies
+
+extra:
+  recipe-maintainers:
+    - hadim

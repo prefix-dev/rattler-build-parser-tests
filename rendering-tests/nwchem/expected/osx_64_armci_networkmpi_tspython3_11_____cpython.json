@@ -1,0 +1,230 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nwchem",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nwchem/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nwchem/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nwchem/work"
+      },
+      "hash": {
+        "hash": "b55aea3",
+        "prefix": "py311pl5321"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nwchem": {
+          "build_string": "py311_mpi_ts_h23c3b41b_0",
+          "name": "nwchem",
+          "version": "7.3.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-11-25T15:48:36.025418868Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "armci_network": "mpi_ts",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "16",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "16",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "13",
+        "llvm_openmp": "19",
+        "mpi": "openmpi",
+        "openblas": "0.3.*",
+        "openmpi": "5",
+        "perl": "5.32.1",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "NWChem is actively developed by a consortium of developers and maintained by the Environmental Molecular Sciences Laboratory (EMSL), a US DOE Office of Science User Facility located at the Pacific Northwest National Laboratory (PNNL) in Washington State.",
+        "documentation": "https://nwchemgit.github.io/",
+        "homepage": "https://nwchemgit.github.io/",
+        "license": "ECL-2.0",
+        "license_family": "OTHER",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/nwchemgit/nwchem",
+        "summary": "Open Source High-Performance Computational Chemistry"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "CONDA_FORGE_DOCKER_RUN_ARGS": "--shm-size=256m"
+          }
+        },
+        "string": "py311_mpi_ts_h23c3b41b_0",
+        "variant": {
+          "down_prioritize_variant": 1,
+          "use_keys": [
+            "armci_network"
+          ]
+        }
+      },
+      "context": {
+        "build": 0,
+        "date": "2025-11-06",
+        "hash": "23c3b41b",
+        "name": "nwchem",
+        "release_tag": "v7.3.1-release",
+        "user": "nwchemgit",
+        "version": "7.3.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ltalirz",
+          "edoapra"
+        ]
+      },
+      "package": {
+        "name": "nwchem",
+        "version": "7.3.1"
+      },
+      "requirements": {
+        "build": [
+          "cmake >=3.21",
+          "clang_osx-64 16.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "gfortran_osx-64 13.*",
+          "clangxx_osx-64 16.*",
+          "python",
+          "cross-python_osx-64",
+          "make",
+          "gnuconfig",
+          "sed",
+          "perl",
+          "openmpi",
+          "llvm-openmp"
+        ],
+        "host": [
+          "openmpi",
+          "openblas",
+          "scalapack",
+          "python",
+          "libxc * *cpu*",
+          "openssh",
+          "llvm-openmp"
+        ],
+        "run": [
+          "openmpi",
+          "openblas",
+          "libopenblas",
+          "scalapack",
+          "python",
+          "llvm-openmp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "qalargemem.patch",
+            "conda_nwchemrc.patch",
+            "tblite_omp.patch"
+          ],
+          "sha256": "02e42a62dcf4f0cbf165956c64e260884ad76681a81caa34018f3404c03c8b69",
+          "url": "https://github.com/nwchemgit/nwchem/releases/download/v7.3.1-release/nwchem-7.3.1-release.revision-23c3b41b-src.2025-11-06.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "QA/doaf*",
+              "QA/run*",
+              "QA/*sh",
+              "QA/nwpa*",
+              "QA/tests/h2o_opt",
+              "QA/tests/dft_he2+",
+              "QA/tests/small_intchk",
+              "QA/tests/h2o_dk",
+              "QA/tests/cosmo_h2o_dft",
+              "QA/tests/pyqa3",
+              "QA/tests/tddft_h2o",
+              "QA/tests/tddft_n2+",
+              "QA/tests/tddft_ac_co",
+              "QA/tests/hi_zora_sf",
+              "QA/tests/prop_ch3f",
+              "QA/tests/h2_bnl",
+              "QA/tests/h2o_bnl",
+              "QA/tests/h2o-camb3lyp-pol",
+              "QA/tests/h2o-cambeckehh",
+              "QA/tests/h2o-campbe0",
+              "QA/tests/h2o-lcpbe",
+              "QA/tests/o2_bnl",
+              "QA/tests/o2_hfattn",
+              "QA/tests/dmo_tddft_cd",
+              "QA/tests/dmo_tddft_cd_velocity",
+              "QA/tests/h2o-response",
+              "QA/tests/h2o2-response",
+              "QA/tests/h2o2-response-uhf",
+              "QA/tests/h2o2-response-uhf-damping",
+              "QA/tests/h2o2-prop-notrans",
+              "QA/tests/ch3radical_unrot",
+              "QA/tests/localize-ibo-aa",
+              "QA/tests/localize-ibo-allyl",
+              "QA/tests/localize-pm-allyl",
+              "QA/tests/localize-pm-aa",
+              "QA/tests/x2c-h2se",
+              "QA/tests/hg-1e-hfc-x2c",
+              "QA/tests/dft_he2p_wb97"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_FORGE_DOCKER_RUN_ARGS": "--shm-size=256m",
+              "armci_network": "mpi_ts",
+              "target_platform": "osx-64"
+            },
+            "file": "run_test.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

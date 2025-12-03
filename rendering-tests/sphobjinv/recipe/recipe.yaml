@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: sphobjinv
+  version: '2.3.1.3'
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: a1d51e4cf3d968b9e0d3ed1cbccea0071e5e5795f24a2d7401a4e37d6bd75717
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - sphobjinv = sphobjinv.cli.core:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.2
+  run:
+    - python >=${{ python_min }}
+    - attrs >=19.2
+    - certifi
+    - jsonschema >=3.0
+
+tests:
+  - python:
+      imports:
+        - sphobjinv
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - README.md
+        - tox.ini
+        - requirements-dev.txt
+        - conftest.py
+        - tests/
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+        - pytest
+        - pytest_check >=1.1.2
+        - pytest-retry
+        - pytest-timeout
+        - sphinx ==7.4.7
+        - dictdiffer
+        - stdio-mgr >=1.0.1
+    script:
+      - pytest -k "not readme"
+
+about:
+  summary: Toolkit for manipulation and inspection of Sphinx objects.inv files
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - src/sphobjinv/_vendored/fuzzywuzzy/LICENSE.txt
+  homepage: https://github.com/bskinn/sphobjinv
+  repository: https://github.com/bskinn/sphobjinv
+  documentation: https://sphobjinv.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - bskinn
+    - anjos

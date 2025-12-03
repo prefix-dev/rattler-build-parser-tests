@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  version: "0.15.0"
+
+package:
+  name: pythonqwt
+  version: ${{ version }}
+
+source:
+  url: https://github.com/PlotPyStack/PythonQwt/archive/v${{ version }}.tar.gz
+  sha256: 50fa889e09315236e2d406c31fdc2a7800135b434637c410db417cd669872640
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.19
+    - qtpy >=1.9
+
+tests:
+  # Do not use python imports test as pythonqwt
+  # requires PyQt5, PyQt6 or PySide6 to be installed
+  - script:
+      - python -c "import qwt"
+      - python -c "import qwt.plot"
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pyqt
+  - script:
+      - python -c "import qwt"
+      - python -c "import qwt.plot"
+    requirements:
+      run:
+        - python 3.*
+        - pyside6
+
+about:
+  license: LGPL-2.1-only
+  license_file: LICENSE
+  summary: "PythonQwt: Qt plotting widgets for Python"
+  description: |
+    The PythonQwt project was initiated to solve -at least temporarily- the
+    obsolescence issue of PyQwt (the Python-Qwt C++ bindings library) which is
+    no longer maintained. The idea was to translate the original Qwt C++ code
+    to Python and then to optimize some parts of the code by writing new
+    modules based on NumPy and other libraries.
+  homepage: https://github.com/PlotPyStack/PythonQwt
+  repository: https://github.com/PlotPyStack/PythonQwt
+  documentation: https://pythonqwt.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - nicoddemus
+    - beenje
+    - marcelotrevisani

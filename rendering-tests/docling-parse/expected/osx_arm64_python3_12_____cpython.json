@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-parse",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-parse/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-parse/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-parse/work"
+      },
+      "hash": {
+        "hash": "e1cc205",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "docling-parse": {
+          "build_string": "py312he1cc205_1",
+          "name": "docling-parse",
+          "version": "4.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-11-25T15:48:57.285657717Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libjpeg_turbo": "3",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-arm64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/docling-project/docling-parse",
+        "license": "BSD-3-Clause AND MIT",
+        "license_file": [
+          "LICENSE",
+          "docling_parse/pdf_resources_v2/cmap-resources/LICENSE.md",
+          "docling_parse/pdf_resources/cmap-resources/LICENSE.md"
+        ],
+        "summary": "Simple package to extract text with coordinates from programmatic PDFs"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "export USE_SYSTEM_DEPS=\"on\"",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py312he1cc205_1"
+      },
+      "context": {
+        "name": "docling-parse",
+        "version": "4.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "docling-parse",
+        "version": "4.1.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.13.1",
+          "clangxx_osx-arm64 19.*",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "python",
+          "poetry-core",
+          "pybind11 >=2.13.1",
+          "pip",
+          "cxxopts",
+          "loguru-cpp",
+          "nlohmann_json",
+          "utfcpp",
+          "libjpeg-turbo",
+          "qpdf <12",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "tabulate >=0.9.0,<1.0.0",
+          "pillow >=10.0.0,<12.0.0",
+          "pydantic >=2.0.0,<3.0.0",
+          "docling-core >=2.23.0,<3.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-utfcpp.patch"
+          ],
+          "sha256": "c39bf099495679b59eeff9106e189e33a2bbdde0524a9c7a617d680dd76c7487",
+          "url": "https://github.com/DS4SD/docling-parse/archive/refs/tags/v4.1.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "docling_parse"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.13.0"
+
+package:
+  name: rancher-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rancher/cli/archive/v${{ version }}.tar.gz
+  sha256: 6c36bdc3ae3158fc8d630382ec2d1c4542903224da5bd033f10ff1aff709c84b
+
+build:
+  number: 0
+  script:
+    file: build-rancher-cli
+
+requirements:
+  build:
+    - ${{ compiler("go") }}
+    - ${{ stdlib("c") }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - rancher --help
+      - rancher --version
+      - rancher --version | grep -iE "^rancher version v${{ version | replace(".", "\\.") }}$"
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+  summary: The Rancher Command Line Interface (CLI) is a unified tool for interacting with your Rancher Server.
+  homepage: https://github.com/rancher/cli
+  documentation: https://ranchermanager.docs.rancher.com/reference-guides/cli-with-rancher/rancher-cli
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

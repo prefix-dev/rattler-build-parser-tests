@@ -1,0 +1,46 @@
+context:
+  version: "2.5.4"
+
+package:
+  name: stgit
+  version: ${{ version }}
+
+source:
+  url: https://github.com/stacked-git/stgit/archive/v${{ version }}.tar.gz
+  sha256: cae61785a59e9e0ac85045e41eb8e0ccfd831d6f67d16941e53bcf4a856cec5f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - make
+    - pkg-config
+  host:
+    - curl
+    - git
+    - libcurl
+    - zlib
+  run:
+    - git
+
+tests:
+  - script:
+      - stg --help
+
+about:
+  license: GPL-2.0-only
+  license_file:
+    - COPYING
+    - THIRDPARTY.yml
+  summary: Manage Git commits as a stack of patches
+  homepage: https://stacked-git.github.io
+  repository: https://github.com/stacked-git/stgit
+
+extra:
+  recipe-maintainers:
+    - danielnachun

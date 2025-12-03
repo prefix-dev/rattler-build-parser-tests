@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newuoa-cpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newuoa-cpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newuoa-cpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newuoa-cpp/work"
+      },
+      "hash": {
+        "hash": "54a6638"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "newuoa-cpp": {
+          "build_string": "h54a6638_0",
+          "name": "newuoa-cpp",
+          "version": "0.1.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-02T12:53:30.334572265Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/elsid/newuoa-cpp",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/elsid/newuoa-cpp",
+        "summary": "C++ implementation of NEWUOA algorithm with C interface"
+      },
+      "build": {
+        "number": 0,
+        "script": "set -exo pipefail\ncmake -S . -B build ${CMAKE_ARGS} -DBUILD_SHARED_LIBS=ON\ncmake --build build --config Release --parallel ${CPU_COUNT}\ncmake --install build\n",
+        "string": "h54a6638_0"
+      },
+      "context": {
+        "name": "newuoa-cpp",
+        "version": "0.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "newuoa-cpp",
+        "version": "0.1.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "newuoa-cpp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix_dll_install.patch"
+          ],
+          "sha256": "660274f2ab2188bdf096c0ed0eefa8e10fe563e440064bc4e48ce547a8ef90a4",
+          "url": "https://github.com/elsid/newuoa-cpp/archive/refs/tags/v0.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/newuoa.h",
+            "test -f ${PREFIX}/lib/libnewuoa${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

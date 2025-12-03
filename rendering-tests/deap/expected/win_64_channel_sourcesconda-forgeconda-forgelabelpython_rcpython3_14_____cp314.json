@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deap",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deap/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deap/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deap/work"
+      },
+      "hash": {
+        "hash": "b449864",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "deap": {
+          "build_string": "np2py314hb449864_1",
+          "name": "deap",
+          "version": "1.4.3"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-11-25T15:49:12.665018820Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "DEAP is a novel evolutionary computation framework for rapid prototyping and testing of\nideas. It seeks to make algorithms explicit and data structures transparent. It works\nin perfect harmony with parallelisation mechanism such as multiprocessing and SCOOP. The\nfollowing documentation presents the key concepts and many features to build your own\nevolutions.",
+        "documentation": "https://deap.readthedocs.io/",
+        "homepage": "https://github.com/DEAP/deap",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/deap/deap",
+        "summary": "Distributed Evolutionary Algorithms in Python"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "${{ PYTHON }} setup.py build_ext -I\"%LIBRARY_INC%\"",
+          "${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "np2py314hb449864_1"
+      },
+      "context": {
+        "version": "1.4.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "rhiever",
+          "tonyfast"
+        ]
+      },
+      "package": {
+        "name": "deap",
+        "version": "1.4.3"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cross-python_win-64",
+          "numpy",
+          "python"
+        ],
+        "host": [
+          "numpy",
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "numpy",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7c97088fb05835bdc255bec475cb0e778de2b43e44cbefbf2bcd655aeec865fd",
+          "url": "https://pypi.org/packages/source/d/deap/deap-1.4.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "deap",
+              "deap.benchmarks",
+              "deap.tools",
+              "deap.tools._hypervolume"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "coverage run --source=deap --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=37"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

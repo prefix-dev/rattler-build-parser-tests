@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: libbayes-filters-lib
+  version: 0.10.1
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/robotology/bayes-filters-lib/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 21eb22a6d03e8213c10c73e64baee01f08d6e61410375a57461f16411e5d742c
+
+build:
+  number: 0
+  script:
+    - if: unix
+      then: build.sh
+    - if: win
+      then: build.bat
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - pkg-config
+    - ninja
+  host:
+    - eigen
+  run: 
+    - eigen
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
+
+tests:
+  - package_contents:
+      include:
+        - BayesFilters/GaussianFilter.h
+      lib:
+        - BayesFilters
+  - script:
+      - cmake-package-check BayesFilters --targets BayesFilters::BayesFilters
+    requirements:
+      run:
+        - cmake-package-check
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+
+about:
+  homepage: https://github.com/robotology/bayes-filters-lib
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: A flexible, modern, C++ recursive Bayesian estimation library.
+
+extra:
+  feedstock-name: bayes-filters-lib
+  recipe-maintainers:
+    - traversaro

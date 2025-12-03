@@ -1,0 +1,174 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-xet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-xet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-xet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-xet/work"
+      },
+      "hash": {
+        "hash": "d98b9a6",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hf-xet": {
+          "build_string": "py310hd98b9a6_0",
+          "name": "hf-xet",
+          "version": "1.2.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-11-25T15:48:32.703301105Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "openssl": "3.5",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pypi.org/project/hf-xet/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "hf_xet/LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/huggingface/xet-core",
+        "summary": "xet-core enables huggingface_hub to utilize xet storage for uploading and\ndownloading to HF Hub. Xet storage provides chunk-based deduplication,\nefficient storage/retrieval with local disk caching, and backwards\nompatibility with Git LFS. This library is not meant to be used directly,\nand is instead intended to be used from huggingface_hub.\n<br/>\nhf_xet: Python integration with Rust code, uses maturin to build hfxet\nPython package. Main integration with HF Hub Python package."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "set CARGO_NET_GIT_FETCH_WITH_CLI=true",
+          "set CARGO_PROFILE_RELEASE_STRIP=symbols",
+          "set CARGO_PROFILE_RELEASE_LTO=fat",
+          "set OPENSSL_DIR=%LIBRARY_PREFIX%",
+          "python -m pip install . -vv --no-deps --no-build-isolation",
+          "cargo-bundle-licenses --format yaml --output %SRC_DIR%\\THIRDPARTY.yml || goto :error",
+          "del %SRC_DIR%\\hf_xet\\LICENSE",
+          "copy %SRC_DIR%\\LICENSE %SRC_DIR%\\hf_xet\\LICENSE"
+        ],
+        "string": "py310hd98b9a6_0"
+      },
+      "context": {
+        "name": "hf-xet",
+        "version": "1.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "shermansiu"
+        ]
+      },
+      "package": {
+        "name": "hf-xet",
+        "version": "1.2.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "maturin >=1.7,<2.0",
+          "openssl",
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses",
+          "pkg-config"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "pip",
+          "maturin >=1.7,<2.0",
+          "openssl"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "disable-auto-initialize.patch"
+          ],
+          "sha256": "2b4c5c8c4cf939ee34657592c5174ac16c750f29b7c20310328b79971de46f9f",
+          "url": "https://github.com/huggingface/xet-core/archive/refs/tags/v1.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hf_xet"
+            ],
+            "python_version": [
+              "3.10.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": [
+            "set \"SP_DIR=%PREFIX%\\\\Lib\\\\site-packages\"",
+            "abi3audit %SP_DIR%\\\\hf_xet\\\\hf_xet.pyd -s -v --assume-minimum-abi3 ${{ python_min }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

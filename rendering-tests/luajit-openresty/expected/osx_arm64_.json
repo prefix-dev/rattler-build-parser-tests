@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_luajit-openresty",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_luajit-openresty/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_luajit-openresty/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_luajit-openresty/work"
+      },
+      "hash": {
+        "hash": "81d7122"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "luajit-openresty": {
+          "build_string": "h81d7122_0",
+          "name": "luajit-openresty",
+          "version": "2.1_20251030"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-02T12:53:38.909698859Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/openresty/luajit2",
+        "license": "MIT",
+        "license_file": [
+          "COPYRIGHT"
+        ],
+        "repository": "https://github.com/openresty/luajit2",
+        "summary": "OpenResty's Branch of LuaJIT 2"
+      },
+      "build": {
+        "number": 0,
+        "string": "h81d7122_0"
+      },
+      "context": {
+        "name": "luajit-openresty",
+        "version": "2.1-20251030",
+        "version_under": "2.1_20251030"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "baszalmstra"
+        ]
+      },
+      "package": {
+        "name": "luajit-openresty",
+        "version": "2.1_20251030"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "make"
+        ],
+        "run_constraints": [
+          "lua <5.1|>=5.2"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "luajit-openresty",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b9a6de5c2253e120f5146ea375e3ad4224e777e6942e578acdb93038078fd5ae",
+          "url": "https://github.com/openresty/luajit2/archive/refs/tags/v2.1-20251030.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "luajit"
+            ],
+            "include": [
+              "luajit-2.1/lua.h",
+              "luajit-2.1/luajit.h"
+            ],
+            "lib": [
+              "luajit"
+            ]
+          }
+        },
+        {
+          "script": [
+            "luajit -v",
+            "luajit -e \"print(package.path)\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

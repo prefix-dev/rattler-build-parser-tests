@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: siuba
+  version: 0.4.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/machow/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 5a5e64bcf04ab73ed360caa144d7fba28c234678b94761addced485b22609055
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - numpy >=1.12.0
+    - pandas >=0.24.0,<2.1.0
+    - python >=${{ python_min }}
+    - pyyaml >=3.0.0
+    - sqlalchemy >=1.2.19
+
+tests:
+  - python:
+      imports:
+        - siuba
+        - siuba.data
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: A package for quick, scrappy analyses with pandas and SQL
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/machow/siuba
+  repository: https://github.com/machow/siuba
+  documentation: https://siuba.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - philip-khor

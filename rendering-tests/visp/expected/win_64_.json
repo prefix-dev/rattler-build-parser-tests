@@ -1,0 +1,174 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/work"
+      },
+      "hash": {
+        "hash": "83fa156"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "visp": {
+          "build_string": "h83fa156_14",
+          "name": "visp",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-11-25T15:49:11.682967829Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "libjpeg_turbo": "3",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "libopencv": "4.12.0",
+        "libpng": "1.6",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://visp-doc.inria.fr/doxygen/visp-3.6.0/",
+        "homepage": "https://visp.inria.fr/",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/lagadic/visp",
+        "summary": "A cross-platform library for prototyping and developing applications using visual tracking and visual servoing technic."
+      },
+      "build": {
+        "number": 14,
+        "string": "h83fa156_14"
+      },
+      "context": {
+        "name": "visp",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "olivier-roussel",
+          "fspindle"
+        ]
+      },
+      "package": {
+        "name": "visp",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja",
+          "clang"
+        ],
+        "host": [
+          "llvm-openmp",
+          "pthreads-win32",
+          "libopencv",
+          "eigen",
+          "libjpeg-turbo",
+          "libpng",
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke",
+          "nlohmann_json"
+        ],
+        "run": [
+          "pthreads-win32",
+          "eigen"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "visp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-Neon-on-simdlib-for-clang-on-ARM.patch",
+            "patches/0002-Disable-AVX-and-AVX2-for-Simd-embedded-lib.patch",
+            "patches/0003-Update-usage-of-operators-with-the-new-Universal-Int.patch"
+          ],
+          "sha256": "eec93f56b89fd7c0d472b019e01c3fe03a09eda47f3903c38dc53a27cbfae532",
+          "url": "https://github.com/lagadic/visp/archive/refs/tags/v3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Library/cmake/VISPConfig.cmake",
+              "Library/cmake/VISPConfig-version.cmake"
+            ],
+            "include": [
+              "visp3/visp.h"
+            ],
+            "lib": [
+              "visp_core*"
+            ]
+          }
+        },
+        {
+          "script": [
+            "dir",
+            "call Library\\bin\\visp-config.bat --version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

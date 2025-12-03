@@ -1,0 +1,42 @@
+context:
+  version: "0.9.9"
+
+package:
+  name: joshuto
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kamiyaa/joshuto/archive/v${{ version }}.tar.gz
+  sha256: 85a230183f7478dee7c29229d78313ee07b759e596e19292acf024d2e5735efa
+
+build:
+  number: 1
+  skip: win or ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+    - if: build_platform != target_platform
+      then:
+        - zlib  # needed for a build-only binary
+
+tests:
+  - script:
+      - joshuto --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: ranger-like terminal file manager written in Rust
+  homepage: https://github.com/kamiyaa/joshuto
+  repository: https://github.com/kamiyaa/joshuto
+
+extra:
+  recipe-maintainers:
+    - danielnachun

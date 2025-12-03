@@ -1,0 +1,37 @@
+context:
+  version: "0.5.0"
+
+package:
+  name: kickstart
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Keats/kickstart/archive/v${{ version }}.tar.gz
+  sha256: 2a1a335c70b81757abf4240a52ebce231501f731f3d73decbed4133d18ad1386
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - kickstart --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Scaffolding tool to get new projects up and running quickly
+  homepage: https://github.com/Keats/kickstart
+  repository: https://github.com/Keats/kickstart
+
+extra:
+  recipe-maintainers:
+    - danielnachun

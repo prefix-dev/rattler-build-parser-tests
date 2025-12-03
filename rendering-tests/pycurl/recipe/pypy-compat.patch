@@ -1,0 +1,14 @@
+diff --git a/src/pycurl.h b/src/pycurl.h
+index 90eb38c..9efb648 100644
+--- a/src/pycurl.h
++++ b/src/pycurl.h
+@@ -696,7 +696,7 @@ extern PyMethodDef curlmultiobject_methods[];
+ # define PYCURL_TYPE_FLAGS Py_TPFLAGS_HAVE_GC | Py_TPFLAGS_HAVE_WEAKREFS | Py_TPFLAGS_BASETYPE
+ #endif
+ 
+-#if PY_MAJOR_VERSION >= 3 && PY_MINOR_VERSION >= 8
++#if (PY_MAJOR_VERSION >= 3 && PY_MINOR_VERSION >= 8) && !defined(PYPY_VERSION)
+ # define CPy_TRASHCAN_BEGIN(op, dealloc) Py_TRASHCAN_BEGIN(op, dealloc)
+ # define CPy_TRASHCAN_END(op) Py_TRASHCAN_END
+ #else
+

@@ -1,0 +1,39 @@
+context:
+  version: "3.9.2"
+
+package:
+  name: docusaurus
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@docusaurus/core/-/core-${{ version }}.tgz
+  sha256: e1164053ee0be8016ffc19c2abe93eda7c5651a437dd52359e47fa1c7c77f1af
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - docusaurus 2>&1 | grep -q "No config file found in site dir"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Easy to maintain open source documentation websites.
+  homepage: https://github.com/facebook/docusaurus
+  repository: https://github.com/facebook/docusaurus
+
+extra:
+  recipe-maintainers:
+    - danielnachun

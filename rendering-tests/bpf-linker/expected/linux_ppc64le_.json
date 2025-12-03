@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bpf-linker",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bpf-linker/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bpf-linker/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bpf-linker/work"
+      },
+      "hash": {
+        "hash": "68eb3f0"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bpf-linker": {
+          "build_string": "h68eb3f0_1",
+          "name": "bpf-linker",
+          "version": "0.9.15"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-11-25T15:48:59.305993554Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/aya-rs/bpf-linker",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Simple BPF static linker"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "content": [
+            "cargo install --no-track --locked --path=. --profile=release --root=\"${{ PREFIX }}\"",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "h68eb3f0_1"
+      },
+      "context": {
+        "version": "0.9.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "bpf-linker",
+        "version": "0.9.15"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "rust_linux-ppc64le",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "llvmdev"
+        ],
+        "run": [
+          "llvmdev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "90e53daa07e0f047a0ef91042a69417d0b0fa961ce9a6afe1d8fbf9f0f048fc1",
+          "url": "https://github.com/aya-rs/bpf-linker/archive/refs/tags/v0.9.15.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "bpf-linker --version",
+            "bpf-linker --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

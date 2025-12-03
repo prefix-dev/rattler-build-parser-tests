@@ -1,0 +1,181 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visp/work"
+      },
+      "hash": {
+        "hash": "4ea98f4"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "visp": {
+          "build_string": "h4ea98f4_14",
+          "name": "visp",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-11-25T15:49:11.363822251Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "libjpeg_turbo": "3",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "libopencv": "4.12.0",
+        "libpng": "1.6",
+        "librealsense": "2.56",
+        "libxml2_devel": "2.14",
+        "llvm_openmp": "19",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://visp-doc.inria.fr/doxygen/visp-3.6.0/",
+        "homepage": "https://visp.inria.fr/",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/lagadic/visp",
+        "summary": "A cross-platform library for prototyping and developing applications using visual tracking and visual servoing technic."
+      },
+      "build": {
+        "number": 14,
+        "string": "h4ea98f4_14"
+      },
+      "context": {
+        "name": "visp",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "olivier-roussel",
+          "fspindle"
+        ]
+      },
+      "package": {
+        "name": "visp",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 11.0.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "xorg-libx11",
+          "xorg-libxfixes",
+          "xorg-xorgproto",
+          "libxml2-devel",
+          "libdc1394 >=2.2.6",
+          "librealsense",
+          "llvm-openmp",
+          "libopencv",
+          "eigen",
+          "libjpeg-turbo",
+          "libpng",
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke",
+          "nlohmann_json"
+        ],
+        "run": [
+          "eigen"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "visp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-Neon-on-simdlib-for-clang-on-ARM.patch",
+            "patches/0003-Update-usage-of-operators-with-the-new-Universal-Int.patch"
+          ],
+          "sha256": "eec93f56b89fd7c0d472b019e01c3fe03a09eda47f3903c38dc53a27cbfae532",
+          "url": "https://github.com/lagadic/visp/archive/refs/tags/v3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/visp/VISPConfig.cmake",
+              "lib/cmake/visp/VISPConfig-version.cmake"
+            ],
+            "include": [
+              "visp3/visp.h"
+            ],
+            "lib": [
+              "visp_core"
+            ]
+          }
+        },
+        {
+          "script": "visp-config --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-js",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-js/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-js/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-js/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sphinx-js": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sphinx-js",
+          "version": "5.0.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-02T12:53:14.993437933Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pyodide/sphinx-js",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Support for using Sphinx on JSDoc-documented JS code"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+          ],
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "5.0.2"
+          }
+        },
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "5.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "sphinx-js",
+        "version": "5.0.2"
+      },
+      "requirements": {
+        "host": [
+          "hatch-vcs",
+          "hatchling",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "attrs",
+          "cattrs <25.1",
+          "jinja2 >2.0",
+          "markupsafe",
+          "nodejs",
+          "parsimonious >=0.10.0,<0.11.0",
+          "python >=3.10",
+          "sphinx >=4.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "09c955ccb715a1622a866979c6af2bf5f7892e686f48ee05d2736bcec444f0d9",
+          "url": "https://pypi.org/packages/source/s/sphinx-js/sphinx_js-5.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sphinx_js"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "beautifulsoup4",
+              "defusedxml",
+              "nox",
+              "pytest",
+              "pytest-cov",
+              "python 3.10.*",
+              "python-build",
+              "recommonmark",
+              "twine"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

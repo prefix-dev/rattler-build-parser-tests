@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: "5.14.3"
+
+package:
+  name: python-socketio
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/python-socketio/python_socketio-${{ version }}.tar.gz
+  sha256: cd8da5e0666e741b4be19e07882e880f57a4751d1645f92c2bc746c95f23b1eb
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.2
+  run:
+    - python >=${{ python_min }}
+    - bidict >=0.21.0
+    - python-engineio >=4.11.0
+
+tests:
+  - python:
+      imports:
+        - socketio
+        - socketio.base_manager
+        - socketio.kombu_manager
+        - socketio.middleware
+        - socketio.namespace
+        - socketio.packet
+        - socketio.pubsub_manager
+        - socketio.redis_manager
+        - socketio.server
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license_file: LICENSE
+  license: MIT
+  summary: Socket.IO server
+  homepage: https://github.com/miguelgrinberg/python-socketio/
+  repository: https://github.com/miguelgrinberg/python-socketio/
+  documentation: https://python-socketio.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - ReimarBauer
+    - synapticarbors

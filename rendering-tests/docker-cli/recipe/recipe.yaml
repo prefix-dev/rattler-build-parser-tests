@@ -1,0 +1,39 @@
+context:
+  version: "29.0.4"
+
+package:
+  name: docker-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/docker/cli/archive/v${{ version }}.tar.gz
+  sha256: 93a159241fcb1a6abe00b1f5e567a723d28ba5e264cb2159e5010438a2fac4b3
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('go-cgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+    - if: unix
+      then: go-md2man
+
+tests:
+  - script:
+      - docker --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Pack, ship and run any application as a lightweight container
+  homepage: https://github.com/docker/cli
+  repository: https://github.com/docker/cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

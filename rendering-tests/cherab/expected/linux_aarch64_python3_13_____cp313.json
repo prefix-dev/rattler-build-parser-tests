@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab/work"
+      },
+      "hash": {
+        "hash": "6ad4bec",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cherab": {
+          "build_string": "np2py313h6ad4bec_4",
+          "name": "cherab",
+          "version": "1.5.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-11-25T15:48:52.751713131Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://cherab.github.io/documentation/",
+        "homepage": "https://www.cherab.info/",
+        "license": "EUPL-1.1",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/cherab/core.git",
+        "summary": "Cherab spectroscopy framework"
+      },
+      "build": {
+        "number": 4,
+        "script": "${{ PYTHON }} -m pip install --no-build-isolation --no-deps -vv .",
+        "string": "np2py313h6ad4bec_4"
+      },
+      "context": {
+        "name": "cherab",
+        "version": "1.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "cherab",
+        "version": "1.5.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "python",
+          "cross-python_linux-aarch64",
+          "cython",
+          "numpy",
+          "raysect 0.9.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cython",
+          "numpy",
+          "raysect 0.9.*"
+        ],
+        "run": [
+          "python",
+          "scipy",
+          "matplotlib-base"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "cherab",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "numpy2.patch",
+            "fix_targeted_inheritance.patch"
+          ],
+          "sha256": "39cd2d4e14546c472a44ebb5eef2a171797338b928ccb5eab902dcc7aa77b521",
+          "url": "https://github.com/cherab/core/archive/refs/tags/v1.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cherab",
+              "cherab.core",
+              "cherab.generomak",
+              "cherab.openadas",
+              "cherab.tools"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "script": "python -c \"import cherab; print(cherab.__path__[0])\" | xargs python -m unittest discover -v -s"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]
