@@ -80,6 +80,9 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "export LIBCLANG_PATH=$PREFIX/lib",
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
@@ -116,12 +119,8 @@
           "clang"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "libclang",
-            "python"
+            "libclang"
           ]
         },
         "run": [

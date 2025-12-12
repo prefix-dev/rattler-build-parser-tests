@@ -80,6 +80,9 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
           "cargo-bundle-licenses --format=yaml --output=THIRDPARTY.yml"
@@ -118,12 +121,8 @@
           "python 3.10.*"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "cross-python_linux-aarch64",
-            "python"
+            "cross-python_linux-aarch64"
           ]
         },
         "run": [

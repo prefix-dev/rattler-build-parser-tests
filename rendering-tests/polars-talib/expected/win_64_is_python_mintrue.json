@@ -76,6 +76,9 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
           "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
@@ -111,12 +114,8 @@
           "pip"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "libclang",
-            "python"
+            "libclang"
           ]
         },
         "run": [
