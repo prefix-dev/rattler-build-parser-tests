@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asciinema-agg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asciinema-agg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asciinema-agg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asciinema-agg/work"
+      },
+      "hash": {
+        "hash": "f4ed999"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "asciinema-agg": {
+          "build_string": "hf4ed999_0",
+          "name": "asciinema-agg",
+          "version": "1.7.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:57.148296745Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "agg is a command-line tool for generating animated GIF files from terminal session recordings.\n\nIt supports conversion from asciicast v2 files produced by asciinema recorder. It uses Kornel Lesi\u0144ski's excellent gifski library to produce optimized, high quality GIF output with accurate frame timing.",
+        "homepage": "https://github.com/asciinema/agg",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "agg is a command-line tool for generating animated GIF files from terminal session recordings."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hf4ed999_0"
+      },
+      "context": {
+        "name": "asciinema-agg",
+        "version": "1.7.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "asciinema-agg",
+        "version": "1.7.0"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64 19.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8927e2f3b1db53feed2e74319497ddc8404ac7989cb592099c402fbd05d94aa4",
+          "url": "https://github.com/asciinema/agg/archive/refs/tags/v1.7.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "agg --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

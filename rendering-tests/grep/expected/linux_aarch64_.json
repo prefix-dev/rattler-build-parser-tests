@@ -1,0 +1,130 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grep",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grep/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grep/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grep/work"
+      },
+      "hash": {
+        "hash": "6ad9a66"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "grep": {
+          "build_string": "h6ad9a66_1",
+          "name": "grep",
+          "version": "3.12"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:58.160704340Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pcre2": "10.47",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Given one or more patterns, grep searches input files for matches to the\npatterns. When it finds a match in a line, it copies the line to standard\noutput (by default), or produces whatever other sort of output you have\nrequested with options.",
+        "documentation": "https://www.gnu.org/software/grep/manual/",
+        "homepage": "https://www.gnu.org/software/grep/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "Grep searches one or more input files for lines containing a match to a\nspecified pattern"
+      },
+      "build": {
+        "number": 1,
+        "string": "h6ad9a66_1"
+      },
+      "context": {
+        "name": "grep",
+        "version": "3.12"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "calebzulawski",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "grep",
+        "version": "3.12"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "make",
+          "gettext-tools"
+        ],
+        "host": [
+          "pcre2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-c32is-c32to-tests-Avoid-test-failures-on-macOS-15.4.patch"
+          ],
+          "sha256": "2649b27c0e90e632eadcd757be06c6e9a4f48d941de51e7c0f83ff76408a07b9",
+          "url": "https://mirrors.kernel.org/gnu/grep/grep-3.12.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -x ${PREFIX}/bin/grep",
+            "if [ $(which grep) != ${PREFIX}/bin/grep ]; then exit 1; fi",
+            "grep --version",
+            "echo hello world | grep hello"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

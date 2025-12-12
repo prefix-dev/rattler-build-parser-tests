@@ -1,0 +1,161 @@
+schema_version: 1
+
+context:
+  name: dolfinx_mpc
+  version: "0.10.0"
+  major_minor: ${{ (version | split('.'))[:2] | join('.') }}.*
+  abi_version: 2.${{ nanobind_abi }}
+  abi3_python: "3.12"
+  build_abi3: ${{ match(python, abi3_python + ".*") and is_abi3 }}
+  skip_build: ${{ match(python, ">=3.13") and is_abi3 }}
+  abi3_tag: ${{ "cp312" if build_abi3 else "" }}
+
+recipe:
+  name: ${{ name|lower }}-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jorgensd/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 166651cb20f65c9efdff53dfa7f74365f4537e7682b0ac02447e65bf935595ae
+  patches:
+    - 0001-nanobind-abi.patch
+build:
+  number: 0
+  skip:
+    - win
+    - match(python, "<3.10")
+    - skip_build
+outputs:
+  - package:
+      name: libdolfinx_mpc
+    build:
+      script: build-cpp
+      variant:
+        use_keys:
+          - python
+    requirements:
+      build:
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - make
+        - pkg-config
+        - if: "mpi == 'openmpi' and build_platform != target_platform"
+          then: ${{ mpi }}
+      host:
+        - fenics-libdolfinx ${{ major_minor }}
+        - fenics-libbasix ${{ major_minor }}
+        - fenics-ufcx ${{ major_minor }}
+        - ${{ mpi }}
+        - petsc
+        - petsc * ${{ scalar }}_*
+      run_exports:
+        weak:
+          - ${{ mpi }}
+          - petsc * ${{ scalar }}_*
+          - ${{ pin_subpackage("libdolfinx_mpc", upper_bound="x.x") }}
+    tests:
+      - package_contents:
+          lib:
+            - libdolfinx_mpc
+  - package:
+      name: dolfinx_mpc
+    build:
+      script:
+        file: build-py
+        env:
+          SKBUILD_BUILD_VERBOSE: "true"
+          SKBUILD_WHEEL_PY_API: ${{ abi3_tag }}
+      python:
+        version_independent: ${{ build_abi3 }}
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - make
+        - pkg-config
+        - if: build_platform != target_platform
+          then:
+            - if: mpi == "openmpi"
+              then:
+                - ${{ mpi }}
+            - cross-python_${{ target_platform }}
+            - python
+            - nanobind
+            - nanobind-abi
+        - fenics-basix-nanobind-abi ${{ abi_version }}.*
+      host:
+        - ${{ pin_subpackage("libdolfinx_mpc", exact=True) }}
+        - fenics-libbasix ${{ major_minor }}
+        - fenics-basix ${{ major_minor }}
+        - fenics-libdolfinx ${{ major_minor }}
+        - fenics-dolfinx ${{ major_minor }}
+        - fmt
+        - ${{ mpi }}
+        - spdlog
+        - petsc
+        - petsc * ${{ scalar }}_*
+        - pip
+        - python
+        - scikit-build-core
+        - nanobind
+        - nanobind-abi
+        - fenics-basix-nanobind-abi ${{ abi_version }}.*
+        - if: build_abi3
+          then:
+            - python-abi3
+      run:
+        - ${{ pin_subpackage("libdolfinx_mpc", exact=True) }}
+        - fenics-basix
+        - fenics-dolfinx
+        - numpy >=1.21
+      run_constraints:
+        - ${{ pin_compatible("nanobind", upper_bound="x.x") }}
+    tests:
+      - files:
+          source:
+            - python/tests/
+        requirements:
+          run:
+            - pip
+            - pytest
+            - pytest-asyncio
+            - python-gmsh
+            - scipy
+            - if: linux and aarch64
+              then:
+                - libgl-devel
+                # seem to be getting nvpl on py310 for some reason
+                # which doesn't have sparse symbols
+                #
+                - blas[build=openblas]
+        script:
+          content:
+            - if: mpi == 'openmpi' and target_platform == 'linux-aarch64'
+              then:
+                - export LD_PRELOAD=$PREFIX/lib/libGLdispatch.so
+            - pip check
+            - pytest -vs python/tests
+            - mpiexec -n 2 pytest python/tests
+          env:
+            # workaround https://github.com/prefix-dev/rattler-build/issues/1317
+            CONDA_BUILD: "1"
+            MPIEXEC_TIMEOUT: "600"
+
+about:
+  summary: Multi-point constraints with FEniCS-X
+  description: |
+    This library contains an add-on to FEniCSx enabling the possibilities of enforce multi-point constraints
+  license: MIT
+  license_file: LICENSE
+  homepage: "https://github.com/jorgensd/dolfinx_mpc"
+  repository: "https://github.com/jorgensd/dolfinx_mpc"
+  documentation: "https://jorgensd.github.io/dolfinx_mpc"
+
+extra:
+  feedstock-name: dolfinx_mpc
+  recipe-maintainers:
+    - jorgensd
+    - minrk

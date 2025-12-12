@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pvxs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pvxs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pvxs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pvxs/work"
+      },
+      "hash": {
+        "hash": "579f993",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pvxs": {
+          "build_string": "pl5321h579f993_1",
+          "name": "pvxs",
+          "version": "1.4.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:06.454498285Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libevent": "2.1.12",
+        "perl": "5.32.1",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://epics-base.github.io/pvxs/",
+        "homepage": "https://github.com/epics-base/pvxs/",
+        "license": "BSD-4-Clause-UC",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Library and a set of CLI utilities acting as PVAccess protocol client and/or server"
+      },
+      "build": {
+        "number": 1,
+        "string": "pl5321h579f993_1"
+      },
+      "context": {
+        "version": "1.4.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "anderslindho",
+          "lucmaga",
+          "aharrisson",
+          "simon-ess"
+        ]
+      },
+      "package": {
+        "name": "pvxs",
+        "version": "1.4.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "make",
+          "perl"
+        ],
+        "host": [
+          "epics-base",
+          "libevent"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "pvxs",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Add-environment-variable-for-softIocPVX.dbd.patch",
+            "0002-Workaround-cfg-include-bug.patch"
+          ],
+          "sha256": "96a41cf88ea7e4f608840c713edfc9ed9a70b5e9d0ff0813647ed518b227af10",
+          "url": "https://github.com/epics-base/pvxs/archive/refs/tags/1.4.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "lib/libpvxs.so",
+              "lib/libpvxsIoc.so",
+              "include/pvxs/version.h"
+            ]
+          },
+          "script": [
+            "pvxcall -V",
+            "pvxget -V",
+            "pvxinfo -V",
+            "pvxlist -V",
+            "pvxmonitor -V",
+            "pvxmshim -V",
+            "pvxput -V",
+            "pvxvct -V",
+            "softIocPVX -V"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

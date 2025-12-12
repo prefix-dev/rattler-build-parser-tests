@@ -1,0 +1,86 @@
+schema_version: 1
+
+context:
+  name: xrootd
+  version: "5.8.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/xrootd/xrootd/archive/v${{ version }}.tar.gz
+  sha256: 0b91cb76c84710d14428a663f32304ae5829caad9a7765c65dcb458b1e5ef842
+  patches:
+    - if: unix
+      then: patches/drop-Werror-null-dereference.patch
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - setuptools
+        - pip
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - openssl
+    - python
+    - setuptools
+    - pip
+    - readline
+    - libxml2-devel
+    - if: not osx
+      then: libuuid
+    - libcurl
+    - krb5
+    - zlib
+    - ncurses
+    - scitokens-cpp
+    - libxcrypt
+  run:
+    - openssl
+    - python
+    - readline
+    - libxml2-devel
+    - krb5
+    - zlib
+    - ncurses
+  run_exports:
+    - ${{ pin_subpackage('xrootd', upper_bound='x') }}
+
+tests:
+  - python:
+      imports:
+        - XRootD.client
+        - pyxrootd
+
+about:
+  license: LGPL-3.0-or-later
+  license_file: LICENSE
+  summary: High performance, scalable fault tolerant access to data
+  description: |
+    The XROOTD project aims at giving high performance, scalable fault tolerant
+    access to data repositories of many kinds. The typical usage is to give
+    access to file-based ones. It is based on a scalable architecture, a
+    communication protocol, and a set of plugins and tools based on those. The
+    freedom to configure it and to make it scale (for size and performance)
+    allows the deployment of data access clusters of virtually any size, which
+    can include sophisticated features, like authentication/authorization,
+    integrations with other systems, WAN data distribution, etc.
+  homepage: http://xrootd.org/
+  repository: https://github.com/xrootd/xrootd
+
+extra:
+  recipe-maintainers:
+    - chrisburr

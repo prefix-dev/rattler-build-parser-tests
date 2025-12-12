@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_delphes",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_delphes/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_delphes/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_delphes/work"
+      },
+      "hash": {
+        "hash": "b534fcf"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "delphes": {
+          "build_string": "hb534fcf_5",
+          "name": "delphes",
+          "version": "3.5.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:06.466145851Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "root_base": "6.32.10",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Delphes is a C++ framework, performing a fast multipurpose detector\nresponse simulation. The simulation includes a tracking system, embedded\ninto a magnetic field, calorimeters and a muon system. The framework is\ninterfaced to standard file formats (e.g. Les Houches Event File or HepMC)\nand outputs observables such as isolated leptons, missing transverse energy\nand collection of jets which can be used for dedicated analyses.\nThe simulation of the detector response takes into account the effect of\nmagnetic field, the granularity of the calorimeters and sub-detector resolutions.\nVisualisation of the final state particles is also built-in using the\ncorresponding ROOT library.",
+        "documentation": "https://cp3.irmp.ucl.ac.be/projects/delphes",
+        "homepage": "https://github.com/delphes/delphes",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/delphes/delphes",
+        "summary": "A framework for fast simulation of a generic collider experiment"
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "grep -r -l \"external/\" examples/ | xargs sed -i 's|external/||g'",
+          "CXXFLAGS=\"${CXXFLAGS}\" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DPYTHIA8_DATA=$(pythia8-config --datadir) -S . -B build",
+          "cmake build -LH",
+          "cmake --build build --clean-first --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build"
+        ],
+        "string": "hb534fcf_5"
+      },
+      "context": {
+        "name": "delphes",
+        "version": "3.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavel-demin",
+          "matthewfeickert",
+          "kratsg"
+        ]
+      },
+      "package": {
+        "name": "delphes",
+        "version": "3.5.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make",
+          "grep",
+          "sed"
+        ],
+        "host": [
+          "root_base",
+          "pythia8"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "Delphes-ClosestPair2D-fwdDeclaration.patch",
+            "remove_binary_function.patch",
+            "use-range-of-supported-cmake.patch"
+          ],
+          "sha256": "30a2536e0c8f47d633ecf3b4d51ec9924af54538e492470ad47b4ed34342f063",
+          "url": "https://github.com/delphes/delphes/archive/refs/tags/3.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "gxx_linux-64 13.*",
+              "root_base",
+              "pythia8",
+              "gzip",
+              "curl",
+              "grep",
+              "sed"
+            ]
+          },
+          "script": [
+            "test -f \"${PREFIX}\"/bin/DelphesHepMC2",
+            "test -f \"${PREFIX}\"/bin/DelphesHepMC3",
+            "test -f \"${PREFIX}\"/bin/DelphesLHEF",
+            "test -f \"${PREFIX}\"/bin/DelphesPythia8",
+            "test -f \"${PREFIX}\"/bin/DelphesROOT",
+            "test -f \"${PREFIX}\"/bin/DelphesSTDHEP",
+            "curl -LO http://cp3.irmp.ucl.ac.be/downloads/z_ee.hep.gz",
+            "gunzip z_ee.hep.gz",
+            "DelphesSTDHEP \"${PREFIX}\"/cards/delphes_card_CMS.tcl delphes_output.root z_ee.hep",
+            "root -l -b -q \"${PREFIX}\"/examples/Example1.C'(\"delphes_output.root\")' &> /dev/null",
+            "root -l -b -q \"${PREFIX}\"/examples/Example2.C'(\"delphes_output.root\")'",
+            "root -l -b -q \"${PREFIX}\"/examples/Example3.C'(\"delphes_output.root\")'",
+            "root -l -b -q \"${PREFIX}\"/examples/Example4.C'(\"delphes_output.root\", \"plots.root\")'",
+            "root -l -b -q \"${PREFIX}\"/examples/Example5.C'(\"delphes_output.root\")' &> /dev/null"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

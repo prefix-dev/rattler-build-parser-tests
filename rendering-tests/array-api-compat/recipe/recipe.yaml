@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: array-api-compat
+  version: "1.12.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/array_api_compat-${{ version }}.tar.gz
+  sha256: 585bc615f650de53ac24b7c012baecfcdd810f50df3573be47e6dd9fa20df974
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - array_api_compat
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: A wrapper around NumPy and other array libraries to make them compatible with the Array API standard
+  license: MIT
+  license_file: LICENSE
+  homepage: https://data-apis.org/array-api-compat/
+
+extra:
+  recipe-maintainers:
+    - lucascolley
+    - asmeurer
+    - rgommers

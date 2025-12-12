@@ -1,0 +1,43 @@
+# conda_build_config.yaml is configuration for conda-build and detected by if
+# named like that next to meta.yaml. conda-build can also be provided this
+# explicitly via a flag documented like this.
+#
+#  --variant-config-files VARIANT_CONFIG_FILES
+#
+#     Additional variant config files to add. These yaml files can contain keys
+#     such as `c_compiler` and `target_platform` to form a build matrix.
+#
+# Read more about this "variant config file" in
+# https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html.
+#
+# NOTE: The values provided here can replace what seems like default values in
+#       https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/main/recipe/conda_build_config.yaml.
+#
+#       To learn more about this, read:
+#       https://conda-forge.org/docs/maintainer/pinning_deps.html
+#
+python_min: 3.10
+python:
+  # part of a zip_keys: python, python_impl, numpy, is_python_min
+  - 3.10.* *_cpython
+  - 3.11.* *_cpython
+  - 3.12.* *_cpython
+  - 3.13.* *_cp313
+python_impl:
+  # part of a zip_keys: python, python_impl, numpy, is_python_min
+  - cpython
+  - cpython
+  - cpython
+  - cpython
+numpy:
+  # part of a zip_keys: python, python_impl, numpy, is_python_min
+  - 2
+  - 2
+  - 2
+  - 2
+is_python_min:
+  # part of a zip_keys: python, python_impl, numpy, is_python_min
+  - true
+  - false
+  - false
+  - false

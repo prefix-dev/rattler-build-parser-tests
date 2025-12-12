@@ -1,0 +1,350 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor-base",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor-base/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor-base/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor-base/work"
+      },
+      "hash": {
+        "hash": "bb1052f",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pytensor-base": {
+          "build_string": "np2py312hbb1052f_0",
+          "name": "pytensor-base",
+          "version": "2.35.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:02.432171286Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pytensor.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/pymc-devs/pytensor",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pymc-devs/pytensor/",
+        "summary": "An optimizing compiler for evaluating mathematical expressions."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pytensor-cache = pytensor.bin.pytensor_cache:main"
+          ]
+        },
+        "script": "python -m pip install . --no-deps -vv",
+        "string": "np2py312hbb1052f_0"
+      },
+      "context": {
+        "version": "2.35.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aseyboldt",
+          "maresb",
+          "michaelosthege",
+          "twiecki"
+        ]
+      },
+      "package": {
+        "name": "pytensor-base",
+        "version": "2.35.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "python",
+          "setuptools >=59.0.0",
+          "cython",
+          "numpy",
+          "versioneer ==0.29",
+          "cross-python_win-64",
+          "tomli"
+        ],
+        "host": [
+          "python",
+          "setuptools >=59.0.0",
+          "cython",
+          "numpy",
+          "versioneer ==0.29",
+          "pip",
+          "tomli"
+        ],
+        "run": [
+          "python",
+          "setuptools >=59.0.0",
+          "scipy >=1,<2",
+          "numpy >=1.17.0",
+          "filelock >=3.15",
+          "etuples",
+          "logical-unification",
+          "minikanren",
+          "cons"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-mkl-blas-detection.patch"
+          ],
+          "sha256": "01364a31c6e86bcf99770d1e625d70bcdb90f8c72b1d3377f7c96b4009a3e195",
+          "url": "https://pypi.org/packages/source/p/pytensor/pytensor-2.35.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pytensor"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "check-for-warnings.py",
+              "allowed-warnings-base.txt"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pytensor-cache help",
+            "pip check",
+            "python -c \"import pytensor; print(pytensor.config.blas__ldflags); print(pytensor.config)\"",
+            "python check-for-warnings.py allowed-warnings-base.txt"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytensor/work"
+      },
+      "hash": {
+        "hash": "748d2a6",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pytensor": {
+          "build_string": "py312h748d2a6_0",
+          "name": "pytensor",
+          "version": "2.35.1"
+        },
+        "pytensor-base": {
+          "build_string": "np2py312hbb1052f_0",
+          "name": "pytensor-base",
+          "version": "2.35.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:02.496518138Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "m2w64_c_compiler": "gcc",
+        "m2w64_c_compiler_version": "14",
+        "m2w64_c_stdlib": "m2w64-sysroot",
+        "m2w64_c_stdlib_version": "12",
+        "m2w64_cxx_compiler": "gxx",
+        "m2w64_cxx_compiler_version": "14",
+        "pytensor_base": "2.35.1 np2py312hbb1052f_0",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pytensor.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/pymc-devs/pytensor",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pymc-devs/pytensor/",
+        "summary": "An optimizing compiler for evaluating mathematical expressions."
+      },
+      "build": {
+        "number": 0,
+        "script": "echo \"Nothing to build here, just add dependencies.\"",
+        "string": "py312h748d2a6_0"
+      },
+      "context": {
+        "version": "2.35.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aseyboldt",
+          "maresb",
+          "michaelosthege",
+          "twiecki"
+        ]
+      },
+      "package": {
+        "name": "pytensor",
+        "version": "2.35.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pytensor-base"
+            }
+          },
+          "gxx",
+          "gcc_win-64 14.*",
+          "m2w64-sysroot_win-64 12.*",
+          "gxx_win-64 14.*",
+          "blas * mkl",
+          "mkl-service"
+        ],
+        "run_constraints": [
+          "libstdcxx !=15.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-mkl-blas-detection.patch"
+          ],
+          "sha256": "01364a31c6e86bcf99770d1e625d70bcdb90f8c72b1d3377f7c96b4009a3e195",
+          "url": "https://pypi.org/packages/source/p/pytensor/pytensor-2.35.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pytensor",
+              "pytensor.configdefaults"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "check-for-warnings.py",
+              "allowed-warnings-main.txt"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pytensor-cache help",
+            "pip check",
+            "python -c \"import pytensor; print(pytensor.config.blas__ldflags); print(pytensor.config)\"",
+            "python -c \"import pytensor; assert pytensor.config.blas__ldflags != '', 'Blas flags are empty'\"",
+            "python check-for-warnings.py allowed-warnings-main.txt"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

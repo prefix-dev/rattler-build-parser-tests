@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_codepy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_codepy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_codepy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_codepy/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "codepy": {
+          "build_string": "pyhcf101f3_0",
+          "name": "codepy",
+          "version": "2025.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:01.898312965Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "CodePy is a C/C++ metaprogramming toolkit for Python. It helps you\ncompile source code and dynamically load it into the Python\ninterpreter. This facility also works in conjunction with with\nPyCuda. Dynamic compilation and linking are so far only supported\nin Linux with the GNU toolchain.",
+        "documentation": "http://mathema.tician.de/software/codepy",
+        "homepage": "http://mathema.tician.de/software/codepy",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/inducer/codepy",
+        "summary": "Generate and execute native code at run time, from Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "codepy",
+        "version": "2025.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "inducer",
+          "jan-janssen"
+        ]
+      },
+      "package": {
+        "name": "codepy",
+        "version": "2025.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "hatchling"
+        ],
+        "run": [
+          "cgen",
+          "platformdirs >=2.2.0",
+          "numpy >=1.6",
+          "python >=3.10",
+          "pytools >=2022.1.14",
+          "typing_extensions >=4.5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ccc8365955050e827368ec0034c74cc3523a5cc60d8aff46a1a5345b769a9b75",
+          "url": "https://pypi.org/packages/source/c/codepy/codepy-2025.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "python -c \"import codepy\"",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

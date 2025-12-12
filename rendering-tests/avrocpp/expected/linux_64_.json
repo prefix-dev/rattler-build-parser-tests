@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_avrocpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_avrocpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_avrocpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_avrocpp/work"
+      },
+      "hash": {
+        "hash": "c028be6"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "avrocpp": {
+          "build_string": "hc028be6_0",
+          "name": "avrocpp",
+          "version": "1.12.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:20:14.489657751Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "liblzma_devel": "5",
+        "snappy": "1.2",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://avro.apache.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Avro is a serialization and RPC framework."
+      },
+      "build": {
+        "number": 0,
+        "string": "hc028be6_0"
+      },
+      "context": {
+        "version": "1.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "apmorton",
+          "mariusvniekerk"
+        ]
+      },
+      "package": {
+        "name": "avrocpp",
+        "version": "1.12.0"
+      },
+      "requirements": {
+        "build": [
+          "ninja",
+          "cmake <4",
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*"
+        ],
+        "host": [
+          "snappy",
+          "liblzma-devel",
+          "zlib",
+          "libboost-devel"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0002-Fix-linker-error-in-tests.patch"
+          ],
+          "sha256": "51832f9c2e81fa95addb74be627dac27b4883ec2c8627ec8471d99cfea787555",
+          "url": "https://github.com/apache/avro/archive/release-1.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/lib/libavrocpp_s.a",
+            "test -f ${PREFIX}/lib/libavrocpp${SHLIB_EXT}",
+            "test -f ${PREFIX}/include/avro/Types.hh"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

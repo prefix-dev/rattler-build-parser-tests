@@ -1,0 +1,38 @@
+context:
+  version: 1.9.3
+
+package:
+  name: swc
+  version: ${{ version }}
+
+source:
+  url: https://github.com/swc-project/swc/archive/v${{ version }}.tar.gz
+  sha256: 774db83f7ace9d9765794a22191edc981a28ee64f9d6062df08edf1a9d202cab
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - swc --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Rust-based platform for the Web
+  homepage: https://github.com/swc-project/swc
+  repository: https://github.com/swc-project/swc
+
+extra:
+  recipe-maintainers:
+    - danielnachun

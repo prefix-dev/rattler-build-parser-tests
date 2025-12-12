@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_burr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_burr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_burr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_burr/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "burr": {
+          "build_string": "pyhcf101f3_1",
+          "name": "burr",
+          "version": "0.40.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:20:13.827346492Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/dagworks-inc/burr",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A state machine for data projects"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "burr = burr.cli.__main__:cli_run_server",
+            "burr-demo = burr.cli.__main__:cli_demo_server",
+            "burr-admin-server = burr.cli.__main__:cli_run_server",
+            "burr-admin-publish = burr.cli.__main__:cli_build_and_publish",
+            "burr-admin-build-ui = burr.cli.__main__:cli_build_ui",
+            "burr-admin-generate-demo-data = burr.cli.__main__:cli_generate_demo_data",
+            "burr-test-case = burr.cli.__main__:cli_test_case"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "name": "burr",
+        "version": "0.40.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "burr",
+        "version": "0.40.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=61.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "275f3e26a3deede8126c57f78e1e6a0d9940b0c89c0b8ae78ce97a3ae1e2c2a6",
+          "url": "https://pypi.org/packages/source/b/burr/burr-0.40.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "burr"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "aiofiles",
+              "click",
+              "fastapi",
+              "fastapi-pagination",
+              "fastapi_utils",
+              "graphviz",
+              "jinja2",
+              "loguru",
+              "matplotlib",
+              "openai",
+              "pydantic",
+              "pydantic-settings",
+              "requests",
+              "sf-hamilton",
+              "streamlit",
+              "uvicorn",
+              "aiosqlite"
+            ]
+          },
+          "script": [
+            "pip check",
+            "burr --help",
+            "burr-demo --help",
+            "burr-admin-server --help",
+            "burr-admin-publish --help",
+            "burr-admin-build-ui --help",
+            "burr-admin-generate-demo-data --help",
+            "burr-test-case --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

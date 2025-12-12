@@ -1,0 +1,51 @@
+context:
+  version: "0.4.2"
+
+package:
+  name: gflow
+  version: ${{ version }}
+
+source:
+  url: https://github.com/AndPuQing/gflow/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 47ce18ad3b4e2672080f25f916479c03908216bc73b885f183956bf5ada678a7
+
+build:
+  number: 0
+  skip:
+    - win
+    - osx
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script:
+      - gflowd --version
+
+about:
+  homepage: https://github.com/AndPuQing/gflow
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  description: |
+    A lightweight, single-node job scheduler written in Rust.
+  summary: "Lightweight GPU Job Scheduler"
+  documentation: https://docs.rs/gflow
+  repository: https://github.com/AndPuQing/gflow
+
+extra:
+  recipe-maintainers:
+    - AndPuQing

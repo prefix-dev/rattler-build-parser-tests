@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.5.0"
+
+package:
+  name: aiounittest
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/aiounittest/aiounittest-${{ version }}.tar.gz
+  sha256: 3c20ab00909419749061a4cb1a2755f034d10c1f6455adb1f03d7c16dedce711
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - wrapt
+
+tests:
+  - python:
+      pip_check: true
+      python_version: ${{ python_min }}.*
+      imports: aiounittest
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source=aiounittest --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=95
+
+about:
+  summary: Test asyncio code more easily.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/kwarunek/aiounittest
+  description: |
+    The aiounittest is a helper library to ease of your pain (and boilerplate),
+    when writing a test of the asynchronous code (asyncio). You can test:
+
+    - synchronous code (same as the unittest.TestCase)
+    - asynchronous code, it supports syntax with async/await (Python 3.5+) and
+    asyncio.coroutine/yield from (Python 3.4)
+
+    In the Python 3.8 (release note) and newer consider to use the
+    unittest.IsolatedAsyncioTestCase. Builtin unittest module is now
+    asyncio-featured.
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

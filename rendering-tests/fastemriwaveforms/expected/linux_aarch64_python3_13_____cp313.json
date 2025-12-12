@@ -1,0 +1,441 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/work"
+      },
+      "hash": {
+        "hash": "31b09bd",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastemriwaveforms": {
+          "build_string": "np2py313h31b09bd_111",
+          "name": "fastemriwaveforms",
+          "version": "2.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:12.805355748Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "microarch_level": "1",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package contains the highly modular framework for fast and accurate extreme mass ratio\ninspiral (EMRI) waveforms. This is the core package with only CPU support\nfor waveform generation.",
+        "documentation": "https://fastemriwaveforms.readthedocs.io/en/v2.0.0/",
+        "homepage": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "summary": "Blazingly fast EMRI waveforms"
+      },
+      "build": {
+        "number": 111,
+        "python": {
+          "entry_points": [
+            "few_citations = few.cmd.citations:main",
+            "few_files = few.cmd.files:main"
+          ]
+        },
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install . -vv -Ccmake.define.FEW_LAPACKE_FETCH=OFF -Ccmake.define.FEW_WITH_GPU=OFF -Ccmake.define.FEW_LAPACKE_DETECT_WITH=PKGCONFIG ${{ microarch_option }}"
+          ],
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "2.0.0"
+          }
+        },
+        "string": "np2py313h31b09bd_111"
+      },
+      "context": {
+        "RECIPE_DIR": ".",
+        "build": 11,
+        "build_with_microarch": 111,
+        "cuda_major": 0,
+        "microarch_level": 1,
+        "name": "FastEMRIWaveforms",
+        "version": "2.0.0"
+      },
+      "extra": {
+        "feedstock-name": "fastemriwaveforms",
+        "recipe-maintainers": [
+          "cchapmanbird",
+          "mpigou"
+        ]
+      },
+      "package": {
+        "name": "fastemriwaveforms",
+        "version": "2.0.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "scikit-build-core",
+          "cython",
+          "liblapacke",
+          "libblas",
+          "libtmglib",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "make"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "scikit-build-core",
+          "setuptools_scm",
+          "cython",
+          "numpy",
+          "liblapacke",
+          "libblas",
+          "libtmglib"
+        ],
+        "run": [
+          "python",
+          "h5py",
+          "jsonschema",
+          "liblapacke",
+          "lisaconstants",
+          "multispline",
+          "numba",
+          "numpy",
+          "nvidia-ml-py",
+          "platformdirs",
+          "pydantic",
+          "pyyaml",
+          "requests",
+          "rich",
+          "scipy",
+          "tqdm",
+          "wrapt"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/01_few2.0_march.patch",
+            "patches/02_few_display_cmake_options.patch"
+          ],
+          "sha256": "d5c8bcba1ec24cb71be8a293f75cf1491e2e474515c1481559a4ef07378e0c36",
+          "url": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms/archive/refs/tags/v2.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "few",
+              "few.tests",
+              "few_backend_cpu"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import importlib.metadata; assert importlib.metadata.version('fastemriwaveforms') == '${{ version }}'\"",
+            "python -c \"import few; few.get_backend('cpu')\"",
+            "python -m few.tests --disable testfile"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms-cuda12x",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms-cuda12x/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms-cuda12x/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms-cuda12x/work"
+      },
+      "hash": {
+        "hash": "fa8277f",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastemriwaveforms": {
+          "build_string": "np2py313h31b09bd_111",
+          "name": "fastemriwaveforms",
+          "version": "2.0.0"
+        },
+        "fastemriwaveforms-cuda12x": {
+          "build_string": "np2py313hfa8277f_111",
+          "name": "fastemriwaveforms-cuda12x",
+          "version": "2.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:12.839091448Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "microarch_level": "1",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package contains the highly modular framework for fast and accurate extreme mass ratio\ninspiral (EMRI) waveforms. This is the CUDA plugin package which adds GPU acceleration\nto the waveform generation.",
+        "documentation": "https://fastemriwaveforms.readthedocs.io/en/v2.0.0/",
+        "homepage": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "summary": "Blazingly fast EMRI waveforms"
+      },
+      "build": {
+        "number": 111,
+        "script": {
+          "content": [
+            "sed -i'' -e '/@SKIP_PLUGIN@/d' pyproject.toml",
+            "${{ PYTHON }} ${{ RECIPE_DIR }}/update_name.py fastemriwaveforms-cuda12x",
+            "${{ PYTHON }} -m pip install . -vv -Ccmake.define.FEW_LAPACKE_FETCH=OFF -Ccmake.define.FEW_WITH_GPU=ONLY -Ccmake.define.FEW_CUDA_ARCH=\"${CUDAARCHS:-all-major}\" ${{ microarch_option }}"
+          ],
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "2.0.0"
+          }
+        },
+        "string": "np2py313hfa8277f_111"
+      },
+      "context": {
+        "RECIPE_DIR": ".",
+        "build": 11,
+        "build_with_microarch": 111,
+        "cuda_major": 0,
+        "microarch_level": 1,
+        "name": "FastEMRIWaveforms",
+        "version": "2.0.0"
+      },
+      "extra": {
+        "feedstock-name": "fastemriwaveforms",
+        "recipe-maintainers": [
+          "cchapmanbird",
+          "mpigou"
+        ]
+      },
+      "package": {
+        "name": "fastemriwaveforms-cuda12x",
+        "version": "2.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cuda-nvcc_linux-aarch64 12.9.*",
+          "python",
+          "cross-python_linux-aarch64",
+          "scikit-build-core",
+          "setuptools_scm",
+          "cython",
+          "numpy",
+          "ninja",
+          "cmake",
+          "make",
+          "cuda-driver-dev",
+          "cuda-cudart-dev",
+          "cuda-nvrtc-dev",
+          "libcublas-dev",
+          "libcusparse-dev",
+          "tomli",
+          "tomli-w"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "scikit-build-core",
+          "setuptools_scm",
+          "cython",
+          "numpy",
+          "tomli",
+          "tomli-w",
+          "cuda-driver-dev",
+          "cuda-cudart-dev",
+          "libcublas-dev",
+          "libcusparse-dev"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cuda-nvcc_linux-aarch64",
+            "cuda-driver-dev",
+            "cuda-cudart-dev",
+            "cuda-nvrtc-dev",
+            "libcublas-dev",
+            "libcusparse-dev"
+          ]
+        },
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x",
+              "name": "fastemriwaveforms",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x",
+              "name": "cuda-version",
+              "upper_bound": "x"
+            }
+          },
+          "cupy",
+          "cuda-cudart",
+          "libcublas",
+          "libcusparse"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/01_few2.0_march.patch",
+            "patches/02_few_display_cmake_options.patch"
+          ],
+          "sha256": "d5c8bcba1ec24cb71be8a293f75cf1491e2e474515c1481559a4ef07378e0c36",
+          "url": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms/archive/refs/tags/v2.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "few_backend_cuda12x"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "cuda-driver-dev"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import importlib.metadata; assert importlib.metadata.version('fastemriwaveforms-cuda12x') == '${{ version }}'\"",
+            "FEW_ENABLED_BACKENDS=cpu python -m few.tests --disable testfile"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

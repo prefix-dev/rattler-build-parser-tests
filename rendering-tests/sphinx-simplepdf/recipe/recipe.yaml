@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: sphinx-simplepdf
+  version: "1.7.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 4e2d323e30cabdff53c12abf1694a9029e667f9a01db343c49341180324caaef
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - sphinx
+    - weasyprint
+    - libsass
+    - beautifulsoup4
+
+tests:
+  - python:
+      imports:
+        - sphinx_simplepdf
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: An easy to use PDF Builder for Sphinx with a modern PDF-Theme.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://sphinx-simplepdf.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - melund

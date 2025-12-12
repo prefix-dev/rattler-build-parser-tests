@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: caio
+  version: "0.9.24"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/caio-${{ version }}.tar.gz
+  sha256: 5bcdecaea02a9aa8e3acf0364eff8ad9903d57d70cdb274a42270126290a77f1
+
+build:
+  number: 1
+  skip: match(python, "<3.6")
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - pip
+    - python
+    - setuptools >=77
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - caio
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Asynchronous file IO for Linux Posix and Windows.
+  license: Apache-2.0
+  license_file: COPYING
+  homepage: https://github.com/mosquito/caio
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - matthewfeickert

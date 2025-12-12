@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nnpdf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nnpdf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nnpdf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nnpdf/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nnpdf": {
+          "build_string": "pyhcf101f3_0",
+          "name": "nnpdf",
+          "version": "4.1.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:21.067458900Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://nnpdf.science/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "An open-source machine learning framework for global analyses of parton distributions."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "export POETRY_DYNAMIC_VERSIONING_BYPASS=${{ version }}",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "nnpdf",
+        "version": "4.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "scarlehoff"
+        ]
+      },
+      "package": {
+        "name": "nnpdf",
+        "version": "4.1.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "poetry-core >=1.0.0",
+          "poetry-dynamic-versioning >=1.2.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "tensorflow >=2.17",
+          "keras >=3.1",
+          "psutil",
+          "hyperopt",
+          "mongodb",
+          "pymongo <4",
+          "pyopenssl >=23.2",
+          "seaborn",
+          "lhapdf",
+          "numpy",
+          "pkg-config",
+          "reportengine",
+          "matplotlib >=3.9",
+          "blessings >=1.7",
+          "scipy >=0.19.1",
+          "pandas",
+          "requests",
+          "prompt_toolkit",
+          "validobj",
+          "pineappl >=1.0.0",
+          "eko >=0.15.1,<0.16",
+          "fiatlux",
+          "joblib",
+          "ruamel.yaml >=0.15"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "410601b32a0184c50342adf89e8bc47a88d74a996d3d051a913a5ee3628e4f5a",
+          "url": "https://github.com/NNPDF/nnpdf/archive/4.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "hypothesis",
+              "pytest",
+              "pytest-mpl"
+            ]
+          },
+          "script": "pytest --pyargs validphys -k \"datafiles\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

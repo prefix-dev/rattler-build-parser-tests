@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: sober
+  python_min: 3.12.0
+  version: 0.4.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sober-${{ version }}.tar.gz
+  sha256: 806b869af980cddad78094560bdac14041d7e413bca6eb819ec3e807c29e39a6
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - hatchling
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - eppy-core >=0.5.63,<0.6.0
+    - numpy >=2,<3
+    - psutil >=6,<7
+    - pymoo >=0.6.1,<0.7.0
+    - scipy >=1.13,<2.0
+
+tests:
+  - python:
+      imports:
+        - sober
+      pip_check: false
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: sober optimises built environment robustly
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/airallergy/sober # make conda-forge-linter happy, not defined in upstream
+  repository: https://github.com/airallergy/sober
+  documentation: https://airallergy.github.io/sober
+
+extra:
+  recipe-maintainers:
+    - airallergy

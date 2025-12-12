@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  version: 0.13.3
+  name: easydev
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 111644afca6785d406e7819ebce56b928d7fd9be15156d6f38f8274b3ccbe249
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core
+  run:
+    - python >=${{ python_min }}
+    - colorama >=0.4.6,<0.5.0
+    - colorlog >=6.8.2,<7.0.0
+    - pexpect >=4.9.0,<5.0.0
+    - platformdirs >=4.2.0,<5.0.0
+    - line_profiler >=4.1.2,<5.0.0
+
+tests:
+  - python:
+      imports:
+        - easydev
+        - easydev.share
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: COPYING
+  summary: Common utilities to ease the development of Python packages
+  homepage: http://packages.python.org/easydev/
+  repository: https://github.com/cokelaer/easydev
+  documentation: http://easydev-python.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - cokelaer
+    - synapticarbors

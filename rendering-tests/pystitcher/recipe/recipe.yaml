@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: pystitcher
+  version: 1.0.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/captn3m0/pystitcher/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: a1c3f4249175c522fc07779fd577f73d1c11a2056210b8bcfae66440f6adfc79
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - pystitcher = pystitcher.skeleton:run
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - html5lib >=0.0.9
+    - importlib-metadata
+    - markdown >=3.3.4
+    - pypdf3 >=1.0.4
+    - python >=${{ python_min }}
+    - validators >=0.34.0
+
+tests:
+  - python:
+      imports:
+        - pystitcher
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pystitcher --help
+
+about:
+  summary: Stitch together a PDF file from multiple sources in a declarative manner
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/captn3m0/pystitcher
+  repository: https://github.com/captn3m0/pystitcher
+
+extra:
+  recipe-maintainers:
+    - thewchan

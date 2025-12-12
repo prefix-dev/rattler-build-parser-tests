@@ -1,0 +1,47 @@
+context:
+  version: "0.7.5"
+
+package:
+  name: termgraph
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/t/termgraph/termgraph-${{ version }}.tar.gz
+    sha256: 9660f3ce04cd182d34c9fb0390a57bc2ab596d8159ed544459b29d3f6db9d1da
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  python:
+    entry_points:
+      - termgraph = termgraph.termgraph:main
+  noarch: python
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - colorama >=0.4.6
+
+tests:
+  - python:
+      imports:
+        - termgraph
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - termgraph --help
+
+about:
+  homepage: https://github.com/mkaz/termgraph
+  license: MIT
+  license_file: LICENSE.txt
+  summary: A python command-line tool which draws basic graphs in the terminal
+
+extra:
+  recipe-maintainers:
+    - xhochy
+    - claudiushaag

@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blis",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blis/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blis/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blis/work"
+      },
+      "hash": {
+        "hash": "02eceb6",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "blis": {
+          "build_string": "pthreads_h02eceb6_2",
+          "name": "blis",
+          "version": "2.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:20:38.079548724Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "perl": "5.32.1",
+        "target_platform": "win-64",
+        "threading": "pthreads"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://github.com/flame/blis",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "BLAS-like Library Instantiation Software Framework"
+      },
+      "build": {
+        "number": 2,
+        "string": "pthreads_h02eceb6_2",
+        "variant": {
+          "down_prioritize_variant": 0
+        }
+      },
+      "context": {
+        "build_number": 2,
+        "version": "2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf",
+          "h-vetinari",
+          "gdonval"
+        ]
+      },
+      "package": {
+        "name": "blis",
+        "version": "2.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "clangxx",
+          "llvm-tools",
+          "autotools_clang_conda",
+          "m2-sed",
+          "perl",
+          "python >=3.5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Blacklist-knl-for-clang-19.patch",
+            "patches/0002-Use-printf-instead-of-xargs-which-is-broken-in-mingw.patch"
+          ],
+          "sha256": "08bbebd77914a6d1a43874ae5ec2f54fe6a77cba745f2532df28361b0f1ad1b3",
+          "url": "https://github.com/flame/blis/archive/2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_INC%\\blis\\blis.h exit 1",
+            "if not exist %LIBRARY_INC%\\blis\\cblas.h exit 1",
+            "if not exist %LIBRARY_BIN%\\libblis.4.dll exit 1",
+            "if not exist %LIBRARY_LIB%\\blis.lib exit 1",
+            "if not exist %LIBRARY_LIB%\\libblis.lib exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,40 @@
+context:
+  version: "1.2.5"
+
+package:
+  name: dot-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/dot-language-server/-/dot-language-server-${{ version }}.tgz
+  sha256: fdd192d870c197817f9a41e67a1a5ac23ba156128129ce84b85bcc53349cecc5
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - dot-language-server --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A language server for the DOT language
+  homepage: https://github.com/nikeee/dot-language-server
+  repository: https://github.com/nikeee/dot-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,53 @@
+context:
+  version: "0.1.2"
+  build_number: 0
+
+package:
+  name: xvega-bindings
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jupyter-xeus/xvega-bindings/archive/${{ version }}.tar.gz
+  sha256: 3c60b64587e8c0bdd57579724c875115d7b08efdb7948b3fc4907b3e39aeed31
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - if: unix
+      then:
+        - make
+  host:
+    - nlohmann_json
+    - nlohmann_json-abi
+    - xvega >=0.1.0,<0.2
+  run:
+    - ${{ pin_compatible('nlohmann_json', upper_bound='x.x.x') }}
+    - ${{ pin_compatible('xvega', upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      files:
+        exists:
+          - ${{ "Library/" if win }}include/xvega-bindings/xvega_bindings.hpp
+          - ${{ "Library/" if win }}lib/cmake/xvega-bindings/xvega-bindingsConfig.cmake
+
+about:
+  homepage: https://github.com/jupyter-xeus/xvega-bindings/
+  repository: https://github.com/jupyter-xeus/xvega-bindings/
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: xvega bindings for xeus
+  documentation: https://xeus-sqlite.readthedocs.io/en/latest/xvega_magic.html
+
+extra:
+  recipe-maintainers:
+    - SylvainCorlay
+    - madhur-tandon
+    - marimeireles
+    - johanMabille

@@ -1,0 +1,55 @@
+context:
+  version: "0.9.4"
+
+package:
+  name: docker-credential-helpers
+  version: ${{ version }}
+
+source:
+  url: https://github.com/docker/docker-credential-helpers/archive/v${{ version }}.tar.gz
+  sha256: 6cb45cdd1e7f964fb15bc260f55238d90eb365d1d3d4cb7f41418637a9316a6d
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('go-cgo') }}
+    - go-licenses
+    - if: linux
+      then: pkg-config
+  host:
+    - if: linux
+      then:
+        - glib
+        - libsecret
+        - zlib
+tests:
+  - script:
+      - if: osx
+        then: docker-credential-osxkeychain --help
+      - if: linux
+        then: |
+          docker-credential-pass --help
+          docker-credential-secretservice --help
+      - if: win
+        then: docker-credential-wincred --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - if: not linux
+      then: license-files/
+      else:
+        - license-files_pass/
+        - license-files_secretservice/
+  summary: Docker CLI plugin for extended build capabilities with BuildKit
+  homepage: https://github.com/docker/docker-credential-helpers
+  repository: https://github.com/docker/docker-credential-helpers
+
+extra:
+  recipe-maintainers:
+    - danielnachun

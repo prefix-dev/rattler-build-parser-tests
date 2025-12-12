@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 0.20.0
+
+package:
+  name: sos-julia
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sos-julia/sos-julia-${{ version }}.tar.gz
+  sha256: 1ff4e40f1cfc25682dba797865a010403ba38d155e3f093cf9f4565b55de2aab
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+    - julia
+    - jupyter_contrib_core
+  run:
+    - sos-notebook >=0.22.7
+    - feather-format
+    - julia
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - sos_julia
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: SoS language module for Julia
+  homepage: https://github.com/vatlab/sos-julia
+  repository: https://github.com/vatlab/sos-julia
+  documentation: https://vatlab.github.io/sos-docs/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - BoPeng

@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acp-mcp-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acp-mcp-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acp-mcp-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acp-mcp-server/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "acp-mcp-server": {
+          "build_string": "pyhcf101f3_0",
+          "name": "acp-mcp-server",
+          "version": "0.0.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:57.193761020Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/GongRzhe/ACP-MCP-Server",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Bridge server connecting Agent Communication Protocol (ACP) agents with Model Context Protocol (MCP) clients"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "acp-mcp-server = acp_mcp_server:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "acp-mcp-server",
+        "python_min": "3.11",
+        "version": "0.0.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "acp-mcp-server",
+        "version": "0.0.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.11",
+          "fastmcp >=2.8.1",
+          "aiohttp >=3.9.0",
+          "pydantic >=2.0.0",
+          "uvicorn >=0.27.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7f86a2e4c0218360551ca547a0ef5ffcc865f05d20505c52f8869757d0f9ebf8",
+          "url": "https://pypi.org/packages/source/a/acp-mcp-server/acp_mcp_server-0.0.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "acp_mcp_server"
+            ],
+            "python_version": [
+              "3.11.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pip"
+            ]
+          },
+          "script": "acp-mcp-server --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

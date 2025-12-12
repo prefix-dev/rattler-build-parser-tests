@@ -1,0 +1,37 @@
+context:
+  version: "0.9.3"
+
+package:
+  name: mcfly
+  version: ${{ version }}
+
+source:
+  url: https://github.com/cantino/mcfly/archive/v${{ version }}.tar.gz
+  sha256: 194383276095b71dd6d085fb959ba7981384cbe09776fd5f182e95bbed5a3a13
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - mcfly --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Fly through your shell history
+  homepage: https://github.com/cantino/mcfly
+  repository: https://github.com/cantino/mcfly
+
+extra:
+  recipe-maintainers:
+    - danielnachun

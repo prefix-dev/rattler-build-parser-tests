@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoindex-rs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoindex-rs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoindex-rs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoindex-rs/work"
+      },
+      "hash": {
+        "hash": "d3e4b1a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "geoindex-rs": {
+          "build_string": "py313hd3e4b1a_5",
+          "name": "geoindex-rs",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:22.480191081Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://kylebarron.dev/geo-index/latest/",
+        "homepage": "https://kylebarron.dev/geo-index/latest/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE_MIT",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/kylebarron/geo-index",
+        "summary": "Fast, memory-efficient 2D spatial indexes for Python."
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "${{ PYTHON }} -m pip install ./python -vv",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+        ],
+        "string": "py313hd3e4b1a_5"
+      },
+      "context": {
+        "name": "geoindex-rs",
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kylebarron"
+        ]
+      },
+      "package": {
+        "name": "geoindex-rs",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "crossenv",
+          "maturin >=1.7.0,<2.0",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.4.0,<2.0",
+          "pip"
+        ],
+        "run": [
+          "arro3-core",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "998ea59d04524deefc5bf587b2d3d581b4568ee753562d673002d3387abfad40",
+          "url": "https://github.com/kylebarron/geo-index/archive/refs/tags/py-v0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "geoindex_rs"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

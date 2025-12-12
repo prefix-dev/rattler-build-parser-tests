@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: taurus_pyqtgraph
+  version: 0.9.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: aec7e58da154bdc5efc2796cae6bc5a699b8203212d7a26a63cd9065c9c30725
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python ${{ python_min }}.*
+  run:
+    - click
+    - lxml
+    - ply
+    - pyqtgraph >=0.11
+    - python >=${{ python_min }}
+    - taurus >=4.5.2
+
+tests:
+  - python:
+      imports:
+        - taurus_pyqtgraph
+        - taurus_pyqtgraph.examples
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+      pip_check: true
+
+about:
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.txt
+  summary: Taurus extension providing pyqtgraph-based widgets
+  description: |
+    taurus_pyqtgraph is an extension for the Taurus package.
+    It adds the taurus.qt.qtgui.tpg submodule which provides pyqtgraph-based
+    widgets.
+  homepage: https://gitlab.com/taurus-org/taurus_pyqtgraph
+  repository: https://gitlab.com/taurus-org/taurus_pyqtgraph
+  documentation: http://taurus-scada.org
+
+extra:
+  recipe-maintainers:
+    - ovallcorba
+    - beenje
+    - cpascual

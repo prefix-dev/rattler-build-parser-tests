@@ -1,0 +1,180 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onnx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onnx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onnx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onnx/work"
+      },
+      "hash": {
+        "hash": "c224dc5",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "onnx": {
+          "build_string": "np2py310hc224dc5_0",
+          "name": "onnx",
+          "version": "1.19.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:03.301439464Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libprotobuf": "6.31.1",
+        "numpy": "2",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Open Neural Network Exchange (ONNX) is the first step toward an open\necosystem that empowers AI developers to choose the right tools as their\nproject evolves. ONNX provides an open source format for AI models. It\ndefines an extensible computation graph model, as well as definitions of\nbuilt-in operators and standard data types. Initially we focus on the\ncapabilities needed for inferencing (evaluation).",
+        "homepage": "https://github.com/onnx/onnx/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Open Neural Network Exchange library"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "check-model = onnx.bin.checker:check_model",
+            "check-node = onnx.bin.checker:check_node",
+            "backend-test-tools = onnx.backend.test.cmd_tools:main"
+          ]
+        },
+        "string": "np2py310hc224dc5_0"
+      },
+      "context": {
+        "name": "onnx",
+        "version": "1.19.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ezyang",
+          "marcelotrevisani",
+          "xhochy",
+          "janjagusch",
+          "cbourjau"
+        ]
+      },
+      "package": {
+        "name": "onnx",
+        "version": "1.19.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "pybind11",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cmake",
+          "make",
+          "libprotobuf",
+          "sed"
+        ],
+        "host": [
+          "python",
+          "libprotobuf",
+          "ninja",
+          "numpy",
+          "pip",
+          "protobuf",
+          "pybind11",
+          "pytest-runner",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "ml_dtypes",
+          "protobuf",
+          "typing_extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0002-dont-hide-all-symbols-and-set-ext-suffix.patch"
+          ],
+          "sha256": "ce9d2569a61d64e8a3d05b92194f60ffb7c868dbb754a71f5b4d992273a9413d",
+          "url": "https://github.com/onnx/onnx/archive/v1.19.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "onnx"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "check-model --help",
+            "check-node --help",
+            "backend-test-tools --help",
+            "test -f \"$PREFIX/lib/libonnx${SHLIB_EXT}\"",
+            "test -f \"$PREFIX/lib/cmake/ONNX/ONNXConfig.cmake\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

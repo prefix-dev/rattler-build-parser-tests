@@ -1,0 +1,75 @@
+context:
+  name: "fitsio"
+  version: "1.3.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/esheldon/fitsio/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 6ba04d3e24f6c18de99603d20aceb31f7f2f4514d7ce7a0e41fbb97e0e7b78c0
+
+build:
+  number: 0
+  skip:
+    - win
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+    - libtool
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - make
+  host:
+    - python
+    - pip
+    - setuptools
+    - setuptools-scm
+    - numpy
+    - bzip2
+    - libcurl
+    - zlib
+  run:
+    - python
+    - bzip2
+    - setuptools  # the test modules now use pkg_resources
+
+  # zlib is bundled
+  # we put it in host to make configure happy
+  ignore_run_exports:
+    from_package:
+      - zlib
+
+tests:
+  - script:
+      - pytest --pyargs fitsio.tests
+    requirements:
+      run:
+        - pytest
+  - python:
+      imports:
+        - fitsio
+
+about:
+  homepage: https://github.com/esheldon/fitsio
+  license: GPL-2.0-only AND Zlib
+  license_file:
+    - LICENSE.txt
+    - LICENSE_cfitsio.txt
+    - LICENSE_zlib.txt
+  summary: A python library to read from and write to FITS files.
+  description: |
+    This is a python extension written in c and python. Data are read into
+    numerical python arrays. A version of cfitsio is bundled with this package,
+    there is no need to install your own, nor will this conflict with a
+    version you have installed.
+
+extra:
+  recipe-maintainers:
+    - beckermr

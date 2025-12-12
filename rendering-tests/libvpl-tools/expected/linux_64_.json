@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvpl-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvpl-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvpl-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvpl-tools/work"
+      },
+      "hash": {
+        "hash": "5801f3e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libvpl-tools": {
+          "build_string": "h5801f3e_0",
+          "name": "libvpl-tools",
+          "version": "1.4.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:21.341155292Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libvpl": "2.15",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Intel\u00ae Video Processing Library (Intel\u00ae VPL) provides access to hardware\naccelerated video decode, encode, and processing capabilities on Intel\u00ae\nGPUs to support AI visual inference, media delivery, cloud gaming, and\nvirtual desktop infrastructure use cases.",
+        "homepage": "https://github.com/intel/media-driver",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Intel\u00ae Video Processing Library (Intel\u00ae VPL)"
+      },
+      "build": {
+        "number": 0,
+        "string": "h5801f3e_0"
+      },
+      "context": {
+        "version": "1.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "libvpl-tools",
+        "version": "1.4.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "libvpl",
+          "libdrm",
+          "libpciaccess",
+          "xorg-xorgproto"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "95d85a2b7cf8f6a3089c048c98c034bc7367925708ca325756b8d5c5c03c4ecf",
+          "url": "https://github.com/intel/libvpl-tools/archive/refs/tags/v1.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "system_analyzer -help",
+            "metrics_monitor -help",
+            "test -x ${PREFIX}/bin/val-surface-sharing",
+            "val-surface-sharing -help | grep Usage",
+            "test -x ${PREFIX}/bin/vpl-import-export",
+            "vpl-import-export -help | grep Usage",
+            "test -x ${PREFIX}/bin/vpl-inspect",
+            "vpl-inspect -help | grep Usage",
+            "test -x ${PREFIX}/bin/sample_decode",
+            "sample_decode -help | grep Usage",
+            "test -x ${PREFIX}/bin/sample_vpp",
+            "sample_vpp -help | grep Usage",
+            "test -x ${PREFIX}/bin/sample_encode",
+            "sample_encode -help | grep Usage",
+            "test -x ${PREFIX}/bin/sample_multi_transcode",
+            "sample_multi_transcode -help | grep Usage"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

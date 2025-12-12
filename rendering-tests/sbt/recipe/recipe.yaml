@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: sbt
+  version: 1.11.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  # This is the packaged jar. Not the source. We do not build from source because
+  # that requires... sbt. It is a package build by itself. Since it is a jar, this
+  # should not matter as it is essentially noarch.
+  url: https://github.com/sbt/sbt/releases/download/v${{ version }}/sbt-${{ version }}.tgz
+  sha256: 1232818f91c39639a93bbe1108e12d94c7044a646a7847f1a3977b9e46716cd6
+
+build:
+  number: 1
+  noarch: generic
+
+requirements:
+  run:
+    # OpenJDK 8 or later is required as stated in the sbt documentation.
+    - openjdk >=8
+
+tests:
+  - script:
+      - if: unix
+        then: bash -c 'sbt --help | grep Usage'  # sbt --help gives exit code 1
+        else: cmd /c "sbt --allow-empty --help || BREAK" | findstr "Usage"
+      # sbt-create prevents warning when there is no project or build.sbt present
+      - sbt --sbt-create --version
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: sbt is a build tool for Scala, Java, and more.
+  homepage: https://www.scala-sbt.org
+  repository: https://github.com/sbt/sbt
+  documentation: https://www.scala-sbt.org/1.x/docs/
+
+extra:
+  recipe-maintainers:
+    - rhpvorderman
+    - alberto-scolari

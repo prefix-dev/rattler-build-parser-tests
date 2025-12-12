@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jira-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jira-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jira-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jira-cli/work"
+      },
+      "hash": {
+        "hash": "ccc6df8"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jira-cli": {
+          "build_string": "hccc6df8_0",
+          "name": "jira-cli",
+          "version": "1.7.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:21:41.686134876Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A simple but powerful Jira CLI to help you avoid Jira UI to some extent.\nThis tool is not attempting to replicate every Jira feature in the CLI but\nto provide a simple alternative to most used Jira features to help you\navoid Jira UI.",
+        "documentation": "https://github.com/ankitpokhrel/jira-cli/blob/main/README.md",
+        "homepage": "https://github.com/ankitpokhrel/jira-cli",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/ankitpokhrel/jira-cli",
+        "summary": "Feature-rich interactive Jira command line"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go-licenses save ./cmd/jira --save_path library_licenses",
+          "go build -v -o $PREFIX/bin/jira -ldflags=\"-s -w\" ./cmd/jira"
+        ],
+        "string": "hccc6df8_0"
+      },
+      "context": {
+        "name": "jira-cli",
+        "version": "1.7.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mikeaadd",
+          "ruben-arts"
+        ]
+      },
+      "package": {
+        "name": "jira-cli",
+        "version": "1.7.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6b1ecbd2228626cdc987548d8d83faae074c7a167cef737a9ac9180a03767154",
+          "url": "https://github.com/ankitpokhrel/jira-cli/archive/v1.7.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "jira version",
+            "jira --help"
+          ]
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "jira"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

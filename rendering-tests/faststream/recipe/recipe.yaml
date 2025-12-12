@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: faststream
+  version: 0.6.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/faststream-${{ version }}.tar.gz
+  sha256: f94d9790d61fe02fe9a274ce6dc030a59b4aa662ca8eda1c8505676fa3f79125
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - faststream = faststream.__main__:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - uv-build
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - typing_extensions >=4.12.0
+    - anyio >=4.0,<5
+    - fast-depends >=3.0.0
+    - typer >=0.9,!=0.12,<=0.16.0
+    - watchfiles >=0.15.0,<1.1.0
+
+tests:
+  - python:
+      imports:
+        - faststream
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+      - faststream --help
+
+about:
+  summary: "FastStream: the simplest way to work with a messaging queues"
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/ag2ai/faststream
+  repository: https://github.com/ag2ai/faststream
+  documentation: https://faststream.airt.ai/latest/
+
+extra:
+  recipe-maintainers:
+    - carlodri

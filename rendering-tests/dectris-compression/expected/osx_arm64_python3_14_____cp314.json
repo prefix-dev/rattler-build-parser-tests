@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dectris-compression",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dectris-compression/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dectris-compression/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dectris-compression/work"
+      },
+      "hash": {
+        "hash": "85237de",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dectris-compression": {
+          "build_string": "py314h85237de_2",
+          "name": "dectris-compression",
+          "version": "0.3.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:22:10.900344773Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "lz4_c": "1.10",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/dectris/compression",
+        "license": "Apache-2.0 AND MIT",
+        "license_file": [
+          "LICENSE",
+          "third_party/bitshuffle/LICENSE-APACHE",
+          "third_party/bitshuffle/LICENSE-MIT"
+        ],
+        "repository": "https://github.com/dectris/compression",
+        "summary": "DECTRIS compression algorithms"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "rm -rf third_party/lz4",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py314h85237de_2"
+      },
+      "context": {
+        "name": "dectris-compression",
+        "version": "0.3.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "dectris-compression",
+        "version": "0.3.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "wheel",
+          "pip",
+          "lz4-c"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "unvendor-lz4.patch"
+          ],
+          "sha256": "554a2196d650f287cb5f8e77284b038e6933ec877d38c5b503e2ea4883c703da",
+          "url": "https://pypi.org/packages/source/d/dectris-compression/dectris-compression-0.3.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "dectris.compression"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,57 @@
+context:
+  name: rattler-index
+  version: "0.27.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/conda/rattler/archive/rattler_index-v${{ version }}.tar.gz
+  sha256: ec4d1d3293f5a7b965f11c08d00ee9235b73ae66c43dca2eb8859eafe421e900
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: unix
+        then:
+          - export OPENSSL_DIR=$PREFIX
+      - cd crates/rattler_index
+      - cargo-bundle-licenses --format yaml --output ../../THIRDPARTY.yml
+      - cargo auditable install --no-track --locked --features native-tls --features rattler_config --no-default-features --root ${{ PREFIX }} --path .
+
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+  host:
+    - openssl
+    - libiconv
+
+tests:
+  - script:
+      - rattler-index --version
+
+about:
+  homepage: https://github.com/conda/rattler
+  documentation: https://docs.rs/rattler_index/latest/rattler_index
+  summary: Index conda channels using rattler
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/conda/rattler/tree/main/crates/rattler_index
+
+extra:
+  recipe-maintainers:
+    - delsner
+    - pavelzw
+    - wolfv

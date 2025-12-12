@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: topologicpy
+  version: "0.8.93"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wassimj/topologicpy/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 2a241837064778069b6c992ca409cdab19933ec3f3753e44960fe9b1f4461c2d
+
+build:
+  number: 0
+  noarch: python
+  script: pip install . -v --no-deps --ignore-installed --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - scipy >=1.4.1
+    - numpy >=1.18.0
+    - pandas
+    - scikit-learn
+    - tqdm
+    - topologic-core >=7.0.1
+
+tests:
+  - python:
+      imports:
+        - topologicpy
+      python_version: ${{ python_min }}.*
+      pip_check: false
+about:
+  license: AGPL-3.0-or-later
+  license_file: LICENSE
+  summary: The python bindings for topologic
+  description: |
+    An AI-Powered Spatial Modelling and Analysis Software Library for Architecture, Engineering, and Construction.
+  homepage: https://topologic.app/
+  repository: https://github.com/wassimj/topologicpy
+
+extra:
+  recipe-maintainers:
+    - Krande

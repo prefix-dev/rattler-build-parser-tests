@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: pydantic-zarr
+  version: "0.9.0"
+  python_min: '3.11'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydantic_zarr-${{ version }}.tar.gz
+  sha256: 49a17286790b1cb3770df088efc707e33bcc54ab73bfb1dcb502f9e769763258
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - zarr >=3.0.0,<4.0.0
+    - pydantic >=2.0.0,<3.0.0
+    - numpy >=1.24.0
+    - packaging >=21.0
+
+tests:
+  - python:
+      imports:
+        - pydantic_zarr
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: pydantic models for zarr
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/zarr-developers/pydantic-zarr
+
+extra:
+  recipe-maintainers:
+    - imagejan
+    - d-v-b

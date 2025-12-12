@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 3.11.0
+
+package:
+  name: goimports-reviser
+  version: ${{ version }}
+
+source:
+  url: https://github.com/incu6us/goimports-reviser/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 7e28046f91db18f56b0059907249dae4d9fef6784c0c6ae65314d71b6fb77824
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - goimports-reviser --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Right imports sorting & code formatting tool (goimports alternative)
+  homepage: https://github.com/incu6us/goimports-reviser
+  repository: https://github.com/incu6us/goimports-reviser
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: grype
+  version: "0.104.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/anchore/grype/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: da7da41b46fe4c42dad97294ed742490cd268db682dd0b1eb803f5d00ca0fe8f
+  - url: https://gitlab.com/cznic/mathutil/-/raw/b13e5b5643328f15fd2fcedc85f647f0d8f9180f/LICENSE  # v1.5.0
+    sha256: bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5
+    file_name: LICENSE-mathutil
+  - url: https://raw.githubusercontent.com/xi2/xz/48954b6210f8d154cb5f8484d3a3e1f83489309e/LICENSE
+    sha256: 5c640056d513f276d56635af7a0bed81cb7eac02a31b6e56d40c416557a8d8ce
+    file_name: LICENSE-xz
+  - url: https://raw.githubusercontent.com/deitch/magic/2def47b612f6f806d1e136bbec1c34fdefacf04a/LICENSE
+    sha256: 2423c6eb9948e617a61f7a2d1cb463c69d60e599fbae5931551631d2a8730838
+    file_name: LICENSE-magic
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+
+tests:
+  - script:
+      - grype --version | grep "${{ version }}" | grep -v grep
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+    - LICENSE-xz
+    - LICENSE-mathutil
+  summary: A vulnerability scanner for container images and filesystems
+  homepage: https://github.com/anchore/grype
+
+extra:
+  recipe-maintainers:
+    - janjagusch

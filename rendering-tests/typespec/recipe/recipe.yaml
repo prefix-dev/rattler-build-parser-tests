@@ -1,0 +1,39 @@
+context:
+  version: "1.7.0"
+
+package:
+  name: typespec
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@typespec/compiler/-/compiler-${{ version }}.tgz
+  sha256: f15caf54ab1b8e16c0854e4b70d1c7d27bf7aea36c9f3491a76627c064a56338
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - tsp --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Describe your data up front and generate schemas, API specifications, client / server code, docs, and more.
+  homepage: https://github.com/microsoft/typespec
+  repository: https://github.com/microsoft/typespec
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: juv
+  version: 0.4.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/juv-${{ version }}.tar.gz
+  sha256: 5f2cf97f73359e767948f4c43ae8caa69177ee16b71951ca3d5775f2e3707abd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - juv = juv:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click >=8.1.7
+    - jupytext >=1.16.4
+    - rich >=13.9.2
+    - tomlkit >=0.13.2
+    - whenever >=0.6.12
+    - python-uv >=0.7.0,<0.8.0
+    # not listed but needed
+    - python-tzdata
+
+tests:
+  - python:
+      imports:
+        - juv
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - juv --help
+
+about:
+  summary: A toolkit for reproducible Jupyter notebooks, powered by uv.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/manzt/juv
+
+extra:
+  recipe-maintainers:
+    - thewchan

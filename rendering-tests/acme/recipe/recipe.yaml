@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: acme
+  version: "5.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/acme-${{ version }}.tar.gz
+  sha256: 5f905542b85a75a767dfb540ccfa78b9c758c6619338651755347ca7dd22a1fd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - cryptography >=43.0.0
+    - josepy >=2.0.0
+    - pyopenssl >=25.0.0
+    - pyrfc3339
+    - requests >=2.25.1
+tests:
+  - python:
+      imports:
+        - acme
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: ACME protocol implementation in Python
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  homepage: https://github.com/certbot/certbot
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
+    - pavelzw

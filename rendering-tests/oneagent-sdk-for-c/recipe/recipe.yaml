@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  name: OneAgent-SDK-for-C
+  version: 1.7.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Dynatrace/OneAgent-SDK-for-C/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 4cb1d9385d24f5fe6a35882d0bf506f9a9206db3d8134e7aee1d47ac0f533968
+
+build:
+  number: 2
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+
+tests:
+  - script:
+      - "test -f \"${PREFIX}/lib/libonesdk_shared.so\""
+      - "test ! -f \"${PREFIX}/lib/libonesdk_static.a\""
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Enables custom tracing of native applications in Dynatrace
+  homepage: https://github.com/Dynatrace/OneAgent-SDK-for-C
+
+extra:
+  recipe-maintainers:
+    - janjagusch

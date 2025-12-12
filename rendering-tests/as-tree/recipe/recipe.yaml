@@ -1,0 +1,37 @@
+context:
+  version: 0.12.0
+
+package:
+  name: as-tree
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jez/as-tree/archive/${{ version }}.tar.gz
+  sha256: 2af03a2b200041ac5c7a20aa1cea0dcc21fb83ac9fe9a1cd63cb02adab299456
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - as-tree --help
+
+about:
+  license: BlueOak-1.0.0
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+  summary: Print a list of paths as a tree of paths
+  homepage: https://github.com/jez/as-tree
+  repository: https://github.com/jez/as-tree
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: pycatflow
+  version: 0.2.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pycatflow-${{ version }}.tar.gz
+  sha256: 3b99a7ef07fb8eaa08f992b754d9c97933e72cde4b48ab861c1fa41259252c93
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - drawsvg >=2.0
+    - matplotlib-base
+
+tests:
+  - python:
+      imports:
+        - pycatflow
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A tool for visualizing categorical data over time.
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/bumatic/PyCatFlow
+
+extra:
+  recipe-maintainers:
+    - thewchan

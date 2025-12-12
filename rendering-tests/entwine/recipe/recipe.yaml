@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: entwine
+  version: "3.2.1"
+  sha256: 99e73bb67ec12b89f5a1bdac142b97c25687651a5c2c46dcae5b741d05780169
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/connormanning/entwine/archive/${{ version }}.zip
+  sha256: ${{ sha256 }}
+
+build:
+  number: 0
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+    - ninja
+  host:
+    - libpdal-core
+    - curl
+    - openssl
+  run:
+    - libpdal-core
+    - curl
+    - openssl
+
+tests:
+  - script:
+      - entwine --version
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: LICENSE.txt
+  summary: Point cloud spatial indexing library
+  description: |
+    Entwine is a C/C++ library for organizing point clouds as a
+    octree tile structure.
+  homepage: https://entwine.io
+  repository: https://github.com/connormanning/entwine
+  documentation: https://entwine.io
+
+extra:
+  recipe-maintainers:
+    - hobu
+    - connormanning
+    - chambbj

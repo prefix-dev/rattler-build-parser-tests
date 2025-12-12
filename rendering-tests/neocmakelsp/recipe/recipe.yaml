@@ -1,0 +1,38 @@
+context:
+  version: "0.9.0"
+
+package:
+  name: neocmakelsp
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Decodetalkers/neocmakelsp/archive/v${{ version }}.tar.gz
+  sha256: 323716e5aebf5487e3d2fe9dfd9451ee730a07ede22439193e6ec225343508fe
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - neocmakelsp --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Another cmake lsp
+  homepage: https://github.com/Decodetalkers/neocmakelsp
+  repository: https://github.com/Decodetalkers/neocmakelsp
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: nnpdf
+  version: "4.1.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NNPDF/nnpdf/archive/${{ version }}.tar.gz
+  sha256: 410601b32a0184c50342adf89e8bc47a88d74a996d3d051a913a5ee3628e4f5a
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - export POETRY_DYNAMIC_VERSIONING_BYPASS=${{ version }}
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry-core >=1.0.0
+    - poetry-dynamic-versioning >=1.2.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - tensorflow >=2.17
+    - keras >=3.1
+    - psutil
+    - hyperopt
+    - mongodb
+    - pymongo <4
+    - pyopenssl >=23.2
+    - seaborn
+    - lhapdf
+    - numpy
+    - pkg-config
+    - reportengine
+    - matplotlib >=3.9
+    - blessings >=1.7
+    - scipy >=0.19.1
+    - pandas
+    - requests
+    - prompt_toolkit
+    - validobj
+    - pineappl >=1.0.0
+    - eko >=0.15.1,<0.16
+    - fiatlux
+    - joblib
+    - ruamel.yaml >=0.15
+
+tests:
+  - requirements:
+      run:
+        - hypothesis
+        - pytest
+        - pytest-mpl
+
+    script:
+      # Limit the test to the datafiles, downloading resources kills the automatic worker.
+      # Conda recipe is tested in the official repository https://github.com/NNPDF/nnpdf
+      - pytest --pyargs validphys -k "datafiles"
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://nnpdf.science
+  summary: 'An open-source machine learning framework for global analyses of parton distributions.'
+
+extra:
+  recipe-maintainers:
+    - scarlehoff

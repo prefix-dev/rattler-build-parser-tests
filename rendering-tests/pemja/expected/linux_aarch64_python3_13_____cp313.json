@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pemja",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pemja/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pemja/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pemja/work"
+      },
+      "hash": {
+        "hash": "62ef0ea",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pemja": {
+          "build_string": "py313h62ef0ea_1",
+          "name": "pemja",
+          "version": "0.6.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:57.647577234Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/alibaba/pemja",
+        "homepage": "https://github.com/alibaba/pemja",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "PemJa is an open source cross language call framework based on FFI. It aims to provide a high-performance framework of calling between different languages."
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h62ef0ea_1"
+      },
+      "context": {
+        "version": "0.6.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "gforsyth",
+          "deepyaman"
+        ]
+      },
+      "package": {
+        "name": "pemja",
+        "version": "0.6.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "openjdk",
+          "cross-python_linux-aarch64",
+          "python"
+        ],
+        "host": [
+          "python",
+          "packaging >=20.5",
+          "setuptools",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "find-libpython"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "88ffcd5427725e12b10c8740e0b061087f5d1a66abef9cf932e3d4821b4033f9",
+          "url": "https://pypi.org/packages/source/p/pemja/pemja-0.6.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pemja"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

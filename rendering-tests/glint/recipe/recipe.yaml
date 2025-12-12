@@ -1,0 +1,40 @@
+context:
+  version: "1.5.2"
+
+package:
+  name: glint
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@glint/core/-/core-${{ version }}.tgz
+  sha256: ad3ed88998cb1aa7187e72a566b13939bcf1401af68bb3b7f9a59a742dc9fc01
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - glint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: TypeScript powered tooling for Glimmer templates
+  homepage: https://github.com/typed-ember/glint
+  repository: https://github.com/typed-ember/glint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

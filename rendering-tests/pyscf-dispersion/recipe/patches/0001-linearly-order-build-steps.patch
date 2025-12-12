@@ -1,0 +1,23 @@
+From aaffbded23fbc5e326da71edd7aa9dc4b67592ea Mon Sep 17 00:00:00 2001
+From: chillenb <chillenbrand15@gmail.com>
+Date: Fri, 28 Nov 2025 20:30:00 -0500
+Subject: [PATCH] linearly order build steps
+
+---
+ pyscf/lib/CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/pyscf/lib/CMakeLists.txt b/pyscf/lib/CMakeLists.txt
+index 23d4338..414525a 100644
+--- a/pyscf/lib/CMakeLists.txt
++++ b/pyscf/lib/CMakeLists.txt
+@@ -71,3 +71,6 @@ ExternalProject_Add(dftd4
+           -DCMAKE_INSTALL_LIBDIR:PATH=${PROJECT_SOURCE_DIR}
+ )
+ add_dependencies(dftd4 dftd4_static)
++
++add_dependencies(dftd4_static dftd3)
++
+-- 
+2.52.0
+

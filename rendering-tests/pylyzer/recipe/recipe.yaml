@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  version: 0.0.82
+
+package:
+  name: pylyzer
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mtshiba/pylyzer/archive/v${{ version }}.tar.gz
+  sha256: c2b30b29764321ba2f2be50cbeded24add03bc17a663a92825b1bce8a60ba24c
+
+build:
+  number: 2
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - python
+    - maturin >=0.12
+    - setuptools-rust
+    - pip
+  run:
+    - python
+
+tests:
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+      - pylyzer -h
+
+about:
+  summary: A fast static code analyzer & language server for Python
+  license: MIT
+  license_file:
+    - LICENSE
+    - extension/LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/mtshiba/pylyzer
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - thewchan

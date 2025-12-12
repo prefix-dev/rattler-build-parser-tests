@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  version: 3.3.17
+
+package:
+  name: breezy
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/b/breezy/breezy-${{ version }}.tar.gz
+  sha256: 5d2f45cd22e908b96833a4d424bcffc50593c2630b942ebc590280eb1f83410a
+
+build:
+  number: 1
+  skip: win
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - python
+    - setuptools >=60
+    - setuptools-rust
+    - setuptools-gettext >=0.1.4
+    - cython >=0.29
+    - packaging
+    - pip
+  run:
+    - python
+    - configobj
+    - fastbencode
+    - patiencediff
+    - merge3
+    - dulwich >=0.21.6
+    - urllib3 >=1.24.1
+    - pyyaml
+
+tests:
+  - python:
+      imports:
+        - breezy
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - brz --help
+      - pip check
+
+about:
+  summary: Friendly distributed version control system
+  license: GPL-2.0-or-later
+  license_file:
+    - THIRDPARTY.yml
+    - COPYING.txt
+  homepage: https://github.com/breezy-team/breezy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

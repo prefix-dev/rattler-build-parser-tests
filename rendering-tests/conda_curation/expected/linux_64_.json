@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda_curation",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda_curation/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda_curation/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda_curation/work"
+      },
+      "hash": {
+        "hash": "2d22210"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "conda_curation": {
+          "build_string": "h2d22210_0",
+          "name": "conda_curation",
+          "version": "0.8.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:01.066264733Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "openssl": "3",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Reduce conda repodata to enforce policy and speed up solves.",
+        "homepage": "https://github.com/AaronOpfer/conda_curation",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Reduce conda repodata to enforce policy and speed up solves."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "grep -F '${{ version }}' Cargo.toml",
+          "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml",
+          "$BUILD_PREFIX/bin/cargo install --locked --bins --root ${PREFIX} --path ."
+        ],
+        "string": "h2d22210_0"
+      },
+      "context": {
+        "version": "0.8.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AaronOpfer",
+          "shoemakerdr"
+        ]
+      },
+      "package": {
+        "name": "conda_curation",
+        "version": "0.8.3"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-64",
+          "gcc_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "make",
+          "pkg-config",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "openssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6211de81e795bfa967aeb862caaf6f4329c77fbc8c807c66b9ebc98975fdff6c",
+          "url": "https://github.com/AaronOpfer/conda_curation/archive/refs/tags/0.8.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "conda_curation --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

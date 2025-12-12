@@ -1,0 +1,100 @@
+context:
+  name: "adrt"
+  version: "1.2.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: cbf1711f0790c54be5d1c9c68c2dc5e2dffad711fc0ace9240089d62e6efc533
+
+build:
+  number: 1
+  skip:
+    - match(python, "<" ~ python_min)
+    - is_abi3 and not match(python, python_min ~ ".*")
+  python:
+    version_independent: ${{ is_abi3 }}
+  script:
+    - if: unix
+      then:
+        - export ADRT_ADDED_CFLAGS='-O3 -flto -fopenmp -fvisibility=hidden -fvisibility-inlines-hidden -fno-math-errno'
+        - export CFLAGS="$CFLAGS $ADRT_ADDED_CFLAGS"
+        - export CXXFLAGS="$CXXFLAGS $ADRT_ADDED_CFLAGS"
+        - export CPPFLAGS="$CPPFLAGS -O3 -DNDEBUG"
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - if: osx
+      then: llvm-openmp
+    - if: linux
+      then: libgomp
+  host:
+    - if: is_abi3
+      then: python-abi3
+    - python
+    - pip
+    - setuptools >=77.0.0
+    - numpy
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - adrt
+      pip_check: true
+  - script:
+      - pytest tests
+    files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest
+        - more-itertools
+  - if: unix
+    then:
+      script:
+        - python -c "import adrt; assert adrt.core.threading_enabled()"
+  - if: is_abi3
+    then:
+      script:
+        - python run_abi3_checks.py "${{ python_min }}"
+      files:
+        recipe:
+          - run_abi3_checks.py
+      requirements:
+        run:
+          - abi3audit
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE.txt
+    - if: win
+      then: LICENSE_windows.txt
+  summary: Fast approximate discrete Radon transform for NumPy arrays
+  description: |
+    This library provides an implementation of an approximate discrete
+    Radon transform (ADRT) and its inverse, as a Python module
+    operating on NumPy arrays.
+  homepage: https://github.com/karlotness/adrt
+  repository: https://github.com/karlotness/adrt
+  documentation: https://adrt.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - karlotness
+    - dsrim

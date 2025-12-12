@@ -1,0 +1,221 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc/work"
+      },
+      "hash": {
+        "hash": "5518ebb"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "slepc": {
+          "build_string": "cuda13_real_h5518ebb_0",
+          "name": "slepc",
+          "version": "3.24.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:41.152784692Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.28",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "13.0",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "mpi": "mpich",
+        "mpich": "4",
+        "scalar": "real",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://slepc.upv.es/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "SLEPc: Scalable Library for Eigenvalue Problem Computations"
+      },
+      "build": {
+        "number": 0,
+        "string": "cuda13_real_h5518ebb_0",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build": 0,
+        "build_prefix": "cuda13_real",
+        "cuda_compiler_version": "13.0",
+        "cuda_major": "13",
+        "cuda_prefix": "cuda13_",
+        "mpi": "mpich",
+        "scalar": "real",
+        "sha256": "b07e1c335eb620dfc50a2b8d4fb12db03c6929ae624f0338ff8acf879a072abf",
+        "version": "3.24.1",
+        "version_xy": "3.24",
+        "with_cuda": true
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dalcinl",
+          "joseeroman",
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "slepc",
+        "version": "3.24.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.28.*",
+          "gxx_linux-aarch64 14.*",
+          "gfortran_linux-aarch64 14.*",
+          "cuda-nvcc_linux-aarch64 13.0.*",
+          "make",
+          "python 3.12.*",
+          "gnuconfig"
+        ],
+        "host": [
+          "libblas",
+          "liblapack",
+          "mpich",
+          "petsc 3.24.* cuda13_real_*",
+          "scalapack",
+          "cuda-version 13.0.*",
+          "cuda-driver-dev",
+          "cuda-crt",
+          "cuda-cudart-dev",
+          "cuda-nvtx-dev",
+          "libcublas-dev",
+          "libcufft-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cuda-nvcc_linux-aarch64",
+            "cudatoolkit",
+            "cuda-crt",
+            "cuda-cudart-dev",
+            "cuda-nvtx-dev",
+            "libcublas-dev",
+            "libcufft-dev",
+            "libcurand-dev",
+            "libcusolver-dev",
+            "libcusparse-dev"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "slepc",
+                "upper_bound": "x.x"
+              }
+            },
+            "slepc * cuda13_real_*"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b07e1c335eb620dfc50a2b8d4fb12db03c6929ae624f0338ff8acf879a072abf",
+          "url": "https://slepc.upv.es/download/distrib/slepc-3.24.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "slepc.h",
+              "slepc.mod"
+            ],
+            "lib": [
+              "slepc"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "sysroot_linux-aarch64 =2.28",
+              "gcc_linux-aarch64 14.*",
+              "gxx_linux-aarch64 14.*",
+              "gfortran_linux-aarch64 =14",
+              "make",
+              "pkg-config"
+            ]
+          },
+          "script": {
+            "env": {
+              "cuda_compiler_version": "13.0",
+              "target_platform": "linux-aarch64"
+            },
+            "file": "run_test.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+context:
+  version: "12.0.1"
+
+package:
+  name: remark-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/remark-cli/-/remark-cli-${{ version }}.tgz
+  sha256: e100dfaffa5b3a50312313391fe493d2d51693f337c4035f6edd4f7090c64815
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - remark --help
+
+about:
+  license: MIT
+  license_file:
+    - license
+    - third-party-licenses.txt
+  summary: remark is a popular tool that transforms markdown with plugins
+  homepage: https://remark.js.org/
+  repository: https://github.com/remarkjs/remark
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,44 @@
+context:
+  version: "0.17.0"
+
+package:
+  name: rich-toolkit
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/rich-toolkit/rich_toolkit-${{ version }}.tar.gz
+  sha256: 17ca7a32e613001aa0945ddea27a246f6de01dfc4c12403254c057a8ee542977
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - rich >=13.7.1
+    - click >=8.1.7
+    - typing_extensions >=4.12.2
+
+tests:
+  - python:
+      imports:
+        - rich_toolkit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/patrick91/rich-toolkit
+  summary: Rich toolkit for building command-line applications
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/patrick91/rich-toolkit
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

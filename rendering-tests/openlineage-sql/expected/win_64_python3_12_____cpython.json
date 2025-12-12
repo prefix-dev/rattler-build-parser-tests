@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlineage-sql",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlineage-sql/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlineage-sql/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlineage-sql/work"
+      },
+      "hash": {
+        "hash": "6077001",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openlineage-sql": {
+          "build_string": "py312h6077001_0",
+          "name": "openlineage-sql",
+          "version": "1.40.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:11.342201803Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/OpenLineage/OpenLineage",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python interface for the Rust OpenLineage lineage extraction library"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py312h6077001_0"
+      },
+      "context": {
+        "name": "openlineage-sql",
+        "python_min": "3.10",
+        "version": "1.40.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706",
+          "millsks"
+        ]
+      },
+      "package": {
+        "name": "openlineage-sql",
+        "version": "1.40.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "maturin >=1,<2",
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1,<2"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e9b6e5dd9c515e122cba29df52501f64784399f66003de3ca2c0f9fb02262c33",
+          "url": "https://pypi.org/packages/source/o/openlineage-sql/openlineage_sql-1.40.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "openlineage_sql"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

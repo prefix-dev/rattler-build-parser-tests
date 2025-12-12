@@ -1,0 +1,50 @@
+context:
+  name: tune-sklearn
+  version: 0.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  # NOTE: pypi doesnt contain a source package for it. See
+  # https://github.com/ray-project/tune-sklearn/issues/159
+  url: https://github.com/ray-project/tune-sklearn/archive/v${{ version }}.tar.gz
+  sha256: 1a223b90c3261af0575f60dcfe838ec0ee7599e09ba176d4aa47ece150d4fe10
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - ray-tune >=2.7.1,<2.10
+    - numpy >=1.16
+    - scipy
+    - scikit-learn
+    # Something above imports
+    # from pkg_resources._vendor.packaging.version import parse as parse_version
+    - setuptools <71
+
+tests:
+  - python:
+      imports:
+        - tune_sklearn
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: "A drop-in replacement for Scikit-Learn's GridSearchCV / RandomizedSearchCV -- but with cutting edge hyperparameter tuning techniques."
+  homepage: https://github.com/ray-project/tune-sklearn
+
+extra:
+  recipe-maintainers:
+    - hadim
+    - DManowitz

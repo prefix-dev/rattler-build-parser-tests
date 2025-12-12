@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_urdfdom",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_urdfdom/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_urdfdom/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_urdfdom/work"
+      },
+      "hash": {
+        "hash": "34bff9e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "urdfdom": {
+          "build_string": "h34bff9e_3",
+          "name": "urdfdom",
+          "version": "4.0.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:21:45.402238957Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "console_bridge": "1.0",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-64",
+        "tinyxml2": "11.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://github.com/ros/urdfdom",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ros/urdfdom",
+        "summary": "URDF parser"
+      },
+      "build": {
+        "number": 3,
+        "string": "h34bff9e_3"
+      },
+      "context": {
+        "name": "urdfdom",
+        "version": "4.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "jcarpent",
+          "wolfv",
+          "seanyen"
+        ]
+      },
+      "package": {
+        "name": "urdfdom",
+        "version": "4.0.1"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "console_bridge",
+          "tinyxml2",
+          "urdfdom_headers"
+        ],
+        "run": [
+          "urdfdom_headers"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "urdfdom",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "46b122c922f44ec32674a56e16fd4b5d068b53265898cbea2c3e1939ecccc62a",
+          "url": "https://github.com/ros/urdfdom/archive/4.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pkg-config",
+              "gcc_linux-64 13.*",
+              "gxx_linux-64 13.*",
+              "ninja",
+              "cmake"
+            ]
+          },
+          "script": [
+            "pkg-config --modversion ${{ name }}",
+            "pkg-config --exists --print-errors --debug ${{ name }}",
+            "pkg-config --validate --print-errors --debug ${{ name }}",
+            "test -f $PREFIX/lib/lib${{ name }}_model${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

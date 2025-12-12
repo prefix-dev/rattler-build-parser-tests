@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: 3.16.0
+
+package:
+  name: reorder_python_imports
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/reorder_python_imports/reorder_python_imports-${{ version }}.tar.gz
+  sha256: bcc4e5e467a8833ec187e35f84f1a3e442881b3c62c265ece87677100473db43
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - reorder-python-imports = reorder_python_imports:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - classify-imports >=4.1
+
+tests:
+  - python:
+      imports:
+        - reorder_python_imports
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - reorder-python-imports --help
+
+about:
+  summary: Tool for reordering python imports
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/asottile/reorder-python-imports
+
+extra:
+  recipe-maintainers:
+    - danielnachun

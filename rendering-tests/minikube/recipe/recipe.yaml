@@ -1,0 +1,50 @@
+context:
+  name: minikube
+  version: "1.36.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/kubernetes/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: d78302d4ad1745341f5c26f49b1cfb42a3e78b486c371c279ae6820a73cd4c26
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+    - make
+    - if: win
+      then:
+        - git
+        - posix
+  run:
+    - kubernetes
+
+tests:
+  - script:
+      - minikube version
+
+about:
+  homepage: http://github.com/kubernetes/minikube
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Run Kubernetes locally
+  description: |
+    minikube implements a local Kubernetes cluster.
+    minikube's primary goals are to be the best tool for local Kubernetes
+    application development and to support all Kubernetes features that fit.
+  documentation: https://minikube.sigs.k8s.io/docs/
+  repository: https://github.com/kubernetes/minikube
+
+extra:
+  recipe-maintainers:
+    - xmnlab
+    - esloch
+    - delsner

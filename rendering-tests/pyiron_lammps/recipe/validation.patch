@@ -1,0 +1,33 @@
+From cd917d3107210486aae3c719ad3f116ff584c93d Mon Sep 17 00:00:00 2001
+From: Jan Janssen <jan-janssen@users.noreply.github.com>
+Date: Sun, 30 Nov 2025 10:22:45 +0100
+Subject: [PATCH] Include validate_potential_dataframe() in public API (#280)
+
+---
+ pyiron_lammps/__init__.py | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/pyiron_lammps/__init__.py b/pyiron_lammps/__init__.py
+index 688607a..1d44430 100644
+--- a/pyiron_lammps/__init__.py
++++ b/pyiron_lammps/__init__.py
+@@ -5,7 +5,11 @@
+     lammps_file_interface_function,
+ )
+ from pyiron_lammps.output import parse_lammps_output as parse_lammps_output_files
+-from pyiron_lammps.potential import get_potential_by_name, get_potential_dataframe
++from pyiron_lammps.potential import (
++    get_potential_by_name,
++    get_potential_dataframe,
++    validate_potential_dataframe,
++)
+ from pyiron_lammps.structure import write_lammps_datafile as write_lammps_structure
+ 
+ DUMP_COMMANDS = [
+@@ -29,5 +33,6 @@
+     "lammps_file_initialization",
+     "lammps_file_interface_function",
+     "parse_lammps_output_files",
++    "validate_potential_dataframe",
+     "write_lammps_structure",
+ ]

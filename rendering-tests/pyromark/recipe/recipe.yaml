@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: pyromark
+  version: "0.9.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyromark-${{ version }}.tar.gz
+  sha256: 80e00758ea5ebcc038614c0b818178466ae301f9b3c7ab88f59e68f345755d41
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pyromark = pyromark._cli:main
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1,<2
+    - pip
+  run:
+    - python
+    - typing_extensions >=3.7.4
+
+tests:
+  - python:
+      imports:
+        - pyromark
+      pip_check: true
+  - script:
+      - pyromark --help
+
+about:
+  summary: Blazingly fast Markdown parser for Python written in Rust.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/monosans/pyromark
+  documentation: https://pyromark.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

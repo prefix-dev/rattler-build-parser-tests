@@ -1,0 +1,172 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/work"
+      },
+      "hash": {
+        "hash": "3995f06"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sdl3": {
+          "build_string": "h3995f06_0",
+          "name": "sdl3",
+          "version": "3.2.28"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-12-12T16:26:11.957666684Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "dbus": "1",
+        "libudev": "257",
+        "libunwind": "1.8",
+        "pulseaudio_client": "17.0",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Simple DirectMedia Layer (SDL for short) is a cross-platform library designed\nto make it easy to write multi-media software, such as games and emulators.",
+        "documentation": "https://wiki.libsdl.org/SDL3/FrontPage",
+        "homepage": "https://www.libsdl.org/",
+        "license": "Zlib",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/libsdl-org/SDL",
+        "summary": "Low-level access to audio, keyboard, mouse, joystick, and graphics"
+      },
+      "build": {
+        "number": 0,
+        "string": "h3995f06_0"
+      },
+      "context": {
+        "name": "sdl3",
+        "version": "3.2.28"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "ymontmarin",
+          "ManifoldFR"
+        ]
+      },
+      "package": {
+        "name": "sdl3",
+        "version": "3.2.28"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-ppc64le 14.*",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "libusb",
+          "libvulkan-loader",
+          "dbus",
+          "pulseaudio-client",
+          "wayland",
+          "libdrm",
+          "libudev",
+          "liburing",
+          "libunwind",
+          "libxkbcommon",
+          "libgl-devel",
+          "libegl-devel",
+          "xorg-libx11",
+          "xorg-libxext",
+          "xorg-libxfixes",
+          "xorg-libxcursor"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "sdl3",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1330671214d146f8aeb1ed399fc3e081873cdb38b5189d1f8bb6ab15bbc04211",
+          "url": "https://github.com/libsdl-org/SDL/releases/download/release-3.2.28/SDL3-3.2.28.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "SDL3/SDL.h"
+            ],
+            "lib": [
+              "SDL3"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "pkg-config --modversion ${{ name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

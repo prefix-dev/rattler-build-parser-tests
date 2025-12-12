@@ -1,0 +1,38 @@
+context:
+  version: "7.0.3"
+
+package:
+  name: fantomas
+  version: ${{ version }}
+
+source:
+  url: https://github.com/fsprojects/fantomas/archive/v${{ version }}.tar.gz
+  sha256: 3f07202c34317849e6e3d68a3549ddfd3a278a96c83f487c88bf2be5dde210f9
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet =8
+    - nuget-license <3.1
+  run:
+    - dotnet =8
+
+tests:
+  - script:
+      - fantomas --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE.md
+    - license-files/
+  summary: FSharp source code formatter
+  homepage: https://fsprojects.github.io/fantomas
+  repository: https://github.com/fsprojects/fantomas
+
+extra:
+  recipe-maintainers:
+    - danielnachun

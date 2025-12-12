@@ -1,0 +1,40 @@
+context:
+  version: "21.0.1"
+
+package:
+  name: tapjs
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/tap/-/tap-${{ version }}.tgz
+  sha256: 4dde0a2bd6f86e5e40f5e823eab749f0e90dadec4bc603b5af3eb6339d049b45
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - tap --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: Test Anything Protocol tools for node
+  homepage: https://github.com/tapjs/tapjs
+  repository: https://github.com/tapjs/tapjs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

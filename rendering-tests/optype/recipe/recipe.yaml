@@ -1,0 +1,82 @@
+schema_version: 1
+
+context:
+  name: optype
+  version: "0.15.0"
+  python_min: "3.11"
+  numpy_min: "1.25"
+
+recipe:
+  name: ${{ name }}-split
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 457d6ca9e7da19967ec16d42bdf94e240b33b5d70a56fbbf5b427e5ea39cf41e
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: ${{ name }}
+    build:
+      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - uv-build
+        - pip
+      run:
+        - python >=${{ python_min }}
+        # needed for python <3.13, not using a selector to enable noarch
+        - typing-extensions >=4.10
+
+    tests:
+      - python:
+          imports:
+            - optype
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  # analogue of PyPI's `optype[numpy]`
+  - package:
+      name: ${{ name }}-numpy
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - numpy >=${{ numpy_min }}
+        - numpy-typing-compat >=20250818.${{ numpy_min }}, <20251207.1.0
+        - ${{ pin_subpackage('optype', exact=True) }}
+    tests:
+      - python:
+          imports:
+            - optype
+      - files:
+          source:
+            - pyproject.toml
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          # raises if numpy-typing-compat is not installed or the wrong version
+          - python -c "import optype.numpy"
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Building blocks for precise & flexible type hints
+  description: Opinionated typing package for developing beautifully accurate typing annotations, compatible with both static- and runtime type-checkers, and is battle-tested. OpType has (optional) NumPy typing tools for annotating shape-typed array-likes of with specific dtype, dtype-likes, and much more.
+  homepage: https://github.com/jorenham/optype/
+  repository: https://github.com/jorenham/optype/
+  documentation: https://github.com/jorenham/optype/blob/master/README.md
+
+extra:
+  recipe-maintainers:
+    - lucascolley
+    - jorenham

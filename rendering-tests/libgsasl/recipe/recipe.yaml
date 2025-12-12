@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  version: 2.2.2
+
+package:
+  name: libgsasl
+  version: ${{ version }}
+
+source:
+  url: https://ftp.gnu.org/gnu/gsasl/gsasl-${{ version }}.tar.gz
+  sha256: 41e8e442648eccaf6459d9ad93d4b18530b96c8eaf50e3f342532ef275eff3ba
+
+build:
+  # This package is a dependency of libhdfs3, which is primarily used with HDFS on Linux.
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - autoconf
+    - automake <1.17
+    - gettext-tools
+    - make
+  host:
+    - libtool
+    - libntlm
+    - libgcrypt
+    - krb5
+    - if: osx
+      then: libintl-devel
+  run_exports:
+    - ${{ pin_subpackage("libgsasl", upper_bound="x") }}
+
+tests:
+  - script:
+      - test -f $PREFIX/include/gsasl-mech.h
+      - test -f $PREFIX/include/gsasl.h
+      - test ! -f $PREFIX/lib/libgsasl.a
+      - test ! -f $PREFIX/lib/libgsasl.la
+      - test -f $PREFIX/lib/libgsasl${SHLIB_EXT}
+      - if: linux
+        then: test -f $PREFIX/lib/libgsasl.so.18
+      - if: linux
+        then: test -f $PREFIX/lib/libgsasl.so.18.0.0
+
+about:
+  license: LGPL-2.1-or-later
+  license_file:
+    - COPYING.LESSER
+    - COPYING
+  summary: Implementation of the Simple Authentication and Security Layer framework
+  homepage: http://www.gnu.org/software/gsasl/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - martindurant
+    - mariusvniekerk

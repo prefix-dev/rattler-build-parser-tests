@@ -1,0 +1,223 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvalcore",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvalcore/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvalcore/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvalcore/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "esmvalcore": {
+          "build_string": "pyhcf101f3_0",
+          "name": "esmvalcore",
+          "version": "2.13.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:02.976848166Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "ESMValCore: A community tool for pre-processing data from Earth system models in CMIP and running analysis scripts.",
+        "documentation": "https://esmvaltool.readthedocs.io/",
+        "homepage": "https://www.esmvaltool.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ESMValGroup/ESMValCore",
+        "summary": "ESMValCore: A community tool for pre-processing data from Earth system models in CMIP and running analysis scripts."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "ESMValCore",
+        "python_min": "3.11",
+        "version": "2.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jlenh",
+          "ehogan",
+          "remi-kazeroni",
+          "bouweandela",
+          "nielsdrost",
+          "schlunma",
+          "sloosvel",
+          "valeriupredoi",
+          "zklaus"
+        ]
+      },
+      "package": {
+        "name": "esmvalcore",
+        "version": "2.13.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "git",
+          "pip !=21.3",
+          "pytest-runner",
+          "setuptools >=40.6.0",
+          "setuptools_scm >=6.2"
+        ],
+        "run": [
+          "python >=3.11",
+          "aiohttp",
+          "cartopy",
+          "cf-units",
+          "cftime",
+          "dask >=2025",
+          "dask-jobqueue",
+          "distributed",
+          "esgf-pyclient >=0.3.1",
+          "esmpy",
+          "esmvaltool-sample-data",
+          "filelock",
+          "fiona",
+          "fire",
+          "geopy",
+          "humanfriendly",
+          "intake-esm",
+          "iris >=3.12.2",
+          "iris-esmf-regrid >=0.11.0",
+          "iris-grib >=0.20.0",
+          "isodate >=0.7.0",
+          "jinja2",
+          "libnetcdf !=4.9.1",
+          "nc-time-axis",
+          "ncdata",
+          "nested-lookup",
+          "netcdf4",
+          "numpy !=1.24.3",
+          "packaging",
+          "pandas",
+          "pillow",
+          "prov",
+          "psutil",
+          "py-cordex",
+          "pybtex",
+          "python-stratify >=0.3",
+          "pyyaml",
+          "requests",
+          "rich",
+          "scipy >=1.6",
+          "shapely >=2.0.0",
+          "xarray",
+          "yamale",
+          "zarr >3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "033f885d28fde8dc3b3724b1ca1acae7e9f75411e8daa155c041d952300d915b",
+          "url": "https://pypi.org/packages/source/E/ESMValCore/esmvalcore-2.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "esmvalcore",
+              "esmvalcore.cmor",
+              "esmvalcore.cmor.check",
+              "esmvalcore.cmor.fix",
+              "esmvalcore.config",
+              "esmvalcore.dataset",
+              "esmvalcore.esgf",
+              "esmvalcore.exceptions",
+              "esmvalcore.experimental",
+              "esmvalcore.iris_helpers",
+              "esmvalcore.local",
+              "esmvalcore.preprocessor"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests",
+              "setup.cfg"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "esmvaltool-sample-data",
+              "flake8 >=7",
+              "mypy >=0.990",
+              "pip",
+              "pytest >6.0.0",
+              "pytest-cov >=2.10.1",
+              "pytest-env",
+              "pytest-html !=2.1.0",
+              "pytest-metadata >=1.5.1",
+              "pytest-mock",
+              "pytest-mypy",
+              "pytest-xdist",
+              "r-yaml",
+              "python 3.11.*"
+            ]
+          },
+          "script": [
+            "pip install types-requests types-PyYAML",
+            "pytest -n 2 --ignore=run_test.py --ignore=tests/unit/documentation/",
+            "esmvaltool -- --help",
+            "esmvaltool version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robotframework-robocop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robotframework-robocop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robotframework-robocop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robotframework-robocop/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "robotframework-robocop": {
+          "build_string": "pyhcf101f3_0",
+          "name": "robotframework-robocop",
+          "version": "6.13.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:59.778519131Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://robocop.dev/",
+        "homepage": "https://github.com/MarketSquare/robotframework-robocop",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Static code analysis tool (linter) and code formatter for Robot Framework"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "robocop = robocop.run:main"
+          ]
+        },
+        "script": [
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "6.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "robotframework-robocop",
+        "version": "6.13.0"
+      },
+      "requirements": {
+        "host": [
+          "hatchling >=1.26.1",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "jinja2 >=3.1.4",
+          "pathspec >=0.12",
+          "platformdirs >=4.3",
+          "python >=3.10",
+          "python-dateutil >=2.8.2",
+          "pytz >=2022.7",
+          "rich >=10.11.0",
+          "robotframework >=4.0,<7.5",
+          "tomli ==2.2.1",
+          "tomli-w >=1.0",
+          "typer-slim >=0.12.5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "52b3bea1e9e053c5ccbfb713edd66233db5291815af2a07677afde876e1136be",
+          "url": "https://pypi.org/packages/source/r/robotframework-robocop/robotframework_robocop-6.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "robocop"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "pyproject.toml",
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "robocop --version",
+            "robocop --help",
+            "python run_test.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

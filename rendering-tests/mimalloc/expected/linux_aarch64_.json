@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/work"
+      },
+      "hash": {
+        "hash": "7ac5ae9"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mimalloc": {
+          "build_string": "h7ac5ae9_0",
+          "name": "mimalloc",
+          "version": "3.1.5"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:41.949579586Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "mimalloc (pronounced \"me-malloc\") is a general purpose allocator with\nexcellent performance characteristics. Initially developed by Daan Leijen\nfor the run-time systems of the Koka and Lean languages.",
+        "homepage": "https://github.com/microsoft/mimalloc",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/microsoft/mimalloc",
+        "summary": "mimalloc is a compact general purpose allocator with excellent performance."
+      },
+      "build": {
+        "number": 0,
+        "string": "h7ac5ae9_0"
+      },
+      "context": {
+        "name": "mimalloc",
+        "version": "3.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "elbaro",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "mimalloc",
+        "version": "3.1.5"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mimalloc",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-cmake-Remove-non-portable-mtune-specification.patch"
+          ],
+          "sha256": "1c6949032069d5ebea438ec5cedd602d06f40a92ddf0f0d9dcff0993e5f6635c",
+          "url": "https://github.com/microsoft/mimalloc/archive/v3.1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.c"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_linux-aarch64 14.*",
+              "gxx_linux-aarch64 14.*"
+            ]
+          },
+          "script": [
+            "test -f $PREFIX/lib/libmimalloc${SHLIB_EXT}",
+            "test -f $PREFIX/include/mimalloc.h",
+            "$CC $CFLAGS $LDFLAGS test.c -lmimalloc -o test",
+            "LD_LIBRARY_PATH=$PREFIX/lib ./test"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.2.0.20250513"
+
+package:
+  name: types-click-default-group
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/t/types-click-default-group/types_click_default_group-${{ version }}.tar.gz
+    sha256: 44804c5de725699e029ee87a3ce8b25b183708681649aa16223b190d926e9c50
+  - url: https://raw.githubusercontent.com/python/typeshed/main/LICENSE
+    sha256: 295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - click >=8.0.0
+    - python >=${{ python_min }}
+
+tests:
+  - files:
+      recipe: run_test.py
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - python run_test.py
+  - requirements:
+      run:
+        - click-default-group
+        # https://github.com/python/typeshed/blob/main/stubs/click-default-group/METADATA.toml#L3
+        - click >=8.0.0
+        - mypy
+    script:
+      - mypy -p click_default_group
+
+about:
+  summary: Typing stubs for click-default-group
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/python/typeshed/tree/main/stubs/click-default-group
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - conda-forge/mypy

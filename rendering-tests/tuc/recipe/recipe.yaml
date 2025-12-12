@@ -1,0 +1,37 @@
+context:
+  version: "1.3.0"
+
+package:
+  name: tuc
+  version: ${{ version }}
+
+source:
+  url: https://github.com/riquito/tuc/archive/v${{ version }}.tar.gz
+  sha256: 81dc5f4a0355ecdf9515c88c34c365d20f339d316df7dbe72667cd2b18445c61
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - tuc --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Text manipulation and cutting tool
+  homepage: https://github.com/riquito/tuc
+  repository: https://github.com/riquito/tuc
+
+extra:
+  recipe-maintainers:
+    - danielnachun

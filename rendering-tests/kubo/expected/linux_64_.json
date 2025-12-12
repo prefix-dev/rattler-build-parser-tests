@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kubo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kubo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kubo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kubo/work"
+      },
+      "hash": {
+        "hash": "c2114d5"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "kubo": {
+          "build_string": "hc2114d5_0",
+          "name": "kubo",
+          "version": "0.39.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:17.772776510Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "go_compiler_version": "1.25",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Kubo (go-ipfs) the earliest and most widely used implementation of IPFS.\n\nIt includes:\n- an IPFS daemon server\n- extensive command line tooling\n- an HTTP Gateway (/ipfs/, /ipns/) for serving content to HTTP browsers\n- an HTTP RPC API (/api/v0) for controlling the daemon node",
+        "documentation": "https://docs.ipfs.tech/",
+        "homepage": "https://ipfs.tech/",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "src/github.com/ipfs/kubo/LICENSE-APACHE",
+          "src/github.com/ipfs/kubo/LICENSE-MIT",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/ipfs/kubo",
+        "summary": "IPFS implementation in Go"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-kubo"
+        },
+        "string": "hc2114d5_0"
+      },
+      "context": {
+        "cid": "/ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z",
+        "name": "kubo",
+        "version": "0.39.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "kubo",
+        "version": "0.39.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "go-nocgo_linux-64 1.25.*",
+          "go-licenses",
+          "make"
+        ],
+        "run_constraints": [
+          "go-ipfs >=9000"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a86a89d866f4058718ef2c6e9c014382e73c220cc320ff7af34fad2ab285bec6",
+          "target_directory": "src/github.com/ipfs/kubo",
+          "url": "https://github.com/ipfs/kubo/releases/download/v0.39.0/kubo-source.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "ipfs --version",
+            "ipfs --help",
+            "ipfs commands",
+            "ipfs --debug init",
+            "echo \"hello conda-forge\" > hello.txt",
+            "ipfs --debug add hello.txt"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

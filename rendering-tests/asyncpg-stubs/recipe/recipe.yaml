@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.31.0"
+  python_check_max: "3.14"
+
+package:
+  name: asyncpg-stubs
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/asyncpg-stubs/asyncpg_stubs-${{ version }}.tar.gz
+  sha256: 43a1665dbe3e6596c16d9d083d568604bec2babf1e18fcb8950041674c0cac60
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0,<2
+    - python ${{ python_min }}.*
+  run:
+    - asyncpg >=0.31,<0.32
+    - python >=${{ python_min }}
+    - typing_extensions >=4.13.0,<5.0.0
+
+tests:
+  - python:
+      imports: asyncpg
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - mypy
+    script:
+      - python -c "import site, pathlib; assert (pathlib.Path(site.getsitepackages()[0]) / 'asyncpg-stubs/__init__.pyi').exists()"
+      - mypy -p asyncpg
+
+about:
+  summary: asyncpg stubs
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/bryanforbes/asyncpg-stubs
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

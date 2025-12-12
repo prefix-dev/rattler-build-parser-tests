@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: hy
+  version: 1.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256:  c8943ce306341b4b3edab4142f2c7ca55b43415b0ebf6c0e7969290a6eed2948
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-build-isolation --no-deps
+  python:
+    entry_points:
+      - hy = hy.cmdline:hy_main
+      - hyc = hy.cmdline:hyc_main
+      - hy2py = hy.cmdline:hy2py_main
+
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - funcparserlib >=1.0,<2
+  run:
+    - python >=${{ python_min }},<3.15
+    - funcparserlib >=1.0,<2
+
+tests:
+  - python:
+      imports:
+        - hy
+        - hy.core
+        - hy.reader
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - hy --help
+      - hyc --help
+      - hy2py --help
+
+about:
+  license: MIT
+  summary: Lisp and Python love each other.
+  license_file: LICENSE
+  description: |
+    Hy is a Python <–> Lisp layer. It helps make things work nicer,
+    and lets Python and the Hy lisp variant play nice together.
+  homepage: http://hylang.org/
+  repository: https://github.com/hylang/hy
+  documentation: http://docs.hylang.org/en/latest/
+
+extra:
+  recipe-maintainers:
+    - drewokane
+    - mariusvniekerk
+    - synapticarbors

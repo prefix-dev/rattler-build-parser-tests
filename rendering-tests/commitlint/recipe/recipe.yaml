@@ -1,0 +1,40 @@
+context:
+  version: "20.2.0"
+
+package:
+  name: commitlint
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@commitlint/cli/-/cli-${{ version }}.tgz
+  sha256: 073b00baeb3053b604ee3b106f39ebb02f7fbbc5363a7c12fcf0ba91817cda43
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - commitlint --help
+
+about:
+  license: MIT
+  license_file:
+    - license.md
+    - third-party-licenses.txt
+  summary: Lint commit messages according to a commit convention
+  homepage: https://commitlint.js.org
+  repository: https://github.com/conventional-changelog/commitlint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

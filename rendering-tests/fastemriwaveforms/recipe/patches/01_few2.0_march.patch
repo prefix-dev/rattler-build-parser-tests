@@ -1,0 +1,51 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aea8908..666d04a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -38,6 +38,9 @@ set(FEW_CUDA_ARCH "native"
+     CACHE STRING "CUDA Architecture targetted for FEW compilation (see doc of \
+           CMAKE_CUDA_ARCHITECTURES).")
+ 
++set(FEW_MARCH "native"
++    CACHE STRING "Value of the -march compiler option if supported by compiler")
++
+ # FEW_LAPACKE_DETECT_WITH sets the tool used to try to detect LAPACKE locally.
+ # Possible values are:
+ #
+@@ -88,6 +91,20 @@ add_library(fastemriwaveforms INTERFACE)
+ # ---- Enable building the CPU version of backends by default ----
+ set_target_properties(fastemriwaveforms PROPERTIES WITH_CPU ON)
+ 
++# ---- Test whether the FEW_MARCH option is supported by CXX compiler ----
++include(CheckCXXCompilerFlag)
++set(FEW_MARCH_CXX_OPT "-march=${FEW_MARCH}")
++check_cxx_compiler_flag("${FEW_MARCH_CXX_OPT}" CXX_COMPILER_SUPPORTS_FEW_MARCH)
++if(CXX_COMPILER_SUPPORTS_FEW_MARCH)
++  set_property(TARGET fastemriwaveforms PROPERTY CXX_MARCH
++                                                 "${FEW_MARCH_CXX_OPT}")
++  message(STATUS "The CXX compiler supports option '${FEW_MARCH_CXX_OPT}'.")
++else()
++  message(
++    WARNING "The CXX compiler does not support option '${FEW_MARCH_CXX_OPT}'. \
++      It will be ignored.")
++endif()
++
+ # ---- Optionnally check if GPU is supported ----
+ if(FEW_WITH_GPU STREQUAL "AUTO")
+   if(DEFINED ENV{READTHEDOCS})
+diff --git a/src/few/cutils/CMakeLists.txt b/src/few/cutils/CMakeLists.txt
+index cafe198..3c0feb1 100644
+--- a/src/few/cutils/CMakeLists.txt
++++ b/src/few/cutils/CMakeLists.txt
+@@ -317,6 +317,11 @@ function(apply_cpu_backend_common_options libname)
+ 
+   install(TARGETS ${target_name} DESTINATION few_backend_cpu)
+ 
++  get_target_property(FEW_CXX_MARCH_OPT fastemriwaveforms CXX_MARCH)
++  if(FEW_CXX_MARCH_OPT)
++    target_compile_options(${target_name} PRIVATE "${FEW_CXX_MARCH_OPT}")
++  endif()
++
+   target_include_directories(${target_name} PRIVATE ${Python_NumPy_INCLUDE_DIR})
+   target_compile_definitions(${target_name}
+                              PRIVATE NPY_NO_DEPRECATED_API=NPY_1_9_API_VERSION)

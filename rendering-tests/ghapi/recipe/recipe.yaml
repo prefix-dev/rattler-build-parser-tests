@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: ghapi
+  version: 1.0.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ghapi-${{ version }}.tar.gz
+  sha256: 9ab02dcd06b3c622ea2d9b21a2efee316076a744ce7847251a2fe9f542f381df
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - ghapi=ghapi.cli:ghapi
+      - ghpath=ghapi.cli:ghpath
+      - ghraw=ghapi.cli:ghraw
+      - completion-ghapi=ghapi.cli:completion_ghapi
+      - gh-create-workflow=ghapi.actions:gh_create_workflow
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=64.0
+  run:
+    - python >=${{ python_min }}
+    - fastcore >=1.7.2
+    - packaging
+    - pip
+
+tests:
+  - python:
+      imports:
+        - ghapi
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - ghapi --help
+      - ghpath --help
+      - ghraw --help
+      - completion-ghapi --help
+      - gh-create-workflow --help
+
+about:
+  summary: A python client for the GitHub API
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/fastai/ghapi/
+
+extra:
+  recipe-maintainers:
+    - jtpio
+    - thewchan

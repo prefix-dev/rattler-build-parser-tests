@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3manager",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3manager/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3manager/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3manager/work"
+      },
+      "hash": {
+        "hash": "820172f"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "s3manager": {
+          "build_string": "h820172f_0",
+          "name": "s3manager",
+          "version": "0.6.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:16.524897282Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/cloudlena/s3manager",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/cloudlena/s3manager",
+        "summary": "A Web GUI for your S3 buckets"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save ./ --save_path ../library_licenses --ignore github.com/cloudlena/s3manager",
+          "go build -v -buildmode=pie -trimpath -modcacherw -o $PREFIX/bin/s3manager -ldflags=\"-s -w\" ./main.go"
+        ],
+        "string": "h820172f_0"
+      },
+      "context": {
+        "name": "s3manager",
+        "version": "0.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "delsner",
+          "janjagusch"
+        ]
+      },
+      "package": {
+        "name": "s3manager",
+        "version": "0.6.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-arm64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b46c587a0e7023ea0e71a14360488d71324f844eca611b1e973e9ae2d5b4ff05",
+          "target_directory": "src",
+          "url": "https://github.com/cloudlena/s3manager/archive/refs/tags/v0.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "s3manager 2>&1 | grep -q \"please provide ACCESS_KEY_ID\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

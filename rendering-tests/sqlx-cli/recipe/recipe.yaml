@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  version: 0.8.6
+
+package:
+  name: sqlx-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/launchbadge/sqlx/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 75d0b4d1f3081a877c7b75936f069f9327bb2ceb4dc206f5a7fc89e0cd9bc31e
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - if: unix
+      then: openssl
+
+tests:
+  - requirements:
+      run:
+        - ${{ compiler('rust') }}
+    script:
+      - sqlx --version
+      - sqlx --help
+      - cargo sqlx --help
+
+about:
+  license: Apache-2.0
+  summary: Command-line utility for SQLx, the Rust SQL toolkit.
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  homepage: https://github.com/launchbadge/sqlx
+
+extra:
+  recipe-maintainers:
+    - borchero
+    - danielnachun

@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: cxxheaderparser
+  version: "1.6.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cxxheaderparser-${{ version }}.tar.gz
+  sha256: bf1b3fe69dd446fbb706d80a1a2b9a87fb21b9ea972ae2743d64011a39a30c42
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - cxxheaderparser
+      pip_check: true
+
+about:
+  summary: Parse C++ header files and generate a data structure representing the class
+  license: BSD-2-Clause
+  license_file: LICENSE.txt
+  homepage: https://github.com/robotpy/cxxheaderparser
+
+extra:
+  recipe-maintainers:
+    - xhochy

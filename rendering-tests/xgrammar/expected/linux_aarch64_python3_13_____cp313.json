@@ -1,0 +1,181 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xgrammar",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xgrammar/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xgrammar/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xgrammar/work"
+      },
+      "hash": {
+        "hash": "59403f9",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "xgrammar": {
+          "build_string": "py313h59403f9_0",
+          "name": "xgrammar",
+          "version": "0.1.23"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:14.758906022Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/mlc-ai/xgrammar",
+        "license": "Apache-2.0 AND BSD-4-Clause",
+        "license_file": [
+          "LICENSE",
+          "NOTICE"
+        ],
+        "summary": "XGrammar is an open-source library for efficient, flexible, and portable structured generation."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export CMAKE_BUILD_TYPE=Release\nexport CXXFLAGS=\"$CXXFLAGS -isystem $PREFIX/include\"\nif [[ $(uname) == \"Linux\" ]]; then\n  export CXXFLAGS=\"$CXXFLAGS -Wno-dangling-reference\"\nfi\n",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py313h59403f9_0"
+      },
+      "context": {
+        "name": "xgrammar",
+        "version": "0.1.23"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zbowling",
+          "Ubospica"
+        ]
+      },
+      "package": {
+        "name": "xgrammar",
+        "version": "0.1.23"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "scikit-build-core >=0.10.0",
+          "dlpack",
+          "pytest",
+          "nanobind",
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "ninja",
+          "make"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core >=0.10.0",
+          "pip",
+          "dlpack",
+          "pytest",
+          "nanobind"
+        ],
+        "run": [
+          "python",
+          "numpy >=1.26.0",
+          "ninja",
+          "pydantic",
+          "sentencepiece",
+          "tiktoken",
+          "pytorch >=1.10.0",
+          "transformers >=4.38.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/001_remove_ninja_dep.patch"
+          ],
+          "sha256": "5ef280455c1ac008f052d7ea92286f0ca3a3d7ab360224894ac69277c8827113",
+          "url": "https://pypi.org/packages/source/x/xgrammar/xgrammar-0.1.23.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "xgrammar"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "ninja",
+              "protobuf",
+              "pytest",
+              "huggingface_hub",
+              "numpy >=1.26.0",
+              "pydantic",
+              "sentencepiece",
+              "tiktoken",
+              "pytorch >=1.10.0",
+              "transformers >=4.38.0"
+            ]
+          },
+          "script": "python -m pytest tests/ -m \"not hf_token_required\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

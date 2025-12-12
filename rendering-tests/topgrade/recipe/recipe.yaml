@@ -1,0 +1,38 @@
+context:
+  version: "16.6.1"
+
+package:
+  name: topgrade
+  version: ${{ version }}
+
+source:
+  url: https://github.com/topgrade-rs/topgrade/archive/v${{ version }}.tar.gz
+  sha256: e6fb3c7ef2c11a7583c0668d3b4b19873376fa6d737d7c7b5356f4426d326c14
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - topgrade --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Upgrade all the things
+  homepage: https://github.com/topgrade-rs/topgrade
+  repository: https://github.com/topgrade-rs/topgrade
+
+extra:
+  recipe-maintainers:
+    - danielnachun

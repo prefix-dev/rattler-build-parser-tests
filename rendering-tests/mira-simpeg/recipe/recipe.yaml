@@ -1,0 +1,93 @@
+schema_version: 1
+
+context:
+  name: mira-simpeg
+  pypi_name: mira_simpeg
+  version: "0.23.0.1"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ pypi_name[0] }}/${{ pypi_name }}/${{ pypi_name }}-${{ version }}.tar.gz
+  sha256: ca2f7e1ddc4d0f093ee41d50cc01b6a924d157ebe9713561e64ce7153a693b89
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=64
+    - setuptools_scm >=8
+  run:
+    - python >=${{ python_min }}
+    # Mira packages
+    - geoh5py >=0.11.0a, <0.12.dev
+    # direct dependencies
+    - discretize >=0.11
+    - geoana >=0.7.0
+    - libdlf *
+    - matplotlib-base
+    - numpy >=1.22
+    - pymatsolver >=0.3
+    - scipy >=1.8
+  run_constraints:
+    - choclo >=0.3.0
+    - fsspec >=0.3.3
+    - scikit-learn >=1.2
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - simpeg
+        - simpeg.electromagnetics
+        - simpeg.electromagnetics.analytics
+        - simpeg.electromagnetics.frequency_domain
+        - simpeg.electromagnetics.natural_source
+        - simpeg.electromagnetics.natural_source.utils
+        - simpeg.electromagnetics.static
+        - simpeg.electromagnetics.static.resistivity
+        - simpeg.electromagnetics.static.induced_polarization
+        - simpeg.electromagnetics.static.spectral_induced_polarization
+        - simpeg.electromagnetics.static.utils
+        - simpeg.electromagnetics.time_domain
+        - simpeg.electromagnetics.utils
+        - simpeg.electromagnetics.viscous_remanent_magnetization
+        - simpeg.flow
+        - simpeg.flow.richards
+        - simpeg.potential_fields
+        - simpeg.potential_fields.gravity
+        - simpeg.potential_fields.magnetics
+        - simpeg.seismic
+        - simpeg.seismic.straight_ray_tomography
+        - simpeg.utils
+        - simpeg.utils.drivers
+        - simpeg.regularization
+        - simpeg.meta
+        - geoh5py
+      pip_check: true
+
+about:
+  summary: |
+    Mira Geoscience fork of SimPEG: Simulation and Parameter Estimation in Geophysics
+  description: |
+    Simulation and Parameter Estimation in Geophysics - A python package for simulation and
+    gradient based parameter estimation in the context of geophysical applications.
+
+    Warning: This is a fork created by Mira Geoscience.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://docs.simpeg.xyz/
+  documentation: https://docs.simpeg.xyz/
+  repository: https://github.com/MiraGeoscience/simpeg
+
+extra:
+  recipe-maintainers:
+    - conda-forge/geoh5py

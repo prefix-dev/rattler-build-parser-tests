@@ -1,0 +1,41 @@
+context:
+  version: 1.39.15
+
+package:
+  name: omnisharp-roslyn
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/OmniSharp/omnisharp-roslyn
+    tag: v${{ version }}
+  - url: https://github.com/OmniSharp/omnisharp-roslyn/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 98784da6199a6af688a786e8a0169db60fc0481d9e5c16d4b13b18f9812a4155
+    target_directory: archive
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+    - sed
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - OmniSharp --help
+
+about:
+  license: MIT
+  license_file:
+    - license.md
+    - license-files/
+  summary: OmniSharp server (HTTP, STDIO) based on Roslyn workspaces
+  homepage: https://github.com/OmniSharp/omnisharp-roslyn
+
+extra:
+  recipe-maintainers:
+    - danielnachun

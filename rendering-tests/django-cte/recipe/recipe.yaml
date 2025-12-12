@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: django-cte
+  version: 2.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 24674655be4eaa1b091c19f256da7c2b134aa37a59914c6f902448139fe5d76a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - flit-core >=3.2,<4
+  run:
+    - python >=${{ python_min }}
+    # Required for import test but not listed upstream
+    - django
+
+tests:
+  - python:
+      imports:
+        - django_cte
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Common Table Expressions (CTE) for Django
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/dimagi/django-cte
+
+extra:
+  recipe-maintainers:
+    - thewchan

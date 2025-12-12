@@ -1,0 +1,45 @@
+context:
+  version: 0.30
+
+package:
+  name: libcanberra
+  version: ${{ version }}
+
+source:
+  url: http://0pointer.de/lennart/projects/libcanberra/libcanberra-${{ version }}.tar.xz
+  sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - autoconf
+    - automake
+    - make
+    - pkg-config
+    - sed
+  host:
+    - libvorbis
+    - libtool
+  run:
+    - ${{ pin_compatible("libvorbis") }}
+    - ${{ pin_compatible("libtool") }}
+
+tests:
+  - script:
+      - test -f ${PREFIX}/lib/libcanberra${SHLIB_EXT}
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: LGPL
+  summary: An implementation of the XDG Sound Theme and Name Specifications
+  homepage: http://0pointer.de/lennart/projects/libcanberra/
+  repository: http://git.0pointer.de/?p=libcanberra.git
+
+extra:
+  recipe-maintainers:
+    - scopatz

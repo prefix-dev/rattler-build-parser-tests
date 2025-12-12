@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netron",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netron/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netron/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netron/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "netron": {
+          "build_string": "pyhcf101f3_0",
+          "name": "netron",
+          "version": "8.7.7"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:21:33.123488128Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Netron supports ONNX, TensorFlow Lite, Core ML, Keras, Caffe, Darknet, PyTorch, TensorFlow.js, Safetensors and NumPy.\nNetron has experimental support for TorchScript, TensorFlow, MXNet, OpenVINO, RKNN, ML.NET, ncnn, MNN, PaddlePaddle, GGUF and scikit-learn.",
+        "homepage": "https://github.com/lutzroeder/netron",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Netron is a viewer for neural network, deep learning and machine learning models."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "netron = netron:main"
+          ]
+        },
+        "script": [
+          "python package.py build",
+          "python package.py version",
+          "python -m build -n -s --outdir dist/pypi dist/pypi",
+          "python -m pip install -vv dist/pypi/netron-${{ version }}.tar.gz"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "netron",
+        "version": "8.7.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "netron",
+        "version": "8.7.7"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=42",
+          "python-build",
+          "wheel"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4a02a79be12b4dfd5017bb3e4ab071014529cbab3b5a4211ee8a1f7e15cfa2ec",
+          "url": "https://github.com/lutzroeder/netron/archive/refs/tags/v8.7.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "netron"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "netron --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

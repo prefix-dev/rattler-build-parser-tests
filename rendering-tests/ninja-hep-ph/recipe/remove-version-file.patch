@@ -1,0 +1,25 @@
+From 51ea5e2c974e5856d613cfb548760a80f7a56edc Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Thu, 20 Feb 2025 02:37:48 -0700
+Subject: [PATCH] fix: Remove VERSION file to allow for macOS builds
+
+* As macOS file names are not case sensitive, VERSION is viewed as another
+  file 'version' for macOS builds with clang.
+* The file is not required by use of downstream projects anymore, and so
+  can safely be removed.
+---
+ VERSION | 1 -
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 VERSION
+
+diff --git a/VERSION b/VERSION
+deleted file mode 100644
+index 867e524..0000000
+--- a/VERSION
++++ /dev/null
+@@ -1 +0,0 @@
+-1.2.0
+\ No newline at end of file
+-- 
+2.48.1
+

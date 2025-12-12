@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: atomistics
+  version: "0.3.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/atomistics-${{ version }}.tar.gz
+  sha256: 33e775668d5da04d3f6bd15864dfbb9b6c5aac2a73fd484ba0aa52c7c72fa125
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - ase
+    - numpy
+    - scipy
+    - spglib
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - ase >=3.23.0,<=3.26.0
+    - numpy >=1.26.4,<=2.3.5
+    - scipy >=1.11.1,<=1.16.3
+    - spglib >=2.0.2,<=2.6.0
+
+tests:
+  - python:
+      imports:
+        - atomistics
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: atomistics - materials science workgflows to calculate material properties
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyiron/atomistics
+
+extra:
+  recipe-maintainers:
+    - pmrv
+    - srmnitc
+    - pyiron-runner
+    - jan-janssen

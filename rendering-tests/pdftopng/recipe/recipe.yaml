@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  version: 0.2.4
+
+package:
+  name: pdftopng
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/vinayak-mehta/pdftopng/archive/v${{ version }}.tar.gz
+    sha256: d321f1378639c2a8f3fa4dfb18abd67f3034053bc4840ea1485c4776ad2c866c
+    patches:
+      - 0001-fix-setup.patch
+      - 0002-setOverprintPreview.patch
+  - url: https://gitlab.freedesktop.org/poppler/poppler/-/raw/ee2af17e916e6310ab25b92a638df380b18a24ee/utils/numberofcharacters.h
+    sha256: 285258e387080c775e4f6f5bca652e9e707c3beac83c6625d3b840c4e13c6440
+
+build:
+  number: 4
+  python:
+    entry_points:
+      - pdftopng = pdftopng.cli:cli
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pybind11
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: unix
+      then: sed
+  host:
+    - python
+    - setuptools
+    - cython
+    - pybind11
+    - poppler
+    - pip
+  run:
+    - python
+    - poppler
+    - click
+
+tests:
+  - python:
+      imports:
+        - pdftopng
+
+about:
+  license: GPL-2.0-only
+  license_file: LICENSE
+  summary: A PDF to PNG conversion library (based on pdftoppm from poppler)
+  homepage: https://github.com/vinayak-mehta/pdftopng
+
+extra:
+  recipe-maintainers:
+    - izahn
+    - vinayak-mehta
+    - xhochy

@@ -1,0 +1,37 @@
+From 441109874abba9e90b897c858986bae0610024bb Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Mon, 6 Oct 2025 17:22:26 +0200
+Subject: [PATCH] Unvendor backward
+
+---
+ CMakeLists.txt | 3 ++-
+ src/Manager.cc | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 52ddebf..58b5d5b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -99,7 +99,8 @@ endif()
+ 
+ #--------------------------------------
+ # Find prerequistes for backward
+-include(src/vendor/BackwardConfig.cmake)
++#include(src/vendor/BackwardConfig.cmake)
++find_package(Backward)
+ 
+ #============================================================================
+ # Add plugins
+diff --git a/src/Manager.cc b/src/Manager.cc
+index 5ff73c0..68228e3 100644
+--- a/src/Manager.cc
++++ b/src/Manager.cc
+@@ -60,7 +60,7 @@
+ #include "gz/launch/InstallationDirectories.hh"
+ #include "gz/launch/Plugin.hh"
+ 
+-#include "vendor/backward.hpp"
++#include "backward.hpp"
+ 
+ using namespace gz::launch;
+ using namespace std::chrono_literals;

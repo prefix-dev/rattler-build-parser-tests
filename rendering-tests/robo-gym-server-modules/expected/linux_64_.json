@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robo-gym-server-modules",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robo-gym-server-modules/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robo-gym-server-modules/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_robo-gym-server-modules/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "robo-gym-server-modules": {
+          "build_string": "pyhcf101f3_0",
+          "name": "robo-gym-server-modules",
+          "version": "0.3.0.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:59.766260817Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "robo-gym-server-modules provides Robot Servers and Server Manager software for robo-gym.\nThe Server Manager takes care of starting and managing the correct simulation/s and Robot Server/s.\nDepending on the setup that you choose, the Server Manager could be running on the same machine\non which you call env.make() or on another machine connected via network.\n\nThis package is part of the robo-gym framework, an open source toolkit for Distributed Deep\nReinforcement Learning on real and simulated robots.",
+        "documentation": "https://github.com/jr-robotics/robo-gym-server-modules/blob/master/README.md",
+        "homepage": "https://sites.google.com/view/robo-gym",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/jr-robotics/robo-gym-server-modules",
+        "summary": "Robot Servers and Server Manager software for robo-gym"
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "robo_gym_server_modules/logs"
+          ],
+          "include": []
+        },
+        "noarch": "python",
+        "number": 0,
+        "script": "pip install . -v",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.3.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zelosleone"
+        ]
+      },
+      "package": {
+        "name": "robo-gym-server-modules",
+        "version": "0.3.0.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "wheel"
+        ],
+        "run": [
+          "python >=3.10",
+          "grpcio",
+          "protobuf >=3.20,<3.21",
+          "pyyaml",
+          "libtmux"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6e4cbd45a10be9afc29d9eaba167e207d30877da252a0a816125043461ca6a0f",
+          "url": "https://pypi.org/packages/source/r/robo-gym-server-modules/robo-gym-server-modules-0.3.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "robo_gym_server_modules",
+              "robo_gym_server_modules.server_manager",
+              "robo_gym_server_modules.robot_server"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "package_contents": {
+            "files": [
+              "**/start-server-manager",
+              "**/kill-server-manager",
+              "**/attach-to-server-manager",
+              "**/kill-all-robot-servers",
+              "**/restart-server-manager"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

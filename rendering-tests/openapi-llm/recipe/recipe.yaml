@@ -1,0 +1,44 @@
+context:
+  version: "0.4.3"
+
+package:
+  name: openapi-llm
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/o/openapi-llm/openapi_llm-${{ version }}.tar.gz
+    sha256: b95639da95603531180b4af195e4b997572635b5fe1c8bb909292ec4422d3cfa
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install .
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - aiohttp
+    - jsonref
+    - pyyaml
+    - requests
+
+tests:
+  - python:
+      imports:
+        - openapi_llm
+      pip_check: true
+
+about:
+  homepage: https://github.com/vblagoje/openapi-llm
+  summary: Convert and invoke OpenAPI specifications as LLM tool/function definitions
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/vblagoje/openapi-llm
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

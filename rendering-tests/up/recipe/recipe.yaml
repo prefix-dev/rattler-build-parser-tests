@@ -1,0 +1,41 @@
+schema_version: 1
+
+context:
+  version: 0.4
+
+package:
+  name: up
+  version: ${{ version }}
+
+source:
+  url: https://github.com/akavel/up/archive/v${{ version }}.tar.gz
+  sha256: 3ea2161ce77e68d7e34873cc80324f372a3b3f63bed9f1ad1aefd7969dd0c1d1
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - up --help 2>&1 | grep -q "Usage: COMMAND | up \[OPTIONS\]"
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Tool for writing command-line pipes with instant live preview
+  homepage: https://github.com/akavel/up
+  repository: https://github.com/akavel/up
+
+extra:
+  recipe-maintainers:
+    - danielnachun

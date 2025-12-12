@@ -1,0 +1,34 @@
+From 3eb309c189703a0c98393b1e9978b63c85a27615 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Thu, 24 Jul 2025 11:41:43 +0200
+Subject: [PATCH] Adjust to support xla-specific features
+
+---
+ bazel/cc_grpc_library.bzl | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/bazel/cc_grpc_library.bzl b/bazel/cc_grpc_library.bzl
+index 3f4f534..a34ce4e 100644
+--- a/bazel/cc_grpc_library.bzl
++++ b/bazel/cc_grpc_library.bzl
+@@ -28,6 +28,7 @@ def cc_grpc_library(
+         allow_deprecated = False,
+         use_external = False,  # @unused
+         grpc_only = False,
++        plugin_flags = [],
+         **kwargs):
+     """Generates C++ grpc classes for services defined in a proto file.
+ 
+@@ -105,10 +106,11 @@ def cc_grpc_library(
+         generate_cc(
+             name = codegen_grpc_target,
+             srcs = proto_targets,
+-            plugin = Label("//src/compiler:grpc_cpp_plugin"),
++            plugin = Label("@com_github_grpc_grpc//:grpc_cpp_plugin"),
+             well_known_protos = well_known_protos,
+             generate_mocks = generate_mocks,
+             allow_deprecated = allow_deprecated,
++            flags = plugin_flags,
+             **kwargs
+         )
+ 

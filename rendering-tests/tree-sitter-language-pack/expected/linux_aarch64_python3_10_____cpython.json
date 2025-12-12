@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-language-pack",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-language-pack/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-language-pack/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-language-pack/work"
+      },
+      "hash": {
+        "hash": "ef25091",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree-sitter-language-pack": {
+          "build_string": "py310hef25091_0",
+          "name": "tree-sitter-language-pack",
+          "version": "0.13.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:58.097833212Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A tree-sitter parser for templating languages like ERB and EJS,\nin which scripting code can be embedded within text content using\nthe delimiters <% and %>",
+        "homepage": "https://github.com/Goldziher/tree-sitter-language-pack",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Goldziher/tree-sitter-language-pack",
+        "summary": "A tree-sitter parser for templating languages like ERB and EJS."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "mkdir parsers",
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
+        ],
+        "string": "py310hef25091_0"
+      },
+      "context": {
+        "name": "tree-sitter-language-pack",
+        "python_min": "3.9",
+        "version": "0.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "tree-sitter-language-pack",
+        "version": "0.13.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cython",
+          "python",
+          "cross-python_linux-aarch64"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=78.1"
+        ],
+        "run": [
+          "python",
+          "tree_sitter >=0.23.2",
+          "tree-sitter-c-sharp >=0.23.1",
+          "tree-sitter-embedded-template >=0.23.2",
+          "tree-sitter-yaml >=0.7.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "13a4f2d66e6c5af5a0c110a5d3a0d77e5185cb4b638b9e80f7ad4b4cefebe8cb",
+          "url": "https://github.com/Goldziher/tree-sitter-language-pack/archive/refs/tags/v0.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter_language_pack"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python"
+            ]
+          },
+          "script": [
+            "mkdir sources && echo '{\"csharp\":{}, \"embeddedtemplate\":{}, \"yaml\":{}}' > sources/language_definitions.json",
+            "pytest tests || true"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

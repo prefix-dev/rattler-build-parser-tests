@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: pdfgrep
+  version: 2.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pdfgrep.org/download/${{ name }}-${{ version }}.tar.gz
+  sha256: 0661e531e4c0ef097959aa1c9773796585db39c72c84a02ff87d2c3637c620cb
+
+build:
+  number: 5
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - ${{ stdlib("c") }}
+    - make
+    - pkg-config
+  host:
+    - poppler
+    - libgcrypt
+    - libgcrypt 1.10.*
+    - pcre
+    - expat
+    - zlib
+  run:
+    - poppler
+    - libgcrypt
+    - pcre
+
+tests:
+  - script:
+      - pdfgrep --version
+
+about:
+  license: GPL-2.0-only
+  license_file: LICENSE.txt
+  summary: A commandline utility to search text in PDF files
+  description: |
+    Search for PATTERN in each PDF FILE and print matching lines. By default,
+    PATTERN is an extended regular expression.
+    pdfgrep tries to be mostly compatible with GNU grep with some PDF-specific
+    distinctions and additional options.
+  homepage: https://pdfgrep.org/
+  repository: https://gitlab.com/pdfgrep/pdfgrep
+  documentation: https://pdfgrep.org/doc.html
+
+extra:
+  recipe-maintainers:
+    - julozi
+    - xhochy

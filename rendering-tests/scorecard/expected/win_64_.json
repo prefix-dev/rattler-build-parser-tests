@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scorecard",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scorecard/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scorecard/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scorecard/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scorecard": {
+          "build_string": "h11686cb_0",
+          "name": "scorecard",
+          "version": "5.4.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:57.212869498Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Scorecard is an automated tool that assesses a number of important heuristics (\"checks\") associated with software security and assigns each check a score of 0-10.",
+        "documentation": "https://scorecard.dev/",
+        "homepage": "https://scorecard.dev/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/",
+          "LICENSE-intoto",
+          "LICENSE-magic"
+        ],
+        "repository": "https://github.com/ossf/scorecard",
+        "summary": "OpenSSF Scorecard - Security health metrics for Open Source"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --save_path ../library_licenses --ignore github.com/in-toto/attestation --ignore github.com/deitch/magic",
+          "go build -v -buildmode=pie -trimpath -modcacherw -o %LIBRARY_BIN%\\scorecard.exe -ldflags=\"-s\""
+        ],
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "name": "scorecard",
+        "version": "5.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "scorecard",
+        "version": "5.4.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_win-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ced44f7743f5d58713731291fa8d3b50be2037d2dd56323cdeaedd944a3b5331",
+          "target_directory": "src",
+          "url": "https://github.com/ossf/scorecard/archive/refs/tags/v5.4.0.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-intoto",
+          "sha256": "b3a6ac899861c2c28a1abd5c7ea8733fefaed6938d730e099c42671386032aeb",
+          "url": "https://raw.githubusercontent.com/in-toto/attestation/cf4dd91962480c5106007d3f8bfb2731e6eced4a/LICENSE"
+        },
+        {
+          "file_name": "LICENSE-magic",
+          "sha256": "b3a6ac899861c2c28a1abd5c7ea8733fefaed6938d730e099c42671386032aeb",
+          "url": "https://raw.githubusercontent.com/deitch/magic/2def47b612f6f806d1e136bbec1c34fdefacf04a/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "scorecard --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: pyserial-asyncio
+  version: 0.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyserial-asyncio-${{ version }}.tar.gz
+  sha256: b6032923e05e9d75ec17a5af9a98429c46d2839adfaf80604d52e0faacd7a32f
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - pyserial
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - serial_asyncio
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Python Serial Port Extension - Asynchronous I/O support
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  description: |
+    Async I/O extension package for the Python Serial Port Extension for OSX, Linux, BSD
+  homepage: https://github.com/pyserial/pyserial-asyncio
+  repository: https://github.com/pyserial/pyserial-asyncio
+  documentation: https://pyserial-asyncio.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - beenje

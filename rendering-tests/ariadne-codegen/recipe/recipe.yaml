@@ -1,0 +1,154 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.17.0"
+  python_check_max: "3.14"
+
+recipe:
+  name: ariadne-codegen
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/a/ariadne-codegen/ariadne_codegen-${{ version }}.tar.gz
+    sha256: cbda41be0adae25cddc978d8d14cc48c3da6ef7ddf7bcd6af6ecb94ed374cf46
+    target_directory: dist
+  - url: https://github.com/mirumee/ariadne-codegen/archive/refs/tags/${{ version }}.tar.gz
+    sha256: ef764ee8bd39b6af1b2b09a233aac288f75a1cf3327ab5c701bbf1847990c367
+    target_directory: src
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: ariadne-codegen
+    build:
+      noarch: python
+      script:
+        - cd dist
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+      python:
+        entry_points:
+          - ariadne-codegen = ariadne_codegen.main:main
+    requirements:
+      host:
+        - hatchling
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - autoflake
+        - black
+        - click >=8.3,<9.0
+        - graphql-core >=3.2.0,<3.3
+        - httpx >=0.28,<1.0
+        - isort
+        - pydantic >=2.0.0,<3.0.0
+        - toml >=0.10,<1.0
+      run_constraints:
+        - websockets >=15
+    tests:
+      - python:
+          imports: ariadne_codegen
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - ariadne-codegen --help
+
+  - package:
+      name: ariadne-codegen-with-websockets
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("ariadne-codegen", exact=True) }}
+        - websockets
+    tests:
+      - python:
+          imports: ariadne_codegen
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - ariadne-codegen --help
+
+  - package:
+      name: ariadne-codegen-with-opentelemetry
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("ariadne-codegen", exact=True) }}
+        - opentelemetry-api
+    tests:
+      - python:
+          imports: ariadne_codegen
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - ariadne-codegen --help
+
+  - package:
+      name: ariadne-codegen-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("ariadne-codegen-with-opentelemetry", exact=True) }}
+        - ${{ pin_subpackage("ariadne-codegen-with-websockets", exact=True) }}
+    tests:
+      - python:
+          imports: ariadne_codegen
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          recipe:
+            - run_test_all.py
+          source:
+            - src/tests/
+        requirements:
+          run:
+            - ariadne
+            - coverage
+            - freezegun
+            - pip
+            - pytest
+            - pytest-asyncio
+            - pytest-httpx
+            - pytest-mock
+            - python ${{ python_min }}.*
+            - requests-toolbelt
+        script:
+          - pip check
+          - ariadne-codegen --help
+          - python run_test_all.py
+
+about:
+  summary: Generate fully typed GraphQL client from schema, queries and mutations!
+  license: BSD-3-Clause
+  license_file: dist/LICENSE
+  homepage: https://github.com/mirumee/ariadne-codegen
+
+extra:
+  feedstock-name: ariadne-codegen
+  recipe-maintainers:
+    - ytausch
+    - bollwyvl

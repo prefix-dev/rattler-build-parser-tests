@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uhi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uhi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uhi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uhi/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uhi": {
+          "build_string": "pyhcf101f3_1",
+          "name": "uhi",
+          "version": "1.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:41.193368931Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Scikit-HEP/uhi",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Unified Histogram Interface: tools to help library authors work with histograms"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "name": "uhi",
+        "python_min": "3.9",
+        "version": "1.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/scikit-hep"
+        ]
+      },
+      "package": {
+        "name": "uhi",
+        "version": "1.0.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "hatchling",
+          "hatch-vcs"
+        ],
+        "run": [
+          "python >=3.9",
+          "numpy >=1.13.3",
+          "python-fastjsonschema",
+          "typing_extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "331188949b1a49c8db9ef9d50b7c4d4df4606115d147ded97c4f050da8270e74",
+          "url": "https://pypi.org/packages/source/u/uhi/uhi-1.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "uhi",
+              "uhi.typing"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pip",
+              "pytest",
+              "importlib_metadata",
+              "boost-histogram",
+              "hist",
+              "h5py"
+            ]
+          },
+          "script": "pytest ."
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

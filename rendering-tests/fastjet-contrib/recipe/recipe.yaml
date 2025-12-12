@@ -1,0 +1,418 @@
+context:
+  name: "fastjet-contrib"
+  version: "1.101"
+
+recipe:
+  # Have top level name be unique from any outputs
+  # c.f. https://github.com/conda-forge/conda-forge.github.io/blob/abfc33db28c35e9a8f6b719d0021768f0d5d06be/docs/maintainer/knowledge_base.md?plain=1#L1749
+  name: ${{ name }}-split
+  version: ${{ version }}
+
+source:
+  url: https://fastjet.hepforge.org/contrib/downloads/fjcontrib-${{ version }}.tar.gz
+  sha256: dbe8ad2199f72d64dd29f6218f6f53efddc8fb3e5dd9c5d10f2fd1e23d6e44f6
+  patches:
+    - 0001-port-the-CMS-additions.patch
+    - 0002-drop-as-needed-flag-to-avoid-link-errors-on-missing-.patch
+    - 0003-top-level-only-cmake.patch
+    - 0004-required-source-changes-for-windows-build.patch
+
+build:
+  number: 7
+
+outputs:
+  - package:
+      name: ${{ name }}
+
+    build:
+      script:
+        - if: win
+          then: cmake %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=ON -S . -B build
+          else: cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=ON -S . -B build
+        - cmake -LH build
+        - if: win
+          then: cmake --build build --config=Release --parallel="%CPU_COUNT%"
+          else: cmake --build build --parallel="${CPU_COUNT}"
+        - cmake --install build
+
+    requirements:
+      run_exports:
+        - ${{ pin_subpackage('fastjet-contrib', upper_bound='x.x') }}
+      build:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - if: unix
+          then: make
+      host:
+        - if: not (win and arm64)
+          then: cgal-cpp
+        - fastjet-cxx
+      run:
+        - fastjet-cxx
+
+    tests:
+      - package_contents:
+          files:
+            - if: win
+              then: Library/lib/cmake/fastjetcontrib/fastjetcontrib*.cmake
+              else: lib/cmake/fastjetcontrib/fastjetcontrib*.cmake
+          lib:
+            exists:
+              - if: win
+                then: fastjetcontribfragile.lib
+                else: fastjetcontribfragile
+            not_exists:
+              - if: win
+                then:
+                  - CMPPlugin.lib
+                  - Centauro.lib
+                  - ClusteringVetoPlugin.lib
+                  - ConstituentSubtractor.lib
+                  - EnergyCorrelator.lib
+                  - FlavorCone.lib
+                  - GHSAlgo.lib
+                  - GenericSubtractor.lib
+                  - IFNPlugin.lib
+                  - JetCleanser.lib
+                  - JetFFMoments.lib
+                  - JetsWithoutJets.lib
+                  - LundPlane.lib
+                  - Nsubjettiness.lib
+                  - QCDAwarePlugin.lib
+                  - RecursiveTools.lib
+                  - SDFPlugin.lib
+                  - ScJet.lib
+                  - SignalFreeBackgroundEstimator.lib
+                  - SoftKiller.lib
+                  - SubjetCounting.lib
+                  - ValenciaPlugin.lib
+                  - VariableR.lib
+                else:
+                  - CMPPlugin
+                  - Centauro
+                  - ClusteringVetoPlugin
+                  - ConstituentSubtractor
+                  - EnergyCorrelator
+                  - FlavorCone
+                  - GHSAlgo
+                  - GenericSubtractor
+                  - IFNPlugin
+                  - JetCleanser
+                  - JetFFMoments
+                  - JetsWithoutJets
+                  - LundPlane
+                  - Nsubjettiness
+                  - QCDAwarePlugin
+                  - RecursiveTools
+                  - SDFPlugin
+                  - ScJet
+                  - SignalFreeBackgroundEstimator
+                  - SoftKiller
+                  - SubjetCounting
+                  - ValenciaPlugin
+                  - VariableR
+          bin:
+            exists:
+              - if: win
+                then: fastjetcontribfragile.dll
+            not_exists:
+              - if: win
+                then:
+                  - CMPPlugin.dll
+                  - Centauro.dll
+                  - ClusteringVetoPlugin.dll
+                  - ConstituentSubtractor.dll
+                  - EnergyCorrelator.dll
+                  - FlavorCone.dll
+                  - GHSAlgo.dll
+                  - GenericSubtractor.dll
+                  - IFNPlugin.dll
+                  - JetCleanser.dll
+                  - JetFFMoments.dll
+                  - JetsWithoutJets.dll
+                  - LundPlane.dll
+                  - Nsubjettiness.dll
+                  - QCDAwarePlugin.dll
+                  - RecursiveTools.dll
+                  - SDFPlugin.dll
+                  - ScJet.dll
+                  - SignalFreeBackgroundEstimator.dll
+                  - SoftKiller.dll
+                  - SubjetCounting.dll
+                  - ValenciaPlugin.dll
+                  - VariableR.dll
+          include:
+            - fastjet/contrib/*.h
+            - fastjet/contrib/AxesDefinition.hh
+            - fastjet/contrib/BottomUpSoftDrop.hh
+            - fastjet/contrib/CMPPlugin.hh
+            - fastjet/contrib/Centauro.hh
+            - fastjet/contrib/ClusteringVetoPlugin.hh
+            - fastjet/contrib/ConstituentSubtractor.hh
+            - fastjet/contrib/DistanceMeasure.hh
+            - fastjet/contrib/EnergyCorrelator.hh
+            - fastjet/contrib/EventStorage.hh
+            - fastjet/contrib/ExtraRecombiners.hh
+            - fastjet/contrib/FlavInfo.hh
+            - fastjet/contrib/FlavNeutraliser.hh
+            - fastjet/contrib/FlavorCone.hh
+            - fastjet/contrib/GHSAlgo.hh
+            - fastjet/contrib/GenericSubtractor.hh
+            - fastjet/contrib/IFNPlugin.hh
+            - fastjet/contrib/IteratedSoftDrop.hh
+            - fastjet/contrib/IterativeConstituentSubtractor.hh
+            - fastjet/contrib/JetCleanser.hh
+            - fastjet/contrib/JetFFMoments.hh
+            - fastjet/contrib/JetsWithoutJets.hh
+            - fastjet/contrib/KTClusCXX.hh
+            - fastjet/contrib/LundEEHelpers.hh
+            - fastjet/contrib/LundGenerator.hh
+            - fastjet/contrib/LundJSON.hh
+            - fastjet/contrib/LundPlane.hh
+            - fastjet/contrib/LundWithSecondary.hh
+            - fastjet/contrib/MassFlav.hh
+            - fastjet/contrib/MeasureDefinition.hh
+            - fastjet/contrib/ModifiedMassDropTagger.hh
+            - fastjet/contrib/Njettiness.hh
+            - fastjet/contrib/NjettinessPlugin.hh
+            - fastjet/contrib/Nsubjettiness.hh
+            - fastjet/contrib/QCDAwarePlugin.hh
+            - fastjet/contrib/Recluster.hh
+            - fastjet/contrib/RecursiveLundEEGenerator.hh
+            - fastjet/contrib/RecursiveSoftDrop.hh
+            - fastjet/contrib/RecursiveSymmetryCutBase.hh
+            - fastjet/contrib/RescalingClasses.hh
+            - fastjet/contrib/SDFPlugin.hh
+            - fastjet/contrib/ScJet.hh
+            - fastjet/contrib/SecondaryLund.hh
+            - fastjet/contrib/ShapeWithComponents.hh
+            - fastjet/contrib/ShapeWithPartition.hh
+            - fastjet/contrib/SignalFreeBackgroundEstimator.hh
+            - fastjet/contrib/SoftDrop.hh
+            - fastjet/contrib/SoftKiller.hh
+            - fastjet/contrib/SubjetCounting.hh
+            - fastjet/contrib/TauComponents.hh
+            - fastjet/contrib/ValenciaPlugin.hh
+            - fastjet/contrib/VariableR.hh
+            - fastjet/contrib/VariableRPlugin.hh
+            - fastjet/contrib/XConePlugin.hh
+      - if: unix
+        then:
+          - script: run_test_shared.sh
+            requirements:
+              run:
+                - ${{ compiler('cxx') }}
+                - curl
+                - tar
+                - grep
+                - sed
+
+
+  - package:
+      name: ${{ name }}-split
+
+    build:
+      script:
+        - if: win
+          then: cmake %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=OFF -S . -B build
+          else: cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=OFF -S . -B build
+        - cmake -LH build
+        - if: win
+          then: cmake --build build --config=Release --parallel="%CPU_COUNT%"
+          else: cmake --build build --parallel="${CPU_COUNT}"
+        - cmake --install build
+
+    requirements:
+      build:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - if: unix
+          then: make
+      host:
+        - if: not (win and arm64)
+          then: cgal-cpp
+        - fastjet-cxx
+      run:
+        - fastjet-cxx
+
+    tests:
+      - package_contents:
+          files:
+            - if: win
+              then: Library/lib/cmake/fastjetcontrib/fastjetcontrib*.cmake
+              else: lib/cmake/fastjetcontrib/fastjetcontrib*.cmake
+          lib:
+            exists:
+              - if: win
+                then:
+                  - CMPPlugin.lib
+                  - Centauro.lib
+                  - ClusteringVetoPlugin.lib
+                  - ConstituentSubtractor.lib
+                  - EnergyCorrelator.lib
+                  - FlavorCone.lib
+                  - GHSAlgo.lib
+                  - GenericSubtractor.lib
+                  - IFNPlugin.lib
+                  - JetCleanser.lib
+                  - JetFFMoments.lib
+                  - JetsWithoutJets.lib
+                  - LundPlane.lib
+                  - Nsubjettiness.lib
+                  - QCDAwarePlugin.lib
+                  - RecursiveTools.lib
+                  - SDFPlugin.lib
+                  - ScJet.lib
+                  - SignalFreeBackgroundEstimator.lib
+                  - SoftKiller.lib
+                  - SubjetCounting.lib
+                  - ValenciaPlugin.lib
+                  - VariableR.lib
+                else:
+                  - CMPPlugin
+                  - Centauro
+                  - ClusteringVetoPlugin
+                  - ConstituentSubtractor
+                  - EnergyCorrelator
+                  - FlavorCone
+                  - GHSAlgo
+                  - GenericSubtractor
+                  - IFNPlugin
+                  - JetCleanser
+                  - JetFFMoments
+                  - JetsWithoutJets
+                  - LundPlane
+                  - Nsubjettiness
+                  - QCDAwarePlugin
+                  - RecursiveTools
+                  - SDFPlugin
+                  - ScJet
+                  - SignalFreeBackgroundEstimator
+                  - SoftKiller
+                  - SubjetCounting
+                  - ValenciaPlugin
+                  - VariableR
+            not_exists:
+              - if: win
+                then: fastjetcontribfragile.lib
+                else: fastjetcontribfragile
+          bin:
+            exists:
+              - if: win
+                then:
+                  - CMPPlugin.dll
+                  - Centauro.dll
+                  - ClusteringVetoPlugin.dll
+                  - ConstituentSubtractor.dll
+                  - EnergyCorrelator.dll
+                  - FlavorCone.dll
+                  - GHSAlgo.dll
+                  - GenericSubtractor.dll
+                  - IFNPlugin.dll
+                  - JetCleanser.dll
+                  - JetFFMoments.dll
+                  - JetsWithoutJets.dll
+                  - LundPlane.dll
+                  - Nsubjettiness.dll
+                  - QCDAwarePlugin.dll
+                  - RecursiveTools.dll
+                  - SDFPlugin.dll
+                  - ScJet.dll
+                  - SignalFreeBackgroundEstimator.dll
+                  - SoftKiller.dll
+                  - SubjetCounting.dll
+                  - ValenciaPlugin.dll
+                  - VariableR.dll
+            not_exists:
+              - if: win
+                then: fastjetcontribfragile.dll
+          include:
+            - fastjet/contrib/*.h
+            - fastjet/contrib/AxesDefinition.hh
+            - fastjet/contrib/BottomUpSoftDrop.hh
+            - fastjet/contrib/CMPPlugin.hh
+            - fastjet/contrib/Centauro.hh
+            - fastjet/contrib/ClusteringVetoPlugin.hh
+            - fastjet/contrib/ConstituentSubtractor.hh
+            - fastjet/contrib/DistanceMeasure.hh
+            - fastjet/contrib/EnergyCorrelator.hh
+            - fastjet/contrib/EventStorage.hh
+            - fastjet/contrib/ExtraRecombiners.hh
+            - fastjet/contrib/FlavInfo.hh
+            - fastjet/contrib/FlavNeutraliser.hh
+            - fastjet/contrib/FlavorCone.hh
+            - fastjet/contrib/GHSAlgo.hh
+            - fastjet/contrib/GenericSubtractor.hh
+            - fastjet/contrib/IFNPlugin.hh
+            - fastjet/contrib/IteratedSoftDrop.hh
+            - fastjet/contrib/IterativeConstituentSubtractor.hh
+            - fastjet/contrib/JetCleanser.hh
+            - fastjet/contrib/JetFFMoments.hh
+            - fastjet/contrib/JetsWithoutJets.hh
+            - fastjet/contrib/KTClusCXX.hh
+            - fastjet/contrib/LundEEHelpers.hh
+            - fastjet/contrib/LundGenerator.hh
+            - fastjet/contrib/LundJSON.hh
+            - fastjet/contrib/LundPlane.hh
+            - fastjet/contrib/LundWithSecondary.hh
+            - fastjet/contrib/MassFlav.hh
+            - fastjet/contrib/MeasureDefinition.hh
+            - fastjet/contrib/ModifiedMassDropTagger.hh
+            - fastjet/contrib/Njettiness.hh
+            - fastjet/contrib/NjettinessPlugin.hh
+            - fastjet/contrib/Nsubjettiness.hh
+            - fastjet/contrib/QCDAwarePlugin.hh
+            - fastjet/contrib/Recluster.hh
+            - fastjet/contrib/RecursiveLundEEGenerator.hh
+            - fastjet/contrib/RecursiveSoftDrop.hh
+            - fastjet/contrib/RecursiveSymmetryCutBase.hh
+            - fastjet/contrib/RescalingClasses.hh
+            - fastjet/contrib/SDFPlugin.hh
+            - fastjet/contrib/ScJet.hh
+            - fastjet/contrib/SecondaryLund.hh
+            - fastjet/contrib/ShapeWithComponents.hh
+            - fastjet/contrib/ShapeWithPartition.hh
+            - fastjet/contrib/SignalFreeBackgroundEstimator.hh
+            - fastjet/contrib/SoftDrop.hh
+            - fastjet/contrib/SoftKiller.hh
+            - fastjet/contrib/SubjetCounting.hh
+            - fastjet/contrib/TauComponents.hh
+            - fastjet/contrib/ValenciaPlugin.hh
+            - fastjet/contrib/VariableR.hh
+            - fastjet/contrib/VariableRPlugin.hh
+            - fastjet/contrib/XConePlugin.hh
+      - if: unix
+        then:
+          - script: run_test_static.sh
+            requirements:
+              run:
+                - ${{ compiler('cxx') }}
+                - curl
+                - tar
+                - grep
+                - sed
+
+about:
+  homepage: https://fastjet.hepforge.org/contrib/
+  summary: 'FastJet Contrib: 3rd party extensions of FastJet'
+  description: |
+    The fastjet-contrib space is intended to provide a common location for
+    access to 3rd party extensions of FastJet. The `fastjet-contrib` output
+    provides a single merged shared object library that contains all contribs,
+    while the `fastjet-contrib-split` output provides individual shared object
+    libraries for each contrib. Please choose the output appropriate to your
+    use case and development patterns.
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  repository: https://github.com/fjcontrib/fjcontrib
+  documentation: https://fastjet.hepforge.org/contrib/
+
+extra:
+  feedstock-name: fastjet-contrib
+  recipe-maintainers:
+    - kratsg
+    - matthewfeickert
+    - lgray

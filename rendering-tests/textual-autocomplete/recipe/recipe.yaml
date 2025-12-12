@@ -1,0 +1,45 @@
+context:
+  name: textual-autocomplete
+  version: "4.0.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name | replace("-", "_") }}/${{ name | replace("-", "_") }}-${{ version }}.tar.gz
+  sha256: 2ba2f0d767be4480ecacb3e4b130cf07340e033c3500fc424fed9125d27a4586
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - textual >=2.0.0
+    - typing-extensions >=4.5.0
+
+tests:
+  - python:
+      imports:
+        - textual_autocomplete
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/darrenburns/textual-autocomplete
+  summary: 'Easily add autocomplete dropdowns to your Textual apps.'
+  description: |
+    textual-autocomplete is a Python library for creating dropdown autocompletion menus in Textual applications, allowing users to quickly select from a list of suggestions as they type. textual-autocomplete supports Textual version 0.14.0 and above.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - claudiushaag

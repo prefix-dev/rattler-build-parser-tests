@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: pdfsyntax
+  version: "0.1.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pdfsyntax-${{ version }}.tar.gz
+  sha256: b4d8823a83e77c4617bbcc96caabd1157e1ab8ae73c4af085c4397fb9a29f320
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pdfsyntax
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A Python PDF parsing library and tool built on top to browse the internal structure of a PDF file
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/desgeeko/pdfsyntax
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  version: 0.7.3
+
+package:
+  name: mprocs
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pvolok/mprocs/archive/v${{ version }}.tar.gz
+  sha256: a058a2806319a0a1ab644158b741e9a54be28540c88d15d213b820b3f97a65da
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - make
+    - python >=${{ python_min }}
+  host:
+    - if: linux
+      then: libxcb
+
+tests:
+  - script:
+      - mprocs --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Run multiple commands in parallel
+  homepage: https://github.com/pvolok/mprocs
+  repository: https://github.com/pvolok/mprocs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

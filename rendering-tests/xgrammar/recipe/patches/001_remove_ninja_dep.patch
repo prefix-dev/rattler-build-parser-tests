@@ -1,0 +1,30 @@
+diff --git i/CMakeLists.txt w/CMakeLists.txt
+index f27af9f..40fa617 100644
+--- i/CMakeLists.txt
++++ w/CMakeLists.txt
+@@ -46,12 +46,8 @@ message(STATUS "Enable C++ trace: ${XGRAMMAR_ENABLE_CPPTRACE}")
+ if(MSVC)
+   set(CMAKE_CXX_FLAGS "/Wall ${CMAKE_CXX_FLAGS}")
+ else()
+-  if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+-    set(CMAKE_CXX_FLAGS "-O3 ${CMAKE_CXX_FLAGS}")
+-  endif()
+-
+   set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wno-pedantic -Wno-unused-parameter \
+--Woverloaded-virtual -flto=auto ${CMAKE_CXX_FLAGS}"
++-Woverloaded-virtual ${CMAKE_CXX_FLAGS}"
+   )
+ endif()
+ 
+diff --git i/pyproject.toml w/pyproject.toml
+index 4130e22..4968e4b 100644
+--- i/pyproject.toml
++++ w/pyproject.toml
+@@ -21,7 +21,6 @@ dependencies = [
+   "transformers>=4.38.0",
+   "triton; platform_system == 'Linux' and platform_machine == 'x86_64'",
+   "mlx-lm; platform_system == 'Darwin' and platform_machine == 'arm64'",
+-  "ninja",
+ ]
+ dynamic = ["version"]
+ 

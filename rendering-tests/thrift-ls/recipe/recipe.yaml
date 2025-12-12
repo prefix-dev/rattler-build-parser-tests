@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.2.9
+
+package:
+  name: thrift-ls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/joyme123/thrift-ls/archive/v${{ version }}.tar.gz
+  sha256: d5d9fa040d5a4ab04a1c52c47d40b5ec2dedf6250cb8dc549d99fd4511471ab5
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - thrift-ls --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Thrift Language Server
+  homepage: https://github.com/joyme123/thrift-ls
+  repository: https://github.com/joyme123/thrift-ls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

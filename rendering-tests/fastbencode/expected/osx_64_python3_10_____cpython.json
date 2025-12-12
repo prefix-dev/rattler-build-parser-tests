@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastbencode",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastbencode/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastbencode/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastbencode/work"
+      },
+      "hash": {
+        "hash": "75cd89e",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastbencode": {
+          "build_string": "py310h75cd89e_0",
+          "name": "fastbencode",
+          "version": "0.3.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:15.031224392Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/breezy-team/fastbencode",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Implementation of bencode with optional fast C extensions"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py310h75cd89e_0"
+      },
+      "context": {
+        "version": "0.3.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "fastbencode",
+        "version": "0.3.7"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses",
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          "cython",
+          "pip",
+          "python",
+          "setuptools",
+          "setuptools-rust"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e96fd955d6d5980a913730ecbf838ca2863a6420f0d7c8d189087caa83393f21",
+          "url": "https://pypi.org/packages/source/f/fastbencode/fastbencode-0.3.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastbencode"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

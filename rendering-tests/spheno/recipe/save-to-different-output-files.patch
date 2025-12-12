@@ -1,0 +1,34 @@
+From 1bdbaa1c0946bf07913c4b188eadf19774e54d65 Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Fri, 21 Nov 2025 08:45:22 -0700
+Subject: [PATCH] fix: Allow saving to different output files
+
+---
+ src/InputOutput.F90 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/InputOutput.F90 b/src/InputOutput.F90
+index 07e26cc..4b56c3d 100644
+--- a/src/InputOutput.F90
++++ b/src/InputOutput.F90
+@@ -101,7 +101,7 @@ Contains
+     & , mat_D(3,3), R2(2,2), s12, s13, s23, c12, c13, c23, alpha_in
+   Logical :: check, calc_ferm, check_alpha(2), test_l
+   Complex(dp) :: lam_vS, vec3C(3), wertC, MMnu(3,3), vec1C(1), mat1(1,1)
+-  Logical, Save :: l_open = .True.
++  Logical, Save :: l_open = .False.
+   Logical :: l_pmns(2)
+ 
+   Iname = Iname + 1
+@@ -2525,7 +2525,7 @@ Contains
+       If (wert.Eq.1._dp) l_SM_decoupling = .False.
+ 
+      Case(70) ! calculate chargino/neutralino masses only with p^2=m^2_tree
+-      If (wert.Eq.1) mass_calc_iteration = .True.      
++      If (wert.Eq.1) mass_calc_iteration = .False.
+ 
+      Case(80) ! exit for sure with non-zero value if a problem occurs
+       If (wert.Eq.1) Non_Zero_Exit = .True.      
+-- 
+2.52.0
+

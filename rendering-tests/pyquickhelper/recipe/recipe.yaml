@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: pyquickhelper
+  version: 1.12.3823
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyquickhelper-${{ version }}.tar.gz
+  sha256: db2bdf4f27542aa2097d3ce74908e8612b7ea2e40aa46b61863b293c33e9bc35
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - encrypt = pyquickhelper.cli.encryption_cli:encrypt
+      - decrypt = pyquickhelper.cli.encryption_cli:decrypt
+      - encrypt_file = pyquickhelper.cli.encryption_file_cli:encrypt_file
+      - decrypt_file = pyquickhelper.cli.encryption_file_cli:decrypt_file
+      - pyq-sync = pyquickhelper.cli.pyq_sync_cli:pyq_sync
+
+requirements:
+  host:
+    - pip
+    - pyquicksetup
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - fire
+    - numpy >=1.16.0
+    - pyquicksetup >=0.2
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pyquickhelper
+        - pyquickhelper.benchhelper
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - encrypt --help
+      - decrypt --help
+      - encrypt_file --help
+      - decrypt_file --help
+
+about:
+  summary: Various automations in Python.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: http://www.xavierdupre.fr/app/pyquickhelper/helpsphinx/index.html
+
+extra:
+  recipe-maintainers:
+    - janjagusch

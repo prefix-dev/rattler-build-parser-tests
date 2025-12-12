@@ -1,0 +1,39 @@
+context:
+  version: "1.5.15"
+
+package:
+  name: sails
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/sails/-/sails-${{ version }}.tgz
+  sha256: 8339a896b14ad9a14fdbe0efdae1749f86462ec7bd3846ee3181fe593115d2a7
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - sails --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: API-driven framework for building realtime apps, using MVC conventions (based on Express and Socket.io)
+  homepage: https://sailsjs.com/
+  repository: https://github.com/balderdashy/sails
+
+extra:
+  recipe-maintainers:
+    - danielnachun

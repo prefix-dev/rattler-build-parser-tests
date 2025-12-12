@@ -1,0 +1,39 @@
+context:
+  version: "5.8.12"
+
+package:
+  name: pspg
+  version: ${{ version }}
+
+source:
+  url: https://github.com/okbob/pspg/archive/${{ version }}.tar.gz
+  sha256: 9f74c236944bea79586a3a12ab9d36735bfa62a92a8d7953e8c1ff5c108277af
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+  host:
+    - libpq
+    - ncurses
+    - readline
+
+tests:
+  - script:
+      - pspg --help
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: Unix pager optimized for psql
+  homepage: https://github.com/okbob/pspg
+  repository: https://github.com/okbob/pspg
+
+extra:
+  recipe-maintainers:
+    - danielnachun

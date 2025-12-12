@@ -1,0 +1,191 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fasttext-for-deepsearch-glm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fasttext-for-deepsearch-glm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fasttext-for-deepsearch-glm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fasttext-for-deepsearch-glm/work"
+      },
+      "hash": {
+        "hash": "c9d1799",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fasttext-for-deepsearch-glm": {
+          "build_string": "np2py312hc9d1799_5",
+          "name": "fasttext-for-deepsearch-glm",
+          "version": "0.1.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:18.568424157Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://fasttext.cc/docs/en/support.html",
+        "homepage": "https://fasttext.cc/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/facebookresearch/fastText",
+        "summary": "fastText - Library for efficient text classification and representation learning"
+      },
+      "build": {
+        "number": 5,
+        "script": "cmake -GNinja \\\n      -DCMAKE_INSTALL_PREFIX=$PREFIX \\\n      -DBUILD_SHARED_LIBS=ON \\\n      $SRC_DIR\nninja install\npython -m pip install --no-deps --no-build-isolation -vv .\n",
+        "string": "np2py312hc9d1799_5"
+      },
+      "context": {
+        "name": "fasttext-for-deepsearch-glm",
+        "version": "0.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "fasttext-for-deepsearch-glm",
+        "version": "0.1.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake <4",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools >=0.7.0",
+          "numpy",
+          "pybind11 >=2.2"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "pybind11 >=2.2"
+        ],
+        "run_constraints": [
+          "fasttext <0"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "fasttext-for-deepsearch-glm",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "setup.patch"
+          ],
+          "sha256": "f5772a90dc30893dfcd99efbd4fb0dc46f5d7a8388e9da5cc41a8bd8b4d94e1e",
+          "url": "https://github.com/PeterStaar-IBM/fastText/archive/refs/tags/v0.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fasttext"
+            ]
+          }
+        },
+        {
+          "script": "fasttext supervised -h || [[ $? == 1 ]]"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "fasttext"
+            ],
+            "files": [
+              "*/pkgconfig/fasttext.pc"
+            ],
+            "include": [
+              "fasttext/args.h",
+              "fasttext/autotune.h",
+              "fasttext/densematrix.h",
+              "fasttext/dictionary.h",
+              "fasttext/fasttext.h",
+              "fasttext/loss.h",
+              "fasttext/matrix.h",
+              "fasttext/meter.h",
+              "fasttext/model.h",
+              "fasttext/productquantizer.h",
+              "fasttext/quantmatrix.h",
+              "fasttext/real.h",
+              "fasttext/utils.h",
+              "fasttext/vector.h"
+            ],
+            "lib": [
+              "fasttext"
+            ],
+            "site_packages": [
+              "fasttext",
+              "fasttext.util"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

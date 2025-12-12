@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  name: jupyter-scatter
+  version: "0.22.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/jupyter_scatter-${{ version }}.tar.gz
+  sha256: c832cabb811b0da6b8e9667be01ff9d4a08475b89f4ac3b99b5164beb8c59997
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - jupyter-scatter=jscatter._cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+    - hatch-jupyter-builder >=0.5.0
+    - nodejs
+  run:
+    - python >=${{ python_min }}
+    - anywidget >=0.9.0
+    - geoindex-rs
+    - ipywidgets >=7.6,<9
+    - ipython
+    - matplotlib-base
+    - numpy
+    - pandas
+    - pooch >=1.3.0
+    - pyarrow
+    - scipy
+    - typing-extensions
+    # Not listed but needed to pass import test
+    - seaborn
+    - tqdm
+
+tests:
+  - python:
+      imports:
+        - jscatter
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - script:
+      - jupyter-scatter --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: An interactive scatter plot widget for Jupyter Notebook, Lab, and Google Colab that can handle millions of points and supports view linking
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://jupyter-scatter.dev/
+  repository: https://github.com/flekschas/jupyter-scatter
+  documentation: https://jupyter-scatter.dev/api
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - hadim

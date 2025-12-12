@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: urdfdom
+  version: 4.0.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ros/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 46b122c922f44ec32674a56e16fd4b5d068b53265898cbea2c3e1939ecccc62a
+
+build:
+  number: 3
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+  host:
+    - console_bridge
+    - tinyxml2
+    - urdfdom_headers
+  run:
+    - urdfdom_headers
+  run_exports:
+    - ${{ pin_subpackage('urdfdom', upper_bound='x.x') }}
+
+tests:
+  - files:
+      recipe:
+        - test
+    requirements:
+      run:
+        - pkg-config
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ninja
+        - cmake
+    script:
+      - pkg-config --modversion ${{ name }}
+      - pkg-config --exists --print-errors --debug ${{ name }}
+      - pkg-config --validate --print-errors --debug ${{ name }}
+      - if: unix
+        then: test -f $PREFIX/lib/lib${{ name }}_model${SHLIB_EXT}
+      - if: win
+        then: if exist %PREFIX%\\Library\\lib\\urdfdom\\cmake\\urdfdom-config.cmake (exit 0) else (exit 1)
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: URDF parser
+  homepage: http://github.com/ros/urdfdom
+  repository: https://github.com/ros/urdfdom
+
+extra:
+  recipe-maintainers:
+    - traversaro
+    - jcarpent
+    - wolfv
+    - seanyen

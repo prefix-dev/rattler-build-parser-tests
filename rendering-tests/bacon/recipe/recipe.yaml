@@ -1,0 +1,42 @@
+context:
+  version: "3.20.1"
+
+package:
+  name: bacon
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Canop/bacon/archive/v${{ version }}.tar.gz
+  sha256: cdcaa493d5cf68a4fdd6f17c588b1ea77177bc96e493818665abffbcf00a3900
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - if: linux
+      then:
+        - alsa-lib
+
+tests:
+  - script:
+      - bacon --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: background rust code check
+  homepage: https://github.com/Canop/bacon
+  repository: https://github.com/Canop/bacon
+
+extra:
+  recipe-maintainers:
+    - danielnachun

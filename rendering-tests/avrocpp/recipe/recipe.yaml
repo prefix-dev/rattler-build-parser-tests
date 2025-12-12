@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  version: 1.12.0
+
+package:
+  name: avrocpp
+  version: ${{ version }}
+
+source:
+  url: https://github.com/apache/avro/archive/release-${{ version }}.tar.gz
+  sha256: 51832f9c2e81fa95addb74be627dac27b4883ec2c8627ec8471d99cfea787555
+  patches:
+    - if: win
+      then: patches/0001-Remove-tests.patch
+    - patches/0002-Fix-linker-error-in-tests.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ninja
+    - cmake <4
+    - if: osx
+      then: pkg-config
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+
+  host:
+    - snappy
+    - liblzma-devel
+    - zlib
+    - libboost-devel
+
+tests:
+  - script:
+      - if: unix
+        then: 
+          - test -f ${PREFIX}/lib/libavrocpp_s.a
+          - test -f ${PREFIX}/lib/libavrocpp${SHLIB_EXT}
+          - test -f ${PREFIX}/include/avro/Types.hh
+      - if: win
+        then:
+          - if not exist %PREFIX%\\Library\\include\\avro\\Types.hh exit 1
+          - if not exist %PREFIX%\\Library\\lib\\avrocpp.dll exit 1
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  summary: Avro is a serialization and RPC framework.
+  homepage: https://avro.apache.org
+
+extra:
+  recipe-maintainers:
+    - apmorton
+    - mariusvniekerk

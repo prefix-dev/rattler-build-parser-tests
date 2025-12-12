@@ -1,0 +1,50 @@
+context:
+  goname: github.com/go-task/task
+  name: go-task
+  version: "3.45.5"
+  pkg_src: ${{ ["src", goname] | join("/") }}
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version | replace("-", "_") }}
+
+source:
+  - target_directory: ${{ pkg_src }}
+    url: https://${{ goname }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: cb0766677f228cf8291b6956365a713a5223f39ab64679086b6ec2a7fd8294b1
+
+build:
+  number: 0
+  script:
+    - pushd "${{ pkg_src }}"
+    - if: win
+      then: go install -v -ldflags="-w -s -X main.version=conda-forge" ./cmd/task
+      else: go build -v -ldflags="-w -s -X main.version=conda-forge" -o $PREFIX/bin/task ./cmd/task
+    - go-licenses save "." --save_path "library_licenses" --ignore github.com/go-task/template
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - task --version
+
+about:
+  homepage: https://taskfile.dev/
+  summary: A task runner / simpler Make alternative written in Go.
+  description: |
+    Task is a task runner / build tool that aims to be simpler and easier
+    to use than, for example, GNU Make.
+  license: MIT
+  license_family: MIT
+  license_file:
+    - ${{ pkg_src }}/LICENSE
+    - ${{ pkg_src }}/library_licenses/
+  documentation: https://taskfile.dev/
+  repository: https://github.com/go-task/task
+
+extra:
+  recipe-maintainers:
+    - AntoinePrv

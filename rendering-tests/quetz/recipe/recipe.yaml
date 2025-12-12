@@ -1,0 +1,83 @@
+schema_version: 1
+
+context:
+  name: quetz
+  version: 0.10.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}-server/${{ name }}-server-${{ version }}.tar.gz
+  sha256: fde82b72b2e3fb22bfd0f6fec99ef41d845a76341801955e1d280be204049b90
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - quetz = quetz.cli:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - alembic
+    - aiofiles
+    - appdirs
+    - authlib <1.0.0
+    - fastapi
+    - fsspec
+    - h2
+    - httpx >=0.22.0
+    - importlib-metadata
+    - itsdangerous
+    - jinja2
+    - pluggy
+    - prometheus_client
+    - python-multipart
+    - pydantic >=2.0.0
+    - pyyaml
+    - requests
+    - sqlalchemy
+    - sqlalchemy-utils
+    - tenacity
+    - toml
+    - typer
+    - typing_extensions
+    - ujson
+    - uvicorn
+    - zstandard
+    - aioshutil
+  run_constraints:
+    - s3fs >=2021.10.1
+    - adlfs >=2021.10.0
+    - gcsfs >=2022.3.0
+
+tests:
+  - python:
+      imports:
+        - quetz
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - quetz --help
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: The Mamba package server
+  homepage: https://github.com/mamba-org/quetz
+
+extra:
+  recipe-maintainers:
+    - mariobuikhuizen
+    - wolfv
+    - janjagusch

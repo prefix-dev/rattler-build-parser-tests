@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_feast",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_feast/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_feast/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_feast/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "feast": {
+          "build_string": "pyhcf101f3_0",
+          "name": "feast",
+          "version": "0.57.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:20:33.157459268Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/feast-dev/feast",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python SDK for Feast"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "feast = feast.cli.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "feast",
+        "version": "0.57.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "feast",
+        "version": "0.57.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pybindgen >=0.22.0",
+          "setuptools >=60,<81",
+          "setuptools-scm >=6.2",
+          "sphinx !=4.0.0",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "click >=7.0.0,<9.0.0",
+          "colorama >=0.3.9,<1",
+          "dill >=0.3.0,<0.4.dev0",
+          "protobuf >=4.24.0",
+          "jinja2 >=2,<4",
+          "jsonschema",
+          "mmh3",
+          "numpy >=2.0.0,<3",
+          "pandas >=1.4.3,<3",
+          "pyarrow <=17.0.0",
+          "pydantic ==2.10.6",
+          "pygments >=2.12.0,<3",
+          "pyyaml >=5.4.0,<7",
+          "requests",
+          "sqlalchemy >1",
+          "tabulate >=0.8.0,<1",
+          "tenacity >=7,<9",
+          "toml >=0.10.0,<1",
+          "tqdm >=4,<5",
+          "typeguard >=4.0.0",
+          "fastapi >=0.68.0",
+          "uvicorn >=0.30.6,<=0.34.0",
+          "uvicorn-worker",
+          "gunicorn",
+          "dask-core >=2024.2.1",
+          "prometheus_client",
+          "psutil",
+          "bigtree >=0.19.2",
+          "pyjwt"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d8ee00611a5c2e49a012f56ea026b098d17cb5a548f20e8f302ee5aff331ab03",
+          "url": "https://pypi.org/packages/source/f/feast/feast-0.57.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "feast"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": "feast --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

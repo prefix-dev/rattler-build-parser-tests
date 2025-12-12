@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqllineage",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqllineage/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqllineage/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqllineage/work"
+      },
+      "hash": {
+        "hash": "28ce643",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sqllineage": {
+          "build_string": "pyh28ce643_0",
+          "name": "sqllineage",
+          "version": "1.5.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:21:22.206584182Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nodejs": "22",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/reata/sqllineage",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "SQL Lineage Analysis Tool powered by Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "sqllineage = sqllineage.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyh28ce643_0"
+      },
+      "context": {
+        "name": "sqllineage",
+        "version": "1.5.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "sqllineage",
+        "version": "1.5.6"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "hatchling >=1.27.0",
+          "nodejs"
+        ],
+        "run": [
+          "python >=3.10",
+          "sqlparse >=0.5.0",
+          "networkx >=2.4",
+          "sqlfluff >=3.2.0",
+          "sqlalchemy >=2.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "12c209481d5c77cbf9accf3447b2d0f6958e04b63cc49a1df6245ed1ddb1aed3",
+          "url": "https://pypi.org/packages/source/s/sqllineage/sqllineage-1.5.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sqllineage"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "sqllineage --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

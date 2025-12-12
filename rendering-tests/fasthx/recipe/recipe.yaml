@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: fasthx
+  version: "3.0.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fasthx-${{ version }}.tar.gz
+  sha256: 9ecdfdb9b617f86d44ee3389d2d3c6c7e076409955c5bbae2cb40fde85da9f08
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - fastapi >=0.100.0
+
+tests:
+  - python:
+      imports:
+        - fasthx
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: FastAPI data APIs with HTMX support.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/volfpeter/fasthx
+  documentation: https://volfpeter.github.io/fasthx/
+
+extra:
+  recipe-maintainers:
+    - thewchan

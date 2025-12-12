@@ -1,0 +1,177 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xrootd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xrootd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xrootd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xrootd/work"
+      },
+      "hash": {
+        "hash": "24022e5",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "xrootd": {
+          "build_string": "py311h24022e5_2",
+          "name": "xrootd",
+          "version": "5.8.4"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:09.686329878Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "krb5": "1.21",
+        "libcurl": "8",
+        "libxml2_devel": "2.14",
+        "ncurses": "6",
+        "openssl": "3",
+        "python": "3.11.* *_cpython",
+        "readline": "8",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The XROOTD project aims at giving high performance, scalable fault tolerant\naccess to data repositories of many kinds. The typical usage is to give\naccess to file-based ones. It is based on a scalable architecture, a\ncommunication protocol, and a set of plugins and tools based on those. The\nfreedom to configure it and to make it scale (for size and performance)\nallows the deployment of data access clusters of virtually any size, which\ncan include sophisticated features, like authentication/authorization,\nintegrations with other systems, WAN data distribution, etc.",
+        "homepage": "http://xrootd.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/xrootd/xrootd",
+        "summary": "High performance, scalable fault tolerant access to data"
+      },
+      "build": {
+        "number": 2,
+        "string": "py311h24022e5_2"
+      },
+      "context": {
+        "name": "xrootd",
+        "version": "5.8.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "xrootd",
+        "version": "5.8.4"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "setuptools",
+          "pip",
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "openssl",
+          "python",
+          "setuptools",
+          "pip",
+          "readline",
+          "libxml2-devel",
+          "libcurl",
+          "krb5",
+          "zlib",
+          "ncurses",
+          "scitokens-cpp",
+          "libxcrypt"
+        ],
+        "run": [
+          "openssl",
+          "python",
+          "readline",
+          "libxml2-devel",
+          "krb5",
+          "zlib",
+          "ncurses"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "xrootd",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/drop-Werror-null-dereference.patch"
+          ],
+          "sha256": "0b91cb76c84710d14428a663f32304ae5829caad9a7765c65dcb458b1e5ef842",
+          "url": "https://github.com/xrootd/xrootd/archive/v5.8.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "XRootD.client",
+              "pyxrootd"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

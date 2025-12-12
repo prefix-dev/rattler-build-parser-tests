@@ -1,0 +1,71 @@
+context:
+  name: tree-sitter-language-pack
+  version: "0.13.0"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Goldziher/tree-sitter-language-pack/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 13a4f2d66e6c5af5a0c110a5d3a0d77e5185cb4b638b9e80f7ad4b4cefebe8cb
+
+build:
+  script:
+    - mkdir parsers
+    - ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cython
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - pip
+    - python
+    - setuptools >=78.1
+  run:
+    - python
+    - tree_sitter >=0.23.2
+    - tree-sitter-c-sharp >=0.23.1
+    - tree-sitter-embedded-template >=0.23.2
+    - tree-sitter-yaml >=0.7.2
+
+tests:
+  - python:
+      imports:
+        - tree_sitter_language_pack
+      pip_check: true
+  - script:
+      - mkdir sources && echo '{"csharp":{}, "embeddedtemplate":{}, "yaml":{}}' > sources/language_definitions.json
+      # One test fails since we restrict the supported languages to the few that are needed (requirements/run)
+      - pytest tests || true
+    requirements:
+      run:
+        - pytest
+        - python
+    files:
+      source:
+        - tests/
+
+about:
+  homepage: https://github.com/Goldziher/tree-sitter-language-pack
+  summary: 'A tree-sitter parser for templating languages like ERB and EJS.'
+  description: |
+    A tree-sitter parser for templating languages like ERB and EJS,
+    in which scripting code can be embedded within text content using
+    the delimiters <% and %>
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/Goldziher/tree-sitter-language-pack
+
+extra:
+  recipe-maintainers:
+    - MementoRC
+    - pavelzw

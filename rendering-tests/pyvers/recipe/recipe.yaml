@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: pyvers
+  version: 0.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/vmoens/pyvers/archive/v${{ version }}.tar.gz
+  sha256: 8da0cc90029bd57f172625e3c1a634ff93206df17d60b0dfd10c8c9d3254751a
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - packaging >=25.0,<26.0
+
+tests:
+  - python:
+      imports:
+        - pyvers
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: A Python library for managing multiple versions of dependencies
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/vmoens/pyvers
+
+extra:
+  recipe-maintainers:
+    - jan-janssen

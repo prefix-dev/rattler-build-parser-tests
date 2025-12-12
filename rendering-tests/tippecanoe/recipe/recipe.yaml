@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: tippecanoe
+  version: 2.78.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/felt//${{ name }}/archive/${{ version }}.tar.gz
+  sha256: da628c5fa1aec3aba318f6096d2f60d8b4cc78043e1c25e18a4d0975c8262f00
+
+build:
+  number: 1
+  skip: win
+  script:
+    - ls
+    - make -j$CPU_COUNT
+    - make install
+
+requirements:
+  build:
+    - make
+    - ${{ compiler ('c') }}
+    - ${{ compiler ('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - sqlite
+    - zlib
+
+tests:
+  - script:
+      - which tippecanoe
+      - tippecanoe --help
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE.md
+  summary: Build vector tilesets from large collections of GeoJSON features.
+  homepage: https://github.com/felt/tippecanoe
+
+extra:
+  recipe-maintainers:
+    - mxr-conda
+    - rluria14
+    - oblute
+    - dbrnz
+    - hobu

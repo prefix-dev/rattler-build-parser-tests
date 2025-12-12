@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ufit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ufit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ufit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ufit/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ufit": {
+          "build_string": "pyhcf101f3_0",
+          "name": "ufit",
+          "version": "1.11.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:07.879825823Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pythonhosted.org/ufit/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://forge.frm2.tum.de/review/plugins/gitiles/mlz/general/ufit",
+        "summary": "Universal scattering data fitting tool"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ufitgui = ufit.gui:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "ufit",
+        "version": "1.11.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MridulS"
+        ]
+      },
+      "package": {
+        "name": "ufit",
+        "version": "1.11.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "matplotlib-base >=3.0",
+          "numpy",
+          "scipy",
+          "pyqt",
+          "lmfit"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b68f4976991bc2464ac631be43d93e34921fc38ea520a7e1eff27a3c4196cc68",
+          "url": "https://pypi.org/packages/source/u/ufit/ufit-1.11.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ufit"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": {
+            "content": [
+              "ufitgui --help"
+            ],
+            "env": {
+              "QT_QPA_PLATFORM": "offscreen"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

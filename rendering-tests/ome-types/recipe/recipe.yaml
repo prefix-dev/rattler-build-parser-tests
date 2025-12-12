@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: ome-types
+  version: 0.6.3
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ome_types-${{ version }}.tar.gz
+  sha256: eef4138cda5edfdcb2a44cfb90b714a59ead1b69e4c5ce5f9892ad397ccaaa68
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+    - pydantic >=2.4.0
+    - pydantic-extra-types >=2.0.0
+    - ruff ==0.13.2
+    - xsdata >=24.7
+  run:
+    - python >=${{ python_min }}
+    - pydantic >=2.4.0
+    - pydantic-extra-types >=2.0.0
+    - xsdata >=24.4
+    - lxml >=4.8.0
+    - pint >=0.15
+
+tests:
+  - python:
+      imports:
+        - ome_types
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python dataclasses for the OME data model
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tlambert03/ome-types
+  repository: https://github.com/tlambert03/ome-types
+  documentation: https://ome-types.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - imagejan
+    - tlambert03

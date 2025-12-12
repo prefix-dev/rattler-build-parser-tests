@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: cpuid-native
+  version: 0.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cpuid_native-${{ version }}.tar.gz
+  sha256: 7f032c455083f6161056f8ff51225e79ef14154cdae577b911e37c1281d93026
+
+build:
+  number: 1
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+  host:
+    - pip
+    - python
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - cpuid_native
+      pip_check: true
+
+about:
+  summary: x86 cpuid native API
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/fpelliccioni/cpuid-py-native
+
+extra:
+  recipe-maintainers:
+    - thewchan

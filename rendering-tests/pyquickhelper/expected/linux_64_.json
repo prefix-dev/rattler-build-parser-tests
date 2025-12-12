@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyquickhelper",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyquickhelper/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyquickhelper/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyquickhelper/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyquickhelper": {
+          "build_string": "pyhe01879c_2",
+          "name": "pyquickhelper",
+          "version": "1.12.3823"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:00.501511081Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.xavierdupre.fr/app/pyquickhelper/helpsphinx/index.html",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Various automations in Python."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "encrypt = pyquickhelper.cli.encryption_cli:encrypt",
+            "decrypt = pyquickhelper.cli.encryption_cli:decrypt",
+            "encrypt_file = pyquickhelper.cli.encryption_file_cli:encrypt_file",
+            "decrypt_file = pyquickhelper.cli.encryption_file_cli:decrypt_file",
+            "pyq-sync = pyquickhelper.cli.pyq_sync_cli:pyq_sync"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_2"
+      },
+      "context": {
+        "name": "pyquickhelper",
+        "version": "1.12.3823"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "janjagusch"
+        ]
+      },
+      "package": {
+        "name": "pyquickhelper",
+        "version": "1.12.3823"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "pyquicksetup",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "fire",
+          "numpy >=1.16.0",
+          "pyquicksetup >=0.2",
+          "python >=3.9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "db2bdf4f27542aa2097d3ce74908e8612b7ea2e40aa46b61863b293c33e9bc35",
+          "url": "https://pypi.org/packages/source/p/pyquickhelper/pyquickhelper-1.12.3823.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyquickhelper",
+              "pyquickhelper.benchhelper"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "encrypt --help",
+            "decrypt --help",
+            "encrypt_file --help",
+            "decrypt_file --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

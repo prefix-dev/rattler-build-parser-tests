@@ -1,0 +1,122 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-task",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-task/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-task/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-task/work"
+      },
+      "hash": {
+        "hash": "22914b5"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "go-task": {
+          "build_string": "h22914b5_0",
+          "name": "go-task",
+          "version": "3.45.5"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:45.688901018Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Task is a task runner / build tool that aims to be simpler and easier\nto use than, for example, GNU Make. ",
+        "documentation": "https://taskfile.dev/",
+        "homepage": "https://taskfile.dev/",
+        "license": "MIT",
+        "license_family": "MIT",
+        "license_file": [
+          "src/github.com/go-task/task/LICENSE",
+          "src/github.com/go-task/task/library_licenses/"
+        ],
+        "repository": "https://github.com/go-task/task",
+        "summary": "A task runner / simpler Make alternative written in Go."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "pushd \"${{ pkg_src }}\"",
+          "go build -v -ldflags=\"-w -s -X main.version=conda-forge\" -o $PREFIX/bin/task ./cmd/task",
+          "go-licenses save \".\" --save_path \"library_licenses\" --ignore github.com/go-task/template"
+        ],
+        "string": "h22914b5_0"
+      },
+      "context": {
+        "goname": "github.com/go-task/task",
+        "name": "go-task",
+        "pkg_src": "src/github.com/go-task/task",
+        "version": "3.45.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv"
+        ]
+      },
+      "package": {
+        "name": "go-task",
+        "version": "3.45.5"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-aarch64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cb0766677f228cf8291b6956365a713a5223f39ab64679086b6ec2a7fd8294b1",
+          "target_directory": "src/github.com/go-task/task",
+          "url": "https://github.com/go-task/task/archive/refs/tags/v3.45.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "task --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

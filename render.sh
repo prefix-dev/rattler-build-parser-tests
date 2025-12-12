@@ -6,8 +6,15 @@
 #   ./render.sh nwchem                    # picks first variant
 #   ./render.sh nwchem linux*             # picks first matching linux* variant
 #   ./render.sh hf-xet "linux_64*"        # picks first matching linux_64* variant
+#
+# Environment variables:
+#   RATTLER_BUILD - Path to rattler-build binary (default: ../rattler-build/target/debug/rattler-build)
+#   USE_CARGO     - Set to 1 to use 'cargo run --release' instead
 
 set -e
+
+# Default to local debug build
+RATTLER_BUILD="${RATTLER_BUILD:-../rattler-build/target/debug/rattler-build}"
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <feedstock> [variant_glob]"
@@ -45,4 +52,11 @@ echo "Recipe: $RECIPE_DIR/recipe.yaml"
 echo "Variant: $VARIANT_FILE"
 echo ""
 
-cargo r --release -- build --recipe "$RECIPE_DIR/recipe.yaml" -m "$VARIANT_FILE" --render-only --no-build-id --log-style plain
+if [ "$USE_CARGO" = "1" ]; then
+    echo "Using cargo run --release..."
+    cd ../rattler-build
+    cargo r --release -- build --recipe "../rattler-build-parser-tests/$RECIPE_DIR/recipe.yaml" -m "../rattler-build-parser-tests/$VARIANT_FILE" --render-only --no-build-id --log-style plain
+else
+    echo "Using: $RATTLER_BUILD"
+    "$RATTLER_BUILD" build --recipe "$RECIPE_DIR/recipe.yaml" -m "$VARIANT_FILE" --render-only --no-build-id --log-style plain
+fi

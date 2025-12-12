@@ -1,0 +1,40 @@
+schema_version: 1
+
+context:
+  name: bfg
+  version: 1.15.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://repo1.maven.org/maven2/com/madgag/${{ name }}/${{ version }}/${{ name }}-${{ version }}.jar
+  sha256: dfe2885adc2916379093f02a80181200536856c9a987bf21c492e452adefef7a
+
+build:
+  number: 1
+
+requirements:
+  run:
+    - openjdk >=8
+
+tests:
+  - script:
+      - if: not win
+        then: bfg | grep "${{ version }}"
+      - if: win
+        then: bfg | findstr /c:"${{ version }}"
+
+about:
+  summary: BFG Repo-Cleaner
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: https://rtyley.github.io/bfg-repo-cleaner/
+  repository: https://github.com/rtyley/bfg-repo-cleaner/
+  documentation: https://rtyley.github.io/bfg-repo-cleaner/
+
+extra:
+  recipe-maintainers:
+    - carlodri
+    - janjagusch

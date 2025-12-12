@@ -1,0 +1,96 @@
+schema_version: 1
+
+context:
+  name: onnx
+  version: "1.19.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/onnx/onnx/archive/v${{ version }}.tar.gz
+  sha256: ce9d2569a61d64e8a3d05b92194f60ffb7c868dbb754a71f5b4d992273a9413d
+  patches:
+    - if: win
+      then: 0001-Link-to-abseil_dll.patch
+    - 0002-dont-hide-all-symbols-and-set-ext-suffix.patch
+
+build:
+  number: 0
+  python:
+    entry_points:
+      - check-model = onnx.bin.checker:check_model
+      - check-node = onnx.bin.checker:check_node
+      - backend-test-tools = onnx.backend.test.cmd_tools:main
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+        - pybind11
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+    - libprotobuf
+    - if: unix
+      then: sed
+  host:
+    - python
+    - libprotobuf
+    - ninja
+    - numpy
+    - pip
+    - protobuf
+    - pybind11
+    - pytest-runner
+    - setuptools
+  run:
+    - python
+    - ml_dtypes
+    - protobuf
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - onnx
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+      - check-model --help
+      - check-node --help
+      - backend-test-tools --help
+      - if: unix
+        then:
+          - "test -f \"$PREFIX/lib/libonnx${SHLIB_EXT}\""
+          - "test -f \"$PREFIX/lib/cmake/ONNX/ONNXConfig.cmake\""
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Open Neural Network Exchange library
+  description: |
+    Open Neural Network Exchange (ONNX) is the first step toward an open
+    ecosystem that empowers AI developers to choose the right tools as their
+    project evolves. ONNX provides an open source format for AI models. It
+    defines an extensible computation graph model, as well as definitions of
+    built-in operators and standard data types. Initially we focus on the
+    capabilities needed for inferencing (evaluation).
+
+
+  homepage: https://github.com/onnx/onnx/
+
+extra:
+  recipe-maintainers:
+    - ezyang
+    - marcelotrevisani
+    - xhochy
+    - janjagusch
+    - cbourjau

@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: arviz-stats
+  version: "0.7.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/arviz_stats-${{ version }}.tar.gz
+  sha256: c04d2b888fc2ecf44bdaca3f950f62834d51ddcc97472f9aeec7c4808e598032
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.4,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy >=2
+    - scipy >=1.10
+    - arviz-base >=0.7.0
+    - xarray-einstats
+    - xarray
+
+tests:
+  - python:
+      imports:
+        - arviz_stats
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Statistical computation and diagnostics for ArviZ.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/arviz-devs/arviz-stats
+  repository: https://github.com/arviz-devs/arviz-stats
+  documentation: https://arviz-stats.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - OriolAbril
+    - aloctavodia
+    - tomicapretto

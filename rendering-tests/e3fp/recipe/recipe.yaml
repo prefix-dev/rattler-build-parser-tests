@@ -1,0 +1,58 @@
+context:
+  name: e3fp
+  version: 1.2.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/e3fp-${{ version }}.tar.gz
+  sha256: 45f317ac1ac2e1d3673ed60666ed5dc35b8925fe7cfd555c4ecf2f73abe55fee
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - e3fp-conformer = e3fp.conformer.generate:main
+      - e3fp-fingerprint = e3fp.fingerprint.generate:main
+
+requirements:
+  host:
+    - flit-core
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - mmh3 >=2.3.1
+    - numpy >=1.11.3
+    - scipy >=0.18.0
+    - rdkit >=2016.03.4
+    - sdaxen_python_utilities >=0.1.5
+    - smart_open >=1.8.3
+
+tests:
+  - python:
+      imports:
+        - e3fp
+        - e3fp.config
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - e3fp-conformer --help
+      - e3fp-fingerprint --help
+
+about:
+  summary: Molecular 3D fingerprinting
+  license: LGPL-3.0-only
+  license_file: LICENSE.txt
+  homepage: https://github.com/keiserlab/e3fp
+
+extra:
+  recipe-maintainers:
+    - hadim
+    - sethaxen

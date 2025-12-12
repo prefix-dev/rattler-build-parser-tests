@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kokkos-kernels",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kokkos-kernels/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kokkos-kernels/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kokkos-kernels/work"
+      },
+      "hash": {
+        "hash": "171cf75"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "kokkos-kernels": {
+          "build_string": "h171cf75_0",
+          "name": "kokkos-kernels",
+          "version": "5.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:01.572171024Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The baseline version of this library is written using the Kokkos Core programming model for portability and good performance. The library has architecture-specific optimizations or uses vendor-specific versions of these mathematical algorithms where needed. This reduces the amount of architecture-specific software that an application team potentially needs to develop, thus further reducing their (modification cost)to achieve \u201cbest in class\u201d performance.",
+        "documentation": "https://kokkos.org/api-kernels/",
+        "homepage": "https://kokkos.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/kokkos/kokkos-kernels",
+        "summary": "Kokkos Kernels is a software library of linear algebra and graph algorithms used across many HPC applications to achieve best (not just good) performance on every architecture."
+      },
+      "build": {
+        "number": 0,
+        "string": "h171cf75_0"
+      },
+      "context": {
+        "name": "kokkos-kernels",
+        "version": "5.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "BastianZim",
+          "vincentmr",
+          "rfiorella"
+        ]
+      },
+      "package": {
+        "name": "kokkos-kernels",
+        "version": "5.0.0"
+      },
+      "requirements": {
+        "build": [
+          "cmake >=3.21.1",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "ninja"
+        ],
+        "host": [
+          "libgomp",
+          "kokkos >=4.6.1,<5"
+        ],
+        "run": [
+          "kokkos >=4.6.1,<5",
+          "libgomp"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "kokkos-kernels",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1d7e7040b86f141004126c3fa5711f28697803d921c3558d82192a32156b1b2",
+          "url": "https://github.com/kokkos/kokkos-kernels/releases/download/5.0.0/kokkos-kernels-5.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "example/batched_solve"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gxx_linux-64 14.*"
+            ]
+          },
+          "script": [
+            "$CXX example/batched_solve/team_GMRES.cpp -o team_GMRES -std=c++17 -I$PREFIX/include -L$PREFIX/lib -lkokkoscontainers -lkokkoscore -lkokkoskernels -fopenmp",
+            "test -f $PREFIX/lib/cmake/KokkosKernels/KokkosKernelsConfig.cmake",
+            "test -f $PREFIX/lib/libkokkoskernels.so",
+            "test -f $PREFIX/include/KokkosKernels_Handle.hpp"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

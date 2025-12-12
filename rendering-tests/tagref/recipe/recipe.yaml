@@ -1,0 +1,37 @@
+context:
+  version: 1.10.0
+
+package:
+  name: tagref
+  version: ${{ version }}
+
+source:
+  url: https://github.com/stepchowfun/tagref/archive/v${{ version }}.tar.gz
+  sha256: 47d18c8fe3b037fd32fbeeeb91cf763840a809050a82a386dd56f73505a375fd
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - tagref --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+  summary: Refer to other locations in your codebase
+  homepage: https://github.com/stepchowfun/tagref
+  repository: https://github.com/stepchowfun/tagref
+
+extra:
+  recipe-maintainers:
+    - danielnachun

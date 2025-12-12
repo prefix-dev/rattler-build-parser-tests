@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_secretinit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_secretinit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_secretinit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_secretinit/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "secretinit": {
+          "build_string": "h11686cb_0",
+          "name": "secretinit",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:08.218001856Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "secretinit is a command-line tool that injects secrets into your application's \nenvironment variables from secure storage backends including AWS Secrets Manager,\nGCP Secret Manager, Azure Key Vault, and git credential helpers.",
+        "documentation": "https://pkg.go.dev/github.com/liifi/secretinit",
+        "homepage": "https://github.com/liifi/secretinit",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/liifi/secretinit",
+        "summary": "Inject secrets from cloud providers and git credential stores into your app's environment variables"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd cmd/secretinit",
+          "go-licenses save . --save_path ../../library_licenses",
+          "go build -v -o %LIBRARY_BIN%\\secretinit.exe -ldflags=\"-s -X main.version=${{ version }}\""
+        ],
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "name": "secretinit",
+        "version": "1.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "filterany"
+        ]
+      },
+      "package": {
+        "name": "secretinit",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_win-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fef226223cce0a05260668e1497df02a955db00b493be573b53cd5dc7c370c0a",
+          "url": "https://github.com/liifi/secretinit/archive/refs/tags/v1.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "secretinit -h"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "secretinit"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

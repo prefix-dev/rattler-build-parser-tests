@@ -1,0 +1,35 @@
+context:
+  version: "9.1.7"
+
+package:
+  name: husky
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/husky/-/husky-${{ version }}.tgz
+  sha256: 720e354eba8b12afd32ac5844499753375916a721ee47ea7194e9b32ed44fe0c
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - husky --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Git hooks made easy
+  homepage: https://github.com/typicode/husky
+  repository: https://github.com/typicode/husky
+
+extra:
+  recipe-maintainers:
+    - danielnachun

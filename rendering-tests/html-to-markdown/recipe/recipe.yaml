@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: html-to-markdown
+  version: "2.13.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/html_to_markdown-${{ version }}.tar.gz
+  sha256: f3281bf1fcd10049d2ecfe17c078509bd27885f62dd8df21689367d7dea58faa
+
+build:
+  number: 0
+  script:
+    - if: unix
+      then:
+        # Unix recipe
+        - export OPENSSL_DIR="$PREFIX"
+      else:
+        # Win recipe  # work around long path problem,
+        # hack: path too long for pixi_config subpackage, https://github.com/prefix-dev/pixi/issues/3691
+        - set CARGO_HOME=C:\.cargo
+        - md %CARGO_HOME%
+        - if errorlevel 1 exit 1
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    version_independent: true
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.9,<2
+    - tomli >=2
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - html_to_markdown
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - pip check
+      - "python -c \"import html_to_markdown\""
+
+about:
+  summary: High-performance HTML to Markdown converter powered by Rust with a clean Python API
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/Goldziher/html-to-markdown
+
+extra:
+  recipe-maintainers:
+    - rxm7706

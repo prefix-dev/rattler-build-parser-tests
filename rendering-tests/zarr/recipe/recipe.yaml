@@ -1,0 +1,86 @@
+schema_version: 1
+
+context:
+  python_min: '3.11'
+  name: zarr
+  version: 3.1.5
+  sha256: fbe0c79675a40c996de7ca08e80a1c0a20537bd4a9f43418b6d101395c0bba2b
+
+package:
+  name: zarr
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/z/zarr/zarr-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - packaging >=22.0
+    - numpy >=1.26
+    - numcodecs >=0.14
+    - typing_extensions >=4.9
+    - donfig >=0.8
+    - google-crc32c >=1.5
+  run_constraints:
+    - fsspec >=2023.10.0
+    - obstore >=0.5.1
+
+tests:
+  - python:
+      imports:
+        - zarr
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+        - pyproject.toml
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+        - pytest
+        - pytest-asyncio
+        - hypothesis
+        - botocore
+        - fsspec
+        - requests
+        - aiohttp
+        - rich
+        - universal_pathlib
+        - tomlkit
+        - s3fs >=2023.10.0
+        - obstore >=0.5.1
+        - numpydoc
+    script:
+      - pytest tests
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: An implementation of chunked, compressed, N-dimensional arrays for Python
+  homepage: https://github.com/zarr-developers/zarr-python
+  documentation: https://zarr.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - normanrz
+    - martindurant
+    - d-v-b
+    - jakirkham
+    - joshmoore
+    - jhamman
+    - rabernat
+    - dstansby

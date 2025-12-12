@@ -1,0 +1,506 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib-split",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib-split/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib-split/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib-split/work"
+      },
+      "hash": {
+        "hash": "a6136e2"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastjet-contrib-split": {
+          "build_string": "ha6136e2_7",
+          "name": "fastjet-contrib-split",
+          "version": "1.101"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:21.040805026Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The fastjet-contrib space is intended to provide a common location for\naccess to 3rd party extensions of FastJet. The `fastjet-contrib` output\nprovides a single merged shared object library that contains all contribs,\nwhile the `fastjet-contrib-split` output provides individual shared object\nlibraries for each contrib. Please choose the output appropriate to your\nuse case and development patterns.",
+        "documentation": "https://fastjet.hepforge.org/contrib/",
+        "homepage": "https://fastjet.hepforge.org/contrib/",
+        "license": "GPL-2.0-or-later",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/fjcontrib/fjcontrib",
+        "summary": "FastJet Contrib: 3rd party extensions of FastJet"
+      },
+      "build": {
+        "number": 7,
+        "script": [
+          "cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=\"${PREFIX}\" -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=OFF -S . -B build",
+          "cmake -LH build",
+          "cmake --build build --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build"
+        ],
+        "string": "ha6136e2_7"
+      },
+      "context": {
+        "name": "fastjet-contrib",
+        "version": "1.101"
+      },
+      "extra": {
+        "feedstock-name": "fastjet-contrib",
+        "recipe-maintainers": [
+          "kratsg",
+          "matthewfeickert",
+          "lgray"
+        ]
+      },
+      "package": {
+        "name": "fastjet-contrib-split",
+        "version": "1.101"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 13.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "cgal-cpp",
+          "fastjet-cxx"
+        ],
+        "run": [
+          "fastjet-cxx"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-port-the-CMS-additions.patch",
+            "0002-drop-as-needed-flag-to-avoid-link-errors-on-missing-.patch",
+            "0003-top-level-only-cmake.patch",
+            "0004-required-source-changes-for-windows-build.patch"
+          ],
+          "sha256": "dbe8ad2199f72d64dd29f6218f6f53efddc8fb3e5dd9c5d10f2fd1e23d6e44f6",
+          "url": "https://fastjet.hepforge.org/contrib/downloads/fjcontrib-1.101.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/fastjetcontrib/fastjetcontrib*.cmake"
+            ],
+            "include": [
+              "fastjet/contrib/*.h",
+              "fastjet/contrib/AxesDefinition.hh",
+              "fastjet/contrib/BottomUpSoftDrop.hh",
+              "fastjet/contrib/CMPPlugin.hh",
+              "fastjet/contrib/Centauro.hh",
+              "fastjet/contrib/ClusteringVetoPlugin.hh",
+              "fastjet/contrib/ConstituentSubtractor.hh",
+              "fastjet/contrib/DistanceMeasure.hh",
+              "fastjet/contrib/EnergyCorrelator.hh",
+              "fastjet/contrib/EventStorage.hh",
+              "fastjet/contrib/ExtraRecombiners.hh",
+              "fastjet/contrib/FlavInfo.hh",
+              "fastjet/contrib/FlavNeutraliser.hh",
+              "fastjet/contrib/FlavorCone.hh",
+              "fastjet/contrib/GHSAlgo.hh",
+              "fastjet/contrib/GenericSubtractor.hh",
+              "fastjet/contrib/IFNPlugin.hh",
+              "fastjet/contrib/IteratedSoftDrop.hh",
+              "fastjet/contrib/IterativeConstituentSubtractor.hh",
+              "fastjet/contrib/JetCleanser.hh",
+              "fastjet/contrib/JetFFMoments.hh",
+              "fastjet/contrib/JetsWithoutJets.hh",
+              "fastjet/contrib/KTClusCXX.hh",
+              "fastjet/contrib/LundEEHelpers.hh",
+              "fastjet/contrib/LundGenerator.hh",
+              "fastjet/contrib/LundJSON.hh",
+              "fastjet/contrib/LundPlane.hh",
+              "fastjet/contrib/LundWithSecondary.hh",
+              "fastjet/contrib/MassFlav.hh",
+              "fastjet/contrib/MeasureDefinition.hh",
+              "fastjet/contrib/ModifiedMassDropTagger.hh",
+              "fastjet/contrib/Njettiness.hh",
+              "fastjet/contrib/NjettinessPlugin.hh",
+              "fastjet/contrib/Nsubjettiness.hh",
+              "fastjet/contrib/QCDAwarePlugin.hh",
+              "fastjet/contrib/Recluster.hh",
+              "fastjet/contrib/RecursiveLundEEGenerator.hh",
+              "fastjet/contrib/RecursiveSoftDrop.hh",
+              "fastjet/contrib/RecursiveSymmetryCutBase.hh",
+              "fastjet/contrib/RescalingClasses.hh",
+              "fastjet/contrib/SDFPlugin.hh",
+              "fastjet/contrib/ScJet.hh",
+              "fastjet/contrib/SecondaryLund.hh",
+              "fastjet/contrib/ShapeWithComponents.hh",
+              "fastjet/contrib/ShapeWithPartition.hh",
+              "fastjet/contrib/SignalFreeBackgroundEstimator.hh",
+              "fastjet/contrib/SoftDrop.hh",
+              "fastjet/contrib/SoftKiller.hh",
+              "fastjet/contrib/SubjetCounting.hh",
+              "fastjet/contrib/TauComponents.hh",
+              "fastjet/contrib/ValenciaPlugin.hh",
+              "fastjet/contrib/VariableR.hh",
+              "fastjet/contrib/VariableRPlugin.hh",
+              "fastjet/contrib/XConePlugin.hh"
+            ],
+            "lib": {
+              "exists": [
+                "CMPPlugin",
+                "Centauro",
+                "ClusteringVetoPlugin",
+                "ConstituentSubtractor",
+                "EnergyCorrelator",
+                "FlavorCone",
+                "GHSAlgo",
+                "GenericSubtractor",
+                "IFNPlugin",
+                "JetCleanser",
+                "JetFFMoments",
+                "JetsWithoutJets",
+                "LundPlane",
+                "Nsubjettiness",
+                "QCDAwarePlugin",
+                "RecursiveTools",
+                "SDFPlugin",
+                "ScJet",
+                "SignalFreeBackgroundEstimator",
+                "SoftKiller",
+                "SubjetCounting",
+                "ValenciaPlugin",
+                "VariableR"
+              ],
+              "not_exists": [
+                "fastjetcontribfragile"
+              ]
+            }
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "gxx_linux-aarch64 13.*",
+              "curl",
+              "tar",
+              "grep",
+              "sed"
+            ]
+          },
+          "script": {
+            "content": "run_test_static.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-contrib/work"
+      },
+      "hash": {
+        "hash": "a6136e2"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastjet-contrib": {
+          "build_string": "ha6136e2_7",
+          "name": "fastjet-contrib",
+          "version": "1.101"
+        },
+        "fastjet-contrib-split": {
+          "build_string": "ha6136e2_7",
+          "name": "fastjet-contrib-split",
+          "version": "1.101"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:21.100529071Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The fastjet-contrib space is intended to provide a common location for\naccess to 3rd party extensions of FastJet. The `fastjet-contrib` output\nprovides a single merged shared object library that contains all contribs,\nwhile the `fastjet-contrib-split` output provides individual shared object\nlibraries for each contrib. Please choose the output appropriate to your\nuse case and development patterns.",
+        "documentation": "https://fastjet.hepforge.org/contrib/",
+        "homepage": "https://fastjet.hepforge.org/contrib/",
+        "license": "GPL-2.0-or-later",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/fjcontrib/fjcontrib",
+        "summary": "FastJet Contrib: 3rd party extensions of FastJet"
+      },
+      "build": {
+        "number": 7,
+        "script": [
+          "cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=\"${PREFIX}\" -DCMAKE_BUILD_TYPE=Release -DFASTJETCONTRIB_ENABLE_FRAGILELIB=ON -S . -B build",
+          "cmake -LH build",
+          "cmake --build build --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build"
+        ],
+        "string": "ha6136e2_7"
+      },
+      "context": {
+        "name": "fastjet-contrib",
+        "version": "1.101"
+      },
+      "extra": {
+        "feedstock-name": "fastjet-contrib",
+        "recipe-maintainers": [
+          "kratsg",
+          "matthewfeickert",
+          "lgray"
+        ]
+      },
+      "package": {
+        "name": "fastjet-contrib",
+        "version": "1.101"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 13.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "cgal-cpp",
+          "fastjet-cxx"
+        ],
+        "run": [
+          "fastjet-cxx"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "fastjet-contrib",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-port-the-CMS-additions.patch",
+            "0002-drop-as-needed-flag-to-avoid-link-errors-on-missing-.patch",
+            "0003-top-level-only-cmake.patch",
+            "0004-required-source-changes-for-windows-build.patch"
+          ],
+          "sha256": "dbe8ad2199f72d64dd29f6218f6f53efddc8fb3e5dd9c5d10f2fd1e23d6e44f6",
+          "url": "https://fastjet.hepforge.org/contrib/downloads/fjcontrib-1.101.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/fastjetcontrib/fastjetcontrib*.cmake"
+            ],
+            "include": [
+              "fastjet/contrib/*.h",
+              "fastjet/contrib/AxesDefinition.hh",
+              "fastjet/contrib/BottomUpSoftDrop.hh",
+              "fastjet/contrib/CMPPlugin.hh",
+              "fastjet/contrib/Centauro.hh",
+              "fastjet/contrib/ClusteringVetoPlugin.hh",
+              "fastjet/contrib/ConstituentSubtractor.hh",
+              "fastjet/contrib/DistanceMeasure.hh",
+              "fastjet/contrib/EnergyCorrelator.hh",
+              "fastjet/contrib/EventStorage.hh",
+              "fastjet/contrib/ExtraRecombiners.hh",
+              "fastjet/contrib/FlavInfo.hh",
+              "fastjet/contrib/FlavNeutraliser.hh",
+              "fastjet/contrib/FlavorCone.hh",
+              "fastjet/contrib/GHSAlgo.hh",
+              "fastjet/contrib/GenericSubtractor.hh",
+              "fastjet/contrib/IFNPlugin.hh",
+              "fastjet/contrib/IteratedSoftDrop.hh",
+              "fastjet/contrib/IterativeConstituentSubtractor.hh",
+              "fastjet/contrib/JetCleanser.hh",
+              "fastjet/contrib/JetFFMoments.hh",
+              "fastjet/contrib/JetsWithoutJets.hh",
+              "fastjet/contrib/KTClusCXX.hh",
+              "fastjet/contrib/LundEEHelpers.hh",
+              "fastjet/contrib/LundGenerator.hh",
+              "fastjet/contrib/LundJSON.hh",
+              "fastjet/contrib/LundPlane.hh",
+              "fastjet/contrib/LundWithSecondary.hh",
+              "fastjet/contrib/MassFlav.hh",
+              "fastjet/contrib/MeasureDefinition.hh",
+              "fastjet/contrib/ModifiedMassDropTagger.hh",
+              "fastjet/contrib/Njettiness.hh",
+              "fastjet/contrib/NjettinessPlugin.hh",
+              "fastjet/contrib/Nsubjettiness.hh",
+              "fastjet/contrib/QCDAwarePlugin.hh",
+              "fastjet/contrib/Recluster.hh",
+              "fastjet/contrib/RecursiveLundEEGenerator.hh",
+              "fastjet/contrib/RecursiveSoftDrop.hh",
+              "fastjet/contrib/RecursiveSymmetryCutBase.hh",
+              "fastjet/contrib/RescalingClasses.hh",
+              "fastjet/contrib/SDFPlugin.hh",
+              "fastjet/contrib/ScJet.hh",
+              "fastjet/contrib/SecondaryLund.hh",
+              "fastjet/contrib/ShapeWithComponents.hh",
+              "fastjet/contrib/ShapeWithPartition.hh",
+              "fastjet/contrib/SignalFreeBackgroundEstimator.hh",
+              "fastjet/contrib/SoftDrop.hh",
+              "fastjet/contrib/SoftKiller.hh",
+              "fastjet/contrib/SubjetCounting.hh",
+              "fastjet/contrib/TauComponents.hh",
+              "fastjet/contrib/ValenciaPlugin.hh",
+              "fastjet/contrib/VariableR.hh",
+              "fastjet/contrib/VariableRPlugin.hh",
+              "fastjet/contrib/XConePlugin.hh"
+            ],
+            "lib": {
+              "exists": [
+                "fastjetcontribfragile"
+              ],
+              "not_exists": [
+                "CMPPlugin",
+                "Centauro",
+                "ClusteringVetoPlugin",
+                "ConstituentSubtractor",
+                "EnergyCorrelator",
+                "FlavorCone",
+                "GHSAlgo",
+                "GenericSubtractor",
+                "IFNPlugin",
+                "JetCleanser",
+                "JetFFMoments",
+                "JetsWithoutJets",
+                "LundPlane",
+                "Nsubjettiness",
+                "QCDAwarePlugin",
+                "RecursiveTools",
+                "SDFPlugin",
+                "ScJet",
+                "SignalFreeBackgroundEstimator",
+                "SoftKiller",
+                "SubjetCounting",
+                "ValenciaPlugin",
+                "VariableR"
+              ]
+            }
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "gxx_linux-aarch64 13.*",
+              "curl",
+              "tar",
+              "grep",
+              "sed"
+            ]
+          },
+          "script": {
+            "content": "run_test_shared.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

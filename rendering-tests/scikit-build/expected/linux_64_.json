@@ -1,0 +1,175 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-build",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-build/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-build/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-build/work"
+      },
+      "hash": {
+        "hash": "520c2d9",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scikit-build": {
+          "build_string": "pyh520c2d9_2",
+          "name": "scikit-build",
+          "version": "0.18.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:18.238637072Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "http://scikit-build.readthedocs.org/",
+        "homepage": "http://github.com/scikit-build/scikit-build",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "http://github.com/scikit-build/scikit-build",
+        "summary": "Improved build system generator for CPython C extensions."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv",
+        "string": "pyh520c2d9_2"
+      },
+      "context": {
+        "sha256": "a4152ac5a084d499c28a7797be0628d8366c336e2fb0e1a063eb32e55efcb8e7",
+        "version": "0.18.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf",
+          "scopatz",
+          "jcfr",
+          "msarahan",
+          "henryiii",
+          "mayeut"
+        ]
+      },
+      "package": {
+        "name": "scikit-build",
+        "version": "0.18.1"
+      },
+      "requirements": {
+        "host": [
+          "hatch-fancy-pypi-readme",
+          "hatch-vcs",
+          "hatchling",
+          "pip",
+          "python 3.9.*"
+        ],
+        "run": [
+          "distro",
+          "packaging",
+          "python >=3.9",
+          "setuptools",
+          "tomli",
+          "typing-extensions",
+          "wheel"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "tests.patch"
+          ],
+          "sha256": "a4152ac5a084d499c28a7797be0628d8366c336e2fb0e1a063eb32e55efcb8e7",
+          "url": "https://pypi.org/packages/source/s/scikit-build/scikit_build-0.18.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "skbuild"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/*",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_linux-64 13.*",
+              "gxx_linux-64 13.*",
+              "cmake",
+              "cython",
+              "git",
+              "make",
+              "path.py",
+              "pip",
+              "pytest",
+              "pytest-cov",
+              "pytest-mock",
+              "requests",
+              "setuptools",
+              "virtualenv",
+              "wheel",
+              "python 3.9.*"
+            ]
+          },
+          "script": {
+            "file": "run_test"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

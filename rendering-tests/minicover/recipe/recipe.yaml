@@ -1,0 +1,38 @@
+context:
+  version: "3.9.0"
+
+package:
+  name: minicover
+  version: ${{ version }}
+
+source:
+  url: https://github.com/lucaslorentz/minicover/archive/v${{ version }}.tar.gz
+  sha256: 6051e39bb20b235eb3487d2734ea236c65eb3851b80785851c17a8b21f26ad1a
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - minicover --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Cross platform code coverage tool for .NET Core
+  homepage: https://github.com/lucaslorentz/minicover
+  repository: https://github.com/lucaslorentz/minicover
+
+extra:
+  recipe-maintainers:
+    - danielnachun

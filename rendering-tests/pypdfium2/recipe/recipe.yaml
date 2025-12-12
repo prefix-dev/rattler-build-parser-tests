@@ -1,0 +1,68 @@
+context:
+  name: pypdfium2
+  version: 4.30.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  # NOTE: the GH release contains the test folder that is not available in the PyPI release.
+  url: https://github.com/pypdfium2-team/pypdfium2/archive/refs/tags/${{ version }}.zip
+  sha256: cf12616f3460fa55d4e7e49dc8c06be2ab93aa2dd5944ce6b479b6ddfe40a995
+
+build:
+  number: 0
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  dynamic_linking:
+    # Normally rattler-build tries to modify the install_name of the binary as well as other load commands to make it relocatable.
+    # This is not strictly required here, as the library has no dependencies outside of the sysroot.
+    # The operation by rattler-build will still fail, as the library was pre-compiled without "-headerpad_max_install_names", so replacing the install_name due to insufficient size.
+    binary_relocation: ${{ false if osx else true }}
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - git
+  host:
+    - python
+    - setuptools
+    - packaging
+    - wheel !=0.38.0,!=0.38.1
+    - ctypesgen-pypdfium2-team
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - pypdfium2
+      pip_check: true
+  - requirements:
+      run:
+        - pytest
+        - pillow
+    files:
+      source:
+        - tests/
+    script:
+      - pytest -vvv ./tests/
+
+about:
+  summary: Python bindings to PDFium
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/pypdfium2-team/pypdfium2
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    - hadim

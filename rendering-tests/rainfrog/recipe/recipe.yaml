@@ -1,0 +1,61 @@
+context:
+  name: rainfrog
+  version: "0.3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/achristmascarl/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3ec2612779499e152b137a4a78fcb46b28c22973ee171ca494e3b5ecd8dd4063
+
+build:
+  number: 0
+  script:
+    - if: osx and arm64
+      then: |
+        export LIBRARY_PATH="${BUILD_PREFIX}/lib:${LIBRARY_PATH:-}"
+        export LD_LIBRARY_PATH="${BUILD_PREFIX}/lib:${LD_LIBRARY_PATH:-}"
+        export DYLD_LIBRARY_PATH="${BUILD_PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
+        export LIBICONV_LIB_DIR="${BUILD_PREFIX}/lib"
+        export LIBICONV_INCLUDE_DIR="${BUILD_PREFIX}/include"
+        export LIBGIT2_SYS_USE_PKG_CONFIG=1
+        export RUSTFLAGS="-L${BUILD_PREFIX}/lib"
+        export CARGO_BUILD_RUSTFLAGS="-L${BUILD_PREFIX}/lib"
+        export LDFLAGS="-L${BUILD_PREFIX}/lib -liconv"
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - if: (linux and ppc64le) or (osx and arm64)
+      # The libduckdb-sys crate not appear to support the powerpc64le architecture
+      then: cargo install --no-track --locked --root ${{ PREFIX }} --path . --no-default-features --features "musl"
+      else: cargo install --no-track --locked --root ${{ PREFIX }} --path .
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then: libiconv
+
+tests:
+  - script:
+      - rainfrog --version
+
+about:
+  homepage: https://crates.io/crates/rainfrog
+  summary: '🐸 a database management tui for postgres'
+  description: |
+    The goal for rainfrog is to provide a lightweight, terminal-based alternative to pgadmin/dbeaver.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/achristmascarl/rainfrog/
+
+extra:
+  recipe-maintainers:
+    - achristmascarl
+    - eunos-1128

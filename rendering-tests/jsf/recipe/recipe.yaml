@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.11.2
+
+recipe:
+  name: jsf
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jsf/jsf-${{ version }}.tar.gz
+  sha256: 07055b363281d38ce871a9256a00587d8472802c5108721a7fe5884465104b5d
+
+build:
+  number: 1
+  noarch: python
+
+outputs:
+  - package:
+      name: jsf
+    build:
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - jsf = jsf.cli:app
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - faker >=15.3.4
+        - jsonschema >=4.17.3
+        - pydantic >=2.0.0
+        - python >=${{ python_min }}
+        - rstr >=3.2.0
+        - smart-open-with-http >=6.3.0
+        - typing_extensions >=4.9.0
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+          imports:
+            - jsf
+
+  - package:
+      name: jsf-with-cli
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage("jsf", exact=True) }}
+        - typer >=0.7.0
+    tests:
+      - python:
+          pip_check: true
+          python_version: ${{ python_min }}.*
+          imports:
+            - jsf
+      - requirements:
+          run:
+            - pyjwt
+            - pytest-cov
+            - python ${{ python_min }}.*
+        script:
+          - jsf --help
+          - coverage run --source jsf --branch -m pytest -vv --pyargs jsf -vv --tb=long --color=yes
+          - coverage report --show-missing --skip-covered --fail-under=99
+
+about:
+  summary: Creates fake JSON files from a JSON schema
+  license: MIT
+  license_file:
+    - jsf/LICENSE
+  homepage: https://github.com/ghandic/jsf
+
+extra:
+  feedstock-name: jsf
+  recipe-maintainers:
+    - bollwyvl

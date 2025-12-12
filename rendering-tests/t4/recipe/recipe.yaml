@@ -1,0 +1,39 @@
+context:
+  version: 3.0.0
+
+package:
+  name: t4
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mono/t4/archive/v${{ version }}.tar.gz
+  sha256: 1608d5419321e430b1db2188b2dc8fb1e47f48b0057404df738bac3c50b3d273
+
+build:
+  number: 1
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+    - sed
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - t4 --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: T4 text templating engine
+  homepage: https://github.com/mono/t4
+  repository: https://github.com/mono/t4
+
+extra:
+  recipe-maintainers:
+    - danielnachun

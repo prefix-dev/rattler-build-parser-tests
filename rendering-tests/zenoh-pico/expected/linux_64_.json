@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zenoh-pico",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zenoh-pico/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zenoh-pico/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zenoh-pico/work"
+      },
+      "hash": {
+        "hash": "52c611b"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zenoh-pico": {
+          "build_string": "h52c611b_0",
+          "name": "zenoh-pico",
+          "version": "1.7.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:40.822564761Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.28",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "zenoh-pico is the Eclipse zenoh implementation that targets constrained devices,\noffering a native C API. It is fully compatible with its main Rust Zenoh implementation,\nproviding a lightweight implementation of most functionalities.\n\nzenoh (pronounce /zeno/) unifies data in motion, data at rest and computations.\nIt carefully blends traditional pub/sub with geo-distributed storages, queries and\ncomputations, while retaining a level of time and space efficiency that is well\nbeyond any of the mainstream stacks.\n\nzenoh-pico supports various platforms including Unix, Zephyr, Arduino, ESP-IDF,\nMbedOS, FreeRTOS, and Raspberry Pi Pico, with transport protocols including\nUDP (unicast and multicast), TCP, Serial, WebSocket, and more.",
+        "documentation": "https://zenoh-pico.readthedocs.io/",
+        "homepage": "https://zenoh.io/",
+        "license": "EPL-2.0 OR Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/eclipse-zenoh/zenoh-pico",
+        "summary": "Eclipse zenoh for pico devices - A lightweight C implementation of the Zenoh protocol\nfor constrained devices and microcontrollers"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cmake -DBUILD_EXAMPLES=OFF -S . -B build ${CMAKE_ARGS}",
+          "cmake --build build --config Release",
+          "ctest --test-dir build --output-on-failure",
+          "cmake --install build --config Release"
+        ],
+        "string": "h52c611b_0"
+      },
+      "context": {
+        "name": "zenoh-pico",
+        "version": "1.7.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "zenoh-pico",
+        "version": "1.7.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.28.*",
+          "cmake",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b704926a19035a483fbdde04454f6cd6e043d49c45840dde66953ac1483d6157",
+          "url": "https://github.com/eclipse-zenoh/zenoh-pico/archive/refs/tags/1.7.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/zenohpico/zenohpicoConfig.cmake",
+              "lib/pkgconfig/zenohpico.pc"
+            ],
+            "include": [
+              "zenoh-pico.h"
+            ],
+            "lib": [
+              "libzenohpico"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

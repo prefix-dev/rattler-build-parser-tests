@@ -1,0 +1,214 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/work"
+      },
+      "hash": {
+        "hash": "b3b597e",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastemriwaveforms": {
+          "build_string": "np2py312hb3b597e_311",
+          "name": "fastemriwaveforms",
+          "version": "2.0.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:14.778931672Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libblas": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "microarch_level": "3",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package contains the highly modular framework for fast and accurate extreme mass ratio\ninspiral (EMRI) waveforms. This is the core package with only CPU support\nfor waveform generation.",
+        "documentation": "https://fastemriwaveforms.readthedocs.io/en/v2.0.0/",
+        "homepage": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms",
+        "summary": "Blazingly fast EMRI waveforms"
+      },
+      "build": {
+        "number": 311,
+        "python": {
+          "entry_points": [
+            "few_citations = few.cmd.citations:main",
+            "few_files = few.cmd.files:main"
+          ]
+        },
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install . -vv -Ccmake.define.FEW_LAPACKE_FETCH=OFF -Ccmake.define.FEW_WITH_GPU=OFF -Ccmake.define.FEW_LAPACKE_DETECT_WITH=PKGCONFIG ${{ microarch_option }}"
+          ],
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "2.0.0"
+          }
+        },
+        "string": "np2py312hb3b597e_311"
+      },
+      "context": {
+        "RECIPE_DIR": ".",
+        "build": 11,
+        "build_with_microarch": 311,
+        "cuda_major": 0,
+        "microarch_level": 3,
+        "microarch_option": "-Ccmake.define.FEW_MARCH=x86-64-v3",
+        "name": "FastEMRIWaveforms",
+        "version": "2.0.0"
+      },
+      "extra": {
+        "feedstock-name": "fastemriwaveforms",
+        "recipe-maintainers": [
+          "cchapmanbird",
+          "mpigou"
+        ]
+      },
+      "package": {
+        "name": "fastemriwaveforms",
+        "version": "2.0.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "numpy",
+          "scikit-build-core",
+          "cython",
+          "liblapacke",
+          "libblas",
+          "libtmglib",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "make",
+          "x86_64-microarch-level 3.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "scikit-build-core",
+          "setuptools_scm",
+          "cython",
+          "numpy",
+          "liblapacke",
+          "libblas",
+          "libtmglib"
+        ],
+        "run": [
+          "python",
+          "h5py",
+          "jsonschema",
+          "liblapacke",
+          "lisaconstants",
+          "multispline",
+          "numba",
+          "numpy",
+          "nvidia-ml-py",
+          "platformdirs",
+          "pydantic",
+          "pyyaml",
+          "requests",
+          "rich",
+          "scipy",
+          "tqdm",
+          "wrapt"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/01_few2.0_march.patch",
+            "patches/02_few_display_cmake_options.patch"
+          ],
+          "sha256": "d5c8bcba1ec24cb71be8a293f75cf1491e2e474515c1481559a4ef07378e0c36",
+          "url": "https://github.com/BlackHolePerturbationToolkit/FastEMRIWaveforms/archive/refs/tags/v2.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "few",
+              "few.tests",
+              "few_backend_cpu"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import importlib.metadata; assert importlib.metadata.version('fastemriwaveforms') == '${{ version }}'\"",
+            "python -c \"import few; few.get_backend('cpu')\"",
+            "python -m few.tests --disable testfile"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

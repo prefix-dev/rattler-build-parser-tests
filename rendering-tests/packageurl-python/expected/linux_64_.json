@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_packageurl-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_packageurl-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_packageurl-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_packageurl-python/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "packageurl-python": {
+          "build_string": "pyhcf101f3_0",
+          "name": "packageurl-python",
+          "version": "0.17.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:13.819819880Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/package-url/packageurl-python",
+        "license": "MIT",
+        "license_file": [
+          "mit.LICENSE"
+        ],
+        "summary": "A purl aka. Package URL parser and builder"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "use_mypy": "1",
+        "version": "0.17.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "packageurl-python",
+        "version": "0.17.6"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-fix-types.patch"
+          ],
+          "sha256": "1252ce3a102372ca6f86eb968e16f9014c4ba511c5c37d95a7f023e2ca6e5c25",
+          "url": "https://pypi.org/packages/source/p/packageurl-python/packageurl_python-0.17.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "packageurl",
+              "packageurl.contrib"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "mypy",
+              "python 3.10.*"
+            ]
+          },
+          "script": "mypy -p packageurl --ignore-missing-imports"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

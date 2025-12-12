@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ms_peak_picker",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ms_peak_picker/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ms_peak_picker/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ms_peak_picker/work"
+      },
+      "hash": {
+        "hash": "d1dda0e",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ms_peak_picker": {
+          "build_string": "py310hd1dda0e_4",
+          "name": "ms_peak_picker",
+          "version": "0.1.46"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:14.657887619Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/mobiusklein/ms_peak_picker",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A library to pick peaks from mass spectral data"
+      },
+      "build": {
+        "number": 4,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py310hd1dda0e_4"
+      },
+      "context": {
+        "name": "ms_peak_picker",
+        "version": "0.1.46"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "ms_peak_picker",
+        "version": "0.1.46"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "numpy",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "pip",
+          "wheel",
+          "cython",
+          "numpy >=2.0.0"
+        ],
+        "run": [
+          "python",
+          "numpy >=2.0.0",
+          "scipy",
+          "six"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3fee82ede3ea53a3b266d514fe26da68b48acbdfdf01f25870b51c5754f35670",
+          "url": "https://pypi.org/packages/source/m/ms_peak_picker/ms_peak_picker-0.1.46.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ms_peak_picker"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest -vvv tests/test_library.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

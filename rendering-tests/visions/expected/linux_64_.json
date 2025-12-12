@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visions",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visions/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visions/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_visions/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "visions": {
+          "build_string": "pyhcf101f3_0",
+          "name": "visions",
+          "version": "0.8.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:55.560330497Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://dylan-profiler.github.io/visions/",
+        "homepage": "https://github.com/dylan-profiler/visions",
+        "license": "BSD-4-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/dylan-profiler/visions",
+        "summary": "Visions provides an extensible suite of tools to support common data analysis operations including \ntype inference on unknown data, casting data types and automated data summarization."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "visions",
+        "version": "0.8.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "philip-khor",
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "visions",
+        "version": "0.8.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=61.0.0",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "numpy >=1.23.2",
+          "pandas >=2.0.0",
+          "attrs >=19.3.0",
+          "networkx >=2.4",
+          "multimethod >=1.4",
+          "puremagic"
+        ],
+        "run_constraints": [
+          "shapely",
+          "imagehash",
+          "pillow",
+          "puremagic",
+          "pydot",
+          "pygraphviz",
+          "matplotlib-base"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "37f55c37d7bcf124054e612850b28a4f0bab9b200733cedd8f1781c3ac5cc3f0",
+          "url": "https://pypi.org/packages/source/v/visions/visions-0.8.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*",
+              "shapely",
+              "imagehash",
+              "pillow",
+              "puremagic",
+              "pydot",
+              "pygraphviz",
+              "matplotlib-base"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import visions; assert visions.__version__ == '${{ version }}'\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

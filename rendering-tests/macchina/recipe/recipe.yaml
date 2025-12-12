@@ -1,0 +1,37 @@
+context:
+  version: 6.4.0
+
+package:
+  name: macchina
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Macchina-CLI/macchina/archive/v${{ version }}.tar.gz
+  sha256: edd7591565f199c1365420655a144507bcd2838aed09b79fefdc8b661180432f
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - macchina --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: System information fetcher, with an emphasis on performance and minimalism
+  homepage: https://github.com/Macchina-CLI/macchina
+  repository: https://github.com/Macchina-CLI/macchina
+
+extra:
+  recipe-maintainers:
+    - danielnachun

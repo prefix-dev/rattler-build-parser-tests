@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tinyxml2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tinyxml2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tinyxml2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tinyxml2/work"
+      },
+      "hash": {
+        "hash": "450de6d"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tinyxml2": {
+          "build_string": "h450de6d_0",
+          "name": "tinyxml2",
+          "version": "11.0.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:06.485821123Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "18",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://leethomason.github.io/tinyxml2/",
+        "license": "Zlib",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/leethomason/tinyxml2",
+        "summary": "TinyXML2 is a simple, small, efficient, C++ XML parser that can be easily integrated into other programs."
+      },
+      "build": {
+        "number": 0,
+        "string": "h450de6d_0"
+      },
+      "context": {
+        "name": "tinyxml2",
+        "version": "11.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "gartung",
+          "chrisburr",
+          "henryiii",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "tinyxml2",
+        "version": "11.0.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 18.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 18.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "tinyxml2",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5556deb5081fb246ee92afae73efd943c889cef0cafea92b0b82422d6a18f289",
+          "target_directory": "source",
+          "url": "https://github.com/leethomason/tinyxml2/archive/11.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "source/xmltest.cpp",
+              "source/resources/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "clang_osx-64 =18",
+              "clangxx_osx-64 =18",
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "cd source",
+            "${CXX} xmltest.cpp -o xmltest $(pkg-config tinyxml2 --cflags --libs)",
+            "install_name_tool -change @rpath/libtinyxml2.11.dylib $CONDA_PREFIX/lib/libtinyxml2.11.dylib xmltest",
+            "./xmltest",
+            "test -f ${PREFIX}/lib/libtinyxml2${SHLIB_EXT}"
+          ]
+        },
+        {
+          "package_contents": {
+            "files": [
+              "**/cmake/tinyxml2/tinyxml2-config.cmake",
+              "**/cmake/tinyxml2/tinyxml2-shared-targets.cmake"
+            ],
+            "lib": [
+              "tinyxml2"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

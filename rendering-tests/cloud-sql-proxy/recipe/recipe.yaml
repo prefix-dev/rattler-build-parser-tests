@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: cloud-sql-proxy
+  version: "2.20.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/GoogleCloudPlatform/${{ name }}/archive/v${{ version }}.tar.gz
+    sha256: e7e7574409bc466d816c20e9cbcc476ed9d78ba923fb54be5e91cc5fccb12a55
+    target_directory: src
+  - url: https://raw.githubusercontent.com/jmespath/go-jmespath/b89213a6ec69212a244ef0d07d893bef7f2d9091/LICENSE
+    sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+    file_name: LICENSE-jmespath
+
+build:
+  number: 0
+  script:
+    - cd src
+    - if: unix
+      then: go build -v -o $PREFIX/bin/cloud-sql-proxy -ldflags="-s -w"
+      else: go build -v -o %LIBRARY_BIN%\cloud-sql-proxy.exe -ldflags="-s"
+    - cd cmd && go-licenses save . --save_path ../../library_licenses --ignore github.com/jmespath/go-jmespath
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - cloud-sql-proxy --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - library_licenses/
+    - src/LICENSE
+    - LICENSE-jmespath
+  summary: A utility for connecting securely to your Cloud SQL instances
+  homepage: https://github.com/GoogleCloudPlatform/cloud-sql-proxy
+
+extra:
+  recipe-maintainers:
+    - xhochy

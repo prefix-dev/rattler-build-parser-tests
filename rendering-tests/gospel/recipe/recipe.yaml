@@ -1,0 +1,43 @@
+context:
+  version: 1.15.0
+
+package:
+  name: gospel
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kortschak/gospel/archive/v${{ version }}.tar.gz
+  sha256: 7182847bc3436923048a50d55eba663d677d06e1901b74f2272db80680b36814
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('go-cgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+    - pkg-config
+  host:
+    - hunspell
+  run:
+    - hunspell
+
+tests:
+  - script:
+      - gospel --help
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: misspelled word linter for Go comments, string literals and embedded files
+  homepage: https://github.com/kortschak/gospel
+  repository: https://github.com/kortschak/gospel
+
+extra:
+  recipe-maintainers:
+    - danielnachun

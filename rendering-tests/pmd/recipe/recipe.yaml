@@ -1,0 +1,42 @@
+context:
+  version: 7.19.0
+
+package:
+  name: pmd
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/pmd/pmd.git
+    tag: pmd_releases/${{ version }}
+  - url: https://github.com/pmd/pmd/archive/refs/tags/pmd_releases/${{ version }}.tar.gz
+    sha256: 7e728abcd593f2e9347eb82b712323519f156fd2c066852c5e229450e340068a
+    target_directory: archive
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - findutils
+    - openjdk >=21,<22
+    - unzip
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - pmd --help
+
+about:
+  license: BSD-4-Clause AND Apache-2.0
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: An extensible multilanguage static code analyzer
+  homepage: https://pmd.github.io
+  repository: https://github.com/pmd/pmd
+
+extra:
+  recipe-maintainers:
+    - danielnachun

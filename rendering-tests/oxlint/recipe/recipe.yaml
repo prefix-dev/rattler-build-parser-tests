@@ -1,0 +1,38 @@
+context:
+  version: "1.32.0"
+
+package:
+  name: oxlint
+  version: ${{ version }}
+
+source:
+  url: https://github.com/oxc-project/oxc/archive/oxlint_v${{ version }}.tar.gz
+  sha256: a61161231800c0e2fbaff99473df3e4775e49ab12b109612e5bf8828e6050702
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - oxlint --help
+      - oxfmt --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Linter for oxc
+  homepage: https://github.com/oxc-project/oxc
+  repository: https://github.com/oxc-project/oxc
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: wimsey
+  version: "0.8.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/wimsey-${{ version }}.tar.gz
+  sha256: 250f6c958ba31b240375dbfb0b16b430a8fdffbc3b97d029471763a400427142
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - narwhals >=1.10.0
+    - fsspec >=2024.10.0
+
+tests:
+  - python:
+      imports:
+        - wimsey
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A lightweight data contracts framework
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/benrutter/wimsey
+  documentation: https://benrutter.github.io/wimsey/
+
+extra:
+  recipe-maintainers:
+    - thewchan

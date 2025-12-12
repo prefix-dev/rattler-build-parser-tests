@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg-listen",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg-listen/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg-listen/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg-listen/work"
+      },
+      "hash": {
+        "hash": "5ded981",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "asyncpg-listen": {
+          "build_string": "pyh5ded981_0",
+          "name": "asyncpg-listen",
+          "version": "0.0.9"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:58.903043881Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.11",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/anna-money/asyncpg-listen",
+        "license": "MIT",
+        "license_file": [
+          "dist/LICENSE"
+        ],
+        "summary": "Helps to use PostgreSQL listen/notify with asyncpg"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} -c \"p = __import__('pathlib').Path; [p(f'dist/{f}').write_bytes(p(f'src/{f}').read_bytes()) for f in ['CHANGELOG.md', 'asyncpg_listen/py.typed']]\"",
+          "cd dist && ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyh5ded981_0"
+      },
+      "context": {
+        "version": "0.0.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "asyncpg-listen",
+        "version": "0.0.9"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.11.*",
+          "setuptools"
+        ],
+        "run": [
+          "asyncpg >=0.27.0",
+          "python >=3.11"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f94c4752f7ca1077eaaad0fa2c08fcef4990eaae81a61c423683a722ca3f3a33",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/a/asyncpg-listen/asyncpg-listen-0.0.9.tar.gz"
+        },
+        {
+          "sha256": "df27e60e4df163311f74b6baa8df821030464ef157f93a22695ed7a125d664b2",
+          "target_directory": "src",
+          "url": "https://github.com/anna-money/asyncpg-listen/archive/refs/tags/v0.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "asyncpg_listen"
+            ],
+            "python_version": [
+              "3.11.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "mypy",
+              "python 3.11.*"
+            ]
+          },
+          "script": "mypy -m asyncpg_listen"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

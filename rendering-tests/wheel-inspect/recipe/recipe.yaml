@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: wheel-inspect
+  version: 1.7.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7df5a0223c39ba065a1eef6efa4ea575b825dad7f3399ee02aaaa888f07ca5e1
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - wheel2json = wheel_inspect.__main__:main
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - attrs >=18.1
+    - entry-points-txt >=0.2
+    - headerparser >=0.4.0
+    - packaging >=17.1
+    - readme_renderer >=24.0
+    - wheel-filename >=1.1
+
+tests:
+  - python:
+      imports:
+        - wheel_inspect
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - test/data/wheels/setuptools-36.0.1-py2.py3-none-any.whl
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - wheel2json test/data/wheels/setuptools-36.0.1-py2.py3-none-any.whl
+
+about:
+  summary: Extract information from wheels
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/wheelodex/wheel-inspect
+
+extra:
+  recipe-maintainers:
+    - beenje

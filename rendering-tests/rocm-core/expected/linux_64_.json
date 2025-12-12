@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rocm-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rocm-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rocm-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rocm-core/work"
+      },
+      "hash": {
+        "hash": "54a6638"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rocm-core": {
+          "build_string": "h54a6638_0",
+          "name": "rocm-core",
+          "version": "7.0.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:44.017663512Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ROCm/rocm-core",
+        "license": "MIT",
+        "license_family": "MIT",
+        "license_file": [
+          "copyright"
+        ],
+        "summary": "ROCm core package"
+      },
+      "build": {
+        "number": 0,
+        "string": "h54a6638_0"
+      },
+      "context": {
+        "name": "rocm-core",
+        "version": "7.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "rocm-core",
+        "version": "7.0.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "rocm-core",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d126d47aa4523d84e5ab026680fa2b1145db332ff5e4aa74b48f8ed0ecd975d",
+          "url": "https://github.com/ROCm/rocm-core/archive/refs/tags/rocm-7.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-64 14.*",
+              "gxx_linux-64 14.*"
+            ]
+          },
+          "script": "cmake-package-check rocm-core"
+        },
+        {
+          "package_contents": {
+            "include": [
+              "rocm-core/rocm_version.h"
+            ],
+            "lib": [
+              "rocm-core"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

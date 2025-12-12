@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: qiskit-ibm-runtime
+  version: "0.43.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 73852ffd3e72562a13f19507f1c548473a4a0a1d7a18a1f365d79d754838d4fe
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=40.6.0
+    - setuptools_scm >=6.2
+  run:
+    - ibm-platform-services >=0.22.6
+    - numpy >=1.13
+    - packaging
+    - pydantic >=2.5.0
+    - python >=${{ python_min }}
+    - python-dateutil >=2.8.0
+    - qiskit >=1.4.1
+    - requests >=2.19
+    - requests_ntlm >=1.1.0
+    - urllib3 >=1.21.1
+
+tests:
+  - python:
+      imports:
+        - qiskit_ibm_runtime
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: IBM Quantum client for Qiskit Runtime.
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  homepage: https://github.com/Qiskit/qiskit-ibm-runtime
+
+extra:
+  recipe-maintainers:
+    - wshanks

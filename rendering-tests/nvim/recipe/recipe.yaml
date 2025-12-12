@@ -1,0 +1,67 @@
+context:
+  version: "0.11.5"
+
+package:
+  name: nvim
+  version: ${{ version }}
+
+source:
+  url: https://github.com/neovim/neovim/archive/v${{ version }}.tar.gz
+  sha256: c63450dfb42bb0115cd5e959f81c77989e1c8fd020d5e3f1e6d897154ce8b771
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - make
+    - pkg-config
+    - ninja
+    - gettext-tools
+    - if: build_platform != target_platform
+      then:
+        - libtree-sitter
+        - libutf8proc
+        - libuv
+        - lua-lpeg
+        - luajit-openresty
+        - luv
+        - unibilium
+        - if: osx
+          then: libintl-devel
+  host:
+    - libtree-sitter
+    - libutf8proc
+    - libuv
+    - lua-lpeg
+    - luajit-openresty
+    - luv
+    - unibilium
+    - if: unix
+      then: libiconv
+    - if: osx or win
+      then: libintl-devel
+  run:
+    - luajit-openresty
+
+tests:
+  - script:
+      - nvim --version
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: Ambitious Vim-fork focused on extensibility and agility
+  homepage: https://neovim.io/
+  repository: https://github.com/neovim/neovim
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - anjos
+    - pavelzw

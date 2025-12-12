@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: vega-lite-cli
+  version: "6.4.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/vega/vega-lite/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 9b6ecd2ee9cfbe1852f2643fe90c935bdbd06451ed7d7aa5f67dd8db5c51231a
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - nodejs
+  host:
+    - nodejs
+    - yarn <2
+  run:
+    - nodejs
+    - vega-cli
+
+tests:
+  - script:
+      - curl -L https://github.com/vega/vega-lite/raw/v${{ version }}/examples/specs/bar.vl.json > test.json
+      - vl2svg test.json > test.svg
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Command line interface of the VEGA-lite visualization grammar
+  description: |
+    The vega-lite-cli package includes four node.js-based command line utilities -
+    vl2pdf, vl2png, vl2svg, and vl2vg - for rendering static visualization images.
+    These commands render to PDF, PNG, SVG files, or plain VEGA, respectively.
+  homepage: https://vega.github.io
+  repository: https://github.com/vega/vega-lite
+  documentation: https://vega.github.io/vega-lite/usage/compile.html#cli
+
+extra:
+  recipe-maintainers:
+    - johanneskoester
+    - xhochy

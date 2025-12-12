@@ -1,0 +1,39 @@
+context:
+  version: "12.6.1"
+
+package:
+  name: commit-and-tag-version
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/commit-and-tag-version/-/commit-and-tag-version-${{ version }}.tgz
+  sha256: a678912bdc64074fc5e8e70c0f413713ccb8aafb6cf50c59aa070d82f5f2c765
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - commit-and-tag-version --help
+
+about:
+  license: ISC
+  license_file:
+    - LICENSE.txt
+    - third-party-licenses.txt
+  summary: Fork of the excellent standard-version.
+  homepage: https://github.com/absolute-version/commit-and-tag-version
+  repository: https://github.com/absolute-version/commit-and-tag-version
+
+extra:
+  recipe-maintainers:
+    - danielnachun

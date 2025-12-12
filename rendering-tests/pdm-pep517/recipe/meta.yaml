@@ -1,0 +1,42 @@
+{% set name = "pdm-pep517" %}
+{% set version = "1.1.4" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pdm-pep517-{{ version }}.tar.gz
+  sha256: 7f49121e70b42dca296fac962210dd2da07a39575fc5673137ad661633b2cf3f
+
+build:
+  number: 1
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python {{ python_min }}
+  run:
+    - python >={{ python_min }}
+
+test:
+  imports:
+    - pdm.pep517
+  commands:
+    - pip check
+  requires:
+    - pip
+    - python {{ python_min }}
+
+about:
+  home: https://pypi.org/project/pdm-pep517/
+  summary: A PEP 517 backend for PDM that supports PEP 621 metadata
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - hadim

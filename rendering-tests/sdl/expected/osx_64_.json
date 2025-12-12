@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdl3/work"
+      },
+      "hash": {
+        "hash": "07ffc21"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sdl3": {
+          "build_string": "h07ffc21_0",
+          "name": "sdl3",
+          "version": "3.2.28"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:12.037675817Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "dbus": "1",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Simple DirectMedia Layer (SDL for short) is a cross-platform library designed\nto make it easy to write multi-media software, such as games and emulators.",
+        "documentation": "https://wiki.libsdl.org/SDL3/FrontPage",
+        "homepage": "https://www.libsdl.org/",
+        "license": "Zlib",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/libsdl-org/SDL",
+        "summary": "Low-level access to audio, keyboard, mouse, joystick, and graphics"
+      },
+      "build": {
+        "number": 0,
+        "string": "h07ffc21_0"
+      },
+      "context": {
+        "name": "sdl3",
+        "version": "3.2.28"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "ymontmarin",
+          "ManifoldFR"
+        ]
+      },
+      "package": {
+        "name": "sdl3",
+        "version": "3.2.28"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "libusb",
+          "libvulkan-loader",
+          "dbus"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "sdl3",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1330671214d146f8aeb1ed399fc3e081873cdb38b5189d1f8bb6ab15bbc04211",
+          "url": "https://github.com/libsdl-org/SDL/releases/download/release-3.2.28/SDL3-3.2.28.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "SDL3/SDL.h"
+            ],
+            "lib": [
+              "SDL3"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "pkg-config --modversion ${{ name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

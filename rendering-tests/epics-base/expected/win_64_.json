@@ -1,0 +1,327 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base/work"
+      },
+      "hash": {
+        "hash": "e60beb6",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "epics-base": {
+          "build_string": "pl5321he60beb6_9",
+          "name": "epics-base",
+          "version": "7.0.9.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:14.006107747Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "perl": "5.32.1",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.aps.anl.gov/epics",
+        "license": "EPICS",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "EPICS Base Library"
+      },
+      "build": {
+        "files": [
+          "etc",
+          "epics/bin",
+          "epics/cfg",
+          "epics/configure",
+          "epics/db",
+          "epics/dbd",
+          "epics/html",
+          "epics/include",
+          "epics/bin/*/*.dll",
+          "epics/lib/*/*.lib",
+          "Library/lib/*.lib",
+          "Library/bin/*.dll",
+          "epics/lib/perl",
+          "epics/lib/pkgconfig",
+          "epics/templates"
+        ],
+        "number": 9,
+        "string": "pl5321he60beb6_9"
+      },
+      "context": {
+        "version": "7.0.9.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "anderslindho",
+          "lucmaga",
+          "beenje",
+          "mrakitin",
+          "tacaswell",
+          "aharrisson",
+          "simon-ess"
+        ]
+      },
+      "package": {
+        "name": "epics-base",
+        "version": "7.0.9.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "make",
+          "perl",
+          "m2-patch"
+        ],
+        "run": [
+          "perl"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "epics-base",
+                "upper_bound": "x.x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "RULES_MODULES_echo_quotes.patch",
+            "RULES_BUILD_remove_mkdir.patch",
+            "initialise_pthreadInfo_attr.patch",
+            "test_dbtemplate_fix_relative_path_tests.patch"
+          ],
+          "sha256": "acd62c9b97b60caea9303cc3aab922dbf2bc3bfb3d20e0027110ffe4c906a6c7",
+          "url": "https://epics-controls.org/download/base/base-7.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "modules/pva2pva/loopback.conf"
+            ]
+          },
+          "script": [
+            "caget -h",
+            "cainfo -h",
+            "caput -h",
+            "camonitor -h",
+            "pvget -h",
+            "pvput -h",
+            "pvinfo -h",
+            "pvlist -h",
+            "softIoc -h",
+            "softIocPVA -h",
+            "p2p -C modules/pva2pva/loopback.conf",
+            "if not exist %EPICS_BASE%\\bin\\%EPICS_HOST_ARCH%\\caget.exe exit 1",
+            "if not exist %EPICS_BASE%\\bin\\%EPICS_HOST_ARCH%\\Com.dll exit 1",
+            "if not exist %EPICS_BASE%\\bin\\%EPICS_HOST_ARCH%\\ca.dll exit 1",
+            "if not exist %EPICS_BASE%\\include\\epicsVersion.h exit 1",
+            "if not exist %EPICS_BASE%\\lib\\%EPICS_HOST_ARCH%\\ca.lib exit 1",
+            "if not exist %EPICS_BASE%\\lib\\%EPICS_HOST_ARCH%\\Com.lib exit 1",
+            "if not exist %PREFIX%\\Library\\bin\\Com.dll exit 1",
+            "if not exist %PREFIX%\\Library\\lib\\Com.lib exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base-static-libs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base-static-libs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base-static-libs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_epics-base-static-libs/work"
+      },
+      "hash": {
+        "hash": "e60beb6",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "epics-base": {
+          "build_string": "pl5321he60beb6_9",
+          "name": "epics-base",
+          "version": "7.0.9.0"
+        },
+        "epics-base-static-libs": {
+          "build_string": "pl5321he60beb6_9",
+          "name": "epics-base-static-libs",
+          "version": "7.0.9.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:14.048279320Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "perl": "5.32.1",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.aps.anl.gov/epics",
+        "license": "EPICS",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "EPICS Base Library"
+      },
+      "build": {
+        "number": 9,
+        "string": "pl5321he60beb6_9"
+      },
+      "context": {
+        "version": "7.0.9.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "anderslindho",
+          "lucmaga",
+          "beenje",
+          "mrakitin",
+          "tacaswell",
+          "aharrisson",
+          "simon-ess"
+        ]
+      },
+      "package": {
+        "name": "epics-base-static-libs",
+        "version": "7.0.9.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "make",
+          "perl",
+          "m2-patch"
+        ],
+        "run": [
+          "perl"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "epics-base",
+                "upper_bound": "x.x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "RULES_MODULES_echo_quotes.patch",
+            "RULES_BUILD_remove_mkdir.patch",
+            "initialise_pthreadInfo_attr.patch",
+            "test_dbtemplate_fix_relative_path_tests.patch"
+          ],
+          "sha256": "acd62c9b97b60caea9303cc3aab922dbf2bc3bfb3d20e0027110ffe4c906a6c7",
+          "url": "https://epics-controls.org/download/base/base-7.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {}
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: bioio-base
+  version: "3.2.0"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bioio_base-${{ version }}.tar.gz
+  sha256: f935e19ae243e9cdb1c46ae9c5ac2a19343345f6be7a74255e292c7188a37c68
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - rm -rf $SP_DIR/docs/
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=65
+    - wheel
+    - setuptools-scm >=6.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - dask-core >=2021.4.1,!=2022.5.1
+    - fsspec >=2021.4.0,!=2022.7.0
+    - numpy >=1.21.0
+    - ome-types >=0.2
+    - pint >=0.15
+    - xarray >=2022.6.0
+
+tests:
+  - python:
+      imports:
+        - bioio_base
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Typing, base classes, and more for BioIO projects.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/bioio-devs/bioio-base
+
+extra:
+  recipe-maintainers:
+    - imagejan

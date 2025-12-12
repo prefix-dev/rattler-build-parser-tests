@@ -1,0 +1,130 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gflow",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gflow/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gflow/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gflow/work"
+      },
+      "hash": {
+        "hash": "b17b654"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gflow": {
+          "build_string": "hb17b654_0",
+          "name": "gflow",
+          "version": "0.4.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:58.435562395Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A lightweight, single-node job scheduler written in Rust.",
+        "documentation": "https://docs.rs/gflow",
+        "homepage": "https://github.com/AndPuQing/gflow",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/AndPuQing/gflow",
+        "summary": "Lightweight GPU Job Scheduler"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hb17b654_0"
+      },
+      "context": {
+        "version": "0.4.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AndPuQing"
+        ]
+      },
+      "package": {
+        "name": "gflow",
+        "version": "0.4.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "47ce18ad3b4e2672080f25f916479c03908216bc73b885f183956bf5ada678a7",
+          "url": "https://github.com/AndPuQing/gflow/archive/refs/tags/v0.4.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "gflowd --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

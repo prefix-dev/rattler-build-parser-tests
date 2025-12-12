@@ -1,0 +1,57 @@
+context:
+  name: "powerpax"
+  version: "0.2.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 7f9dec24fcfd6e2bbd3e1faba4b466bf92394128326d3ebc00852c556c997885
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.11,<4.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - jax >=0.4.6
+
+tests:
+  - python:
+      imports:
+        - powerpax
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - CI=true pytest tests
+    files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+        - hypothesis
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  description: |
+    A collection of utility functions for JAX.
+  summary: Small collection of useful utilities for JAX
+  homepage: https://github.com/karlotness/powerpax
+  repository: https://github.com/karlotness/powerpax
+  documentation: https://powerpax.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - karlotness

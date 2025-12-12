@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_melodies-monet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_melodies-monet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_melodies-monet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_melodies-monet/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "melodies-monet": {
+          "build_string": "pyhe01879c_0",
+          "name": "melodies-monet",
+          "version": "1.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:55.548335562Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MELODIES MONET combines the\nModel EvaLuation using Observations, DIagnostics and Experiments Software (MELODIES) project at NCAR\nwith the Model and ObservatioN Evaluation Toolkit (MONET) project at NOAA.",
+        "documentation": "https://melodies-monet.readthedocs.io/",
+        "homepage": "https://melodies-monet.readthedocs.io/",
+        "license": "Apache-2.0",
+        "license_family": "APACHE",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/NOAA-CSL/MELODIES-MONET",
+        "summary": "MELODIES MONET"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "melodies-monet = melodies_monet._cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "melodies-monet",
+        "version": "1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zmoon"
+        ]
+      },
+      "package": {
+        "name": "melodies-monet",
+        "version": "1.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools >=39.2.0"
+        ],
+        "run": [
+          "python >=3.9",
+          "netcdf4",
+          "statsmodels",
+          "cartopy",
+          "matplotlib-base <3.9",
+          "monet >=2.2.11",
+          "monetio >=0.2.7",
+          "numpy",
+          "pandas <2",
+          "pyyaml",
+          "seaborn",
+          "xarray",
+          "dask",
+          "joblib",
+          "netcdf4",
+          "pooch",
+          "pytz",
+          "rich",
+          "timezonefinder",
+          "typer"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2c62ea2cefc8911af0487ae834a27d26553235c1ba4b8fe5337fc1bcd54ce9c5",
+          "url": "https://github.com/NOAA-CSL/MELODIES-MONET/archive/v1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "melodies_monet"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "melodies-monet --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

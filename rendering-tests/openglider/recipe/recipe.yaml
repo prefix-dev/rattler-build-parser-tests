@@ -1,0 +1,53 @@
+context:
+  name: openglider
+  version: 0.8.1
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/booya-at/OpenGlider/archive/${{ version }}.tar.gz
+  sha256: 7d1df946e977ce22e23812b207d5e060df034a4707382bdacd8c601e78996c6e
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - pip
+    - python ==${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - pyexcel-ods3
+    - pyexcel-ezodf
+    - svgwrite
+    - ezdxf
+    - ezodf
+    - lxml
+    - parabem
+    - meshpy
+    - matplotlib-base
+    - pyexcel-ods3
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - openglider
+      pip_check: false
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: paraglider design
+  homepage: https://github.com/booya-at/OpenGlider
+  repository: https://github.com/booya-at/OpenGlider
+
+extra:
+  recipe-maintainers:
+    - looooo

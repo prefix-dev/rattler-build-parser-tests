@@ -1,0 +1,25 @@
+From a819ca741d9a68a47ffa8d641080f68560963bc6 Mon Sep 17 00:00:00 2001
+From: Austin Morton <austin.morton@aquatic.com>
+Date: Wed, 8 May 2024 18:07:29 +0000
+Subject: [PATCH 2/2] Fix linker error in tests
+
+---
+ lang/c++/impl/json/JsonDom.hh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lang/c++/impl/json/JsonDom.hh b/lang/c++/impl/json/JsonDom.hh
+index 3fb5670b7..56d23fdab 100644
+--- a/lang/c++/impl/json/JsonDom.hh
++++ b/lang/c++/impl/json/JsonDom.hh
+@@ -59,7 +59,7 @@ enum class EntityType {
+     Obj
+ };
+ 
+-const char *typeToString(EntityType t);
++AVRO_DECL const char *typeToString(EntityType t);
+ 
+ inline std::ostream &operator<<(std::ostream &os, EntityType et) {
+     return os << typeToString(et);
+-- 
+2.37.1.65.g4e2a4d1dd4.dirty
+

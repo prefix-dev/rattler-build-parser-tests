@@ -1,0 +1,79 @@
+schema_version: 1
+
+context:
+  name: mira-omf
+  version: "3.3.1"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/MiraGeoscience/omf/archive/v${{ version }}.tar.gz
+  sha256: 2964e02d9d22ed663ad40fe9b49881711f24a056dfa6453ef26f3120c6df447b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - geoh5_to_omf = omf.scripts.geoh5_to_omf:main
+      - omf_to_geoh5 = omf.scripts.omf_to_geoh5:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry-core >=1.0.0
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    # Mira packages
+    - geoh5py >=0.11.0, <0.12.dev
+    # direct dependencies
+    - numpy >=1.26.0, <1.27.dev
+    - properties >=0.6, <0.7.dev
+    - pypng 0.20220715.*
+    - six >=1.16.0, <2.0.dev
+    - vectormath 0.2.*
+
+tests:
+  - python:
+      imports:
+        - omf
+        # dependency imports
+        - geoh5py
+        - properties
+      pip_check: false  # something wrong with properties 0.6.1, but installation seems correct nonetheless
+      python_version: ${{ python_min }}.*
+  - script:
+      - pytest --ignore=tests/version_test.py
+      - pip list
+    requirements:
+      run:
+        - pip
+        - pytest
+    files:
+      source:
+        - tests/
+        - docs/images/PointSetGeometry.png
+
+about:
+  summary: API library for Open Mining Format, a new standard for mining data backed by the Global Mining Standards & Guidelines Group.
+  description: |
+    API library for Open Mining Format, a new standard for mining data backed by the Global Mining Standards & Guidelines Group.
+
+    **Note:**
+    This is a fork created by Mira Geoscience for interoperability with the geoh5 file format.
+
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://www.mirageoscience.com/mining-industry-software/python-integration/
+  repository: https://github.com/MiraGeoscience/omf
+
+extra:
+  recipe-maintainers:
+    - conda-forge/geoh5py

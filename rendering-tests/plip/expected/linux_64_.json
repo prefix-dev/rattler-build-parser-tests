@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plip",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plip/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plip/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plip/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "plip": {
+          "build_string": "pyhcf101f3_0",
+          "name": "plip",
+          "version": "3.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:59.553735971Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Protein-Ligand Interaction Profiler - Analyze and visualize non-covalent\nprotein-ligand interactions in PDB files according to memo Salentin et al. (2015)",
+        "documentation": "https://github.com/pharmai/plip/blob/master/DOCUMENTATION.md",
+        "homepage": "https://github.com/pharmai/plip",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pharmai/plip",
+        "summary": "Analyze non-covalent protein-ligand interactions in 3D structures"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "plip = plip.plipcmd:main"
+          ]
+        },
+        "script": "python -m pip install . --no-build-isolation -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "plip",
+        "version": "3.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim",
+          "mikemhenry"
+        ]
+      },
+      "package": {
+        "name": "plip",
+        "version": "3.0.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "requests",
+          "openbabel >=3.1.1"
+        ],
+        "run": [
+          "python >=3.10",
+          "lxml >=4.2.1",
+          "numpy >=1.13.3",
+          "openbabel >=3.1.1"
+        ],
+        "run_constraints": [
+          "imagemagick >=7.0",
+          "pymol-open-source >=2.3.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d53a46369f10fa467503f19ffec4436b3a123f355e8b9c8aca5a8052b8aef47a",
+          "url": "https://pypi.org/packages/source/p/plip/plip-3.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "plip"
+            ],
+            "pip_check": false,
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "plip --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

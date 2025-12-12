@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: unidep
+  version: 2.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/unidep-${{ version }}.tar.gz
+  sha256: 4f0fde53226c1b868126cf685079abf03357cbe3bf5024074e9c83eb32f1d475
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - unidep = unidep:_cli.main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - ruamel.yaml
+    - typing-extensions
+    - packaging
+    - tomli
+
+tests:
+  - python:
+      imports:
+        - unidep
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - unidep --help
+
+about:
+  summary: Unified Conda and Pip requirements management.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/basnijholt/unidep/
+
+extra:
+  recipe-maintainers:
+    - basnijholt

@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama-cloud-services",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama-cloud-services/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama-cloud-services/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama-cloud-services/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "llama-cloud-services": {
+          "build_string": "pyhcf101f3_0",
+          "name": "llama-cloud-services",
+          "version": "0.6.88"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:18.855056871Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://docs.cloud.llamaindex.ai/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Tailored SDK clients for LlamaCloud services."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "llama-parse = llama_cloud_services.parse.cli.main:parse"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "llama-cloud-services",
+        "version": "0.6.88"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen"
+        ]
+      },
+      "package": {
+        "name": "llama-cloud-services",
+        "version": "0.6.88"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "tenacity >=8.5.0,<10.0",
+          "platformdirs >=4.3.7,<5",
+          "python >=3.10",
+          "llama-index-core >=0.12.0",
+          "llama-cloud ==0.1.45",
+          "pydantic >=2.8,!=2.10",
+          "click >=8.1.7,<9",
+          "python-dotenv >=1.0.1,<2",
+          "eval-type-backport >=0.2.0,<0.3",
+          "packaging >=23.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1eb809194893c880ed6845e3127c8650002cb4aa1fc1651cdd94eeebea70172",
+          "url": "https://pypi.org/packages/source/l/llama-cloud-services/llama_cloud_services-0.6.88.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "llama_cloud_services"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "llama-parse --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

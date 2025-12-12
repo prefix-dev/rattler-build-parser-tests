@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tippecanoe",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tippecanoe/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tippecanoe/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tippecanoe/work"
+      },
+      "hash": {
+        "hash": "857cdf5"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tippecanoe": {
+          "build_string": "h857cdf5_1",
+          "name": "tippecanoe",
+          "version": "2.78.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-12-12T16:27:01.782932125Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "sqlite": "3",
+        "target_platform": "linux-ppc64le",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/felt/tippecanoe",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "Build vector tilesets from large collections of GeoJSON features."
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "ls",
+          "make -j$CPU_COUNT",
+          "make install"
+        ],
+        "string": "h857cdf5_1"
+      },
+      "context": {
+        "name": "tippecanoe",
+        "version": "2.78.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mxr-conda",
+          "rluria14",
+          "oblute",
+          "dbrnz",
+          "hobu"
+        ]
+      },
+      "package": {
+        "name": "tippecanoe",
+        "version": "2.78.0"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "sqlite",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "da628c5fa1aec3aba318f6096d2f60d8b4cc78043e1c25e18a4d0975c8262f00",
+          "url": "https://github.com/felt//tippecanoe/archive/2.78.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "which tippecanoe",
+            "tippecanoe --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+context:
+  version: "0.1.220"
+
+package:
+  name: ark
+  version: ${{ version }}
+
+source:
+  url: https://github.com/posit-dev/ark/archive/${{ version }}.tar.gz
+  sha256: 79ed367625f380f0199c3c00b7b7055d359bf32c234a2cf51722390483f55458
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - ark --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Ark, an R kernel
+  homepage: https://github.com/posit-dev/ark
+  repository: https://github.com/posit-dev/ark
+
+extra:
+  recipe-maintainers:
+    - danielnachun

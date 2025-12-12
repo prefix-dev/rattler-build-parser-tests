@@ -1,0 +1,62 @@
+context:
+  name: colcon-core
+  version: "0.20.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/colcon/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: a8f1dd2902d01ba5d9de15f698cb3944c54e1029c0e3c881f85ed3a38afd3602
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv
+  noarch: python
+  python:
+    entry_points:
+      - colcon = colcon_core.command:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - coloredlogs
+    - distlib
+    - empy
+    - pytest
+    - pytest-cov
+    - pytest-repeat
+    - pytest-rerunfailures
+    - setuptools >=30.3.0,<80
+    - tomli >=1.0.0
+
+tests:
+  - python:
+      imports:
+        - colcon
+        - colcon_core
+      python_version: ${{ python_min }}.*
+  - script:
+      - colcon --help
+
+about:
+  homepage: https://github.com/colcon/${{ name }}
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: |
+    colcon is a command line tool to improve the workflow of building,
+    testing and using multiple software packages.
+  repository: https://github.com/colcon/${{ name }}
+  documentation: https://colcon.readthedocs.io/en/released/
+
+extra:
+  recipe-maintainers:
+    - j-rivero
+    - traversaro
+    - seanyen
+    - wolfv

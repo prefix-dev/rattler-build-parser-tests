@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: uhi
+  version: 1.0.0
+  python_min: 3.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/uhi-${{ version }}.tar.gz
+  sha256: 331188949b1a49c8db9ef9d50b7c4d4df4606115d147ded97c4f050da8270e74
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.13.3
+    - python-fastjsonschema
+    # TODO: Drop after python_min is 3.11
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - uhi
+        - uhi.typing
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+        - pytest
+        - importlib_metadata
+        - boost-histogram
+        - hist
+        - h5py
+    script:
+      - pytest .
+
+about:
+  summary: "Unified Histogram Interface: tools to help library authors work with histograms"
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/Scikit-HEP/uhi
+
+extra:
+  recipe-maintainers:
+    - conda-forge/scikit-hep

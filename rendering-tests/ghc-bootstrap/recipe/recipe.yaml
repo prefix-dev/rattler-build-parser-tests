@@ -1,0 +1,177 @@
+context:
+  version: "9.12.2"
+
+package:
+  name: ghc-bootstrap
+  version: ${{ version }}
+
+source:
+  - if: osx
+    then:
+      url: https://downloads.haskell.org/~ghc/${{ version }}/ghc-${{ version }}-x86_64-apple-darwin.tar.xz
+      sha256: e7a40e39059dd3619d7884b7382f357e79a0f4e430181b805bdd57b3be9a7300
+  - if: linux
+    then:
+      url: https://downloads.haskell.org/~ghc/${{ version }}/ghc-${{ version }}-x86_64-deb9-linux.tar.xz
+      sha256: 5dcb17f43de256ff651ebfd23f49bb2657543386d2a43257f255bde24ff78e39
+  - if: not unix
+    then:
+      url: https://downloads.haskell.org/~ghc/${{ version }}/ghc-${{ version }}-x86_64-unknown-mingw32.tar.xz
+      sha256: eccd82af0c7d1d5316f30e0a6dd2d6ff608a4a2a99fbdf5ccb0786c49da59b1d
+      target_directory: bootstrap-ghc
+
+build:
+  number: 7
+  dynamic_linking:
+    binary_relocation:
+      - ghc-bootstrap/lib/${{ version }}/bin/*
+  prefix_detection:
+    ignore:
+      - ghc-bootstrap/**/*.so
+  # We will not need x-compiled ghc-bootstrap
+  skip: aarch64 or ppc64le or arm64
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - perl 5.32.1.*
+
+    - if: linux
+      then:
+        - ncurses <6,>=5
+        - patchelf
+
+    - if: unix
+      then:
+        - coreutils
+        - file
+        - make
+        - pkg-config
+      else:
+        - binutils
+        - m2-bash
+        - m2-coreutils
+        - m2-diffutils
+        - m2-findutils
+        - m2-grep
+        - m2-tar
+        - m2-which
+  host:
+    - gmp
+    - libffi
+    - libiconv
+    - if: not unix
+      then: binutils
+
+
+tests:
+  - package_contents:
+      files:
+        - ghc-bootstrap/bin/ghc${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/ghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/ghc-pkg-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/ghc-pkg${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/ghci-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/ghci${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/haddock-ghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/haddock${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hp2ps-ghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hp2ps${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hpc-ghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hpc${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hsc2hs-ghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/hsc2hs${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/runghc-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/runghc${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/runhaskell-${{ version }}${{ "" if unix else ".exe" }}
+        - ghc-bootstrap/bin/runhaskell${{ "" if unix else ".exe" }}
+
+        - if: linux
+          then:
+            - ghc-bootstrap/lib/private/libncurses.so.5
+            - ghc-bootstrap/lib/private/libtinfo.so.5
+            - ghc-bootstrap/lib/private/libtinfow.so.5
+            - ghc-bootstrap/lib/private/ld-2.17.so
+
+        - if: unix
+          then:
+            - ghc-bootstrap/lib/ghc-${{ version }}/lib/settings
+            - ghc-bootstrap/lib/ghc-${{ version }}/lib/package.conf.d/**
+          else:
+            - ghc-bootstrap/bin/ghc-iserv-ghc-${{ version }}.exe
+            - ghc-bootstrap/bin/ghc-iserv-prof-ghc-${{ version }}.exe
+            - ghc-bootstrap/bin/ghc-iserv-prof.exe
+            - ghc-bootstrap/bin/ghc-iserv.exe
+            - ghc-bootstrap/bin/unlit-ghc-${{ version }}.exe
+            - ghc-bootstrap/bin/unlit.exe
+            - ghc-bootstrap/bin/ghcii.sh
+            - ghc-bootstrap/bin/ghcii${{ version }}.sh
+
+            - ghc-bootstrap/bin/windres.bat
+
+            - ghc-bootstrap/lib/settings
+            - ghc-bootstrap/lib/package.conf.d/**
+
+            - ghc-bootstrap/mingw/bin/__unused__
+            - ghc-bootstrap/mingw/include/__unused__
+            - ghc-bootstrap/mingw/lib/__unused__
+            - ghc-bootstrap/mingw/share/__unused__
+
+  - script:
+      - if: unix
+        then: ${PREFIX}/ghc-bootstrap/bin/ghc --version
+        else:
+          - CALL %PREFIX%/ghc-bootstrap/bin/ghc.exe --version
+          - CALL %PREFIX%/ghc-bootstrap/bin/windres.bat --help
+    requirements:
+      run:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: not unix
+          then: binutils
+
+  - script:
+      - if: unix
+        then: |
+          ${PREFIX}/ghc-bootstrap/bin/ghc testing/hello.hs -o hello && ./hello
+          ${PREFIX}/ghc-bootstrap/bin/ghc testing/signal_test.hs -o signal_test && ./signal_test
+          ${PREFIX}/ghc-bootstrap/bin/ghc testing/iconv_test.hs -o iconv_test && ./iconv_test
+        else: |
+          CALL %PREFIX%\ghc-bootstrap\bin\ghc.exe testing/hello.hs -o hello.exe
+          hello.exe
+    files:
+      recipe:
+        - testing/
+    requirements:
+      run:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - if: not unix
+          then: binutils
+
+about:
+  homepage: https://haskell.org/ghc/
+  license: BSD-3-Clause
+  license_file: license_files/
+  summary: Glorious Glasgow Haskell Compilation System
+  description: |
+    GHC is a state-of-the-art, open source, compiler and interactive environment 
+    for the functional language Haskell.
+
+    Conda-Forge Requirements:
+    - Linux: glibc >= 2.17, clang compiler
+    - macOS: macOS >= 10.13, clang compiler
+    - Windows: MSYS2/MinGW toolchain, binutils
+    Note: Windows builds may show overlinking warnings for system DLLs
+    (SHLWAPI.dll, WSOCK32.dll, WINMM.dll). These are benign and don't
+    affect functionality.
+
+  documentation: https://www.haskell.org/ghc/documentation.html
+  repository: https://gitlab.haskell.org/ghc/ghc
+
+extra:
+  recipe-maintainers:
+    - MementoRC
+    - eggzilla

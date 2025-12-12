@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  version: 0.6.1
+
+package:
+  name: pemja
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pemja/pemja-${{ version }}.tar.gz
+  sha256: 88ffcd5427725e12b10c8740e0b061087f5d1a66abef9cf932e3d4821b4033f9
+
+build:
+  number: 1
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - openjdk
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - python
+    - packaging >=20.5
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python
+    - find-libpython
+
+tests:
+  - python:
+      imports:
+        - pemja
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: PemJa is an open source cross language call framework based on FFI. It aims to provide a high-performance framework of calling between different languages.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/alibaba/pemja
+  documentation: https://github.com/alibaba/pemja
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - gforsyth
+    - deepyaman

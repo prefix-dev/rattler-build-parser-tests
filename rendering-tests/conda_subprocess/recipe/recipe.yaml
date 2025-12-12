@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: conda_subprocess
+  version: "0.0.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/conda_subprocess-${{ version }}.tar.gz
+  sha256: 0d0c9de1744a0020dab5131d8e07d7576b0c7bb40252ad6c237714f914467628
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - conda
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - conda >=22.9.0,<=25.9.1
+
+tests:
+  - python:
+      imports:
+        - conda_subprocess
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Run a subprocess in a different conda environment.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyiron/conda_subprocess
+
+extra:
+  recipe-maintainers:
+    - jan-janssen

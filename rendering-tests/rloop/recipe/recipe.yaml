@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.2.0"
+  maturin_min: 1.1.0
+  maturin_max: 2.0.0
+
+package:
+  name: rloop
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/rloop/rloop-${{ version }}.tar.gz
+  sha256: a295c6dd57ff0e2bdeaf3ba7ce47fcbefd40668657cdd4ed64055dc72da3a140
+
+build:
+  number: 2
+  skip: win
+  script:
+    file: build-rloop
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+  host:
+    - maturin >=${{ maturin_min }},<${{ maturin_max }}
+    - pip
+    - python
+  run:
+    - python
+
+tests:
+  - python:
+      imports: rloop
+      pip_check: true
+    # hangs on pytest
+    # https://github.com/conda-forge/rloop-feedstock/pull/5
+  - if: not (linux and target_platform != "linux-64")
+    then:
+      files:
+        recipe:
+          - run_test.py
+        source:
+          - pyproject.toml
+          - tests/
+      requirements:
+        run:
+          - coverage
+          - pytest >=7.4.2,<7.5.0
+          - pytest-asyncio >=0.21.1,<0.22.0
+      script:
+        - python run_test.py
+
+about:
+  summary: An asyncio event loop implemented in Rust
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/gi0baro/rloop
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

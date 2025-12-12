@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-treenode
+  version: "0.23.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django_treenode-${{ version }}.tar.gz
+  sha256: 714c825d5b925a3d2848d0709f29973941ea41a606b8e2b64cbec46010a8cce3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }},<4
+
+tests:
+  - python:
+      imports:
+        - treenode
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: probably the best abstract model/admin for your tree based stuff.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/fabiocaccamo/django-treenode
+
+extra:
+  recipe-maintainers:
+    - rxm7706

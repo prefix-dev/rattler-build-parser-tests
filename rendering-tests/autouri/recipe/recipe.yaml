@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  version: 0.4.4
+  python_min: 3.10
+
+package:
+  name: autouri
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/autouri/autouri-${{ version }}.tar.gz
+  sha256: ea34958a5cb82ae22931fecc0c9616800ffb6f3ac8f42cad4f17198ced5cb593
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - ntplib
+    - requests
+    - pyopenssl
+    - google-cloud-storage
+    - boto3
+    - awscli
+    - dateparser
+    - pytest
+    - filelock
+
+tests:
+  - python:
+      imports:
+        - autouri
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Recursive localization for various types of URIs
+  description: |
+    It is a Python API for recursively localizing file URIs
+    (e.g. gs://. s3://, http:// and local path) on any target directory URI.
+  homepage: https://github.com/ENCODE-DCC/autouri
+  repository: https://github.com/ENCODE-DCC/autouri
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - leepc12

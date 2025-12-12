@@ -1,0 +1,39 @@
+context:
+  version: "2.5.0"
+
+package:
+  name: auto-changelog
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/auto-changelog/-/auto-changelog-${{ version }}.tgz
+  sha256: 0bb44736e133e65f9fa9bce2590c43e80da55b796cef7a43f668a0375ce147fe
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - auto-changelog --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: Command line tool for generating a changelog from git tags and commit history
+  homepage: https://github.com/cookpete/auto-changelog
+  repository: https://github.com/cookpete/auto-changelog
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-cms
+  version: "5.0.5"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 56f33fed820acfc326bf08d9a4a75e6ad3a1c1e027a0352c5444fe124e1d6bfd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=2.2
+    - django-classy-tags >=0.7.2
+    - django-formtools >=2.1
+    - django-treebeard >=4.3
+    - django-sekizai >=0.7
+    - djangocms-admin-style >=1.2
+    - packaging
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - cms
+        - menus
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+      - djangocms --help
+
+about:
+  summary: Lean enterprise content management powered by Django.
+  license: Apache-2.0 AND BSD-3-Clause
+  license_file:
+    - LICENSE
+    - cms/static/cms/js/select2/LICENSE
+  homepage: https://www.django-cms.org/
+
+extra:
+  recipe-maintainers:
+    - rxm7706

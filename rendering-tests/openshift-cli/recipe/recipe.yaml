@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: "openshift-client"
+  version: "4.20.2"
+
+package:
+  name: "openshift-cli"
+  version: ${{ version }}
+
+source:
+  url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${{ version }}/${{ name }}-src.tar.gz
+  sha256: e5cfb94ed2d4c819287ab703963f53b7cfc5bc59c92ef6728590e47ebcd2cb20
+
+build:
+  number: 0
+  script:
+    - go-licenses save ./cmd/oc --save_path ./library_licenses/
+    - if: unix
+      then:
+        - export TAGS='include_gcs include_oss containers_image_openpgp'
+        - export LDFLAGS="-X github.com/openshift/oc/pkg/version.versionFromGit=v$PKG_VERSION -X github.com/openshift/oc/pkg/version.gitTreeState=clean"
+        - go build -o $PREFIX/bin/oc -mod=vendor -tags "$TAGS" -ldflags "$LDFLAGS" ./cmd/oc
+        - cp $PREFIX/bin/oc $PREFIX/bin/okd-cli
+    - if: win
+      then:
+        - set TAGS=include_gcs include_oss containers_image_openpgp
+        - set LDFLAGS=-X github.com/openshift/oc/pkg/version.versionFromGit=v%PKG_VERSION% -X github.com/openshift/oc/pkg/version.gitTreeState=clean
+        - go build -o %LIBRARY_BIN%\oc.exe -mod=vendor -tags "%TAGS%" -ldflags "%LDFLAGS%" ./cmd/oc
+        - copy "%LIBRARY_BIN%\oc.exe" "%LIBRARY_BIN%\okd-cli.exe"
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }} >=1.16
+    - go-licenses >=2.0.1
+
+tests:
+  - package_contents:
+      bin:
+        - oc
+        - okd-cli
+      strict: true
+
+about:
+  homepage: https://www.okd.io/
+  summary: OpenShift Command Line Interface
+  description: |
+    The OpenShift Command Line Interface (CLI), is a set of tools built on top of kubectl
+    that help you work with OpenShift. With the CLI, you can create applications and manage
+    OpenShift resources. It provides its full capabilities to connect with any Kubernetes
+    compliant cluster, and adds commands simplifying interaction with an OpenShift cluster.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+  repository: https://github.com/openshift/oc
+  documentation: https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html
+
+extra:
+  recipe-maintainers:
+    - chrisburr
+    - delsner
+    - phreed

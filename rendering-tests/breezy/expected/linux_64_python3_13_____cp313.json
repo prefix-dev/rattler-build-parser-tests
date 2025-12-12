@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_breezy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_breezy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_breezy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_breezy/work"
+      },
+      "hash": {
+        "hash": "843e2db",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "breezy": {
+          "build_string": "py313h843e2db_1",
+          "name": "breezy",
+          "version": "3.3.17"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:16.405544171Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/breezy-team/breezy",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "COPYING.txt"
+        ],
+        "summary": "Friendly distributed version control system"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py313h843e2db_1"
+      },
+      "context": {
+        "version": "3.3.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "breezy",
+        "version": "3.3.17"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "setuptools >=60",
+          "setuptools-rust",
+          "setuptools-gettext >=0.1.4",
+          "cython >=0.29",
+          "packaging",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "configobj",
+          "fastbencode",
+          "patiencediff",
+          "merge3",
+          "dulwich >=0.21.6",
+          "urllib3 >=1.24.1",
+          "pyyaml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5d2f45cd22e908b96833a4d424bcffc50593c2630b942ebc590280eb1f83410a",
+          "url": "https://pypi.org/packages/source/b/breezy/breezy-3.3.17.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "breezy"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python"
+            ]
+          },
+          "script": [
+            "brz --help",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

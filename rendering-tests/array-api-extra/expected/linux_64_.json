@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_array-api-extra",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_array-api-extra/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_array-api-extra/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_array-api-extra/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "array-api-extra": {
+          "build_string": "pyhcf101f3_0",
+          "name": "array-api-extra",
+          "version": "0.9.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:58.442715972Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Extra array functions built on top of the array API standard.",
+        "documentation": "https://data-apis.org/array-api-extra/",
+        "homepage": "https://data-apis.org/array-api-extra/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/data-apis/array-api-extra",
+        "summary": "Extra array functions built on top of the array API standard."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "array-api-extra",
+        "python_min": "3.10",
+        "version": "0.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "lucascolley"
+        ]
+      },
+      "package": {
+        "name": "array-api-extra",
+        "version": "0.9.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "array-api-compat"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "babf2131a5a56433d70190e2be47ec3de214aad9b969766f95e2091dd8c6183a",
+          "url": "https://pypi.org/packages/source/a/array-api-extra/array_api_extra-0.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "array_api_extra"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "pytest",
+              "array-api-strict",
+              "numpy",
+              "hypothesis"
+            ]
+          },
+          "script": "pytest -ra tests"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

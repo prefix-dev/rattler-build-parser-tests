@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: pyiron_vasp
+  version: "0.2.16"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 35d17aeb35e035aa0cf6ecc159f98653c52cfaa18fcf354231ac07a13a49846c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+    - hatch-vcs
+    - ase
+    - defusedxml
+    - numpy
+    - pandas
+    - scipy
+  run:
+    - python >=${{ python_min }}
+    - ase >=3.22.1,<=3.26.0
+    - defusedxml >=0.7.0,<=0.7.1
+    - numpy >=1.26.0,<=2.3.5
+    - pandas >=2.0.3,<=2.3.3
+    - scipy >=1.11.1,<=1.16.3
+
+tests:
+  - python:
+      imports:
+        - pyiron_vasp
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Vasp plugin for pyiron - an integrated development environment (IDE) for computational materials science.
+  description: |
+    pyiron was initially developed in the Computational Materials Design department of Joerg Neugebauer at the
+    Max Planck Insitut für Eisenforschung (Max Planck Insitute for iron research) as a framework for ab initio
+    thermodynamics. In collaboration with the Interdisciplinary Centre for Advanced Materials Simulation (ICAMS)
+    the framework was recently extended for high throughput applications resulting in the opensource release of
+    pyiron.
+  homepage: https://github.com/pyiron/pyiron_vasp
+  repository: https://github.com/pyiron
+  documentation: https://pyiron.org
+
+extra:
+  recipe-maintainers:
+    - pyiron-runner
+    - jan-janssen

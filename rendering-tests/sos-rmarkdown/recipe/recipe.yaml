@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 0.1.4
+
+package:
+  name: sos-rmarkdown
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sos-rmarkdown/sos-rmarkdown-${{ version }}.tar.gz
+  sha256: 45e943e4b6a987f594763bccd8232c109580c0142e3fc801e5ed3e187831889b
+
+build:
+  number: 2
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - sos-notebook
+    - sos-r
+    - markdown-kernel
+    - papermill
+    - sos-papermill
+    - nbformat
+
+tests:
+  - python:
+      imports:
+        - sos_rmarkdown
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: A converter from Rmarkdown to SoS Notebook
+  homepage: https://github.com/vatlab/sos-rmarkdown
+  repository: https://github.com/vatlab/sos-rmarkdown
+  documentation: https://github.com/vatlab/sos-rmarkdown
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - BoPeng

@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 5.1.0
+
+package:
+  name: ticker
+  version: ${{ version }}
+
+source:
+  url: https://github.com/achannarasappa/ticker/archive/v${{ version }}.tar.gz
+  sha256: 8c2468d0dcf0c585a43235cabed7c5a404dac20d58c945a03fdf40fb1345f0ac
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - ticker --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Terminal stock ticker with live updates and position tracking
+  homepage: https://github.com/achannarasappa/ticker
+  repository: https://github.com/achannarasappa/ticker
+
+extra:
+  recipe-maintainers:
+    - danielnachun

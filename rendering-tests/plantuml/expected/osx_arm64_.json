@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plantuml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plantuml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plantuml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plantuml/work"
+      },
+      "hash": {
+        "hash": "de9e1c8"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "plantuml": {
+          "build_string": "hde9e1c8_1",
+          "name": "plantuml",
+          "version": "1.2025.10"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:18.127905182Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "graphviz": "14",
+        "openjdk_min": "8",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "PlantUML is a component that allows to quickly write:\n\n- Sequence diagram,\n- Use case diagram,\n- Class diagram,\n- Activity diagram,\n- Component diagram,\n- State diagram,\n- Object diagram,\n- Deployment diagram,\n- Timing diagram\n\nAnd also:\n\n- Activity diagram (legacy syntax)\n- Archimate diagram\n- Gantt charts\n- SALT UI mockups\n\nFurthermore:\n\n- Hyperlinks and tooltips\n- Creole: rich text, emoticons, unicode, icons\n- OpenIconic icons\n- Sprite icons\n- AsciiMath mathematical expressions\n\nTo know more about PlantUML, please visit http://plantuml.com/",
+        "homepage": "http://plantuml.com/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/plantuml/plantuml",
+        "summary": "Generate UML diagram from textual description"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "file": "build-plantuml"
+        },
+        "string": "hde9e1c8_1"
+      },
+      "context": {
+        "version": "1.2025.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "plantuml",
+        "version": "1.2025.10"
+      },
+      "requirements": {
+        "build": [
+          "openjdk 8.*",
+          "gradle >=8.11.1",
+          "graphviz"
+        ],
+        "run": [
+          "openjdk >=8",
+          "graphviz"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d913c0526f68a43a91b524c709ab4190cbf7d8d74830d216f5c1c6eeaf6550c9",
+          "url": "https://github.com/plantuml/plantuml/archive/refs/tags/v1.2025.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "plantuml -version",
+            "plantuml -help",
+            "plantuml -version | grep -iE \"${{ version | replace('.', '\\\\.') }}\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

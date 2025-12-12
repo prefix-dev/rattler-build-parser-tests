@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hyphen",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hyphen/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hyphen/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hyphen/work"
+      },
+      "hash": {
+        "hash": "280c20c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hyphen": {
+          "build_string": "h280c20c_1",
+          "name": "hyphen",
+          "version": "2.8.8"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:02.208389107Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Hyphen is a library for high quality hyphenation and justification",
+        "homepage": "http://hunspell.sf.net/",
+        "license": "GPL-2.0-only OR LGPL-2.1-or-later OR MPL-1.1",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "A text hyphenation library"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "./configure --prefix=${{ PREFIX }}",
+          "make -j ${{ CPU_COUNT }}",
+          "make install"
+        ],
+        "string": "h280c20c_1"
+      },
+      "context": {
+        "version": "2.8.8"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "haecker-felix",
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "hyphen",
+        "version": "2.8.8"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "automake",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "exact": true,
+                "name": "hyphen"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "304636d4eccd81a14b6914d07b84c79ebb815288c76fe027b9ebff6ff24d5705",
+          "url": "https://netcologne.dl.sourceforge.net/project/hunspell/Hyphen/2.8/hyphen-2.8.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "hyphen.h"
+            ],
+            "lib": [
+              "hyphen"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

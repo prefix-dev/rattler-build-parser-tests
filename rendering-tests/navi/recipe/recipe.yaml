@@ -1,0 +1,41 @@
+context:
+  version: "2.24.0"
+
+package:
+  name: navi
+  version: ${{ version }}
+
+source:
+  url: https://github.com/denisidoro/navi/archive/v${{ version }}.tar.gz
+  sha256: 4c10f47c306826255b07483b7e94eed8ffc1401555c52434a56246295d3f2728
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - zlib
+  run:
+    - fzf
+
+tests:
+  - script:
+      - navi --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Interactive cheatsheet tool for the command-line
+  homepage: https://github.com/denisidoro/navi
+  repository: https://github.com/denisidoro/navi
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,114 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_powershell",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_powershell/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_powershell/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_powershell/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "powershell": {
+          "build_string": "h11686cb_0",
+          "name": "powershell",
+          "version": "7.5.4"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:04.741531910Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/PowerShell/PowerShell",
+        "license": "MIT",
+        "license_file": [
+          "powershell/LICENSE.txt",
+          "powershell/ThirdPartyNotices.txt",
+          "powershell/assets/additionalAttributions.txt"
+        ],
+        "summary": "PowerShell for every system!"
+      },
+      "build": {
+        "number": 0,
+        "script": "xcopy powershell \"%PREFIX%\\powershell\" /E /I /F /B /Y\nif %ERRORLEVEL% neq 0 exit 1\necho F | xcopy %RECIPE_DIR%\\pwsh.cmd %PREFIX%\\Scripts\\pwsh.cmd /F /Y\nif %ERRORLEVEL% neq 0 exit 1\n",
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "name": "powershell",
+        "version": "7.5.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dhirschfeld"
+        ]
+      },
+      "package": {
+        "name": "powershell",
+        "version": "7.5.4"
+      },
+      "requirements": {},
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cd2d609357d2eebb43ada3870b9a63eb2c155c237ca89ad6cfaa4215023a5dab",
+          "target_directory": "powershell/assets",
+          "url": "https://raw.githubusercontent.com/PowerShell/PowerShell/refs/tags/v7.5.4/assets/additionalAttributions.txt"
+        },
+        {
+          "sha256": "b40d192ae95ba6ccc4cc362ff4e1b18ca6fb5055bebbcd3920684e12701fa8f6",
+          "target_directory": "powershell",
+          "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/PowerShell-7.5.4-win-x64.zip"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "where powershell",
+            "if not exist %PREFIX%\\\\powershell\\\\pwsh.exe exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

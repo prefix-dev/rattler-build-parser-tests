@@ -1,0 +1,47 @@
+context:
+  name: jax-unirep
+  version: 2.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/jax_unirep-${{ version }}.tar.gz
+  sha256: d1914b79bf434fb91b8fc2623feb791b7ecb250a0a917bb226ecbc3632f72f5e
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - jax
+    - jaxlib
+    - multipledispatch
+    - numpy
+    - optuna
+    - python >=${{ python_min }}
+    - scikit-learn
+    - tqdm
+
+tests:
+  - python:
+      imports:
+        - jax_unirep
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A performant and user-friendly reimplementation of UniRep in JAX.
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/ElArkk/jax-unirep
+
+extra:
+  recipe-maintainers:
+    - hadim

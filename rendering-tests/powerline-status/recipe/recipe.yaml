@@ -1,0 +1,76 @@
+schema_version: 1
+
+context:
+  name: powerline-status
+  version: 2.8.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/powerline/powerline/archive/${{ version }}.tar.gz
+  sha256: 9e846af9379b57e410efe264cff3a6b98eb78dd9526e83016776ae5ffc5798f4
+
+build:
+  number: 2
+  script: python -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: 
+      - python
+      - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      pip_check: true
+      imports:
+        - powerline
+        - powerline.bindings
+        - powerline.bindings.ipython
+        - powerline.bindings.pdb
+        - powerline.bindings.qtile
+        - powerline.bindings.tmux
+        - powerline.bindings.vim
+        - powerline.bindings.wm
+        - powerline.commands
+        - powerline.lib
+        - powerline.lib.vcs
+        - powerline.lib.watcher
+        - powerline.listers
+        - powerline.matchers
+        - powerline.matchers.vim
+        - powerline.matchers.vim.plugin
+        - powerline.renderers
+        - powerline.renderers.ipython
+        - powerline.renderers.shell
+        - powerline.segments
+        - powerline.segments.common
+        - powerline.segments.vim
+        - powerline.segments.vim.plugin
+        - powerline.selectors
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Powerline is a statusline plugin for vim
+  description: |
+    Powerline is a statusline plugin for vim, and provides statuslines and prompts for
+    several other applications, including zsh, bash, fish, tmux, IPython, Awesome, i3 and Qtile.
+  homepage: https://github.com/powerline/powerline
+  repository: https://github.com/powerline/powerline
+  documentation: https://powerline.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

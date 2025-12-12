@@ -1,0 +1,335 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision/work"
+      },
+      "hash": {
+        "hash": "4b97384",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchvision": {
+          "build_string": "cpu_py310_h4b97384_0",
+          "name": "torchvision",
+          "version": "0.24.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:05.703946667Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "vs2022",
+        "giflib": "5.2",
+        "libjpeg_turbo": "3",
+        "libpng": "1.6",
+        "libtorch": "2.9",
+        "libwebp": "1",
+        "numpy": "2",
+        "python": "3.10.* *_cpython",
+        "pytorch": "2.9",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://pytorch.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pytorch/vision",
+        "summary": "Image and video datasets and models for torch deep learning"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "BUILD_VERSION": "0.24.1"
+          }
+        },
+        "string": "cpu_py310_h4b97384_0"
+      },
+      "context": {
+        "build_number": 0,
+        "build_string_prefix": "cpu",
+        "tests_to_skip": "  test_url_is_accessible  or (test_transforms and test_adjust_saturation)      or test_forward_backward or test_jit_forward_backward       or test_frame_reading   or test_randomperspective_fill  or test_frozenbatchnorm2d_eps or test_random_apply   or test_write_video_with_audio or test_video_clips_custom_fps  or test_memory_efficient_densenet or test_resnet_dilation or test_mobilenet_v2_residual_setting or test_mobilenet_norm_layer or test_inception_v3_eval or test_fasterrcnn_double or test_googlenet_eval or test_fasterrcnn_switch_devices or test_mobilenet_v2_residual_setting or test_vitc_models or test_classification_model or test_segmentation_model or test_detection_model or test_detection_model_validation or test_video_model or test_quantized_classification_model or test_detection_model_trainable_backbone_layers or test_raft or test_build_fx_feature_extractor  or test_transformation_range or test_transformation_discrete  or test_batched_vs_single  or test_draw_boxes   or test_pretrained_pos or test_equivalent_behavior_weights  or test_decode_gif or test_download_url or \"test_get_model[lraspp\"   ",
+        "torch_proc_type": "cpu",
+        "version": "0.24.1"
+      },
+      "extra": {
+        "feedstock-name": "torchvision",
+        "recipe-maintainers": [
+          "nehaljwani",
+          "hmaarrfk",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "torchvision",
+        "version": "0.24.1"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "python",
+          "cross-python_win-64",
+          "numpy",
+          "pytorch",
+          "pytorch * cpu*"
+        ],
+        "host": [
+          "python",
+          "numpy",
+          "pip",
+          "setuptools",
+          "libjpeg-turbo",
+          "libpng",
+          "libwebp",
+          "giflib",
+          "pillow >=5.3.0,!=8.3.0,!=8.3.1",
+          "libtorch",
+          "libtorch * cpu*",
+          "pytorch",
+          "pytorch * cpu*",
+          "requests"
+        ],
+        "run": [
+          "python",
+          "pytorch * cpu*",
+          "pillow >=5.3.0,!=8.3.0,!=8.3.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Use-system-giflib.patch",
+            "patches/0002-Force-nvjpeg-and-force-failure.patch",
+            "patches/0003-Skip-OSS-CI-in-conda-forge-as-well.patch",
+            "patches/0004-Allow-different-CUDA-minor-versions.patch"
+          ],
+          "sha256": "071da2078600bfec4886efab77358c9329abfedcf1488b05879b556cb9b84ba7",
+          "url": "https://github.com/pytorch/vision/archive/refs/tags/v0.24.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "torchvision",
+              "torchvision.datasets",
+              "torchvision.models",
+              "torchvision.transforms",
+              "torchvision.utils"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip list"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchvision-tests/work"
+      },
+      "hash": {
+        "hash": "8a01b54",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchvision": {
+          "build_string": "cpu_py310_h4b97384_0",
+          "name": "torchvision",
+          "version": "0.24.1"
+        },
+        "torchvision-tests": {
+          "build_string": "cpu_py310_h8a01b54_0",
+          "name": "torchvision-tests",
+          "version": "0.24.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:05.755902552Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler_version": "None",
+        "python": "3.10.* *_cpython",
+        "target_platform": "win-64",
+        "torchvision": "0.24.1 cpu_py310_h4b97384_0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://pytorch.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pytorch/vision",
+        "summary": "Image and video datasets and models for torch deep learning"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ 'true' if unix else 'exit /b 0' }}",
+        "string": "cpu_py310_h8a01b54_0"
+      },
+      "context": {
+        "build_number": 0,
+        "build_string_prefix": "cpu",
+        "tests_to_skip": "  test_url_is_accessible  or (test_transforms and test_adjust_saturation)      or test_forward_backward or test_jit_forward_backward       or test_frame_reading   or test_randomperspective_fill  or test_frozenbatchnorm2d_eps or test_random_apply   or test_write_video_with_audio or test_video_clips_custom_fps  or test_memory_efficient_densenet or test_resnet_dilation or test_mobilenet_v2_residual_setting or test_mobilenet_norm_layer or test_inception_v3_eval or test_fasterrcnn_double or test_googlenet_eval or test_fasterrcnn_switch_devices or test_mobilenet_v2_residual_setting or test_vitc_models or test_classification_model or test_segmentation_model or test_detection_model or test_detection_model_validation or test_video_model or test_quantized_classification_model or test_detection_model_trainable_backbone_layers or test_raft or test_build_fx_feature_extractor  or test_transformation_range or test_transformation_discrete  or test_batched_vs_single  or test_draw_boxes   or test_pretrained_pos or test_equivalent_behavior_weights  or test_decode_gif or test_download_url or \"test_get_model[lraspp\"   ",
+        "torch_proc_type": "cpu",
+        "version": "0.24.1"
+      },
+      "extra": {
+        "feedstock-name": "torchvision",
+        "recipe-maintainers": [
+          "nehaljwani",
+          "hmaarrfk",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "torchvision-tests",
+        "version": "0.24.1"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "torchvision"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Use-system-giflib.patch",
+            "patches/0002-Force-nvjpeg-and-force-failure.patch",
+            "patches/0003-Skip-OSS-CI-in-conda-forge-as-well.patch",
+            "patches/0004-Allow-different-CUDA-minor-versions.patch"
+          ],
+          "sha256": "071da2078600bfec4886efab77358c9329abfedcf1488b05879b556cb9b84ba7",
+          "url": "https://github.com/pytorch/vision/archive/refs/tags/v0.24.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "test/",
+              "references/",
+              "pytest.ini"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "requests",
+              "av",
+              "expecttest",
+              "scipy",
+              "pytest-mock",
+              "pytest-socket",
+              "pycocotools"
+            ]
+          },
+          "script": "pytest --disable-socket --verbose -k \"not (${{ tests_to_skip }})\" --durations=50 test/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

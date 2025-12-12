@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-cli/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastapi-cli": {
+          "build_string": "pyhcf101f3_1",
+          "name": "fastapi-cli",
+          "version": "0.0.16"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:14.562316799Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/tiangolo/fastapi-cli",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Run and manage FastAPI apps from the command line with FastAPI CLI. \ud83d\ude80"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "fastapi = fastapi_cli.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "name": "fastapi-cli",
+        "version": "0.0.16"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "fastapi-cli",
+        "version": "0.0.16"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pdm-backend",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "rich-toolkit >=0.14.8",
+          "tomli >=2.0.0",
+          "typer >=0.15.1",
+          "uvicorn-standard >=0.15.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e8a2a1ecf7a4e062e3b2eec63ae34387d1e142d4849181d936b23c4bdfe29073",
+          "url": "https://pypi.org/packages/source/f/fastapi-cli/fastapi_cli-0.0.16.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastapi_cli"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "fastapi",
+              "python 3.10.*"
+            ]
+          },
+          "script": "fastapi --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

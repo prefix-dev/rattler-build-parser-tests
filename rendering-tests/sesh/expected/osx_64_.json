@@ -1,0 +1,120 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sesh",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sesh/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sesh/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sesh/work"
+      },
+      "hash": {
+        "hash": "033bf6c"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sesh": {
+          "build_string": "h033bf6c_0",
+          "name": "sesh",
+          "version": "2.19.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:41.155357866Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sesh is a CLI that helps you create and manage tmux sessions quickly and easily using zoxide.",
+        "homepage": "https://github.com/joshmedeski/sesh.git",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "summary": "Smart session manager for the terminal"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go build -ldflags \"-s -w\" -o $PREFIX/bin/",
+          "go-licenses save . --save_path=\"./license-files/\""
+        ],
+        "string": "h033bf6c_0"
+      },
+      "context": {
+        "version": "2.19.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "joshmedeski",
+          "papanikos"
+        ]
+      },
+      "package": {
+        "name": "sesh",
+        "version": "2.19.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "go-licenses"
+        ],
+        "run": [
+          "tmux",
+          "zoxide"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "032032a79e65bafc24c6e4752100caae645b0771b2f1ef35d1c4a97079ac952a",
+          "url": "https://github.com/joshmedeski/sesh/archive/v2.19.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "sesh --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

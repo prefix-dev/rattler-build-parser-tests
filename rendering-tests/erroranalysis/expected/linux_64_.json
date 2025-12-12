@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_erroranalysis",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_erroranalysis/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_erroranalysis/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_erroranalysis/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "erroranalysis": {
+          "build_string": "pyhe01879c_1",
+          "name": "erroranalysis",
+          "version": "0.5.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:18.712557013Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "**Responsible AI Toolbox**: `erroranalysis`\n\nResponsible AI is an approach to assessing, developing, and deploying AI systems in a safe,\ntrustworthy, and ethical manner, and take responsible decisions and actions.\n\nResponsible AI Toolbox is a suite of tools providing a collection of model and data exploration\nand assessment user interfaces and libraries that enable a better understanding of AI systems.\nThese interfaces and libraries empower developers and stakeholders of AI systems to develop and\nmonitor AI more responsibly, and take better data-driven actions.\n\n- `erroranalysis` is one of the tools of RAI Toolbox.\n\nPyPI: [https://pypi.org/project/erroranalysis/](https://pypi.org/project/erroranalysis/)",
+        "documentation": "https://responsibleaitoolbox.ai/",
+        "homepage": "https://github.com/microsoft/responsible-ai-widgets",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/microsoft/responsible-ai-toolbox",
+        "summary": "Core error analysis APIs"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": [
+          "cp -R ${{ RECIPE_DIR }}/requirements-object-detection.txt ${{ SRC_DIR }}/requirements-object-detection.txt",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "erroranalysis",
+        "version": "0.5.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "janjagusch",
+          "bgalvao",
+          "sugatoray"
+        ]
+      },
+      "package": {
+        "name": "erroranalysis",
+        "version": "0.5.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "numpy >=1.17.2",
+          "pandas >=0.25.1,<2.0.0",
+          "scipy >=1.4.1",
+          "scikit-learn >=0.22.1",
+          "lightgbm >=2.0.11",
+          "raiutils >=0.4.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "bdc4f37c91befeac1248ea7fc7d2aca9e4d5a3830c8ff4f34d43908f2dd37c61",
+          "url": "https://pypi.org/packages/source/e/erroranalysis/erroranalysis-0.5.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "erroranalysis"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9.*"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

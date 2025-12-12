@@ -1,0 +1,38 @@
+context:
+  version: "1.6.1"
+
+package:
+  name: dxfuse
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dnanexus/dxfuse/archive/v${{ version }}.tar.gz
+  sha256: 13ed52253c687d296879f574f2776af4e1f05c2b0e09aac0028622d1db9af7d7
+
+build:
+  number: 1
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('go-cgo') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+
+tests:
+  - script:
+      - dxfuse --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: FUSE filesystem for the DNAnexus storage system
+  homepage: https://github.com/dnanexus/dxfuse
+  repository: https://github.com/dnanexus/dxfuse
+
+extra:
+  recipe-maintainers:
+    - danielnachun

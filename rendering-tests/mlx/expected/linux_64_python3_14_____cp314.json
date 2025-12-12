@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx/work"
+      },
+      "hash": {
+        "hash": "b9cad09",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mlx": {
+          "build_string": "py314hb9cad09_0",
+          "name": "mlx",
+          "version": "0.30.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:12.362735321Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "python": "3.14.* *_cp314",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MLX is an array framework for machine learning on Apple silicon, brought to you by Apple machine learning research.",
+        "documentation": "https://github.com/ml-explore/mlx",
+        "homepage": "https://github.com/ml-explore/mlx",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://ml-explore.github.io/mlx/build/html/index.html",
+        "summary": "An array framework for Apple silicon"
+      },
+      "build": {
+        "number": 0,
+        "string": "py314hb9cad09_0"
+      },
+      "context": {
+        "name": "mlx",
+        "version": "0.30.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy",
+          "ngam"
+        ]
+      },
+      "package": {
+        "name": "mlx",
+        "version": "0.30.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake >=3.24",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "nanobind",
+          "setuptools >=42",
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Omit-visionOS-from-sources.patch"
+          ],
+          "sha256": "d36ea81788bdce79984e188dadb906d93688e3fb798145c393697056a05ed258",
+          "url": "https://github.com/ml-explore/mlx/archive/v0.30.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mlx",
+              "mlx.core"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "python/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "numpy"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

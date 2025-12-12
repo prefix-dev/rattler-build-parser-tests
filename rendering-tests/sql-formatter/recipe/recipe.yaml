@@ -1,0 +1,40 @@
+context:
+  version: "15.6.11"
+
+package:
+  name: sql-formatter
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/sql-formatter/-/sql-formatter-${{ version }}.tgz
+  sha256: 3595a27881b71df32bcfbfc507a074804cc1b763adf256111d953f356e2452d8
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - sql-formatter --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A whitespace formatter for different query languages
+  homepage: https://github.com/sql-formatter-org/sql-formatter
+  repository: https://github.com/sql-formatter-org/sql-formatter
+
+extra:
+  recipe-maintainers:
+    - danielnachun

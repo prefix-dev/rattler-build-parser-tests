@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-gentypes",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-gentypes/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-gentypes/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-gentypes/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jsonschema-gentypes": {
+          "build_string": "pyhcf101f3_0",
+          "name": "jsonschema-gentypes",
+          "version": "2.13.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:16.734847043Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/sbrunner/jsonschema-gentypes",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "src/LICENSE"
+        ],
+        "summary": "Tool to generate Python types based on TypedDict from a JSON Schema"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "jsonschema-gentypes = jsonschema_gentypes.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install jsonschema-gentypes -vv --no-deps --find-links=. --no-index --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "2.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jsonschema-gentypes",
+        "version": "2.13.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "setuptools",
+          "python 3.10.*"
+        ],
+        "run": [
+          "jsonschema",
+          "python >=3.10",
+          "pyyaml",
+          "referencing",
+          "requests",
+          "typing_extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "file_name": "jsonschema_gentypes-2.13.0-py3-none-any.whl",
+          "sha256": "0e9e9d82a273911e1bb4cab374699119f6a53c984e41623e773eba83e36076be",
+          "url": "https://pypi.org/packages/py3/j/jsonschema-gentypes/jsonschema_gentypes-2.13.0-py3-none-any.whl"
+        },
+        {
+          "sha256": "e8700160f27f6047055f44062e67e1fc65ec282e2d41e8c758830746fd30ad3b",
+          "target_directory": "src",
+          "url": "https://github.com/camptocamp/jsonschema-gentypes/archive/refs/tags/2.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jsonschema_gentypes"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "pytest",
+              "python 3.10.*",
+              "pyyaml",
+              "requests"
+            ]
+          },
+          "script": [
+            "pip check",
+            "jsonschema-gentypes --help",
+            "cd src",
+            "coverage run --source=jsonschema_gentypes -m pytest -vv --color=yes --tb=long -k \"not (test_name or test_validate_bad_config)\"",
+            "coverage report --show-missing --skip-covered --fail-under=70"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: servicex-analysis-utils
+  version: "1.2.1"
+  python_min: "3.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/servicex_analysis_utils-${{ version }}.tar.gz
+  sha256: 03e8ad4c15a39b0dbc8694e4fc2b5c037381e5d5f55e4d5fb6d76bc852b0b37f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - servicex
+    - uproot >=5.0
+    - awkward >=2.6
+    - dask-awkward >=2024.12.2
+
+tests:
+  - python:
+      imports:
+        - servicex_analysis_utils
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: servicex-analysis-utils
+  description: Analysis tools to be used with the ServiceX Client
+  homepage: https://github.com/ssl-hep/ServiceX_analysis_utils
+  repository: https://github.com/ssl-hep/ServiceX_analysis_utils
+
+extra:
+  recipe-maintainers:
+    - ArturU043
+    - matthewfeickert

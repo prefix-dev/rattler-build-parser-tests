@@ -1,0 +1,40 @@
+context:
+  name: httptap
+  version: "0.1.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/monasticacademy/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: dc6b99f20b1ab33f6801050a2367529a235c2b1a654d24f908b1f1bf62a36457
+
+build:
+  number: 0
+  skip:
+    - win
+    - osx
+
+requirements:
+  build:
+    - ${{ compiler("go-cgo") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - go-licenses
+
+tests:
+  - script:
+      - httptap --help
+
+about:
+  homepage: https://github.com/monasticacademy/httptap
+  summary: View HTTP/HTTPS requests made by any Linux program
+  license: MIT
+  license_file:
+    - LICENSE
+    - library_licenses
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

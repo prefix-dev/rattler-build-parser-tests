@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: readlif
+  version: 0.6.6
+  python_min: 3.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/readlif-${{ version }}.tar.gz
+  sha256: 54620db7d9532afbff7fa2ba5f05d96b5b79d351213b91edd88d15145c7a6b4b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - poetry-dynamic-versioning >=1.0.0,<2.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - beautifulsoup4 >=4.12.3
+    - pillow >=7.2.0
+    - numpy >=2.0.0
+
+tests:
+  - python:
+      imports:
+        - readlif
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/Arcadia-Science/readlif
+  summary: Fast Leica Image Format (LIF) file reader
+  license: GPL-3.0-only
+  license_file: LICENSE
+  repository: https://github.com/Arcadia-Science/readlif
+  documentation: https://readlif.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - keithchev
+    - nimne

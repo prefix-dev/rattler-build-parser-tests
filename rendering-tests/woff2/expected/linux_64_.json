@@ -1,0 +1,175 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_woff2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_woff2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_woff2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_woff2/work"
+      },
+      "hash": {
+        "hash": "6fa0586"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "woff2": {
+          "build_string": "h6fa0586_3",
+          "name": "woff2",
+          "version": "1.0.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:19:55.606571418Z",
+      "variant": {
+        "brotli": "1.2",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Web Open Font Format (WOFF) 2.0 is an update to the existing WOFF \n1.0 with improved compression that is achieved by using the \nBrotli algorithm. The primary purpose of the WOFF2 format is to \nefficiently package fonts linked to Web documents by means of CSS \n@font-face rules.",
+        "homepage": "https://github.com/google/woff2",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Web Open Font Format 2.0 library"
+      },
+      "build": {
+        "number": 3,
+        "script": [
+          "cmake ${CMAKE_ARGS} -S . -B build -GNinja",
+          "cmake --build build",
+          "cmake --install build"
+        ],
+        "string": "h6fa0586_3"
+      },
+      "context": {
+        "version": "1.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "haecker-felix",
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "woff2",
+        "version": "1.0.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake <=3.31.6",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "brotli"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "exact": true,
+                "name": "woff2"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/001-include-cstdint.patch",
+            "patches/002-install-binaries.patch"
+          ],
+          "sha256": "add272bb09e6384a4833ffca4896350fdb16e0ca22df68c0384773c67a175594",
+          "url": "https://github.com/google/woff2/archive/refs/tags/v1.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "bin/woff2_compress",
+              "bin/woff2_decompress",
+              "bin/woff2_info"
+            ],
+            "include": [
+              "woff2/decode.h",
+              "woff2/encode.h",
+              "woff2/output.h"
+            ],
+            "lib": [
+              "libwoff2common",
+              "libwoff2dec",
+              "libwoff2enc"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "file",
+              "curl"
+            ]
+          },
+          "script": [
+            "curl -LO https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxP.ttf",
+            "curl -LO https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2",
+            "woff2_compress KFOmCnqEu92Fr1Mu4mxP.ttf",
+            "woff2_info KFOmCnqEu92Fr1Mu4mxP.woff2 | grep \"WOFF2Header\"",
+            "woff2_decompress KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2",
+            "file --brief KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.ttf | grep -i \"TrueType font data\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

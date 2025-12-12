@@ -1,0 +1,88 @@
+schema_version: 1
+
+context:
+  name: fastjet
+  version: "3.5.1.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastjet-${{ version }}.tar.gz
+  sha256: 743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d
+
+build:
+  number: 0
+  script:
+    - ${{ PYTHON }} -m pip install . -vv -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON" -C"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON" -C"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON"
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+    - cmake
+    - if: unix
+      then: make
+  host:
+    - fastjet-cxx-python
+    - fastjet-contrib
+    - pip
+    - scikit-build-core
+    - setuptools_scm
+    - pybind11
+    - python
+    - if: not (win and arm64)
+      then: cgal-cpp
+  run:
+    - awkward >=2
+    - numpy >=1.13.3
+    - python
+    - vector
+    - fastjet-cxx-python
+    - fastjet-contrib
+
+tests:
+  - package_contents:
+      files:
+        - if: win
+          then: Lib/site-packages/fastjet/_ext.*
+          else: lib/python*/site-packages/fastjet/_ext.*
+      site_packages:
+        - fastjet
+        - fastjet._generalevent
+        - fastjet._multievent
+        - fastjet._pyjet
+        - fastjet._singleevent
+        - fastjet._swig
+        - fastjet._utils
+        - fastjet.version
+  - python:
+      imports:
+        - fastjet
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - pip list
+
+about:
+  summary: Official FastJet bindings to Python and Awkward Array.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/fastjet
+
+extra:
+  recipe-maintainers:
+    - kratsg
+    - lgray
+    - jpivarski
+    - chrispap95
+    - jmduarte
+    - matthewfeickert

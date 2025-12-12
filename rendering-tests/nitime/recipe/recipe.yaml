@@ -1,0 +1,92 @@
+schema_version: 1
+
+context:
+  name: nitime
+  version: "0.12.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 12cbf488b0655dc05aa18a0ca5982de970302604e461fc92e87ebd9b7539b6ff
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    version_independent: ${{ match(abi, '==abi3') }}
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python ${{ python_min }}.*
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+    - setuptools_scm
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - if: match(abi, '==abi3')
+      then: python-abi3
+    - python ${{ python_min }}.*
+    - cython
+    - numpy
+    - setuptools_scm
+    - setuptools
+    - pip
+  run:
+    - python
+    - matplotlib-base
+    - networkx
+    - nibabel
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - nitime
+        - nitime.algorithms
+        - nitime._utils
+  - requirements:
+      run:
+        - pip
+        - if: match(abi, '==abi3')
+          then: abi3audit
+    script:
+      - pip check
+      - if: "not win and match(abi, '==abi3')"
+        then: abi3audit site-packages/nitime/_utils.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
+      - if: win and match(abi, '==abi3')
+        then: abi3audit site-packages/nitime/_utils.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
+  # Pytest with build version
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+    script:
+      - pytest --pyargs nitime
+  # For ABI3, pytest with latest version
+  - if: match(abi, '==abi3')
+    then:
+      requirements:
+        run:
+          - python
+          - pytest
+      script:
+        - pytest --pyargs nitime
+
+about:
+  summary: "Nitime: timeseries analysis for neuroscience data"
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: http://nipy.org/nitime
+
+extra:
+  recipe-maintainers:
+    - arokem
+    - ocefpaf
+    - effigies

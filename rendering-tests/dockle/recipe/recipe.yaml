@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: dockle
+  version: 0.4.15
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/goodwithtech/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: d0c1013b8c618ec47fd766303ba6b975b118902a52d352484852206b7fdf2c40
+  - url: https://raw.githubusercontent.com/goodwithtech/deckoder/0910c80aae66d5b229e32e45fa916d45a326bfeb/LICENSE
+    sha256: 8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef
+    file_name: LICENSE-goodwithtech-deckoder
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+
+tests:
+  - script:
+      - dockle --version | grep ${{ version }} | grep -v grep
+
+about:
+  summary: Container Image Linter for Security, Helping build the Best-Practice Docker Image, Easy to start
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+    - LICENSE-goodwithtech-deckoder
+  homepage: https://containers.goodwith.tech
+
+extra:
+  recipe-maintainers:
+    - janjagusch

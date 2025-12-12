@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: httpdbg
+  version: "2.1.5"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/httpdbg-${{ version }}.tar.gz
+  sha256: 36b19cf80669f419759a5ecfd07c3076dc5111ef40c3b92cb78f92e869fbf098
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pyhttpdbg = httpdbg.__main__:pyhttpdbg_entry_point
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - httpdbg
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - pyhttpdbg --help
+
+about:
+  summary: A tool for Python developers to easily debug the HTTP(S) client requests in a Python program.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/cle-b/httpdbg/
+
+extra:
+  recipe-maintainers:
+    - thewchan

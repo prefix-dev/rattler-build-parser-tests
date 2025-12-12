@@ -1,0 +1,43 @@
+context:
+  name: django-organizations
+  version: 2.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  # NOTE: the source pypi archive is broken (no src/ folder in it)
+  url: https://github.com/bennylope/django-organizations/archive/refs/tags/${{ version }}.zip
+  sha256: ee0c29818910e210cefd13506eddfb93c5886e2dd406d921f4cb846ce98d2f0e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - django >=3.2
+    - django-extensions >=2.0.8
+
+tests:
+  - python:
+      imports:
+        - organizations
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: Multi-user accounts for Django projects
+  homepage: https://github.com/bennylope/django-organizations
+
+extra:
+  recipe-maintainers:
+    - hadim

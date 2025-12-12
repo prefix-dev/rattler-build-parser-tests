@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: emval
+  version: "0.1.12"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/emval-${{ version }}.tar.gz
+  sha256: b80e37ec8df34d3ec39ad15251c7064b3d39d0c9da05132a17840e7ad02f30b0
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.7,<2.0
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - emval
+      pip_check: true
+
+about:
+  summary: Blazingly fast email validator.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/bnkc/emval
+
+extra:
+  recipe-maintainers:
+    - thewchan

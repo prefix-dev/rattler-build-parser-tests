@@ -1,0 +1,142 @@
+schema_version: 1
+
+context:
+  component_name: launch
+  repo_name: ${{ "gz-" ~ component_name }}
+  version: 9.0.0
+  major_version: "9"
+  name: ${{ repo_name }}
+  component_version: ${{ component_name ~ major_version }}
+  cxx_name: ${{ "lib" ~ name }}
+
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/gazebosim/${{ repo_name }}/archive/${{ repo_name }}${{ major_version }}_${{ version }}.tar.gz
+    sha256: 4f1bd0ac59cf9da897307ceaf781eefe498afb7d3175dc72b9689e6fca727ad6
+    patches:
+      - unvendor_backward.patch
+
+build:
+  skip:
+    - ppc64le
+  number: 1
+
+outputs:
+  - package:
+      name: ${{ cxx_name }}
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ninja
+        - cmake
+        - pkg-config
+      host:
+        - libgz-cmake
+        - libgz-common
+        - libgz-plugin
+        - libgz-tools
+        - libgz-transport
+        - libgz-msgs
+        - libgz-math
+        - libgz-gui
+        - libgz-sim
+        - backward-cpp
+        - tinyxml2
+        - qt6-main
+        - if: linux
+          then:
+            - libwebsockets
+            - xorg-libxfixes
+            - libgl-devel
+            - elfutils
+        - libabseil
+        - libprotobuf
+        - libsdformat
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+    tests:
+      - package_contents:
+          include:
+            - gz/${{ component_version }}/gz/${{ component_name }}.hh
+          lib:
+            - gz-${{ component_name }}
+      # Commented as a workaround for https://github.com/conda-forge/gz-sim-feedstock/issues/109
+      #- script:
+      #    - cmake-package-check gz-${{ component_name }} --targets gz-${{ component_name }}::gz-${{ component_name }}
+      #  requirements:
+      #    run:
+      #      - cmake-package-check
+      #      - ${{ compiler('c') }}
+      #      - ${{ compiler('cxx') }}
+
+  - package:
+      name: ${{ name }}
+    requirements:
+      run:
+        - ${{ pin_subpackage(cxx_name, exact=True) }}
+      run_exports:
+        - ${{ pin_subpackage(cxx_name, upper_bound='x') }}
+    tests:
+      - script:
+          - echo "Metapackage, no test needed"
+      # comment out for https://github.com/conda-forge/gz-sim-feedstock/issues/109
+      #    - cmake-package-check gz-${{ component_name }} --targets gz-${{ component_name }}::gz-${{ component_name }}
+      #  requirements:
+      #    run:
+      #      - cmake-package-check
+      #      - ${{ compiler('c') }}
+      #      - ${{ compiler('cxx') }}
+
+  # The gz-jetty output has different versioning from the other outputs of the feedstocks
+  - package:
+      name: gz-jetty
+      version: 1.0.0
+    build:
+      number: 1
+    requirements:
+      # See https://github.com/gazebo-tooling/gazebodistro/blob/680c7f921d7c05ea89742cf9f6e3c6e669ada291/collection-jetty.yaml
+      run:
+        - gz-cmake 5.*
+        - gz-common 7.*
+        - gz-fuel-tools 11.*
+        - gz-sim 10.*
+        - gz-gui 10.*
+        - gz-launch 9.*
+        - gz-math 9.*
+        - gz-msgs 12.*
+        - gz-physics 9.*
+        - gz-plugin 4.*
+        - gz-rendering 10.*
+        - gz-sensors 10.*
+        - gz-tools 2.*
+        - gz-transport 15.*
+        - gz-utils 4.*
+        - sdformat 16.*
+    tests:
+      - script:
+          - echo "Metapackage, no test needed"
+
+about:
+  homepage: https://github.com/gazebosim/${{ repo_name }}
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Run and manage programs and plugins.
+
+extra:
+  feedstock-name: ${{ repo_name }}
+  recipe-maintainers:
+    - wolfv
+    - traversaro
+    - Tobias-Fischer
+    - j-rivero

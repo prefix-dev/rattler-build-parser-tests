@@ -1,0 +1,134 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-auditable",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-auditable/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-auditable/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-auditable/work"
+      },
+      "hash": {
+        "hash": "069e38c"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cargo-auditable": {
+          "build_string": "h069e38c_0",
+          "name": "cargo-auditable",
+          "version": "0.7.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:21:01.053200795Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/rust-secure-code/cargo-auditable",
+        "homepage": "https://github.com/rust-secure-code/cargo-auditable",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-MIT",
+          "LICENSE-APACHE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/rust-secure-code/cargo-auditable",
+        "summary": "Make production Rust binaries auditable"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo install --no-track --locked --root ${PREFIX} --path cargo-auditable",
+            "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "h069e38c_0"
+      },
+      "context": {
+        "version": "0.7.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "cargo-auditable",
+        "version": "0.7.2"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-aarch64",
+          "sysroot_linux-aarch64 2.17.*",
+          "gcc_linux-aarch64 14.*",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "61d780d55dc35e4ab9c9b6dce744a35a03754c128b3a95aeb76f83c397807fbd",
+          "url": "https://github.com/rust-secure-code/cargo-auditable/archive/refs/tags/v0.7.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "rust_linux-aarch64"
+            ]
+          },
+          "script": "cargo auditable --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

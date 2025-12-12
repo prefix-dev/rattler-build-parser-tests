@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: introspection
+  version: "1.11.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/introspection-${{ version }}.tar.gz
+  sha256: 9bbabf01df20400ded8cb5385c448eae79c8a1a94a5f7882851bf2e8243bc4d8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.2,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - ordered-set
+    - sentinel
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - introspection
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: New and improved introspection functions
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Aran-Fey/introspection
+  documentation: https://aran-fey.github.io/introspection/build/html/index.html
+
+extra:
+  recipe-maintainers:
+    - thewchan

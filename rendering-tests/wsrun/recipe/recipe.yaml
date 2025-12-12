@@ -1,0 +1,39 @@
+context:
+  version: "5.2.4"
+
+package:
+  name: wsrun
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/wsrun/-/wsrun-${{ version }}.tgz
+  sha256: 0be63e61a20795da815b95dd29fd35b1d1599d933ab44eb66169887f6763ab27
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - wsrun --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Command runner for Yarn workspaces. Dependency aware.
+  homepage: https://github.com/hfour/wsrun
+  repository: https://github.com/hfour/wsrun
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos-notebook",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos-notebook/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos-notebook/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos-notebook/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sos-notebook": {
+          "build_string": "pyhcf101f3_3",
+          "name": "sos-notebook",
+          "version": "0.24.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:19:59.632669798Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://vatlab.github.io/sos-docs/",
+        "homepage": "https://github.com/vatlab/SOS",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/vatlab/sos-notebook",
+        "summary": "Script of Scripts (SoS): an interactive, cross-platform, and cross-language workflow system for reproducible data analysis"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 3,
+        "script": [
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv",
+          "${{ PYTHON }} -m sos_notebook.install --sys-prefix"
+        ],
+        "string": "pyhcf101f3_3"
+      },
+      "context": {
+        "version": "0.24.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "BoPeng",
+          "gaow",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "sos-notebook",
+        "version": "0.24.4"
+      },
+      "requirements": {
+        "host": [
+          "ipython",
+          "notebook >=5.0.0",
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "jupyter_contrib_core"
+        ],
+        "run": [
+          "ipykernel",
+          "ipython",
+          "markdown",
+          "nbconvert >=6.0.1",
+          "nbformat",
+          "notebook >=5.0.0",
+          "graphviz",
+          "python-graphviz",
+          "pillow",
+          "pandas",
+          "prometheus_client",
+          "prompt_toolkit",
+          "python >=3.10",
+          "jupyter_client >=7.0.2",
+          "jinja2",
+          "sos >=0.19.2",
+          "tabulate"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "85785be68915585f5405080d780e0cfee5d50889d414c74c2f851c73f1d0fe15",
+          "url": "https://pypi.org/packages/source/s/sos-notebook/sos-notebook-0.24.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sos_notebook"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "jupyter kernelspec list | grep -w $PREFIX/share/jupyter/kernels/sos"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

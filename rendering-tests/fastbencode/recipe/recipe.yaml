@@ -1,0 +1,58 @@
+context:
+  version: "0.3.7"
+
+package:
+  name: fastbencode
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/fastbencode/fastbencode-${{ version }}.tar.gz
+  sha256: e96fd955d6d5980a913730ecbf838ca2863a6420f0d7c8d189087caa83393f21
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - cython
+    - pip
+    - python
+    - setuptools
+    - setuptools-rust
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - fastbencode
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - pip check
+
+about:
+  license: GPL-2.0-or-later
+  license_file:
+    - COPYING
+    - THIRDPARTY.yml
+  summary: Implementation of bencode with optional fast C extensions
+  homepage: https://github.com/breezy-team/fastbencode
+
+extra:
+  recipe-maintainers:
+    - danielnachun

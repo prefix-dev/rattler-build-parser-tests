@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.12.10b0"
+  python_check_max: "3.14"
+
+package:
+  name: mplfinance
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/m/mplfinance/mplfinance-${{ version }}.tar.gz
+  sha256: 7da150b5851aa5119ad6e06b55e48338b619bb6773f1b85df5de67a5ffd917bf
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - matplotlib-base
+    - pandas
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - mplfinance
+        - mplfinance._styledata
+        - mplfinance._arg_validators
+        - mplfinance._helpers
+        - mplfinance._kwarg_help
+        - mplfinance._mpf_warnings
+        - mplfinance._mplrcputils
+        - mplfinance._mplwraps
+        - mplfinance._panels
+        - mplfinance._styles
+        - mplfinance._utils
+        - mplfinance._version
+        - mplfinance._widths
+        - mplfinance.original_flavor
+        - mplfinance.plotting
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+
+about:
+  license: LicenseRef-BSD-like
+  license_file: LICENSE
+  summary: Utilities for the visualization, and visual analysis, of financial data
+  homepage: https://pypi.org/project/mplfinance
+  repository: http://github.com/matplotlib/mplfinance
+
+extra:
+  recipe-maintainers:
+    - DanielGoldfarb
+    - bollwyvl

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 0.1.8
+
+package:
+  name: uncalled
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/u/uncalled/uncalled-${{ version }}.tar.gz
+  sha256: b74ef3aa63982f5ddedae2b1670e5a72d2cd1cd9d04f9a4896063771ae6f3ddb
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - uncalled = uncalled.__main__:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - setuptools >=61.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - uncalled
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - uncalled --help
+
+about:
+  summary: Find unused functions in Python projects
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/elazarg/uncalled
+
+extra:
+  recipe-maintainers:
+    - danielnachun

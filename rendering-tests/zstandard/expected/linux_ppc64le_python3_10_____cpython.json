@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstandard",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstandard/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstandard/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstandard/work"
+      },
+      "hash": {
+        "hash": "5fc27f1",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zstandard": {
+          "build_string": "py310h5fc27f1_1",
+          "name": "zstandard",
+          "version": "0.25.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-12-12T16:20:45.516041072Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This project provides Python bindings for interfacing with the\nZstandard compression library. A C extension and CFFI interface are\nprovided.",
+        "documentation": "https://github.com/indygreg/python-zstandard/blob/master/README.rst#python-zstandard",
+        "homepage": "https://github.com/indygreg/python-zstandard",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "zstd/LICENSE"
+        ],
+        "repository": "https://github.com/indygreg/python-zstandard",
+        "summary": "Zstandard bindings for Python"
+      },
+      "build": {
+        "number": 1,
+        "string": "py310h5fc27f1_1"
+      },
+      "context": {
+        "name": "zstandard",
+        "version": "0.25.0",
+        "zstd_version": "1.5.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rmax",
+          "xhochy",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "zstandard",
+        "version": "0.25.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "cffi",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cffi >=1.11",
+          "zstd 1.5.7.*",
+          "packaging"
+        ],
+        "run": [
+          "python",
+          "cffi >=1.11",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "zstd",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7713e1179d162cf5c7906da876ec2ccb9c3a9dcbdffef0cc7f70c3667a205f0b",
+          "url": "https://pypi.org/packages/source/z/zstandard/zstandard-0.25.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zstandard"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,52 @@
+context:
+  version: "0.1.6"
+
+package:
+  name: dyno
+  version: ${{ version }}
+
+source:
+  url: https://github.com/EconForge/dyno.py/archive/v${{ version }}.tar.gz
+  sha256: 19f465f1f92b290002abdc45ea5b6d6be3cdd21ed10f98233bda26b1781c3809
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . --no-deps -vv
+
+requirements:
+
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+
+  run:
+    - python >=${{ python_min }}
+    - dolang
+    - numpy
+    - pandas
+    - interegular
+    - sympy
+    - altair
+    - rich
+    - typing_extensions
+    - plotly
+    - scipy
+    - dynare-preprocessor-pylib
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - dyno
+        
+about:
+  homepage: https://github.com/EconForge/dyno.py
+  summary: A simple library for solving dynamic stochastic economic models.
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - albop

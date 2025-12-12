@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  python_min: 3.10
+  name: revel
+  version: 0.9.2.post1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/revel-${{ version }}.tar.gz
+  sha256: 2ad9763aadb71abac80153ea8c7463f425b69f3b9517171825d6e37a4368ca48
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - blessed >=1.20.0
+    - readchar >=4.1.0
+    - colorama >=0.4.6
+    - typing-extensions >=4.12.2
+
+tests:
+  - python:
+      imports:
+        - revel
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Effortlessly spice up your terminal apps using colors, progressbars & more
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/mad-moo/revel
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: libhdbpp
+  version: 2.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.com/tango-controls/hdbpp/libhdbpp/-/archive/${{ version }}/libhdbpp-${{ version }}.tar.gz
+  sha256: 0b43f8ca9c57a8aff23fcdf6b8180f266b8968daf7fbd12bbeb1f45e27d4f82c
+  patches:
+    - find-tango.patch
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - cmake
+    - make
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - pkg-config
+  host:
+    - cppzmq
+    - cpptango
+    - omniorb-libs
+  run_exports:
+    - ${{ pin_subpackage('libhdbpp', upper_bound='x.x') }}
+  # Library doesn't link against cpptango (only headers used)
+  ignore_run_exports:
+    from_package:
+      - cpptango
+
+tests:
+  - package_contents:
+      files:
+        - lib/cmake/libhdbpp/libhdbppConfig.cmake
+      lib:
+        - hdb++
+      include:
+        - hdb++/AbstractDB.h
+
+about:
+  license: LGPL-3.0-or-later
+  license_file: LICENSE
+  summary: Interface library for HDB++ archiving system.
+  description: |
+    HDB++ is an archiving system for Tango-Controls.
+    libhdbpp provides an abstract means to archive data events to a Cassandra database,
+    MySQL database, or potentially other database backends.
+  homepage: https://www.tango-controls.org
+  repository: https://gitlab.com/tango-controls/hdbpp/libhdbpp
+  documentation: https://tango-controls.readthedocs.io/en/latest/Explanation/archiving/hdbpp.html
+
+extra:
+  recipe-maintainers:
+    - beenje

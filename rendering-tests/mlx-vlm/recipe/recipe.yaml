@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: mlx-vlm
+  version: "0.3.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mlx_vlm-${{ version }}.tar.gz
+  sha256: ae5050d0b1a051a29099c3a65efdbf6874bb497e8465734ac1992b6b179135b4
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - sed -i 's/opencv-python>=4.12.0.88/opencv-python>=4.12/g' requirements.txt
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - sed
+  run:
+    - python >=${{ python_min }}
+    - mlx >=0.26.0
+    - datasets >=2.19.1
+    - tqdm >=4.66.2
+    - transformers >=4.53.0
+    - pillow >=10.3.0
+    - requests >=2.31.0
+    - mlx-lm >=0.23.0
+    - fastapi >=0.95.1
+    - pysoundfile >=0.13.1
+    - scipy >=1.15.3
+    - py-opencv >=4.12.0
+    - numpy
+    - uvicorn
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - mlx_vlm
+
+about:
+  summary: Vision LLMs on Apple silicon with MLX and the Hugging Face Hub
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Blaizzy/mlx-vlm
+
+extra:
+  recipe-maintainers:
+    - xhochy

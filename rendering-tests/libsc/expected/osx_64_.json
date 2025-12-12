@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsc/work"
+      },
+      "hash": {
+        "hash": "4b1ac0d"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsc": {
+          "build_string": "h4b1ac0d_1",
+          "name": "libsc",
+          "version": "2.8.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:21.392983058Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The SC Library provides support for parallel scientific applications.\nIt consists of basic helper functionality such as logging, array and hash data structures, parallel statistics, and more.\nlibsc also integrates the third-party libraries zlib and lua.",
+        "homepage": "https://www.p4est.org/",
+        "license": "LGPL-2.1-only",
+        "license_family": "LGPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/cburstedde/libsc",
+        "summary": "The \"sc\" auxiliary library"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cmake -B build $CMAKE_ARGS -DBUILD_SHARED_LIBS=ON -DSC_ENABLE_MPI=ON -DSC_HAVE_JSON=ON -DSC_USE_INTERNAL_JSON=OFF -DSC_BUILD_TESTING=ON",
+          "cmake --build build --parallel",
+          "cmake --install build",
+          "cd build; ctest --output-on-failure"
+        ],
+        "string": "h4b1ac0d_1"
+      },
+      "context": {
+        "version": "2.8.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "libsc",
+        "version": "2.8.7"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make",
+          "pkg-config",
+          "jansson"
+        ],
+        "host": [
+          "openmpi-mpicc",
+          "zlib",
+          "jansson"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libsc",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "96028b7e16917e90dd319e9f7bbb231280ff3e74ecfe2a5480b5ff94ae1428cd",
+          "url": "https://github.com/cburstedde/libsc/releases/download/v2.8.7/libsc-2.8.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "lib": [
+              "libsc"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

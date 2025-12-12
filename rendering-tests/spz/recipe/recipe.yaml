@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: "2.1.0"
+
+package:
+  name: spz
+  version: ${{ version }}
+
+source:
+  url: https://github.com/nianticlabs/spz/archive/v${{ version }}.tar.gz
+  sha256: 97bf4451b76c7fc428b7c3ed426edbc71c122e6b0b43623cdfcefabe850709e4
+  patches:
+    - ./patches/0001-hammer-CMAKE_CXX_STANDARD-to-17-for-all-targets.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+  host:
+    - zlib
+  run_exports:
+    - ${{ pin_subpackage('spz', upper_bound='x.x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -f ${PREFIX}/include/load-spz.h
+          - test -f ${PREFIX}/lib/libspz${SHLIB_EXT}
+      - if: win
+        then:
+          - if not exist %LIBRARY_BIN%\spz.dll exit 1
+          - if not exist %LIBRARY_INC%\load-spz.h exit 1
+          - if not exist %LIBRARY_LIB%\spz.lib exit 1
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: File format for 3D Gaussian splats.
+  homepage: https://github.com/nianticlabs/spz/
+
+extra:
+  recipe-maintainers:
+    - hobu

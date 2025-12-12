@@ -1,0 +1,39 @@
+context:
+  version: "1.3.7"
+
+package:
+  name: spr-rust
+  version: ${{ version }}
+
+source:
+  url: https://github.com/getcord/spr/archive/v${{ version }}.tar.gz
+  sha256: 6b48524abfecea16e0e7a131f0c44027375a80577cde43355f54928c4921ed6c
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - openssl
+
+tests:
+  - script:
+      - spr --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Submit pull requests for individual, amendable, rebaseable commits to GitHub
+  homepage: https://github.com/getcord/spr
+  repository: https://github.com/getcord/spr
+
+extra:
+  recipe-maintainers:
+    - danielnachun

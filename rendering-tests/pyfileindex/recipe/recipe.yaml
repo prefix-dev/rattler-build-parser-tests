@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: pyfileindex
+  version: 0.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyfileindex-${{ version }}.tar.gz
+  sha256: 8f5e7389954a6536c4acba12e18046c8ce4203035207c40e20620a14ed88e89f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+    - hatch-vcs
+    - numpy
+    - pandas
+  run:
+    - numpy >=1.23.5,<=2.3.5
+    - python >=${{ python_min }}
+    - pandas >=1.5.3,<=2.3.3
+tests:
+  - python:
+      imports:
+        - pyfileindex
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: pyfileindex - pythonic file system index
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyfileindex/pyfileindex
+
+extra:
+  recipe-maintainers:
+    - srmnitc
+    - pyiron-runner
+    - jan-janssen
+    - pmrv

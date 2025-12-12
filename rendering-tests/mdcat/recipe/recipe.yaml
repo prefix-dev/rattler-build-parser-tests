@@ -1,0 +1,40 @@
+context:
+  version: "2.7.1"
+
+package:
+  name: mdcat
+  version: ${{ version }}
+
+source:
+  url: https://github.com/swsnr/mdcat/archive/mdcat-${{ version }}.tar.gz
+  sha256: 460024d9795eb578be09ec2284af243627721151aa001aae6ffb5589380b2ba1
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - mdcat --help
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Show markdown documents on text terminals
+  homepage: https://github.com/swsnr/mdcat
+  repository: https://github.com/swsnr/mdcat
+
+extra:
+  recipe-maintainers:
+    - danielnachun

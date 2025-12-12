@@ -1,0 +1,39 @@
+context:
+  version: "19.0.6"
+
+package:
+  name: release-it
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/release-it/-/release-it-${{ version }}.tgz
+  sha256: 18aecf72a774f9cf7a09596792f32913dcb18f60ca23c6c6c3bd46dd76fe31bb
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - release-it --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Automate versioning and package publishing
+  homepage: https://github.com/release-it/release-it
+  repository: https://github.com/release-it/release-it
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,117 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.1.0"
+  python_check_max: "3.13"
+
+recipe:
+  name: pyodide-lock
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pyodide-lock/pyodide_lock-${{ version }}.tar.gz
+  sha256: 0163716ac4c7be462d7948ea4db7f824d934c1dfc609a8acb20369032c6716f3
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: pyodide-lock
+    build:
+      number: 0
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - hatch-vcs
+        - hatchling
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - pydantic >=2
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports: pyodide_lock
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pyodide-lock-with-wheel
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pyodide-lock", exact=True) }}
+        - packaging
+        - pkginfo
+    tests:
+      - python:
+          imports: pyodide_lock
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pyodide-lock-with-cli
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pyodide-lock", exact=True) }}
+        - typer-slim
+    tests:
+      - python:
+          imports: pyodide_lock.cli
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pyodide-lock-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pyodide-lock", exact=True) }}
+        - ${{ pin_subpackage("pyodide-lock-with-cli", exact=True) }}
+        - ${{ pin_subpackage("pyodide-lock-with-wheel", exact=True) }}
+    tests:
+      - python:
+          imports: pyodide_lock.cli
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          source:
+            - tests/
+        requirements:
+          run:
+            - coverage
+            - pytest
+            - python ${{ python_min }}.*
+            - python-build
+            - setuptools
+        script:
+          - coverage run --source=pyodide_lock --branch -m pytest -vv --color=yes -k "not test_base_relative_path"
+          - coverage report --show-missing --skip-covered --fail-under=92
+
+about:
+  summary: Tooling to manage the `pyodide-lock.json` file
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyodide/pyodide-lock
+
+extra:
+  feedstock-name: pyodide-lock
+  recipe-maintainers:
+    - bollwyvl

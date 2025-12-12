@@ -1,0 +1,183 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_colmap",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_colmap/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_colmap/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_colmap/work"
+      },
+      "hash": {
+        "hash": "a20addb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "colmap": {
+          "build_string": "cpu_ha20addb_0",
+          "name": "colmap",
+          "version": "3.13.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:40.050018020Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "vs2022",
+        "flann": "1.9.2",
+        "gflags": "2.2",
+        "glew": "2.2",
+        "glog": "0.7",
+        "libblas": "3.9.* *netlib",
+        "libboost_devel": "1.88",
+        "libcblas": "3.9.* *netlib",
+        "lz4_c": "1.10",
+        "metis": "5.1.0",
+        "qt_main": "5.15",
+        "sqlite": "3",
+        "suitesparse": "7",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://colmap.github.io/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING.txt",
+          "src/thirdparty/LSD/LICENSE",
+          "src/thirdparty/PoissonRecon/LICENSE",
+          "src/thirdparty/SiftGPU/LICENSE",
+          "src/thirdparty/VLFeat/LICENSE"
+        ],
+        "summary": "COLMAP is a general-purpose Structure-from-Motion (SfM) and Multi-View Stereo (MVS) pipeline with a graphical and command-line interface."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "cuda_compiler_version": "None",
+            "package_version": "3.13.0"
+          },
+          "file": "build"
+        },
+        "string": "cpu_ha20addb_0",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build_number": 0,
+        "cuda": "disabled",
+        "cuda_build_string": "cuda_None",
+        "cuda_version": "None",
+        "name": "colmap",
+        "string_prefix": "cpu_",
+        "version": "3.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "colmap",
+        "version": "3.13.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          "libblas",
+          "libcblas",
+          "libboost-devel",
+          "suitesparse",
+          "eigen",
+          "freeimage",
+          "glog",
+          "gflags",
+          "glew",
+          "cgal-cpp",
+          "ceres-solver",
+          "qt-main",
+          "git",
+          "flann",
+          "sqlite",
+          "lz4-c",
+          "metis"
+        ],
+        "run": [
+          "flann"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "colmap",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "98a8f8cf6358774be223239a9b034cc9d55bf66c43f54fc6ddea9128a1ee197a",
+          "url": "https://github.com/colmap/colmap/archive/3.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if exist %PREFIX%\\\\Library\\\\bin\\\\colmap.exe (exit 0) else (exit 1)",
+            "if exist %PREFIX%\\\\Library\\\\lib\\\\colmap_exe.lib (exit 0) else (exit 1)"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

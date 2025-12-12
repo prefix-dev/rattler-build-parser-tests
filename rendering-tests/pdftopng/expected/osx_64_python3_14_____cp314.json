@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pdftopng",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pdftopng/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pdftopng/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pdftopng/work"
+      },
+      "hash": {
+        "hash": "1c81d95",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pdftopng": {
+          "build_string": "py314h1c81d95_4",
+          "name": "pdftopng",
+          "version": "0.2.4"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:03.397187284Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "poppler": "25.12",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/vinayak-mehta/pdftopng",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A PDF to PNG conversion library (based on pdftoppm from poppler)"
+      },
+      "build": {
+        "number": 4,
+        "python": {
+          "entry_points": [
+            "pdftopng = pdftopng.cli:cli"
+          ]
+        },
+        "string": "py314h1c81d95_4"
+      },
+      "context": {
+        "version": "0.2.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "izahn",
+          "vinayak-mehta",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "pdftopng",
+        "version": "0.2.4"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "pybind11",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.15.*",
+          "sed"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "cython",
+          "pybind11",
+          "poppler",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "poppler",
+          "click"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-fix-setup.patch",
+            "0002-setOverprintPreview.patch"
+          ],
+          "sha256": "d321f1378639c2a8f3fa4dfb18abd67f3034053bc4840ea1485c4776ad2c866c",
+          "url": "https://github.com/vinayak-mehta/pdftopng/archive/v0.2.4.tar.gz"
+        },
+        {
+          "sha256": "285258e387080c775e4f6f5bca652e9e707c3beac83c6625d3b840c4e13c6440",
+          "url": "https://gitlab.freedesktop.org/poppler/poppler/-/raw/ee2af17e916e6310ab25b92a638df380b18a24ee/utils/numberofcharacters.h"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pdftopng"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_katago",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_katago/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_katago/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_katago/work"
+      },
+      "hash": {
+        "hash": "a5ea009"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "katago": {
+          "build_string": "cpu_ha5ea009_1",
+          "name": "katago",
+          "version": "1.16.4"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:57.184859910Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "curl": "8",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libzip": "1",
+        "openssl": "3.5",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/lightvector/KataGo",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "GTP engine and self-play learning in Go"
+      },
+      "build": {
+        "number": 1,
+        "string": "cpu_ha5ea009_1",
+        "variant": {
+          "down_prioritize_variant": 0,
+          "use_keys": [
+            "cpu"
+          ]
+        }
+      },
+      "context": {
+        "build_number": 1,
+        "cuda": false,
+        "cuda_build_string": "cuda_None",
+        "name": "katago",
+        "string_prefix": "cpu_",
+        "version": "1.16.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "katago",
+        "version": "1.16.4"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "ninja",
+          "curl",
+          "git"
+        ],
+        "host": [
+          "zlib",
+          "libzip",
+          "eigen",
+          "openssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "git": "https://github.com/lightvector/KataGo.git",
+          "rev": "refs/tags/v1.16.4"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "cpp/tests/"
+            ]
+          },
+          "script": [
+            "katago",
+            "katago version",
+            "cd cpp/",
+            "mkdir tests/scratch",
+            "katago runoutputtests",
+            "${{ \"katago runtinynntests tests/scratch 1.0\" if not cuda }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

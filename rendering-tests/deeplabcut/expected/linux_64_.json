@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deeplabcut",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deeplabcut/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deeplabcut/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deeplabcut/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "deeplabcut": {
+          "build_string": "pyhe01879c_0",
+          "name": "deeplabcut",
+          "version": "2.3.11"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:55.668299107Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://www.deeplabcut.org/",
+        "license": "LGPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/DeepLabCut/DeepLabCut",
+        "summary": "DeepLabCut is a toolbox for markerless pose estimation of animals performing various tasks."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "dlc = deeplabcut.cli:main",
+            "deeplabcut = deeplabcut.gui.launch_script:launch_dlc"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "version": "2.3.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "deeplabcut",
+        "version": "2.3.11"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "setuptools",
+          "dlclibrary >=0.0.6",
+          "filterpy >=1.4.4",
+          "ruamel.yaml >=0.15.0",
+          "imageio-ffmpeg",
+          "imgaug >=0.4.0",
+          "numba >=0.54",
+          "matplotlib-base >=3.3,!=3.7.0,!=3.7.1",
+          "networkx >=2.6",
+          "numpy >=1.18.5",
+          "pandas >=1.0.1,!=1.5.0",
+          "pyyaml",
+          "scikit-image >=0.17",
+          "scikit-learn >=1.0",
+          "scipy >=1.10",
+          "statsmodels >=0.11",
+          "pytables >=3.8.0",
+          "tf_slim >=1.1.0",
+          "tensorpack >=0.11",
+          "tqdm",
+          "pillow >=7.1",
+          "opencv"
+        ],
+        "run_constraints": [
+          "napari-deeplabcut >=0.2.1.6",
+          "tensorflow >=2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Do-not-install-download-script.patch",
+            "patches/0002-Silence-warnings-about-DLC-lite-mode.patch",
+            "patches/0003-Do-not-modify-tensorflow-warnings.patch",
+            "patches/0004-Silence-warnings-about-missing-pytorch.patch",
+            "patches/0005-Use-qtpy-instead-of-PySide6.patch",
+            "patches/0006-Remove-hard-dependency-on-torch.patch",
+            "patches/0007-Lazy-Import-pyqt-and-default-to-PySide6.patch",
+            "patches/0008-add-outputs-for-multi-animal-model-export.patch",
+            "patches/0009-Loosen-dependencies.patch"
+          ],
+          "sha256": "0d77464eeb984a702d8b25f28ecc4444baef73b7bec72d79e2f00fecda188189",
+          "url": "https://pypi.org/packages/source/d/deeplabcut/deeplabcut-2.3.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9.*",
+              "opencv * headless*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import deeplabcut\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_neuromorphic-drivers",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_neuromorphic-drivers/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_neuromorphic-drivers/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_neuromorphic-drivers/work"
+      },
+      "hash": {
+        "hash": "d54bfb0",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "neuromorphic-drivers": {
+          "build_string": "np2py314hd54bfb0_0",
+          "name": "neuromorphic-drivers",
+          "version": "0.16.4"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:57.603297122Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/neuromorphicsystems/neuromorphic-rs",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Neuromorphic devices drivers"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "neuromorphic-drivers-install-udev-rules = neuromorphic_drivers:install_udev_rules_program",
+            "ndls = neuromorphic_drivers:print_device_list"
+          ]
+        },
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
+        ],
+        "string": "np2py314hd54bfb0_0"
+      },
+      "context": {
+        "name": "neuromorphic-drivers",
+        "version": "0.16.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "neuromorphic-drivers",
+        "version": "0.16.4"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64",
+          "python",
+          "cross-python_osx-64",
+          "crossenv",
+          "maturin >=1.2.3,<2",
+          "cmake",
+          "make",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.2.3,<2",
+          "numpy",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "00fbd1f8db0e6c7bb753aed1aa7355910bb1ffb5b2d017859aa19276c3ee92e2",
+          "url": "https://pypi.io/packages/source/n/neuromorphic-drivers/neuromorphic_drivers-0.16.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "neuromorphic_drivers"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

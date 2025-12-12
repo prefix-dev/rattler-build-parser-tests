@@ -1,0 +1,38 @@
+schema_version: 1
+
+context:
+  version: 7.1.4143
+
+package:
+  name: murex
+  version: ${{ version }}
+
+source:
+  url: https://github.com/lmorg/murex/archive/v${{ version }}.tar.gz
+  sha256: f3620e00dc431ce202216c935d8e509cf0fdf0dd1e363eee9ec6cb64b0b182f4
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - murex -v
+
+about:
+  license: GPL-2.0-only
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Bash-like shell designed for greater command-line productivity and safer scripts
+  homepage: https://murex.rocks
+  repository: https://github.com/lmorg/murex
+
+extra:
+  recipe-maintainers:
+    - danielnachun

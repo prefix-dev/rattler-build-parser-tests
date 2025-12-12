@@ -1,0 +1,43 @@
+context:
+  version: 2025-11-30
+
+package:
+  name: marksman
+  version: ${{ version | replace('-', '_') }}
+
+source:
+  - git: https://github.com/artempyanykh/marksman
+    tag: ${{ version }}
+  - url: https://github.com/artempyanykh/marksman/archive/refs/tags/${{ version }}.tar.gz
+    sha256: b7d6346097823e0903f66d5557a5f895225e9d948fc9574dd81723d1f5b013bc
+    target_directory: archive
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - git
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - marksman --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Write Markdown with code assist and intelligence in the comfort of your favourite editor
+  homepage: https://github.com/artempyanykh/marksman
+  repository: https://github.com/artempyanykh/marksman
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - danielnachun

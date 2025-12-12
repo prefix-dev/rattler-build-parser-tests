@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fnm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fnm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fnm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fnm/work"
+      },
+      "hash": {
+        "hash": "0750c07"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fnm": {
+          "build_string": "h0750c07_0",
+          "name": "fnm",
+          "version": "1.38.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:14.194781373Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "\ud83c\udf0e Cross-platform support (macOS, Windows, Linux)\n\n\u2728 Single file, easy installation, instant startup\n\n\ud83d\ude80 Built with speed in mind\n\n\ud83d\udcc2 Works with .node-version and .nvmrc files",
+        "documentation": "https://github.com/Schniz/fnm/tree/master/docs",
+        "homepage": "https://fnm.vercel.app/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/Schniz/fnm",
+        "summary": "\ud83d\ude80 Fast and simple Node.js version manager, built in Rust"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "cargo install --no-track --locked --root ${{ PREFIX }} --path ."
+        ],
+        "string": "h0750c07_0"
+      },
+      "context": {
+        "name": "fnm",
+        "version": "1.38.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "fnm",
+        "version": "1.38.1"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-64",
+          "clang_osx-64 18.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c24e4c26183a4d88a33e343902ed2d45da23e78c66b2a696a7420eb86deddda9",
+          "url": "https://github.com/Schniz/fnm/archive/refs/tags/v1.38.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "fnm --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

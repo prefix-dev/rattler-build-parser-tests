@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  version: 0.11.1
+
+package:
+  name: hck
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sstadick/hck/archive/v${{ version }}.tar.gz
+  sha256: 7b3d2e61d1e0014184e111c86a0ef92437820f9a090effa43bce6af2c220b315
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - pkg-config
+    - make
+    - cmake
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - hck --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Header aware, faster replacement for cut.
+  homepage: https://github.com/sstadick/hck
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - sstadick

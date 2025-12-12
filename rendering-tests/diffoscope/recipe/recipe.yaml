@@ -1,0 +1,143 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "306"
+  # TODO: bump to 3.13 after rpm-tools is healthy
+  python_check_max: "3.11"
+
+recipe:
+  name: diffoscope
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/diffoscope/diffoscope-${{ version }}.tar.gz
+  sha256: 2c489aba7334ab0d4a9946ac51fe1b17085621a5476b89950e9c4f1e612cbab3
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: diffoscope
+    build:
+      noarch: python
+      script: ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - diffoscope = diffoscope.main:main
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+        - python-libarchive-c
+        - python-magic
+    tests:
+      - python:
+          imports: diffoscope
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - diffoscope --version | grep -iE ${{ version }}
+          - diffoscope --help
+          - diffoscope --list-tools
+          - diffoscope --list-missing-tools
+
+  - package:
+      name: diffoscope-all-tools
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("diffoscope", upper_bound="x.x") }}
+        - argcomplete
+        - binutils
+        - binwalk
+        - bzip2
+        - cctools
+        - defusedxml
+        - docx2txt
+        - e2fsprogs
+        - ffmpeg
+        - fonttools
+        - gettext
+        - ghc
+        - giflib
+        - gnupg
+        - h5py
+        - hdf5
+        - html2text
+        - imagemagick
+        - jsondiff
+        - libdb
+        - llvmdev
+        - lzip
+        - mono
+        - ocaml
+        - openjdk
+        - openssh
+        - perl
+        - pdfminer.six
+        - poppler
+        - postgresql
+        - progressbar
+        - pycryptodome
+        - pypdf
+        - python-debian
+        - python-tlsh
+        - r
+        - rpm-tools
+        # - sng  TODO: investigate issues, might be also missing other tools to pass tests
+        - squashfs-tools
+        - unzip
+        - vim
+        - wabt
+        - xz-tools
+        - zip
+    tests:
+      - python:
+          imports: diffoscope
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          recipe:
+            - run_tests.py
+          source:
+            - tests/
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            - file
+            - pytest
+            - coverage
+        script:
+          - diffoscope --list-missing-tools
+          - python run_tests.py
+
+about:
+  license: GPL-3.0-or-later
+  summary: in-depth comparison of files, archives, and directories
+  license_file: COPYING
+  description: |-
+    diffoscope will try to get to the bottom of what makes files or directories
+    different. It will recursively unpack archives of many kinds and transform
+    various binary formats into more human readable form to compare them. It can
+    compare two tarballs, ISO images, or PDF just as easily.
+  homepage: https://diffoscope.org
+  repository: https://salsa.debian.org/reproducible-builds/diffoscope
+
+extra:
+  feedstock-name: diffoscope
+  recipe-maintainers:
+    - bollwyvl

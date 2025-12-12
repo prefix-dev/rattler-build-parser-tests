@@ -1,0 +1,43 @@
+context:
+  version: 6.0.1
+
+package:
+  name: junit5
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/junit-team/junit5
+    tag: r${{ version }}
+  - url: https://github.com/junit-team/junit-framework/archive/refs/tags/r${{ version }}.tar.gz
+    sha256: 8a3da1a03dfbc436cc5846f76bb1caeb0fa369518f95af4f4a40e4bc2a407f23
+    target_directory: archive
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - git
+    - maven
+    - openjdk
+    - sed
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - junit5 --help
+
+about:
+  license: EPL-2.0
+  license_file:
+    - LICENSE.md
+    - build/reports/dependency-license/
+  summary: The 5th major version of the programmer-friendly testing framework for Java and the JVM
+  homepage: https://github.com/junit-team/junit5
+  repository: https://github.com/junit-team/junit5
+
+extra:
+  recipe-maintainers:
+    - danielnachun

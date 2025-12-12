@@ -1,0 +1,505 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.18.0"
+  python_check_max: "3.13"
+  python_check_picologging_max: "3.12"
+
+recipe:
+  name: litestar-split
+  version: ${{ version }}
+
+source:
+  # the SHA256 gets updated by the bot
+  url: https://pypi.org/packages/source/l/litestar/litestar-${{ version }}.tar.gz
+  sha256: be8f91813854722b7a2f37cbb57d76977050a96b2427d3c4455d406f0f4fcd50
+
+build:
+  # the build number gets reset by the bot
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: litestar
+    build:
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - litestar = litestar.__main__:run_cli
+    requirements:
+      host:
+        - pip
+        - hatchling
+        - python ${{ python_min }}.*
+      run:
+        - annotated-types
+        - python >=${{ python_min }}
+        - anyio >=3
+        - click
+        - exceptiongroup >=1.2.2
+        - httpx >=0.22
+        - importlib-metadata
+        - importlib-resources >=5.12.0
+        - litestar-htmx >=0.4.0
+        - msgspec >=0.18.2
+        - multidict >=6.0.2
+        - multipart >=1.2.0
+        - polyfactory >=2.6.3
+        - pyyaml
+        - rich >=13.0.0
+        - rich-click
+        - typing_extensions
+    tests:
+      - python:
+          imports: litestar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-annotated-types
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - annotated-types
+    tests:
+      - python:
+          imports: litestar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with annotated-types)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-attrs
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - attrs
+    tests:
+      - python:
+          imports: litestar.contrib.attrs
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with attrs)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-brotli
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - brotli
+    tests:
+      - python:
+          imports: litestar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with brotli)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-cli
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - jsbeautifier
+        - uvicorn-standard
+        - uvloop >=0.18.0
+    tests:
+      - python:
+          imports: litestar.cli.main
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - litestar --help
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with cli)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-cryptography
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - cryptography
+    tests:
+      - python:
+          imports: litestar.middleware.session.client_side
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with cryptography)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-jinja
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - jinja2 >=3.1.2
+    tests:
+      - python:
+          imports: litestar.contrib.jinja
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with jinja)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-jwt
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - cryptography
+        - pyjwt >=2.9.0
+    tests:
+      - python:
+          imports: litestar.contrib.jwt.jwt_token
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with jwt)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-mako
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - mako >=1.2.4
+    tests:
+      - python:
+          imports: litestar.contrib.mako
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with mako)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-minijinja
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - minijinja >=1.0.0
+    tests:
+      - python:
+          imports: litestar.contrib.minijinja
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with minijinja)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-opentelemetry
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - opentelemetry-instrumentation-asgi
+    tests:
+      - python:
+          imports: litestar.contrib.opentelemetry
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-picologging
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - picologging
+    tests:
+      - python:
+          imports: litestar.logging.picologging
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_picologging_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with picologging)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-prometheus
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - prometheus_client
+    tests:
+      - python:
+          imports: litestar.contrib.prometheus
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with prometheus)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-pydantic
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - email-validator
+        - pydantic
+        - pydantic-extra-types
+        - pydantic-extra-types !=2.9.0
+    tests:
+      - python:
+          imports: litestar.contrib.pydantic
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with pydantic)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-redis
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - hiredis >=1.0.0
+        - redis-py >=4.4.4,<5.3
+    tests:
+      - python:
+          imports: litestar.stores.redis
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with redis)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-standard
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - fast-query-parsers >=1.0.2
+        - jinja2
+        - jsbeautifier
+        - uvicorn-standard
+        - uvloop >=0.18.0
+    tests:
+      - python:
+          imports: litestar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with standard)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-structlog
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - structlog
+    tests:
+      - python:
+          imports: litestar.middleware.logging
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with structlog)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+  - package:
+      name: litestar-with-full
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("litestar", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-annotated-types", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-attrs", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-brotli", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-cli", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-cryptography", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-jinja", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-jwt", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-mako", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-minijinja", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-opentelemetry", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-picologging", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-prometheus", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-pydantic", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-redis", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-standard", exact=True) }}
+        - ${{ pin_subpackage("litestar-with-structlog", exact=True) }}
+    tests:
+      - python:
+          imports: litestar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_picologging_max }}.*
+    about:
+      summary: Light-weight and flexible ASGI API Framework (with all extras)
+      license: MIT
+      license_file: LICENSE
+      homepage: https://litestar.dev
+      repository: https://github.com/litestar-org/litestar
+      documentation: https://docs.litestar.dev
+
+about:
+  summary: Light-weight and flexible ASGI API Framework
+  license: MIT
+  license_file: LICENSE
+  homepage: https://litestar.dev
+  repository: https://github.com/litestar-org/litestar
+  documentation: https://docs.litestar.dev
+
+extra:
+  feedstock-name: litestar
+  recipe-maintainers:
+    - bollwyvl
+    - thewchan

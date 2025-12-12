@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: sphinx-llm
+  version: "0.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sphinx_llm-${{ version }}.tar.gz
+  sha256: 72aafb400145507774b40af4a0f44bc4e73c6a82576ee67b884ed5998b84f456
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - sphinx-markdown-builder >=0.6.8
+    - sphinx >=5
+
+tests:
+  - python:
+      imports:
+        - sphinx_llm
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: LLM extensions for Sphinx
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/jacobtomlinson/sphinx-llm
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    - jacobtomlinson

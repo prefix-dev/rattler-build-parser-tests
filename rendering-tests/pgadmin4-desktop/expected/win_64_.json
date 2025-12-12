@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pgadmin4-desktop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pgadmin4-desktop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pgadmin4-desktop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pgadmin4-desktop/work"
+      },
+      "hash": {
+        "hash": "c78eed7"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pgadmin4-desktop": {
+          "build_string": "hc78eed7_0",
+          "name": "pgadmin4-desktop",
+          "version": "9.10"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:19.992001207Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "pgAdmin is the most popular and feature rich Open Source administration and\ndevelopment platform for PostgreSQL, the most advanced Open Source database in the world.",
+        "documentation": "https://www.pgadmin.org/",
+        "homepage": "https://github.com/pgadmin-org/pgadmin4",
+        "license": "PostgreSQL",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pgadmin-org/pgadmin4",
+        "summary": "pgAdmin 4 Desktop application"
+      },
+      "build": {
+        "number": 0,
+        "string": "hc78eed7_0"
+      },
+      "context": {
+        "electron_version": "39.0.0",
+        "name": "pgadmin4-desktop",
+        "version": "9.10",
+        "yarn_version": "3.8.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "pgadmin4-desktop",
+        "version": "9.10"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "curl",
+          "pnpm",
+          "yarn ==3.8.7"
+        ],
+        "host": [
+          "libvulkan-loader",
+          "pgadmin4-python ==9.10",
+          "m2-sed",
+          "m2-unzip",
+          "rcedit"
+        ],
+        "run": [
+          "libvulkan-loader",
+          "pgadmin4-python ==9.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/set-pgadmin4-path-pgadmin4.js.patch"
+          ],
+          "sha256": "479b7b34b25be53b28174d3b688cebf91869204bec75752e06f7de1634c41507",
+          "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v9.10/source/pgadmin4-9.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "share/icons/hicolor/128x128/apps/pgadmin4.png",
+              "share/icons/hicolor/16x16/apps/pgadmin4.png",
+              "share/icons/hicolor/32x32/apps/pgadmin4.png",
+              "share/icons/hicolor/48x48/apps/pgadmin4.png",
+              "share/icons/hicolor/64x64/apps/pgadmin4.png",
+              "Menu/pgadmin4_menu.json",
+              "usr/pgadmin4/bin/resources/app/assets/*",
+              "usr/pgadmin4/bin/resources/app/node_modules/*",
+              "usr/pgadmin4/bin/resources/app/package.json",
+              "usr/pgadmin4/bin/resources/app/src/*",
+              "Menu/pgadmin4.ico",
+              "usr/pgadmin4/bin/pgadmin4.exe"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python"
+            ]
+          },
+          "script": [
+            "cd testing",
+            "set HEADLESS=true",
+            "python run_pgadmin4.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

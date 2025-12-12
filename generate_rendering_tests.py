@@ -11,9 +11,11 @@ This script:
 3. Extracts target_platform from variant files to pass to rattler-build
 
 Usage:
-  ./generate_rendering_tests.py                    # Generate tests for 200 feedstocks
-  ./generate_rendering_tests.py --count 50         # Generate tests for 50 feedstocks
+  ./generate_rendering_tests.py                    # Generate tests for 200 feedstocks (skips existing)
+  ./generate_rendering_tests.py --jobs 10          # Generate tests in parallel (much faster)
+  ./generate_rendering_tests.py --count 50         # Generate tests for 50 feedstocks (skips existing)
   ./generate_rendering_tests.py --feedstock numpy  # Generate test for specific feedstock
+  ./generate_rendering_tests.py --force            # Overwrite existing test data
 """
 
 import argparse
@@ -24,8 +26,10 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import urllib.request
 
 try:
@@ -38,6 +42,9 @@ import yaml
 
 # Output directory for test data
 RENDERING_TESTS_DIR = Path(__file__).parent / "rendering-tests"
+
+# Lock for thread-safe printing
+print_lock = threading.Lock()
 
 
 def download_feedstock_stats() -> Dict:
@@ -66,8 +73,30 @@ def get_recipe_yaml_feedstocks(stats: Dict) -> List[str]:
     return feedstocks
 
 
-def select_random_feedstocks(feedstocks: List[str], count: int = 200) -> List[str]:
-    """Select random feedstocks from the list."""
+def get_existing_feedstocks(output_dir: Path) -> set:
+    """Get set of feedstocks that already have test data."""
+    if not output_dir.exists():
+        return set()
+
+    existing = set()
+    for item in output_dir.iterdir():
+        if item.is_dir() and (item / "recipe").exists():
+            existing.add(item.name)
+
+    return existing
+
+
+def select_random_feedstocks(
+    feedstocks: List[str],
+    count: int = 200,
+    exclude: Optional[set] = None
+) -> List[str]:
+    """Select random feedstocks from the list, optionally excluding some."""
+    if exclude:
+        feedstocks = [f for f in feedstocks if f not in exclude]
+        print(f"  Excluding {len(exclude)} existing feedstocks")
+        print(f"  {len(feedstocks)} feedstocks available for selection")
+
     if len(feedstocks) <= count:
         return feedstocks
     return random.sample(feedstocks, count)
@@ -132,7 +161,7 @@ def run_rattler_build(
     if not recipe_yaml.exists():
         return False, f"recipe.yaml not found in {recipe_path}"
 
-    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only"]
+    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only", "--output-dir", "/home/wolfv/Programs/rattler-build/output/"]
 
     if variant_file:
         cmd.extend(["-m", str(variant_file)])
@@ -181,7 +210,8 @@ def process_feedstock(
     feedstock_name: str,
     temp_dir: Path,
     rattler_build_cmd: str,
-    output_dir: Path
+    output_dir: Path,
+    force: bool = False
 ) -> Dict:
     """Process a single feedstock and generate test data."""
     print(f"\nProcessing feedstock: {feedstock_name}")
@@ -195,6 +225,16 @@ def process_feedstock(
         'errors': []
     }
 
+    # Check if feedstock already exists
+    feedstock_output_dir = output_dir / feedstock_name
+    if feedstock_output_dir.exists() and (feedstock_output_dir / "recipe").exists():
+        if not force:
+            print(f"  Skipping (already exists)")
+            result['errors'].append("Already exists (use --force to overwrite)")
+            return result
+        else:
+            print(f"  Overwriting existing data")
+
     try:
         # Clone the feedstock
         feedstock_path = clone_feedstock(feedstock_name, temp_dir)
@@ -205,8 +245,7 @@ def process_feedstock(
             result['errors'].append("No recipe directory found")
             return result
 
-        # Create output directory for this feedstock
-        feedstock_output_dir = output_dir / feedstock_name
+        # Ensure output directory exists
         feedstock_output_dir.mkdir(parents=True, exist_ok=True)
 
         # Copy the entire recipe folder
@@ -337,7 +376,7 @@ def main():
         "--rattler-build", "-r",
         type=str,
         default="rattler-build",
-        help="Path to rattler-build command (default: rattler-build)"
+        help="Path to ground-truth rattler-build command (default: 'rattler-build')"
     )
     parser.add_argument(
         "--output", "-o",
@@ -349,6 +388,17 @@ def main():
         "--seed", "-s",
         type=int,
         help="Random seed for reproducible selection"
+    )
+    parser.add_argument(
+        "--jobs", "-j",
+        type=int,
+        default=1,
+        help="Number of parallel jobs (default: 1, use 10-20 for parallel generation)"
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force overwrite of existing feedstock data"
     )
 
     args = parser.parse_args()
@@ -383,15 +433,27 @@ def main():
     # Create output directory
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Check for existing feedstocks
+    existing_feedstocks = get_existing_feedstocks(output_dir)
+    if existing_feedstocks:
+        print(f"\nFound {len(existing_feedstocks)} existing feedstocks in output directory")
+        if not args.force:
+            print("These will be skipped (use --force to overwrite)")
+
     # Determine which feedstocks to process
     if args.feedstock:
         selected_feedstocks = [args.feedstock]
         print(f"Processing specific feedstock: {args.feedstock}")
+        if not args.force and args.feedstock in existing_feedstocks:
+            print(f"Warning: {args.feedstock} already exists (use --force to overwrite)")
     else:
         # Download and parse feedstock stats
         stats = download_feedstock_stats()
         feedstocks = get_recipe_yaml_feedstocks(stats)
-        selected_feedstocks = select_random_feedstocks(feedstocks, args.count)
+
+        # Exclude existing feedstocks unless --force is used
+        exclude = None if args.force else existing_feedstocks
+        selected_feedstocks = select_random_feedstocks(feedstocks, args.count, exclude)
         print(f"Selected {len(selected_feedstocks)} random feedstocks")
 
     # Process feedstocks
@@ -399,10 +461,36 @@ def main():
         temp_path = Path(temp_dir)
         all_results = []
 
-        for i, feedstock in enumerate(selected_feedstocks, 1):
-            print(f"\n[{i}/{len(selected_feedstocks)}]")
-            result = process_feedstock(feedstock, temp_path, rattler_build_cmd, output_dir)
-            all_results.append(result)
+        if args.jobs > 1:
+            # Parallel execution mode
+            print(f"Processing with {args.jobs} parallel jobs...")
+            print()
+
+            completed = 0
+
+            def process_with_progress(feedstock):
+                nonlocal completed
+                result = process_feedstock(feedstock, temp_path, rattler_build_cmd, output_dir, args.force)
+                completed += 1
+                with print_lock:
+                    status = "✓" if result['variants_success'] > 0 else "✗"
+                    print(f"[{completed}/{len(selected_feedstocks)}] {status} {feedstock}")
+                return result
+
+            with ThreadPoolExecutor(max_workers=args.jobs) as executor:
+                futures = [executor.submit(process_with_progress, fs) for fs in selected_feedstocks]
+                for future in as_completed(futures):
+                    try:
+                        result = future.result()
+                        all_results.append(result)
+                    except Exception as e:
+                        print(f"Error processing feedstock: {e}")
+        else:
+            # Sequential execution mode (original behavior)
+            for i, feedstock in enumerate(selected_feedstocks, 1):
+                print(f"\n[{i}/{len(selected_feedstocks)}]")
+                result = process_feedstock(feedstock, temp_path, rattler_build_cmd, output_dir, args.force)
+                all_results.append(result)
 
     # Print summary
     print("\n" + "=" * 80)

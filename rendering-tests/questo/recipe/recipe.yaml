@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: questo
+  version: 0.4.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/questo-${{ version }}.tar.gz
+  sha256: bcc917c2f1a65872e2bd02e79e226a716fd2d68a1ebe0d23c1828aa116aa6da6
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core >=1.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - rich >=12.2.0
+    - python-yakh <0.5.0,>=0.4.1
+
+tests:
+  - python:
+      imports:
+        - questo
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A library of extensible and modular CLI prompt elements
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/petereon/questo
+
+extra:
+  recipe-maintainers:
+    - thewchan

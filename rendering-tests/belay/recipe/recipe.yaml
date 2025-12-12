@@ -1,0 +1,73 @@
+schema_version: 1
+
+context:
+  name: belay
+  version: "0.29.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/belay-${{ version }}.tar.gz
+  sha256: 07f1914f04fedd797a45db32a7fbd269342eb38fdaf6956bf0d77f30e7d4c74a
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - belay=belay.cli.main:run_app
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - poetry-dynamic-versioning
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - pyserial >=3.1
+    - cyclopts >=3.22.0
+    - pathspec >=0.10.3
+    - tomli >=2.0.1
+    - autoregistry >=0.10.1
+    - fsspec >=2022.11.0
+    - requests >=2.28.1
+    - gitpython >=3.1.30
+    - pydantic >=2.0.0
+    - typing-extensions >=4.5.0
+    - questionary >=2.0.0
+    - packaging >=20.4
+    - attrs >=21.0.0
+    # From fsspec-http
+    - aiohttp !=4.0.0a0,!=4.0.0a1
+    # From questionary 2.0.0
+    - prompt_toolkit <=3.0.36,>=2.0
+
+tests:
+  - python:
+      imports:
+        - belay
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - git
+        - python ${{ python_min }}.*
+    script:
+      - belay --help
+
+about:
+  summary: Rapid development of projects that interact with hardware via a micropython-compatible board.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+  homepage: https://github.com/BrianPugh/belay
+  documentation: https://belay.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

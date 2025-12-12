@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: wheel-filename
+  version: 1.4.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 87891c465dcbb40b40394a906f01a93214bdd51aa5d25e3a9a59cae62bc298fd
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - wheel-filename = wheel_filename.__main__:main
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - wheel_filename
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - wheel-filename --help
+
+about:
+  summary: Parse wheel filenames
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/wheelodex/wheel-filename
+
+extra:
+  recipe-maintainers:
+    - beenje

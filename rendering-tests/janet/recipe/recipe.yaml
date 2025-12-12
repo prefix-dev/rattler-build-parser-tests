@@ -1,0 +1,166 @@
+context:
+  name: janet
+  version: "1.40.1"
+  soname: "1.39"
+
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/janet-lang/janet/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a
+  patches:
+    - null-terminate.patch
+    - disable-symlink.patch
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: libjanet
+    build:
+      script:
+        - if: unix
+          then:
+            - export JANET_EXTRA_MESON=""
+            - if: linux
+              then:
+                - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
+            - meson setup build-lib ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+            - meson compile -C build-lib --jobs ${CPU_COUNT}
+            - meson install -C build-lib
+            # Remove binary and static library, keep only shared library and headers
+            - rm -f "${PREFIX}/bin/janet"
+            - rm -f "${PREFIX}/lib/libjanet.a"
+        - if: win
+          then:
+            - meson setup build-lib %MESON_ARGS% --prefix="%LIBRARY_PREFIX%" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%
+            - meson compile -C build-lib --jobs %CPU_COUNT%
+            - meson install -C build-lib
+            # Remove binary and static library, keep only shared library and headers
+            - del /Q "%LIBRARY_PREFIX%\bin\janet.exe" 2>nul || ver>nul
+            - del /Q "%LIBRARY_PREFIX%\lib\libjanet.a" 2>nul || ver>nul
+            # Copy header file instead of symlink (Windows doesn't support symlinks well)
+            - copy /Y "%LIBRARY_PREFIX%\include\janet\janet_%PKG_VERSION%.h" "%LIBRARY_PREFIX%\include\janet.h"
+
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - meson
+        - ninja
+      run_exports:
+        - ${{ pin_subpackage('libjanet', upper_bound='x.x') }}
+    tests:
+      - package_contents:
+          lib:
+            - if: unix
+              then: libjanet${{ SHLIB_EXT }}
+            - if: win
+              then: janet-${{ soname }}.dll
+          include:
+            - janet/janet_${{ version }}.h
+      - if: unix
+        then:
+          - script:
+              - pkg-config --modversion janet
+            requirements:
+              run:
+                - pkg-config
+
+  - package:
+      name: ${{ name }}
+    build:
+      script:
+        - if: unix
+          then:
+            - export JANET_EXTRA_MESON=""
+            - if: linux
+              then:
+                - export JANET_EXTRA_MESON="-Dc_args=-DJANET_SPAWN_NO_CHDIR"
+            - meson setup build-bin ${MESON_ARGS} --prefix="${PREFIX}" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}
+            - meson compile -C build-bin --jobs ${CPU_COUNT}
+            - meson install -C build-bin
+            # Remove libraries, keep only binary
+            - rm -rf "${PREFIX}/lib/libjanet"* "${PREFIX}/lib/pkgconfig" "${PREFIX}/include"
+            - mkdir -p "${PREFIX}/etc/conda/activate.d" "${PREFIX}/etc/conda/deactivate.d"
+        - if: win
+          then:
+            - meson setup build-bin %MESON_ARGS% --prefix="%LIBRARY_PREFIX%" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%
+            - meson compile -C build-bin --jobs %CPU_COUNT%
+            - meson install -C build-bin
+            # Remove libraries, keep only binary
+            - del /Q "%LIBRARY_PREFIX%\bin\janet.dll" 2>nul || ver>nul
+            - del /Q "%LIBRARY_PREFIX%\lib\libjanet.lib" 2>nul || ver>nul
+            - del /Q "%LIBRARY_PREFIX%\lib\pkgconfig\*" 2>nul || ver>nul
+            - rmdir /Q /S "%LIBRARY_PREFIX%\include" 2>nul || ver>nul
+            - if not exist "%LIBRARY_PREFIX%\etc\conda\activate.d" mkdir "%LIBRARY_PREFIX%\etc\conda\activate.d"
+            - if not exist "%LIBRARY_PREFIX%\etc\conda\deactivate.d" mkdir "%LIBRARY_PREFIX%\etc\conda\deactivate.d"
+
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - meson
+        - ninja
+      run:
+        - ${{ pin_subpackage('libjanet', exact=True) }}
+    tests:
+      - package_contents:
+          bin:
+            - janet${{ ".exe" if win }}
+      - script:
+          - janet --version
+          - if: unix
+            then:
+              - janet -e '(printf "%d" (+ 2 2))'
+              # Test that activation script sets JANET_PATH correctly
+              - janet -e "(assert (= (dyn :syspath) \"${PREFIX}/lib/janet\") \"JANET_PATH not set correctly\")"
+          - if: win
+            then:
+              - janet -e "(printf \"%d\" (+ 2 2))"
+              # Test that activation script sets JANET_PATH correctly
+              # Check that path ends with Library/lib/janet (Janet uses forward slashes on Windows)
+              - janet -e "(assert (string/has-suffix? \"Library/lib/janet\" (dyn :syspath)) (string \"JANET_PATH not set correctly. Got \" (dyn :syspath)))"
+      - files:
+          source:
+            - test/
+            - examples/
+        script:
+          - if: unix
+            then:
+              # Run Janet test suite directly
+              - |
+                for f in test/suite*.janet; do
+                  janet "$f" || exit 1
+                done
+              # Run examples (with -k flag to suppress output)
+              - |
+                for f in examples/*.janet; do
+                  janet -k "$f" || exit 1
+                done
+          - if: win
+            then:
+              # Run Janet test suite directly
+              - for %%f in (test\suite*.janet) do janet "%%f" || exit /b 1
+              # Run examples (with -k flag to suppress output)
+              - for %%f in (examples\*.janet) do janet -k "%%f" || exit /b 1
+
+about:
+  homepage: https://janet-lang.org
+  summary: Lightweight Lisp-like language and bytecode VM for system scripting
+  description: |
+    Janet is a functional, Lisp-like programming language that ships as a
+    small C library and embeddable interpreter. It targets scripting,
+    command-line tooling, and embedding in C or C++ applications.
+  license: MIT
+  license_file:
+    - LICENSE
+  documentation: https://janet-lang.org/docs/
+  repository: https://github.com/janet-lang/janet
+
+extra:
+  feedstock-name: janet
+  recipe-maintainers:
+    - tdejager

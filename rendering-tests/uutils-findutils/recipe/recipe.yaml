@@ -1,0 +1,40 @@
+context:
+  version: "0.8.0"
+
+package:
+  name: uutils-findutils
+  version: ${{ version }}
+
+source:
+  url: https://github.com/uutils/findutils/archive/${{ version }}.tar.gz
+  sha256: 932f153d256f7a4cf40255a948689bf59a10f14c8804151817ab50fa1b46429a
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - oniguruma
+
+tests:
+  - script:
+      - find --help
+      - xargs --help 2>&1 | grep -q "Usage: xargs"
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Cross-platform Rust rewrite of the GNU findutils
+  homepage: https://github.com/uutils/findutils
+  repository: https://github.com/uutils/findutils
+
+extra:
+  recipe-maintainers:
+    - danielnachun

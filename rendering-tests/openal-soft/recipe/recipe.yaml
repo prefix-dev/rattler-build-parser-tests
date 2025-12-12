@@ -1,0 +1,60 @@
+context:
+  name: openal-soft
+  version: "1.24.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 7e1fecdeb45e7f78722b776c5cf30bd33934b961d7fd2a11e0494e064cc631ce
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+  run_exports:
+    - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      lib:
+        - if: win
+          then: OpenAL32
+          else: openal
+      include: 
+        - AL/al.h
+      bin:
+        - altonegen
+        - alrecord
+        - openal-info
+      files: 
+        - ${{ "Library/" if win }}lib/cmake/OpenAL/OpenALConfig.cmake
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: COPYING
+  summary: OpenAL Soft is a software implementation of the OpenAL 3D audio API.
+  description: |
+    OpenAL Soft is an LGPL-licensed, cross-platform, software implementation of
+    the OpenAL 3D audio API. It's forked from the open-sourced Windows version
+    available originally from openal.org's SVN repository (now defunct). OpenAL
+    provides capabilities for playing audio in a virtual 3D environment. Distance
+    attenuation, doppler shift, and directional sound emitters are among the
+    features handled by the API. More advanced effects, including air absorption,
+    occlusion, and environmental reverb, are available through the EFX extension.
+    It also facilitates streaming audio, multi-channel buffers, and audio capture.
+  homepage: https://github.com/kcat/openal-soft
+  repository: https://github.com/kcat/openal-soft
+  documentation: https://openal-soft.org
+
+extra:
+  recipe-maintainers:
+    - martinRenou
+    - Tobias-Fischer

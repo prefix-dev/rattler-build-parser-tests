@@ -1,0 +1,83 @@
+schema_version: 1
+
+context:
+  name: ufs2arco
+  version: "0.18.0"
+  # Default nompi to "mpi" unless specified otherwise
+  nompi: ${{ nompi | default("mpi") }}
+  with_mpi: ${{ nompi == "mpi" }}
+  # Calculate build number offset based on MPI status
+  build_offset: ${{ 100 if with_mpi else 0 }}
+  # Define the prefix string for the build string
+  mpi_prefix: ${{ "mpi" if with_mpi else "nompi" }}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ufs2arco-${{ version }}.tar.gz
+  sha256: 59e34b1b39bbce698d66ede656fc6c3be6542973da6963154f8bba6871c2afec
+
+build:
+  number: 0
+  # Construct the build string to match your V0 logic
+  string: ${{ mpi_prefix }}_pyh${{ hash }}_${{ number }}
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - ufs2arco = ufs2arco.cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=64.0.0
+    - setuptools-scm >=8
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy <2.3
+    - xarray
+    - cf_xarray
+    - cftime
+    - netcdf4
+    - h5netcdf
+    - zarr <3
+    - cfgrib
+    - bottleneck
+    - flox
+    - dask-core
+    - fsspec
+    - s3fs
+    - gcsfs >=2025.10.0
+    - xesmf
+    # Quotes are required for asterisks in V1 YAML
+    - "esmf * nompi*"
+    # Conditional dependency using Jinja block
+    - ${{ "mpi4py" if with_mpi }}
+
+tests:
+  - script:
+      - export OMPI_MCA_plm=isolated
+      - export OMPI_MCA_btl_vader_single_copy_mechanism=none
+      - export OMPI_MCA_rmaps_base_oversubscribe=yes
+      - pip check
+      - ufs2arco --help
+      - python -c "import ufs2arco"
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}
+
+about:
+  homepage: https://github.com/NOAA-PSL/ufs2arco
+  summary: Tools for converting Unified Forecast System (UFS) output to Analysis Ready, Cloud Optimized (ARCO) format
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/NOAA-PSL/ufs2arco
+  documentation: https://ufs2arco.readthedocs.io/en/latest
+
+extra:
+  recipe-maintainers:
+    - timothyas

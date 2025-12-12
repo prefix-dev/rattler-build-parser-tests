@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pynguin",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pynguin/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pynguin/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pynguin/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pynguin": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pynguin",
+          "version": "0.44.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:13.581753139Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Unit test automated generation techniques have been proposed and mature\ntools exist for statically typed languages, such as Java. Pynguin is on of\nthe first tool that fills this gap and allows the automated generation of\nunit tests for Python programs.",
+        "documentation": "https://pynguin.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/se2p/pynguin",
+        "license": "LGPL-3.0-only",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "summary": "Pynguin is a tool for automated unit test generation for Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pynguin = pynguin.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "pynguin",
+        "version": "0.44.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "pynguin",
+        "version": "0.44.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "poetry-core",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10,<3.15",
+          "astroid >=4.0.1,<5.0.0",
+          "black >=25.1.0,<26.0.0",
+          "bytecode >=0.17.0,<0.18.0",
+          "dill >=0.4.0,<0.5.0",
+          "jinja2 >=3.1.6,<4.0.0",
+          "networkx >=3.4.2,<4.0.0",
+          "multiprocess >=0.70.18,<0.71.0",
+          "rich >=14.0.0,<15.0.0",
+          "pygments >=2.19.2,<3.0.0",
+          "pytest >=8.3.5,<9.0.0",
+          "simple-parsing >=0.1.7,<0.2.0",
+          "typing_inspect >=0.9.0,<0.10.0",
+          "asciitree >=0.3.3,<0.4.0",
+          "libcst >=1.7.0,<2.0.0",
+          "setuptools >=80.9.0,<90.0.0",
+          "toml >=0.10.2,<0.11.0",
+          "psutil >=7.1.1,<8.0.0",
+          "rstr >=3.2.2,<4.0.0",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "995e29e7c709c8eb71455dea663f2a6bb31a4f3e83c5b1a85d6492b291363343",
+          "url": "https://pypi.org/packages/source/p/pynguin/pynguin-0.44.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "export PYNGUIN_DANGER_AWARE=1",
+            "python -c 'import pynguin'",
+            "pynguin",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

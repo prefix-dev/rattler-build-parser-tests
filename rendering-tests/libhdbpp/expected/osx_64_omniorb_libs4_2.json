@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libhdbpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libhdbpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libhdbpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libhdbpp/work"
+      },
+      "hash": {
+        "hash": "58ae3c0"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libhdbpp": {
+          "build_string": "h58ae3c0_2",
+          "name": "libhdbpp",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:19.056172763Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "omniorb_libs": "4.2",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HDB++ is an archiving system for Tango-Controls.\nlibhdbpp provides an abstract means to archive data events to a Cassandra database,\nMySQL database, or potentially other database backends.",
+        "documentation": "https://tango-controls.readthedocs.io/en/latest/Explanation/archiving/hdbpp.html",
+        "homepage": "https://www.tango-controls.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/tango-controls/hdbpp/libhdbpp",
+        "summary": "Interface library for HDB++ archiving system."
+      },
+      "build": {
+        "number": 2,
+        "string": "h58ae3c0_2"
+      },
+      "context": {
+        "name": "libhdbpp",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "libhdbpp",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "make",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "pkg-config"
+        ],
+        "host": [
+          "cppzmq",
+          "cpptango",
+          "omniorb-libs"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cpptango"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libhdbpp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "find-tango.patch"
+          ],
+          "sha256": "0b43f8ca9c57a8aff23fcdf6b8180f266b8968daf7fbd12bbeb1f45e27d4f82c",
+          "url": "https://gitlab.com/tango-controls/hdbpp/libhdbpp/-/archive/2.2.0/libhdbpp-2.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/libhdbpp/libhdbppConfig.cmake"
+            ],
+            "include": [
+              "hdb++/AbstractDB.h"
+            ],
+            "lib": [
+              "hdb++"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

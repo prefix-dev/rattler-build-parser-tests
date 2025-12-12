@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ty",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ty/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ty/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ty/work"
+      },
+      "hash": {
+        "hash": "c94ab32"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ty": {
+          "build_string": "hc94ab32_0",
+          "name": "ty",
+          "version": "0.0.1a33"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:45.205479481Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge ty_alpha",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/astral-sh/ty",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/astral-sh/ty",
+        "summary": "An extremely fast Python type checker and language server, written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "mkdir -p \"${PREFIX}/etc/pixi/ty\"",
+          "touch \"${PREFIX}/etc/pixi/ty/global-ignore-conda-prefix\"",
+          "maturin build --release",
+          "${{ PYTHON }} -m pip install --find-links=ruff/target/wheels ty",
+          "cd ruff",
+          "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
+        ],
+        "string": "hc94ab32_0"
+      },
+      "context": {
+        "name": "ty",
+        "version": "0.0.1a33"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "ty",
+        "version": "0.0.1a33"
+      },
+      "requirements": {
+        "build": [
+          "cargo-bundle-licenses",
+          "rust_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "make",
+          "python 3.10.*",
+          "cross-python_osx-arm64",
+          "maturin >=1.0,<2"
+        ],
+        "host": [
+          "python 3.10.*",
+          "python-abi3",
+          "maturin >=1.0,<2",
+          "pip"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_osx-arm64",
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1db139aa7cbc9879e93146c99bf5f1f5273ca608683f71b3a9a75f9f812b729f",
+          "url": "https://pypi.org/packages/source/t/ty/ty-0.0.1a33.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ty"
+            ]
+          }
+        },
+        {
+          "script": "ty --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

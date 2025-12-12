@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_crane",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_crane/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_crane/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_crane/work"
+      },
+      "hash": {
+        "hash": "294fe8d"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "crane": {
+          "build_string": "h294fe8d_0",
+          "name": "crane",
+          "version": "0.20.7"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:03.939157485Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/google/go-containerregistry/tree/main/cmd/crane",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "summary": "A tool for interacting with remote OCI images and registries."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go build -v -ldflags \"-w -s -X github.com/google/go-containerregistry/cmd/crane/cmd.Version=${{ version }}\" -o $PREFIX/bin/crane ./cmd/crane",
+          "go-licenses save ./cmd/crane --save_path=./license-files"
+        ],
+        "string": "h294fe8d_0"
+      },
+      "context": {
+        "name": "crane",
+        "version": "0.20.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "benmoss"
+        ]
+      },
+      "package": {
+        "name": "crane",
+        "version": "0.20.7"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-arm64",
+          "go-licenses",
+          "macosx_deployment_target_osx-arm64 11.0.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "623a87ec77206bae301a9af64b42ba05e602b1608d0ee3574749b348ab4dd7ac",
+          "url": "https://github.com/google/go-containerregistry/archive/refs/tags/v0.20.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "crane version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

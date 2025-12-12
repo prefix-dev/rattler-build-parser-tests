@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.30.9"
+
+package:
+  name: pyodide-build
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pyodide-build/pyodide_build-${{ version }}.tar.gz
+  sha256: acc5107a5aa1f3ef9a4d239f6747b7f5383ab892067385da1ccdd654b977189f
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatch-vcs
+    - hatchling
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - auditwheel-emscripten >=0.2.0,<0.3.0
+    - packaging
+    - platformdirs
+    - pydantic >=2,<3
+    - pyodide-cli >=0.3.0
+    - pyodide-lock >=0.1.0,<0.2.0
+    - python >=${{ python_min }}
+    - python-build >=1.2.0,<1.3.dev0
+    - requests
+    - resolvelib
+    - rich
+    - ruamel.yaml
+    - typer >=0.13
+    - unearth >=0.6,<1.dev0
+    - virtualenv
+    - wheel
+
+tests:
+  - python:
+      imports: pyodide_build
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pyodide build-recipes --help
+      - pyodide xbuildenv --help
+      - pyodide build --help
+      - pyodide skeleton --help
+      - pyodide config --help
+      - python -c "v = __import__('pyodide_build').__version__; print(v); assert v == '${{ version }}'"
+
+about:
+  summary: Tools for building Pyodide
+  license: MPL-2.0
+  license_file: LICENSE
+  homepage: https://github.com/pyodide/pyodide-build
+
+extra:
+  recipe-maintainers:
+    - agriyakhetarpal
+    - bollwyvl

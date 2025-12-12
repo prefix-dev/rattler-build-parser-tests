@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.0.1
+
+package:
+  name: periscope
+  version: ${{ version }}
+
+source:
+  url: https://github.com/anishathalye/periscope/archive/v${{ version }}.tar.gz
+  sha256: a24d349ad89f118245af833af3f50071e85328a6fe084cc6c7f13c771b922271
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - psc --help
+
+about:
+  license: GPL-3.0-only
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: Organize and de-duplicate your files without losing data
+  homepage: https://github.com/anishathalye/periscope
+  repository: https://github.com/anishathalye/periscope
+
+extra:
+  recipe-maintainers:
+    - danielnachun

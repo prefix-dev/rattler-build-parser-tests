@@ -1,0 +1,45 @@
+context:
+  version: "2.19.0"
+
+package:
+  name: sesh
+  version: ${{ version }}
+
+source:
+  url: https://github.com/joshmedeski/sesh/archive/v${{ version }}.tar.gz
+  sha256: 032032a79e65bafc24c6e4752100caae645b0771b2f1ef35d1c4a97079ac952a
+
+build:
+  number: 0
+  skip:
+    - win
+  script:
+    - go build -ldflags "-s -w" -o $PREFIX/bin/
+    - go-licenses save . --save_path="./license-files/"
+
+requirements:
+  build:
+    - ${{ compiler('go') }}
+    - go-licenses
+  run:
+    - tmux
+    - zoxide
+
+tests:
+  - script:
+      - sesh --help
+
+about:
+  homepage: https://github.com/joshmedeski/sesh.git
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Smart session manager for the terminal
+  description: |
+    Sesh is a CLI that helps you create and manage tmux sessions quickly and easily using zoxide.
+
+extra:
+  recipe-maintainers:
+    - joshmedeski
+    - papanikos

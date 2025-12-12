@@ -1,0 +1,61 @@
+context:
+  version: "5.2.6"
+  build_number: 0
+
+package:
+  name: xeus
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jupyter-xeus/xeus/archive/${{ version }}.tar.gz
+  sha256: ea19c4e742b8c0f62cfcd7660dfc65e2ae5fba9579a08385e8bd8ae4951ff70a
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  run_exports:
+    - ${{ pin_subpackage('xeus', upper_bound='x.x') }}
+  build:
+    - cmake
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - if: unix
+      then:
+        - make
+        - pkg-config
+  host:
+    - nlohmann_json
+    - nlohmann_json-abi
+    - if: linux
+      then:
+        - libuuid
+  # zeromq and libuuid have run_exports sections. No need to add them as run
+  # requirements. xeus headers expose headers from nlohmann_json  but does
+  # not depend on it at runtime.
+  run_constraints:
+    - ${{ pin_compatible('nlohmann_json', upper_bound='x.x.x') }}
+
+tests:
+  - package_contents:
+      files:
+        exists:
+          - ${{ "Library/" if win }}include/xeus/xeus.hpp
+          - ${{ "Library/" if win }}lib/cmake/xeus/xeusConfig.cmake
+          - ${{ "Library/" if win }}lib/cmake/xeus/xeusConfigVersion.cmake
+
+about:
+  homepage: https://github.com/jupyter-xeus/xeus
+  repository: https://github.com/jupyter-xeus/xeus
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: C++ implementation of the Jupyter Kernel protocol
+  description: xeus is a library meant to facilitate the implementation of kernels for Jupyter. It takes the burden of implementing the Jupyter Kernel protocol so developers can focus on implementing the interpreter part of the Kernel.
+  documentation: https://xeus.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - SylvainCorlay
+    - JohanMabille
+    - martinRenou

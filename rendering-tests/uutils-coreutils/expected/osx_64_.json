@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uutils-coreutils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uutils-coreutils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uutils-coreutils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uutils-coreutils/work"
+      },
+      "hash": {
+        "hash": "f4ed999"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uutils-coreutils": {
+          "build_string": "hf4ed999_2",
+          "name": "uutils-coreutils",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:16.171005548Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "uutils is an attempt at writing universal (as in cross-platform) CLI utilities in Rust.\nuutils aims to work on as many platforms as possible,\nto be able to use the same utils on Linux, Mac, Windows and other platforms.\nThis ensures, for example, that scripts can be easily transferred between platforms.\nRust was chosen not only because it is fast and safe,\nbut is also excellent for writing cross-platform code.",
+        "documentation": "https://uutils.github.io/coreutils/docs/",
+        "homepage": "https://uutils.github.io/coreutils/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/uutils/coreutils",
+        "summary": "Cross-platform Rust rewrite of the GNU coreutils"
+      },
+      "build": {
+        "number": 2,
+        "script": {
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hf4ed999_2"
+      },
+      "context": {
+        "name": "uutils-coreutils",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "XhstormR",
+          "sshockwave"
+        ]
+      },
+      "package": {
+        "name": "uutils-coreutils",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64 19.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses",
+          "make"
+        ],
+        "run_constraints": [
+          "coreutils ==999999999",
+          "gnu-coreutils ==999999999",
+          "m2-coreutils ==999999999"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5f0c3f97b807e72edccc844c6a685ec9862199f16a665df07de5b1d20ec21233",
+          "url": "https://github.com/uutils/coreutils/archive/0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "coreutils --help",
+            "cat --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

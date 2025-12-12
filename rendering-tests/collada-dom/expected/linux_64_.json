@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_collada-dom",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_collada-dom/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_collada-dom/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_collada-dom/work"
+      },
+      "hash": {
+        "hash": "d82f57d"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "collada-dom": {
+          "build_string": "hd82f57d_13",
+          "name": "collada-dom",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:03.480811751Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "libxml2_devel": "2.14",
+        "pcre": "8",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "COLLADA is a royalty-free XML schema that enables digital asset exchange within the interactive 3D industry. The COLLADA Document Object Model (COLLADA DOM) is an application programming interface (API) that provides a C++ object representation of a COLLADA XML instance document.",
+        "homepage": "https://sourceforge.net/p/collada-dom",
+        "license": "MIT",
+        "license_family": "MIT",
+        "license_file": [
+          "licenses/license_e.txt"
+        ],
+        "repository": "https://sourceforge.net/p/collada-dom",
+        "summary": "The COLLADA Document Object Model (DOM) is an application programming interface (API) that provides a C++ object representation of a COLLADA XML instance document."
+      },
+      "build": {
+        "number": 13,
+        "script": "build.sh",
+        "string": "hd82f57d_13"
+      },
+      "context": {
+        "name": "collada-dom",
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jcarpent",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "collada-dom",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake 3.*",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          "libboost-devel",
+          "pcre",
+          "libxml2-devel",
+          "zlib",
+          "minizip",
+          "uriparser"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "collada-dom",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/43.patch",
+            "patches/devendor_minizip.patch"
+          ],
+          "sha256": "3be672407a7aef60b64ce4b39704b32816b0b28f61ebffd4fbd02c8012901e0d",
+          "url": "https://github.com/rdiankov/collada-dom/archive/v2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "pkg-config --modversion ${{ name }}",
+            "test $PREFIX/include/collada-dom2.5"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

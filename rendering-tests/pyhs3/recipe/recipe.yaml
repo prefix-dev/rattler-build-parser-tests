@@ -1,0 +1,55 @@
+context:
+  name: pyhs3
+  version: "0.4.1"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 163f19b3241ad3e0dbd5417543e78a09b6c6b9b4071275ac8a806ddc18bcd044
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ==${{ python_min }}
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - rich
+    - rustworkx
+    - pytensor >=2.33.0
+    - numpy
+    - sympy
+    - pydantic
+
+tests:
+  - python:
+      imports:
+        - pyhs3
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/scipp-atlas/pyhs3
+  summary: 'pure-Python HS3 implementation with tensors and autodiff'
+  description: |
+    pyHS3 is a pure-python implementation of the HS3 sepcification
+    that provides a callable pdf for statistical inference.
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  documentation: https://pyhs3.readthedocs.io/
+  repository: https://github.com/scipp-atlas/pyhs3
+
+extra:
+  recipe-maintainers:
+    - kratsg

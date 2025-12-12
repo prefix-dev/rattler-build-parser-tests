@@ -184,7 +184,7 @@ def run_rattler_build(
     if not recipe_yaml.exists():
         return False, f"recipe.yaml not found in {recipe_path}"
 
-    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only"]
+    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only", "--output-dir", "/home/wolfv/Programs/rattler-build/output/"]
 
     if variant_file:
         cmd.extend(["-m", str(variant_file)])
@@ -236,6 +236,7 @@ def compare_outputs(
     exclude_regex_paths = [
         r"root\[\d+\]\['build_configuration'\]\['timestamp'\]",
         r"root\[\d+\]\['system_tools'\]\['rattler-build'\]",
+        r"root\[\d+\]\['build_configuration'\]\['directories'\]\['host_prefix'\]",
     ]
 
     if expected == actual:
@@ -330,7 +331,7 @@ class TestCase:
     context_keys: Set[str]
 
 
-def collect_test_cases(tests_dir: Path, feedstock_filter: Optional[str] = None) -> List[TestCase]:
+def collect_test_cases(tests_dir: Path, feedstock_filter: Optional[str] = None, fast_mode: bool = False) -> List[TestCase]:
     """Collect all test cases from the test directory."""
     test_cases = []
 
@@ -357,6 +358,10 @@ def collect_test_cases(tests_dir: Path, feedstock_filter: Optional[str] = None) 
         # Find all expected output files
         expected_files = list(expected_dir.glob("*.json"))
         expected_files = [f for f in expected_files if not f.name.endswith('.meta.json')]
+
+        # In fast mode, only test one variant per feedstock
+        if fast_mode and expected_files:
+            expected_files = [expected_files[0]]
 
         for expected_file in expected_files:
             variant_base_name = expected_file.stem
@@ -751,8 +756,8 @@ def main():
     parser.add_argument(
         "--rattler-build", "-r",
         type=str,
-        default=str(Path(__file__).parent / "target" / "release" / "rattler-build"),
-        help="Path to rattler-build command to test"
+        default=str(Path(__file__).parent.parent / "rattler-build" / "target" / "debug" / "rattler-build"),
+        help="Path to rattler-build command to test (default: ../rattler-build/target/debug/rattler-build)"
     )
     parser.add_argument(
         "--tests-dir", "-t",
@@ -802,8 +807,17 @@ def main():
         type=str,
         help="Re-run only the failing tests from this JSON file"
     )
+    parser.add_argument(
+        "--fast",
+        action="store_true",
+        help="Fast mode: test only one variant per feedstock in parallel (sets --jobs to 50 if not specified)"
+    )
 
     args = parser.parse_args()
+
+    # In fast mode, set jobs to 50 if not explicitly set
+    if args.fast and args.jobs == 1:
+        args.jobs = 50
 
     tests_dir = Path(args.tests_dir)
     rattler_build_cmd = args.rattler_build
@@ -839,6 +853,8 @@ def main():
 
     print(f"Tests directory: {tests_dir}")
     print(f"Parallel jobs: {args.jobs}")
+    if args.fast:
+        print(f"Fast mode: enabled (testing only 1 variant per feedstock)")
     if diff_output_dir:
         print(f"Saving diffs to: {diff_output_dir}")
 
@@ -863,7 +879,7 @@ def main():
 
     if args.jobs > 1:
         # Parallel execution mode
-        test_cases = collect_test_cases(tests_dir, args.feedstock)
+        test_cases = collect_test_cases(tests_dir, args.feedstock, args.fast)
 
         # Filter by previous failures if requested
         if args.rerun_failures:

@@ -1,0 +1,79 @@
+schema_version: 1
+
+context:
+  name: coffea
+  version: "2025.11.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/coffea-${{ version }}.tar.gz
+  sha256: 5b0d3f9a9688adbb2692f74c1bea7c72d950ac4bd4b72d417c08303fb531f27d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.17.1
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - awkward >=2.8.9
+    - uproot >=5.6.0
+    - dask-core >=2024.3.0
+    - dask-awkward >=2025.9.0
+    - dask-histogram >=2025.2.0
+    - vector >=1.4.1,!=1.6.0
+    - correctionlib >=2.6.0
+    - pyarrow >=6.0.0
+    - matplotlib-base >=3
+    - numba >=0.58.1
+    - numpy >=1.22
+    - scipy >=1.1.0
+    - tqdm >=4.27.0
+    - lz4
+    - cloudpickle >=1.2.3
+    - toml >=0.10.2
+    - mplhep >=0.1.18
+    - packaging
+    - pandas
+    - hist >=2
+    - cachetools
+    - requests
+    - aiohttp
+    - fsspec
+    - rich
+    - ipywidgets
+
+tests:
+  - python:
+      imports:
+        - coffea
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Tools for doing Collider HEP style analysis with columnar operations
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/coffea
+  repository: https://github.com/scikit-hep/coffea
+  documentation: https://coffea-hep.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - lgray
+    - nsmith-
+    - ikrommyd
+    - areinsvo
+    - mcremone
+    - chrisburr
+    - henryiii
+    - conda-forge/scikit-hep

@@ -1,0 +1,287 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mg5amcnlo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mg5amcnlo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mg5amcnlo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mg5amcnlo/work"
+      },
+      "hash": {
+        "hash": "b563de1",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mg5amcnlo": {
+          "build_string": "py311hb563de1_6",
+          "name": "mg5amcnlo",
+          "version": "3.5.7"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:27:20.107534451Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MadGraph5_aMC@NLO is a framework that aims at providing all the elements\nnecessary for SM and BSM phenomenology, such as the computations of cross\nsections, the generation of hard events and their matching with event\ngenerators, and the use of a variety of tools relevant to event manipulation\nand analysis.\nProcesses can be simulated to LO accuracy for any user-defined Lagrangian,\nand the NLO accuracy in the case of models that support this kind of calculations\n&mdash; prominent among these are QCD and EW corrections to SM processes.\nMatrix elements at the tree- and one-loop-level can also be obtained.\n\nMadGraph5_aMC@NLO is the new version of both MadGraph5 and aMC@NLO that unifies\nthe LO and NLO lines of development of automated tools within the MadGraph family.\nAs such, the code allows one to simulate processes in virtually all configurations\nof interest, in particular for hadronic and e+e- colliders; starting from version\n3.2.0, the latter include Initial State Radiation and beamstrahlung effects.",
+        "homepage": "https://github.com/mg5amcnlo/mg5amcnlo",
+        "license": "LicenseRef-NCSA",
+        "license_file": [
+          "source/LICENSE"
+        ],
+        "repository": "https://github.com/mg5amcnlo/mg5amcnlo",
+        "summary": "MadGraph5_aMC@NLO"
+      },
+      "build": {
+        "number": 6,
+        "script": [
+          "rm -r source/.github",
+          "rm -r source/tests",
+          "rm source/.bzrignore",
+          "rm source/.gitignore",
+          "rm source/code-notes",
+          "rm source/README",
+          "rm source/UpdateNotes.txt",
+          "rm source/vendor/DiscreteSampler/check",
+          "find source -type f -exec grep -Il '#!/usr/bin/perl -w' {} + | xargs sed -i 's|#!/usr/bin/perl -w|#!/usr/bin/env perl\\nuse warnings;|g'",
+          "cp -a source $PREFIX/MG5_aMC",
+          "cd $PREFIX/MG5_aMC/vendor/CutTools",
+          "echo -e \"\\n# Compiling CutTools\"",
+          "make FC=$FC FFLAGS=\"-fPIC -fno-automatic -O2 -funroll-all-loops $FFLAGS\"",
+          "find . -name \"*.o\" -exec rm {} +",
+          "cd -",
+          "rm -rf $PREFIX/MG5_aMC/vendor/IREGI",
+          "mkdir -p $PREFIX/MG5_aMC/vendor/IREGI/src",
+          "ln -s $PREFIX/lib/libiregi.a $PREFIX/MG5_aMC/vendor/IREGI/src/",
+          "for file in $PREFIX/include/iregi/*; do ln -s \"$file\" $PREFIX/MG5_aMC/vendor/IREGI/src/; done",
+          "mkdir -p $PREFIX/MG5_aMC/vendor/IREGI/src/qcdloop/ff",
+          "ln -s $PREFIX/lib/libff.a $PREFIX/MG5_aMC/vendor/IREGI/src/qcdloop/ff/",
+          "mkdir -p $PREFIX/MG5_aMC/vendor/IREGI/src/qcdloop/ql",
+          "ln -s $PREFIX/lib/libqcdloop.a $PREFIX/MG5_aMC/vendor/IREGI/src/qcdloop/ql/",
+          "cd $PREFIX/MG5_aMC/vendor/StdHEP",
+          "sed -i \"s|FFLAGS += -std=legacy|FFLAGS += -std=legacy -ffixed-line-length-none $FFLAGS|g\" makefile",
+          "sed -i \"s|CFLAGS += -Wno-implicit-function-declaration|CFLAGS += -Wno-implicit-function-declaration $CFLAGS|g\" makefile",
+          "echo -e \"\\n# Compiling StdHEP\"",
+          "make all FC=$FC F77=$FC CC=$CC --jobs=$CPU_COUNT",
+          "make clean",
+          "cd -",
+          "mkdir -p $PREFIX/MG5_aMC/HEPTools/lib",
+          "mkdir -p $PREFIX/MG5_aMC/HEPTools/include",
+          "mkdir -p $PREFIX/MG5_aMC/HEPTools/oneloop",
+          "echo -e \"\\n# Symlinking OneLOop\"",
+          "ln -s $PREFIX/lib/libavh_olo.a $PREFIX/MG5_aMC/HEPTools/oneloop/",
+          "ln -s $PREFIX/lib/libavh_olo.a $PREFIX/MG5_aMC/HEPTools/lib/",
+          "for file in $PREFIX/include/oneloop/*; do ln -s \"$file\" $PREFIX/MG5_aMC/HEPTools/oneloop/; ln -s \"$file\" $PREFIX/MG5_aMC/HEPTools/include/; done",
+          "mkdir -p $PREFIX/MG5_aMC/HEPTools/collier/include",
+          "echo -e \"\\n# Symlinking Collier\"",
+          "ln -s $PREFIX/lib/libcollier.a $PREFIX/MG5_aMC/HEPTools/collier/",
+          "ln -s $PREFIX/lib/libcollier.a $PREFIX/MG5_aMC/HEPTools/lib/",
+          "ln -s $PREFIX/include/collier.mod $PREFIX/MG5_aMC/HEPTools/collier/include/",
+          "ln -s $PREFIX/include/collier.mod $PREFIX/MG5_aMC/HEPTools/include/",
+          "echo -e \"\\n# Configuring $PREFIX/MG5_aMC/input/mg5_configuration.txt\"",
+          "cp $RECIPE_DIR/mg5_configuration.txt .",
+          "sed -i \"s|REPLACE_WITH_PREFIX|$PREFIX|g\" mg5_configuration.txt",
+          "sed -i \"s|REPLACE_WITH_BASENAME_FC|$(basename ${FC_FOR_BUILD//$BUILD/$HOST})|g\" mg5_configuration.txt",
+          "sed -i \"s|REPLACE_WITH_BASENAME_CXX|$(basename ${CXX_FOR_BUILD//$BUILD/$HOST})|g\" mg5_configuration.txt",
+          "sed -i \"s|# automatic_html_opening = True|automatic_html_opening = False|g\" mg5_configuration.txt",
+          "mv mg5_configuration.txt $PREFIX/MG5_aMC/input/mg5_configuration.txt",
+          "mkdir -p $PREFIX/bin",
+          "ln -s $PREFIX/MG5_aMC/bin/mg5_aMC $PREFIX/bin/mg5_aMC",
+          "mkdir -p $PREFIX/share/mg5_aMC",
+          "ln -s $PREFIX/MG5_aMC/proc_card.dat $PREFIX/share/mg5_aMC/proc_card.dat",
+          "mkdir -p $PREFIX/etc/conda/activate.d",
+          "cp \"${RECIPE_DIR}/activate.sh\" \"${PREFIX}/etc/conda/activate.d/zzz-${PKG_NAME}-activate.sh\"",
+          "cp \"${RECIPE_DIR}/activate.csh\" \"${PREFIX}/etc/conda/activate.d/zzz-${PKG_NAME}-activate.csh\"",
+          "cp \"${RECIPE_DIR}/activate.fish\" \"${PREFIX}/etc/conda/activate.d/zzz-${PKG_NAME}-activate.fish\"",
+          "mkdir -p $PREFIX/etc/conda/deactivate.d",
+          "cp \"${RECIPE_DIR}/deactivate.sh\" \"${PREFIX}/etc/conda/deactivate.d/zzz-${PKG_NAME}-deactivate.sh\"",
+          "cp \"${RECIPE_DIR}/deactivate.csh\" \"${PREFIX}/etc/conda/deactivate.d/zzz-${PKG_NAME}-deactivate.csh\"",
+          "cp \"${RECIPE_DIR}/deactivate.fish\" \"${PREFIX}/etc/conda/deactivate.d/zzz-${PKG_NAME}-deactivate.fish\"",
+          "ls -lhtra $PREFIX/etc/conda/activate.d/",
+          "ls -lhtra $PREFIX/etc/conda/deactivate.d/",
+          "echo \"exit\" | mg5_aMC"
+        ],
+        "string": "py311hb563de1_6"
+      },
+      "context": {
+        "name": "mg5amcnlo",
+        "version": "3.5.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "mg5amcnlo",
+        "version": "3.5.7"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "gfortran_linux-aarch64 14.*",
+          "make",
+          "cross-python_linux-aarch64",
+          "python",
+          "sed",
+          "grep"
+        ],
+        "host": [
+          "python",
+          "six",
+          "ply",
+          "fastjet-cxx",
+          "emela",
+          "lhapdf",
+          "oneloop-static",
+          "iregi-static 1.1.0.*",
+          "qcdloop-fortran-static",
+          "collier-static",
+          "hepmc2",
+          "hepmc3"
+        ],
+        "run": [
+          "cxx-compiler",
+          "fortran-compiler",
+          "make",
+          "tar",
+          "wget",
+          "curl",
+          "perl",
+          "python",
+          "six",
+          "numpy",
+          "fastjet-contrib",
+          "emela",
+          "lhapdf",
+          "ply",
+          "bc",
+          "procps-ng",
+          "oneloop-static",
+          "iregi-static 1.1.0.*",
+          "qcdloop-fortran-static",
+          "libtirpc",
+          "collier-static",
+          "mg5amcnlo-pythia8-interface",
+          "hepmc2",
+          "hepmc3",
+          "ghostscript",
+          "gnuplot"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "remove-cuttools-compiler-requirement.patch",
+            "add-libtirpc-to-nlo-extralibs-for-xdr.patch"
+          ],
+          "sha256": "ca3e027f078438318bd4143a102aebc2d51358f537b5d52bbc574fe49a6a901e",
+          "target_directory": "source",
+          "url": "https://github.com/hep-packaging-coordination/mg5amcnlo-release-mirror/releases/download/3.5.7/MG5_aMC_v3.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "mg5_aMC"
+            ],
+            "files": [
+              "MG5_aMC/aloha/*",
+              "MG5_aMC/bin/*",
+              "MG5_aMC/HELAS/*",
+              "MG5_aMC/input/*",
+              "MG5_aMC/madgraph/*",
+              "MG5_aMC/MadSpin/*",
+              "MG5_aMC/mg5decay/*",
+              "MG5_aMC/models/*",
+              "MG5_aMC/PLUGIN/*",
+              "MG5_aMC/Template/*",
+              "MG5_aMC/vendor/*",
+              "MG5_aMC/proc_card.dat",
+              "MG5_aMC/VERSION",
+              "MG5_aMC/input/mg5_configuration.txt",
+              "MG5_aMC/madgraph/LICENSE",
+              "MG5_aMC/vendor/CutTools/includects/libcts.a",
+              "MG5_aMC/vendor/IREGI/src/libiregi.a",
+              "MG5_aMC/vendor/IREGI/src/qcdloop/ff/libff.a",
+              "MG5_aMC/vendor/IREGI/src/qcdloop/ql/libqcdloop.a",
+              "MG5_aMC/vendor/StdHEP/lib/libstdhep.a",
+              "MG5_aMC/vendor/StdHEP/lib/libstdhepC.a",
+              "MG5_aMC/vendor/StdHEP/lib/libFmcfio.a"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "tutorial.mg5",
+              "tutorial_amc-at-nlo.mg5"
+            ]
+          },
+          "script": [
+            "echo -e \"\\n# Checking mg5_configuration.txt\"",
+            "cat $PREFIX/MG5_aMC/input/mg5_configuration.txt",
+            "mg5_aMC --help",
+            "echo \"exit\" | mg5_aMC",
+            "lhapdf install NNPDF23_lo_as_0130_qed &> download_log.txt",
+            "echo -e \"\\n# Running tutorial.mg5\"",
+            "mg5_aMC ./tutorial.mg5",
+            "ls -lhtra",
+            "test ! -f ME5_debug"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

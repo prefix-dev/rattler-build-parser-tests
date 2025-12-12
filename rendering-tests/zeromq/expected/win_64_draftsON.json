@@ -1,0 +1,199 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeromq",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeromq/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeromq/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeromq/work"
+      },
+      "hash": {
+        "hash": "37f6b46"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zeromq": {
+          "build_string": "drafts_h37f6b46_9",
+          "name": "zeromq",
+          "version": "4.3.5"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:43.600583673Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "drafts": "ON",
+        "krb5": "1.21",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://zeromq.org/",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A high-performance asynchronous messaging library."
+      },
+      "build": {
+        "dynamic_linking": {
+          "overdepending_behavior": "error"
+        },
+        "files": {
+          "exclude": [
+            "share/man/"
+          ],
+          "include": []
+        },
+        "number": 9,
+        "script": {
+          "env": {
+            "drafts": "ON"
+          },
+          "file": "build"
+        },
+        "string": "drafts_h37f6b46_9",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build": 9,
+        "build_drafts": true,
+        "build_prefix": "drafts_",
+        "name": "zeromq",
+        "version": "4.3.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jakirkham",
+          "minrk",
+          "SylvainCorlay",
+          "JohanMabille",
+          "davidbrochart"
+        ]
+      },
+      "package": {
+        "name": "zeromq",
+        "version": "4.3.5"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "libsodium",
+          "krb5"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "zeromq",
+                "upper_bound": "x.x.x"
+              }
+            },
+            "zeromq * drafts_*"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "001-windows-install.patch",
+            "pr4663.patch",
+            "pr4684.patch",
+            "pr4799.patch",
+            "003-no-stdc++-on-win.patch"
+          ],
+          "sha256": "6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43",
+          "url": "https://github.com/zeromq/libzmq/releases/download/v4.3.5/zeromq-4.3.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "curve_keygen"
+            ],
+            "files": {
+              "not_exists": [
+                "Library/lib/libzmq-mt-s*"
+              ]
+            },
+            "lib": [
+              "libzmq-mt-4_3_5"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-64",
+              "cmake",
+              "ninja"
+            ]
+          },
+          "script": {
+            "content": [
+              "curve_keygen",
+              "cmake -G Ninja -B _build tests",
+              "cmake --build _build  -v",
+              "ctest --test-dir _build"
+            ],
+            "env": {
+              "drafts": "ON"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

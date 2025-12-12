@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: 0.0.17
+
+package:
+  name: tmux-language-server
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/tmux-language-server/tmux_language_server-${{ version }}.tar.gz
+  sha256: 3d499fab8089d15f41841c18097e407da658cbb96f368dbfcc5d7587ae193387
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - tmux-language-server = tmux_language_server.__main__:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - setuptools
+    - setuptools-scm >=6.2
+    - setuptools-generate >=0.0.6
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - lsp-tree-sitter
+    - tree-sitter-tmux
+
+tests:
+  - python:
+      imports:
+        - tmux_language_server
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - tmux-language-server --help
+
+about:
+  summary: tmux language server
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/Freed-Wu/tmux-language-server
+  repository: https://github.com/Freed-Wu/tmux-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

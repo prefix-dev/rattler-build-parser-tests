@@ -1,0 +1,42 @@
+context:
+  version: "1.0.6160011"
+
+package:
+  name: dotnet-interactive
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dotnet/interactive/archive/v${{ version }}.tar.gz
+  sha256: aa43e11093268574324d3882b3ff52defec4d79d856ce35f1ef893e5b0b7358d
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  host:
+    - dotnet
+    - jq
+    - nodejs
+    - nuget-license
+  run:
+    - dotnet
+    - nodejs
+
+tests:
+  - script:
+      - dotnet-interactive --help
+
+about:
+  license: MIT
+  license_file:
+    - License.txt
+    - license-files/
+  summary: .NET Interactive combines the power of .NET with many other languages to create notebooks, REPLs, and embedded coding experiences.
+  homepage: https://github.com/dotnet/interactive
+  repository: https://github.com/dotnet/interactive
+
+extra:
+  recipe-maintainers:
+    - dhirschfeld
+    - danielnachun

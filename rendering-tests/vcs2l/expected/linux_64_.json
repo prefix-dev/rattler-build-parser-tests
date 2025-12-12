@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vcs2l",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vcs2l/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vcs2l/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vcs2l/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vcs2l": {
+          "build_string": "pyhcf101f3_0",
+          "name": "vcs2l",
+          "version": "1.1.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:45.681606055Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ros-infrastructure/vcs2l",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "vcs2l provides a command line tool to invoke vcs commands on multiple repositories."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "vcs = vcs2l.commands.vcs:main",
+            "vcs-branch = vcs2l.commands.branch:main",
+            "vcs-bzr = vcs2l.commands.custom:bzr_main",
+            "vcs-custom = vcs2l.commands.custom:main",
+            "vcs-diff = vcs2l.commands.diff:main",
+            "vcs-export = vcs2l.commands.export:main",
+            "vcs-git = vcs2l.commands.custom:git_main",
+            "vcs-help = vcs2l.commands.help:main",
+            "vcs-hg = vcs2l.commands.custom:hg_main",
+            "vcs-import = vcs2l.commands.import_:main",
+            "vcs-log = vcs2l.commands.log:main",
+            "vcs-pull = vcs2l.commands.pull:main",
+            "vcs-push = vcs2l.commands.push:main",
+            "vcs-remotes = vcs2l.commands.remotes:main",
+            "vcs-status = vcs2l.commands.status:main",
+            "vcs-svn = vcs2l.commands.custom:svn_main",
+            "vcs-validate = vcs2l.commands.validate:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "vcs2l",
+        "version": "1.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "vcs2l",
+        "version": "1.1.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "pyyaml",
+          "setuptools"
+        ],
+        "run_constraints": [
+          "vcstool ==9999999999"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3cc7583f65fa3509b824b72f448f9ed7433efe8443ba331a9af4e2ce685524ca",
+          "url": "https://pypi.org/packages/source/v/vcs2l/vcs2l-1.1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "vcs2l"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": [
+            "vcs --help",
+            "vcs-branch --help",
+            "vcs-bzr --help",
+            "vcs-custom --help",
+            "vcs-diff --help",
+            "vcs-export --help",
+            "vcs-git --help",
+            "vcs-help --help",
+            "vcs-hg --help",
+            "vcs-import --help",
+            "vcs-log --help",
+            "vcs-pull --help",
+            "vcs-push --help",
+            "vcs-remotes --help",
+            "vcs-status --help",
+            "vcs-svn --help",
+            "vcs-validate --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

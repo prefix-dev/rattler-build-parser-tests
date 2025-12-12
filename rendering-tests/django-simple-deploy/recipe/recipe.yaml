@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: django-simple-deploy
+  version: "1.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 27748ff3dfcccc33eee4d2a633a934c41b8578bc05bdc58c8ad4d82f5237f91c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - django >=4.2
+    - toml >=0.10.2
+    - requests >=2.32.2
+    - pluggy >=1.5.0
+
+tests:
+  - python:
+      imports:
+        - django_simple_deploy
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A management command that auto-configures for deployment.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/ehmatthes/django-simple-deploy
+
+extra:
+  recipe-maintainers:
+    - thewchan

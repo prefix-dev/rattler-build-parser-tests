@@ -1,0 +1,32 @@
+context:
+  version: "0.14.4"
+
+package:
+  name: lua-compat-5.3-c
+  version: ${{ version }}
+
+source:
+  url: https://github.com/lunarmodules/lua-compat-5.3/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: a9afa2eb812996039a05c5101067e6a31af9a75eded998937a1ce814afe1b150
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p ${PREFIX}/include/lua-compat-5.3
+    - cp -r c-api ${PREFIX}/include/lua-compat-5.3
+
+tests:
+  - script:
+      - test -f ${PREFIX}/include/lua-compat-5.3/c-api/compat-5.3.h
+      - test -f ${PREFIX}/include/lua-compat-5.3/c-api/compat-5.3.c
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Compatibility module providing Lua-5.3-style APIs for Lua 5.2 and 5.1 (C API only)
+  homepage: https://github.com/lunarmodules/lua-compat-5.3-c
+
+extra:
+  recipe-maintainers:
+    - danielnachun

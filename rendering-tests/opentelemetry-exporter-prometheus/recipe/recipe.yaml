@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: opentelemetry-exporter-prometheus
+  version: 0.60b0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/opentelemetry_exporter_prometheus-${{ version }}.tar.gz
+  sha256: c6ae33e52cdd1dbfed1f7436935df94eb03c725b57322026d04e6fbc37108e6e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - opentelemetry-api >=1.12,<2.dev0
+    - opentelemetry-sdk >=1.39.0,<1.40.dev0
+    - prometheus_client >=0.5.0,<1.0.0
+tests:
+  - python:
+      imports:
+        - opentelemetry
+        - opentelemetry.exporter
+        - opentelemetry.exporter.prometheus
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-prometheus
+  summary: Prometheus Metric Exporter for OpenTelemetry
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - rxm7706
+    - conda-forge/opentelemetry-api
+    - conda-forge/opentelemetry-sdk
+    - zbowling

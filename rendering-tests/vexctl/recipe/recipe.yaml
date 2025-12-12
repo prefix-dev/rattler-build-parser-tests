@@ -1,0 +1,48 @@
+context:
+  name: vexctl
+  version: "0.4.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/openvex/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: ed77b48de3ead71af608fb3ae5e5f4e19647d87fe9dfe38d4ffce4ee1c1e7c3b
+    target_directory: src
+
+build:
+  number: 0
+  script:
+    - cd src
+    # alibabacloud-go/cr-20160607/ has no LICENSE as of version 1.0.1, but is Apache-2.0 licensed.
+    # cyberphone/json-canonicalization is Apache-2.0 licensed.
+    # github.com/in-toto/attestation is Apache-2.0 licensed.
+    # github.com/in-toto/in-toto-golang is Apache-2.0 licensed.
+    - go-licenses save ./ --save_path ../library_licenses --ignore github.com/openvex/vexctl --ignore github.com/alibabacloud-go/cr-20160607/client --ignore github.com/cyberphone/json-canonicalization --ignore github.com/in-toto/attestation --ignore github.com/in-toto/in-toto-golang
+    - if: win
+      then: go install -v .
+      else: go build -v -trimpath -o $PREFIX/bin/vexctl ./main.go
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+
+tests:
+  - script:
+      - vexctl --help
+
+about:
+  homepage: https://github.com/openvex/vexctl
+  summary: A tool to create, transform and attest VEX metadata
+  license: Apache-2.0
+  license_file:
+    - src/LICENSE
+    - library_licenses/
+  repository: https://github.com/openvex/vexctl
+
+extra:
+  recipe-maintainers:
+    - delsner

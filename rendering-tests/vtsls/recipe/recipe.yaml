@@ -1,0 +1,39 @@
+context:
+  version: "0.2.9"
+
+package:
+  name: vtsls
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@vtsls/language-server/-/language-server-${{ version }}.tgz
+  sha256: 308fbf6514a8d9e59fba480fe8232c30a3394e6f709824b7a6aab7834408644d
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "vtsls 2>&1 | grep -q 'Connection input stream is not set.'"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: LSP wrapper for typescript extension of vscode
+  homepage: https://github.com/yioneko/vtsls
+  repository: https://github.com/yioneko/vtsls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

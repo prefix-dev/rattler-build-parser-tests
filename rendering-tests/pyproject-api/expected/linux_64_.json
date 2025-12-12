@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyproject-api",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyproject-api/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyproject-api/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyproject-api/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyproject-api": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pyproject-api",
+          "version": "1.10.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:15.160365691Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pypi.org/project/pyproject-api",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/tox-dev/pyproject-api",
+        "summary": "API to interact with the python pyproject.toml based projects"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "1.10.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "pyproject-api",
+        "version": "1.10.0"
+      },
+      "requirements": {
+        "host": [
+          "hatch-vcs >=0.5",
+          "hatchling >=1.27",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10",
+          "packaging >=25",
+          "tomli >=2.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "40c6f2d82eebdc4afee61c773ed208c04c19db4c4a60d97f8d7be3ebc0bbb330",
+          "url": "https://pypi.org/packages/source/p/pyproject-api/pyproject_api-1.10.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyproject_api"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "pytest",
+              "pytest-mock",
+              "python 3.10.*",
+              "setuptools",
+              "virtualenv"
+            ]
+          },
+          "script": [
+            "coverage run -m --source pyproject_api --branch -m pytest -vv --color=yes --tb=long -k \"not setuptools_prepare_metadata_for_build_wheel\"",
+            "coverage report --show-missing --skip-covered --fail-under=76"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

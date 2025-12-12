@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: quantstats
+  version: "0.0.77"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 55213fce012b5455a25cf328424c33a395b20cc362408e5e5a9b1f0e5e03e33d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - sample=sample:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pandas >=1.5.0,<3.0.0
+    - numpy >=1.21.0
+    - seaborn >=0.11.0
+    - matplotlib-base >=3.3.0
+    - scipy >=1.7.0
+    - tabulate >=0.8.9
+    - yfinance >=0.2.65
+    - python-dateutil >=2.8.0
+    - packaging >=20.0
+    # Not listed but required nevertheless
+    - ipython
+
+tests:
+  - python:
+      imports:
+        - quantstats
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Portfolio analytics for quants
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  description: |
+    QuantStats is a Python library that performs portfolio profiling,
+    allowing quants and portfolio managers to understand their
+    performance better by providing them with in-depth analytics and
+    risk metrics.
+
+
+  homepage: https://github.com/ranaroussi/quantstats
+
+extra:
+  recipe-maintainers:
+    - thewchan

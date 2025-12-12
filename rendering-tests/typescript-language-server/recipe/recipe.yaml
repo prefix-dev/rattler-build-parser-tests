@@ -1,0 +1,36 @@
+context:
+  version: "5.1.3"
+
+package:
+  name: typescript-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-${{ version }}.tgz
+  sha256: d2c9caee7fe712144adcc9439d85f2a2751a5c10efc21e63f6ac2ccc337d310c
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - typescript-language-server --help
+
+about:
+  license: MIT AND Apache-2.0
+  license_file: LICENSE
+  summary: TypeScript & JavaScript Language Server
+  homepage: https://github.com/typescript-language-server/typescript-language-server
+  repository: https://github.com/typescript-language-server/typescript-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

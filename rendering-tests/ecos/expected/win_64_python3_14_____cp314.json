@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecos",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecos/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecos/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecos/work"
+      },
+      "hash": {
+        "hash": "169351c",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ecos": {
+          "build_string": "np2py314h169351c_3",
+          "name": "ecos",
+          "version": "2.0.14"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:40.705940907Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/embotech/ecos",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/embotech/ecos-python",
+        "summary": "Python interface for ECOS, a lightweight conic solver for second-order cone programming"
+      },
+      "build": {
+        "number": 3,
+        "script": "make version && ${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "np2py314h169351c_3"
+      },
+      "context": {
+        "version": "2.0.14",
+        "version_core": "2.0.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "djsutherland",
+          "h-vetinari",
+          "sebp"
+        ]
+      },
+      "package": {
+        "name": "ecos",
+        "version": "2.0.14"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "numpy",
+          "vs2022_win-64",
+          "vs_win-64",
+          "make"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "numpy"
+        ],
+        "run": [
+          "python",
+          "scipy >=1.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "43d1b70b3ac6d7095c6451e06e551c825884f124c5305c48b311a51ca52774ef",
+          "url": "https://github.com/embotech/ecos-python/archive/refs/tags/v2.0.14.tar.gz"
+        },
+        {
+          "git": "https://github.com/embotech/ecos.git",
+          "rev": "refs/tags/v2.0.10",
+          "target_directory": "ecos"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ecos",
+              "_ecos"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/test_interface.py",
+              "src/test_interface_bb.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": [
+            "python src/test_interface.py",
+            "python src/test_interface_bb.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

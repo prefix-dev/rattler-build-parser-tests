@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-yaml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-yaml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-yaml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-yaml/work"
+      },
+      "hash": {
+        "hash": "b240bb9",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree-sitter-yaml": {
+          "build_string": "py314hb240bb9_1",
+          "name": "tree-sitter-yaml",
+          "version": "0.7.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:44.476946619Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A tree-sitter parser for YAML files.",
+        "homepage": "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
+        "summary": "YAML grammar for tree-sitter."
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -vv",
+        "string": "py314hb240bb9_1"
+      },
+      "context": {
+        "name": "tree-sitter-yaml",
+        "version": "0.7.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "tree-sitter-yaml",
+        "version": "0.7.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cross-python_osx-arm64",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=42"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "aeaff5731bb8b66c7054c8aed33cd5edea5f4cd2ac71654f3f6c2ba2073d8fac",
+          "url": "https://github.com/tree-sitter-grammars/tree-sitter-yaml/archive/refs/tags/v0.7.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter_yaml"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "bindings/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python",
+              "tree_sitter >=0.22"
+            ]
+          },
+          "script": "python -m pytest bindings/python/tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

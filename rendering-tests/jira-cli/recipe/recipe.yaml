@@ -1,0 +1,53 @@
+context:
+  name: jira-cli
+  version: "1.7.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ankitpokhrel/jira-cli/archive/v${{ version }}.tar.gz
+  sha256: 6b1ecbd2228626cdc987548d8d83faae074c7a167cef737a9ac9180a03767154
+
+build:
+  number: 0
+  script:
+    - go-licenses save ./cmd/jira --save_path library_licenses
+    - if: unix
+      then: go build -v -o $PREFIX/bin/jira -ldflags="-s -w" ./cmd/jira
+      else: go build -v -o %LIBRARY_BIN%\jira.exe -ldflags="-s" ./cmd/jira
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - go-licenses
+
+tests:
+  - script:
+      - jira version
+      - jira --help
+  - package_contents:
+      bin:
+        - jira
+      strict: true
+
+about:
+  homepage: https://github.com/ankitpokhrel/jira-cli
+  repository: https://github.com/ankitpokhrel/jira-cli
+  documentation: https://github.com/ankitpokhrel/jira-cli/blob/main/README.md
+  license: MIT
+  license_file:
+    - LICENSE
+    - library_licenses/
+  summary: Feature-rich interactive Jira command line
+  description: |
+    A simple but powerful Jira CLI to help you avoid Jira UI to some extent.
+    This tool is not attempting to replicate every Jira feature in the CLI but
+    to provide a simple alternative to most used Jira features to help you
+    avoid Jira UI.
+
+extra:
+  recipe-maintainers:
+    - mikeaadd
+    - ruben-arts

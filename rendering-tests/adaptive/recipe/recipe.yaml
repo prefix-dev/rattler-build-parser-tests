@@ -1,0 +1,72 @@
+schema_version: 1
+
+context:
+  name: adaptive
+  version: 1.4.1
+  sha256: 7ba981e7793fbeb0f52cb961ee235979989fd8c72e3d3b77b69f747b75fa69eb
+  python_min: "3.11"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/adaptive-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - versioningit
+  run:
+    - python >=${{ python_min }}
+    # Required dependencies
+    - scipy
+    - sortedcollections >=1.1
+    - sortedcontainers >=2.0
+    - cloudpickle
+    - loky >=2.9
+    - versioningit
+    # Optional dependencies
+    - bokeh
+    - holoviews >=1.9.1
+    - ipykernel >=4.8.0
+    - ipyparallel >=6.2.5
+    - ipython
+    - ipywidgets
+    - jupyter_client >=5.2.2
+    - matplotlib-base
+    - pandas
+
+tests:
+  - python:
+      imports:
+        - adaptive
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Adaptive parallel sampling of mathematical functions
+  description: |
+    adaptive is an open-source Python library designed to make adaptive
+    parallel function evaluation simple. With adaptive you just supply a
+    function with its bounds, and it will be evaluated at the "best" points
+    in parameter space. With just a few lines of code you can evaluate
+    functions on a computing cluster, live-plot the data as it returns,
+    and fine-tune the adaptive sampling algorithm.
+  homepage: http://github.com/python-adaptive/adaptive
+  repository: https://github.com/python-adaptive/adaptive/
+  documentation: http://adaptive.readthedocs.org
+
+extra:
+  recipe-maintainers:
+    - basnijholt
+    - jbweston
+    - akhmerov

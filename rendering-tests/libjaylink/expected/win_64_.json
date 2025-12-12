@@ -1,0 +1,185 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjaylink",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjaylink/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjaylink/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjaylink/work"
+      },
+      "hash": {
+        "hash": "1839187"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libjaylink": {
+          "build_string": "h1839187_1",
+          "name": "libjaylink",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:58.170432055Z",
+      "variant": {
+        "c_compiler": "vs2019",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libjaylink is a shared library written in C to access SEGGER J-Link and\ncompatible devices.",
+        "homepage": "https://gitlab.zapb.de/libjaylink/libjaylink",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.zapb.de/libjaylink/libjaylink",
+        "summary": "libjaylink is a shared library written in C to access SEGGER J-Link."
+      },
+      "build": {
+        "number": 1,
+        "string": "h1839187_1"
+      },
+      "context": {
+        "build_num": 1,
+        "major_so_version": "0",
+        "name": "libjaylink",
+        "so_version": "0.2.1",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "feedstock-name": "libjaylink",
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "libjaylink",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2019_win-64",
+          "vs_win-64",
+          "meson >=1.1.0",
+          "ninja",
+          "pkg-config",
+          "m2w64-binutils"
+        ],
+        "host": [
+          "libusb"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libjaylink",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/add-jaylink.def.patch",
+            "patches/add-jaylink.lib-meson.build.patch",
+            "patches/enable-dynamic-library.patch",
+            "patches/fix-types-discovery_tcp.c.patch",
+            "patches/fix-types-discovery_usb.c.patch",
+            "patches/fix-types-fileio.c.patch",
+            "patches/fix-types-socket.c.patch",
+            "patches/fix-types-strutil.c.patch",
+            "patches/fix-types-transport_tcp.c.patch",
+            "patches/fix-types-transport_usb.c.patch",
+            "patches/fix-uninitialized.patch"
+          ],
+          "sha256": "5557d623934a4bbc053c11f9a181375d7abeb76af910696d9e3d9b1de3bf6987",
+          "url": "https://gitlab.zapb.de/libjaylink/libjaylink/-/archive/0.4.0/libjaylink-0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "jaylink.dll",
+              "jaylink-0.dll",
+              "libjaylink.dll",
+              "libjaylink-0.dll"
+            ],
+            "files": [
+              "Library/lib/pkgconfig/libjaylink.pc",
+              "Library/lib/libjaylink.dll.a",
+              "Library/lib/libjaylink-0.dll.a"
+            ],
+            "include": [
+              "libjaylink/libjaylink.h",
+              "libjaylink/version.h"
+            ],
+            "lib": [
+              "jaylink.lib"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "helpers/verify_dll_def.py"
+            ],
+            "source": [
+              "libjaylink/jaylink.def"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "m2w64-binutils",
+              "python"
+            ]
+          },
+          "script": [
+            "python helpers\\\\verify_dll_def.py %PREFIX%\\\\Library\\\\bin\\\\libjaylink-${{ major_so_version }}.dll libjaylink\\\\jaylink.def",
+            "python helpers\\\\verify_dll_def.py %PREFIX%\\\\Library\\\\bin\\\\libjaylink.dll libjaylink\\\\jaylink.def"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

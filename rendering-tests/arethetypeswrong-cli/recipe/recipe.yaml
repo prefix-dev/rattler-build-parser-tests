@@ -1,0 +1,39 @@
+context:
+  version: "0.18.2"
+
+package:
+  name: arethetypeswrong-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@arethetypeswrong/cli/-/cli-${{ version }}.tgz
+  sha256: 44a65eff6118aa4128a46ec9f76dbdc89236ce4ba581a8d2b35e4a76c191d582
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - attw --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A CLI tool for arethetypeswrong.github.io
+  homepage: https://github.com/arethetypeswrong/arethetypeswrong.github.io
+  repository: https://github.com/arethetypeswrong/arethetypeswrong.github.io
+
+extra:
+  recipe-maintainers:
+    - danielnachun

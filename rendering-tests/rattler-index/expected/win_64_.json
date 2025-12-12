@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rattler-index",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rattler-index/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rattler-index/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rattler-index/work"
+      },
+      "hash": {
+        "hash": "91801bb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rattler-index": {
+          "build_string": "h91801bb_0",
+          "name": "rattler-index",
+          "version": "0.27.6"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:02.819603281Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libiconv": "1",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.rs/rattler_index/latest/rattler_index",
+        "homepage": "https://github.com/conda/rattler",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/conda/rattler/tree/main/crates/rattler_index",
+        "summary": "Index conda channels using rattler"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cd crates/rattler_index",
+            "cargo-bundle-licenses --format yaml --output ../../THIRDPARTY.yml",
+            "cargo auditable install --no-track --locked --features native-tls --features rattler_config --no-default-features --root ${{ PREFIX }} --path ."
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "h91801bb_0"
+      },
+      "context": {
+        "name": "rattler-index",
+        "version": "0.27.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "delsner",
+          "pavelzw",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "rattler-index",
+        "version": "0.27.6"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ],
+        "host": [
+          "openssl",
+          "libiconv"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ec4d1d3293f5a7b965f11c08d00ee9235b73ae66c43dca2eb8859eafe421e900",
+          "url": "https://github.com/conda/rattler/archive/rattler_index-v0.27.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "rattler-index --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

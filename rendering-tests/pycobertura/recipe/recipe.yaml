@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: pycobertura
+  version: "4.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pycobertura-${{ version }}.tar.gz
+  sha256: 9a8957ef35c1201ab05188c0baa2a8c08b7800b6336d5aef073b116ac449674d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
+  python:
+    entry_points:
+      - pycobertura=pycobertura.cli:pycobertura
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-git
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click >=4.0
+    - jinja2
+    - lxml
+    - tabulate
+    - ruamel.yaml
+
+tests:
+  - python:
+      imports:
+        - pycobertura
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pycobertura --help
+
+about:
+  summary: A Cobertura coverage parser that can diff reports and show coverage progress.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/aconrad/pycobertura
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

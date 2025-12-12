@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: docker-compose
+  version: "5.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/docker/compose/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 2c50b805cbb35c7257b54e739aa71c5d7aa5da3a8b2da5c5bb8f145c3bf02e96
+  - url: https://raw.githubusercontent.com/in-toto/in-toto-golang/c9edf0cbb1e6e4daf536fc126bca99aa3cc88f9a/LICENSE
+    sha256: b5c26c8a2ad6dd7cac6646e470a32ee42d23c36124caac4e66c989b6545b2a44
+    file_name: LICENSE-intoto
+
+build:
+  number: 0
+  script:
+    - pushd cmd
+    - if: win
+      then: go build -v -o %LIBRARY_BIN%\docker-compose.exe -ldflags="-s"
+    - if: unix
+      then: go build -ldflags "-s -w -X github.com/docker/compose/v2/internal.Version=${PKG_VERSION}" -o $PREFIX/bin/docker-compose
+    - go-licenses save --save_path ../licenses --ignore github.com/in-toto/in-toto-golang .
+    # Clear out cache to avoid file not removable warnings
+    - if: unix
+      then: chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)
+
+requirements:
+  build:
+    - if: osx
+      then:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('go-cgo') }}
+      else: ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - docker-compose --help
+      - docker-compose version
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - LICENSE-intoto
+    - licenses/
+  summary: Define and run multi-container applications with Docker
+  description: |
+    Docker Compose is a tool for running multi-container applications
+    on Docker defined using the Compose file format.
+    A Compose file is used to define how one or more containers that
+    make up your application are configured. Once you have a Compose
+    file, you can create and start your application with a single command:
+    docker compose up.
+
+
+  homepage: https://www.docker.com/
+  repository: https://github.com/docker/compose
+
+extra:
+  recipe-maintainers:
+    - scopatz
+    - xhochy

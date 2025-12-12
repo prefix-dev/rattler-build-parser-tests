@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: resdk
+  version: "22.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/resdk-${{ version }}.tar.gz
+  sha256: 9a71ee97934632622c421d8abd44ec67483c58af849fb3c8c04aec051766052c
+
+build:
+  number: 0
+  #skip: match(python, ">=3.14")
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  noarch: python
+
+requirements:
+   #build:
+    #- if: build_platform != target_platform
+      #then:
+        #- python
+        #- cross-python_${{ target_platform }}
+  host:
+    - python ${{ python_min }}*
+    - setuptools >=64.0.0
+    - setuptools-scm >=6.4.0
+    - pip
+  run:
+    - python >=${{ python_min }},<3.14
+    - aiohttp >=3.9.3
+    - requests
+    #- if: match(python, ">=3.10")
+      #then: urllib3 >=2
+    - urllib3 >=2
+    - slumber >=0.7.1
+    - wrapt
+    - pytz
+    - tzlocal
+    - pandas
+    - tqdm
+    - openpyxl
+    - xlrd
+    - boto3
+    - boto3-stubs
+    - packaging
+    - mypy-boto3-s3  #not listed in toml file, but required at testing
+
+tests:
+  - python:
+      imports:
+        - resdk
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}*
+    script:
+      - pip check
+
+about:
+  summary: Resolwe SDK for Python
+  license: Apache-2.0
+  license_file: LICENSE
+  description: |
+    Resolwe SDK for Python supports interaction with Resolwe server and its extension Resolwe Bioinformatics. You can use it to upload and inspect biomedical data sets, contribute annotations, run analysis, and write pipelines.
+  homepage: https://github.com/genialis/resolwe-bio-py
+  repository: https://github.com/genialis/resolwe-bio-py
+  documentation: https://resdk.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

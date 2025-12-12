@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zerorpc-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zerorpc-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zerorpc-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zerorpc-python/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zerorpc-python": {
+          "build_string": "pyhe01879c_3",
+          "name": "zerorpc-python",
+          "version": "0.6.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:21:57.747132873Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "zerorpc is a flexible RPC implementation based on zeromq and messagepack.\nService APIs exposed with zerorpc are called \"zeroservices\".",
+        "homepage": "https://github.com/0rpc/zerorpc-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/0rpc/zerorpc-python",
+        "summary": "zerorpc is a flexible RPC based on zeromq."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 3,
+        "python": {
+          "entry_points": [
+            "zerorpc = zerorpc.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_3"
+      },
+      "context": {
+        "name": "zerorpc-python",
+        "version": "0.6.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "zerorpc-python",
+        "version": "0.6.3"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.9",
+          "future",
+          "gevent >=1.1",
+          "msgpack-python >=0.5.2",
+          "pyzmq >=13.1.0,!=23.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d2ee247a566fc703f29c277d767f6f61f1e12f76d0402faea4bd815f32cbf37f",
+          "url": "https://pypi.org/packages/source/z/zerorpc/zerorpc-0.6.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zerorpc"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": "zerorpc --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emval",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emval/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emval/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emval/work"
+      },
+      "hash": {
+        "hash": "9174006",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "emval": {
+          "build_string": "py311h9174006_0",
+          "name": "emval",
+          "version": "0.1.12"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:14.388589238Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/bnkc/emval",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Blazingly fast email validator."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py311h9174006_0"
+      },
+      "context": {
+        "name": "emval",
+        "version": "0.1.12"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "emval",
+        "version": "0.1.12"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64 19.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.7,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b80e37ec8df34d3ec39ad15251c7064b3d39d0c9da05132a17840e7ad02f30b0",
+          "url": "https://pypi.org/packages/source/e/emval/emval-0.1.12.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "emval"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

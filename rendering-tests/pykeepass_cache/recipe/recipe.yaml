@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 2.0.3
+
+package:
+  name: pykeepass_cache
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pykeepass_cache/pykeepass-cache-${{ version }}.tar.gz
+  sha256: 7f36fea82f1d0023ebf95df50d5e741251f321e3dd5cc5fa4ed7a94d8e9f61e8
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pykeepass
+    - rpyc
+    - python-daemon
+
+tests:
+  - python:
+      imports:
+        - pykeepass_cache
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: database caching for PyKeePass
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/evidlo/pykeepass_cache
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mimalloc/work"
+      },
+      "hash": {
+        "hash": "6af0161"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mimalloc": {
+          "build_string": "h6af0161_0",
+          "name": "mimalloc",
+          "version": "3.1.5"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:42.098028623Z",
+      "variant": {
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "mimalloc (pronounced \"me-malloc\") is a general purpose allocator with\nexcellent performance characteristics. Initially developed by Daan Leijen\nfor the run-time systems of the Koka and Lean languages.",
+        "homepage": "https://github.com/microsoft/mimalloc",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/microsoft/mimalloc",
+        "summary": "mimalloc is a compact general purpose allocator with excellent performance."
+      },
+      "build": {
+        "number": 0,
+        "string": "h6af0161_0"
+      },
+      "context": {
+        "name": "mimalloc",
+        "version": "3.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "elbaro",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "mimalloc",
+        "version": "3.1.5"
+      },
+      "requirements": {
+        "build": [
+          "clang_win-64 19.*",
+          "vs_win-64",
+          "clangxx_win-64 19.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mimalloc",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-cmake-Remove-non-portable-mtune-specification.patch"
+          ],
+          "sha256": "1c6949032069d5ebea438ec5cedd602d06f40a92ddf0f0d9dcff0993e5f6635c",
+          "url": "https://github.com/microsoft/mimalloc/archive/v3.1.5.tar.gz"
+        },
+        {
+          "sha256": "39ef7147f6d563a48b019db2f197ae34487bd3daa1b91a369ce7ba32179f7cb6",
+          "target_directory": "bin",
+          "url": "https://github.com/microsoft/mimalloc/raw/v3.1.5/bin/mimalloc-redirect.lib"
+        },
+        {
+          "sha256": "bc3dfdf51fbc80b88cb62cdb6a6784ecc894164bdd4ae7f3885048d870809491",
+          "target_directory": "bin",
+          "url": "https://github.com/microsoft/mimalloc/raw/v3.1.5/bin/mimalloc-redirect.dll"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.c"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "clang_win-64 =19",
+              "clangxx_win-64 =19"
+            ]
+          },
+          "script": [
+            "if not exist %LIBRARY_PREFIX%\\\\bin\\\\mimalloc.dll exit 1",
+            "if not exist %LIBRARY_PREFIX%\\\\lib\\\\mimalloc.dll.lib exit 1",
+            "if not exist %LIBRARY_PREFIX%\\\\include\\\\mimalloc.h exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

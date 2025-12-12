@@ -1,0 +1,30 @@
+From 392c36f1451d925f66f5438fc70a8161387efaee Mon Sep 17 00:00:00 2001
+From: Matthew Feickert <matthew.feickert@cern.ch>
+Date: Fri, 21 Nov 2025 08:25:23 -0700
+Subject: [PATCH] fix: Use ErrCan=6 so errors are written to default output
+
+---
+ src/Control.F90 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/Control.F90 b/src/Control.F90
+index 56a3d0e..73dd268 100644
+--- a/src/Control.F90
++++ b/src/Control.F90
+@@ -103,11 +103,11 @@ Integer, Parameter :: qp = Selected_real_kind(25,450)
+  ! switch of iteration for calculation of chargino/neutralino masses
+  ! has to be extended for all mass calculations
+  !-------------------------------------------------------------------
+- Logical, Save :: mass_calc_iteration = .False.
++ Logical, Save :: mass_calc_iteration = .True.
+  !------------------------------------------
+  ! warning and error system
+  !------------------------------------------
+- Integer, Save :: Iname, ErrorLevel=0, NumberOfOpenFiles=1, ErrCan=10
++ Integer, Save :: Iname, ErrorLevel=0, NumberOfOpenFiles=1, ErrCan=6
+  Character (Len=40), Save :: NameOfUnit(40)
+  Logical, Save :: Non_Zero_Exit = .False.
+  Logical, Save :: Write_warning_to_screen = .False.
+-- 
+2.52.0
+

@@ -1,0 +1,46 @@
+context:
+  name: conda-rattler-solver
+  version: "0.0.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/conda-incubator/conda-rattler-solver/archive/${{ version }}.tar.gz
+  sha256: 173508c029fe07ec0741a00009244988bd6d65f62f486739727b4a641f76750f
+
+build:
+  noarch: python
+  script: SETUPTOOLS_SCM_PRETEND_VERSION="${{ version }}" python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - conda >=25.3.0
+    - py-rattler >=0.13.1
+
+tests:
+  - python:
+      imports:
+        - conda_rattler_solver.solver
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - python -m conda create --dry-run python --solver=rattler
+
+about:
+  homepage: https://github.com/conda-incubator/conda-rattler-solver
+  summary: 'The fast pixi solver, now in conda'
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jaimergp

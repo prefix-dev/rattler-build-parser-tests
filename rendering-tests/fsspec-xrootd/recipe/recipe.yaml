@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: fsspec-xrootd
+  version: "0.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fsspec_xrootd-${{ version }}.tar.gz
+  sha256: 76f2b3a0cfa58e2b26c2b67cf72769169f1eed44294ca98ec0648d19e45bfd85
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=42
+    - setuptools_scm >=3.4
+  run:
+    - python >=${{ python_min }}
+    - fsspec
+    - xrootd
+
+tests:
+  - python:
+      imports:
+        - fsspec_xrootd
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - pip show __RECIPE_MANAGER_SUBSTITUTION_MARKER__ | grep -Fx 'Version: ${{ name }}'
+
+about:
+  summary: xrootd implementation for fsspec
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/fsspec-xrootd
+
+extra:
+  recipe-maintainers:
+    - lgray
+    - nsmith-
+    - lobis

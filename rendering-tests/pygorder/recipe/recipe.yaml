@@ -1,0 +1,54 @@
+context:
+  name: pygorder
+  version: "1.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Ladme/gorder/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 561996113217182ff7d9e2b62679c41cc4b775d670d6b02060964e9e650530cf
+
+build:
+  number: 1
+  script:
+    - if: match(python, "3.14.*") and unix
+      then: export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+    - if: match(python, "3.14.*") and win
+      then: set PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install ./pygorder -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - maturin <2.0
+  host:
+    - python
+    - pip
+    - maturin <2.0
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - gorder
+
+about:
+  homepage: https://github.com/Ladme/gorder
+  summary: Comprehensive tool for calculating lipid order parameters from molecular simulations
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: 'https://ladme.github.io/pygorder-docs/index.html'
+
+extra:
+  recipe-maintainers:
+    - Ladme
+    - RubenChM

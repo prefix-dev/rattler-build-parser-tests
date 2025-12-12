@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: mimesis
+  version: 18.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 7d7c76ecd680ae48afe8dc4413ef1ef1ee7ef20e16f9f9cb42892add642fc1b2
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - mimesis
+        - mimesis.builtins
+        - mimesis.providers
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Mimesis is a robust data generator for Python that can produce a wide range of fake data in multiple languages.
+  homepage: https://github.com/lk-geimfari/mimesis
+  repository: https://github.com/lk-geimfari/mimesis
+  documentation: https://mimesis.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - utabe
+    - janjagusch

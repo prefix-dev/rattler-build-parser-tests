@@ -1,0 +1,37 @@
+context:
+  version: "2.5.1"
+
+package:
+  name: pkgconf
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pkgconf/pkgconf/archive/pkgconf-${{ version }}.tar.gz
+  sha256: 79721badcad1987dead9c3609eb4877ab9b58821c06bdacb824f2c8897c11f2a
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - meson
+    - ninja
+  run_exports:
+    - ${{ pin_subpackage('pkgconf') }}
+
+tests:
+  - script:
+      - pkgconf --help
+
+about:
+  license: MIT
+  license_file: COPYING
+  summary: package compiler and linker metadata toolkit
+  homepage: https://github.com/pkgconf/pkgconf
+  repository: https://github.com/pkgconf/pkgconf
+
+extra:
+  recipe-maintainers:
+    - danielnachun

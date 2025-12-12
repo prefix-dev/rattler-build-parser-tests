@@ -1,0 +1,49 @@
+context:
+  name: verilator-python
+  version: "5.38.0"
+  python_min: 3.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+    url: https://files.pythonhosted.org/packages/56/4f/095eaa3f5786e0dbd087a1b43cf680a056de899848c6ee8b32c9342d0e8b/verilator-${{ version }}.tar.gz
+    sha256: 54d04e7c687abfeffcfc969d9cb19135bcaebadaecce9ac62d2d6e50bccd4a58
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - rich
+    - typer
+    - verilator
+
+tests:
+  - python:
+      imports:
+        - verilator
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+  - script:
+      - verilator-cli --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Python wrapping for verilator
+  homepage: https://github.com/dau-dev/verilator-python
+  repository: https://github.com/dau-dev/verilator-python
+
+extra:
+  recipe-maintainers:
+    - timkpaine

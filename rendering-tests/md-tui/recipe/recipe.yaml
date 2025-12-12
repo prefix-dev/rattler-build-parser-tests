@@ -1,0 +1,57 @@
+context:
+  name: md-tui
+  version: "0.9.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/henriklovhaug/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: a31ca01958eb117a63425f7ce0c2568079a4b2032b999caafedec1c9bfc49273
+
+build:
+  number: 0
+  skip: win
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: linux
+        # https://github.com/tree-sitter/tree-sitter/issues/4271
+        # endian.h on the conda-forge sysroot is old, need to define _BSD_SOURCE
+        then: export CFLAGS="-D_BSD_SOURCE $CFLAGS"
+      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - package_contents:
+      strict: true
+      bin:
+        - mdt${{ '.exe' if win else '' }}
+
+about:
+  homepage: https://github.com/henriklovhaug/md-tui
+  summary: Markdown renderer in the terminal
+  description: >
+    MD-TUI is a TUI application for viewing markdown files directly in your terminal.
+    It's a good solution for quickly viewing your markdown notes, or opening external links from someones README.
+    If your terminal support images, they will render.
+  license: AGPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/henriklovhaug/md-tui
+
+extra:
+  recipe-maintainers:
+    - pavelzw

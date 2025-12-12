@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rloop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rloop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rloop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rloop/work"
+      },
+      "hash": {
+        "hash": "e24fb09",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rloop": {
+          "build_string": "py314he24fb09_2",
+          "name": "rloop",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:01.045394383Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gi0baro/rloop",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "An asyncio event loop implemented in Rust"
+      },
+      "build": {
+        "number": 2,
+        "script": {
+          "file": "build-rloop"
+        },
+        "string": "py314he24fb09_2"
+      },
+      "context": {
+        "maturin_max": "2.0.0",
+        "maturin_min": "1.1.0",
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "rloop",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-arm64",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cargo-bundle-licenses",
+          "python",
+          "cross-python_osx-arm64",
+          "crossenv",
+          "maturin >=1.1.0,<2.0.0"
+        ],
+        "host": [
+          "maturin >=1.1.0,<2.0.0",
+          "pip",
+          "python"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a295c6dd57ff0e2bdeaf3ba7ce47fcbefd40668657cdd4ed64055dc72da3a140",
+          "url": "https://pypi.org/packages/source/r/rloop/rloop-0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rloop"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "pyproject.toml",
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "pytest >=7.4.2,<7.5.0",
+              "pytest-asyncio >=0.21.1,<0.22.0"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

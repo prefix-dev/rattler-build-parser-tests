@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv-build",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv-build/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv-build/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv-build/work"
+      },
+      "hash": {
+        "hash": "4dcd55e"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uv-build": {
+          "build_string": "h4dcd55e_0",
+          "name": "uv-build",
+          "version": "0.9.17"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:01.468178013Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.89",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.astral.sh/uv/concepts/build-backend",
+        "homepage": "https://pypi.org/project/uv",
+        "license": "Apache-2.0 AND MIT AND BSD-2-Clause",
+        "license_file": [
+          "LICENSE-*",
+          "crates/*/License-*",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/astral-sh/uv",
+        "summary": "The uv build backend"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+          "cargo-bundle-licenses --format=yaml --output=THIRDPARTY.yml"
+        ],
+        "string": "h4dcd55e_0"
+      },
+      "context": {
+        "maturin_max": "2.0",
+        "maturin_min": "1.0",
+        "version": "0.9.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zklaus",
+          "isuruf",
+          "conda-forge/uv"
+        ]
+      },
+      "package": {
+        "name": "uv-build",
+        "version": "0.9.17"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "rust_win-64 1.89.*",
+          "vs_win-64",
+          "cargo-bundle-licenses",
+          "python 3.10.*",
+          "maturin >=1.0,<2.0",
+          "cross-python_win-64"
+        ],
+        "host": [
+          "maturin >=1.0,<2.0",
+          "pip",
+          "python 3.10.*"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_win-64",
+            "python"
+          ]
+        },
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "aee981beef5503ac94c982a7205ca77c35b81eaadbb7f0c8583bd6a0f804fffc",
+          "url": "https://pypi.org/packages/source/u/uv-build/uv_build-0.9.17.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "uv_build"
+            ],
+            "python_version": [
+              "3.10.*",
+              "*"
+            ]
+          }
+        },
+        {
+          "script": "uv-build --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

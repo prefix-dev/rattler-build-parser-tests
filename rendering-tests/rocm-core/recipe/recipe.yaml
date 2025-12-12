@@ -1,0 +1,51 @@
+context:
+  name: rocm-core
+  version: "7.0.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: "https://github.com/ROCm/rocm-core/archive/refs/tags/rocm-${{ version }}.tar.gz"
+    sha256: 2d126d47aa4523d84e5ab026680fa2b1145db332ff5e4aa74b48f8ed0ecd975d
+
+build:
+  number: 0
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - requirements:
+      run:
+        - cmake-package-check
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+    script:
+      - cmake-package-check rocm-core
+  - package_contents:
+      include:
+        - rocm-core/rocm_version.h
+      lib:
+        - rocm-core
+
+about:
+  homepage: https://github.com/ROCm/rocm-core
+  license: MIT
+  license_family: MIT
+  license_file: copyright
+  summary: "ROCm core package"
+
+extra:
+  recipe-maintainers:
+    - traversaro
+    - isuruf

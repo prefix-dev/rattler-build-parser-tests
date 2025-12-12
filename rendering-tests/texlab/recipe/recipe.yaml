@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "5.24.0"
+
+package:
+  name: texlab
+  version: ${{ version }}
+
+source:
+  url: https://github.com/latex-lsp/texlab/archive/v${{ version }}.tar.gz
+  sha256: f76a1044dd230a8034a3fbd689643ef146373ace4ac61c905ea3a20a6ee84ea3
+
+build:
+  number: 0
+  script:
+    file: build-texlab
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then: /usr/lib/libresolv.9.dylib
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - texlab --version
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: An implementation of the Language Server Protocol for LaTeX
+  homepage: https://texlab.netlify.app
+  repository: https://github.com/latex-lsp/texlab
+  documentation: https://texlab.netlify.app/docs
+  description: |
+    A cross-platform implementation of the [Language Server Protocol](https://microsoft.github.io/language-server-protocol)
+    providing rich cross-editing support for the [LaTeX](https://www.latex-project.org/) typesetting system.
+    We provide an [extension](https://github.com/latex-lsp/texlab-vscode) for [Visual Studio Code](https://code.visualstudio.com).
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

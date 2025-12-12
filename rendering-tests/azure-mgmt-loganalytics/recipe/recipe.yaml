@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: azure-mgmt-loganalytics
+  version: 13.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 3c7b3537becd0e5b47e2476f3f1a314300d5a8731a404f97dba56d00180d712d
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  noarch: python
+
+requirements:
+  host:
+    - setuptools
+    - python ${{ python_min }}.*
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - msrest >=0.7.1
+    - azure-mgmt-core >=1.6.0
+    - typing_extensions >=4.6.0
+tests:
+  - python:
+      imports:
+        - azure.mgmt.loganalytics
+        - azure.mgmt.loganalytics.aio
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Microsoft Azure Log Analytics Management Client Library for Python
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Azure/azure-sdk-for-python
+
+extra:
+  recipe-maintainers:
+    - janjagusch

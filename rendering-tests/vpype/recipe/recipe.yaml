@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  name: vpype
+  version: 1.15.0
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/vpype-${{ version }}.tar.gz
+  sha256: 090a1f88c888238df0744de0179b9d9f3829cd88bac60b88490e3e397a84aed3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - vpype = vpype_cli.cli:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - asteval >=0.9.26
+    - cachetools >=4.2.2
+    - click >=8.2
+    - multiprocess >=0.70.11
+    - numpy >=1.25,<3
+    - pnoise >=0.2.0
+    - pyphen >=0.14.0,<0.16.0
+    - scipy >=1.6
+    - shapely >=1.8.2
+    - svgelements >=1.6.10
+    - svgwrite ~=1.4
+    - tomli >=2.0.0
+  run_constraints:
+    - matplotlib-base >=3.3.2
+    - glcontext >=2.3.2
+    - moderngl >=5.6.2,!=5.7.1,!=5.7.2
+    - pillow >=9.0.1
+    - pyside6 >=6.4.0.1,!=6.6.2
+
+tests:
+  - python:
+      imports:
+        - vpype
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - vpype --help
+
+about:
+  summary: The Swiss Army knife of vector graphics for pen plotters
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/abey79/vpype
+
+extra:
+  recipe-maintainers:
+    - thewchan

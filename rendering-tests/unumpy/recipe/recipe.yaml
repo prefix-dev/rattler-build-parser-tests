@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: unumpy
+  version: 0.6.1
+  python_min: "3.7"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/unumpy-${{ version }}.tar.gz
+  sha256: 39a9f6e83ab6b5494572572597c33d6b5c81c60ba7106a8a5a0c467ca41ec742
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - uarray >=0.6,<0.7
+
+tests:
+  - python:
+      imports:
+        - unumpy
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Array interface object for Python with pluggable backends and a multiple-dispatchmechanism for defining down-stream functions
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/Quansight-Labs/uarray/
+  repository: https://github.com/Quansight-Labs/uarray/
+
+extra:
+  recipe-maintainers:
+    - hameerabbasi

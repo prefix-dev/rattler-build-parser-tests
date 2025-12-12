@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: financetoolkit
+  version: "2.0.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/financetoolkit-${{ version }}.tar.gz
+  sha256: 532f3cfec55550772ad3df349060c8835240fc859f8acd644d2e440760ceab08
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pandas >=2.2
+    - scikit-learn >=1.6
+    - requests >=2.32
+    - yfinance
+    - openpyxl >=3.1
+    - tqdm >=4.67
+    # Not listed but required
+    - pyyaml
+
+tests:
+  - python:
+      imports:
+        - financetoolkit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Transparent and Efficient Financial Analysis
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/JerBouma/FinanceToolkit
+
+extra:
+  recipe-maintainers:
+    - thewchan

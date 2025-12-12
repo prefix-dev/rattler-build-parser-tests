@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: fenics-ufl
+  version: "2025.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: af07bcf17edb04c54e95dd93941381277ce23145204b02d57c14b7c3823e59cc
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install --no-deps -vv .
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=62
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - ufl
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Unified Form Language
+  description: |
+    The Unified Form Language (UFL) is a domain specific language
+    for declaration of finite element discretizations of variational forms.
+    More precisely, it defines a flexible interface for choosing finite element spaces
+    and defining expressions for weak forms in a notation close to mathematical notation.
+
+    UFL is part of the FEniCS Project.
+  license: LGPL-3.0-or-later
+  license_file: COPYING.LESSER
+  homepage: https://fenicsproject.org
+  repository: https://github.com/fenics/ufl
+  documentation: https://fenics.readthedocs.io/projects/ufl/en/latest/
+
+extra:
+  recipe-maintainers:
+    - jorgensd
+    - minrk

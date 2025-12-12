@@ -1,0 +1,50 @@
+context:
+  name: dns-lexicon
+  version: "3.23.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 3c40174e9d657289d4d4f81d44451c4d63f8c26c8513e4d7a61c30ac456aab8f
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - tldextract >=2
+    - cryptography >=2
+    - pyyaml >=3
+    - requests >=2
+    - beautifulsoup4 >=4
+    - pyotp >=2
+    - dnspython >=2
+
+tests:
+  - python:
+      imports:
+        - lexicon
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/dns-lexicon/dns-lexicon
+  summary: Manipulate DNS records on various DNS providers in a standardized/agnostic way
+  license: MIT
+  license_file: LICENSE
+  documentation: https://dns-lexicon.readthedocs.io
+  repository: https://github.com/dns-lexicon/dns-lexicon
+
+extra:
+  recipe-maintainers:
+    - pavelzw

@@ -1,0 +1,54 @@
+context:
+  version: "0.26.2"
+
+package:
+  name: libtree-sitter
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tree-sitter/tree-sitter/archive/v${{ version }}.tar.gz
+  sha256: 3cda4166a049fc736326941d6f20783b698518b0f80d8735c7754a6b2d173d9a
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - if: win
+      then: cmake
+    - if: unix
+      then: make
+    - if: win
+      then: ninja
+  run_exports:
+    - ${{ pin_subpackage('libtree-sitter', upper_bound='x.x') }}
+
+tests:
+  - if: unix
+    then:
+      - requirements:
+          run:
+            - ${{ stdlib("c") }}
+            - ${{ compiler('c') }}
+        script:
+          - test -f ${PREFIX}/lib/libtree-sitter${SHLIB_EXT}
+          - if: linux
+            then:
+              - CC=$(${PREFIX}/bin/*-gcc -dumpmachine)-gcc
+              - echo "int main() {}" | ${CC} -x c -L${PREFIX}/lib -ltree-sitter -
+            else:
+              - echo "int main() {}" | ${PREFIX}/bin/clang -x c -L${PREFIX}/lib -ltree-sitter -
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Shared C library for tree-sitter
+  homepage: https://tree-sitter.github.io/
+  repository: https://github.com/tree-sitter/tree-sitter
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - danielnachun

@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: fazy
+  version: 0.0.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fazy-${{ version }}.tar.gz
+  sha256: b069171ddadfccd2a823a6a94fb3149c8805807f614099d46f499ab427d8c1b5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools ==68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - f
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Lazy f-strings for everyone
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pomponchik/fazy
+
+extra:
+  recipe-maintainers:
+    - thewchan

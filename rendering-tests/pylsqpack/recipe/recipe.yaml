@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.3.23"
+  python_check_max: "3.14"
+  cov_fail_under: "100"
+
+package:
+  name: pylsqpack
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pylsqpack/pylsqpack-${{ version }}.tar.gz
+  sha256: f55b126940d8b3157331f123d4428d703a698a6db65a6a7891f7ec1b90c86c56
+
+build:
+  number: 0
+  skip: not (is_abi3 and match(python, python_min ~ ".*"))
+  python:
+    version_independent: true
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - pip
+    - python
+    - python-abi3
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - pylsqpack
+        - pylsqpack._binding
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - coverage
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source=pylsqpack --branch -m pytest -vv --tb=long --color=yes
+      - if: linux
+        then: coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
+
+about:
+  summary: Python wrapper for the ls-qpack QPACK library
+  license: MIT AND BSD-3-Clause
+  license_file:
+    - LICENSE
+    - vendor/ls-qpack/LICENSE
+  homepage: https://github.com/aiortc/pylsqpack
+  documentation: https://pylsqpack.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - jonashaag
+    - bollwyvl

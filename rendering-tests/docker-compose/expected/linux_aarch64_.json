@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docker-compose",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docker-compose/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docker-compose/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docker-compose/work"
+      },
+      "hash": {
+        "hash": "80f16a2"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "docker-compose": {
+          "build_string": "h80f16a2_0",
+          "name": "docker-compose",
+          "version": "5.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:56.685391361Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Docker Compose is a tool for running multi-container applications\non Docker defined using the Compose file format.\nA Compose file is used to define how one or more containers that\nmake up your application are configured. Once you have a Compose\nfile, you can create and start your application with a single command:\ndocker compose up.",
+        "homepage": "https://www.docker.com/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "LICENSE-intoto",
+          "licenses/"
+        ],
+        "repository": "https://github.com/docker/compose",
+        "summary": "Define and run multi-container applications with Docker"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "pushd cmd",
+          "go build -ldflags \"-s -w -X github.com/docker/compose/v2/internal.Version=${PKG_VERSION}\" -o $PREFIX/bin/docker-compose",
+          "go-licenses save --save_path ../licenses --ignore github.com/in-toto/in-toto-golang .",
+          "chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)"
+        ],
+        "string": "h80f16a2_0"
+      },
+      "context": {
+        "name": "docker-compose",
+        "version": "5.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "scopatz",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "docker-compose",
+        "version": "5.0.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-aarch64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2c50b805cbb35c7257b54e739aa71c5d7aa5da3a8b2da5c5bb8f145c3bf02e96",
+          "url": "https://github.com/docker/compose/archive/refs/tags/v5.0.0.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-intoto",
+          "sha256": "b5c26c8a2ad6dd7cac6646e470a32ee42d23c36124caac4e66c989b6545b2a44",
+          "url": "https://raw.githubusercontent.com/in-toto/in-toto-golang/c9edf0cbb1e6e4daf536fc126bca99aa3cc88f9a/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "docker-compose --help",
+            "docker-compose version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

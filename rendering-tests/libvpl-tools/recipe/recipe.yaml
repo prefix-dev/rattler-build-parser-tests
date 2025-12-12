@@ -1,0 +1,68 @@
+context:
+  version: "1.4.0"
+
+package:
+  name: libvpl-tools
+  version: ${{ version }}
+
+source:
+  url: https://github.com/intel/libvpl-tools/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 95d85a2b7cf8f6a3089c048c98c034bc7367925708ca325756b8d5c5c03c4ecf
+
+build:
+  skip:
+    - win
+    - osx
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - libvpl
+    - libdrm
+    - libpciaccess
+    - xorg-xorgproto
+    # - wayland
+
+tests:
+  - script:
+      - system_analyzer -help
+      - metrics_monitor -help
+    # The following commands return error on -help
+    # So "grep" for something useful
+      - test -x ${PREFIX}/bin/val-surface-sharing
+      - val-surface-sharing -help | grep Usage
+      - test -x ${PREFIX}/bin/vpl-import-export
+      - vpl-import-export -help | grep Usage
+      - test -x ${PREFIX}/bin/vpl-inspect
+      - vpl-inspect -help | grep Usage
+      - test -x ${PREFIX}/bin/sample_decode
+      - sample_decode -help | grep Usage
+      - test -x ${PREFIX}/bin/sample_vpp
+      - sample_vpp -help | grep Usage
+      - test -x ${PREFIX}/bin/sample_encode
+      - sample_encode -help | grep Usage
+      - test -x ${PREFIX}/bin/sample_multi_transcode
+      - sample_multi_transcode -help | grep Usage
+
+about:
+  homepage: https://github.com/intel/media-driver
+  summary: 'Intel® Video Processing Library (Intel® VPL)'
+  description: |
+    Intel® Video Processing Library (Intel® VPL) provides access to hardware
+    accelerated video decode, encode, and processing capabilities on Intel®
+    GPUs to support AI visual inference, media delivery, cloud gaming, and
+    virtual desktop infrastructure use cases.
+
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - hmaarrfk

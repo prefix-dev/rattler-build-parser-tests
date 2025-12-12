@@ -1,0 +1,37 @@
+context:
+  version: 0.1.5
+
+package:
+  name: diffr
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mookid/diffr/archive/v${{ version }}.tar.gz
+  sha256: 6c5861e5b8f5d798e027fe69cc186452848dc4ae5641326b41b5c160d3e91654
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - diffr --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - THIRDPARTY.yml
+  summary: LCS based diff highlighting tool to ease code review from your terminal
+  homepage: https://github.com/mookid/diffr
+  repository: https://github.com/mookid/diffr
+
+extra:
+  recipe-maintainers:
+    - danielnachun

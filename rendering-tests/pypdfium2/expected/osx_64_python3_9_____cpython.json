@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pypdfium2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pypdfium2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pypdfium2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pypdfium2/work"
+      },
+      "hash": {
+        "hash": "49a6d29",
+        "prefix": "py39"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pypdfium2": {
+          "build_string": "py39h49a6d29_0",
+          "name": "pypdfium2",
+          "version": "4.30.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:57.955454492Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.9.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pypdfium2-team/pypdfium2",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python bindings to PDFium"
+      },
+      "build": {
+        "dynamic_linking": {
+          "binary_relocation": false
+        },
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py39h49a6d29_0"
+      },
+      "context": {
+        "name": "pypdfium2",
+        "version": "4.30.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "pypdfium2",
+        "version": "4.30.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "clang_osx-64 18.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "packaging",
+          "wheel !=0.38.0,!=0.38.1",
+          "ctypesgen-pypdfium2-team",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cf12616f3460fa55d4e7e49dc8c06be2ab93aa2dd5944ce6b479b6ddfe40a995",
+          "url": "https://github.com/pypdfium2-team/pypdfium2/archive/refs/tags/4.30.1.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pypdfium2"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pillow"
+            ]
+          },
+          "script": "pytest -vvv ./tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

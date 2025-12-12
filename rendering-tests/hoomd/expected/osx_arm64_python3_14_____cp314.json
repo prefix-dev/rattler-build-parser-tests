@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hoomd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hoomd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hoomd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hoomd/work"
+      },
+      "hash": {
+        "hash": "5d6b298",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hoomd": {
+          "build_string": "cpu_py314_h5d6b298_0",
+          "name": "hoomd",
+          "version": "6.0.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:19.565718232Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HOOMD-blue is a general-purpose particle simulation toolkit, implementing molecular\ndynamics and hard particle Monte Carlo optimized for fast execution on both GPUs and\nCPUs. As a Python package, HOOMD-blue gives you the flexibility to create custom\ninitialization routines, control simulation parameters, perform in situ analysis,\nuse interactive notebooks, and more.",
+        "documentation": "https://hoomd-blue.readthedocs.io/",
+        "homepage": "https://glotzerlab.engin.umich.edu/hoomd-blue/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/glotzerlab/hoomd-blue/",
+        "summary": "HOOMD-blue is a general-purpose particle simulation toolkit."
+      },
+      "build": {
+        "number": 0,
+        "script": "bash ${RECIPE_DIR}/build_hoomd.sh ${{ processor }}",
+        "string": "cpu_py314_h5d6b298_0"
+      },
+      "context": {
+        "name": "hoomd",
+        "number": 0,
+        "processor": "cpu",
+        "version": "6.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "joaander",
+          "tcmoore3",
+          "SchoeniPhlippsn",
+          "DomFijan",
+          "janbridley",
+          "tfteague",
+          "sumitavaumich"
+        ]
+      },
+      "package": {
+        "name": "hoomd",
+        "version": "6.0.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64",
+          "numpy",
+          "pybind11 >=2.12.0"
+        ],
+        "host": [
+          "eigen",
+          "numpy",
+          "pybind11 >=2.12.0",
+          "python",
+          "pybind11-abi"
+        ],
+        "run": [
+          "python"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "hoomd",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-python-site-dir.patch"
+          ],
+          "sha256": "0135161869cdfdccf320a8ee94cc0880cfe2a0ce901015c5766880888761e630",
+          "url": "https://github.com/glotzerlab/hoomd-blue/releases/download/v6.0.0/hoomd-6.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "rowan"
+            ]
+          },
+          "script": "pytest --pyargs hoomd -v"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

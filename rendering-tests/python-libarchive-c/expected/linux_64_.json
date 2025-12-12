@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-libarchive-c",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-libarchive-c/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-libarchive-c/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-libarchive-c/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-libarchive-c": {
+          "build_string": "pyhe01879c_1",
+          "name": "python-libarchive-c",
+          "version": "5.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:13.697026003Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Changaco/python-libarchive-c",
+        "license": "CC0-1.0",
+        "license_file": [
+          "LICENSE.md",
+          "cc0-1.0.txt"
+        ],
+        "summary": "Python interface to libarchive"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "version": "5.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "mingwandroid",
+          "ocefpaf"
+        ]
+      },
+      "package": {
+        "name": "python-libarchive-c",
+        "version": "5.3"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "setuptools",
+          "python 3.9.*"
+        ],
+        "run": [
+          "libarchive",
+          "python >=3.9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Use-conda-provided-libarchive-always.patch"
+          ],
+          "sha256": "5ddb42f1a245c927e7686545da77159859d5d4c6d00163c59daff4df314dae82",
+          "url": "https://pypi.org/packages/source/l/libarchive-c/libarchive_c-5.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "libarchive"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test/",
+              "run_test.py"
+            ],
+            "source": [
+              "README.rst"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov",
+              "python 3.9.*"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

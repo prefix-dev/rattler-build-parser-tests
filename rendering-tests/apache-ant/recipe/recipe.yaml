@@ -1,0 +1,55 @@
+context:
+  version: "1.10.15"
+
+recipe:
+  name: ant
+  version: ${{ version }}
+
+source:
+  url: https://archive.apache.org/dist/ant/source/apache-ant-${{ version }}-src.tar.gz
+  sha256: a22b495b9c05482841f919d3440d2b38213ae223e039859b73aabcde444199b1
+
+build:
+  number: 2
+
+outputs:
+  - package:
+      name: ant
+    build:
+      script: build-pkg
+    requirements:
+      build:
+        - openjdk >=8
+      run:
+        - openjdk >=8
+    tests:
+      - script:
+        - ant -help
+        - ant -version
+
+  # compatibility output for previous name of package in conda-forge
+  - package:
+      name: apache-ant
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('ant', exact=true) }}
+    tests:
+      - script:
+        - ant -help
+        - ant -version
+
+about:
+  homepage: https://ant.apache.org/
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Apache Ant is a Java library and command-line tool that mainly helps building software.
+  repository: https://github.com/apache/ant
+
+extra:
+  recipe-maintainers:
+    - ThejashwiniSwamy
+    - h-vetinari
+    - wolfv
+  feedstock-name: apache-ant

@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: datasette-search-all
+  version: "1.1.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 371de80eff4f2f0e5ba70cc8efcdd68c1089ebf03d743febced250012d678911
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - datasette >=0.63.1
+
+tests:
+  - python:
+      imports:
+        - datasette_search_all
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Datasette plugin for searching all searchable tables at once
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/simonw/datasette-search-all
+
+extra:
+  recipe-maintainers:
+    - rxm7706

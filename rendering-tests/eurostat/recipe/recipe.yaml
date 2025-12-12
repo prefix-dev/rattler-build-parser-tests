@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: eurostat
+  version: 1.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/eurostat-${{ version }}.tar.gz
+  sha256: 6b70c5278084f603d6e92f481c1893f8ccc96f80d09347a822873a7ee679d54d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pandas
+    - requests
+
+tests:
+  - python:
+      imports:
+        - eurostat
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Tools to read data from Eurostat API.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://bitbucket.org/noemicazzaniga/eurostat/src/master/
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - julian-belina

@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wheel-inspect",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wheel-inspect/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wheel-inspect/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wheel-inspect/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "wheel-inspect": {
+          "build_string": "pyhe01879c_1",
+          "name": "wheel-inspect",
+          "version": "1.7.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:12.070766545Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/wheelodex/wheel-inspect",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Extract information from wheels"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "wheel2json = wheel_inspect.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "wheel-inspect",
+        "version": "1.7.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "wheel-inspect",
+        "version": "1.7.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "hatchling",
+          "python 3.9.*"
+        ],
+        "run": [
+          "python >=3.9",
+          "attrs >=18.1",
+          "entry-points-txt >=0.2",
+          "headerparser >=0.4.0",
+          "packaging >=17.1",
+          "readme_renderer >=24.0",
+          "wheel-filename >=1.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7df5a0223c39ba065a1eef6efa4ea575b825dad7f3399ee02aaaa888f07ca5e1",
+          "url": "https://pypi.org/packages/source/w/wheel-inspect/wheel_inspect-1.7.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "wheel_inspect"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/data/wheels/setuptools-36.0.1-py2.py3-none-any.whl"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": "wheel2json test/data/wheels/setuptools-36.0.1-py2.py3-none-any.whl"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

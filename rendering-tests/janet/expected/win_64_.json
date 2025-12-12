@@ -1,0 +1,312 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/work"
+      },
+      "hash": {
+        "hash": "6a83c73"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libjanet": {
+          "build_string": "h6a83c73_0",
+          "name": "libjanet",
+          "version": "1.40.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:42.760644710Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Janet is a functional, Lisp-like programming language that ships as a\nsmall C library and embeddable interpreter. It targets scripting,\ncommand-line tooling, and embedding in C or C++ applications.",
+        "documentation": "https://janet-lang.org/docs/",
+        "homepage": "https://janet-lang.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/janet-lang/janet",
+        "summary": "Lightweight Lisp-like language and bytecode VM for system scripting"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "meson setup build-lib %MESON_ARGS% --prefix=\"%LIBRARY_PREFIX%\" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%",
+          "meson compile -C build-lib --jobs %CPU_COUNT%",
+          "meson install -C build-lib",
+          "del /Q \"%LIBRARY_PREFIX%\\bin\\janet.exe\" 2>nul || ver>nul",
+          "del /Q \"%LIBRARY_PREFIX%\\lib\\libjanet.a\" 2>nul || ver>nul",
+          "copy /Y \"%LIBRARY_PREFIX%\\include\\janet\\janet_%PKG_VERSION%.h\" \"%LIBRARY_PREFIX%\\include\\janet.h\""
+        ],
+        "string": "h6a83c73_0"
+      },
+      "context": {
+        "name": "janet",
+        "soname": "1.39",
+        "version": "1.40.1"
+      },
+      "extra": {
+        "feedstock-name": "janet",
+        "recipe-maintainers": [
+          "tdejager"
+        ]
+      },
+      "package": {
+        "name": "libjanet",
+        "version": "1.40.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "meson",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libjanet",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "null-terminate.patch",
+            "disable-symlink.patch"
+          ],
+          "sha256": "e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a",
+          "url": "https://github.com/janet-lang/janet/archive/refs/tags/v1.40.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "janet/janet_1.40.1.h"
+            ],
+            "lib": [
+              "janet-1.39.dll"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/work"
+      },
+      "hash": {
+        "hash": "0ade1a6"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "janet": {
+          "build_string": "h0ade1a6_0",
+          "name": "janet",
+          "version": "1.40.1"
+        },
+        "libjanet": {
+          "build_string": "h6a83c73_0",
+          "name": "libjanet",
+          "version": "1.40.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:42.797994587Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libjanet": "1.40.1 h6a83c73_0",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Janet is a functional, Lisp-like programming language that ships as a\nsmall C library and embeddable interpreter. It targets scripting,\ncommand-line tooling, and embedding in C or C++ applications.",
+        "documentation": "https://janet-lang.org/docs/",
+        "homepage": "https://janet-lang.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/janet-lang/janet",
+        "summary": "Lightweight Lisp-like language and bytecode VM for system scripting"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "meson setup build-bin %MESON_ARGS% --prefix=\"%LIBRARY_PREFIX%\" -Ddefault_library=shared -Dgit_hash=%PKG_VERSION%",
+          "meson compile -C build-bin --jobs %CPU_COUNT%",
+          "meson install -C build-bin",
+          "del /Q \"%LIBRARY_PREFIX%\\bin\\janet.dll\" 2>nul || ver>nul",
+          "del /Q \"%LIBRARY_PREFIX%\\lib\\libjanet.lib\" 2>nul || ver>nul",
+          "del /Q \"%LIBRARY_PREFIX%\\lib\\pkgconfig\\*\" 2>nul || ver>nul",
+          "rmdir /Q /S \"%LIBRARY_PREFIX%\\include\" 2>nul || ver>nul",
+          "if not exist \"%LIBRARY_PREFIX%\\etc\\conda\\activate.d\" mkdir \"%LIBRARY_PREFIX%\\etc\\conda\\activate.d\"",
+          "if not exist \"%LIBRARY_PREFIX%\\etc\\conda\\deactivate.d\" mkdir \"%LIBRARY_PREFIX%\\etc\\conda\\deactivate.d\""
+        ],
+        "string": "h0ade1a6_0"
+      },
+      "context": {
+        "name": "janet",
+        "soname": "1.39",
+        "version": "1.40.1"
+      },
+      "extra": {
+        "feedstock-name": "janet",
+        "recipe-maintainers": [
+          "tdejager"
+        ]
+      },
+      "package": {
+        "name": "janet",
+        "version": "1.40.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "meson",
+          "ninja"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libjanet"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "null-terminate.patch",
+            "disable-symlink.patch"
+          ],
+          "sha256": "e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a",
+          "url": "https://github.com/janet-lang/janet/archive/refs/tags/v1.40.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "janet.exe"
+            ]
+          }
+        },
+        {
+          "script": [
+            "janet --version",
+            "janet -e \"(printf \\\"%d\\\" (+ 2 2))\"",
+            "janet -e \"(assert (string/has-suffix? \\\"Library/lib/janet\\\" (dyn :syspath)) (string \\\"JANET_PATH not set correctly. Got \\\" (dyn :syspath)))\""
+          ]
+        },
+        {
+          "files": {
+            "source": [
+              "test/",
+              "examples/"
+            ]
+          },
+          "script": [
+            "for %%f in (test\\suite*.janet) do janet \"%%f\" || exit /b 1",
+            "for %%f in (examples\\*.janet) do janet -k \"%%f\" || exit /b 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

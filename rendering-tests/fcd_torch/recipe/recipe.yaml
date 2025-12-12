@@ -1,0 +1,43 @@
+context:
+  name: fcd_torch
+  version: 1.0.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 7cccb09ce79fbf6be84d2578332f8aa04668b0a34ecae3357e1af3cce3cc13d7
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - numpy
+    - python >=${{ python_min }}
+    - scipy
+    - pytorch >=1.1
+
+tests:
+  - python:
+      imports:
+        - fcd_torch
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Fréchet ChemNet Distance on PyTorch
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/insilicomedicine/FCD_torch
+
+extra:
+  recipe-maintainers:
+    - hadim

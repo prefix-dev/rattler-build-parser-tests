@@ -1,0 +1,234 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc4py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc4py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc4py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_slepc4py/work"
+      },
+      "hash": {
+        "hash": "57784b7",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "slepc4py": {
+          "build_string": "np2py310h57784b7_0",
+          "name": "slepc4py",
+          "version": "3.24.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:19:30.512437021Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "device": "cuda13",
+        "is_abi3": true,
+        "mpi": "mpich",
+        "mpich": "4",
+        "numpy": "2",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "scalar": "complex",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://slepc.upv.es/release/slepc4py/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "summary": "Python bindings for SLEPc"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "${{ PYTHON }} conf/cythonize.py",
+            "${{ PYTHON }} -m pip -v install --no-deps ."
+          ],
+          "env": {
+            "PETSC_DIR": "$PREFIX",
+            "SLEPC4PY_BUILD_PYSABI": "cp310",
+            "SLEPC_DIR": "$PREFIX"
+          }
+        },
+        "string": "np2py310h57784b7_0"
+      },
+      "context": {
+        "abi3_tag": "cp310",
+        "build": 0,
+        "build_abi3": true,
+        "name": "slepc4py",
+        "python_min": "3.10",
+        "version": "3.24.1",
+        "version_xy": "3.24"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dalcinl",
+          "joseeroman",
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "slepc4py",
+        "version": "3.24.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "python",
+          "cython",
+          "cross-python_linux-aarch64",
+          "numpy"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "cython",
+          "pip",
+          "setuptools",
+          "numpy",
+          "mpich",
+          "slepc 3.24.* cuda13_complex_*",
+          "petsc4py 3.24.*"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "petsc4py 3.24.*"
+        ],
+        "run_constraints": [
+          "mpi4py >=3.0.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ce798d38355127bee3416bab2975d5fb51df0c3e124b73ba13225ff6311d966e",
+          "url": "https://pypi.org/packages/source/s/slepc4py/slepc4py-3.24.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "slepc4py",
+              "slepc4py.SLEPc"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_object.py"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.13.*",
+              "abi3audit"
+            ]
+          },
+          "script": "abi3audit $PREFIX/lib/python3.*/site-packages/slepc4py/lib/*.so -s -v --assume-minimum-abi3 3.10"
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_object.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_object.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.13.*"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

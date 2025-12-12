@@ -1,0 +1,166 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchao",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchao/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchao/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchao/work"
+      },
+      "hash": {
+        "hash": "637229b",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchao": {
+          "build_string": "cuda_129py313h637229b_",
+          "name": "torchao",
+          "version": "0.13.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:39.121219212Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "TorchAO is a PyTorch-native model optimization framework leveraging quantization\nand sparsity to provide an end-to-end, training-to-serving workflow for\nAI models. TorchAO works out-of-the-box with torch.compile() and FSDP2\nacross most HuggingFace PyTorch models.",
+        "documentation": "https://docs.pytorch.org/ao/stable/",
+        "homepage": "https://pytorch.org/ao/stable/index.html",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/cutlass/LICENSE.txt"
+        ],
+        "repository": "https://github.com/pytorch/ao",
+        "summary": "PyTorch native quantization and sparsity for training and inference"
+      },
+      "build": {
+        "number": 1,
+        "string": "cuda_129py313h637229b_"
+      },
+      "context": {
+        "cuda_build_string": "cuda_129",
+        "cutlass_version": "3.9.0",
+        "name": "torchao",
+        "string_prefix": "cuda_129",
+        "use_cuda": true,
+        "version": "0.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "shermansiu",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "torchao",
+        "version": "0.13.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake <4.0.0,>=3.19.0",
+          "cuda-nvcc_linux-64 12.9.*",
+          "cuda-version ==12.9",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cuda-version ==12.9",
+          "cuda-cudart-dev",
+          "libcublas-dev",
+          "libcusolver-dev",
+          "libcusparse-dev",
+          "pytorch * cuda*"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libcublas-dev",
+            "libcusolver-dev",
+            "libcusparse-dev"
+          ]
+        },
+        "run": [
+          "python",
+          "importlib-metadata",
+          "pytorch * cuda*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3d2aac7c2dcc9bb7aabe5d9cf8bd508bac2b7e0e4582e162932bf4667a079d0c",
+          "url": "https://github.com/pytorch/ao/archive/refs/tags/v0.13.0.tar.gz"
+        },
+        {
+          "sha256": "0ea98a598d1f77fade5187ff6ec6d9e6ef3acd267ee68850aae6e800dcbd69c7",
+          "target_directory": "third_party/cutlass",
+          "url": "https://github.com/NVIDIA/cutlass/archive/refs/tags/v3.9.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "torchao"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

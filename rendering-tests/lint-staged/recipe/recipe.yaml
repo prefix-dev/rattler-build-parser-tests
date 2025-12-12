@@ -1,0 +1,39 @@
+context:
+  version: "16.2.7"
+
+package:
+  name: lint-staged
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/lint-staged/-/lint-staged-${{ version }}.tgz
+  sha256: 4dde2018a2199cb31a70db1483059d505e3aa8979509b259668bd3096bc1cc33
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - lint-staged --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Run linters on git staged files
+  homepage: https://github.com/lint-staged/lint-staged
+  repository: https://github.com/lint-staged/lint-staged
+
+extra:
+  recipe-maintainers:
+    - danielnachun

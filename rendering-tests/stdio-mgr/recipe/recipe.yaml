@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: stdio-mgr
+  version: '1.0.1.1'
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bskinn/stdio-mgr/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 6568a823e31481a19c2039557aad5de76072e56140e3498329162ef605077780
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >77
+    - attrs >=17.1
+  run:
+    - python >=${{ python_min }}
+    - attrs >=17.1
+
+tests:
+  - python:
+      imports:
+        - stdio_mgr
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - README.md
+        - conftest.py
+        - tests/
+    requirements:
+      run:
+        - pip
+        - pytest
+        - pytest-timeout
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - pytest -v -rsxX -p no:warnings --doctest-glob="README.md"
+
+about:
+  summary: Context manager for mocking/wrapping stdin/stdout/stderr
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://www.github.com/bskinn/stdio-mgr
+  repository: https://github.com/bskinn/stdio-mgr
+
+extra:
+  recipe-maintainers:
+    - bskinn
+    - anjos

@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.5.5"
+  # dulwich not yet available for 3.14
+  python_check_max: "3.13"
+  name: poetry-plugin-tweak-dependencies-version
+  mod: ${{ name | replace("-", "_") }}
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/py3/p/${{ name }}/${{ mod }}-${{ version }}-py3-none-any.whl
+  sha256: 12eed265883bd3556e9de843d370dc07b0db3f95d00c4a923d01ba8c9044fae3
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install -vv --no-deps --no-build-isolation ${{ mod }}-${{ version }}-py3-none-any.whl
+    - ${{ PYTHON }} -c "__import__('zipfile').ZipFile('${{ mod }}-${{ version }}-py3-none-any.whl').extractall()"
+
+requirements:
+  host:
+    - pip
+    - poetry-core
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - poetry >=1.6,<2.1
+
+tests:
+  - python:
+      imports: ${{ mod }}
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+
+about:
+  summary: Poetry plugin used to tweak dependency versions
+  license: BSD-2-Clause
+  license_file: ${{ mod }}-${{ version }}.dist-info/LICENSE
+  homepage: https://github.com/sbrunner/${{ name }}
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

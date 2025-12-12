@@ -1,0 +1,173 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_repo-review",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_repo-review/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_repo-review/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_repo-review/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "repo-review": {
+          "build_string": "pyhe01879c_0",
+          "name": "repo-review",
+          "version": "0.12.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:21:24.410962061Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a framework for building checks designed to check to see if a repository follows\nguidelines. By itself, it does nothing - it requires at least one plugin to be installed.\n\nWith one or more plugins, it will produce a list of results - green checkmarks mean this\nrule is followed, red x\u2019s mean the rule is not. A yellow warning sign means that the check\nwas skipped because a previous required check failed. Four output formats are supported;\nrich, svg, html, and json.",
+        "documentation": "https://repo-review.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/scientific-python/repo-review",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "This is a framework for building checks designed to check to see if a repository follows guidelines"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "repo-review = repo_review.__main__:main"
+          ]
+        },
+        "script": "python -m pip install . -v",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "repo-review",
+        "python_min": "3.10",
+        "version": "0.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "henryiii",
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "repo-review",
+        "version": "0.12.2"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "hatch-vcs",
+          "python 3.10.*",
+          "pip"
+        ],
+        "run": [
+          "click",
+          "markdown-it-py",
+          "python >=3.10",
+          "pyyaml",
+          "rich",
+          "rich-click",
+          "tomli",
+          "typing-extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "73f8c7fbe0f01b1a83dec15751d8294f8ce56ba46fa3b0f7bd84f2716ab81864",
+          "url": "https://github.com/scientific-python/repo-review/archive/refs/tags/v0.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "repo_review",
+              "repo_review.fixtures",
+              "repo_review.schema"
+            ]
+          }
+        },
+        {
+          "downstream": "sp-repo-review"
+        },
+        {
+          "files": {
+            "source": [
+              "docs",
+              "tests",
+              "README.md",
+              "LICENSE",
+              "pyproject.toml",
+              ".github",
+              ".pre-commit-config.yaml",
+              ".readthedocs.yaml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest",
+              "sp-repo-review",
+              "validate-pyproject >=0.14",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "repo-review --help",
+            "validate-pyproject -E repo-review --help",
+            "mkdir src",
+            "ls",
+            "pytest -ra"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openshift-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openshift-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openshift-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openshift-cli/work"
+      },
+      "hash": {
+        "hash": "820172f"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openshift-cli": {
+          "build_string": "h820172f_0",
+          "name": "openshift-cli",
+          "version": "4.20.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:17.462217873Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The OpenShift Command Line Interface (CLI), is a set of tools built on top of kubectl\nthat help you work with OpenShift. With the CLI, you can create applications and manage\nOpenShift resources. It provides its full capabilities to connect with any Kubernetes\ncompliant cluster, and adds commands simplifying interaction with an OpenShift cluster.",
+        "documentation": "https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html",
+        "homepage": "https://www.okd.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/openshift/oc",
+        "summary": "OpenShift Command Line Interface"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go-licenses save ./cmd/oc --save_path ./library_licenses/",
+          "export TAGS='include_gcs include_oss containers_image_openpgp'",
+          "export LDFLAGS=\"-X github.com/openshift/oc/pkg/version.versionFromGit=v$PKG_VERSION -X github.com/openshift/oc/pkg/version.gitTreeState=clean\"",
+          "go build -o $PREFIX/bin/oc -mod=vendor -tags \"$TAGS\" -ldflags \"$LDFLAGS\" ./cmd/oc",
+          "cp $PREFIX/bin/oc $PREFIX/bin/okd-cli"
+        ],
+        "string": "h820172f_0"
+      },
+      "context": {
+        "name": "openshift-client",
+        "version": "4.20.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr",
+          "delsner",
+          "phreed"
+        ]
+      },
+      "package": {
+        "name": "openshift-cli",
+        "version": "4.20.2"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-arm64 >=1.16",
+          "go-licenses >=2.0.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e5cfb94ed2d4c819287ab703963f53b7cfc5bc59c92ef6728590e47ebcd2cb20",
+          "url": "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.20.2/openshift-client-src.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "oc",
+              "okd-cli"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

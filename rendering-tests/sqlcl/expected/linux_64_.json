@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlcl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlcl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlcl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlcl/work"
+      },
+      "hash": {
+        "hash": "98f672e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sqlcl": {
+          "build_string": "h98f672e_1",
+          "name": "sqlcl",
+          "version": "25.2.2.199.0918"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:58.321289912Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Oracle SQLcl (SQL Developer Command Line) is a free command line interface for Oracle Database.\n\nSQLcl provides inline editing, statement completion, command recall, and supports existing SQL*Plus scripts.\nUsing SQLcl, you can execute SQL and PL/SQL statements in interactive or batch mode.\n\nKey features:\n- Command line interface for Oracle Database\n- SQL*Plus compatibility\n- Advanced features like Data Pump and AWR support\n- Inline editing and statement completion\n- Java-based, cross-platform tool",
+        "documentation": "https://docs.oracle.com/en/database/oracle/sql-developer-command-line/",
+        "homepage": "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/",
+        "license": "LicenseRef-Oracle-Free-Use",
+        "license_file": [
+          "sqlcl/LICENSE.txt",
+          "sqlcl/THIRD-PARTY-LICENSES.txt"
+        ],
+        "repository": "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/",
+        "summary": "Oracle SQLcl (SQL Developer Command Line) - Java-based command line interface for Oracle Database"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 1,
+        "script": [
+          "mkdir -p $PREFIX/opt/sqlcl",
+          "cp -r sqlcl/* $PREFIX/opt/sqlcl/",
+          "mkdir -p $PREFIX/bin",
+          "cp $RECIPE_DIR/sql $PREFIX/bin/sql",
+          "chmod +x $PREFIX/bin/sql",
+          "chmod +x $PREFIX/opt/sqlcl/bin/sql"
+        ],
+        "string": "h98f672e_1"
+      },
+      "context": {
+        "name": "sqlcl",
+        "version": "25.2.2.199.0918"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "sqlcl",
+        "version": "25.2.2.199.0918"
+      },
+      "requirements": {
+        "run": [
+          "__unix",
+          "openjdk >=11"
+        ],
+        "run_constraints": [
+          "parallel ==99999999999"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "62c20426441779520006c0973417d3e9665bad7babd61a046458fdec9bc61d5f",
+          "target_directory": "sqlcl",
+          "url": "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.2.199.0918.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "opt/sqlcl/bin/sql",
+              "bin/sql"
+            ]
+          }
+        },
+        {
+          "script": "sql -version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,48 @@
+context:
+  name: ttyd
+  version: "1.7.7"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tsl0922/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 039dd995229377caee919898b7bd54484accec3bba49c118e2d5cd6ec51e3650
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - cmake
+    - pkg-config
+  host:
+    - json-c
+    - libwebsockets
+    - openssl
+    - libuv
+    - zlib
+  run:
+    - libuv
+
+tests:
+  - script:
+      - ttyd
+
+about:
+  homepage: https://github.com/tsl0922/ttyd
+  license: MIT
+  license_file: LICENSE
+  summary: Share your terminal over the web
+  repository: https://github.com/tsl0922/ttyd
+
+extra:
+  recipe-maintainers:
+    - sodre
+    - wolfv

@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab-nagdis",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab-nagdis/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab-nagdis/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cherab-nagdis/work"
+      },
+      "hash": {
+        "hash": "5253ce2",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cherab-nagdis": {
+          "build_string": "py312h5253ce2_0",
+          "name": "cherab-nagdis",
+          "version": "0.1.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:45.068901527Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package provides a machine-specific CHERAB for NAGDIS-II, which is a\nthe linearly magnetized divertor plasma experiment at the Nagoya University.\nIt is designed to work with the CHERAB framework and provides additional\nfunctionalities specific to NAGDIS-II.",
+        "documentation": "https://cherab-nagdis.readthedocs.io/",
+        "homepage": "https://github.com/munechika-koyo/cherab_nagdis",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/munechika-koyo/cherab_nagdis",
+        "summary": "Machine-specific CHERAB for NAGDIS-II"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation -vv .",
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "0.1.1"
+          }
+        },
+        "string": "py312h5253ce2_0"
+      },
+      "context": {
+        "name": "cherab-nagdis",
+        "version": "0.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "cherab-nagdis",
+        "version": "0.1.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "hatch-cython >=0.6.0rc0",
+          "hatch-vcs",
+          "cherab"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "matplotlib-base",
+          "scipy",
+          "plotly",
+          "calcam",
+          "pooch",
+          "paramiko",
+          "tqdm",
+          "rich"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "971aeab0e14aca7906654a5e614b62a2ab940a568c8352d8d009903dc8f5758f",
+          "url": "https://github.com/munechika-koyo/cherab_nagdis/archive/refs/tags/v0.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-cov",
+              "libgl-devel"
+            ]
+          },
+          "script": "pytest tests/ -v"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  version: 4.3.2
+
+package:
+  name: fhirclient
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/fhirclient/fhirclient-${{ version }}.tar.gz
+  sha256: e71881a06167681e53d780c1a581d3e18cca3a93e789ca21acf2d8374a3c59a6
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - flit-core >=3.4,<4
+    - pip
+    - requests >=2.4
+  run:
+    - python >=${{ python_min }}
+    - requests >=2.4
+
+tests:
+  - python:
+      imports:
+        - fhirclient
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: A flexible client for FHIR servers supporting the SMART on FHIR protocol
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/smart-on-fhir/client-py
+
+extra:
+  recipe-maintainers:
+    - danielnachun

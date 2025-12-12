@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyromark",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyromark/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyromark/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyromark/work"
+      },
+      "hash": {
+        "hash": "63eb544",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyromark": {
+          "build_string": "py314h63eb544_0",
+          "name": "pyromark",
+          "version": "0.9.8"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:10.712474166Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314t",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pyromark.readthedocs.io/",
+        "homepage": "https://github.com/monosans/pyromark",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Blazingly fast Markdown parser for Python written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pyromark = pyromark._cli:main"
+          ]
+        },
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py314h63eb544_0"
+      },
+      "context": {
+        "name": "pyromark",
+        "version": "0.9.8"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "pyromark",
+        "version": "0.9.8"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1,<2",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "typing_extensions >=3.7.4"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "80e00758ea5ebcc038614c0b818178466ae301f9b3c7ab88f59e68f345755d41",
+          "url": "https://pypi.org/packages/source/p/pyromark/pyromark-0.9.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyromark"
+            ]
+          }
+        },
+        {
+          "script": "pyromark --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calculix",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calculix/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calculix/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calculix/work"
+      },
+      "hash": {
+        "hash": "3af09bb",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "calculix": {
+          "build_string": "pl5321h3af09bb_2",
+          "name": "calculix",
+          "version": "2.23"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:20.633070332Z",
+      "variant": {
+        "arpack": "3.9",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "perl": "5.32.1",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A Free Software Three-Dimensional Structural Finite Element Program",
+        "documentation": "https://www.dhondt.de/ccx_2.23.pdf",
+        "homepage": "https://www.dhondt.de/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Dhondtguido/CalculiX",
+        "summary": "3D Structural Finite Element Program"
+      },
+      "build": {
+        "number": 2,
+        "string": "pl5321h3af09bb_2"
+      },
+      "context": {
+        "name": "calculix",
+        "sha256": "9c88385c10fb04f5dc6c4e98027a51bebdd8aee3920e05190d6c1dd08357d6e7",
+        "version": "2.23"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "looooo",
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "calculix",
+        "version": "2.23"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "perl",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gfortran_linux-64 14.*"
+        ],
+        "host": [
+          "libblas",
+          "liblapack",
+          "arpack",
+          "spooles"
+        ],
+        "run": [
+          "arpack"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/avoid-ifport.patch",
+            "patches/fix-readnewmesh-return.patch"
+          ],
+          "sha256": "9c88385c10fb04f5dc6c4e98027a51bebdd8aee3920e05190d6c1dd08357d6e7",
+          "url": "http://www.dhondt.de/ccx_2.23.src.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -f $PREFIX/bin/ccx"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

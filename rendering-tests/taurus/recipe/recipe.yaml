@@ -1,0 +1,124 @@
+schema_version: 1
+
+context:
+  name: taurus
+  version: "5.3.2"
+
+recipe:
+  name: taurus-split
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e489e9a7b62bb3818311cda03aa73f7370a865f6b8bb61e37b953bc8900df946
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: taurus-core
+    build:
+      noarch: python
+      script: ${{ PYTHON }} -m pip install --no-deps -vv .
+      python:
+        entry_points:
+          - taurus = taurus.cli:main
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - pip
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+        - click
+        - numpy >=1.16
+        - packaging
+        - pint >=0.8
+        - setuptools <81
+    tests:
+      - python:
+          imports:
+            - taurus
+            - taurus.core
+            - taurus.external
+            - taurus.cli
+          python_version:
+            - ${{ python_min }}.*
+            - 3.*
+          pip_check: true
+      - script:
+          - taurus --help
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+  - package:
+      name: taurus-qt
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage('taurus-core', exact=True) }}
+        - pyqt
+        - pyqtwebengine
+        - pyqtwebkit
+        - ply >=2.3
+        - lxml >=2.1
+        - guiqwt >=3
+    tests:
+      - python:
+          imports:
+            - taurus.qt
+          python_version:
+            - ${{ python_min }}.*
+            - 3.*
+          pip_check: true
+      - script:
+          - taurus check-deps
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+  - package:
+      name: taurus
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage('taurus-core', exact=True) }}
+        - ${{ pin_subpackage('taurus-qt', exact=True) }}
+    tests:
+      - python:
+          imports:
+            - taurus
+            - taurus.qt
+          python_version:
+            - ${{ python_min }}.*
+            - 3.*
+          pip_check: true
+      - script:
+          - taurus check-deps
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+about:
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.txt
+  summary: A framework for scientific/industrial CLIs and GUIs
+  description: |
+    Taurus is a python framework for control and data
+    acquisition CLIs and GUIs in scientific/industrial environments.
+    It supports multiple control systems or data sources: Tango, EPICS,...
+    New control system libraries can be integrated through plugins.
+  homepage: http://www.taurus-scada.org
+  repository: https://gitlab.com/taurus-org/taurus
+  documentation: http://taurus-scada.org
+
+extra:
+  recipe-maintainers:
+    - ovallcorba
+    - rhomspuron
+    - beenje
+    - cpascual

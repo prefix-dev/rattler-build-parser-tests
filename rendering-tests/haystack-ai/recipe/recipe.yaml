@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: haystack-ai
+  version: "2.14.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/haystack_ai-${{ version }}.tar.gz
+  sha256: 75578379c0a7a8cae0deaac356260bd0cd3d8ea6c96deb000fe210df4c610391
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python >=${{ python_min }},<3.13
+    - hatchling >=1.8.0
+    - pip
+  run:
+    - python >=${{ python_min }},<3.13
+    - tqdm
+    - tenacity
+    - lazy-imports
+    - openai >=1.1.0
+    - jinja2
+    - posthog
+    - pyyaml
+    - more-itertools
+    - networkx
+    - typing-extensions >=4.7
+    - requests
+    - numpy
+    - python-dateutil
+    - haystack-experimental
+    - jsonschema
+
+tests:
+  - python:
+      python_version: ">=${{ python_min }}"
+      imports:
+        - haystack
+      pip_check: true
+
+about:
+  summary: LLM framework to build customizable, production-ready LLM applications. Connect components (models, vector DBs, file converters) to pipelines or agents that can interact with your data.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/deepset-ai/haystack
+
+extra:
+  recipe-maintainers:
+    - julian-risch
+    - moritzwilksch

@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgsasl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgsasl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgsasl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgsasl/work"
+      },
+      "hash": {
+        "hash": "6f7c1ad"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgsasl": {
+          "build_string": "h6f7c1ad_1",
+          "name": "libgsasl",
+          "version": "2.2.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:26:10.119257102Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "krb5": "1.21",
+        "libntlm": "1",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.gnu.org/software/gsasl/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING.LESSER",
+          "COPYING"
+        ],
+        "summary": "Implementation of the Simple Authentication and Security Layer framework"
+      },
+      "build": {
+        "number": 1,
+        "string": "h6f7c1ad_1"
+      },
+      "context": {
+        "version": "2.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "martindurant",
+          "mariusvniekerk"
+        ]
+      },
+      "package": {
+        "name": "libgsasl",
+        "version": "2.2.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "autoconf",
+          "automake <1.17",
+          "gettext-tools",
+          "make"
+        ],
+        "host": [
+          "libtool",
+          "libntlm",
+          "libgcrypt",
+          "krb5",
+          "libintl-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgsasl",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "41e8e442648eccaf6459d9ad93d4b18530b96c8eaf50e3f342532ef275eff3ba",
+          "url": "https://ftp.gnu.org/gnu/gsasl/gsasl-2.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/include/gsasl-mech.h",
+            "test -f $PREFIX/include/gsasl.h",
+            "test ! -f $PREFIX/lib/libgsasl.a",
+            "test ! -f $PREFIX/lib/libgsasl.la",
+            "test -f $PREFIX/lib/libgsasl${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

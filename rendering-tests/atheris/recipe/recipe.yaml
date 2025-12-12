@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  version: 3.0.0
+
+package:
+  name: atheris
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/atheris/atheris-${{ version }}.tar.gz
+  sha256: 1f0929c7bc3040f3fe4102e557718734190cf2d7718bbb8e3ce6d3eb56ef5bb3
+
+build:
+  number: 0
+  skip: not (unix and match(python, ">=3.11"))
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - clangxx
+    - compiler-rt_${{ target_platform }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - pybind11
+        - python
+    - if: unix
+      then:
+        - binutils
+  host:
+    - pip
+    - pybind11 >=2.5.0
+    - python
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      imports: atheris
+  - files:
+      source:
+        - example_fuzzers/fuzzing_example.py
+        - example_fuzzers/example_library.py
+    requirements:
+      run: pip
+    script:
+      file: run_test.py
+
+about:
+  homepage: https://github.com/google/atheris
+  summary: A coverage-guided fuzzer for Python and Python extensions.
+  license: Apache-2.0
+  license_file: LICENSE
+  description: |-
+    Atheris is a coverage-guided Python fuzzing engine. It supports fuzzing of
+    Python code, but also native extensions written for CPython. Atheris is based
+    off of libFuzzer. When fuzzing native code, Atheris can be used in combination
+    with Address Sanitizer or Undefined Behavior Sanitizer to catch extra bugs.
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

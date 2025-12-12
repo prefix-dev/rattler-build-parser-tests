@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: pyserde
+  version: "0.26.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e22b52625ee92663102ef706033df27b7a931231f5c99fae31d8b94e8c6fd687
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=1.26
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - typing_inspect >=0.4.0
+    - typing_extensions >=4.1.0,<4.13.0
+    - casefy
+    - jinja2
+    - plum-dispatch >=2.3
+    - beartype >=0.18.4
+
+tests:
+  - python:
+      imports:
+        - serde
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Serialization library on top of dataclasses
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/yukinarit/pyserde
+
+extra:
+  recipe-maintainers:
+    - thewchan

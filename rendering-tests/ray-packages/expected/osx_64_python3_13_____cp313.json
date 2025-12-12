@@ -1,0 +1,2246 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-core/work"
+      },
+      "hash": {
+        "hash": "1697f20",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.763099564Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libgrpc": "1.71",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ray = ray.scripts.scripts:main"
+          ]
+        },
+        "script": "build-core",
+        "string": "py313h1697f20_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-core",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.15.*",
+          "clangxx_osx-64 19.*",
+          "bazel 6.5.*",
+          "bazel-toolchain 0.2.1.*",
+          "colorama",
+          "curl",
+          "cython >=0.29.32",
+          "make",
+          "psutil",
+          "python",
+          "setproctitle >=1.2.2,<1.4",
+          "unzip",
+          "cross-python_osx-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "packaging",
+          "libgrpc",
+          "openjdk 11.*",
+          "setuptools",
+          "cython >=3.0.12"
+        ],
+        "run": [
+          "python",
+          "aiohttp >=3.7",
+          "click >=7.0,<8.3.0",
+          "colorama",
+          "filelock",
+          "jsonschema",
+          "msgpack-python >=1.0.0,<2.0.0",
+          "packaging",
+          "protobuf >=3.20.3",
+          "psutil",
+          "pyyaml",
+          "requests"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray",
+              "ray._raylet",
+              "ray.actor",
+              "ray.runtime_context",
+              "ray._private.state",
+              "ray._private.worker"
+            ]
+          }
+        },
+        {
+          "script": [
+            "python -c \"import ray; ray.init(include_dashboard=False)\"",
+            "ray --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-client",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-client/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-client/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-client/work"
+      },
+      "hash": {
+        "hash": "fc78f86",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.798945277Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_core": "2.52.1 py313h1697f20_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313hfc78f86_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-client",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-core"
+            }
+          },
+          "grpcio"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray"
+            ]
+          }
+        },
+        {
+          "script": [
+            "ray start --head",
+            "python -c \"import ray; ray.init('ray://127.0.0.1:10001')\"",
+            "ray stop"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-default",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-default/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-default/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-default/work"
+      },
+      "hash": {
+        "hash": "fc78f86",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.799280246Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_core": "2.52.1 py313h1697f20_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd python/ray/dashboard/client",
+          "npm install",
+          "npm ci",
+          "npm run build",
+          "mkdir -p $SP_DIR/ray/dashboard/client",
+          "cp -R ./build $SP_DIR/ray/dashboard/client/build"
+        ],
+        "string": "py313hfc78f86_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-default",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "build": [
+          "nodejs >=20"
+        ],
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-core"
+            }
+          },
+          "aiohttp-cors",
+          "colorful",
+          "grpcio",
+          "opencensus",
+          "opentelemetry-sdk >=1.30.0",
+          "opentelemetry-exporter-prometheus >=0.51b0",
+          "opentelemetry-proto",
+          "prometheus_client >=0.7.1",
+          "py-spy >=0.4.0",
+          "pydantic !=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,<3",
+          "requests",
+          "smart_open",
+          "virtualenv >=20.0.24,!=20.21.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray",
+              "ray.dashboard"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import ray; ray.init(include_dashboard=True)\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-observability",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-observability/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-observability/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-observability/work"
+      },
+      "hash": {
+        "hash": "5f8cd6f",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.799654549Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_default": "2.52.1 py313hfc78f86_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313h5f8cd6f_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-observability",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-default"
+            }
+          },
+          "memray"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "echo \"no tests for ray-observability, it is a convenience bundle\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-tune",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-tune/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-tune/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-tune/work"
+      },
+      "hash": {
+        "hash": "5f8cd6f",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.799895342Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_default": "2.52.1 py313hfc78f86_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "tune = ray.tune.scripts:cli"
+          ]
+        },
+        "string": "py313h5f8cd6f_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-tune",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-default"
+            }
+          },
+          "fsspec",
+          "pandas",
+          "pyarrow",
+          "requests",
+          "tensorboardx >=1.9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.tune"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-train",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-train/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-train/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-train/work"
+      },
+      "hash": {
+        "hash": "f38da11",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.800172129Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_tune": "2.52.1 py313h5f8cd6f_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313hf38da11_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-train",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-tune"
+            }
+          },
+          "pydantic !=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,<3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.train"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-rllib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-rllib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-rllib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-rllib/work"
+      },
+      "hash": {
+        "hash": "f38da11",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-rllib": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-rllib",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.800440081Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_tune": "2.52.1 py313h5f8cd6f_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313hf38da11_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-rllib",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-tune"
+            }
+          },
+          "dm-tree",
+          "gymnasium ==1.1.1",
+          "lz4",
+          "ormsgpack ==1.7.0",
+          "pyyaml",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.rllib"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-serve",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-serve/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-serve/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-serve/work"
+      },
+      "hash": {
+        "hash": "5f8cd6f",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-rllib": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-rllib",
+          "version": "2.52.1"
+        },
+        "ray-serve": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-serve",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.800641889Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_default": "2.52.1 py313hfc78f86_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "serve = ray.serve.scripts:cli"
+          ]
+        },
+        "string": "py313h5f8cd6f_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-serve",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-default"
+            }
+          },
+          "fastapi",
+          "requests",
+          "starlette",
+          "uvicorn",
+          "watchfiles",
+          "pyopenssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.serve"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-data",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-data/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-data/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-data/work"
+      },
+      "hash": {
+        "hash": "fc78f86",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-data": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-data",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-rllib": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-rllib",
+          "version": "2.52.1"
+        },
+        "ray-serve": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-serve",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.800816854Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_core": "2.52.1 py313h1697f20_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313hfc78f86_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-data",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-core"
+            }
+          },
+          "pandas >=1.3",
+          "numpy >=1.20",
+          "pyarrow >=9.0.0",
+          "fsspec"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.data"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-air",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-air/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-air/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-air/work"
+      },
+      "hash": {
+        "hash": "9c5f1fa",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-air": {
+          "build_string": "py313h9c5f1fa_0",
+          "name": "ray-air",
+          "version": "2.52.1"
+        },
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-data": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-data",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-rllib": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-rllib",
+          "version": "2.52.1"
+        },
+        "ray-serve": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-serve",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.801111269Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_data": "2.52.1 py313hfc78f86_0",
+        "ray_serve": "2.52.1 py313h5f8cd6f_0",
+        "ray_train": "2.52.1 py313hf38da11_0",
+        "ray_tune": "2.52.1 py313h5f8cd6f_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313h9c5f1fa_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-air",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-data"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-serve"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-train"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-tune"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray.air"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-all",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-all/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-all/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ray-all/work"
+      },
+      "hash": {
+        "hash": "4a91add",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ray-air": {
+          "build_string": "py313h9c5f1fa_0",
+          "name": "ray-air",
+          "version": "2.52.1"
+        },
+        "ray-all": {
+          "build_string": "py313h4a91add_0",
+          "name": "ray-all",
+          "version": "2.52.1"
+        },
+        "ray-client": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-client",
+          "version": "2.52.1"
+        },
+        "ray-core": {
+          "build_string": "py313h1697f20_0",
+          "name": "ray-core",
+          "version": "2.52.1"
+        },
+        "ray-data": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-data",
+          "version": "2.52.1"
+        },
+        "ray-default": {
+          "build_string": "py313hfc78f86_0",
+          "name": "ray-default",
+          "version": "2.52.1"
+        },
+        "ray-observability": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-observability",
+          "version": "2.52.1"
+        },
+        "ray-rllib": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-rllib",
+          "version": "2.52.1"
+        },
+        "ray-serve": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-serve",
+          "version": "2.52.1"
+        },
+        "ray-train": {
+          "build_string": "py313hf38da11_0",
+          "name": "ray-train",
+          "version": "2.52.1"
+        },
+        "ray-tune": {
+          "build_string": "py313h5f8cd6f_0",
+          "name": "ray-tune",
+          "version": "2.52.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:13.801413718Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "ray_air": "2.52.1 py313h9c5f1fa_0",
+        "ray_client": "2.52.1 py313hfc78f86_0",
+        "ray_data": "2.52.1 py313hfc78f86_0",
+        "ray_default": "2.52.1 py313hfc78f86_0",
+        "ray_rllib": "2.52.1 py313hf38da11_0",
+        "ray_serve": "2.52.1 py313h5f8cd6f_0",
+        "ray_train": "2.52.1 py313hf38da11_0",
+        "ray_tune": "2.52.1 py313h5f8cd6f_0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ray is a fast and simple framework for building and running\ndistributed applications. It is split into ray-core, ray-default,\nray-serve, ray-rllib, ray-client, ray-data, ray-tune,\nray-train, ray-observability, ray-adag, ray-cgraph, ray-llm and\nray-all packages.",
+        "documentation": "https://docs.ray.io/",
+        "homepage": "https://ray.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "licenses/abseil-LICENSE.txt",
+          "licenses/antirez-redis-COPYING.txt",
+          "licenses/arrow-LICENSE.txt",
+          "licenses/boost-LICENSE_1_0.txt",
+          "licenses/boringssl-LICENSE.txt",
+          "licenses/deckarep-golang-set-LICENSE.txt",
+          "licenses/flatbuffers-LICENSE.txt",
+          "licenses/gabime-spdlog-LICENSE.txt",
+          "licenses/gflags-COPYING.txt",
+          "licenses/glog-COPYING.txt",
+          "licenses/go-logr-LICENSE.txt",
+          "licenses/googletest-LICENSE.txt",
+          "licenses/grpc-LICENSE.txt",
+          "licenses/msgpack-COPYING.txt",
+          "licenses/onsi-ginkgo-LICENSE.txt",
+          "licenses/onsi-gomega-LICENSE.txt",
+          "licenses/opencensus-LICENSE.txt",
+          "licenses/opencensus-proto-LICENSE.txt",
+          "licenses/prometheus-LICENSE.txt",
+          "licenses/redis-hiredis-COPYING.txt",
+          "licenses/tporadowski-redis-license.txt",
+          "licenses/zlib-LICENSE.txt"
+        ],
+        "repository": "https://github.com/ray-project/ray",
+        "summary": "Ray is a fast and simple framework for building and running distributed applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "py313h4a91add_0"
+      },
+      "context": {
+        "version": "2.52.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aslonnie",
+          "apmorton",
+          "timkpaine",
+          "dHannasch",
+          "h-vetinari",
+          "vnlitvinov",
+          "mattip"
+        ]
+      },
+      "package": {
+        "name": "ray-all",
+        "version": "2.52.1"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-air"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-default"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-client"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-data"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-rllib"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-serve"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-train"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "ray-tune"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Disable-making-entry-scripts.patch",
+            "patches/0002-Ignore-warnings-in-event.cc-and-logging.cc.patch",
+            "patches/0003-fake-python-3.9-with-python-3.12.patch",
+            "patches/0004-Vendor-grpc-1.67.1.patch",
+            "patches/0005-remove-stdlib-libc-from-.bazelrc.patch",
+            "patches/0006-patch-protobuf-use-of-nan-on-windows.patch",
+            "patches/0007-patch-zlib-in-prometheus-cpp-and-boost.patch",
+            "patches/0008-bazel-disable-strict-env.patch"
+          ],
+          "sha256": "b00b1db1028be58294e6fc7e649359f3fc0031d07e130b958c95f1e844d3a4ec",
+          "url": "https://github.com/ray-project/ray/archive/ray-2.52.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ray"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

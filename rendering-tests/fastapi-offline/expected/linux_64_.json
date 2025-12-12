@@ -1,0 +1,180 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-offline",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-offline/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-offline/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastapi-offline/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastapi-offline": {
+          "build_string": "pyhcf101f3_0",
+          "name": "fastapi-offline",
+          "version": "1.7.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:21:44.642007627Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/turettn/fastapi_offline",
+        "license": "MIT",
+        "license_file": [
+          "dist/LICENSE",
+          "fastapi-LICENSE-MIT",
+          "redoc-LICENSE-MIT",
+          "swagger-ui-LICENSE-APACHE-2.0",
+          "swagger-ui-NOTICE-APACHE-2.0"
+        ],
+        "summary": "FastAPI without reliance on CDNs for docs"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "cd dist",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "1.7.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "fastapi-offline",
+        "version": "1.7.5"
+      },
+      "requirements": {
+        "host": [
+          "fastapi >=0.99.0",
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "uvicorn-standard"
+        ],
+        "run": [
+          "fastapi >=0.99.0",
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "07a58cb8d8fab68ba625698414b4cac833bb2d94d82dc0fbc2a8519bee7af87d",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/f/fastapi-offline/fastapi_offline-1.7.5.tar.gz"
+        },
+        {
+          "sha256": "dd4b57a2073ed2f023b183fc8fb977a198d08cb05012cb142b2d7be951895af4",
+          "target_directory": "src",
+          "url": "https://github.com/turettn/fastapi_offline/archive/refs/tags/v1.7.5.tar.gz"
+        },
+        {
+          "file_name": "fastapi-LICENSE-MIT",
+          "sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+          "url": "https://raw.githubusercontent.com/tiangolo/fastapi/master/LICENSE"
+        },
+        {
+          "file_name": "redoc-LICENSE-MIT",
+          "sha256": "d3026d549cf68ab7355bcfa85877bf8f845b3334a7efbfdc63936432fb34ff0e",
+          "url": "https://raw.githubusercontent.com/Redocly/redoc/master/LICENSE"
+        },
+        {
+          "file_name": "swagger-ui-LICENSE-APACHE-2.0",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "url": "https://raw.githubusercontent.com/swagger-api/swagger-ui/master/LICENSE"
+        },
+        {
+          "file_name": "swagger-ui-NOTICE-APACHE-2.0",
+          "sha256": "0d20d1adef18aee3f40dd258172155521ce702ac445cb5f7b7d60ed32dad2fb2",
+          "url": "https://raw.githubusercontent.com/swagger-api/swagger-ui/master/NOTICE"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastapi_offline"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "mypy",
+              "pytest-cov",
+              "python 3.10.*",
+              "requests",
+              "starlette-full"
+            ]
+          },
+          "script": [
+            "pytest src/tests -vv --cov fastapi_offline --no-cov-on-fail --cov-report=term-missing:skip-covered --cov-fail-under=97",
+            "mypy --strict -m fastapi_offline"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

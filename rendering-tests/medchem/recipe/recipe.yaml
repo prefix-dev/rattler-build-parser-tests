@@ -1,0 +1,54 @@
+context:
+  name: medchem
+  version: 2.0.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/medchem-${{ version }}.tar.gz
+  sha256: 2d9c7547a492ced5e2651fccc0cd206049a60acca70f2ffe1d54b2aa10cd024b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - typer
+    - loguru
+    - tqdm
+    - numpy
+    - lark
+    - pandas
+    - networkx
+    - datamol >=0.10
+
+tests:
+  - python:
+      imports:
+        - medchem
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - medchem --help
+
+about:
+  summary: 'Medchem: Molecular filtering for drug discovery.'
+  license: Apache-2.0
+  license_file: LICENSE.md
+  homepage: https://github.com/datamol-io/medchem
+
+extra:
+  recipe-maintainers:
+    - hadim

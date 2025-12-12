@@ -1,0 +1,173 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eon",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eon/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eon/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eon/work"
+      },
+      "hash": {
+        "hash": "6d6ff5c",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "eon": {
+          "build_string": "np2py312h6d6ff5c_0",
+          "name": "eon",
+          "version": "2.8.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:10.532369256Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The EON software package contains algorithms used primarily to model the\nevolution of atomic scale systems over long time scales. This version is\ninstrumented for working with Metatensor.",
+        "documentation": "https://eondocs.org/index.html",
+        "homepage": "https://eondocs.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/TheochemUI/eOn",
+        "summary": "Algorithms for long time scales and potential energy surface exploration"
+      },
+      "build": {
+        "number": 0,
+        "string": "np2py312h6d6ff5c_0"
+      },
+      "context": {
+        "version": "2.8.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "HaoZeke"
+        ]
+      },
+      "package": {
+        "name": "eon",
+        "version": "2.8.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "gfortran_linux-64 14.*",
+          "cmake",
+          "ninja",
+          "meson",
+          "sccache"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "numpy",
+          "pyyaml",
+          "setuptools",
+          "libtorch >=2.9,<2.10 *cpu*",
+          "libmetatomic-torch >=0.1.7,<0.2",
+          "libmetatensor-torch >=0.8,<0.9",
+          "eigen >=3.4,<3.5",
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke",
+          "fmt >=12",
+          "spdlog >=1.16"
+        ],
+        "run": [
+          "python",
+          "pyyaml",
+          "numpy",
+          "eigen",
+          "fmt",
+          "spdlog",
+          "libmetatomic-torch >=0.1.7,<0.2",
+          "libmetatensor-torch"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "28e724cb481d20d07f0c924055fe126692f9607b61a6d6c2d88795e116513745",
+          "url": "https://github.com/TheochemUI/eOn/archive/refs/tags/v2.8.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "libtorch * cpu*"
+            ]
+          },
+          "script": "python -c \"import eon.server\""
+        },
+        {
+          "requirements": {
+            "run": [
+              "libtorch * cpu*"
+            ]
+          },
+          "script": "eonclient -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

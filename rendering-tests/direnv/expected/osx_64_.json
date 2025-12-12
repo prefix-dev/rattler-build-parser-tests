@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_direnv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_direnv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_direnv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_direnv/work"
+      },
+      "hash": {
+        "hash": "033bf6c"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "direnv": {
+          "build_string": "h033bf6c_0",
+          "name": "direnv",
+          "version": "2.37.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:27:43.114999743Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/direnv/direnv",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "license_files/"
+        ],
+        "summary": "unclutter your .profile"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "pushd src",
+          "go install -v -ldflags \"-X main.revision=conda-forge\" .",
+          "go-licenses save . --save_path=${{ SRC_DIR }}/license_files || true"
+        ],
+        "string": "h033bf6c_0"
+      },
+      "context": {
+        "name": "direnv",
+        "version": "2.37.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "daizeng1984",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "direnv",
+        "version": "2.37.1"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4142fbb661f3218913fac08d327c415e87b3e66bd0953185294ff8f3228ead24",
+          "target_directory": "src",
+          "url": "https://github.com/direnv/direnv/archive/v2.37.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "direnv --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autobahn",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autobahn/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autobahn/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autobahn/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "autobahn": {
+          "build_string": "pyhcf101f3_0",
+          "name": "autobahn",
+          "version": "25.12.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:20:01.979205502Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://autobahn-python.readthedocs.io/",
+        "homepage": "https://github.com/crossbario/autobahn-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/crossbario/autobahn-python",
+        "summary": "WebSocket and WAMP in Python for Twisted and asyncio"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "wamp = autobahn.__main__:_main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "autobahn",
+        "python_min": "3.11",
+        "version": "25.12.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "autobahn",
+        "version": "25.12.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "hatchling",
+          "cffi >=2.0.0",
+          "setuptools >=70.0.0"
+        ],
+        "run": [
+          "python >=3.11",
+          "txaio >=25.12.2",
+          "cryptography >=3.4.6",
+          "hyperlink >=21.0.0",
+          "msgpack-python >=1.0.2",
+          "ujson >=4.0.2",
+          "cbor2 >=5.2.0",
+          "py-ubjson >=0.16.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a13e49f762e97a291136bb1c4e39e6b026c4275593fb1d9ef9b73e7ef22e559d",
+          "url": "https://pypi.org/packages/source/a/autobahn/autobahn-25.12.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "autobahn",
+              "autobahn.rawsocket",
+              "autobahn.wamp",
+              "autobahn.websocket",
+              "autobahn.util"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "zope.interface >=5.2.0",
+              "twisted >=24.3.0",
+              "attrs >=20.3.0"
+            ]
+          },
+          "script": "wamp -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

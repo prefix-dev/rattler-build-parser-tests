@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: typescript-eslint-parser
+  version: "8.49.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/typescript-eslint/typescript-eslint/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 56dc2437998b789c9c3a5a6abb7b1b34ab54174b8f6d17a31a9760e15b2e0760
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - nodejs
+    - make
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+    - yarn
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - if: unix
+        then: test -d $PREFIX/lib/node_modules/@typescript-eslint/parser
+      - if: win
+        then: if not exist %LIBRARY_INC%\lib\node_modules\@typescript-eslint\parser exit 1
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - packages/parser/ThirdPartyLicenses.txt
+  summary: Find and fix problems in your JavaScript code.
+  homepage: https://github.com/typescript-eslint/typescript-eslint
+
+extra:
+  recipe-maintainers:
+    - xhochy

@@ -1,0 +1,176 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.11.0"
+  python_check_max: "3.13"
+  pytorch_min: "1.13"
+
+recipe:
+  name: stanza-split
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/stanza/stanza-${{ version }}.tar.gz
+  sha256: 42ba9d4752e74c4e1e6fc2ca96e98bb8fa194049782cc35fde2a5118fd5f75ab
+  patches:
+    # see https://github.com/stanfordnlp/stanza/pull/1517
+    - 0000-fix-paren.diff
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: stanza
+    build:
+      number: 0
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - emoji
+        - networkx
+        - numpy
+        - protobuf >=3.15.0
+        - python >=${{ python_min }}
+        - pytorch >=${{ pytorch_min }}
+        - requests
+        - tomli
+        - tqdm
+      run_constraints:
+        - peft >=0.6.1
+        - transformers >=3.0.0
+    tests:
+      - python:
+          imports:
+            - stanza
+            - stanza.models
+            - stanza.models.constituency.utils
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - pip
+            - pytorch ${{ pytorch_min }}.*
+        script:
+          - pip check
+
+  - package:
+      name: stanza-with-datasets
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("stanza", upper_bound="x.x.x") }}
+        - datasets
+    tests:
+      - python:
+          imports:
+            - stanza
+            - stanza.utils.charlm.dump_oscar
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: (with datasets) A Python NLP Library for Many Human Languages, by the Stanford NLP Group
+
+  - package:
+      name: stanza-with-tokenizers
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("stanza", upper_bound="x.x.x") }}
+        - jieba
+        - pythainlp
+        - python-crfsuite
+        - spacy
+        - sudachidict-core
+        - sudachipy
+    tests:
+      - python:
+          imports:
+            - stanza
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            # see https://github.com/conda-forge/python-crfsuite-feedstock/pull/35
+            # - ${{ python_check_max }}.*
+            - 3.12.*
+    about:
+      summary: (with tokenizers) A Python NLP Library for Many Human Languages, by the Stanford NLP Group
+
+  - package:
+      name: stanza-with-transformers
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("stanza", upper_bound="x.x.x") }}
+        - peft
+        - transformers
+    tests:
+      - python:
+          imports:
+            - stanza
+            - stanza.models
+            - stanza.models.common.bert_embedding
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pytorch ${{ pytorch_min }}.*
+        script:
+          - python -c "import stanza; nl = stanza.models.constituency.utils.NONLINEARITY; print(nl); assert 'mish' in nl"
+    about:
+      summary: (with transformers) A Python NLP Library for Many Human Languages, by the Stanford NLP Group
+
+  - package:
+      name: stanza-with-visualization
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("stanza", upper_bound="x.x.x") }}
+        - spacy
+        - streamlit
+        - ipython
+    tests:
+      - python:
+          imports:
+            - stanza
+            - stanza.utils.visualization.semgrex_app
+            - stanza.utils.visualization.semgrex_visualizer
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: (with visualization) A Python NLP Library for Many Human Languages, by the Stanford NLP Group
+
+about:
+  summary: A Python NLP Library for Many Human Languages, by the Stanford NLP Group
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/stanfordnlp/stanza
+  documentation: https://stanfordnlp.github.io/stanza
+
+extra:
+  feedstock-name: stanza
+  recipe-maintainers:
+    - AngledLuffa
+    - FernandezMathieu
+    - bollwyvl

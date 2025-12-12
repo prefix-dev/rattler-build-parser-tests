@@ -1,0 +1,126 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grpcui",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grpcui/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grpcui/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_grpcui/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "grpcui": {
+          "build_string": "hfc2019e_0",
+          "name": "grpcui",
+          "version": "1.5.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:20:54.296945382Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "grpcui is a command-line tool that lets you interact with gRPC servers via a browser.\nIt's sort of like Postman, but for gRPC APIs instead of REST.\n\nIn some ways, this is like an extension to grpcurl.\nWhereas grpcurl is a command-line interface, grpcui provides a web/browser-based GUI.\nThis lets you interactively construct requests to send to a gRPC server.\n\nWith this tool you can also browse the schema for gRPC services,\nwhich is presented as a list of available endpoints.\nThis is enabled either by querying a server that supports server reflection,\nby reading proto source files,\nor by loading in compiled \"protoset\" files (files that contain encoded file descriptor protos).\nIn fact, the way the tool transforms JSON request data into a binary encoded protobuf is using that very same schema.\nSo, if the server you interact with does not support reflection,\nyou will either need the proto source files that define the service or need protoset files that grpcui can use.",
+        "documentation": "https://pkg.go.dev/github.com/fullstorydev/grpcui",
+        "homepage": "https://github.com/fullstorydev/grpcui",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/fullstorydev/grpcui",
+        "summary": "An interactive web UI for gRPC, along the lines of postman."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --save_path ../library_licenses",
+          "go build -ldflags \"-s -w -X main.version=v${{ version }}\" -o $PREFIX/bin/ ./cmd/grpcui/"
+        ],
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "version": "1.5.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "maurosilber"
+        ]
+      },
+      "package": {
+        "name": "grpcui",
+        "version": "1.5.1"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a997fd21e56cfa60fbf42d423693a958683589fee2d69d2167ee7c9018f64939",
+          "target_directory": "src",
+          "url": "https://github.com/fullstorydev/grpcui/archive/refs/tags/v1.5.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "grpcui --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "grpcui"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

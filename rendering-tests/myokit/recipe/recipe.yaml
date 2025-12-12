@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: myokit
+  version: "1.38.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/myokit-${{ version }}.tar.gz
+  sha256: c2e7c55f5a8d2aa9828349be3ab9ab55a5eb5fc88bc064a1815329b4023e06e1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - myokit = myokit.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - configparser
+    - lxml
+    - matplotlib-base >=2.2
+    - numpy
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - myokit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - myokit --help
+
+about:
+  summary: A modeling and simulation tool for cardiac cellular electrophysiology
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE.txt
+    - myokit/tests/data/formats/sbml/LICENSE
+    - myokit/tests/data/formats/cellml/LICENSE
+    - myokit/_bin/sundials-win-vs/LICENSE
+  homepage: http://myokit.org
+
+extra:
+  recipe-maintainers:
+    - synapticarbors
+    - MichaelClerx

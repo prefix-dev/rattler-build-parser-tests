@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-log-request-id
+  version: "2.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django-log-request-id-${{ version }}.tar.gz
+  sha256: b11fc821774b54b820ef2e732dbaa52304711de8d5c4f9031ca48578f6121ab6
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=1.8
+
+tests:
+  - python:
+      imports:
+        - log_request_id
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Django middleware and log filter to attach a unique ID to every log message generated as part of a request
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: https://github.com/dabapps/django-log-request-id/
+
+extra:
+  recipe-maintainers:
+    - rxm7706

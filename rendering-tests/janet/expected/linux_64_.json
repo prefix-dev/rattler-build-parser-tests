@@ -1,0 +1,327 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjanet/work"
+      },
+      "hash": {
+        "hash": "280c20c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libjanet": {
+          "build_string": "h280c20c_0",
+          "name": "libjanet",
+          "version": "1.40.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:42.494753390Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Janet is a functional, Lisp-like programming language that ships as a\nsmall C library and embeddable interpreter. It targets scripting,\ncommand-line tooling, and embedding in C or C++ applications.",
+        "documentation": "https://janet-lang.org/docs/",
+        "homepage": "https://janet-lang.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/janet-lang/janet",
+        "summary": "Lightweight Lisp-like language and bytecode VM for system scripting"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export JANET_EXTRA_MESON=\"\"",
+          "export JANET_EXTRA_MESON=\"-Dc_args=-DJANET_SPAWN_NO_CHDIR\"",
+          "meson setup build-lib ${MESON_ARGS} --prefix=\"${PREFIX}\" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}",
+          "meson compile -C build-lib --jobs ${CPU_COUNT}",
+          "meson install -C build-lib",
+          "rm -f \"${PREFIX}/bin/janet\"",
+          "rm -f \"${PREFIX}/lib/libjanet.a\""
+        ],
+        "string": "h280c20c_0"
+      },
+      "context": {
+        "name": "janet",
+        "soname": "1.39",
+        "version": "1.40.1"
+      },
+      "extra": {
+        "feedstock-name": "janet",
+        "recipe-maintainers": [
+          "tdejager"
+        ]
+      },
+      "package": {
+        "name": "libjanet",
+        "version": "1.40.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "meson",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libjanet",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "null-terminate.patch",
+            "disable-symlink.patch"
+          ],
+          "sha256": "e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a",
+          "url": "https://github.com/janet-lang/janet/archive/refs/tags/v1.40.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "janet/janet_1.40.1.h"
+            ],
+            "lib": [
+              "libjanet"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "pkg-config --modversion janet"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_janet/work"
+      },
+      "hash": {
+        "hash": "cfd926d"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "janet": {
+          "build_string": "hcfd926d_0",
+          "name": "janet",
+          "version": "1.40.1"
+        },
+        "libjanet": {
+          "build_string": "h280c20c_0",
+          "name": "libjanet",
+          "version": "1.40.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:42.533288655Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libjanet": "1.40.1 h280c20c_0",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Janet is a functional, Lisp-like programming language that ships as a\nsmall C library and embeddable interpreter. It targets scripting,\ncommand-line tooling, and embedding in C or C++ applications.",
+        "documentation": "https://janet-lang.org/docs/",
+        "homepage": "https://janet-lang.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/janet-lang/janet",
+        "summary": "Lightweight Lisp-like language and bytecode VM for system scripting"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export JANET_EXTRA_MESON=\"\"",
+          "export JANET_EXTRA_MESON=\"-Dc_args=-DJANET_SPAWN_NO_CHDIR\"",
+          "meson setup build-bin ${MESON_ARGS} --prefix=\"${PREFIX}\" -Ddefault_library=shared -Dgit_hash=${PKG_VERSION} ${JANET_EXTRA_MESON}",
+          "meson compile -C build-bin --jobs ${CPU_COUNT}",
+          "meson install -C build-bin",
+          "rm -rf \"${PREFIX}/lib/libjanet\"* \"${PREFIX}/lib/pkgconfig\" \"${PREFIX}/include\"",
+          "mkdir -p \"${PREFIX}/etc/conda/activate.d\" \"${PREFIX}/etc/conda/deactivate.d\""
+        ],
+        "string": "hcfd926d_0"
+      },
+      "context": {
+        "name": "janet",
+        "soname": "1.39",
+        "version": "1.40.1"
+      },
+      "extra": {
+        "feedstock-name": "janet",
+        "recipe-maintainers": [
+          "tdejager"
+        ]
+      },
+      "package": {
+        "name": "janet",
+        "version": "1.40.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "meson",
+          "ninja"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libjanet"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "null-terminate.patch",
+            "disable-symlink.patch"
+          ],
+          "sha256": "e7fdcb7ccc83a3be6181f7d7d71f0ea027a000e0eefe9bba3b8373c05eb5764a",
+          "url": "https://github.com/janet-lang/janet/archive/refs/tags/v1.40.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "janet"
+            ]
+          }
+        },
+        {
+          "script": [
+            "janet --version",
+            "janet -e '(printf \"%d\" (+ 2 2))'",
+            "janet -e \"(assert (= (dyn :syspath) \\\"${PREFIX}/lib/janet\\\") \\\"JANET_PATH not set correctly\\\")\""
+          ]
+        },
+        {
+          "files": {
+            "source": [
+              "test/",
+              "examples/"
+            ]
+          },
+          "script": [
+            "for f in test/suite*.janet; do\n  janet \"$f\" || exit 1\ndone\n",
+            "for f in examples/*.janet; do\n  janet -k \"$f\" || exit 1\ndone\n"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

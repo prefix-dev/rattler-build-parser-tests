@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awslambdaric",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awslambdaric/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awslambdaric/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awslambdaric/work"
+      },
+      "hash": {
+        "hash": "44ef5ca",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "awslambdaric": {
+          "build_string": "py314h44ef5ca_2",
+          "name": "awslambdaric",
+          "version": "3.1.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:21:56.355321419Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.14.* *_cp314t",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/aws/aws-lambda-python-runtime-interface-client",
+        "license": "BSD-3-Clause AND Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRD-PARTY-LICENSES"
+        ],
+        "summary": "AWS Lambda Runtime Interface Client for Python"
+      },
+      "build": {
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py314h44ef5ca_2"
+      },
+      "context": {
+        "name": "awslambdaric",
+        "version": "3.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "raybellwaves",
+          "sodre",
+          "0xbe7a",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "awslambdaric",
+        "version": "3.1.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "automake",
+          "autoconf",
+          "cmake",
+          "libtool",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "simplejson >=3.20.1",
+          "snapshot-restore-py >=1.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "aws-lambda-cpp-0.2.6-update-backward-cpp.patch"
+          ],
+          "sha256": "1c1fd30570b9a2c5cc4ccd2151c883312c5eef2dbf759c8e9d29c18cec6de2e8",
+          "url": "https://pypi.org/packages/source/a/awslambdaric/awslambdaric-3.1.1.tar.gz"
+        },
+        {
+          "file_name": "backward.h",
+          "sha256": "404aa26ecc36be08f92c03b05505561e064f6f1f7cffcbda77a7d4959e4c07f2",
+          "target_directory": "deps/patches",
+          "url": "https://raw.githubusercontent.com/bombela/backward-cpp/v1.6/backward.hpp"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "awslambdaric"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

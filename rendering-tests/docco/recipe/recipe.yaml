@@ -1,0 +1,39 @@
+context:
+  version: "0.9.2"
+
+package:
+  name: docco
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/docco/-/docco-${{ version }}.tgz
+  sha256: a448dbc8cac48aad8642db78f1bfba3832ffbe725b859baa9b61ee3c274c65ba
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - docco --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: The Quick and Dirty Literate Programming Documentation Generator
+  homepage: https://github.com/jashkenas/docco
+  repository: https://github.com/jashkenas/docco
+
+extra:
+  recipe-maintainers:
+    - danielnachun

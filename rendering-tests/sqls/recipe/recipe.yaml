@@ -1,0 +1,38 @@
+context:
+  version: 0.2.28
+
+package:
+  name: sqls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sqls-server/sqls/archive/v${{ version }}.tar.gz
+  sha256: 18dd9a4c35137ed01926638a1fa8b0f54f1dd00af0e8e54e18a257ddd62eae45
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('go-cgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+
+tests:
+  - script:
+      - sqls --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: SQL language server written in Go.
+  homepage: https://github.com/sqls-server/sqls
+  repository: https://github.com/sqls-server/sqls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,171 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zarr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zarr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zarr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zarr/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zarr": {
+          "build_string": "pyhcf101f3_0",
+          "name": "zarr",
+          "version": "3.1.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:56.327998847Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://zarr.readthedocs.io/",
+        "homepage": "https://github.com/zarr-developers/zarr-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "An implementation of chunked, compressed, N-dimensional arrays for Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "zarr",
+        "python_min": "3.11",
+        "sha256": "fbe0c79675a40c996de7ca08e80a1c0a20537bd4a9f43418b6d101395c0bba2b",
+        "version": "3.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "normanrz",
+          "martindurant",
+          "d-v-b",
+          "jakirkham",
+          "joshmoore",
+          "jhamman",
+          "rabernat",
+          "dstansby"
+        ]
+      },
+      "package": {
+        "name": "zarr",
+        "version": "3.1.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "hatchling",
+          "hatch-vcs"
+        ],
+        "run": [
+          "python >=3.11",
+          "packaging >=22.0",
+          "numpy >=1.26",
+          "numcodecs >=0.14",
+          "typing_extensions >=4.9",
+          "donfig >=0.8",
+          "google-crc32c >=1.5"
+        ],
+        "run_constraints": [
+          "fsspec >=2023.10.0",
+          "obstore >=0.5.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fbe0c79675a40c996de7ca08e80a1c0a20537bd4a9f43418b6d101395c0bba2b",
+          "url": "https://pypi.org/packages/source/z/zarr/zarr-3.1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zarr"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.11.*",
+              "pytest",
+              "pytest-asyncio",
+              "hypothesis",
+              "botocore",
+              "fsspec",
+              "requests",
+              "aiohttp",
+              "rich",
+              "universal_pathlib",
+              "tomlkit",
+              "s3fs >=2023.10.0",
+              "obstore >=0.5.1",
+              "numpydoc"
+            ]
+          },
+          "script": "pytest tests"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

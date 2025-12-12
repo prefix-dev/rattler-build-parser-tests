@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-talib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-talib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-talib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-talib/work"
+      },
+      "hash": {
+        "hash": "6bd7e49"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "polars-talib": {
+          "build_string": "h6bd7e49_0",
+          "name": "polars-talib",
+          "version": "0.1.5"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:56.612836097Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "is_python_min": true,
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Polars extension for Ta-Lib: Support Ta-Lib functions in Polars expressions",
+        "homepage": "https://github.com/Yvictor/polars_ta_extension",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/Yvictor/polars_ta_extension",
+        "summary": "Polars extension for Ta-Lib"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export LIBCLANG_PATH=$PREFIX/lib",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+        ],
+        "string": "h6bd7e49_0"
+      },
+      "context": {
+        "version": "0.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "polars-talib",
+        "version": "0.1.5"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-64",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "make"
+        ],
+        "host": [
+          "python-abi3",
+          "python 3.10.*",
+          "maturin >=1.0,<2.0",
+          "pip",
+          "libclang",
+          "clang"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "libclang",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "polars >=0.19"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7e2b11f9aa8c4875035b87eec92c762323466b0bb9d702deffc3f4109359c48b",
+          "url": "https://github.com/Yvictor/polars_ta_extension/archive/refs/tags/0.1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "polars_talib"
+            ],
+            "python_version": [
+              "3.10.*",
+              "*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": [
+            "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+            "abi3audit $SP_DIR/polars_talib/_polars_talib.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

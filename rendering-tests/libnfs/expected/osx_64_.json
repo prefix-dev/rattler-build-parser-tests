@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libnfs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libnfs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libnfs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libnfs/work"
+      },
+      "hash": {
+        "hash": "fb6f7f4"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libnfs": {
+          "build_string": "hfb6f7f4_1",
+          "name": "libnfs",
+          "version": "6.0.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:20:18.194347464Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LibNFS is a client library that implements the Network File System (NFS)\nprotocol, allowing applications to access files on remote NFS servers.\nThe library provides a complete NFS client implementation with support for\nNFSv3 and NFSv4 protocols, as well as related protocols such as MOUNT,\nPORTMAP, NLM (Network Lock Manager), NSM (Network Status Monitor), and\nRQUOTA.",
+        "documentation": "https://deepwiki.com/sahlberg/libnfs",
+        "homepage": "https://github.com/sahlberg/libnfs",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING",
+          "LICENCE-LGPL-2.1.txt",
+          "LICENCE-BSD.txt",
+          "LICENCE-GPL-3.txt"
+        ],
+        "repository": "https://github.com/sahlberg/libnfs",
+        "summary": "LIBNFS is a client library for accessing NFS shares over a network."
+      },
+      "build": {
+        "number": 1,
+        "string": "hfb6f7f4_1"
+      },
+      "context": {
+        "name": "libnfs",
+        "version": "6.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rhpvorderman"
+        ]
+      },
+      "package": {
+        "name": "libnfs",
+        "version": "6.0.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libnfs",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4e5459cc3e0242447879004e9ad28286d4d27daa42cbdcde423248fad911e747",
+          "url": "https://github.com/sahlberg/libnfs/archive/refs/tags/libnfs-6.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/lib/libnfs${SHLIB_EXT}",
+            "test -f ${PREFIX}/include/nfsc/libnfs.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-mount.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-nfs.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-nfs4.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-nlm.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-nsm.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-portmap.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-raw-rquota.h",
+            "test -f ${PREFIX}/include/nfsc/libnfs-zdr.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

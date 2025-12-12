@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzo/work"
+      },
+      "hash": {
+        "hash": "280c20c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lzo": {
+          "build_string": "h280c20c_1002",
+          "name": "lzo",
+          "version": "2.10"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:21:42.823033838Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LZO offers pretty fast compression and extremely fast decompression.\nMiniLZO is a very lightweight subset of the LZO library.",
+        "homepage": "http://www.oberhumer.com/opensource/lzo/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "LZO is a portable lossless data compression library written in ANSI C."
+      },
+      "build": {
+        "number": 1002,
+        "string": "h280c20c_1002"
+      },
+      "context": {
+        "version": "2.10",
+        "version_major": 2
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rmax",
+          "ocefpaf"
+        ]
+      },
+      "package": {
+        "name": "lzo",
+        "version": "2.10"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake <4",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "lzo",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072",
+          "url": "http://www.oberhumer.com/opensource/lzo/download/lzo-2.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/lzo/lzoconf.h",
+            "test -f ${PREFIX}/lib/liblzo${{ version_major }}.a",
+            "test -f ${PREFIX}/lib/liblzo${{ version_major }}${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

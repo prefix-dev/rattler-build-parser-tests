@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 0.0.16
+
+package:
+  name: merge3
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/m/merge3/merge3-${{ version }}.tar.gz
+  sha256: 0852de4381cb46be5ef4ed49e3ac20c5a4a0cd46a8ff4bbb870bc27aab543306
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - merge3 = merge3.__main__:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - setuptools >=61.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - merge3
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - merge3 --help
+
+about:
+  summary: Python implementation of 3-way merge
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  homepage: https://github.com/breezy-team/merge3
+
+extra:
+  recipe-maintainers:
+    - danielnachun

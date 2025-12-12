@@ -1,0 +1,49 @@
+context:
+  name: jupyterlab-dyno
+  version: 0.0.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/EconForge/jupyterlab-dyno/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: d615010e22eafd0d29c536f89516c10a3c9df488783c44c0b5ff3e49ead3271e
+
+build:
+  noarch: python
+  number: 0
+  script: pip install . --no-deps -vv --no-build-isolation --ignore-installed --no-index
+
+requirements:
+  host:
+    - python ${{ python_min }}.*  
+    - hatchling >=1.5.0
+    - pip >=25.1.1,<26
+    - nodejs >=24.4.0,<24.5
+    - hatch-nodejs-version >=0.3.2
+    - hatch-jupyter-builder >=0.5.0
+    - jupyterlab >=4.0.0,<5
+  run:
+    - python >=${{ python_min }}
+    - dyno >=0.1.6
+    - xeus-python >=0.17.4,<0.18
+    - nlohmann_json ==3.11.3
+    - jupyterlab-myst >=2.0.0   # this is to satisfy the verson of pyzmq on prefix.dev
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - jupyterlab_dyno
+
+about:
+  homepage: https://github.com/EconForge/jupyterlab-dyno
+  summary: jupyterlab-dyno
+  description: A jupyterlab extension to solve .mod DSGE models using dyno.py
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - albop

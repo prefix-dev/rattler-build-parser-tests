@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openjph",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openjph/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openjph/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openjph/work"
+      },
+      "hash": {
+        "hash": "4fa879a"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openjph": {
+          "build_string": "h4fa879a_0",
+          "name": "openjph",
+          "version": "0.25.3"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-12-12T16:26:07.377807671Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libtiff": "4.7",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/aous72/OpenJPH",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/aous72/OpenJPH",
+        "summary": "Open source implementation of High-throughput JPEG2000 (HTJ2K)."
+      },
+      "build": {
+        "number": 0,
+        "string": "h4fa879a_0"
+      },
+      "context": {
+        "version": "0.25.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "openjph",
+        "version": "0.25.3"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-ppc64le 14.*",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "libtiff"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "openjph",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "windows_lib_so_name.patch",
+            "fix_aarch_old_stdlibc.patch"
+          ],
+          "sha256": "815b0d345daf3bbad72f3930d4f6c831643dcb2b734d8bb44d871d68db12f4d2",
+          "url": "https://github.com/aous72/OpenJPH/archive/0.25.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "ojph_compress",
+              "ojph_expand"
+            ],
+            "include": [
+              "openjph/ojph_version.h"
+            ],
+            "lib": [
+              "openjph"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

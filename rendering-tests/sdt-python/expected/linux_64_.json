@@ -1,0 +1,174 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdt-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdt-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdt-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sdt-python/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sdt-python": {
+          "build_string": "pyhe01879c_0",
+          "name": "sdt-python",
+          "version": "20.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:19:57.264496104Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://schuetzgroup.github.io/sdt-python",
+        "homepage": "https://github.com/schuetzgroup/sdt-python",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSES/BSD-3-Clause.txt",
+          "LICENSES/CC-BY-4.0.txt",
+          "LICENSES/CC0-1.0.txt",
+          "LICENSES/MIT.txt",
+          "sdt/gui/breeze-icons/COPYING-ICONS"
+        ],
+        "repository": "https://github.com/schuetzgroup/sdt-python",
+        "summary": "Tools for fluorescence microscopy data analysis"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "hash": "4653aadc6fd17ffab2c8e3f36a07c7a15df6f5168146bc14cadb3867156ce86a",
+        "name": "sdt-python",
+        "python_min": "3.10",
+        "version": "20.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "lschr"
+        ]
+      },
+      "package": {
+        "name": "sdt-python",
+        "version": "20.0.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy >=2.1",
+          "pandas >=2.2.3",
+          "pytables >=3.10",
+          "opencv",
+          "pyyaml",
+          "imageio >=2.29",
+          "numba",
+          "pyqt",
+          "matplotlib-base",
+          "scipy >0.18",
+          "tifffile >=2022.2.2",
+          "lazy_loader"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4653aadc6fd17ffab2c8e3f36a07c7a15df6f5168146bc14cadb3867156ce86a",
+          "url": "https://github.com/schuetzgroup/sdt-python/releases/download/20.0.0/sdt_python-20.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pytest",
+              "trackpy",
+              "lmfit",
+              "scikit-learn",
+              "pims",
+              "pywavelets >=0.3.0"
+            ]
+          },
+          "script": "pytest -v --ignore=tests/test_gui/ tests"
+        },
+        {
+          "python": {
+            "imports": [
+              "sdt",
+              "sdt.brightness",
+              "sdt.changepoint",
+              "sdt.flatfield",
+              "sdt.fret",
+              "sdt.helper",
+              "sdt.image",
+              "sdt.io",
+              "sdt.loc",
+              "sdt.motion",
+              "sdt.multicolor",
+              "sdt.optimize",
+              "sdt.roi",
+              "sdt.sim",
+              "sdt.spatial"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

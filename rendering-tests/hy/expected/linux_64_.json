@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hy/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hy": {
+          "build_string": "pyhe01879c_0",
+          "name": "hy",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:20:22.579457838Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Hy is a Python <\u2013> Lisp layer. It helps make things work nicer,\nand lets Python and the Hy lisp variant play nice together.",
+        "documentation": "http://docs.hylang.org/en/latest/",
+        "homepage": "http://hylang.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/hylang/hy",
+        "summary": "Lisp and Python love each other."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "hy = hy.cmdline:hy_main",
+            "hyc = hy.cmdline:hyc_main",
+            "hy2py = hy.cmdline:hy2py_main"
+          ]
+        },
+        "script": "python -m pip install . -vv --no-build-isolation --no-deps",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "hy",
+        "version": "1.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "drewokane",
+          "mariusvniekerk",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "hy",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools",
+          "funcparserlib >=1.0,<2"
+        ],
+        "run": [
+          "python >=3.9,<3.15",
+          "funcparserlib >=1.0,<2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c8943ce306341b4b3edab4142f2c7ca55b43415b0ebf6c0e7969290a6eed2948",
+          "url": "https://pypi.org/packages/source/h/hy/hy-1.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hy",
+              "hy.core",
+              "hy.reader"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "script": [
+            "hy --help",
+            "hyc --help",
+            "hy2py --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,88 @@
+context:
+  python_min: 3.10
+  name: repo-review
+  version: 0.12.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/scientific-python/repo-review/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 73f8c7fbe0f01b1a83dec15751d8294f8ce56ba46fa3b0f7bd84f2716ab81864
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -v
+  python:
+    entry_points:
+      - repo-review = repo_review.__main__:main
+
+requirements:
+  host:
+    - hatchling
+    - hatch-vcs
+    - python ${{ python_min }}.*
+    - pip
+  run:
+    - click
+    - markdown-it-py
+    - python >=${{ python_min }}
+    - pyyaml
+    - rich
+    - rich-click
+    - tomli
+    - typing-extensions
+
+tests:
+  - python:
+      imports:
+        - repo_review
+        - repo_review.fixtures
+        - repo_review.schema
+      pip_check: true
+  - downstream: sp-repo-review
+  - files:
+      source:
+        - docs
+        - tests
+        - README.md
+        - LICENSE
+        - pyproject.toml
+        - .github
+        - .pre-commit-config.yaml
+        - .readthedocs.yaml
+    requirements:
+      run:
+        - pip
+        - pytest
+        - sp-repo-review
+        - validate-pyproject >=0.14
+        - python ${{ python_min }}.*
+    script:
+      - repo-review --help
+      - validate-pyproject -E repo-review --help
+      - mkdir src
+      - ls
+      - pytest -ra
+
+about:
+  summary: This is a framework for building checks designed to check to see if a repository follows guidelines
+  description: |
+    This is a framework for building checks designed to check to see if a repository follows
+    guidelines. By itself, it does nothing - it requires at least one plugin to be installed.
+
+    With one or more plugins, it will produce a list of results - green checkmarks mean this
+    rule is followed, red x’s mean the rule is not. A yellow warning sign means that the check
+    was skipped because a previous required check failed. Four output formats are supported;
+    rich, svg, html, and json.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scientific-python/repo-review
+  documentation: https://repo-review.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - henryiii
+    - MementoRC

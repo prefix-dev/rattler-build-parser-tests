@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  version: "0.40.0"
+
+package:
+  name: go-tools
+  version: ${{ version }}
+
+source:
+  url: https://github.com/golang/tools/archive/v${{ version }}.tar.gz
+  sha256: e39e3550f2881d7c54ca3fbba3ef1ad8901bd82135579b67412fd412ca7d05c2
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script: |
+      go-bisect 2>&1 | grep -q "usage: bisect"
+      go-bundle --help
+      go-callgraph --help
+      go-compilebench --help 2>&1 | grep -q "usage: compilebench"
+      go-deadcode --help
+      go-digraph --help 2>&1 | grep -q "digraph command"
+      go-eg --help 2>&1 | grep -q "This tool implements example-based refactoring of expressions."
+      go-file2fuzz --help 2>&1 | grep -q "usage: file2fuzz"
+      go-fiximports --help
+      go-contrib-init --help
+      godex --help 2>&1 | grep -q "usage: godex"
+      goimports --help 2>&1 | grep -q "usage: goimports"
+      gomvpkg --help
+      gonew --help 2>&1 | grep -q "usage: gonew"
+      gotype --help 2>&1 | grep -q "usage: gotype"
+      goyacc --help
+      go-present --help
+      go-present2md --help 2>&1 | grep -q "usage: present2md"
+      go-signature-fuzzer-fuzz-driver --help
+      go-signature-fuzzer-fuzz-runner --help
+      go-ssadump --help
+      go-stress --help
+      go-stringer --help
+      go-toolstash --help 2>&1 | grep -q "usage: toolstash"
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Miscellaneous go tools
+  homepage: https://golang.org/x/tools
+  repository: https://github.com/golang/tools
+
+extra:
+  recipe-maintainers:
+    - danielnachun

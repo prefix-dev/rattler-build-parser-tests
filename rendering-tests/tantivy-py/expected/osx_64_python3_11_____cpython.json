@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tantivy-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tantivy-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tantivy-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tantivy-py/work"
+      },
+      "hash": {
+        "hash": "0d1f3eb",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tantivy-py": {
+          "build_string": "py311h0d1f3eb_0",
+          "name": "tantivy-py",
+          "version": "0.25.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:26:07.246019363Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://tantivy-py.readthedocs.io/",
+        "homepage": "https://github.com/quickwit-oss/tantivy-py",
+        "license": "MIT",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE"
+        ],
+        "summary": "Fast full-text search engine library written in Rust"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "py311h0d1f3eb_0"
+      },
+      "context": {
+        "maturin_max": "2.0",
+        "maturin_min": "1.0",
+        "version": "0.25.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mediocretech",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "tantivy-py",
+        "version": "0.25.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "rust_osx-64",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cargo-bundle-licenses",
+          "cmake",
+          "make",
+          "cross-python_osx-64",
+          "maturin >=1.0,<2.0",
+          "python"
+        ],
+        "host": [
+          "maturin >=1.0,<2.0",
+          "pip",
+          "python"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "68a3314699a7d18fcf338b52bae8ce46a97dde1128a3e47e33fa4db7f71f265e",
+          "url": "https://pypi.org/packages/source/t/tantivy/tantivy-0.25.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tantivy"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov",
+              "mktestdocs"
+            ]
+          },
+          "script": [
+            "coverage run --source=tantivy --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=100"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

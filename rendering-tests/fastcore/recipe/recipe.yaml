@@ -1,0 +1,53 @@
+context:
+  version: "1.8.17"
+
+package:
+  name: fastcore
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/fastcore/fastcore-${{ version }}.tar.gz
+  sha256: d12e1caa405630eafde16b322b31be7dc265ea1e220a11bbd4d9ce597fa3c922
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - py2pyi=fastcore.py2pyi:py2pyi
+      - replace_wildcards=fastcore.py2pyi:replace_wildcards
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=64.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - packaging
+
+tests:
+  - python:
+      imports:
+        - fastcore
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - py2pyi --help
+      - replace_wildcards --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Python supercharged for fastai development
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/fastai/fastcore
+
+extra:
+  recipe-maintainers:
+    - kai-tub
+    - synapticarbors
+    - thewchan

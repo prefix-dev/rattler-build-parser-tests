@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmodplug",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmodplug/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmodplug/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmodplug/work"
+      },
+      "hash": {
+        "hash": "79cd779"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmodplug": {
+          "build_string": "h79cd779_2",
+          "name": "libmodplug",
+          "version": "0.8.8.5"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:21:07.972233083Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2019",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libmodplug is an open-source library for playing MOD audio files (and related tracker formats like S3M, IT, XM). It\u2019s often used in games and multimedia apps to add music playback without needing external dependencies.",
+        "homepage": "http://modplug-xmms.sf.net/",
+        "license": "BSD-3-Clause OR LicenseRef-Public-Domain",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://sourceforge.net/projects/modplug-xmms/",
+        "summary": "libmodplug is an open-source library for playing MOD audio files"
+      },
+      "build": {
+        "number": 2,
+        "string": "h79cd779_2"
+      },
+      "context": {
+        "name": "libmodplug",
+        "version": "0.8.8.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "baszalmstra"
+        ]
+      },
+      "package": {
+        "name": "libmodplug",
+        "version": "0.8.8.5"
+      },
+      "requirements": {
+        "build": [
+          "vs2019_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmodplug",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-fix-non-const-stack-alloc.patch",
+            "0002-fix-dll-export-mismatch.patch"
+          ],
+          "sha256": "77462d12ee99476c8645cb5511363e3906b88b33a6b54362b4dbc0f39aa2daad",
+          "url": "https://downloads.sourceforge.net/project/modplug-xmms/libmodplug/0.8.8.5/libmodplug-0.8.8.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "libmodplug/it_defs.h",
+              "libmodplug/modplug.h",
+              "libmodplug/sndfile.h",
+              "libmodplug/stdafx.h"
+            ],
+            "lib": [
+              "modplug"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

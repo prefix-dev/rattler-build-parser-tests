@@ -1,0 +1,65 @@
+context:
+  name: easydiffraction
+  version: "0.7.3"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/easydiffraction-${{ version }}.tar.gz
+  sha256: d7e16f5b11328dda1fd5676b1c4907c6fd680cd6d9a5fdc203669c2b3eb4e913
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - versioningit
+    - pip
+  run:
+    - python >=${{ python_min }},<3.14
+    - colorama
+    - tabulate
+    - asciichartpy
+    - pooch
+    - typer
+    - rich
+    - varname
+    - asteval
+    - scipy
+    - sympy
+    - lmfit
+    - bumps
+    - dfo-ls
+    - gemmi
+    - cryspy
+    - diffpy.pdffit2
+    - diffpy.utils
+    # visualization optional deps
+    - darkdetect
+    - pandas
+    - py3Dmol
+    - plotly
+
+tests:
+  - python:
+      imports:
+        - easydiffraction
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://easydiffraction.org/
+  summary: Making diffraction data analysis and modelling easy
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - MridulS

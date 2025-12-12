@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_periodiq",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_periodiq/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_periodiq/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_periodiq/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "periodiq": {
+          "build_string": "pyhcf101f3_0",
+          "name": "periodiq",
+          "version": "0.13.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:14.897084550Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.com/bersace/periodiq/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING.LESSER"
+        ],
+        "summary": "Simple Scheduler for Dramatiq Task Queue"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "periodiq = periodiq:entrypoint"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "periodiq",
+        "version": "0.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan",
+          "mcs07"
+        ]
+      },
+      "package": {
+        "name": "periodiq",
+        "version": "0.13.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "poetry >=0.12",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "dramatiq >=1.5.0,<2.0.0",
+          "pendulum >=2.0,<4",
+          "setuptools <81"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ecd83d7614bb9e019aa2718b63c4ffe0a6c77fa0d49f33fd90c309982ddcf7cb",
+          "url": "https://pypi.org/packages/source/p/periodiq/periodiq-0.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "periodiq"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "periodiq --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

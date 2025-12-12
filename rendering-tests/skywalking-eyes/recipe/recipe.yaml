@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.8.0
+
+package:
+  name: skywalking-eyes
+  version: ${{ version }}
+
+source:
+  url: https://github.com/apache/skywalking-eyes/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 10846c1540d7e9a035e4bf19e752c725c19db01d0add0b061f1de09353be2e46
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - skywalking-eyes --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Tool to check and fix license headers and resolve dependency licenses
+  homepage: https://github.com/apache/skywalking-eyes
+  repository: https://github.com/apache/skywalking-eyes
+
+extra:
+  recipe-maintainers:
+    - danielnachun

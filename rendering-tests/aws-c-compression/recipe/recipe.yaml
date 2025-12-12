@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: aws-c-compression
+  version: 0.3.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/awslabs/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: d89fca17a37de762dc34f332d2da402343078da8dbd2224c46a11a88adddf754
+
+build:
+  number: 9
+
+requirements:
+  build:
+    - cmake
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ninja
+  host:
+    - aws-c-common
+  run_exports:
+    - ${{ pin_subpackage("aws-c-compression", upper_bound="x.x.x") }}
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -f $PREFIX/lib/libaws-c-compression${SHLIB_EXT}
+          - test -f $PREFIX/include/aws/compression/compression.h
+      - if: win
+        then:
+          - if not exist %LIBRARY_INC%\\aws\\compression\\compression.h exit 1
+          - if not exist %PREFIX%\\Library\\bin\\aws-c-compression.dll exit 1
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: C99 implementation of huffman encoding/decoding
+  homepage: https://github.com/awslabs/aws-c-compression
+  repository: https://github.com/awslabs/aws-c-compression
+
+extra:
+  recipe-maintainers:
+    - xhochy
+    - conda-forge/aws-sdk-cpp

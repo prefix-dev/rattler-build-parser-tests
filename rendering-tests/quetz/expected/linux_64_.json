@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_quetz",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_quetz/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_quetz/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_quetz/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "quetz": {
+          "build_string": "pyhe01879c_2",
+          "name": "quetz",
+          "version": "0.10.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:39.830196840Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/mamba-org/quetz",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "The Mamba package server"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "quetz = quetz.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_2"
+      },
+      "context": {
+        "name": "quetz",
+        "version": "0.10.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mariobuikhuizen",
+          "wolfv",
+          "janjagusch"
+        ]
+      },
+      "package": {
+        "name": "quetz",
+        "version": "0.10.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.9",
+          "alembic",
+          "aiofiles",
+          "appdirs",
+          "authlib <1.0.0",
+          "fastapi",
+          "fsspec",
+          "h2",
+          "httpx >=0.22.0",
+          "importlib-metadata",
+          "itsdangerous",
+          "jinja2",
+          "pluggy",
+          "prometheus_client",
+          "python-multipart",
+          "pydantic >=2.0.0",
+          "pyyaml",
+          "requests",
+          "sqlalchemy",
+          "sqlalchemy-utils",
+          "tenacity",
+          "toml",
+          "typer",
+          "typing_extensions",
+          "ujson",
+          "uvicorn",
+          "zstandard",
+          "aioshutil"
+        ],
+        "run_constraints": [
+          "s3fs >=2021.10.1",
+          "adlfs >=2021.10.0",
+          "gcsfs >=2022.3.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fde82b72b2e3fb22bfd0f6fec99ef41d845a76341801955e1d280be204049b90",
+          "url": "https://pypi.org/packages/source/q/quetz-server/quetz-server-0.10.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "quetz"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": "quetz --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

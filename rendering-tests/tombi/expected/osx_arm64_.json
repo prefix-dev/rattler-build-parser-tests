@@ -1,0 +1,137 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tombi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tombi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tombi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tombi/work"
+      },
+      "hash": {
+        "hash": "cfc39dd"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tombi": {
+          "build_string": "hcfc39dd_0",
+          "name": "tombi",
+          "version": "0.7.4"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:26:55.783260776Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://tombi-toml.github.io/tombi/docs",
+        "homepage": "https://tombi-toml.github.io/tombi",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/tombi-toml/tombi",
+        "summary": "Feature-Rich TOML Toolkit."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "sed -i 's/^\\(version[[:space:]]*=[[:space:]]*\"\\)0\\.0\\.0-dev\\(\"\\)/\\1${{ version }}\\2/' Cargo.lock",
+            "sed -i 's/^\\(version[[:space:]]*=[[:space:]]*\"\\)0\\.0\\.0-dev\\(\"\\)/\\1${{ version }}\\2/' Cargo.toml",
+            "cd rust/tombi-cli",
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ../../THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hcfc39dd_0"
+      },
+      "context": {
+        "name": "tombi",
+        "version": "0.7.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "janjagusch"
+        ]
+      },
+      "package": {
+        "name": "tombi",
+        "version": "0.7.4"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses",
+          "cargo-auditable",
+          "sed"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "05207f7216dffd3bc395244d36739f559dbeb4d5fdd3699aa08f300af4c9aa1f",
+          "url": "https://github.com/tombi-toml/tombi/archive/refs/tags/v0.7.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "tombi --help"
+        },
+        {
+          "script": "tombi --version | grep -F '${{ version }}'"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

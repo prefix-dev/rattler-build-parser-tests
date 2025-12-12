@@ -1,0 +1,53 @@
+context:
+  name: mup
+  version: 1.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mup-${{ version }}.tar.gz
+  sha256: 9639e3d19f90e754f985ed444542ed2f8a049f3c0488fcb6efe150f30922cf74
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - pandas
+    - pytorch
+    - torchvision
+    - seaborn
+    - tqdm
+    - pyyaml
+
+tests:
+  - python:
+      imports:
+        - mup
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Maximal Update Parametrization
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/microsoft/mup
+
+extra:
+  recipe-maintainers:
+    - hadim

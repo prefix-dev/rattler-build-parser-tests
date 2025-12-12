@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octree-creation-app",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octree-creation-app/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octree-creation-app/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octree-creation-app/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "octree-creation-app": {
+          "build_string": "pyhe01879c_0",
+          "name": "octree-creation-app",
+          "version": "0.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:57.740429660Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The octree-creation-app package lets users create Octree mesh objects with local\nrefinements using the SimPEG.discretize package. The refinements can be performed\non any number of Objects stored in a geoh5 file.",
+        "documentation": "https://mirageoscience-octree-creation-app.readthedocs-hosted.com/",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/python-integration/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MiraGeoscience/octree-creation-app",
+        "summary": "Octree creation app."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "octree-creation-app",
+        "python_min": "3.10",
+        "version": "0.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "octree-creation-app",
+        "version": "0.3.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "poetry-core >=1.0.0",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "geoh5py >=0.11.0,<0.12.dev",
+          "geoapps-utils >=0.5.0,<0.6.dev",
+          "discretize >=0.11.0,<0.12.dev",
+          "numpy >=1.26.0,<1.27.dev",
+          "pydantic >=2.5.2,<3.0.dev",
+          "scipy >=1.14.0,<1.15.dev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2cb4444a10abc22701b0b0645cbc6a7a73f52d7be2bf9bd20380ce8c740552da",
+          "url": "https://github.com/MiraGeoscience/octree-creation-app/archive/v0.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "octree_creation_app"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest --ignore=tests/version_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

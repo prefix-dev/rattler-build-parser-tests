@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet/work"
+      },
+      "hash": {
+        "hash": "5666174",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastjet": {
+          "build_string": "py312h5666174_0",
+          "name": "fastjet",
+          "version": "3.5.1.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:27:00.684510249Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/scikit-hep/fastjet",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Official FastJet bindings to Python and Awkward Array."
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv -C\"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET=ON\" -C\"cmake.define.SKHEPFJ_USE_INSTALLED_FASTJET_CONTRIB=ON\" -C\"cmake.define.SKHEPFJ_PASSTHRU_FASTJET_SWIG=ON\"",
+        "string": "py312h5666174_0"
+      },
+      "context": {
+        "name": "fastjet",
+        "version": "3.5.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kratsg",
+          "lgray",
+          "jpivarski",
+          "chrispap95",
+          "jmduarte",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "fastjet",
+        "version": "3.5.1.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "cross-python_win-64",
+          "python",
+          "cmake"
+        ],
+        "host": [
+          "fastjet-cxx-python",
+          "fastjet-contrib",
+          "pip",
+          "scikit-build-core",
+          "setuptools_scm",
+          "pybind11",
+          "python",
+          "cgal-cpp"
+        ],
+        "run": [
+          "awkward >=2",
+          "numpy >=1.13.3",
+          "python",
+          "vector",
+          "fastjet-cxx-python",
+          "fastjet-contrib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "743be514166b4d68693619e02ae02fbbdce96dc2d6bf3ec8a5142c99cb6f696d",
+          "url": "https://pypi.org/packages/source/f/fastjet/fastjet-3.5.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Lib/site-packages/fastjet/_ext.*"
+            ],
+            "site_packages": [
+              "fastjet",
+              "fastjet._generalevent",
+              "fastjet._multievent",
+              "fastjet._pyjet",
+              "fastjet._singleevent",
+              "fastjet._swig",
+              "fastjet._utils",
+              "fastjet.version"
+            ]
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "fastjet"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python"
+            ]
+          },
+          "script": "pip list"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

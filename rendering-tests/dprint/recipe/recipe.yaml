@@ -1,0 +1,37 @@
+context:
+  version: "0.50.0"
+
+package:
+  name: dprint
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dprint/dprint/archive/${{ version }}.tar.gz
+  sha256: 28a9538c293a1cbe2af8241d687c44309dd1aa1c514c6a937ef3c25699dce4ea
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - dprint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Pluggable and configurable code formatting platform written in Rust
+  homepage: https://dprint.dev
+  repository: https://github.com/dprint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

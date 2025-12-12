@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: shandy-sqlfmt
+  version: 0.28.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/shandy_sqlfmt-${{ version }}.tar.gz
+  sha256: 0a78a2eee23f8b84b19a2895ca4608237d6da19037ce71346417fe01e97bad8b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - sqlfmt = sqlfmt.cli:sqlfmt
+      - sqlfmt_primer = sqlfmt_primer.primer:sqlfmt_primer
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - jinja2 >=3.0,<4
+    - python >=${{ python_min }}
+    - click >=8.1,<8.2
+    - tqdm >=4.67,<5
+    - platformdirs >=2.4,<5.0
+    - backports.cached-property >=1.0.2,<2.0.0
+    - importlib-metadata >=8.0,<9
+    - tomli >=2.0.0,<3.0.0
+  run_constraints:
+    - black *
+    - gitpython >=3.1.24,<4.0.0
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - sqlfmt
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - sqlfmt --help
+
+about:
+  summary: sqlfmt is an opinionated CLI tool that formats your sql files
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://sqlfmt.com
+
+extra:
+  recipe-maintainers:
+    - xhochy

@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx-vlm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx-vlm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx-vlm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mlx-vlm/work"
+      },
+      "hash": {
+        "hash": "5ded981",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mlx-vlm": {
+          "build_string": "pyh5ded981_0",
+          "name": "mlx-vlm",
+          "version": "0.3.9"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:26:57.090013812Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.11",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Blaizzy/mlx-vlm",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Vision LLMs on Apple silicon with MLX and the Hugging Face Hub"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "sed -i 's/opencv-python>=4.12.0.88/opencv-python>=4.12/g' requirements.txt",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyh5ded981_0"
+      },
+      "context": {
+        "name": "mlx-vlm",
+        "version": "0.3.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "mlx-vlm",
+        "version": "0.3.9"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "setuptools",
+          "sed"
+        ],
+        "run": [
+          "python >=3.11",
+          "mlx >=0.26.0",
+          "datasets >=2.19.1",
+          "tqdm >=4.66.2",
+          "transformers >=4.53.0",
+          "pillow >=10.3.0",
+          "requests >=2.31.0",
+          "mlx-lm >=0.23.0",
+          "fastapi >=0.95.1",
+          "pysoundfile >=0.13.1",
+          "scipy >=1.15.3",
+          "py-opencv >=4.12.0",
+          "numpy",
+          "uvicorn"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ae5050d0b1a051a29099c3a65efdbf6874bb497e8465734ac1992b6b179135b4",
+          "url": "https://pypi.org/packages/source/m/mlx-vlm/mlx_vlm-0.3.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mlx_vlm"
+            ],
+            "python_version": "3.11.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-inspect",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-inspect/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-inspect/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-inspect/work"
+      },
+      "hash": {
+        "hash": "b17b654"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pixi-inspect": {
+          "build_string": "hb17b654_0",
+          "name": "pixi-inspect",
+          "version": "2.0.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:18.495474110Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "pixi-inspect is a tool for inspecting and retrieving metadata from the index.json file of a conda package.\nIt is designed to work with the pixi ecosystem and provides a user-friendly CLI for exploring package contents.",
+        "homepage": "https://github.com/toprinse/pixi-inspect",
+        "license": "CECILL-C",
+        "license_family": "CECILL",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "pixi-inspect is a pixi extension used to inspect and retrieve metadata from a conda package."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo auditable install --locked --bins --root ${PREFIX} --path .",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "hb17b654_0"
+      },
+      "context": {
+        "name": "pixi-inspect",
+        "version": "2.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "toprinse"
+        ]
+      },
+      "package": {
+        "name": "pixi-inspect",
+        "version": "2.0.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "039d989c48764a0c6c63ee1d8c9ca6e8cd2d12e05ef00e8a04c9a5a1cadefbe7",
+          "url": "https://github.com/toprinse/pixi-inspect/archive/refs/tags/v2.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "pixi-inspect --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

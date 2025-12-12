@@ -1,0 +1,74 @@
+schema_version: 1
+
+context:
+  name: module-qc-data-tools
+  version: "1.4.0"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/module_qc_data_tools-${{ version }}.tar.gz
+  sha256: 8b2b6aec0465bdfc0d40fd565a557ac9babb7544cb7051e55e10fcece4401388
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - module-qc-data-tools = module_qc_data_tools.cli:app
+      - mqdt = module_qc_data_tools.cli:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=0.7
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - tabulate
+    - jsonschema
+    - rich
+    - pymongo
+    - click
+    - typer >=0.18.0
+    - typing_extensions
+    - itksn >=0.4.2
+    - rfc3339-validator
+    - rfc3986-validator
+
+tests:
+  - python:
+      imports:
+        - module_qc_data_tools
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - mqdt --help
+      - mqdt --version
+      - module-qc-data-tools --help
+      - module-qc-data-tools --version
+
+about:
+  summary: Module qc data tools
+  homepage: https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-data-tools
+  repository: https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-data-tools
+  documentation: https://atlas-itk-pixel-mqdt.docs.cern.ch/latest/
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - kratsg
+    - elisabettapianori
+    - marijamarjanovic
+    - lime86

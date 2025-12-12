@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: pymc-extras
+  version: "0.5.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pymc_extras-${{ version }}.tar.gz
+  sha256: 08c587e211f99aa31cc0984586534e3d3b465cd9efb26dda97573beb2e4b3f7a
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pymc >=5.24.1
+    - pytensor >=2.31.4
+    - scikit-learn
+    - better-optimize >=0.1.5
+    - pydantic >=2.0.0
+    - preliz >=0.20.0
+
+tests:
+  - python:
+      imports:
+        - pymc_extras
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: A home for new additions to PyMC, which may include unusual probability distribitions, advanced model fitting algorithms, or any code that may be inappropriate to include in the pymc repository, but may want to be made available to users.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/pymc-devs/pymc-extras
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - fonnesbeck

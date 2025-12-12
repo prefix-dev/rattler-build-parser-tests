@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.0.11
+
+package:
+  name: golangci-lint-langserver
+  version: ${{ version }}
+
+source:
+  url: https://github.com/nametake/golangci-lint-langserver/archive/v${{ version }}.tar.gz
+  sha256: d9f1fc02861eeb9ce60c89e79be706d7ec636f653d5039a76857b18cb98875fb
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - golangci-lint-langserver --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: golangci-lint language server
+  homepage: https://github.com/nametake/golangci-lint-langserver
+  repository: https://github.com/nametake/golangci-lint-langserver
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,30 @@
+From 4d169823cd31923df77468ec0d53743c42dcde91 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Tue, 13 May 2025 12:05:42 +0200
+Subject: [PATCH 2/2] setOverprintPreview
+
+---
+ src/pdftopng/pdftopng.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/pdftopng/pdftopng.cpp b/src/pdftopng/pdftopng.cpp
+index 164024c..5654c9d 100644
+--- a/src/pdftopng/pdftopng.cpp
++++ b/src/pdftopng/pdftopng.cpp
+@@ -186,7 +186,6 @@ void convert(char *pdfFilePath, char *pngFilePath)
+ 
+     // write PPM files
+     if (jpegcmyk || overprint) {
+-        globalParams->setOverprintPreview(true);
+         splashClearColor(paperColor);
+     } else {
+         paperColor[0] = 255;
+@@ -194,7 +193,7 @@ void convert(char *pdfFilePath, char *pngFilePath)
+         paperColor[2] = 255;
+     }
+ 
+-    splashOut = new SplashOutputDev(mono ? splashModeMono1 : gray ? splashModeMono8 : (jpegcmyk || overprint) ? splashModeDeviceN8 : splashModeRGB8, 4, false, paperColor, true, thinLineMode);
++    splashOut = new SplashOutputDev(mono ? splashModeMono1 : gray ? splashModeMono8 : (jpegcmyk || overprint) ? splashModeDeviceN8 : splashModeRGB8, 4, false, paperColor, true, thinLineMode, jpegcmyk || overprint);
+ 
+     splashOut->setFontAntialias(fontAntialias);
+     splashOut->setVectorAntialias(vectorAntialias);

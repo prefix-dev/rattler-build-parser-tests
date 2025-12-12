@@ -1,0 +1,48 @@
+context:
+  name: hpbandster
+  version: 0.7.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hpbandster-${{ version }}.tar.gz
+  sha256: 49ffc32688155b509e62f3617b52ae15a96c9bff2c996a23df83f279106c5921
+
+build:
+  number: 3
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pyro4
+    - serpent
+    - configspace
+    - numpy
+    - statsmodels
+    - scipy
+    - netifaces
+
+tests:
+  - python:
+      imports:
+        - hpbandster
+        - hpbandster.core
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: HyPerBAND on STERoids, a distributed Hyperband implementation with lots of room for improvement
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/automl/HpBandSter
+
+extra:
+  recipe-maintainers:
+    - hadim

@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: beautifultable
+  version: 1.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/beautifultable-${{ version }}.tar.gz
+  sha256: 040bc987444965678f4ffdfa2f17ac357f1a13e5875b161c9a1899b375319d17
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - wcwidth
+
+tests:
+  - python:
+      imports:
+        - beautifultable
+      pip_check: true
+      python_version: ["${{ python_min }}.*", "3.13.*"]
+
+about:
+  summary: Print text tables for terminals
+  license: MIT
+  license_file: LICENSE.txt
+  description: |
+    This Package provides BeautifulTable class for easily printing
+    tabular data in a visually appealing format to a terminal.
+  homepage: https://github.com/pri22296/beautifultable
+  repository: https://github.com/pri22296/beautifultable
+  documentation: http://beautifultable.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - beenje

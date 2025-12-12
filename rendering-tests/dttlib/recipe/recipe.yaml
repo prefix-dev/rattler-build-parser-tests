@@ -1,0 +1,93 @@
+schema_version: 1
+
+context:
+  name: "dttlib"
+  version: "0.9.5"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://git.ligo.org/cds/software/cr_tools/dttlib/-/archive/${{ version }}/${{ version }}.tar.gz
+  sha256: 515e7c9289ef03c3da0a321c6f405d02a60023a5286c2d1a3bdb147d7e431c89 
+
+build:
+  skip: win
+    #error_overlinking: true
+    #error_overdepending: true
+  number: 0
+    # ignore_run_exports:
+    #   - libclang13
+    #   - zstd
+      # run_exports:
+      #   - if: osx
+      #     then:
+      #       - libosxunwind
+
+  #script_env:
+  #  - RUSTFLAGS=-C link-arg=-lunwind  # [osx and arm64]
+
+requirements:
+  build:
+    - "${{ compiler('c') }}"
+    - "${{ stdlib('c') }}"
+    - "${{ compiler('cxx') }}"
+    - "${{ compiler('rust') }}"
+      #   - if: osx
+      #     then:
+      #       - libosxunwind
+    - cargo-bundle-licenses
+    - make
+    - pkg-config
+      #- ruff
+    - maturin
+      #- libpython-static
+    - if: build_platform != target_platform
+      then:
+        - "python"
+        - cross-python_${{ target_platform }}
+        - libclang
+      else:
+        - "python"
+      
+  host:
+    - maturin
+    - gds-sigp
+    - nds2-client
+    - pip
+    - rapidjson
+    - zstd    
+    - if: build_platform == target_platform
+      then: 
+       - python
+       - libclang
+      else:
+       - python 
+  run:
+    - python
+    - gds-sigp
+
+tests:
+    - requirements:
+        run:
+          - pytest
+      files:
+        source:
+          - test_dttlib.py
+      script:
+        - pytest
+
+about:
+  homepage: https://git.ligo.org/cds/software/cr_tools/dttlib
+  repository: https://git.ligo.org/cds/software/cr_tools/dttlib.git
+  license: GPL-3.0-or-later
+  license_file:
+    - COPYING
+    - COPYING-GPL-3
+    - THIRDPARTY.yml
+  summary: Core library for advanced LIGO frequency domain diagnostics tool
+
+extra:
+  recipe-maintainers:
+    - evonreis

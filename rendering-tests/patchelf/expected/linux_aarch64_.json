@@ -1,0 +1,127 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_patchelf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_patchelf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_patchelf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_patchelf/work"
+      },
+      "hash": {
+        "hash": "0d9821a"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "patchelf": {
+          "build_string": "h0d9821a_2",
+          "name": "patchelf",
+          "version": "0.18.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:09.705113043Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge patchelf_dev",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "PatchELF is a small utility to modify the dynamic linker and RPATH of ELF\nexecutables.",
+        "documentation": "http://nixos.org/patchelf.html",
+        "homepage": "http://nixos.org/patchelf.html",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/NixOS/patchelf",
+        "summary": "A small utility to modify the dynamic linker and RPATH of ELF executables."
+      },
+      "build": {
+        "dynamic_linking": {
+          "binary_relocation": false
+        },
+        "number": 2,
+        "string": "h0d9821a_2"
+      },
+      "context": {
+        "version": "0.18.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jakirkham",
+          "leofang",
+          "mjuric",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "patchelf",
+        "version": "0.18.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 13.*",
+          "gxx_linux-aarch64 13.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "make",
+          "automake 1.16.*",
+          "gnuconfig"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1952b2a782ba576279c211ee942e341748fdb44997f704dd53def46cd055470b",
+          "url": "https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "script": "bash -c '[[ \"$(patchelf --version)\" =~ \"patchelf ${{ version }}\".* ]]'"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

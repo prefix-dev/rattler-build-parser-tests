@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "2.55.3"
+
+package:
+  name: aqua
+  version: ${{ version | replace('-', '_') }}
+
+source:
+  url: https://github.com/aquaproj/aqua/archive/v${{ version }}.tar.gz
+  sha256: 7276fd297695f8770c7c4564c92999d4c6a3e92ab4f7b4f03eb543083eecfdb4
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - aqua --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Declarative CLI Version manager written in Go. Support Lazy Install, Registry, and continuous update with Renovate. CLI version is switched seamlessly
+  homepage: https://github.com/aquaproj/aqua
+  repository: https://github.com/aquaproj/aqua
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,171 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_optiwindnet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_optiwindnet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_optiwindnet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_optiwindnet/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "optiwindnet": {
+          "build_string": "pyhcf101f3_0",
+          "name": "optiwindnet",
+          "version": "0.1.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:42.035642289Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "OptiWindNet is an electrical network design tool for offshore wind farms developed at the Technical\nUniversity of Denmark \u2013 DTU. The package offers a framework to obtain optimal or near-optimal cable\nroutes for a given turbine layout within the cable-laying boundaries. It provides high-level access\nto heuristic, meta-heuristic and mathematical optimization approaches to the problem.",
+        "documentation": "https://optiwindnet.readthedocs.io/",
+        "homepage": "https://optiwindnet.readthedocs.io/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://gitlab.windenergy.dtu.dk/TOPFARM/OptiWindNet",
+        "summary": "Tool for designing and optimizing the electrical cable network of offshore wind farms"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "python -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_min": "3.11",
+        "version": "0.1.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mdealencar",
+          "simutisernestas"
+        ]
+      },
+      "package": {
+        "name": "optiwindnet",
+        "version": "0.1.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "setuptools >=80",
+          "setuptools-scm >=8"
+        ],
+        "run": [
+          "python >=3.11",
+          "bidict >=0.23.1",
+          "bitarray >=3.4.2",
+          "condeltri >=0.0.3",
+          "darkdetect >=0.8.0",
+          "esy.osm.pbf >=0.1.1",
+          "hybgensea >=0.0.1",
+          "makefun >=1.15.6",
+          "matplotlib-base >=3.10.1",
+          "networkx >=3.6",
+          "numba >=0.62.1",
+          "numpy >=2.0",
+          "pony >=0.7.18",
+          "py >=1.11.0",
+          "pyomo >=6.9.5",
+          "pyyaml >=6.0.2",
+          "scipy >=1.15.2",
+          "shapely >=2.0.7",
+          "svg.py >=1.6.0",
+          "utm >=0.7.0",
+          "highspy >=1.12"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b8d92cc37f042646b298058330a76f5573b978cc8df346ab7dfb57b574a52370",
+          "url": "https://files.pythonhosted.org/packages/source/o/optiwindnet/optiwindnet-0.1.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "optiwindnet.api"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/",
+              ".coveragerc"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pip",
+              "pytest",
+              "pytest-cov",
+              "coverage",
+              "dill",
+              "psutil",
+              "memory_profiler",
+              "line_profiler",
+              "coin-or-cbc",
+              "pyscipopt"
+            ]
+          },
+          "script": "pytest tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

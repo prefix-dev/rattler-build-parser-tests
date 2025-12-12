@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: zerorpc-python
+  version: 0.6.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/zerorpc/zerorpc-${{ version }}.tar.gz
+  sha256: d2ee247a566fc703f29c277d767f6f61f1e12f76d0402faea4bd815f32cbf37f
+
+build:
+  number: 3
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - zerorpc = zerorpc.cli:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - future
+    - gevent >=1.1
+    - msgpack-python >=0.5.2
+    - pyzmq >=13.1.0,!=23.0.0
+
+tests:
+  - python:
+      imports:
+        - zerorpc
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+  - script:
+      - zerorpc --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: zerorpc is a flexible RPC based on zeromq.
+  license: MIT
+  license_file: LICENSE
+  description: |
+    zerorpc is a flexible RPC implementation based on zeromq and messagepack.
+    Service APIs exposed with zerorpc are called "zeroservices".
+  homepage: https://github.com/0rpc/zerorpc-python
+  repository: https://github.com/0rpc/zerorpc-python
+
+extra:
+  recipe-maintainers:
+    - beenje

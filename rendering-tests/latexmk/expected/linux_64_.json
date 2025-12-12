@@ -1,0 +1,119 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_latexmk",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_latexmk/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_latexmk/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_latexmk/work"
+      },
+      "hash": {
+        "hash": "c364b38"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "latexmk": {
+          "build_string": "hc364b38_1",
+          "name": "latexmk",
+          "version": "4.87"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:01.071510638Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Latexmk is a perl script for running LaTeX the correct number of times to\nresolve cross references, etc; it also runs auxiliary programs (bibtex,\nmakeindex if necessary, and dvips and/or a previewer as requested).\nIt has a number of other useful capabilities, for example to start\na previewer and then run latex whenever the source files are updated,\nso that the previewer gives an up-to-date view of the document.",
+        "homepage": "http://personal.psu.edu/jcc8//software/latexmk-jcc/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "A perl script for running LaTeX the correct number of times"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 1,
+        "script": [
+          "mkdir -p \"${PREFIX}/bin\"",
+          "cp latexmk.pl \"${PREFIX}/bin/latexmk\"",
+          "mkdir -p \"${PREFIX}/man/man1\"",
+          "cp latexmk.1 \"${PREFIX}/man/man1/latexmk.1\""
+        ],
+        "string": "hc364b38_1"
+      },
+      "context": {
+        "name": "latexmk",
+        "sha256": "067ec36acc1cd29b15516e175bb3f7c4cf955a4a45714a8e19c022716ea7e007",
+        "version": "4.87"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "scopatz",
+          "xileF1337",
+          "JaRoSchm"
+        ]
+      },
+      "package": {
+        "name": "latexmk",
+        "version": "4.87"
+      },
+      "requirements": {
+        "run": [
+          "perl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "067ec36acc1cd29b15516e175bb3f7c4cf955a4a45714a8e19c022716ea7e007",
+          "url": "https://www.cantab.net/users/johncollins/latexmk/latexmk-487.zip"
+        }
+      ],
+      "tests": [
+        {
+          "script": "latexmk -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

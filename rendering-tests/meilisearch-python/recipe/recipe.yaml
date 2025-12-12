@@ -1,0 +1,46 @@
+context:
+  version: "0.38.0"
+
+package:
+  name: meilisearch-python
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/m/meilisearch/meilisearch-${{ version }}.tar.gz
+    sha256: 9093ebe69f6d239e78a58c46dc5e2ee9f16be041514fc833c143807406dae72d
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  noarch: python
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - camel-converter
+    - pydantic
+
+tests:
+  - python:
+      imports:
+        - meilisearch
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: The python client for Meilisearch API.
+  homepage: https://github.com/meilisearch/meilisearch-python
+  description: "Python wrapper for the Meilisearch API"
+  license: MIT
+  license_file: LICENSE
+  documentation: https://meilisearch.github.io/meilisearch-python/
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

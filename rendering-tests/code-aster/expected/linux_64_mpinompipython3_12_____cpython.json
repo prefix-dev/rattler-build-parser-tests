@@ -1,0 +1,270 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_code-aster",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_code-aster/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_code-aster/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_code-aster/work"
+      },
+      "hash": {
+        "hash": "1083419",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "code-aster": {
+          "build_string": "py312_nompi_h1083419_0",
+          "name": "code-aster",
+          "version": "17.3.17"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:27:18.201656444Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "libxml2_devel": "2.14",
+        "metis": "5.1.0",
+        "mpi": "nompi",
+        "mumps_seq": "5.8.1",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "python_impl": "cpython",
+        "scotch": "7.0.10",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Code_Aster offers a full range of multiphysical analysis and modelling methods that go well beyond the standard functions of a thermomechanical calculation code: from seismic analysis to porous media via acoustics, fatigue, stochastic dynamics, etc..",
+        "documentation": "https://www.code-aster.org/V2/doc/default/en/index.php?man=commande",
+        "homepage": "https://www.code-aster.org/",
+        "license": "GPL-3.0-only AND CECILL-C AND Apache-2.0 AND LGPL-3.0-only",
+        "license_file": [
+          "dep-licenses/"
+        ],
+        "repository": "https://gitlab.com/codeaster/",
+        "summary": "Code_Aster : a finite element solver"
+      },
+      "build": {
+        "dynamic_linking": {
+          "missing_dso_allowlist": [
+            "*/libbibfor.so",
+            "*/libbibfor_ext.so",
+            "*/libbibc.so",
+            "*/libbibcxx.so",
+            "*/libAsterGC.so",
+            "lib64/aster/libaster.so"
+          ],
+          "rpaths": [
+            "lib/",
+            "lib/aster/"
+          ]
+        },
+        "number": 1,
+        "prefix_detection": {
+          "ignore_binary_files": true
+        },
+        "string": "py312_nompi_h1083419_0"
+      },
+      "context": {
+        "build": 0,
+        "build_base": 1,
+        "mpi_num": 100,
+        "mpi_prefix": "nompi",
+        "name": "code-aster",
+        "sha256": "07f1cc64df1536b25152671a25715144d74a8e908b78e4e07ed52a962792dec9",
+        "version": "17.3.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande",
+          "ldallolio"
+        ]
+      },
+      "package": {
+        "name": "code-aster",
+        "version": "17.3.17"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "gfortran_linux-64 14.*",
+          "libgomp",
+          "cmake <4",
+          "setuptools",
+          "bison",
+          "flex",
+          "swig 4.2.1.*",
+          "waf ==2.1.5"
+        ],
+        "host": [
+          "python",
+          "numpy",
+          "libboost-devel",
+          "libblas >=3.9.0",
+          "liblapack >=3.9.0",
+          "libxml2-devel",
+          "openblas >=0.3.20",
+          "zlib",
+          "scotch",
+          "mfront",
+          "mgis",
+          "miss3d",
+          "metis",
+          "hdf5 >=1.14 *nompi*",
+          "libmed * *nompi*",
+          "medcoupling * *nompi*",
+          "scipy",
+          "mumps-include",
+          "mumps-seq"
+        ],
+        "run": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "mgis",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "mfront",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "miss3d",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "medcoupling",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libmed",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "numpy",
+              "upper_bound": "x.x"
+            }
+          },
+          "libopenblas",
+          "libxml2-devel",
+          "python",
+          "libxcrypt",
+          "scipy"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "code-aster",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/make_shared_use_env_FC_fallback.patch",
+            "patches/install_dir_override.patch"
+          ],
+          "sha256": "07f1cc64df1536b25152671a25715144d74a8e908b78e4e07ed52a962792dec9",
+          "url": "https://gitlab.com/codeaster/src/-/archive/17.3.17/src-17.3.17.tar.gz"
+        },
+        {
+          "sha256": "40243be37c647c6df05437d5baadd4522b9cab5de97a76e1d1fb79d1645dd5fc",
+          "target_directory": "codeaster-prerequisites/",
+          "url": "https://www.code-aster.org/FICHIERS/prerequisites/codeaster-prerequisites-20221225-oss.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "code_aster",
+              "medcoupling"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "gfortran_linux-64 14.*",
+              "cmake"
+            ]
+          },
+          "script": [
+            "run_ctest -R 'forma01a|sslp114a|mumps05a|mumps01a|umat001a|zzzz121a' --resutest=${{ env.get(\"OUTPUT_DIR\", default=\"temp/seq\") }}/${{ mpi }} --clean",
+            "test -f $PREFIX/include/aster/aster.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

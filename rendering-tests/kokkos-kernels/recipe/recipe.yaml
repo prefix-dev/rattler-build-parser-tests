@@ -1,0 +1,78 @@
+schema_version: 1
+
+context:
+  name: kokkos-kernels
+  version: "5.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kokkos/kokkos-kernels/releases/download/${{ version }}/kokkos-kernels-${{ version }}.tar.gz
+  sha256: e1d7e7040b86f141004126c3fa5711f28697803d921c3558d82192a32156b1b2
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - cmake >=3.21.1
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - ninja
+  host:
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp >=20.1.8
+    - kokkos >=4.6.01,<5
+  run:
+    - kokkos >=4.6.01,<5
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp >=20.1.8
+  run_exports:
+    - ${{ pin_subpackage('kokkos-kernels') }}
+
+tests:
+  - files:
+      source:
+        - example/batched_solve
+    requirements:
+      run:
+        - ${{ compiler('cxx') }}
+    script:
+      - $CXX example/batched_solve/team_GMRES.cpp -o team_GMRES -std=c++17 -I$PREFIX/include -L$PREFIX/lib -lkokkoscontainers -lkokkoscore -lkokkoskernels -fopenmp
+      - if: unix
+        then: test -f $PREFIX/lib/cmake/KokkosKernels/KokkosKernelsConfig.cmake
+      - if: linux
+        then: test -f $PREFIX/lib/libkokkoskernels.so
+      - if: osx
+        then: test -f $PREFIX/lib/libkokkoskernels.dylib
+      - if: unix
+        then: test -f $PREFIX/include/KokkosKernels_Handle.hpp
+
+about:
+  summary: >
+    Kokkos Kernels is a software library of linear algebra and graph algorithms used across many HPC applications to
+    achieve best (not just good) performance on every architecture.
+  description: >
+    The baseline version of this library is written using
+    the Kokkos Core programming model for portability and good performance. The library has architecture-specific
+    optimizations or uses vendor-specific versions of these mathematical algorithms where needed. This reduces the amount
+    of architecture-specific software that an application team potentially needs to develop, thus further reducing their
+    (modification cost)to achieve “best in class” performance.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://kokkos.org/
+  repository: https://github.com/kokkos/kokkos-kernels
+  documentation: https://kokkos.org/api-kernels/
+
+extra:
+  recipe-maintainers:
+    - BastianZim
+    - vincentmr
+    - rfiorella

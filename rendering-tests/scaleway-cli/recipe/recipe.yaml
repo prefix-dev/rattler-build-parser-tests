@@ -1,0 +1,52 @@
+context:
+  name: scaleway-cli
+  version: "2.47.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/scaleway/scaleway-cli/archive/refs/tags/v${{ version }}.zip
+  sha256: c8d578e646c64b74f1eb1d96b293bd3ec1e14aeaf8332841edb8fb5094f09cf5
+
+build:
+  number: 0
+  skip:
+    - win
+  script:
+    - if: unix
+      then:
+        - export LDFLAGS="${LDFLAGS} -s -w -extldflags -static"
+        - export LDFLAGS="${LDFLAGS} -X main.Version=${PKG_VERSION}"
+        - go build -ldflags "${LDFLAGS}" -o "$PREFIX/bin/scw" cmd/scw/main.go
+        - go-licenses save ./cmd/scw --save_path="./license-files/" || true
+    - if: win
+      then:
+        - set "LDFLAGS=%LDFLAGS% -s -w -extldflags -static"
+        - set "LDFLAGS=%LDFLAGS% -X main.Version=%PKG_VERSION%"
+        - go build -ldflags "%LDFLAGS%" -o %LIBRARY_BIN%\scw.exe cmd\scw\main.go || exit 1
+        - go-licenses save .\cmd\scw --save_path=".\license-files\"
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - ${{ stdlib("c") }}
+    - go-licenses
+
+tests:
+  - script:
+      - scw --help
+
+about:
+  summary: Command Line Interface for Scaleway
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  homepage: https://www.scaleway.com/en/cli/
+  repository: https://github.com/scaleway/scaleway-cli
+
+extra:
+  recipe-maintainers:
+    - hadim

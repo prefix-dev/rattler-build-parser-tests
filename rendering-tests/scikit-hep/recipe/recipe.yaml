@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: scikit-hep
+  version: "2025.11.1"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: a990cc1c7d2dc3b1b4739925c696d985a8a8c2bff47e89f2223078fc1eb581ec
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=62.6
+  run:
+    - awkward ~=2.8.0
+    - decaylanguage ~=0.20.0
+    - hepstats ~=0.9.0
+    - hepunits ~=2.4.0
+    - hist ~=2.9.0
+    - histoprint ~=2.6.0
+    - iminuit ~=2.31.0
+    - matplotlib-base >3.4.0
+    - mplhep ~=0.4.0
+    - numpy >=1.13.1
+    - particle ~=0.26.0
+    - pylhe ~=1.0.0
+    - python >=${{ python_min }}
+    - resample ~=1.10.0
+    - uproot ~=5.6.0
+    - vector ~=1.7.0
+
+tests:
+  - python:
+      imports:
+        - skhep
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Metapackage of Scikit-HEP project tools for Particle Physics.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/scikit-hep/
+  repository: https://github.com/scikit-hep/scikit-hep/
+
+extra:
+  recipe-maintainers:
+    - matthewfeickert
+    - chrisburr
+    - eduardo-rodrigues
+    - henryiii

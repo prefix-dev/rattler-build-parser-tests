@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.11.1
+
+package:
+  name: pdfcpu
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pdfcpu/pdfcpu/archive/v${{ version }}.tar.gz
+  sha256: f92a3c0953acf4dc8d6e6c39fa89053f9e506ed1cbb1dcac13ea25ca03da8f03
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - pdfcpu help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: PDF processor written in Go
+  homepage: https://github.com/pdfcpu/pdfcpu
+  repository: https://github.com/pdfcpu/pdfcpu
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,39 @@
+context:
+  version: "5.6.0"
+
+package:
+  name: bash-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/bash-language-server/-/bash-language-server-${{ version }}.tgz
+  sha256: 56d22481ffd0eed3edd23d1130554da31dc186d935202f08cf7ce3894fe801be
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - bash-language-server --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Language Server for Bash
+  homepage: https://github.com/bash-lsp/bash-language-server
+  repository: https://github.com/bash-lsp/bash-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

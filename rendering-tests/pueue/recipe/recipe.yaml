@@ -1,0 +1,38 @@
+context:
+  version: "4.0.0"
+
+package:
+  name: pueue
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Nukesor/pueue/archive/v${{ version }}.tar.gz
+  sha256: b7add2bdd6cdce683eea5b24932ed12534b76c29143d8183216c4afc60beef04
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - pueue --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.MIT
+    - LICENSE.APACHE
+    - THIRDPARTY.yml
+  summary: Command-line tool for managing long-running shell commands
+  homepage: https://github.com/Nukesor/pueue
+  repository: https://github.com/Nukesor/pueue
+
+extra:
+  recipe-maintainers:
+    - danielnachun

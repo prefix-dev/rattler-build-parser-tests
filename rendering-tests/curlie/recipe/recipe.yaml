@@ -1,0 +1,39 @@
+context:
+  version: "1.8.2"
+
+package:
+  name: curlie
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rs/curlie/archive/v${{ version }}.tar.gz
+  sha256: 846ca3c5f2cca60c15eaef24949cf49607f09bdd68cbe9d81a2a026e434fa715
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-cgo') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+  host:
+    - curl
+    - libcurl
+
+tests:
+  - script:
+      - curlie --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Power of curl, ease of use of httpie
+  homepage: https://github.com/rs/curlie
+  repository: https://github.com/rs/curlie
+
+extra:
+  recipe-maintainers:
+    - danielnachun

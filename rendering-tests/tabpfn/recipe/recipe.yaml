@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: tabpfn
+  version: 2.2.1
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/tabpfn-${{ version }}.tar.gz
+  sha256: 706c03c3d3dc478118561761c29fa95727b6e239671922c4c40a8e4b3cc28fbf
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - joblib >=1.2.0
+    - tabpfn-common-utils >=0.1.8
+    - python >=${{ python_min }}
+    - einops >=0.2.0,<0.9
+    - eval-type-backport >=0.2.2
+    - huggingface_hub >=0.0.1,<1
+    - pandas >=1.4.0,<3
+    - pydantic >=2.8.0
+    - pydantic-settings >=2.10.1
+    - pytorch >=2.1,<3
+    - scikit-learn >=1.2.0,<1.7
+    - scipy >=1.11.1,<2
+    - typing_extensions >=4.12.0
+
+tests:
+  - python:
+      imports:
+        - tabpfn
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Foundation model for tabular data
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+  homepage: https://github.com/PriorLabs/TabPFN
+
+extra:
+  recipe-maintainers:
+    - anuprulez
+    - janjagusch

@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.30"
+
+package:
+  name: puremagic
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/puremagic/puremagic-${{ version }}.tar.gz
+  sha256: f9ff7ac157d54e9cf3bff1addfd97233548e75e685282d84ae11e7ffee1614c9
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: puremagic
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - requirements:
+      run:
+        - mypy
+        - python ${{ python_min }}.*
+    script:
+      - mypy -p puremagic
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Pure python implementation of magic file detection
+  homepage: https://github.com/cdgriffith/puremagic
+  description: |
+    Pure python implementation of identifying files based off their magic numbers
+
+extra:
+  recipe-maintainers:
+    - andreyz4k
+    - bollwyvl

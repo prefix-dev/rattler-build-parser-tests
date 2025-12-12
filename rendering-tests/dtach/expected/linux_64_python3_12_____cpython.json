@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dtach",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dtach/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dtach/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dtach/work"
+      },
+      "hash": {
+        "hash": "3253fea",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dtach": {
+          "build_string": "py312h3253fea_0",
+          "name": "dtach",
+          "version": "0.31.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:11.469537930Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# DTach\n\n> [!IMPORTANT]\n> DTach is a fork of the unmaintained [tach](https://github.com/gauge-sh/tach) project.\n\nTach is a Python tool to enforce dependencies and interfaces, written in Rust.\n\nTach is inspired by the [modular monolith](https://www.milanjovanovic.tech/blog/what-is-a-modular-monolith) architecture.",
+        "homepage": "https://github.com/DetachHead/dtach",
+        "license": "MIT",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE"
+        ],
+        "summary": "A Python tool to maintain a modular package architecture."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "tach = tach.start:start"
+          ]
+        },
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install ."
+        ],
+        "string": "py312h3253fea_0"
+      },
+      "context": {
+        "version": "0.31.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "lucascolley",
+          "detachhead"
+        ]
+      },
+      "package": {
+        "name": "dtach",
+        "version": "0.31.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.5,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "pyyaml",
+          "tomli",
+          "tomli-w",
+          "rich",
+          "prompt-toolkit",
+          "gitpython",
+          "networkx",
+          "pydot"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "87e6f1591eede62fbdbfb292ce98604a28706c6ac68b2b181dbf40795fdad912",
+          "url": "https://pypi.org/packages/source/d/dtach/dtach-0.31.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tach"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

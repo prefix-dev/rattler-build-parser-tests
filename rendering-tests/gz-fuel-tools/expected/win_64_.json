@@ -1,0 +1,319 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-fuel-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-fuel-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-fuel-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-fuel-tools/work"
+      },
+      "hash": {
+        "hash": "fba6da6"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgz-fuel-tools": {
+          "build_string": "hfba6da6_0",
+          "name": "libgz-fuel-tools",
+          "version": "11.0.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:11.416586875Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "jsoncpp": "1.9.6",
+        "libcurl": "8",
+        "libgz_cmake": "5",
+        "libgz_common": "7",
+        "libgz_math": "9",
+        "libgz_msgs": "12",
+        "libgz_tools": "2",
+        "libprotobuf": "6.31.1",
+        "libzip": "1",
+        "target_platform": "win-64",
+        "tinyxml2": "11.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-fuel-tools",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A client library and command line tools for interacting with Gazebo Fuel servers."
+      },
+      "build": {
+        "number": 0,
+        "script": "bld_cxx.bat",
+        "string": "hfba6da6_0"
+      },
+      "context": {
+        "cmake_name": "fuel_tools",
+        "cmake_version": "fuel_tools11",
+        "component_name": "fuel-tools",
+        "component_version": "fuel-tools11",
+        "cxx_name": "libgz-fuel-tools",
+        "major_version": "11",
+        "name": "gz-fuel-tools",
+        "repo_name": "gz-fuel-tools",
+        "version": "11.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-fuel-tools",
+        "recipe-maintainers": [
+          "traversaro",
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "libgz-fuel-tools",
+        "version": "11.0.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "libgz-cmake",
+          "libgz-math",
+          "libgz-msgs",
+          "libgz-common",
+          "libgz-tools",
+          "libcurl",
+          "jsoncpp",
+          "libzip",
+          "yaml",
+          "tinyxml2",
+          "libprotobuf"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-fuel-tools",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "508ee5f0c8e9ab43effa6ce307736f146914bb22580cd154d7e09b67e4838c54",
+          "url": "https://github.com/gazebosim/gz-fuel-tools/archive/gz-fuel-tools11_11.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "gz/fuel_tools11/gz/fuel_tools.hh"
+            ],
+            "lib": [
+              "gz-fuel_tools"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "vs2022_win-64",
+              "vs2022_win-64"
+            ]
+          },
+          "script": "cmake-package-check gz-${{ cmake_name }} --targets gz-${{ cmake_name }}::gz-${{ cmake_name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-fuel-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-fuel-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-fuel-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-fuel-tools/work"
+      },
+      "hash": {
+        "hash": "2738344"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-fuel-tools": {
+          "build_string": "h2738344_0",
+          "name": "gz-fuel-tools",
+          "version": "11.0.0"
+        },
+        "libgz-fuel-tools": {
+          "build_string": "hfba6da6_0",
+          "name": "libgz-fuel-tools",
+          "version": "11.0.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-12T16:26:11.450419672Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libgz_fuel_tools": "11.0.0 hfba6da6_0",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-fuel-tools",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A client library and command line tools for interacting with Gazebo Fuel servers."
+      },
+      "build": {
+        "number": 0,
+        "string": "h2738344_0"
+      },
+      "context": {
+        "cmake_name": "fuel_tools",
+        "cmake_version": "fuel_tools11",
+        "component_name": "fuel-tools",
+        "component_version": "fuel-tools11",
+        "cxx_name": "libgz-fuel-tools",
+        "major_version": "11",
+        "name": "gz-fuel-tools",
+        "repo_name": "gz-fuel-tools",
+        "version": "11.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-fuel-tools",
+        "recipe-maintainers": [
+          "traversaro",
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "gz-fuel-tools",
+        "version": "11.0.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-fuel-tools"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-fuel-tools",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "508ee5f0c8e9ab43effa6ce307736f146914bb22580cd154d7e09b67e4838c54",
+          "url": "https://github.com/gazebosim/gz-fuel-tools/archive/gz-fuel-tools11_11.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "vs2022_win-64",
+              "vs2022_win-64"
+            ]
+          },
+          "script": "cmake-package-check gz-${{ cmake_name }} --targets gz-${{ cmake_name }}::gz-${{ cmake_name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

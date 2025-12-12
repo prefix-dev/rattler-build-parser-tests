@@ -1,0 +1,195 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_spheno",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_spheno/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_spheno/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_spheno/work"
+      },
+      "hash": {
+        "hash": "7dbfcc9"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "spheno": {
+          "build_string": "none_h7dbfcc9_2",
+          "name": "spheno",
+          "version": "4.0.6"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:27:14.484873277Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "organisation": "none",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "SPheno stands for S(upersymmetric) Pheno(menology).\n\nThe code calculates the SUSY spectrum using low energy data and a user\nsupplied high scale model as input.\nThe spectrum is used to calculate two- and three body decay modes of\nsupersymmetric particle as well as of Higgs bosons.\nIn addition the production cross sections for supersymmetric particle\nand Higgs bosons in e^+ e^- annihilation is calculated.\nMoreover, the branching of the decay $b \\to s \\gamma$, the SUSY\ncontribution to anomalous magnetic moment of the muon as well as the\nSUSY contributions to the rho parameter due to sfermions are calculated.\nThe code is written in F90 with an emphasis on easy generalisability.\nThe structure is set such that complex phases as well as the extension to\ninclude the flavour structure can be done in a straight forward way.\nThe 2-loop renormalization group equations as well as the one-loop finite\ncorrections a la Bagger, Matchev, Pierce and Zhang are included.\nIn addition the two-loop corrections to the neutral Higgs boson masses\n(a la Brignole, Degrassi, Slavich and Zwirner) and to the mu-parameter\n(a la Dedes and Slavich) are included.\nStarting with version 2.2.2 the SUSY Les Houches Accord is supported as\nwell as the SPA conventions (for details see hep-ph/0511344).",
+        "homepage": "https://spheno.hepforge.org/",
+        "license": "BSD-4-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://spheno.hepforge.org/",
+        "summary": "SPheno: a program for calculating supersymmetric spectra, SUSY particle decays and SUSY particle production at e+e- colliders"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "cd src",
+          "make version=${{ version }}",
+          "make --jobs 1",
+          "cd ..",
+          "mkdir -p $PREFIX/bin $PREFIX/lib $PREFIX/include/spheno",
+          "mv bin/* $PREFIX/bin/",
+          "mv lib/* $PREFIX/lib/",
+          "mv include/* $PREFIX/include/spheno/"
+        ],
+        "string": "none_h7dbfcc9_2",
+        "variant": {
+          "down_prioritize_variant": 0
+        }
+      },
+      "context": {
+        "build_number": 2,
+        "name": "spheno",
+        "version": "4.0.6"
+      },
+      "extra": {
+        "feedstock-name": "spheno",
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "spheno",
+        "version": "4.0.6"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "gfortran_osx-arm64 14.*",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "dynamic-library-makefile.patch",
+            "200-char-filenames.patch"
+          ],
+          "sha256": "d66bdcaff35c9a6887e5b0498d9fdec89e9230cb4aea0093f48e03a12dfe52da",
+          "url": "https://spheno.hepforge.org/downloads/?f=SPheno-4.0.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "SPheno"
+            ],
+            "files": [
+              "etc/conda/test-files/spheno/0/input/LesHouches.in.GMSB",
+              "etc/conda/test-files/spheno/0/output/SPheno.spc.GMSB"
+            ],
+            "include": [
+              "spheno/branchingratios.mod",
+              "spheno/chargino3decays.mod",
+              "spheno/control.mod",
+              "spheno/couplings.mod",
+              "spheno/decayfunctions.mod",
+              "spheno/epluseminusproduction.mod",
+              "spheno/experiment.mod",
+              "spheno/gluino3decays.mod",
+              "spheno/inputoutput.mod",
+              "spheno/lhc_observables.mod",
+              "spheno/loopcouplings.mod",
+              "spheno/loopfunctions.mod",
+              "spheno/loopmasses.mod",
+              "spheno/lowenergy.mod",
+              "spheno/mathematics.mod",
+              "spheno/mathematicsqp.mod",
+              "spheno/model_data.mod",
+              "spheno/mssm_data.mod",
+              "spheno/neut3decays.mod",
+              "spheno/nmssm_data.mod",
+              "spheno/nmssm_tools.mod",
+              "spheno/rges.mod",
+              "spheno/rp_data.mod",
+              "spheno/rptools.mod",
+              "spheno/slepton3bodydecays.mod",
+              "spheno/standardmodel.mod",
+              "spheno/stop3bodydecays.mod",
+              "spheno/sugraruns.mod",
+              "spheno/susydecays.mod",
+              "spheno/susymasses.mod",
+              "spheno/threebodyphasespace.mod",
+              "spheno/threebodyphasespaces.mod",
+              "spheno/twoloophiggsmass.mod"
+            ],
+            "lib": [
+              "libSPheno"
+            ],
+            "strict": true
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "input/LesHouches.in.GMSB",
+              "output/SPheno.spc.GMSB"
+            ]
+          },
+          "script": [
+            "SPheno input/LesHouches.in.GMSB",
+            "diff SPheno.spc output/SPheno.spc.GMSB || true"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

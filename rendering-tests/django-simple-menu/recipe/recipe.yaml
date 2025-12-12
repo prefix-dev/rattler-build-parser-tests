@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: django-simple-menu
+  version: 2.1.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 4f9cc5edbf75c5ed6067b9a227134b21404d57f88ef899050d2cadb21e277fef
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - setuptools-scm >=3.4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - django >=3.2
+    - importlib-metadata
+
+tests:
+  - python:
+      imports:
+        - simple_menu
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Simple, yet powerful, code-based menus for Django applications
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: https://github.com/jazzband/django-simple-menu
+  documentation: https://django-simple-menu.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

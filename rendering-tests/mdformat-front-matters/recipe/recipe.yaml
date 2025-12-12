@@ -1,0 +1,47 @@
+context:
+  name: mdformat-front-matters
+  version: "2.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mdformat_front_matters-${{ version }}.tar.gz
+  sha256: 46efabe93707699120c67d4b33b51fdb4cfe0e040acfb0f8212eb33c9a3e8a9a
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - uv-build >=0.9.10
+  run:
+    - python >=${{ python_min }}
+    - mdformat >=0.7.19
+    - mdit-py-plugins >=0.4.1
+    - ruamel.yaml >=0.18.16
+    - toml >=0.10.0
+
+tests:
+  - python:
+      imports: mdformat_front_matters
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/KyleKing/mdformat-front-matters
+  summary: An mdformat plugin to format YAML, TOML, or JSON front matter
+  license: MIT
+  license_file: LICENSE
+  documentation: https://github.com/KyleKing/mdformat-front-matters/blob/main/README.md
+  repository: https://github.com/KyleKing/mdformat-front-matters
+
+extra:
+  recipe-maintainers:
+    - xylar

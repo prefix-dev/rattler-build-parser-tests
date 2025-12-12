@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_temporalio-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_temporalio-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_temporalio-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_temporalio-cli/work"
+      },
+      "hash": {
+        "hash": "b5cd7dd"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "temporalio-cli": {
+          "build_string": "hb5cd7dd_0",
+          "name": "temporalio-cli",
+          "version": "1.3.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-12T16:26:07.675216531Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Temporal CLI is a command-line interface for running and interacting with Temporal Server and UI.",
+        "documentation": "https://docs.temporal.io/cli",
+        "homepage": "https://temporal.io/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/",
+          "go-statsd-client.txt",
+          "mathutil-license.txt"
+        ],
+        "repository": "https://github.com/temporalio/cli",
+        "summary": "Command-line interface for running and interacting with Temporal Server and UI"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil",
+          "go build -ldflags=\"-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ version }}\" -v -o $PREFIX/bin/temporal ./cmd/temporal",
+          "mkdir -p $PREFIX/share/bash-completion/completions",
+          "temporal completion bash > $PREFIX/share/bash-completion/completions/temporal",
+          "mkdir -p $PREFIX/share/zsh/site-functions",
+          "temporal completion zsh > $PREFIX/share/zsh/site-functions/_temporal",
+          "mkdir -p $PREFIX/share/fish/vendor_completions.d",
+          "temporal completion fish > $PREFIX/share/fish/vendor_completions.d/temporal.fish"
+        ],
+        "string": "hb5cd7dd_0"
+      },
+      "context": {
+        "version": "1.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "temporalio-cli",
+        "version": "1.3.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "go-nocgo_linux-aarch64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "15be9f155cd5114367942568f884969f7ed2d3262ad39bb665cf359735f643b3",
+          "target_directory": "src",
+          "url": "https://github.com/temporalio/cli/archive/refs/tags/v1.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "temporal --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

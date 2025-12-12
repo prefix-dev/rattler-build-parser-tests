@@ -1,0 +1,331 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sensors",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sensors/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sensors/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sensors/work"
+      },
+      "hash": {
+        "hash": "87426f2"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgz-sensors": {
+          "build_string": "h87426f2_0",
+          "name": "libgz-sensors",
+          "version": "10.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:10.796165486Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libgz_cmake": "5",
+        "libgz_common": "7",
+        "libgz_math": "9",
+        "libgz_msgs": "12",
+        "libgz_plugin": "4",
+        "libgz_rendering": "10",
+        "libgz_transport": "15",
+        "libprotobuf": "6.31.1",
+        "libsdformat": "16",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-sensors",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Gazebo Sensors provides numerous sensor models designed to generate realistic data from simulation environments."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_cxx.sh",
+        "string": "h87426f2_0"
+      },
+      "context": {
+        "component_name": "sensors",
+        "component_version": "sensors10",
+        "cxx_name": "libgz-sensors",
+        "major_version": "10",
+        "name": "gz-sensors",
+        "repo_name": "gz-sensors",
+        "version": "10.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-sensors",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "Tobias-Fischer",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "libgz-sensors",
+        "version": "10.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "ninja",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "libgz-cmake",
+          "libabseil",
+          "libprotobuf",
+          "libgz-math",
+          "libgz-common",
+          "libgz-transport",
+          "libgz-rendering",
+          "libgz-msgs",
+          "libgz-plugin",
+          "libsdformat",
+          "ogre 1.10.*"
+        ],
+        "run": [
+          "libgl-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-sensors",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9841854013d61114f7a8d20b918df651404bf5a28d52dd0b4fc4caba5dc8aa08",
+          "url": "https://github.com/gazebosim/gz-sensors/archive/gz-sensors10_10.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "gz/sensors10/gz/sensors.hh"
+            ],
+            "lib": [
+              "gz-sensors"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-64 14.*",
+              "gxx_linux-64 14.*"
+            ]
+          },
+          "script": "cmake-package-check gz-${{ component_name }} --targets gz-${{ component_name }}::gz-${{ component_name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sensors",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sensors/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sensors/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sensors/work"
+      },
+      "hash": {
+        "hash": "5a09a47"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-sensors": {
+          "build_string": "h5a09a47_0",
+          "name": "gz-sensors",
+          "version": "10.0.0"
+        },
+        "libgz-sensors": {
+          "build_string": "h87426f2_0",
+          "name": "libgz-sensors",
+          "version": "10.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-12T16:26:10.834955059Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libgz_sensors": "10.0.0 h87426f2_0",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-sensors",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Gazebo Sensors provides numerous sensor models designed to generate realistic data from simulation environments."
+      },
+      "build": {
+        "number": 0,
+        "string": "h5a09a47_0"
+      },
+      "context": {
+        "component_name": "sensors",
+        "component_version": "sensors10",
+        "cxx_name": "libgz-sensors",
+        "major_version": "10",
+        "name": "gz-sensors",
+        "repo_name": "gz-sensors",
+        "version": "10.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-sensors",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "Tobias-Fischer",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-sensors",
+        "version": "10.0.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-sensors"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-sensors",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9841854013d61114f7a8d20b918df651404bf5a28d52dd0b4fc4caba5dc8aa08",
+          "url": "https://github.com/gazebosim/gz-sensors/archive/gz-sensors10_10.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-64 14.*",
+              "gxx_linux-64 14.*"
+            ]
+          },
+          "script": "cmake-package-check gz-${{ component_name }} --targets gz-${{ component_name }}::gz-${{ component_name }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,45 @@
+context:
+  name: colcon-parallel-executor
+  version: 0.4.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/colcon/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 28981dcbc72193ace62952431e8963656d708f93b86c43a4bb55f454cdeff860
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  noarch: python
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - colcon-core >=0.3.15
+
+tests:
+  - python:
+      imports:
+        - colcon_parallel_executor
+      python_version: ["${{ python_min }}.*"]
+
+about:
+  homepage: https://github.com/colcon/${{ name }}
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: |
+    An extension for colcon-core to process packages in parallel.
+
+extra:
+  recipe-maintainers:
+    - j-rivero
+    - traversaro
+    - seanyen
+    - wolfv

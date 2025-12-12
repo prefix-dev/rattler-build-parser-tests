@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.39.0"
+  name: kubo
+  cid: /ipfs/Qmc5gCcjYypU7y28oCALwfSvxCBskLuPKWpK4qpterKC7z
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/ipfs/kubo/releases/download/v${{ version }}/${{ name }}-source.tar.gz
+    sha256: a86a89d866f4058718ef2c6e9c014382e73c220cc320ff7af34fad2ab285bec6
+    target_directory: src/github.com/ipfs/kubo
+
+build:
+  number: 0
+  script:
+    file: build-kubo
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler("go") }}
+    - go-licenses
+    - make
+  run_constraints:
+    - go-ipfs >=9000
+
+tests:
+  - script:
+      - ipfs --version
+      - ipfs --help
+      - ipfs commands
+      - ipfs --debug init
+      - echo "hello conda-forge" > hello.txt
+      - ipfs --debug add hello.txt
+
+about:
+  license: Apache-2.0 OR MIT
+  license_file:
+    # directly provided by upstream
+    - src/github.com/ipfs/kubo/LICENSE-APACHE
+    - src/github.com/ipfs/kubo/LICENSE-MIT
+    - library_licenses/
+  summary: IPFS implementation in Go
+  description: |
+    Kubo (go-ipfs) the earliest and most widely used implementation of IPFS.
+
+    It includes:
+    - an IPFS daemon server
+    - extensive command line tooling
+    - an HTTP Gateway (/ipfs/, /ipns/) for serving content to HTTP browsers
+    - an HTTP RPC API (/api/v0) for controlling the daemon node
+
+  homepage: https://ipfs.tech
+  repository: https://github.com/ipfs/kubo
+  documentation: https://docs.ipfs.tech
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

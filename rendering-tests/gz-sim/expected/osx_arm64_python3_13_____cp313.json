@@ -1,0 +1,554 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sim",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sim/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sim/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-sim/work"
+      },
+      "hash": {
+        "hash": "fbd7660",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgz-sim": {
+          "build_string": "py313hfbd7660_2",
+          "name": "libgz-sim",
+          "version": "10.0.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:26:10.411680634Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libabseil": "20250512",
+        "libgz_cmake": "5",
+        "libgz_common": "7",
+        "libgz_fuel_tools": "11",
+        "libgz_gui": "10",
+        "libgz_math": "9",
+        "libgz_msgs": "12",
+        "libgz_physics": "9",
+        "libgz_plugin": "4",
+        "libgz_rendering": "10",
+        "libgz_sensors": "10",
+        "libgz_tools": "2",
+        "libgz_transport": "15",
+        "libgz_utils": "4",
+        "libprotobuf": "6.31.1",
+        "libsdformat": "16",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "qt6_main": "6.9",
+        "target_platform": "osx-arm64",
+        "tinyxml2": "11.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-sim",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Open source robotics simulator. The latest version of Gazebo."
+      },
+      "build": {
+        "number": 2,
+        "script": "build_cxx.sh",
+        "string": "py313hfbd7660_2"
+      },
+      "context": {
+        "component_name": "sim",
+        "component_version": "sim10",
+        "cxx_name": "libgz-sim",
+        "major_version": "10",
+        "name": "gz-sim",
+        "python_name": "gz-sim-python",
+        "repo_name": "gz-sim",
+        "version": "10.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-sim",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "libgz-sim",
+        "version": "10.0.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi",
+          "libabseil",
+          "libprotobuf",
+          "libgz-msgs",
+          "qt6-main",
+          "make"
+        ],
+        "host": [
+          "libgz-cmake",
+          "libsdformat",
+          "libgz-plugin",
+          "libgz-transport",
+          "libgz-msgs",
+          "libgz-common",
+          "libgz-fuel-tools",
+          "libgz-gui",
+          "libgz-physics",
+          "libgz-sensors",
+          "libgz-rendering",
+          "libgz-utils",
+          "libgz-math",
+          "libgz-tools",
+          "libabseil",
+          "libprotobuf",
+          "qt6-main",
+          "tinyxml2",
+          "python",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-sim",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "standalone_bindings.patch",
+            "support_protobuf_crosscompilation.patch",
+            "3105.patch",
+            "3108.patch"
+          ],
+          "sha256": "3004ff52614a7ea635af3e4a5d42c362a06436d199000dbb558fd5b05b503878",
+          "url": "https://github.com/gazebosim/gz-sim/archive/refs/tags/gz-sim10_10.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "gz/sim10/gz/sim.hh"
+            ],
+            "lib": [
+              "gz-sim",
+              "gz-sim-python-system-loader-system"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim-python/work"
+      },
+      "hash": {
+        "hash": "d290976",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-sim-python": {
+          "build_string": "py313hd290976_2",
+          "name": "gz-sim-python",
+          "version": "10.0.0"
+        },
+        "libgz-sim": {
+          "build_string": "py313hfbd7660_2",
+          "name": "libgz-sim",
+          "version": "10.0.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:26:10.446204976Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libabseil": "20250512",
+        "libgz_common": "7",
+        "libgz_msgs": "12",
+        "libgz_sim": "10.0.0 py313hfbd7660_2",
+        "libprotobuf": "6.31.1",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-sim",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Open source robotics simulator. The latest version of Gazebo."
+      },
+      "build": {
+        "number": 2,
+        "script": "build_py.sh",
+        "string": "py313hd290976_2"
+      },
+      "context": {
+        "component_name": "sim",
+        "component_version": "sim10",
+        "cxx_name": "libgz-sim",
+        "major_version": "10",
+        "name": "gz-sim",
+        "python_name": "gz-sim-python",
+        "repo_name": "gz-sim",
+        "version": "10.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-sim",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "gz-sim-python",
+        "version": "10.0.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "swig",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-sim"
+            }
+          },
+          "libgz-common",
+          "libgz-msgs",
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "libabseil",
+          "libprotobuf"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-sim"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "standalone_bindings.patch",
+            "support_protobuf_crosscompilation.patch",
+            "3105.patch",
+            "3108.patch"
+          ],
+          "sha256": "3004ff52614a7ea635af3e4a5d42c362a06436d199000dbb558fd5b05b503878",
+          "url": "https://github.com/gazebosim/gz-sim/archive/refs/tags/gz-sim10_10.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.sim"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-sim/work"
+      },
+      "hash": {
+        "hash": "120be56",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-sim": {
+          "build_string": "py313h120be56_2",
+          "name": "gz-sim",
+          "version": "10.0.0"
+        },
+        "gz-sim-python": {
+          "build_string": "py313hd290976_2",
+          "name": "gz-sim-python",
+          "version": "10.0.0"
+        },
+        "libgz-sim": {
+          "build_string": "py313hfbd7660_2",
+          "name": "libgz-sim",
+          "version": "10.0.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-12T16:26:10.446374823Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libgz_sim": "10.0.0 py313hfbd7660_2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-sim",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Open source robotics simulator. The latest version of Gazebo."
+      },
+      "build": {
+        "number": 2,
+        "string": "py313h120be56_2"
+      },
+      "context": {
+        "component_name": "sim",
+        "component_version": "sim10",
+        "cxx_name": "libgz-sim",
+        "major_version": "10",
+        "name": "gz-sim",
+        "python_name": "gz-sim-python",
+        "repo_name": "gz-sim",
+        "version": "10.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-sim",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "gz-sim",
+        "version": "10.0.0"
+      },
+      "requirements": {
+        "host": [
+          "python"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-sim"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "gz-sim-python",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-sim",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "standalone_bindings.patch",
+            "support_protobuf_crosscompilation.patch",
+            "3105.patch",
+            "3108.patch"
+          ],
+          "sha256": "3004ff52614a7ea635af3e4a5d42c362a06436d199000dbb558fd5b05b503878",
+          "url": "https://github.com/gazebosim/gz-sim/archive/refs/tags/gz-sim10_10.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.sim"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,81 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: "melodies-monet"
+  version: "1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NOAA-CSL/MELODIES-MONET/archive/v${{ version }}.tar.gz
+  sha256: 2c62ea2cefc8911af0487ae834a27d26553235c1ba4b8fe5337fc1bcd54ce9c5
+
+build:
+  noarch: python
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - melodies-monet = melodies_monet._cli:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=39.2.0
+  run:
+    - python >=${{ python_min }}
+    - netcdf4
+    - statsmodels
+    # Core dependencies
+    - cartopy
+    - matplotlib-base <3.9  # pandas v1 compat
+    - monet >=2.2.11
+    - monetio >=0.2.7
+    - numpy
+    - pandas <2  # some monetio obs readers fail with pandas v2
+    - pyyaml
+    - seaborn
+    - xarray
+    # Extras
+    - dask
+    - joblib
+    - netcdf4
+    - pooch
+    - pytz
+    - rich
+    - timezonefinder
+    - typer
+    # - wrf-python  # for WRF-Chem reader
+
+tests:
+  - python:
+      imports:
+        - melodies_monet
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+    script:
+      - melodies-monet --help
+
+about:
+  homepage: https://melodies-monet.readthedocs.io
+  summary: MELODIES MONET
+  description: |
+    MELODIES MONET combines the
+    Model EvaLuation using Observations, DIagnostics and Experiments Software (MELODIES) project at NCAR
+    with the Model and ObservatioN Evaluation Toolkit (MONET) project at NOAA.
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  repository: https://github.com/NOAA-CSL/MELODIES-MONET
+  documentation: https://melodies-monet.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - zmoon

@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.10.0
+
+package:
+  name: taplo
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tamasfe/taplo/archive/refs/tags/release-taplo-cli-${{ version }}.tar.gz
+  sha256: eaec8435bfb5ccd89f7b4dd09385b6be25c2ff00aa25417cb82c88a59d4ccde0
+
+build:
+  number: 1
+  script:
+    file: build-taplo
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+  host:
+    - if: not osx
+      then:
+        - clangdev
+        - llvmdev
+    - if: unix
+      then:
+        - openssl
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - taplo --version
+      - taplo --help
+      - taplo --version | grep -iE "taplo ${{ version | replace(".", "\\.") }}"
+
+about:
+  license: MIT
+  summary: A TOML toolkit written in Rust
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+  homepage: https://github.com/tamasfe/taplo
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

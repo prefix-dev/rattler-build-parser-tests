@@ -1,0 +1,39 @@
+context:
+  version: "0.4.0"
+
+package:
+  name: compose-language-service
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@microsoft/compose-language-service/-/compose-language-service-${{ version }}.tgz
+  sha256: 09164b4226078de49324440411d224a89748f1b894d0989c7c11d9bd45d53215
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "docker-compose-langserver 2>&1 | grep -q \"Connection input stream is not set.\""
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Language service for Docker Compose documents
+  homepage: https://github.com/microsoft/compose-language-service
+  repository: https://github.com/microsoft/compose-language-service
+
+extra:
+  recipe-maintainers:
+    - danielnachun

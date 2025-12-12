@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_types-cffi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_types-cffi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_types-cffi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_types-cffi/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "types-cffi": {
+          "build_string": "pyhcf101f3_0",
+          "name": "types-cffi",
+          "version": "1.17.0.20250915"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-12T16:27:01.307676012Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/python/typeshed",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python/typeshed/tree/main/stubs/cffi",
+        "summary": "Typing stubs for cffi"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "1.17.0.20250915"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "conda-forge/mypy"
+        ]
+      },
+      "package": {
+        "name": "types-cffi",
+        "version": "1.17.0.20250915"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "types-setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4362e20368f78dabd5c56bca8004752cc890e07a71605d9e0d9e069dbaac8c06",
+          "url": "https://pypi.org/packages/source/t/types-cffi/types_cffi-1.17.0.20250915.tar.gz"
+        },
+        {
+          "sha256": "295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe",
+          "url": "https://raw.githubusercontent.com/python/typeshed/main/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python run_test.py"
+          ]
+        },
+        {
+          "requirements": {
+            "run": [
+              "cffi",
+              "mypy",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "mypy -p cffi -p _cffi_backend"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-lite-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-lite-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-lite-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-lite-cli/work"
+      },
+      "hash": {
+        "hash": "f5970a7"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vega-lite-cli": {
+          "build_string": "hf5970a7_0",
+          "name": "vega-lite-cli",
+          "version": "6.4.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-12T16:22:00.049764894Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nodejs": "20",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The vega-lite-cli package includes four node.js-based command line utilities -\nvl2pdf, vl2png, vl2svg, and vl2vg - for rendering static visualization images.\nThese commands render to PDF, PNG, SVG files, or plain VEGA, respectively.",
+        "documentation": "https://vega.github.io/vega-lite/usage/compile.html#cli",
+        "homepage": "https://vega.github.io/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/vega/vega-lite",
+        "summary": "Command line interface of the VEGA-lite visualization grammar"
+      },
+      "build": {
+        "number": 0,
+        "string": "hf5970a7_0"
+      },
+      "context": {
+        "name": "vega-lite-cli",
+        "version": "6.4.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "johanneskoester",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "vega-lite-cli",
+        "version": "6.4.1"
+      },
+      "requirements": {
+        "build": [
+          "nodejs"
+        ],
+        "host": [
+          "nodejs",
+          "yarn <2"
+        ],
+        "run": [
+          "nodejs",
+          "vega-cli"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9b6ecd2ee9cfbe1852f2643fe90c935bdbd06451ed7d7aa5f67dd8db5c51231a",
+          "url": "https://github.com/vega/vega-lite/archive/refs/tags/v6.4.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "curl -L https://github.com/vega/vega-lite/raw/v${{ version }}/examples/specs/bar.vl.json > test.json",
+            "vl2svg test.json > test.svg"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

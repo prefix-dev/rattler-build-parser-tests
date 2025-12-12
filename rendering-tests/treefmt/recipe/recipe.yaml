@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 2.4.0
+
+package:
+  name: treefmt
+  version: ${{ version|replace("-", "_") }}
+
+source:
+  url: https://github.com/numtide/treefmt/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 2b67a03045e8d31c6018d2149438d544c1c9dae7db44510cdd596030a13b38fd
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - treefmt --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: one CLI to format your repo
+  homepage: https://github.com/numtide/treefmt
+  repository: https://github.com/numtide/treefmt
+
+extra:
+  recipe-maintainers:
+    - danielnachun

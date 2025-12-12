@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.0.0"
+  python_check_max: "3.14"
+
+package:
+  name: pytest-lsp
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pytest-lsp/pytest_lsp-${{ version }}.tar.gz
+  sha256: ba8c95b2d975a360249ffa5768e1e6f44d87d10ef7754070d3b321102724a2f1
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatchling >=1.17.1
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - packaging
+    - pygls >=2.0.0
+    - pytest >=8
+    - pytest-asyncio >=1.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: pytest_lsp
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+        - pyproject.toml
+    requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source=pytest_lsp --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=88
+
+about:
+  summary: A pytest plugin for end-to-end testing of language servers
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/swyddfa/lsp-devtools/tree/develop/lib/pytest-lsp
+  documentation: https://lsp-devtools.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

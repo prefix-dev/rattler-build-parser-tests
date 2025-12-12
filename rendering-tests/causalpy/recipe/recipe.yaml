@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: causalpy
+  version: "0.6.0"
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e2cd9f968b87f1353548ccf0e984bb24ab4d2698fa77c938e21c1b6ae67f7d6f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+  run:
+    - python >=${{ python_min }}
+    - arviz >=0.14.0
+    - python-graphviz
+    - ipython !=8.7.0
+    - matplotlib-base >=3.5.3
+    - numpy
+    - pandas
+    - patsy
+    - pymc >=5.15.1
+    - scikit-learn >=1
+    - scipy
+    - seaborn >=0.11.2
+    - statsmodels
+    - xarray >=v2022.11.0
+    - pymc-extras >=0.3.0
+
+tests:
+  - python:
+      imports:
+        - causalpy
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Causal inference for quasi-experiments in Python
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/pymc-labs/CausalPy
+  documentation: https://causalpy.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - thewchan
