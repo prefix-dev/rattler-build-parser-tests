@@ -812,6 +812,11 @@ def main():
         action="store_true",
         help="Fast mode: test only one variant per feedstock in parallel (sets --jobs to 50 if not specified)"
     )
+    parser.add_argument(
+        "--accept",
+        action="store_true",
+        help="Accept new renderings: overwrite expected JSON files with actual output (requires --feedstock)"
+    )
 
     args = parser.parse_args()
 

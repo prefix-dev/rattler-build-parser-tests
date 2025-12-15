@@ -6,7 +6,7 @@ context:
   build: 11
   RECIPE_DIR: ${{ env.get("RECIPE_DIR", default=".") }}
   cuda_major: ${{ env.get("cuda_compiler_version", default="0.0") | split(".") | first | int }}
-  microarch_level: ${{ 1 if microarch_level is undefined else microarch_level }}
+  microarch_level: ${{ 1 if microarch_level is undefined else (microarch_level | int) }}
   build_with_microarch: ${{ build + (microarch_level * 100) | int }}
   microarch_option: ${{ ("-Ccmake.define.FEW_MARCH=x86-64-v" ~ microarch_level if (microarch_level | int) > 1 else "-Ccmake.define.FEW_MARCH=x86-64")  if (unix and x86_64) else "" }}
 
@@ -196,7 +196,7 @@ outputs:
         - libcusparse
       ignore_run_exports:
         from_package:
-          - ${{ compiler('cuda') }}
+          - ${{ compiler('cuda') | split(' ') | first }}
           - cuda-driver-dev
           - cuda-cudart-dev
           - cuda-nvrtc-dev
