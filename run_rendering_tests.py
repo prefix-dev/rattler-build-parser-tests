@@ -184,7 +184,7 @@ def run_rattler_build(
     if not recipe_yaml.exists():
         return False, f"recipe.yaml not found in {recipe_path}"
 
-    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only", "--output-dir", "/home/wolfv/Programs/rattler-build/output/"]
+    cmd = [rattler_build_cmd, "build", "--no-build-id", "--recipe", str(recipe_yaml), "--render-only"]
 
     if variant_file:
         cmd.extend(["-m", str(variant_file)])
