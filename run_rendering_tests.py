@@ -13,6 +13,7 @@ Usage:
   ./run_rendering_tests.py --jobs 50                 # Run 50 tests in parallel
   ./run_rendering_tests.py --feedstock numpy         # Test specific feedstock
   ./run_rendering_tests.py --fail-fast               # Stop on first failure
+  ./run_rendering_tests.py -f numpy --accept         # Accept new rendering for numpy
 """
 
 import argparse
@@ -450,6 +451,59 @@ def save_failures(failures: List[Dict], output_file: Path):
     print(f"Saved {len(compact_failures)} failing test(s) to: {output_file}")
 
 
+def accept_renderings(
+    test_cases: List[TestCase],
+    rattler_build_cmd: str,
+    verbose: bool = False
+) -> Tuple[int, int]:
+    """
+    Accept new renderings by overwriting expected JSON files with actual output.
+
+    Returns (accepted_count, failed_count).
+    """
+    accepted = 0
+    failed = 0
+
+    for tc in test_cases:
+        recipe_path = tc.feedstock_dir / "recipe"
+
+        print(f"  Rendering {tc.feedstock_name}/{tc.variant_name}...", end=" ")
+
+        # Run rattler-build
+        success, output = run_rattler_build(
+            rattler_build_cmd,
+            recipe_path,
+            tc.variant_file,
+            tc.target_platform
+        )
+
+        if not success:
+            print(f"✗ Failed: {output[:200]}")
+            failed += 1
+            continue
+
+        # Parse actual output
+        try:
+            actual_output = normalize_json_output(output)
+        except Exception as e:
+            print(f"✗ Parse error: {e}")
+            failed += 1
+            continue
+
+        # Write the new expected output
+        try:
+            with open(tc.expected_file, 'w') as f:
+                json.dump(actual_output, f, indent=2, sort_keys=True)
+                f.write('\n')  # Add trailing newline
+            print(f"✓ Accepted")
+            accepted += 1
+        except Exception as e:
+            print(f"✗ Write error: {e}")
+            failed += 1
+
+    return accepted, failed
+
+
 def save_failures_markdown(failures: List[Dict], output_file: Path):
     """Save detailed failure information to a markdown file for human/agent consumption."""
     with open(output_file, 'w') as f:
@@ -874,6 +928,31 @@ def main():
         feedstock_dirs = get_feedstock_dirs(tests_dir)
 
     print(f"Feedstocks to test: {len(feedstock_dirs)}")
+
+    # Handle accept mode
+    if args.accept:
+        print("\n" + "=" * 80)
+        print("ACCEPT MODE: Overwriting expected outputs with actual renderings")
+        print("=" * 80)
+
+        test_cases = collect_test_cases(tests_dir, args.feedstock, args.fast)
+        print(f"Variants to accept: {len(test_cases)}")
+        print()
+
+        accepted, accept_failed = accept_renderings(test_cases, rattler_build_cmd, args.verbose)
+
+        print("\n" + "=" * 80)
+        print("SUMMARY")
+        print("=" * 80)
+        print(f"Accepted: {accepted}")
+        print(f"Failed: {accept_failed}")
+
+        if accept_failed > 0:
+            print(f"\n✗ {accept_failed} rendering(s) failed")
+            sys.exit(1)
+        else:
+            print(f"\n✓ All {accepted} rendering(s) accepted!")
+            sys.exit(0)
 
     # Run tests
     all_results = []
