@@ -1,0 +1,41 @@
+schema_version: 1
+
+context:
+  version: 1.13.0
+
+package:
+  name: llama
+  version: ${{ version }}
+
+source:
+  url: https://github.com/antonmedv/llama/archive/v${{ version }}.tar.gz
+  sha256: 9f62377438908757fcb2210bd08bf346391858f21d0ef664d7998abf635880cb
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - 'llama --help 2>&1 | grep -q "Usage: walk"'
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Terminal file manager
+  homepage: https://github.com/antonmedv/llama
+  repository: https://github.com/antonmedv/llama
+
+extra:
+  recipe-maintainers:
+    - danielnachun
