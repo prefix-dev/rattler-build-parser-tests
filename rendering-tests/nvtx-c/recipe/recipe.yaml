@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  version: "3.3.0"
+  sha256: 67d0cda2f9d19a89684592dab40c0bf2c2b13d5d588e51392076c0890a64b6c0
+
+package:
+  name: nvtx-c
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NVIDIA/NVTX/archive/v${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - ninja
+  ignore_run_exports:
+    from_package:
+      - ${{ (compiler('c') | split(' '))[0] }}
+      - ${{ (compiler('cxx') | split(' '))[0] }}
+      - ${{ (stdlib('c') | split(' '))[0] }}
+
+tests:
+  - script:
+      - if: not win
+        then: |
+          test -e "$PREFIX"/include/nvtx3/nvToolsExt.h
+          test -e "$PREFIX"/include/nvtx3/nvtx3.hpp
+        else: |
+          if not exist "%LIBRARY_INC%"\nvtx3\nvToolsExt.h exit 1
+          if not exist "%LIBRARY_INC%"\nvtx3\nvtx3.hpp exit 1
+  - files:
+      recipe:
+        - test_cmake/
+    requirements:
+      run:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+    script: |
+      pushd test_cmake
+      cmake -G "Ninja" .
+      cmake --build . --config Release
+      popd
+
+
+about:
+  summary: NVIDIA Tools Extension Library (NVTX) C API
+  license: Apache-2.0 WITH LLVM-exception
+  license_file: LICENSE.txt
+  homepage: https://nvidia.github.io/NVTX/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/cuda
+    - shwina
