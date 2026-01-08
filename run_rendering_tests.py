@@ -238,6 +238,8 @@ def compare_outputs(
         r"root\[\d+\]\['build_configuration'\]\['timestamp'\]",
         r"root\[\d+\]\['system_tools'\]\['rattler-build'\]",
         r"root\[\d+\]\['build_configuration'\]\['directories'\]\['host_prefix'\]",
+        r"root\[\d+\]\['build_configuration'\]\['host_platform'\]\['virtual_packages'\]",
+        r"root\[\d+\]\['build_configuration'\]\['build_platform'\]\['virtual_packages'\]",
     ]
 
     if expected == actual:

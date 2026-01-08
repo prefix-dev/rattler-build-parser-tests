@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -22,14 +22,14 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_katago/work"
       },
       "hash": {
-        "hash": "a5ea009"
+        "hash": "ac38e3a"
       },
       "host_platform": {
         "platform": "osx-64",
         "virtual_packages": [
           "__unix=0=0",
           "__osx=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -40,13 +40,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "katago": {
-          "build_string": "cpu_ha5ea009_1",
+          "build_string": "cpu_hac38e3a_1",
           "name": "katago",
           "version": "1.16.4"
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2025-12-12T16:26:57.184859910Z",
+      "timestamp": "2026-01-08T09:48:23.385806202Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -55,7 +55,6 @@
         "c_stdlib_version": "10.13",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cuda_compiler": "cuda-nvcc",
         "cuda_compiler_version": "None",
         "curl": "8",
         "cxx_compiler": "clangxx",
@@ -80,7 +79,7 @@
       },
       "build": {
         "number": 1,
-        "string": "cpu_ha5ea009_1",
+        "string": "cpu_hac38e3a_1",
         "variant": {
           "down_prioritize_variant": 0,
           "use_keys": [
@@ -139,6 +138,7 @@
           "script": [
             "katago",
             "katago version",
+            "${{ \"katago runtests\" if not osx }}",
             "cd cpp/",
             "mkdir tests/scratch",
             "katago runoutputtests",
@@ -148,7 +148,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
