@@ -1,0 +1,50 @@
+context:
+  name: backpack-for-pytorch
+  version: "1.7.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: edfe332e4b06a69073a6d857c5fd08d286c020be4d411f5c50a729f26f62a30d
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python >=3.7
+    - setuptools
+    - setuptools-scm
+  run:
+    - einops >=0.3.0
+    - python >=3.7
+    - pytorch >=1.9.0
+    - torchvision >=0.7.0
+    - unfoldnd
+
+tests:
+  - python:
+      imports:
+        - backpack
+        - backpack.core
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: BackPACK - Packing more into backprop
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/f-dangel/backpack
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer

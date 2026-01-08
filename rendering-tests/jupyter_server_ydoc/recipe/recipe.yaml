@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.2.0"
+  python_check_max: "3.14"
+
+package:
+  name: jupyter_server_ydoc
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jupyter_server_ydoc/jupyter_server_ydoc-${{ version }}.tar.gz
+  sha256: bc6c3e3775c6f45fe10c4831f206aeb80df4348eb11f1b7a6c1c320aa0eac340
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatchling >=1.4.0
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - jsonschema >=4.18.0
+    - jupyter_events >=0.11.0
+    - jupyter_server >=2.15.0,<3.0.0
+    - jupyter_server_fileid >=0.7.0,<1
+    - jupyter_ydoc >=3.0.3,<4.0.0
+    - pycrdt
+    - pycrdt-websocket >=0.16.0,<0.17.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: jupyter_server_ydoc
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - dirty-equals
+        - httpx-ws >=0.5.2
+        - pytest-cov
+        - python ${{ python_min }}.*
+        - pytest-jupyter
+    script:
+      env:
+        JUPYTER_PLATFORM_DIRS: "1"
+      content:
+        - jupyter server extension list
+        - jupyter server extension list 2>&1 | python -c "import re, sys; v = sys.stdin.read(); assert re.search(r'jupyter_server_ydoc.*${{ version | replace(".", "\\.") }}.*OK', v)"
+        - coverage run --source=jupyter_server_ydoc --branch -m pytest -vv --tb=long --color=yes
+        - coverage report --show-missing --skip-covered --fail-under=72
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: jupyter-server extension integrating collaborative shared models.
+  homepage: https://github.com/jupyterlab/jupyter_collaboration
+
+extra:
+  recipe-maintainers:
+    - davidbrochart
+    - conda-forge/jupyter_server

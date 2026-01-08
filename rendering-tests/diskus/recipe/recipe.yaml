@@ -1,0 +1,37 @@
+context:
+  version: "0.9.0"
+
+package:
+  name: diskus
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sharkdp/diskus/archive/v${{ version }}.tar.gz
+  sha256: c4c9e4cd3cda25f55172130e3d6a58b389f0113fcefa96c73e4c80565547d1bf
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - diskus --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: "Minimal, fast alternative to 'du -sh'"
+  homepage: https://github.com/sharkdp/diskus
+  repository: https://github.com/sharkdp/diskus
+
+extra:
+  recipe-maintainers:
+    - danielnachun

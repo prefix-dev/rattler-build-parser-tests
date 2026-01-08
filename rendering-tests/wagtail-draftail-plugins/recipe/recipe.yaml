@@ -1,0 +1,53 @@
+context:
+  name: wagtail-draftail-plugins
+  version: "0.4.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: bea3fb4b05d4a09899ac01ced5723d63260005d5843298bac770500efaa869f8
+
+build:
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core
+  run:
+    - python >=${{ python_min }},<4.0
+    - wagtail >=5.2
+
+tests:
+  - python:
+      imports:
+        - wagtail_draftail_plugins
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script: pip check
+
+about:
+  homepage: https://gitlab.com/thelabnyc/wagtail-draftail-plugins
+  license: MIT
+  license_file: LICENSE
+  summary: Commonly used extensions to Wagtail's Draftail editor.
+  description: |
+    This library includes some commonly used extensions for the Wagtail Draftail editor.
+  documentation: https://gitlab.com/thelabnyc/wagtail-draftail-plugins/-/blob/master/README.rst
+  repository: https://gitlab.com/thelabnyc/wagtail-draftail-plugins
+
+extra:
+  recipe-maintainers:
+    - rxm7706

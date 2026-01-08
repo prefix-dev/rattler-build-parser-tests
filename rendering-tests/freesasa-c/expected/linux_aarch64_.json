@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freesasa-c",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freesasa-c/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freesasa-c/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freesasa-c/work"
+      },
+      "hash": {
+        "hash": "d4bb685"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "freesasa-c": {
+          "build_string": "hd4bb685_1",
+          "name": "freesasa-c",
+          "version": "2.1.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-13T07:54:26.612424755Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "json_c": "0.18",
+        "libxml2_devel": "2.14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "FreeSASA is a C library and C++ command line tool for calculating Solvent Accessible Surface Area (SASA) of biomolecules.\nIt is designed to be simple to use with defaults, but allows customization of all parameters of the calculation and provides a few different tools to analyze the results.\n\nFreeSASA can be cited using the following publication:\n  - [10.12688/f1000research.7931.1](http://dx.doi.org/10.12688/f1000research.7931.1)",
+        "documentation": "https://freesasa.github.io/doxygen",
+        "homepage": "https://freesasa.github.io/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mittinatten/freesasa",
+        "summary": "C-library for calculating Solvent Accessible Surface Areas"
+      },
+      "build": {
+        "number": 1,
+        "string": "hd4bb685_1"
+      },
+      "context": {
+        "name": "FreeSASA",
+        "sha256": "a031c4eb8cd59e802d715a37ef72930ec2d90ec53dfcf1bea0b0255980490fd5",
+        "version": "2.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128",
+          "mittinatten"
+        ]
+      },
+      "package": {
+        "name": "freesasa-c",
+        "version": "2.1.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "autoconf",
+          "automake",
+          "libtool",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "json-c",
+          "libxml2-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "freesasa-c",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a031c4eb8cd59e802d715a37ef72930ec2d90ec53dfcf1bea0b0255980490fd5",
+          "url": "https://github.com/mittinatten/freesasa/releases/download/2.1.2/freesasa-2.1.2.zip"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/data/1a0q.pdb"
+            ]
+          },
+          "script": [
+            "freesasa -h",
+            "freesasa tests/data/1a0q.pdb"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

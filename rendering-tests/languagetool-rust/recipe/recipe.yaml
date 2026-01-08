@@ -1,0 +1,40 @@
+context:
+  version: "3.0.0"
+
+package:
+  name: languagetool-rust
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jeertmans/languagetool-rust/archive/v${{ version }}.tar.gz
+  sha256: d3ed057524712b9efc79fedee2b9e32d3abe2974778fe5e85ac164b17303d5b5
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - ltrs --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+  summary: LanguageTool API in Rust
+  homepage: https://github.com/jeertmans/languagetool-rust
+  repository: https://github.com/jeertmans/languagetool-rust
+
+extra:
+  recipe-maintainers:
+    - danielnachun

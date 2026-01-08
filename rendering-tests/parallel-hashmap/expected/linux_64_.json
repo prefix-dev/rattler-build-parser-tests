@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parallel-hashmap",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parallel-hashmap/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parallel-hashmap/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parallel-hashmap/work"
+      },
+      "hash": {
+        "hash": "826a700"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "parallel-hashmap": {
+          "build_string": "h826a700_0",
+          "name": "parallel-hashmap",
+          "version": "2.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:52:47.646476190Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/greg7mdp/parallel-hashmap",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A family of header-only, very fast and memory-friendly hashmap and btree containers."
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": "cmake -DCMAKE_INSTALL_PREFIX=$PREFIX \\\n      -DCMAKE_PREFIX_PATH=$PREFIX \\\n      -DPHMAP_BUILD_TESTS=OFF \\\n      -DPHMAP_BUILD_EXAMPLES=OFF \\\n      -GNinja \\\n      -B build\ncmake --build build --config Release\ncmake --install build\n",
+        "string": "h826a700_0"
+      },
+      "context": {
+        "name": "parallel-hashmap",
+        "version": "2.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "parallel-hashmap",
+        "version": "2.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 13.*",
+          "gxx_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake >=3.15",
+          "ninja"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4f462f51a3468166ea4cf87c80e001dc1999093264cf55cbda3492ca39a7730b",
+          "url": "https://github.com/greg7mdp/parallel-hashmap/archive/v2.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "parallel_hashmap/btree.h",
+              "parallel_hashmap/meminfo.h",
+              "parallel_hashmap/phmap.h",
+              "parallel_hashmap/phmap_base.h",
+              "parallel_hashmap/phmap_bits.h",
+              "parallel_hashmap/phmap_config.h",
+              "parallel_hashmap/phmap_dump.h",
+              "parallel_hashmap/phmap_fwd_decl.h",
+              "parallel_hashmap/phmap_utils.h"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

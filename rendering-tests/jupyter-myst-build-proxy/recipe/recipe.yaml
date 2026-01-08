@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: jupyter-myst-build-proxy
+  version: "0.6.0"
+  jupyterlab_min: "4.4.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: bfe023534b2d7b520abb272bf58c7d55f98ba00b806cb2bb8f1f898957647757
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.27.0
+    - hatch-jupyter-builder >=0.9.1
+    - hatch-nodejs-version
+    - jupyterlab >=${{ jupyterlab_min }}
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - jupyter-server-proxy >4.1.0
+    - mystmd >=1.7.0
+
+tests:
+  - python:
+      python_version: "${{ python_min }}.*"
+      pip_check: true
+      imports:
+        - "${{ name | replace('-', '_') }}"
+  - script:
+      - jupyter labextension list
+      - jupyter labextension list 2>&1 | grep -ie "${{ name }}.*OK.*"
+      - python test_list_serverproxy_endpoints.py | grep "${{ name | replace('-', '_') }}"
+    requirements:
+      run:
+        - jupyterlab >=${{ jupyterlab_min }}
+    files:
+      recipe:
+        - test_list_serverproxy_endpoints.py
+
+about:
+  homepage: https://github.com/ryanlovett/jupyter-myst-build-proxy/
+  summary: Jupyter extension to proxy MyST build server
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - mfisher87

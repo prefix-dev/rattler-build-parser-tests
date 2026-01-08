@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbprodrun",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbprodrun/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbprodrun/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbprodrun/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbprodrun": {
+          "build_string": "pyhcf101f3_0",
+          "name": "lbprodrun",
+          "version": "1.11.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:54:05.324258932Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.cern.ch/lhcb-core/lbprodrun",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "CLI for running LHCb applications from LHCbDIRAC"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "lb-prod-run = LbProdRun.__main__:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "lbprodrun",
+        "version": "1.11.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbprodrun",
+        "version": "1.11.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=42",
+          "wheel",
+          "setuptools-scm >=3.4",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "click >=8.0",
+          "lbenv",
+          "pydantic >=1.10",
+          "typer >=0.4.1",
+          "packaging",
+          "pyyaml >=6.0",
+          "lbcondawrappers"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "814c2dea3ea98d516fae4752e1f0e0be13e069eb9cd577b5273017102e10db39",
+          "url": "https://pypi.org/packages/source/l/lbprodrun/lbprodrun-1.11.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "LbProdRun"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "lb-prod-run --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

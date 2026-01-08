@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.18.1
+
+package:
+  name: csvq
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mithrandie/csvq/archive/v${{ version }}.tar.gz
+  sha256: 69f98d0d26c055cbe4ebfe2cedf79c744bebafac604ea55fb0081826b1ac7b74
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - csvq --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: SQL-like query language for csv
+  homepage: https://github.com/mithrandie/csvq
+  repository: https://github.com/mithrandie/csvq
+
+extra:
+  recipe-maintainers:
+    - danielnachun

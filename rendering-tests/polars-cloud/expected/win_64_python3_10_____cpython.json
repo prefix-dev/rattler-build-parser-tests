@@ -1,0 +1,179 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-cloud",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-cloud/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-cloud/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-cloud/work"
+      },
+      "hash": {
+        "hash": "259abe2",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "polars-cloud": {
+          "build_string": "py310h259abe2_2",
+          "name": "polars-cloud",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:54:23.552693088Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "libprotobuf": "6.31.1",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Built on top of the popular open source project, Polars Cloud enables you to write DataFrame code once and run it anywhere. The distributed engine available with Polars Cloud allows you to scale your Polars queries beyond a single machine.",
+        "documentation": "https://cloud.pola.rs/",
+        "homepage": "https://cloud.pola.rs/",
+        "license": "MIT",
+        "license_file": [
+          "client/LICENSE",
+          "THIRD_PARTY.yml"
+        ],
+        "repository": "https://github.com/pola-rs/polars-cloud-client",
+        "summary": "Python client for Polars Cloud"
+      },
+      "build": {
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "pc = polars_cloud.__main__:cli"
+          ],
+          "version_independent": true
+        },
+        "script": {
+          "content": [
+            "cd client",
+            "copy %RECIPE_DIR%\\cargo-auditable-wrapper.bat %BUILD_PREFIX%\\Library\\bin\\cargo-auditable-wrapper.bat",
+            "python -m pip install . -vv",
+            "cargo-bundle-licenses --format yaml --output ../THIRD_PARTY.yml"
+          ],
+          "env": {
+            "CARGO": "cargo-auditable-wrapper.bat",
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "py310h259abe2_2"
+      },
+      "context": {
+        "name": "polars-cloud",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "polars-cloud",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "rust_win-64",
+          "vs_win-64",
+          "cargo-auditable",
+          "cargo-bundle-licenses",
+          "libprotobuf",
+          "python",
+          "cross-python_win-64",
+          "maturin >=1,<2"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1,<2",
+          "libprotobuf"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cross-python_win-64"
+          ]
+        },
+        "run": [
+          "python",
+          "polars",
+          "polars-runtime-64",
+          "cloudpickle",
+          "typing-extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "12e38c9a1d7af9e49f7417e7f61a6ae4f2abd35092ff933bee2144c7b9929a93",
+          "url": "https://github.com/pola-rs/polars-cloud-client/archive/refs/tags/client-0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "polars_cloud"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": [
+            "abi3audit %PREFIX%/Lib/site-packages/polars_cloud/polars_cloud.pyd -s -v --assume-minimum-abi3 ${{ python_min }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,40 @@
+context:
+  version: "10.0.2"
+
+package:
+  name: selenium-standalone
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/selenium-standalone/-/selenium-standalone-${{ version }}.tgz
+  sha256: cdcc1ee862370da638d39ee93f5d13406aead239d6bd3494d281c785ea270e8f
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+    - openjdk
+
+tests:
+  - script:
+      - "selenium-standalone 2>&1 | grep -q \"No action provided\""
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Installs a `selenium-standalone` command line to install and start a standalone selenium server
+  homepage: https://github.com/webdriverio/selenium-standalone
+  repository: https://github.com/webdriverio/selenium-standalone
+
+extra:
+  recipe-maintainers:
+    - danielnachun

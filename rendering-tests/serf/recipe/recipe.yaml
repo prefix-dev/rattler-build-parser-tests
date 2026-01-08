@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: serf
+  version: 1.3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://www.apache.org/dist/serf/serf-${{ version }}.tar.bz2
+  sha256: be81ef08baa2516ecda76a77adf7def7bc3227eeb578b9a33b45f7b41dc064e6
+  patches:
+    - SConstruct.patch
+
+build:
+  # Mac OS X seems to have an issue in the upstream libapr
+  # library where the package was generated thinking it had
+  # access to <sys/types.h>, which I don't believe our current
+  # clang compilers have
+  #
+  # Windows was failing to link against OpenSSL with the custom
+  # cmake configuration here.
+  #
+  # Skipping both of these platforms for now.
+  number: 3
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - openssl
+    - libapr
+    - libaprutil
+    - zlib
+    - scons
+    - expat
+  host:
+    - openssl
+    - libapr
+    - libaprutil
+    - zlib
+  run:
+    - libapr
+    - libaprutil
+    - openssl
+    - zlib
+  run_exports:
+    - ${{ pin_subpackage('serf', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: win
+        then: if not exist %LIBRARY_INC%\serf.h     exit 1
+      - if: win
+        then: if not exist %LIBRARY_BIN%\serf-1.dll exit 1
+      - if: unix or osx
+        then: test -f ${PREFIX}/include/serf-1/serf.h
+      - if: unix or osx
+        then: test -f ${PREFIX}/lib/libserf-1${SHLIB_EXT}
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: A high performance C-based HTTP client library
+  homepage: https://serf.apache.org/
+  repository: https://serf.apache.org/contribute
+  documentation: https://serf.apache.org/abi/timeline/serf/index.html
+
+extra:
+  recipe-maintainers:
+    - scopatz
+    - rfiorella

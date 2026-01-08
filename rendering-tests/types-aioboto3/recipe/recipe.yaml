@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: types-aioboto3
+  version: "15.5.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/types_aioboto3-${{ version }}.tar.gz
+  sha256: 5769a1c3df7ca1abedf3656ddf0b970c9b0436d0f88cf4686040b55cd2a02925
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - botocore-stubs
+    - types-aiobotocore
+    - types-s3transfer
+    - typing_extensions >=4.1.0
+
+tests:
+  - package_contents:
+      site_packages:
+        - aioboto3-stubs/s3/__init__.pyi
+
+about:
+  summary: Type annotations for aioboto3
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/youtype/mypy_boto3_builder
+  repository: https://github.com/youtype/mypy_boto3_builder
+
+extra:
+  recipe-maintainers:
+    - xhochy

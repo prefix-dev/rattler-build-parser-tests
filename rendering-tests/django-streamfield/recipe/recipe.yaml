@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-streamfield
+  version: "2.3.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django-streamfield-${{ version }}.tar.gz
+  sha256: ee2c20623cca426285d1b0d0659d08a8c70ac93556c4856be20bfbe75ea28a78
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=4.2
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - streamfield
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: StreamField for native Django Admin or with Grappelli
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: https://github.com/raagin/django-streamfield
+
+extra:
+  recipe-maintainers:
+    - rxm7706

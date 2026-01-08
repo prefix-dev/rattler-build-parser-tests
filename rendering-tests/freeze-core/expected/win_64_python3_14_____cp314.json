@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freeze-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freeze-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freeze-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_freeze-core/work"
+      },
+      "hash": {
+        "hash": "2234e87",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "freeze-core": {
+          "build_string": "py314h2234e87_0",
+          "name": "freeze-core",
+          "version": "0.4.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:54:40.638447412Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://cx-freeze.readthedocs.io/",
+        "homepage": "https://marcelotduarte.github.io/cx_Freeze",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/marcelotduarte/freeze-core",
+        "summary": "Core dependency for cx_Freeze."
+      },
+      "build": {
+        "dynamic_linking": {
+          "missing_dso_allowlist": [
+            "**/cx_Logging.*.pyd"
+          ]
+        },
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py314h2234e87_0"
+      },
+      "context": {
+        "name": "freeze-core",
+        "version": "0.4.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "marcelotduarte"
+        ]
+      },
+      "package": {
+        "name": "freeze-core",
+        "version": "0.4.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "vs2022_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools >=78.1.1,<81",
+          "cx_logging >=3.1"
+        ],
+        "run": [
+          "python",
+          "filelock >=3.15.3",
+          "cabarchive >=0.2.4",
+          "striprtf >=0.0.26"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3e1942b0908b9399b164f66712f8b222f38512950e61d16a5064d9795f0b0ac7",
+          "url": "https://pypi.org/packages/source/f/freeze-core/freeze_core-0.4.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "freeze_core"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "pyproject.toml",
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage >=7.10.3",
+              "pytest",
+              "pytest-mock",
+              "pytest-timeout",
+              "pytest-xdist"
+            ]
+          },
+          "script": "coverage run"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

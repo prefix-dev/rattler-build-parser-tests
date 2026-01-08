@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck-codequality",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck-codequality/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck-codequality/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck-codequality/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cppcheck-codequality": {
+          "build_string": "pyhcf101f3_1",
+          "name": "cppcheck-codequality",
+          "version": "1.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:55:01.652366505Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.com/ahogen/cppcheck-codequality",
+        "license": "MIT",
+        "license_file": [
+          "dist/LICENSE"
+        ],
+        "summary": "Convert a CppCheck XML report to a GitLab-compatible Code Quality JSON report."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "cppcheck-codequality = cppcheck_codequality.__main__:main"
+          ]
+        },
+        "script": [
+          "cd dist",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "version": "1.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "cppcheck-codequality",
+        "version": "1.5.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "poetry-core",
+          "poetry-dynamic-versioning >=1.0.0,<2.0.0",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10",
+          "xmltodict >=0.14.0,<0.15.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "17ed6822b84d361394c6892385c96e978f179cb6ef33254c459f95424ed25393",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/c/cppcheck-codequality/cppcheck_codequality-1.5.0.tar.gz"
+        },
+        {
+          "sha256": "5a2046c0afb054babb1f43da660b268449c0a4882c7b3bea19f65b07710114d7",
+          "target_directory": "src",
+          "url": "https://gitlab.com/ahogen/cppcheck-codequality/-/archive/v1.5.0/cppcheck-codequality-v1.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cppcheck_codequality"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "cppcheck-codequality --help",
+            "cd src",
+            "coverage run --source=cppcheck_codequality --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=85"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

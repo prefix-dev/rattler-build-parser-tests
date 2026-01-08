@@ -1,0 +1,55 @@
+context:
+  name: Clipboard
+  version: "0.10.0"
+
+package:
+  name: cb-${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Slackadays/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 741717ee505a7852fab5c69740b019e2b33f81d948232894ce294ed0a55e70fb
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then:
+        - make
+        - pkg-config
+        - wayland-protocols
+
+  host:
+    - openssl
+    - if: linux
+      then:
+        - alsa-lib
+        - xorg-libx11
+        - wayland
+
+tests:
+  - script:
+    - cb --help
+
+about:
+  homepage: https://getclipboard.app
+  repository: https://github.com/Slackadays/Clipboard
+  documentation: https://getclipboard.app/docs
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: "Your new, ridonkuliciously smart clipboard manager"
+  description: |
+    The Clipboard Project (CB for short) is the oh-so-awesome
+    clipboard manager that's just like a second brain.
+    It's fast and lightweight, feature packed, and super user friendly.
+
+extra:
+  recipe-maintainers:
+    - eunos-1128
+    - Slackadays

@@ -1,0 +1,38 @@
+context:
+  version: "2.17.0"
+
+package:
+  name: fsdgenfsd
+  version: ${{ version }}
+
+source:
+  url: https://github.com/FacilityApi/Facility/archive/nuget.${{ version }}.tar.gz
+  sha256: 3a794cc2dc1c5dae69182f6d82de255c2fd31c2d03ad57effdbf4b13b048bc5a
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - fsdgenfsd --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Tools and libraries for working with the Facility API Framework.
+  homepage: https://github.com/FaciltyApi/Facility
+  repository: https://github.com/FaciltyApi/Facility
+
+extra:
+  recipe-maintainers:
+    - danielnachun

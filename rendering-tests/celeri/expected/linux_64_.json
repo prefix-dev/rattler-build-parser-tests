@@ -1,0 +1,194 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_celeri",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_celeri/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_celeri/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_celeri/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "celeri": {
+          "build_string": "pyhcf101f3_0",
+          "name": "celeri",
+          "version": "0.0.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:54:38.469339367Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/brendanjmeade/celeri",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/brendanjmeade/celeri",
+        "summary": "Next generation earthquake cycle kinematics"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "celeri-create-grid-station = celeri.scripts.create_grid_station:main",
+            "celeri-forward = celeri.scripts.celeri_forward:main",
+            "celeri-msh2stl = celeri.scripts.msh2stl:main",
+            "celeri-segmesh = celeri.scripts.segmesh:main",
+            "celeri-snap-segments = celeri.scripts.snap_segments:main",
+            "celeri-solve = celeri.scripts.celeri_solve:main",
+            "celeri-stl2msh = celeri.scripts.stl2msh:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.13",
+        "python_min": "3.11",
+        "version": "0.0.4"
+      },
+      "extra": {
+        "feedstock_name": "celeri",
+        "recipe-maintainers": [
+          "aseyboldt",
+          "brendanjmeade",
+          "maresb"
+        ]
+      },
+      "package": {
+        "name": "celeri",
+        "version": "0.0.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "hatchling",
+          "hatch-vcs",
+          "hatch-fancy-pypi-readme",
+          "pip"
+        ],
+        "run": [
+          "python >=3.11",
+          "addict",
+          "cartopy",
+          "colorcet",
+          "cutde >=25.7.24",
+          "cvxopt",
+          "cvxpy",
+          "python-gmsh",
+          "h5py",
+          "ipykernel",
+          "ipython",
+          "loguru",
+          "matplotlib-base",
+          "meshio",
+          "numba",
+          "numpy",
+          "nutpie",
+          "pandas",
+          "papermill",
+          "pyarrow",
+          "pydantic",
+          "pymc",
+          "pyproj",
+          "pytest",
+          "scipy",
+          "shapely",
+          "spherical-geometry",
+          "tqdm",
+          "xarray",
+          "zarr",
+          "occt * all_*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4da37c89eb6345c8c533f2a565e6970d852bf02b6f40704722df0907439da249",
+          "url": "https://pypi.org/packages/source/c/celeri/celeri-0.0.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "celeri"
+            ],
+            "pip_check": false,
+            "python_version": [
+              "3.11.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "celeri-solve --help",
+            "celeri-snap-segments --help",
+            "celeri-segmesh --help",
+            "celeri-msh2stl --help",
+            "celeri-stl2msh --help",
+            "celeri-forward --help",
+            "celeri-create-grid-station --help",
+            "python -c \"from importlib.metadata import version; v = version('celeri'); print(v); assert v == '${{ version }}'\"",
+            "pip install gmsh",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

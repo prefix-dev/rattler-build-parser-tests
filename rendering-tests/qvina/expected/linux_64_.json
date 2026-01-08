@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qvina",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qvina/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qvina/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qvina/work"
+      },
+      "hash": {
+        "hash": "6b691c4"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "qvina": {
+          "build_string": "h6b691c4_7",
+          "name": "qvina",
+          "version": "2.1.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-13T07:55:05.687900126Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://qvina.github.io/",
+        "homepage": "https://qvina.github.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/QVina/qvina",
+        "summary": "Accurately speed up AutoDock Vina"
+      },
+      "build": {
+        "number": 7,
+        "script": "set -ex\n# upstream smina uses deprecated boost headers; allow for now\nexport CXXFLAGS=\"${CXXFLAGS} -DBOOST_TIMER_ENABLE_DEPRECATED\"\ncmake -G \"Ninja\" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX $SRC_DIR\nninja -j $CPU_COUNT\nninja install\n",
+        "string": "h6b691c4_7"
+      },
+      "context": {
+        "name": "qvina",
+        "version": "2.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "qvina",
+        "version": "2.1.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 13.*",
+          "cmake >=3.12",
+          "ninja"
+        ],
+        "host": [
+          "libboost-devel <=1.84"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "da78b5dc3d7a0b145f13ac7698bae02a9f03fdf10b5fbf06dadce459b3f73a66",
+          "url": "https://github.com/hadim/qvina/archive/cmake.zip"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "vina --help",
+            "qvina2 --help",
+            "qvinaw --help"
+          ]
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "vina",
+              "qvina2",
+              "qvinaw"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

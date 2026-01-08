@@ -1,0 +1,39 @@
+context:
+  version: "4.14.0"
+
+package:
+  name: markuplint
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/markuplint/-/markuplint-${{ version }}.tgz
+  sha256: f79705af36d88e7502b2cb679a01ffc4bdc78b085f914dd4952c505cd2f9c151
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - markuplint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Peace of mind in your markup - An HTML linter for all markup developers.
+  homepage: https://github.com/markuplint/markuplint
+  repository: https://github.com/markuplint/markuplint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

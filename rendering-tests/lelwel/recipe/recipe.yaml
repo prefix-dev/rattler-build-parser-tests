@@ -1,0 +1,38 @@
+context:
+  version: "0.10.0"
+
+package:
+  name: lelwel
+  version: ${{ version }}
+
+source:
+  url: https://github.com/0x2a-42/lelwel/archive/v${{ version }}.tar.gz
+  sha256: 2801331deadc00379964d0653a19157062755f04a6f210aed0d4c5e6adbc5527
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - llw --help
+
+about:
+  license: Apache-2.0 AND MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Resilient LL(1) parser generator for Rust
+  homepage: https://github.com/0x2a-42/lelwel
+  repository: https://github.com/0x2a-42/lelwel
+
+extra:
+  recipe-maintainers:
+    - danielnachun

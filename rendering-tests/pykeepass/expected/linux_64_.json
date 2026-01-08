@@ -1,0 +1,134 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pykeepass",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pykeepass/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pykeepass/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pykeepass/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pykeepass": {
+          "build_string": "pyhcf101f3_1",
+          "name": "pykeepass",
+          "version": "4.1.1.post1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:52:47.094442129Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/libkeepass/pykeepass",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python library to interact with keepass databases (supports KDBX3 and KDBX4)"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "version": "4.1.1.post1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "pykeepass",
+        "version": "4.1.1.post1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=59.0.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "pyotp >=2.9.0",
+          "construct >=2.10.53",
+          "argon2-cffi >=18.1.0",
+          "pycryptodomex >=3.6.2",
+          "lxml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "28f4927454ebe507ef7294d3ec6b5a72ee3a5c97fcc21b1080b8ddc09f2097dd",
+          "url": "https://pypi.org/packages/source/p/pykeepass/pykeepass-4.1.1.post1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pykeepass"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python =3.10"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,86 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+context:
+  version: "1.3.0"
+
+recipe:
+  name: robometry-split
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/robotology/robometry/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 6db89e2fa21467199bd7a334e3d738e06d21d13715c359b22fc458d1dfe2de93
+
+build:
+  number: 2
+
+outputs:
+  - package:
+      name: librobometry
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+      host:
+        - ycm-cmake-modules
+        - libmatio-cpp
+        - libboost-devel
+        - nlohmann_json
+        - libyarp
+      run:
+        - libboost-headers
+      run_exports:
+        - ${{ pin_subpackage('librobometry', upper_bound='x.x.x') }}
+
+    tests:
+      - package_contents:
+          include:
+            - robometry/BufferManager.h
+          lib:
+            - robometry
+      - script:
+          - cmake-package-check robometry
+        requirements:
+          run:
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake-package-check
+
+  - package:
+      name: robometry
+    requirements:
+      host:
+        - libboost-devel
+      run:
+        - ${{ pin_subpackage('librobometry', exact=True) }}
+      run_exports:
+        - ${{ pin_subpackage('librobometry', upper_bound='x.x.x') }}
+    tests:
+      - script:
+          - cmake-package-check robometry
+        requirements:
+          run:
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake-package-check
+
+about:
+  homepage: https://github.com/robotology/robometry
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Telemetry library for logging data.
+
+extra:
+  recipe-maintainers:
+    - Nicogene
+    - traversaro

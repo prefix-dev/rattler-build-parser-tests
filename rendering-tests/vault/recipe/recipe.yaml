@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 1.21.1
+
+package:
+  name: vault
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/hashicorp/vault/archive/v${{ version }}.tar.gz
+    sha256: d9f15d75fa4beee3a2faf26dfec860122c94b87139f65a5ed826a9934f0b2a42
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - vault --help
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A tool for managing secrets.
+  description: |
+    Vault is a tool for securely accessing secrets. A secret is anything that you
+    want to tightly control access to, such as API keys, passwords, certificates,
+    and more. Vault provides a unified interface to any secret, while providing
+    tight access control and recording a detailed audit log.
+  homepage: https://www.vaultproject.io
+  repository: https://github.com/hashicorp/vault.git
+  documentation: https://www.vaultproject.io/docs/index.html
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - mxr-conda
+    - johanneskoester
+    - sodre
+    - mariusvniekerk
+    - oblute
+    - JennaLipscomb

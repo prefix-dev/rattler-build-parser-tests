@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ollama",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ollama/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ollama/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ollama/work"
+      },
+      "hash": {
+        "hash": "f63c41d"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ollama": {
+          "build_string": "cuda_130hf63c41d_0",
+          "name": "ollama",
+          "version": "0.13.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:54:47.824553624Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "13.0",
+        "cxx_compiler": "vs2022",
+        "m2w64_c_stdlib": "m2w64-sysroot",
+        "m2w64_c_stdlib_version": "12",
+        "m2w64_cxx_compiler": "gxx",
+        "m2w64_cxx_compiler_version": "14",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ollama is an easy way to get local language models running on your computer through a command-line interface.",
+        "documentation": "https://github.com/ollama/ollama",
+        "homepage": "https://ollama.com/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "repository": "https://github.com/ollama/ollama",
+        "summary": "Ollama CLI"
+      },
+      "build": {
+        "number": 0,
+        "script": "build.bat",
+        "string": "cuda_130hf63c41d_0",
+        "variant": {
+          "down_prioritize_variant": 0,
+          "use_keys": [
+            "cuda"
+          ]
+        }
+      },
+      "context": {
+        "build_number": 0,
+        "cuda": true,
+        "cuda_build_string": "cuda_130",
+        "string_prefix": "cuda_130",
+        "version": "0.13.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jmakovicka",
+          "sodre",
+          "benmoss"
+        ]
+      },
+      "package": {
+        "name": "ollama",
+        "version": "0.13.2"
+      },
+      "requirements": {
+        "build": [
+          "go-cgo_win-64",
+          "cmake",
+          "make",
+          "go-licenses ~=1.6",
+          "m2w64-sysroot_win-64 12.*",
+          "gxx_win-64 14.*",
+          "cuda-nvcc_win-64 13.0.*",
+          "cuda-version ==13.0"
+        ],
+        "host": [
+          "cuda-version ==13.0",
+          "libcublas-dev"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libcublas-dev"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-ggml-cuda-depends-on-ggml-base.patch"
+          ],
+          "sha256": "1c167d92df8f9fe62e46a4f95291cf4d5815e948cabc70e9eaa1cb67d5da9a7f",
+          "url": "https://github.com/ollama/ollama/archive/refs/tags/v0.13.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "ollama --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

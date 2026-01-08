@@ -1,0 +1,61 @@
+context:
+  name: lbcta
+  version: "1.1.17"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+    sha256: 5d2b00305c4c67f54c5a07fc2aa10823ab23c3ceb79601fd52a7b8aca3a16a82
+
+build:
+  noarch: python
+  number: 0
+  script: python -m pip install .
+  python:
+    entry_points:
+      - lbcta-ls = lbCta.scripts.status:main
+      - lbcta-recall = lbCta.scripts.recall:main
+      - lbcta-query = lbCta.scripts.query:main
+
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools_scm
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - lbCta
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - lbcta-ls --version | grep '${{ version }}'
+      - lbcta-ls --help
+      - lbcta-recall --help
+      - lbcta-query --help
+
+about:
+  homepage: https://gitlab.cern.ch/lhcb-online/lhcb-online-cta
+  summary: LHCb interface to EOS/CTA package
+  description: |
+    This package implements a set of console scripts to interface with the CERN Tape
+    Archive (CTA) in view of listing and recalling files and directories from tape.
+  license: GPL-3.0-only
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - chrisburr

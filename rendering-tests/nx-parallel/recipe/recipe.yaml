@@ -1,0 +1,64 @@
+context:
+  name: nx-parallel
+  version: 0.3
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/nx_parallel-${{ version }}.tar.gz
+  sha256: f3b98323f9e160a15698d6471eee59eb90a0356b2da8a9ddd80818445afc0d04
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.2
+  run:
+    - python >=${{ python_min }}
+    - networkx >=3.4.2
+    - joblib >=1.4.2
+  run_constraints:
+    - numpy >=1.23
+    - scipy >=1.9,!=1.11.0,!=1.11.1
+
+tests:
+  - python:
+      imports:
+        - nx_parallel
+        - _nx_parallel
+        - nx_parallel.algorithms
+        - nx_parallel.algorithms.approximation
+        - nx_parallel.algorithms.bipartite
+        - nx_parallel.algorithms.centrality
+        - nx_parallel.algorithms.connectivity
+        - nx_parallel.algorithms.shortest_paths
+        - nx_parallel.utils
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: A parallel backend for NetworkX
+  description: |
+    A NetworkX backend that uses joblib to run graph algorithms in parallel.
+  homepage: https://github.com/networkx/nx-parallel
+  repository: https://github.com/networkx/nx-parallel
+  documentation: https://github.com/networkx/nx-parallel
+
+extra:
+  recipe-maintainers:
+    - MridulS
+    - Schefflera-Arboricola

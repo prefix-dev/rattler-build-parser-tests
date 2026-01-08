@@ -1,0 +1,40 @@
+context:
+  version: "24.2.9"
+
+package:
+  name: semantic-release
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/semantic-release/-/semantic-release-${{ version }}.tgz
+  sha256: 37a1dd9c15fef54250771ec2ff42c43815af625da85272d4faa593a59200b790
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - semantic-release --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Fully automated version management and package publishing
+  homepage: https://github.com/semantic-release/semantic-release
+  repository: https://github.com/semantic-release/semantic-release
+
+extra:
+  recipe-maintainers:
+    - danielnachun

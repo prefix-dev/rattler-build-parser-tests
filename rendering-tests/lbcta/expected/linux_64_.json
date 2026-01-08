@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbcta",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbcta/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbcta/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbcta/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbcta": {
+          "build_string": "pyhe01879c_0",
+          "name": "lbcta",
+          "version": "1.1.17"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:51.311692692Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package implements a set of console scripts to interface with the CERN Tape\nArchive (CTA) in view of listing and recalling files and directories from tape.",
+        "homepage": "https://gitlab.cern.ch/lhcb-online/lhcb-online-cta",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "LHCb interface to EOS/CTA package"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "lbcta-ls = lbCta.scripts.status:main",
+            "lbcta-recall = lbCta.scripts.recall:main",
+            "lbcta-query = lbCta.scripts.query:main"
+          ]
+        },
+        "script": "python -m pip install .",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "lbcta",
+        "python_min": "3.9",
+        "version": "1.1.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbcta",
+        "version": "1.1.17"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools",
+          "setuptools_scm"
+        ],
+        "run": [
+          "python >=3.9",
+          "setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5d2b00305c4c67f54c5a07fc2aa10823ab23c3ceb79601fd52a7b8aca3a16a82",
+          "url": "https://pypi.org/packages/source/l/lbcta/lbcta-1.1.17.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "lbCta"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "lbcta-ls --version | grep '${{ version }}'",
+            "lbcta-ls --help",
+            "lbcta-recall --help",
+            "lbcta-query --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

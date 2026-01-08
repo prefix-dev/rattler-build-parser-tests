@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: bayesianbandits
+  version: "1.1.2"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bayesianbandits-${{ version }}.tar.gz
+  sha256: 2cfeaba4cd5f20c9f22e57b911507f354f6d29f07f4c78ad9ca95f8e11fa44da
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - scipy >=1.14.0
+    - numpy >=1.23.5
+    - scikit-learn >=1.4.2
+    - attrs >=21.2.0
+    - typing_extensions >=4.8.0
+
+tests:
+  - python:
+      imports:
+        - bayesianbandits
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A Pythonic microframework for Multi-Armed Bandit algorithms.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/bayesianbandits/bayesianbandits
+  documentation: https://bayesianbandits.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - thewchan

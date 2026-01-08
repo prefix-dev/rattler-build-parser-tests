@@ -1,0 +1,425 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ifcopenshell",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ifcopenshell/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ifcopenshell/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ifcopenshell/work"
+      },
+      "hash": {
+        "hash": "4df2c4d",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ifcopenshell": {
+          "build_string": "py311h4df2c4d_1",
+          "name": "ifcopenshell",
+          "version": "0.8.4"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-13T07:53:22.288175316Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "gmp": "6",
+        "hdf5": "1.14.6",
+        "libboost_devel": "1.88",
+        "libxml2_devel": "2.14",
+        "mpfr": "4",
+        "occt": "7.9.1",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "IfcOpenShell\n============\n\nIfcOpenShell is an open source ([LGPL]) software library for working with Industry Foundation Classes ([IFC]). Complete\nparsing support is provided for [IFC2x3 TC1], [IFC4 Add2 TC1], IFC4x1, IFC4x3, and IFC4x3. Extensive geometric support\nis implemented for the IFC releases [IFC2x3 TC1] and [IFC4 Add2 TC1]. Extending with support for arbitrary IFC schemas\nis possible at compile-time when using C++ and at run-time when using Python.\n\nIn addition to a C++ and Python API, IfcOpenShell comes with an ecosystem of tools, notably including IfcConvert (an\napplication to convert IFC models to\nother formats), the BlenderBIM Add-on (an add-on to Blender providing a graphical IFC authoring platform), and many\nother libraries, CLI apps, and more. Support is also provided for auxiliary standards such as BCF and IDS.\n\nFor more information, see:\n\n* [IfcOpenShell Website](http://ifcopenshell.org)\n* [IfcOpenShell Documentation](http://bonsaibim.org/docs-python)\n* [IfcOpenShell C++ Installation](https://bonsaibim.org/docs-python/ifcopenshell/installation.html)\n* [IfcOpenShell Python Installation](https://bonsaibim.org/docs-python/ifcopenshell-python/installation.html)\n* [IfcOpenShell Python Hello World Tutorial](https://bonsaibim.org/docs-python/ifcopenshell-python/hello_world.html)\n* [Bonsai Website](https://bonsaibim.org)\n* [Bonsai Documentation](http://bonsaibim.org/docs)\n* [Add-on Installation](https://bonsaibim.org/docs/users/installation.html)\n* [Exploring an IFC model](https://bonsaibim.org/docs/users/exploring_an_ifc_model.html)\n\n<table>\n<thead>\n<tr>\n<th>Service</th>\n<th>Status</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Anaconda Daily Build</td>\n<td><a href=\"https://anaconda.org/ifcopenshell/ifcopenshell\"><img src=\"https://img.shields.io/conda/vn/ifcopenshell/ifcopenshell\" alt=\"Anaconda-Server Badge\"></a></td>\n</tr>\n<tr>\n<td>Anaconda v0.8.0 Stable</td>\n<td><a href=\"https://anaconda.org/conda-forge/ifcopenshell\"><img src=\"https://img.shields.io/conda/vn/conda-forge/ifcopenshell\" alt=\"Anaconda-Server Badge\"></a></td>\n</tr>\n<tr>\n<td>PyPi Daily Build</td>\n<td><a href=\"https://pypi.org/project/ifcopenshell/\"><img src=\"https://img.shields.io/pypi/v/ifcopenshell\" alt=\"PyPi Badge\"></a></td>\n</tr>\n<tr>\n<td>ArchLinux AUR Package Stable</td>\n<td><a href=\"https://aur.archlinux.org/packages/ifcopenshell\"><img src=\"https://img.shields.io/aur/version/ifcopenshell\" alt=\"AUR Badge\"></a></td>\n</tr>\n<tr>\n<td>ArchLinux AUR Package git</td>\n<td><a href=\"https://aur.archlinux.org/packages/ifcopenshell-git\"><img src=\"https://img.shields.io/aur/version/ifcopenshell-git\" alt=\"AUR Badge\"></a></td>\n</tr>\n<tr>\n<td>BlenderBIM Add-on Chocolatey (under moderation)</td>\n<td><a href=\"https://community.chocolatey.org/packages/blenderbim-nightly/\"><img src=\"https://img.shields.io/chocolatey/v/blenderbim-nightly\" alt=\"Chocolatey Badge\"></a></td>\n</tr>\n<tr>\n<td>Sponsor development on OpenCollective</td>\n<td><a href=\"https://opencollective.com/opensourcebim/\"><img src=\"https://opencollective.com/opensourcebim/tiers/badge.svg\" alt=\"Financial Contributors\"></a></td>\n</tr>\n<tr>\n<td>Docker hub</td>\n<td><a href=\"https://hub.docker.com/r/aecgeeks/ifcopenshell\"><img src=\"https://img.shields.io/docker/pulls/aecgeeks/ifcopenshell\" alt=\"Docker Pulls\"></a></td>\n</tr>\n\n</tbody>\n</table>\nContents\n--------\n\nThose marked with an asterisk are part of IfcOpenShell.\n<table>\n<thead>\n<tr>\n<th>Name</th>\n<th>Description</th>\n<th>License</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>bcf</td>\n<td>Library to read and write BCF-XML and query OpenCDE BCF-API modules</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>blenderbim</td>\n<td>Add-on to Blender providing a graphical native IFC authoring platform</td>\n<td>GPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>bsdd</td>\n<td>Library to query the bSDD API</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc2ca</td>\n<td>Utility to convert IFC structural analysis models to Code_Aster</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc4d</td>\n<td>Convert to and from IFC and project management software</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc5d</td>\n<td>Report and optimise cost information from IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcbimtester</td>\n<td>Wrapper for Gherkin based unit testing for IFC models</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcblender</td>\n<td>Historic Blender IFC import add-on</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifccityjson</td>\n<td>Convert CityJSON to IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcclash</td>\n<td>Clash detection library and CLI app</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifccobie</td>\n<td>Extract IFC data for COBie handover requirements</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcconvert</td>\n<td>CLI app to convert IFC to many other formats</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifccsv</td>\n<td>Library and CLI app to export and import schedules from IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcdiff</td>\n<td>Compare changes between IFC models</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcfm</td>\n<td>Extract IFC data for FM handover requirements</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcgeom</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcgeom_schema_agnostic</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcgeomserver</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcjni</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcmax</td>\n<td>Historic extension for IFC support in 3DS Max</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcopenshell-python</td>\n<td>Python library for IFC manipulation</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcparse</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcpatch</td>\n<td>Utility to run pre-packaged scripts to manipulate IFCs</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcsverchok</td>\n<td>Blender Add-on for visual node programming with IFC</td>\n<td>GPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifctester</td>\n<td>Library, CLI and webapp for IDS model auditing</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcwrap</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>qtviewer</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>serializers</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n</tbody>\n</table>\n\n[LGPL]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/COPYING.LESSER \"LGPL-3.0-or-later\"\n[IFC]: https://technical.buildingsmart.org/standards/ifc/ \"IFC\"\n[IFC2x3 TC1]: https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ \"IFC2x3 TC1\"\n[IFC4 Add2 TC1]: https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2_TC1/HTML/ \"IFC4 Add2 TC1\"\n[Visual Studio]: https://www.visualstudio.com/ \"Visual Studio\"\n[Visual C++ Build Tools]: http://landinghub.visualstudio.com/visual-cpp-build-tools \"Visual C++ Build Tools\"\n[MSYS2]: https://msys2.github.io/ \"MSYS2\"\n[win/readme.md]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/win/readme.md \"win/readme.md\"\n[nix/build-all.py]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/nix/build-all.py \"nix/build-all.py\"",
+        "documentation": "https://ifcopenshell.org/",
+        "homepage": "https://ifcopenshell.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/IfcOpenShell/IfcOpenShell",
+        "summary": "IfcOpenShell is a library to support the IFC file format"
+      },
+      "build": {
+        "number": 1,
+        "script": "build_ifcopenshell.sh",
+        "string": "py311h4df2c4d_1"
+      },
+      "context": {
+        "build": 1,
+        "python_min": "3.10",
+        "version": "0.8.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "adrianinsaval",
+          "looooo",
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "ifcopenshell",
+        "version": "0.8.4"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "ninja",
+          "swig >=4.1.1",
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*"
+        ],
+        "host": [
+          "python",
+          "libboost-devel",
+          "occt",
+          "libxml2-devel",
+          "cgal-cpp",
+          "hdf5",
+          "eigen",
+          "mpfr",
+          "nlohmann_json",
+          "gmp",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "shapely",
+          "typing_extensions",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "hdf5",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "occt",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "cgal-cpp",
+              "upper_bound": "x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "ifcopenshell",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/add_hdf5_envvar_unification.patch",
+            "patches/fix_osx_hdf5_conda_package_finding.patch"
+          ],
+          "sha256": "4ed26e8f7add770001eda032c9858a90397d19fdacc829719e5893886d5c0a5e",
+          "url": "https://github.com/IfcOpenShell/IfcOpenShell/archive/refs/tags/ifcopenshell-python-0.8.4.tar.gz"
+        },
+        {
+          "sha256": "668d1849f790075fcbe46669d5c1fc6e9339a6b3bb78f08e0aa4479289f93b70",
+          "target_directory": "test/input",
+          "url": "https://github.com/IfcOpenShell/files/archive/20a17fcf3b1be2bc48af0273f7604af5b7cc4068.tar.gz"
+        },
+        {
+          "sha256": "3a332aae707967e609dcab44a118a88ec270c551e7222eb53fc8ba809e9e7a0d",
+          "target_directory": "src/ifcopenshell-python/ifcopenshell/mvd",
+          "url": "https://github.com/opensourceBIM/python-mvdxml/archive/83c12fa494b9d6a5a370d8525dc1f76aa5c89d8d.tar.gz"
+        },
+        {
+          "sha256": "0ceb724b81dd7204c2fb61fabe588d85b1ca9d711e4b7e81a5ba11f5f6c25f32",
+          "target_directory": "src/svgfill",
+          "url": "https://github.com/IfcOpenShell/svgfill/archive/ff00026cd359d83c8aebe43b550f7f75a04a359a.tar.gz"
+        },
+        {
+          "sha256": "fc22893af932535d49efe23a1d26c1742ffdba107b1e8a517b2e5c2af5e4d430",
+          "target_directory": "src/ifcopenshell-python/test/Sample-BIM-Files",
+          "url": "https://github.com/IfcOpenShell/ids-test-files/archive/2daf6c46ed9fc7a17259ef6d4c17c3553ef642cd.tar.gz"
+        },
+        {
+          "sha256": "b78c9fd184d00488da8d346a838b76f238530323f400acb780a16762700bd309",
+          "target_directory": "src/svgfill/3rdparty/svgpp",
+          "url": "https://github.com/svgpp/svgpp/archive/cb57e8b61dbdbc9a38c15717acb9372aaf5fb0d4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ifcopenshell"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "occt * *novtk*",
+              "pytest",
+              "python-dateutil",
+              "xmlschema",
+              "xsdata",
+              "lxml",
+              "isodate",
+              "lark",
+              "networkx",
+              "tabulate",
+              "shapely"
+            ]
+          },
+          "script": "python -c \"import ifcopenshell; assert ifcopenshell.version == '${{ version }}', 'print(ifcopenshell.version)'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bcf-client",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bcf-client/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bcf-client/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bcf-client/work"
+      },
+      "hash": {
+        "hash": "41dca32",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bcf-client": {
+          "build_string": "pyh41dca32_1",
+          "name": "bcf-client",
+          "version": "0.8.4"
+        },
+        "ifcopenshell": {
+          "build_string": "py311h4df2c4d_1",
+          "name": "ifcopenshell",
+          "version": "0.8.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:22.340070473Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "IfcOpenShell\n============\n\nIfcOpenShell is an open source ([LGPL]) software library for working with Industry Foundation Classes ([IFC]). Complete\nparsing support is provided for [IFC2x3 TC1], [IFC4 Add2 TC1], IFC4x1, IFC4x3, and IFC4x3. Extensive geometric support\nis implemented for the IFC releases [IFC2x3 TC1] and [IFC4 Add2 TC1]. Extending with support for arbitrary IFC schemas\nis possible at compile-time when using C++ and at run-time when using Python.\n\nIn addition to a C++ and Python API, IfcOpenShell comes with an ecosystem of tools, notably including IfcConvert (an\napplication to convert IFC models to\nother formats), the BlenderBIM Add-on (an add-on to Blender providing a graphical IFC authoring platform), and many\nother libraries, CLI apps, and more. Support is also provided for auxiliary standards such as BCF and IDS.\n\nFor more information, see:\n\n* [IfcOpenShell Website](http://ifcopenshell.org)\n* [IfcOpenShell Documentation](http://bonsaibim.org/docs-python)\n* [IfcOpenShell C++ Installation](https://bonsaibim.org/docs-python/ifcopenshell/installation.html)\n* [IfcOpenShell Python Installation](https://bonsaibim.org/docs-python/ifcopenshell-python/installation.html)\n* [IfcOpenShell Python Hello World Tutorial](https://bonsaibim.org/docs-python/ifcopenshell-python/hello_world.html)\n* [Bonsai Website](https://bonsaibim.org)\n* [Bonsai Documentation](http://bonsaibim.org/docs)\n* [Add-on Installation](https://bonsaibim.org/docs/users/installation.html)\n* [Exploring an IFC model](https://bonsaibim.org/docs/users/exploring_an_ifc_model.html)\n\n<table>\n<thead>\n<tr>\n<th>Service</th>\n<th>Status</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Anaconda Daily Build</td>\n<td><a href=\"https://anaconda.org/ifcopenshell/ifcopenshell\"><img src=\"https://img.shields.io/conda/vn/ifcopenshell/ifcopenshell\" alt=\"Anaconda-Server Badge\"></a></td>\n</tr>\n<tr>\n<td>Anaconda v0.8.0 Stable</td>\n<td><a href=\"https://anaconda.org/conda-forge/ifcopenshell\"><img src=\"https://img.shields.io/conda/vn/conda-forge/ifcopenshell\" alt=\"Anaconda-Server Badge\"></a></td>\n</tr>\n<tr>\n<td>PyPi Daily Build</td>\n<td><a href=\"https://pypi.org/project/ifcopenshell/\"><img src=\"https://img.shields.io/pypi/v/ifcopenshell\" alt=\"PyPi Badge\"></a></td>\n</tr>\n<tr>\n<td>ArchLinux AUR Package Stable</td>\n<td><a href=\"https://aur.archlinux.org/packages/ifcopenshell\"><img src=\"https://img.shields.io/aur/version/ifcopenshell\" alt=\"AUR Badge\"></a></td>\n</tr>\n<tr>\n<td>ArchLinux AUR Package git</td>\n<td><a href=\"https://aur.archlinux.org/packages/ifcopenshell-git\"><img src=\"https://img.shields.io/aur/version/ifcopenshell-git\" alt=\"AUR Badge\"></a></td>\n</tr>\n<tr>\n<td>BlenderBIM Add-on Chocolatey (under moderation)</td>\n<td><a href=\"https://community.chocolatey.org/packages/blenderbim-nightly/\"><img src=\"https://img.shields.io/chocolatey/v/blenderbim-nightly\" alt=\"Chocolatey Badge\"></a></td>\n</tr>\n<tr>\n<td>Sponsor development on OpenCollective</td>\n<td><a href=\"https://opencollective.com/opensourcebim/\"><img src=\"https://opencollective.com/opensourcebim/tiers/badge.svg\" alt=\"Financial Contributors\"></a></td>\n</tr>\n<tr>\n<td>Docker hub</td>\n<td><a href=\"https://hub.docker.com/r/aecgeeks/ifcopenshell\"><img src=\"https://img.shields.io/docker/pulls/aecgeeks/ifcopenshell\" alt=\"Docker Pulls\"></a></td>\n</tr>\n\n</tbody>\n</table>\nContents\n--------\n\nThose marked with an asterisk are part of IfcOpenShell.\n<table>\n<thead>\n<tr>\n<th>Name</th>\n<th>Description</th>\n<th>License</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>bcf</td>\n<td>Library to read and write BCF-XML and query OpenCDE BCF-API modules</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>blenderbim</td>\n<td>Add-on to Blender providing a graphical native IFC authoring platform</td>\n<td>GPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>bsdd</td>\n<td>Library to query the bSDD API</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc2ca</td>\n<td>Utility to convert IFC structural analysis models to Code_Aster</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc4d</td>\n<td>Convert to and from IFC and project management software</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifc5d</td>\n<td>Report and optimise cost information from IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcbimtester</td>\n<td>Wrapper for Gherkin based unit testing for IFC models</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcblender</td>\n<td>Historic Blender IFC import add-on</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifccityjson</td>\n<td>Convert CityJSON to IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcclash</td>\n<td>Clash detection library and CLI app</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifccobie</td>\n<td>Extract IFC data for COBie handover requirements</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcconvert</td>\n<td>CLI app to convert IFC to many other formats</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifccsv</td>\n<td>Library and CLI app to export and import schedules from IFC</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcdiff</td>\n<td>Compare changes between IFC models</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcfm</td>\n<td>Extract IFC data for FM handover requirements</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcgeom</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcgeom_schema_agnostic</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcgeomserver</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcjni</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcmax</td>\n<td>Historic extension for IFC support in 3DS Max</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcopenshell-python</td>\n<td>Python library for IFC manipulation</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcparse</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>ifcpatch</td>\n<td>Utility to run pre-packaged scripts to manipulate IFCs</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcsverchok</td>\n<td>Blender Add-on for visual node programming with IFC</td>\n<td>GPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifctester</td>\n<td>Library, CLI and webapp for IDS model auditing</td>\n<td>LGPL-3.0-or-later</td>\n</tr>\n<tr>\n<td>ifcwrap</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>qtviewer</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n<tr>\n<td>serializers</td>\n<td>Internal library for IfcOpenShell</td>\n<td>LGPL-3.0-or-later*</td>\n</tr>\n</tbody>\n</table>\n\n[LGPL]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/COPYING.LESSER \"LGPL-3.0-or-later\"\n[IFC]: https://technical.buildingsmart.org/standards/ifc/ \"IFC\"\n[IFC2x3 TC1]: https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/HTML/ \"IFC2x3 TC1\"\n[IFC4 Add2 TC1]: https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2_TC1/HTML/ \"IFC4 Add2 TC1\"\n[Visual Studio]: https://www.visualstudio.com/ \"Visual Studio\"\n[Visual C++ Build Tools]: http://landinghub.visualstudio.com/visual-cpp-build-tools \"Visual C++ Build Tools\"\n[MSYS2]: https://msys2.github.io/ \"MSYS2\"\n[win/readme.md]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/win/readme.md \"win/readme.md\"\n[nix/build-all.py]: https://github.com/IfcOpenShell/IfcOpenShell/tree/master/nix/build-all.py \"nix/build-all.py\"",
+        "documentation": "https://ifcopenshell.org/",
+        "homepage": "https://ifcopenshell.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/IfcOpenShell/IfcOpenShell",
+        "summary": "IfcOpenShell is a library to support the IFC file format"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "pip install src/bcf -v --no-deps --ignore-installed",
+        "string": "pyh41dca32_1"
+      },
+      "context": {
+        "build": 1,
+        "python_min": "3.10",
+        "version": "0.8.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "adrianinsaval",
+          "looooo",
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "bcf-client",
+        "version": "0.8.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "requests",
+          "numpy",
+          "xsdata",
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "ifcopenshell",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/add_hdf5_envvar_unification.patch",
+            "patches/fix_osx_hdf5_conda_package_finding.patch"
+          ],
+          "sha256": "4ed26e8f7add770001eda032c9858a90397d19fdacc829719e5893886d5c0a5e",
+          "url": "https://github.com/IfcOpenShell/IfcOpenShell/archive/refs/tags/ifcopenshell-python-0.8.4.tar.gz"
+        },
+        {
+          "sha256": "668d1849f790075fcbe46669d5c1fc6e9339a6b3bb78f08e0aa4479289f93b70",
+          "target_directory": "test/input",
+          "url": "https://github.com/IfcOpenShell/files/archive/20a17fcf3b1be2bc48af0273f7604af5b7cc4068.tar.gz"
+        },
+        {
+          "sha256": "3a332aae707967e609dcab44a118a88ec270c551e7222eb53fc8ba809e9e7a0d",
+          "target_directory": "src/ifcopenshell-python/ifcopenshell/mvd",
+          "url": "https://github.com/opensourceBIM/python-mvdxml/archive/83c12fa494b9d6a5a370d8525dc1f76aa5c89d8d.tar.gz"
+        },
+        {
+          "sha256": "0ceb724b81dd7204c2fb61fabe588d85b1ca9d711e4b7e81a5ba11f5f6c25f32",
+          "target_directory": "src/svgfill",
+          "url": "https://github.com/IfcOpenShell/svgfill/archive/ff00026cd359d83c8aebe43b550f7f75a04a359a.tar.gz"
+        },
+        {
+          "sha256": "fc22893af932535d49efe23a1d26c1742ffdba107b1e8a517b2e5c2af5e4d430",
+          "target_directory": "src/ifcopenshell-python/test/Sample-BIM-Files",
+          "url": "https://github.com/IfcOpenShell/ids-test-files/archive/2daf6c46ed9fc7a17259ef6d4c17c3553ef642cd.tar.gz"
+        },
+        {
+          "sha256": "b78c9fd184d00488da8d346a838b76f238530323f400acb780a16762700bd309",
+          "target_directory": "src/svgfill/3rdparty/svgpp",
+          "url": "https://github.com/svgpp/svgpp/archive/cb57e8b61dbdbc9a38c15717acb9372aaf5fb0d4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "bcf"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/bcf/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python",
+              "ifcopenshell"
+            ]
+          },
+          "script": "pytest src/bcf/tests"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

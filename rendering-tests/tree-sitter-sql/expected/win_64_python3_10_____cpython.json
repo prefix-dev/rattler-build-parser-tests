@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-sql",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-sql/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-sql/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-sql/work"
+      },
+      "hash": {
+        "hash": "221c0b5",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree-sitter-sql": {
+          "build_string": "py310h221c0b5_0",
+          "name": "tree-sitter-sql",
+          "version": "0.3.11"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:52:49.995031879Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/DerekStride/tree-sitter-sql",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "SQL grammar for tree-sitter"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "tree-sitter generate",
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
+        ],
+        "string": "py310h221c0b5_0"
+      },
+      "context": {
+        "name": "tree-sitter-sql",
+        "version": "0.3.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "tree-sitter-sql",
+        "version": "0.3.11"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "nodejs *",
+          "tree-sitter-cli"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=43"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1fe13cb1e50dd9da9f22aed3cb9430fc9dae05a734a6049926fc12f6d8ecd3ae",
+          "url": "https://github.com/DerekStride/tree-sitter-sql/archive/refs/tags/v0.3.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter_sql"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

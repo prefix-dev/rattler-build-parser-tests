@@ -1,0 +1,39 @@
+context:
+  version: "0.19.1"
+
+package:
+  name: twiggy-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/twiggy-language-server/-/twiggy-language-server-${{ version }}.tgz
+  sha256: cdd57a59dccb7c346fae47c2dd00f1408c5ca0951c1253e2407f2e1b291cec74
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - twiggy-language-server --node-ipc
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: TypeScript-powered language server for Twig templates.
+  homepage: https://github.com/moetelo/twiggy
+  repository: https://github.com/moetelo/twiggy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-sequoia",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-sequoia/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-sequoia/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-sequoia/work"
+      },
+      "hash": {
+        "hash": "20f9370"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rpm-sequoia": {
+          "build_string": "h20f9370_0",
+          "name": "rpm-sequoia",
+          "version": "1.9.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-13T07:53:10.036411792Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nettle": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/rpm-software-management/rpm-sequoia",
+        "license": "LGPL-2.0-or-later",
+        "license_file": [
+          "LICENSE.txt",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "An OpenPGP backend for rpm using Sequoia PGP"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export LIBCLANG_PATH=$BUILD_PREFIX/lib",
+          "cargo build --release",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "install -Dm644 target/*/release/librpm_sequoia$SHLIB_EXT \"${PREFIX}/lib/librpm_sequoia${SHLIB_EXT}.1\"",
+          "ln -s librpm_sequoia${SHLIB_EXT}.1 \"${PREFIX}/lib/librpm_sequoia${SHLIB_EXT}\"",
+          "install -Dm644 target/release/rpm-sequoia.pc \"${PREFIX}/lib/pkgconfig/rpm-sequoia.pc\""
+        ],
+        "string": "h20f9370_0"
+      },
+      "context": {
+        "version": "1.9.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "rpm-sequoia",
+        "version": "1.9.0"
+      },
+      "requirements": {
+        "build": [
+          "cargo-bundle-licenses",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "pkg-config",
+          "libclang",
+          "clang",
+          "coreutils"
+        ],
+        "host": [
+          "nettle"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "rpm-sequoia",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fc5acdbdfd4c3a5d296732ccfb2fec1fcfb3e7e5f41bf9a0789f8b54c161f5f7",
+          "url": "https://github.com/rpm-software-management/rpm-sequoia/archive/refs/tags/v1.9.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "pkg-config rpm-sequoia --libs"
+        },
+        {
+          "package_contents": {
+            "lib": [
+              "rpm_sequoia"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

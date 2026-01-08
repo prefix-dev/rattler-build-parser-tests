@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-specifications",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-specifications/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-specifications/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jsonschema-specifications/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jsonschema-specifications": {
+          "build_string": "pyhcf101f3_0",
+          "name": "jsonschema-specifications",
+          "version": "2025.9.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:01.359792131Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jsonschema-specifications.readthedocs.io/",
+        "homepage": "https://github.com/python-jsonschema/jsonschema-specifications",
+        "license": "MIT",
+        "license_file": [
+          "src/COPYING"
+        ],
+        "summary": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": {
+          "file": "builder.py",
+          "interpreter": "python"
+        },
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "2025.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jsonschema-specifications",
+        "version": "2025.9.1"
+      },
+      "requirements": {
+        "host": [
+          "hatch-vcs",
+          "hatchling",
+          "pip",
+          "python 3.10.*",
+          "python-build"
+        ],
+        "run": [
+          "python >=3.10",
+          "referencing >=0.31.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d",
+          "target_directory": "src",
+          "url": "https://pypi.org/packages/source/j/jsonschema-specifications/jsonschema_specifications-2025.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jsonschema_specifications"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "coverage",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "coverage run --source jsonschema_specifications --branch -m pytest -vv --color=yes --tb=long --pyargs jsonschema_specifications",
+            "coverage report --show-missing --skip-covered --fail-under=96"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

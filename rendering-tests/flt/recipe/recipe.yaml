@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: flt
+  version: "2025.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/flt-${{ version }}.tar.gz
+  sha256: a028bf741335f11b8f906bbcdccbefc015f88d6e35f5c1b3b197a4cd29c5412c
+
+build:
+  number: 1
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - setuptools >=74.1
+    - setuptools-scm >=8
+    - cython
+    - pip
+  run:
+    - python
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - flt
+        - flt.generic
+  - requirements:
+      run:
+        - python
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: fast Legendre transform
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/ntessore/flt
+
+extra:
+  recipe-maintainers:
+    - connoraird
+    - ntessore
+    - paddyroddy
+    - Saransh-cpp

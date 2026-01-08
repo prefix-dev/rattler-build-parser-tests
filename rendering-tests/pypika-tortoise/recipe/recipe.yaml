@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: pypika-tortoise
+  version: "0.6.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 6e17f00e77e78468836cb5c63eb6dc01445f83b1167e4f29f1c678949179c079
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - pdm-backend
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pypika_tortoise
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Forked from pypika and streamline just for tortoise-orm
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/tortoise/pypika-tortoise
+
+extra:
+  recipe-maintainers:
+    - thewchan

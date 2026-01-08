@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: lbprodrun
+  version: "1.11.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 814c2dea3ea98d516fae4752e1f0e0be13e069eb9cd577b5273017102e10db39
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - lb-prod-run = LbProdRun.__main__:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - wheel
+    - setuptools-scm >=3.4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click >=8.0
+    - lbenv
+    - pydantic >=1.10
+    - typer >=0.4.1
+    - packaging
+    - pyyaml >=6.0
+    - lbcondawrappers
+
+tests:
+  - python:
+      imports:
+        - LbProdRun
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - lb-prod-run --help
+
+about:
+  summary: CLI for running LHCb applications from LHCbDIRAC
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: https://gitlab.cern.ch/lhcb-core/lbprodrun
+
+extra:
+  recipe-maintainers:
+    - chrisburr

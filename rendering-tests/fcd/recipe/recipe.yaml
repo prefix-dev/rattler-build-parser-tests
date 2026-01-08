@@ -1,0 +1,44 @@
+context:
+  name: fcd
+  version: 1.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.io/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: c76735ed2aba248a54425430cfe95e42c760a8d498c275dbf65a050492fb62fc
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - pytorch
+    - numpy
+    - scipy
+    - rdkit
+
+tests:
+  - python:
+      imports:
+        - fcd
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: "Fréchet ChemNet Distance: A quality measure for generative models for molecules"
+  license: LGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/bioinf-jku/FCD
+
+extra:
+  recipe-maintainers:
+    - hadim

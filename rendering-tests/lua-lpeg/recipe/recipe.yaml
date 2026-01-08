@@ -1,0 +1,67 @@
+context:
+  version: '1.1.0'
+
+package:
+  name: lua-lpeg
+  version: ${{ version }}
+
+source:
+  # rattler-build fails with invalid peer certificate: UnknownIssuer
+  # https://github.com/prefix-dev/rattler-build/issues/1227
+  # - url: http://www.inf.puc-rio.br/~roberto/lpeg/lpeg-${{ version }}.tar.gz
+  #   sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
+  - path: ./lpeg-1.1.0.tar.gz
+    sha256: 4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a
+  - path: CMakeLists.txt
+
+build:
+  number: 4
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - luajit-openresty
+  run:
+    - luajit-openresty
+  run_exports:
+    - ${{ pin_subpackage('lua-lpeg', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then: luajit ${PREFIX}/share/lua/5.1/test.lua
+  - package_contents:
+      lib:
+        - lpeg
+      files:
+        - if: linux
+          then: lib/liblpeg.so
+        - if: osx
+          then: lib/liblpeg.dylib
+        - if: unix
+          then:
+            - lib/liblpeg.a
+            - share/lua/5.1/re.lua
+            - share/lua/5.1/test.lua
+          else:
+            - Library/lib/lpeg.lib
+            - Library/bin/lpeg.dll
+            - Library/share/lua/5.1/re.lua
+            - Library/share/lua/5.1/test.lua
+
+about:
+  homepage: http://www.inf.puc-rio.br/~roberto/lpeg/lpeg.html
+  license: MIT
+  license_file: LICENSE
+  summary: Parsing Expression Grammars For Lua
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - anjos
+    - pavelzw

@@ -1,0 +1,39 @@
+context:
+  version: "0.14.0"
+
+package:
+  name: rune
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rune-rs/rune/archive/${{ version }}.tar.gz
+  sha256: 96d6d488f57215afbeb12b7b77f89b4463ab209cbfabf03e83e56908ff7ed233
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - git
+
+tests:
+  - script:
+      - rune --help
+
+about:
+  license: Apache-2.0 AND MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: An embeddable dynamic programming language for Rust.
+  homepage: https://github.com/rune-rs/rune
+  repository: https://github.com/rune-rs/rune
+
+extra:
+  recipe-maintainers:
+    - danielnachun

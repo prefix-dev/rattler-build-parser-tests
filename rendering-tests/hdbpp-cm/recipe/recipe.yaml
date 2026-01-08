@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: hdbpp-cm
+  version: 2.2.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.com/tango-controls/hdbpp/hdbpp-cm/-/archive/${{ version }}/hdbpp-cm-${{ version }}.tar.gz
+  sha256: de23f3942b9094b054980e582f6e85c0a602e1b56660d4e9da9d653cc7e792a3
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - cmake
+    - make
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - pkg-config
+  host:
+    - cppzmq
+    - cpptango
+    - omniorb-libs
+
+tests:
+  - script:
+      - hdb++cm-srv --help 2>&1 | grep -i usage
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: Tango device server for the HDB++ Configuration Manager
+  homepage: https://www.tango-controls.org
+  repository: https://gitlab.com/tango-controls/hdbpp/hdbpp-cm
+  documentation: https://tango-controls.readthedocs.io/en/latest/tools-and-extensions/archiving/HDB++.html
+
+extra:
+  recipe-maintainers:
+    - beenje

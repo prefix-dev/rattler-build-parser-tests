@@ -1,0 +1,54 @@
+context:
+  name: ilmbase
+  version: "2.5.5"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/AcademySoftwareFoundation/openexr/archive/v${{ version }}.tar.gz
+  sha256: 59e98361cb31456a9634378d0f653a2b9554b8900f233450f2396ff495ea76b3
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - ninja
+  run_exports:
+    # https://abi-laboratory.pro/\?view\=timeline\&l\=ilmbase
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      include:
+        - OpenEXR/half.h
+        - OpenEXR/IlmThread.h
+        - OpenEXR/ImathMath.h
+        - OpenEXR/Iex.h
+        - OpenEXR/IexMathExc.h
+      lib:
+        - Half
+        - IlmThread
+        - Imath
+        - Iex
+        - IexMath
+
+about:
+  homepage: http://www.openexr.com/
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: IlmBase libraries required for OpenEXR.
+  documentation: http://www.openexr.com/documentation.html
+
+extra:
+  recipe-maintainers:
+    - npavlovikj
+    - SylvainCorlay
+    - wolfv
+    - JohanMabille

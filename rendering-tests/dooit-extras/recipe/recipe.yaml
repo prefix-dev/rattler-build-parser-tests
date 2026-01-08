@@ -1,0 +1,48 @@
+context:
+  name: dooit-extras
+  version: "0.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name | replace("-", "_") }}/${{ name | replace("-", "_") }}-${{ version }}.tar.gz
+  sha256: 7a6a06faabc23c6095047b487621fc7450ac0b4b548fbdea01463b70092312ef
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core
+  run:
+    - python >=${{ python_min }}
+    - dooit >=3.2.2
+
+tests:
+  - python:
+      imports:
+        - dooit_extras
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  repository: https://github.com/dooit-org/dooit-extras
+  summary: 'A collection of utilities to customize your'
+  description: |
+    Dooit extras is a library consisting of pre-built stuff for Dooit
+    which includes various bar widgets and formatters, along with some
+    pre-configured configs to get you started!
+  license: MIT
+  license_file: LICENSE
+  homepage: https://dooit-org.github.io/dooit-extras/
+
+extra:
+  recipe-maintainers:
+    - kraanzu
+    - claudiushaag

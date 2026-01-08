@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vega-cli/work"
+      },
+      "hash": {
+        "hash": "db12dfc"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vega-cli": {
+          "build_string": "hdb12dfc_1",
+          "name": "vega-cli",
+          "version": "6.2.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-13T07:53:03.208353805Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "cairo": "1",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "expat": "2",
+        "freetype": "2",
+        "giflib": "5.2",
+        "glib": "2",
+        "libjpeg_turbo": "3",
+        "libpng": "1.6",
+        "nodejs": "24",
+        "pango": "1",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The vega-cli package includes three node.js-based command line utilities -\nvg2pdf, vg2png, and vg2svg - for rendering static visualization images.\nThese commands render to PDF, PNG, or SVG files, respectively.",
+        "documentation": "https://vega.github.io/vega/usage/#cli",
+        "homepage": "https://vega.github.io/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/vega/vega",
+        "summary": "Command line interface of the VEGA visualization grammar"
+      },
+      "build": {
+        "number": 1,
+        "string": "hdb12dfc_1"
+      },
+      "context": {
+        "name": "vega-cli",
+        "version": "6.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "johanneskoester",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "vega-cli",
+        "version": "6.2.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "python >=3.7,<3.12",
+          "nodejs",
+          "make",
+          "rsync",
+          "pkg-config"
+        ],
+        "host": [
+          "nodejs",
+          "cairo",
+          "expat",
+          "freetype",
+          "giflib",
+          "glib",
+          "libjpeg-turbo",
+          "libpng",
+          "pango",
+          "yarn <2",
+          "zlib",
+          "xorg-xorgproto"
+        ],
+        "run": [
+          "nodejs",
+          "pango"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4e5497039d7b6630d2efaea0a992946f18333965c59fbc5a3b0f9e7a2578ec6a",
+          "url": "https://github.com/vega/vega/archive/refs/tags/v6.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "curl -L https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json > test.json",
+            "vg2pdf test.json > test.pdf"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

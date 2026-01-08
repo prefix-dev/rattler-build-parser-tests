@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  name: qcdloop-fortran
+  version: "1.98"
+
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url:
+    - https://qcdloop.fnal.gov/QCDLoop-${{ version }}.tar.gz
+    - https://github.com/hep-packaging-coordination/qcdloop-release-mirror/releases/download/1.98.0/QCDLoop-${{ version }}.tar.gz
+  sha256: 917ba1daa6d526937a93e0e0b3392103660efdeef2880a0d9188bdc0ad9c0035
+
+build:
+  number: 3
+
+outputs:
+  - package:
+      name: ${{ name }}-static
+    build:
+      skip: win
+      script:
+        # Enable extended-source with '-ffixed-line-length-none' for long lines
+        # c.f. https://gcc.gnu.org/onlinedocs/gfortran/Fortran-Dialect-Options.html#index-ffixed-line-length-n
+        - cd ql
+        - make FC=$FC FFLAGS="$FFLAGS -std=legacy -Wall -ffixed-line-length-none"
+        - cd ..
+        # Install
+        - mv ql/libqcdloop.a $PREFIX/lib/
+        - mkdir -p $PREFIX/include/ql
+        - mv ql/*.mod $PREFIX/include/ql/
+    requirements:
+      build:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('fortran') }}
+        - make
+        - libtool
+      run:
+        # QCDLoop calls FF functions
+        - ff-static
+    tests:
+      - package_contents:
+          # rattler-build uses 'lib' to check for dynamic libraries, so use 'files'
+          files:
+            - lib/libqcdloop.a
+          include:
+            - ql/qldiffi2.mod
+            - ql/solvequadratic.mod
+      - files:
+          source:
+            - test.f
+        requirements:
+          run:
+            - ${{ compiler('fortran') }}
+        script:
+          - $FC test.f -o test $FFLAGS -I$PREFIX/include/ql -std=legacy $LDFLAGS -lqcdloop -lff
+          - ./test
+
+about:
+  summary: "QCDLoop: one-loop scalar integrals"
+  description: |
+    QCDLoop is software for one-loop scalar Feynman integrals, evaluated
+    close to four dimensions. For integrals with all massive internal lines
+    the integrals are all known, both analytically and numerically.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://qcdloop.fnal.gov/
+  repository: https://qcdloop.fnal.gov/
+  documentation: https://qcdloop.fnal.gov/
+
+extra:
+  feedstock-name: qcdloop-fortran
+  recipe-maintainers:
+    - matthewfeickert

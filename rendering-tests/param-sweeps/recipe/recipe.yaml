@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: param-sweeps
+  version: "0.2.1"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 20f375cbe325e0fbcafca21d6692b42b4710982ffafcb660af28bd553e98474f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core >=1.0.0
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    # Mira packages
+    - geoh5py >=0.11.0, <0.12.dev
+    # direct dependencies
+    - numpy >=1.26.0, <1.27.dev
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - param_sweeps
+      pip_check: true
+  - script:
+      - pytest --ignore=tests/version_test.py
+    requirements:
+      run:
+        - pytest
+        - pyyaml
+    files:
+      source:
+        - tests/
+
+about:
+  summary: A Parameter sweeper for applications driven by ui.json files.
+  description: |
+    The param-sweeps library contains two main modules. One is for generating sweep files,
+    and the other is to run a sweep over some number of parameters in a driver application.
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://www.mirageoscience.com/mining-industry-software/python-integration/
+  repository: https://github.com/MiraGeoscience/param-sweeps
+
+extra:
+  recipe-maintainers:
+    - conda-forge/geoh5py

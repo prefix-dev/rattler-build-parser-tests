@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  version: 2.0.0
+
+package:
+  name: maison
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/m/maison/maison-${{ version }}.tar.gz
+  sha256: f5dafbbf4ce57bdb7cae128e075f457434b2cc9573b4f4bb4535f16d2ebd1cc5
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - maison = maison.__main__:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click
+    - toml
+
+tests:
+  - python:
+      imports:
+        - maison
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - maison --help
+
+about:
+  summary: Read settings from config files
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/dbatten5/maison
+
+extra:
+  recipe-maintainers:
+    - danielnachun

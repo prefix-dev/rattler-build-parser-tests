@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: timm
+  version: "1.0.22"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 14fd74bcc17db3856b1a47d26fb305576c98579ab9d02b36714a5e6b25cde422
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - pdm
+    # The follow might also be needed
+    - pdm-backend
+  run:
+    - python >=${{ python_min }}
+    - pytorch >=1.7
+    - torchvision
+    - pyyaml
+    - huggingface_hub >=0.17.0
+    - safetensors >=0.2
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - timm
+        - timm.data
+        - timm.loss
+        - timm.models
+        - timm.models.layers
+        - timm.optim
+        - timm.scheduler
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: (Unofficial) PyTorch Image Models
+  homepage: https://github.com/rwightman/pytorch-image-models
+  repository: https://github.com/rwightman/pytorch-image-models
+  documentation: https://pypi.org/project/timm/
+
+extra:
+  recipe-maintainers:
+    - deepsworld
+    - ndmaxar
+    - oblute
+    - rluria14
+    - thewchan

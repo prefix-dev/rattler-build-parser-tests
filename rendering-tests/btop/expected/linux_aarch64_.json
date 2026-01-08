@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_btop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_btop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_btop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_btop/work"
+      },
+      "hash": {
+        "hash": "dc560ac"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "btop": {
+          "build_string": "hdc560ac_0",
+          "name": "btop",
+          "version": "1.4.5"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-13T07:55:07.767650588Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/aristocratos/btop",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/aristocratos/btop",
+        "summary": "Resource monitor that shows usage and stats for processor, memory, disks, network and processes."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "make -j$CPU_COUNT CXX=$CXX STRIP=true",
+          "make -j$CPU_COUNT PREFIX=$PREFIX install"
+        ],
+        "string": "hdc560ac_0"
+      },
+      "context": {
+        "version": "1.4.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "btop",
+        "version": "1.4.5"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0ffe03d3e26a3e9bbfd5375adf34934137757994f297d6b699a46edd43c3fc02",
+          "url": "https://github.com/aristocratos/btop/archive/refs/tags/v1.4.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "btop --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

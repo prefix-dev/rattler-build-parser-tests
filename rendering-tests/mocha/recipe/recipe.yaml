@@ -1,0 +1,39 @@
+context:
+  version: "11.7.5"
+
+package:
+  name: mocha
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/mocha/-/mocha-${{ version }}.tgz
+  sha256: acd4a16fa42b6cfc850764270ac21bdd32376a641ac4d581b3d16e9705b8415c
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - mocha --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: simple, flexible, fun javascript test framework for node.js & the browser
+  homepage: https://github.com/mochajs/mocha
+  repository: https://github.com/mochajs/mocha
+
+extra:
+  recipe-maintainers:
+    - danielnachun

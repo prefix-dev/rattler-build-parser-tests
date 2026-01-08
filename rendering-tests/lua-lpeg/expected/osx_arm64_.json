@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lua-lpeg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lua-lpeg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lua-lpeg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lua-lpeg/work"
+      },
+      "hash": {
+        "hash": "5e24d70"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lua-lpeg": {
+          "build_string": "h5e24d70_4",
+          "name": "lua-lpeg",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2025-12-13T07:52:32.455810434Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.inf.puc-rio.br/~roberto/lpeg/lpeg.html",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Parsing Expression Grammars For Lua"
+      },
+      "build": {
+        "number": 4,
+        "string": "h5e24d70_4"
+      },
+      "context": {
+        "version": "1.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "anjos",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "lua-lpeg",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 18.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "luajit-openresty"
+        ],
+        "run": [
+          "luajit-openresty"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "lua-lpeg",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "path": "./lpeg-1.1.0.tar.gz",
+          "sha256": "4b155d67d2246c1ffa7ad7bc466c1ea899bbc40fef0257cc9c03cecbaed4352a"
+        },
+        {
+          "path": "CMakeLists.txt"
+        }
+      ],
+      "tests": [
+        {
+          "script": "luajit ${PREFIX}/share/lua/5.1/test.lua"
+        },
+        {
+          "package_contents": {
+            "files": [
+              "lib/liblpeg.dylib",
+              "lib/liblpeg.a",
+              "share/lua/5.1/re.lua",
+              "share/lua/5.1/test.lua"
+            ],
+            "lib": [
+              "lpeg"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

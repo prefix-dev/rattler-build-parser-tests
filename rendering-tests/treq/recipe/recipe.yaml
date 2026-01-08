@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: treq
+  version: 25.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 25dde3a55ae85ec2f2c56332c99aef255ab14f997d0d00552ebff13538a9804a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - incremental >=24.7.2
+    - hatchling
+  run:
+    - typing_extensions >=3.10.0
+    - multipart
+    - python >=${{ python_min }}
+    - setuptools
+    - requests >=2.1.0
+    - twisted >=22.10.0
+    - hyperlink >=21.0.0
+    - incremental >=24.7.2
+    - attrs
+
+tests:
+  - python:
+      imports:
+        - treq
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: "Python requests like API built on top of Twisted's HTTP client"
+  homepage: https://github.com/twisted/treq
+  repository: https://github.com/twisted/treq
+  documentation: http://treq.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: sockio
+  version: 0.15.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sockio-${{ version }}.tar.gz
+  sha256: 32eba7eaa0d402bb6fa27188ed7b0e476e49e4aba6276161c1773e37e7070353
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - sockio
+      pip_check: true
+      python_version: ["${{ python_min }}.*", "3.13.*"]
+
+about:
+  summary: Concurrency agnostic socket API
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  description: |
+    A python concurrency agnostic socket library.
+  homepage: https://tiagocoutinho.github.io/sockio/
+  repository: https://github.com/tiagocoutinho/sockio/
+  documentation: https://tiagocoutinho.github.io/sockio/
+
+extra:
+  recipe-maintainers:
+    - beenje
+    - tiagocoutinho

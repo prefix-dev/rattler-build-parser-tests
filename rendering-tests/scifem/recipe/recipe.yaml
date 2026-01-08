@@ -1,0 +1,128 @@
+context:
+  name: scifem
+  version: "0.15.0"
+  fenics_version: "0.10.*"
+  abi_version: 2.${{ nanobind_abi }}
+  abi3_python: "3.12"
+  build_abi3: ${{ match(python, abi3_python + ".*") and is_abi3 }}
+  skip_build: ${{ match(python, ">=3.13") and is_abi3 }}
+  abi3_tag: ${{ "cp312" if build_abi3 else "" }}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/scifem/scifem-${{ version }}.tar.gz
+  sha256: 2c5663bdd311fe10ae8108ae9b17653794d4d8e229b28861cd93cb7d3bda4543
+
+build:
+  number: 0
+  skip:
+    - win
+    - match(python, "<3.10")
+    - skip_build
+  script:
+    file: build.sh
+    env:
+      SKBUILD_BUILD_VERBOSE: "true"
+      SKBUILD_WHEEL_PY_API: ${{ abi3_tag }}
+  python:
+    version_independent: ${{ build_abi3 }}
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+    - pkg-config
+    - if: build_platform != target_platform
+      then:
+        - if: mpi == 'openmpi'
+          then: ${{ mpi }}
+        - cross-python_${{ target_platform }}
+        - python
+        - nanobind
+        - nanobind-abi
+    - fenics-basix-nanobind-abi ${{ abi_version }}.*
+  host:
+    - fenics-libbasix ${{ fenics_version }}
+    - fenics-basix ${{ fenics_version }}
+    - fenics-libdolfinx ${{ fenics_version }}
+    - fenics-dolfinx ${{ fenics_version }}
+    - fenics-basix-nanobind-abi ${{ abi_version }}.*
+
+    # place adios2 in host environment to ensure
+    # a compatible set of dependencies is pinned
+    # (usually on hdf5)
+    # run_exports are then ignored because we don't actually need
+    # to pin adios2
+    - adios2 * mpi_${{ mpi }}_*
+
+    - ${{ mpi }}
+    - petsc
+    - petsc * ${{ scalar }}_*
+    - pip
+    - python
+    - if: build_abi3
+      then:
+        - python-abi3
+    - scikit-build-core
+    - nanobind
+    - nanobind-abi
+  run:
+    - python
+    - fenics-basix
+    - fenics-dolfinx
+    - packaging
+    - adios2 * mpi_${{ mpi }}_*
+  run_constraints:
+    # require mpi build of h5py
+    - h5py * mpi_${{ mpi }}_*
+  ignore_run_exports:
+    # lose build-time pinning since we don't link libadios
+    from_package:
+      - adios2
+
+tests:
+  - python:
+      imports:
+        - scifem
+      pip_check: true
+  - files:
+      source:
+        - tests/
+        - pyproject.toml
+    requirements:
+      run:
+        - pytest
+        - petsc4py
+        # can't test h5py
+        # until it gets builds for hdf5 1.14.4
+        # - h5py
+    script:
+      content:
+        - pytest -vs tests/*.py
+        - mpiexec -n 2 pytest -m "not serial" tests
+      env:
+        UCX_MEM_EVENTS: "no"
+        MPIEXEC_TIMEOUT: "900"
+
+about:
+  summary: Scientific Computing Tools for Finite Element Methods
+  description: |
+    This package contains a collection of tools for scientific computing with a focus on finite element methods.
+    The tools are written in Python and are intended to be used in conjunction with the dolfinx.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://scientificcomputing.github.io/scifem
+  repository: https://github.com/scientificcomputing/scifem
+  documentation: https://scientificcomputing.github.io/scifem
+
+extra:
+  recipe-maintainers:
+    - finsberg
+    - jorgensd
+    - minrk

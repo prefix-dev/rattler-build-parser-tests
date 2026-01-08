@@ -1,0 +1,250 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.6.0"
+  maturin_min: 1.8.0
+  maturin_max: "2"
+  summary: A Rust HTTP server for Python applications
+
+recipe:
+  name: granian
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/g/granian/granian-${{ version }}.tar.gz
+  sha256: d9b773633e411c7bf51590704e608e757dab09cd452fb18971a50a7d7c439677
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: granian
+    build:
+      script:
+        - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+        - |-
+          ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      python:
+        entry_points:
+          - granian = granian:cli.cli
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("rust") }}
+        - ${{ stdlib("c") }}
+        - cargo-bundle-licenses
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - maturin >=${{ maturin_min }},<${{ maturin_max }}
+        - if: unix
+          then:
+            # for the jemalloc-sys crate
+            - make
+      host:
+        - pip
+        - python
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+        - if: unix
+          then:
+            - jemalloc
+      run:
+        - click >=8.0.0
+        - python
+      run_constraints:
+        - rloop >=0.1,<0.2
+        - setproctitle >=1.3.3,<1.4
+        - uvloop >=0.18.0
+        - watchfiles >=1.0,<2.0
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file:
+        - LICENSE
+        - THIRDPARTY.yml
+
+  - package:
+      name: granian-with-dotenv
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - python-dotenv >=1.1,<2
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [dotenv])
+
+  - package:
+      name: granian-with-pname
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - setproctitle
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [pname])
+
+  - package:
+      name: granian-with-reload
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - watchfiles
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [reload])
+
+  # unix
+  - package:
+      name: granian-with-rloop
+    build:
+      noarch: generic
+      skip: not unix
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - rloop
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [rloop])
+
+  - package:
+      name: granian-with-uvloop
+    build:
+      noarch: generic
+      skip: not unix
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - uvloop
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [uvloop])
+
+  # windows
+  - package:
+      name: granian-with-winloop
+    build:
+      noarch: generic
+      skip: not win
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - winloop >=0.2.2
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+      - requirements:
+          run:
+            - pip
+        script:
+          - pip check
+          - granian --help
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with [winloop])
+
+  - package:
+      name: granian-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("granian", exact=True) }}
+        - ${{ pin_subpackage("granian-with-pname", exact=True) }}
+        - ${{ pin_subpackage("granian-with-reload", exact=True) }}
+        - ${{ pin_subpackage("granian-with-dotenv", exact=True) }}
+    tests:
+      - python:
+          pip_check: true
+          imports: granian
+    about:
+      license_file: LICENSE
+      license: BSD-3-Clause
+      summary: ${{ summary }} (with all platform-independent [extras])
+
+about:
+  homepage: https://github.com/emmett-framework/granian
+  summary: ${{ summary }}
+  repository: https://github.com/emmett-framework/granian
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  feedstock-name: granian
+  recipe-maintainers:
+    - thewchan
+    - bollwyvl

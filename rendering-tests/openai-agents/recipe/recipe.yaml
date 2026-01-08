@@ -1,0 +1,47 @@
+context:
+  version: "0.6.3"
+
+package:
+  name: openai-agents
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/o/openai-agents/openai_agents-${{ version }}.tar.gz
+    sha256: 436479f201910cfc466893854b47d0f3acbf7b3bdafa95eedb590ed0d40393ef
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  noarch: python
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - openai >=2.2,<3
+    - pydantic >=2.10,<3
+    - griffe >=1.5.6,<2
+    - typing-extensions >=4.12.2,<5
+    - requests >=2.0,<3
+    - types-requests >=2.0,<3
+    - mcp >=1.11.0,<2
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - agents
+      pip_check: true
+
+about:
+  summary: A lightweight, powerful framework for multi-agent workflows
+  homepage: https://github.com/openai/openai-agents-python
+  license: MIT
+  license_file: LICENSE
+extra:
+  recipe-maintainers:
+    - timkpaine
+    - moritzwilksch

@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: pandablocks
+  version: "0.10.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pandablocks-${{ version }}.tar.gz
+  sha256: aa2c93e554e8593cc78a36e51ae5be3ae6c50c771b178be5344f5aed793a2421
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - pandablocks = pandablocks.cli:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=64
+    - setuptools_scm >=6.2
+    - wheel
+  run:
+    - click
+    - numpy
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pandablocks
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+  - script:
+      - pandablocks --help
+      - pandablocks --version
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: A Python client to control and data ports of the PandABlocks TCP server
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/PandABlocks/PandABlocks-client
+  repository: https://github.com/PandABlocks/PandABlocks-client
+  documentation: https://pandablocks.github.io/PandABlocks-client/master/index.html
+
+extra:
+  recipe-maintainers:
+    - beenje

@@ -1,0 +1,217 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scifem",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scifem/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scifem/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scifem/work"
+      },
+      "hash": {
+        "hash": "fd1b689",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scifem": {
+          "build_string": "py312hfd1b689_0",
+          "name": "scifem",
+          "version": "0.15.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-13T07:54:17.506476706Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_abi3": true,
+        "mpi": "mpich",
+        "mpich": "4",
+        "nanobind": "2.9",
+        "nanobind_abi": "16",
+        "petsc": "3.24",
+        "python": "3.12.* *_cpython",
+        "scalar": "complex",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package contains a collection of tools for scientific computing with a focus on finite element methods.\nThe tools are written in Python and are intended to be used in conjunction with the dolfinx.",
+        "documentation": "https://scientificcomputing.github.io/scifem",
+        "homepage": "https://scientificcomputing.github.io/scifem",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/scientificcomputing/scifem",
+        "summary": "Scientific Computing Tools for Finite Element Methods"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "SKBUILD_BUILD_VERBOSE": "true",
+            "SKBUILD_WHEEL_PY_API": "cp312"
+          },
+          "file": "build.sh",
+          "interpreter": "bash"
+        },
+        "string": "py312hfd1b689_0"
+      },
+      "context": {
+        "abi3_python": "3.12",
+        "abi3_tag": "cp312",
+        "abi_version": "2.16",
+        "build_abi3": true,
+        "fenics_version": "0.10.*",
+        "name": "scifem",
+        "skip_build": false,
+        "version": "0.15.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "finsberg",
+          "jorgensd",
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "scifem",
+        "version": "0.15.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "make",
+          "pkg-config",
+          "cross-python_osx-64",
+          "python",
+          "nanobind",
+          "nanobind-abi",
+          "fenics-basix-nanobind-abi 2.16.*"
+        ],
+        "host": [
+          "fenics-libbasix 0.10.*",
+          "fenics-basix 0.10.*",
+          "fenics-libdolfinx 0.10.*",
+          "fenics-dolfinx 0.10.*",
+          "fenics-basix-nanobind-abi 2.16.*",
+          "adios2 * mpi_mpich_*",
+          "mpich",
+          "petsc",
+          "petsc * complex_*",
+          "pip",
+          "python",
+          "python-abi3",
+          "scikit-build-core",
+          "nanobind",
+          "nanobind-abi"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "adios2",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "fenics-basix",
+          "fenics-dolfinx",
+          "packaging",
+          "adios2 * mpi_mpich_*"
+        ],
+        "run_constraints": [
+          "h5py * mpi_mpich_*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2c5663bdd311fe10ae8108ae9b17653794d4d8e229b28861cd93cb7d3bda4543",
+          "url": "https://pypi.org/packages/source/s/scifem/scifem-0.15.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "scifem"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "petsc4py"
+            ]
+          },
+          "script": {
+            "content": [
+              "pytest -vs tests/*.py",
+              "mpiexec -n 2 pytest -m \"not serial\" tests"
+            ],
+            "env": {
+              "MPIEXEC_TIMEOUT": "900",
+              "UCX_MEM_EVENTS": "no"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

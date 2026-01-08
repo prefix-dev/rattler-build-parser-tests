@@ -1,0 +1,41 @@
+context:
+  version: "0.21.0"
+
+package:
+  name: prr
+  version: ${{ version }}
+
+source:
+  url: https://github.com/danobi/prr/archive/v${{ version }}.tar.gz
+  sha256: 891d8b2bc0397027e909750ac7891ca3d6e215acab59a48d5b2da35e60b45b8c
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - prr --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Mailing list style code reviews for github
+  homepage: https://github.com/danobi/prr
+  repository: https://github.com/danobi/prr
+
+extra:
+  recipe-maintainers:
+    - danielnachun

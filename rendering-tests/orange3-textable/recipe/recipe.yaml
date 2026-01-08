@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: Orange3-Textable
+  version: "3.2.7"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') | lower }}-${{ version }}.tar.gz
+  sha256: 92721d90acc1c76776b67f42587a9ef6b36a1dcffdc0c4eebd6e9b22afa750f4
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}*
+    - setuptools =60.9.3  #the package is getting old and is having issues with newer pip and setuptools version
+    - pip =22.0.3 #last known version working
+  run:
+    - appdirs
+    - chardet
+    - lttl >=2.1.0
+    - orange3
+    - pycountry
+    - python >=${{ python_min }}
+    - setuptools
+    - treetaggerwrapper
+
+tests:
+  - python:
+      imports:
+        - _textable
+        - _textable.widgets
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}*
+    script:
+      - pip check
+
+about:
+  summary: Textable add-on for Orange 3 data mining software package.
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  description: |
+    Textable is an open source add-on bringing advanced text-analytical functionalities to the Orange Canvas data mining software package (itself open source).
+  homepage: http://textable.io
+  repository: https://github.com/axanthos/orange3-textable
+  documentation: https://orange3-textable.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

@@ -1,0 +1,38 @@
+context:
+  version: "4.6.9"
+
+package:
+  name: dotnet-outdated
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dotnet-outdated/dotnet-outdated/archive/v${{ version }}.tar.gz
+  sha256: 24af4a0e3afdaf6cac40e5e93f5b9b9ddb949e4b63a70372425ec570e821ff71
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - dotnet-outdated --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A .NET Core global tool to display and update outdated NuGet packages in a project
+  homepage: https://github.com/dotnet-outdated/dotnet-outdated
+  repository: https://github.com/dotnet-outdated/dotnet-outdated
+
+extra:
+  recipe-maintainers:
+    - danielnachun

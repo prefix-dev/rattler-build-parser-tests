@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qcdloop-fortran-static",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qcdloop-fortran-static/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qcdloop-fortran-static/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qcdloop-fortran-static/work"
+      },
+      "hash": {
+        "hash": "de13d6f"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "qcdloop-fortran-static": {
+          "build_string": "hde13d6f_3",
+          "name": "qcdloop-fortran-static",
+          "version": "1.98"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2025-12-13T07:53:52.487759327Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "QCDLoop is software for one-loop scalar Feynman integrals, evaluated\nclose to four dimensions. For integrals with all massive internal lines\nthe integrals are all known, both analytically and numerically.",
+        "documentation": "https://qcdloop.fnal.gov/",
+        "homepage": "https://qcdloop.fnal.gov/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://qcdloop.fnal.gov/",
+        "summary": "QCDLoop: one-loop scalar integrals"
+      },
+      "build": {
+        "number": 3,
+        "script": [
+          "cd ql",
+          "make FC=$FC FFLAGS=\"$FFLAGS -std=legacy -Wall -ffixed-line-length-none\"",
+          "cd ..",
+          "mv ql/libqcdloop.a $PREFIX/lib/",
+          "mkdir -p $PREFIX/include/ql",
+          "mv ql/*.mod $PREFIX/include/ql/"
+        ],
+        "string": "hde13d6f_3"
+      },
+      "context": {
+        "name": "qcdloop-fortran",
+        "version": "1.98"
+      },
+      "extra": {
+        "feedstock-name": "qcdloop-fortran",
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "qcdloop-fortran-static",
+        "version": "1.98"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-ppc64le 2.17.*",
+          "gfortran_linux-ppc64le 14.*",
+          "make",
+          "libtool"
+        ],
+        "run": [
+          "ff-static"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "917ba1daa6d526937a93e0e0b3392103660efdeef2880a0d9188bdc0ad9c0035",
+          "url": [
+            "https://qcdloop.fnal.gov/QCDLoop-1.98.tar.gz",
+            "https://github.com/hep-packaging-coordination/qcdloop-release-mirror/releases/download/1.98.0/QCDLoop-1.98.tar.gz"
+          ]
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/libqcdloop.a"
+            ],
+            "include": [
+              "ql/qldiffi2.mod",
+              "ql/solvequadratic.mod"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test.f"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gfortran_linux-ppc64le =14"
+            ]
+          },
+          "script": [
+            "$FC test.f -o test $FFLAGS -I$PREFIX/include/ql -std=legacy $LDFLAGS -lqcdloop -lff",
+            "./test"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+context:
+  version: "1.13.0"
+
+package:
+  name: gleam
+  version: ${{ version }}
+
+source:
+  url: https://github.com/gleam-lang/gleam/archive/v${{ version }}.tar.gz
+  sha256: d965a02c1c3b35c70fda49d483eb1fe3fb02045b6126453a1e8e9d91ed029cb4
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - gleam --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENCE
+    - THIRDPARTY.yml
+  summary: A friendly language for building type-safe, scalable systems!
+  homepage: https://github.com/gleam-lang/gleam
+  repository: https://github.com/gleam-lang/gleam
+
+extra:
+  recipe-maintainers:
+    - tdejager
+    - danielnachun

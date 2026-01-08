@@ -1,0 +1,37 @@
+context:
+  version: "0.5.0"
+
+package:
+  name: rnr
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ismaelgv/rnr/archive/v${{ version }}.tar.gz
+  sha256: b8edab04e1129b8caeb0c8634dd3bbc9986528c5ec479f7e7f072dbe7bf9ba20
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - rnr --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Command-line tool to batch rename files and directories
+  homepage: https://github.com/chmln/rnr
+  repository: https://github.com/chmln/rnr
+
+extra:
+  recipe-maintainers:
+    - danielnachun

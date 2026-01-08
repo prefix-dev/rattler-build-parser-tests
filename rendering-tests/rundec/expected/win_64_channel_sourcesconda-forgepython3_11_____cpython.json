@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rundec",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rundec/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rundec/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rundec/work"
+      },
+      "hash": {
+        "hash": "7bc982d",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rundec": {
+          "build_string": "py311h7bc982d_1",
+          "name": "rundec",
+          "version": "0.6"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:53:41.496590044Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.11.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/DavidMStraub/rundec-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/DavidMStraub/rundec-python",
+        "summary": "Python wrapper around CRunDec"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py311h7bc982d_1"
+      },
+      "context": {
+        "name": "rundec",
+        "version": "0.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "DavidMStraub",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "rundec",
+        "version": "0.6"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "python",
+          "cross-python_win-64"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "git": "https://github.com/DavidMStraub/rundec-python.git",
+          "patches": [
+            "add-pyproject-toml-for-build-system.patch"
+          ],
+          "rev": "1b3006f03098ef4c6d44200ef643fede9c426cfe"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rundec"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python",
+              "pip"
+            ]
+          },
+          "script": "pip list"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

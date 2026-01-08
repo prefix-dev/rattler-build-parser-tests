@@ -1,0 +1,75 @@
+context:
+  version: "1.0.18"
+  series: ${{ (version | split("."))[:2] | join(".") }}
+
+package:
+  name: libmemcached
+  version: ${{ version }}
+
+source:
+  url: https://launchpad.net/libmemcached/${{ series }}/${{ version }}/+download/libmemcached-${{ version }}.tar.gz
+  sha256: e22c0bb032fde08f53de9ffbc5a128233041d9f33b5de022c0978a2149885f82
+  patches:
+    # thanks to http://stackoverflow.com/questions/27004144/how-can-i-install-libmemcached-for-mac-os-x-yosemite-10-10-in-order-to-install-t
+    - if: osx
+      then:
+        - osx.configure.patch
+        - osx.memflush.patch
+    # Taken from this bug report
+    # ref: https://bugs.launchpad.net/libmemcached/+bug/1663985
+    - if: linux
+      then:
+        - libmemcached-build.patch
+    # Fixes for linux cross-compilation
+    # ref: https://github.com/conda-forge/libmemcached-feedstock/pull/12
+    - if: linux and (build_platform != target_platform)
+      then:
+        - fix-configure-uuid-cross-compile.patch
+
+build:
+  number: 1004
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - make
+    - if: unix
+      then:
+        - pkg-config
+        - libtool
+        - gnuconfig
+    - if: linux and (build_platform != target_platform)
+      then:
+        - automake
+        - autoconf
+  host:
+    - glib
+  run_exports:
+    - ${{ pin_subpackage("libmemcached", upper_bound="x.x") }}
+
+tests:
+  - package_contents:
+      files:
+        - if: unix
+          then:
+            - lib/libmemcached.a
+      lib:
+        - memcached
+
+about:
+  homepage: https://libmemcached.org
+  license: BSD-3-Clause
+  license_file: COPYING
+  summary: libMemcached is an open source C/C++ client library and tools for the memcached server (https://danga.com/memcached).
+  description: |
+    It has been designed to be light on memory usage, thread safe, and provide full access to server side methods.
+  repository: https://code.launchpad.net/libmemcached
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
+    - munechika-koyo

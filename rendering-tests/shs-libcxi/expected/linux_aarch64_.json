@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_shs-libcxi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_shs-libcxi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_shs-libcxi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_shs-libcxi/work"
+      },
+      "hash": {
+        "hash": "80f16a2"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "shs-libcxi": {
+          "build_string": "h80f16a2_1",
+          "name": "shs-libcxi",
+          "version": "13.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-13T07:52:55.836826555Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Provides a userspace library for interacting with CXI hardware.",
+        "homepage": "https://github.com/HewlettPackard/shs-libcxi",
+        "license": "LGPL-2.1-only OR BSD-3-Clause",
+        "license_file": [
+          "cray-libcxi.spec"
+        ],
+        "summary": "Library for CXI (Cassini eXtended Interface)"
+      },
+      "build": {
+        "number": 1,
+        "script": "build.sh",
+        "string": "h80f16a2_1"
+      },
+      "context": {
+        "name": "shs-libcxi",
+        "version": "13.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "j34ni"
+        ]
+      },
+      "package": {
+        "name": "shs-libcxi",
+        "version": "13.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "autoconf",
+          "automake",
+          "libtool",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "libconfig",
+          "libfuse >=3",
+          "libnl",
+          "libnuma",
+          "libsystemd0",
+          "libuv",
+          "lm-sensors",
+          "shs-cassini-headers",
+          "shs-cxi-drivers",
+          "yaml"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "shs-libcxi",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-random.patch",
+            "fix-udp-header.patch",
+            "fix-fuse3-configure.patch",
+            "fix-fuse3-stats.patch",
+            "fix-fuse3-rh.patch"
+          ],
+          "sha256": "48c11617352f48262400f3722e0f8a701c6bceb74701c39a9ea20e83ca690fe3",
+          "url": "https://github.com/HewlettPackard/shs-libcxi/archive/refs/tags/release/shs-13.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/lib/libcxi.so",
+            "test -f $PREFIX/include/libcxi/libcxi.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

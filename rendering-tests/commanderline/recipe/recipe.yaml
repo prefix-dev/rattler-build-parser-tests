@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  version: 0.2
+
+package:
+  name: commanderline
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/commanderline/commanderline-${{ version }}.tar.gz
+  sha256: 4f174ce90c5adb10cf7d9c2ed03e8b9c199dd90214466344be47ad1cbfff47a1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - commanderline
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Easily expose any function to the command line
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/tomazberisa/commanderline
+
+extra:
+  recipe-maintainers:
+    - danielnachun

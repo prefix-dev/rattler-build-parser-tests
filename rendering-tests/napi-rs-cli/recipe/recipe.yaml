@@ -1,0 +1,35 @@
+context:
+  version: "3.5.0"
+
+package:
+  name: napi-rs-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@napi-rs/cli/-/cli-${{ version }}.tgz
+  sha256: 177e6e79041b2278ace84814bf91a5bc0b62ba7d05450bad2a73bed13f5c0838
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - napi --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: A framework for building compiled Node.js add-ons in Rust via Node-API
+  homepage: https://github.com/napi-rs/napi-rs
+  repository: https://github.com/napi-rs/napi-rs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

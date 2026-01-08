@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sbom2dot",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sbom2dot/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sbom2dot/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sbom2dot/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sbom2dot": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sbom2dot",
+          "version": "0.3.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:53.409489052Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "SBOM2DOT generates a dependency graph of the components within an SBOM (Software Bill of Materials). The format of the graph file is compatible with the DOT language used by the GraphViz application. SBOMs are supported in a number of formats including SPDX and CycloneDX.",
+        "homepage": "https://github.com/anthonyharrison/sbom2dot",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/anthonyharrison/sbom2dot",
+        "summary": "Create a dependency graph of the components within a SBOM"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "sbom2dot = sbom2dot.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "sbom2dot",
+        "version": "0.3.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "sbom2dot",
+        "version": "0.3.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "lib4sbom >=0.7.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a6fb4ed6a89669ceba122ccfd23b3a25c1ec74db7ff10ff78c8ee3a618fc5a54",
+          "url": "https://github.com/anthonyharrison/sbom2dot/archive/refs/tags/v0.3.2.tar.gz"
+        },
+        {
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "url": "https://raw.githubusercontent.com/anthonyharrison/sbom2dot/a2d9f5dd3a2cda54d70553e6aa3222a38cf872c3/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sbom2dot"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "sbom2dot --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

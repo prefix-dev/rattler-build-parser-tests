@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calcam",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calcam/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calcam/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_calcam/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "calcam": {
+          "build_string": "pyhcf101f3_0",
+          "name": "calcam",
+          "version": "2.16.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:54:37.948828371Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "http://euratom-software.github.io/calcam/html/index.html",
+        "homepage": "http://euratom-software.github.io/calcam/html/index.html",
+        "license": "EUPL-1.1",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/euratom-software/calcam/",
+        "summary": "Spatial calibration tools for science & engineering camera systems (python module + GUI app)."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "calcam = calcam:start_gui"
+          ]
+        },
+        "script": "$PYTHON -m pip install . -vv --no-deps --no-build-isolation\n",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "calcam",
+        "version": "2.16.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ssilburn",
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "calcam",
+        "version": "2.16.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=61.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "matplotlib-base",
+          "opencv",
+          "pyqt",
+          "scipy",
+          "vtk-base >=7,<9.3,!=9.1.*",
+          "h5py",
+          "triangle"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0399bf3f2cfea983db7f8d53f14a6de7440319de19ec2de010570d6cd1b373a2",
+          "url": "https://github.com/euratom-software/calcam/archive/refs/tags/2.16.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "libopencv * headless*"
+            ]
+          },
+          "script": "python -c \"import calcam\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

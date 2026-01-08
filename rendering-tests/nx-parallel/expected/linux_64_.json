@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nx-parallel",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nx-parallel/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nx-parallel/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nx-parallel/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nx-parallel": {
+          "build_string": "pyhe01879c_2",
+          "name": "nx-parallel",
+          "version": "0.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:13.268802833Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A NetworkX backend that uses joblib to run graph algorithms in parallel.",
+        "documentation": "https://github.com/networkx/nx-parallel",
+        "homepage": "https://github.com/networkx/nx-parallel",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "repository": "https://github.com/networkx/nx-parallel",
+        "summary": "A parallel backend for NetworkX"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_2"
+      },
+      "context": {
+        "name": "nx-parallel",
+        "python_min": "3.11",
+        "version": "0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MridulS",
+          "Schefflera-Arboricola"
+        ]
+      },
+      "package": {
+        "name": "nx-parallel",
+        "version": "0.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "setuptools >=61.2"
+        ],
+        "run": [
+          "python >=3.11",
+          "networkx >=3.4.2",
+          "joblib >=1.4.2"
+        ],
+        "run_constraints": [
+          "numpy >=1.23",
+          "scipy >=1.9,!=1.11.0,!=1.11.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f3b98323f9e160a15698d6471eee59eb90a0356b2da8a9ddd80818445afc0d04",
+          "url": "https://pypi.org/packages/source/n/nx-parallel/nx_parallel-0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "nx_parallel",
+              "_nx_parallel",
+              "nx_parallel.algorithms",
+              "nx_parallel.algorithms.approximation",
+              "nx_parallel.algorithms.bipartite",
+              "nx_parallel.algorithms.centrality",
+              "nx_parallel.algorithms.connectivity",
+              "nx_parallel.algorithms.shortest_paths",
+              "nx_parallel.utils"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylammpsmpi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylammpsmpi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylammpsmpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylammpsmpi/work"
+      },
+      "hash": {
+        "hash": "dfbf58e",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pylammpsmpi": {
+          "build_string": "pyhdfbf58e_0",
+          "name": "pylammpsmpi",
+          "version": "0.3.7"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:26.973986527Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "numpy": "2",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pyiron/pylammpsmpi",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Parallel Lammps Python interface"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhdfbf58e_0"
+      },
+      "context": {
+        "name": "pylammpsmpi",
+        "version": "0.3.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pyiron-runner",
+          "jan-janssen",
+          "pmrv",
+          "srmnitc"
+        ]
+      },
+      "package": {
+        "name": "pylammpsmpi",
+        "version": "0.3.7"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "executorlib",
+          "mpi4py",
+          "numpy",
+          "hatchling",
+          "hatch-vcs"
+        ],
+        "run": [
+          "python >=3.10",
+          "mpi4py >=3.1.4,<=4.1.1",
+          "executorlib >=1.3.0,<=1.7.3",
+          "numpy >=1.23.5,<=2.3.5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "903629d88e0c1991f42bb8288ee44bb3b65e826730a5ce5a0406e8c4fcd2ba34",
+          "url": "https://pypi.org/packages/source/p/pylammpsmpi/pylammpsmpi-0.3.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pylammpsmpi"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

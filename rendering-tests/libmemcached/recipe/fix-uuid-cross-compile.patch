@@ -1,0 +1,38 @@
+--- a/m4/ax_uuid.m4
++++ b/m4/ax_uuid.m4
+@@ -35,7 +35,7 @@ AC_DEFUN([AX_UUID],
+             ])],
+           [ax_cv_libuuid_is_required=no],
+           [ax_cv_libuuid_is_required=yes],
+-          [AC_MSG_WARN([test program execution failed])])
++          [ax_cv_libuuid_is_required=yes])
+         AC_LANG_POP
+         ])
+
+@@ -49,7 +49,7 @@ AC_DEFUN([AX_UUID],
+               ])],
+             [ax_cv_libuuid_works=yes],
+             [ax_cv_libuuid_works=no],
+-            [AC_MSG_WARN([test program execution failed])])
++            [ax_cv_libuuid_works=yes])
+           AC_LANG_POP
+           AX_RESTORE_FLAGS])
+         ])
+@@ -78,7 +78,7 @@ AC_DEFUN([AX_UUID_GENERATE_TIME],
+             ])],
+           [ax_cv_uuid_generate_time=yes],
+           [ax_cv_uuid_generate_time=no],
+-          [AC_MSG_WARN([test program execution failed])])
++          [ax_cv_uuid_generate_time=yes])
+         AC_LANG_POP
+         AX_RESTORE_FLAGS
+         ])
+@@ -98,7 +98,7 @@ AC_DEFUN([AX_UUID_GENERATE_TIME_SAFE],
+             ])],
+           [ax_cv_uuid_generate_time_safe=yes],
+           [ax_cv_uuid_generate_time_safe=no],
+-          [AC_MSG_WARN([test program execution failed])])
++          [ax_cv_uuid_generate_time_safe=yes])
+         AC_LANG_POP
+         AX_RESTORE_FLAGS
+         ])

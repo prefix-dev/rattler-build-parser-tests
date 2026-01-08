@@ -1,0 +1,78 @@
+schema_version: 1
+
+context:
+  name: freeze-core
+  version: "0.4.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|replace("-", "_") }}-${{ version }}.tar.gz
+  sha256: 3e1942b0908b9399b164f66712f8b222f38512950e61d16a5064d9795f0b0ac7
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: win
+        then:
+          - "**/cx_Logging.*.pyd"
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools >=78.1.1,<81
+    - if: win
+      then:
+        - cx_logging >=3.1
+  run:
+    - python
+    - filelock >=3.15.3
+    - if: win
+      then:
+        - cabarchive >=0.2.4
+        - striprtf >=0.0.26
+    - if: linux and match(python, "<3.11")
+      then:
+        - libxcrypt
+
+tests:
+  - python:
+      imports:
+        - freeze_core
+  - files:
+      source:
+        - pyproject.toml
+        - tests
+    requirements:
+      run:
+        - coverage >=7.10.3
+        - pytest
+        - pytest-mock
+        - pytest-timeout
+        - pytest-xdist
+    script:
+      - coverage run
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Core dependency for cx_Freeze.
+  repository: https://github.com/marcelotduarte/freeze-core
+  homepage: https://marcelotduarte.github.io/cx_Freeze
+  documentation: https://cx-freeze.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - marcelotduarte

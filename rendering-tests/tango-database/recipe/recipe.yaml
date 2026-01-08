@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: tango-database
+  version: "5.28"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.com/tango-controls/TangoDatabase/-/releases/Database-Release-${{ version }}/downloads/TangoDatabase-with-submodules-Database-Release-${{ version }}.tar.gz
+  sha256: 326f0878e25d5edd52aed994ca374ca110a6b2fa0a4c7579632e4e79fbaa8ecb
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: unix
+      then:
+        - make
+        - pkg-config
+  host:
+    - cppzmq
+    - cpptango
+    - mysql-devel
+    - omniorb-libs
+  run:
+    # "lib/plugin/mysql_native_password.so" is part of mysql-client
+    # it's required to connect to mariadb
+    - mysql-client
+
+tests:
+  - script:
+      - if: win
+        then: Databaseds.exe --help 2>&1 | findstr /i usage
+        else:
+          # Databaseds --help returns 255, so grep the stderr for test
+          - Databaseds --help 2>&1 | grep -i usage
+          - test -f $PREFIX/share/tango/db/create_db.sql
+          - test -f $PREFIX/share/tango/db/create_db_tables.sql
+          - test -f $PREFIX/share/tango/db/stored_proc.sql
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: Tango Database Server
+  description: |
+    This is the Tango Database server.
+    Tango-Controls is a software toolkit for building control systems.
+  homepage: https://www.tango-controls.org
+  repository: https://gitlab.com/tango-controls/TangoDatabase
+
+extra:
+  recipe-maintainers:
+    - beenje
+    - bourtemb

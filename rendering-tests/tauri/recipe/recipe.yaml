@@ -1,0 +1,38 @@
+context:
+  version: "2.9.6"
+
+package:
+  name: tauri
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tauri-apps/tauri/archive/tauri-cli-v${{ version }}.tar.gz
+  sha256: cb42b4869cde7facd0821e692c3451bb726f532417c95e31452497aba9d296fc
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - cargo-tauri --help
+
+about:
+  license: Apache-2.0 AND MIT
+  license_file:
+    - LICENSE_MIT
+    - LICENSE_APACHE-2.0
+    - THIRDPARTY.yml
+  summary: Build smaller, faster, and more secure desktop applications with a web frontend.
+  homepage: https://github.com/tauri-apps/tauri
+  repository: https://github.com/tauri-apps/tauri
+
+extra:
+  recipe-maintainers:
+    - danielnachun

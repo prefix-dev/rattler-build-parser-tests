@@ -1,0 +1,40 @@
+context:
+  version: "2.5.0"
+
+package:
+  name: quasar-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@quasar/cli/-/cli-${{ version }}.tgz
+  sha256: 15f0366783490cb382ec2543a83486388c95e38095525221d5665859e235ed01
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - quasar help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Quasar Framework - the Global CLI
+  homepage: https://quasar.dev/
+  repository: https://github.com/quasarframework/quasar
+
+extra:
+  recipe-maintainers:
+    - danielnachun

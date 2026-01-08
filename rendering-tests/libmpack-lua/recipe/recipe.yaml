@@ -1,0 +1,42 @@
+context:
+  version: "1.0.13"
+
+package:
+  name: libmpack-lua
+  version: ${{ version }}
+
+source:
+  url: https://github.com/libmpack/libmpack-lua/releases/download/${{ version }}/libmpack-lua-${{ version }}.tar.gz
+  sha256: dd52ab48f620a6d6acff04ac163d055213dc8950d0cb4899e4857b65252993d7
+
+build:
+  number: 0
+  skip: win
+  dynamic_linking:
+    rpaths:
+      - lib/lua/5.1/
+      - lib/
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - luarocks
+    - luajit-openresty
+  run:
+    - luajit-openresty
+
+tests:
+  - script:
+      - "luajit -e \"require 'mpack'\""
+
+about:
+  license: MIT
+  license_file: LICENSE-MIT
+  summary: libmpack lua binding
+  homepage: https://github.com/libmpack/libmpack-lua
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - anjos

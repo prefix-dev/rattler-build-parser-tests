@@ -1,0 +1,35 @@
+context:
+  version: "7.0.0"
+
+package:
+  name: del-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/del-cli/-/del-cli-${{ version }}.tgz
+  sha256: a18f25bfab7565949f61411798a62ba685efc49aabf268e45c4d00a9c5bbb187
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - del-cli --help
+
+about:
+  license: MIT
+  license_file: license
+  summary: Delete files and directories
+  homepage: https://github.com/sindresorhus/del-cli
+  repository: https://github.com/sindresorhus/del-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

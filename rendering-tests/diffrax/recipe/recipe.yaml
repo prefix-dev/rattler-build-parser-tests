@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: diffrax
+  version: 0.7.0
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: f3bcc578cd92a9ca86fc6f5a54c1de76c1ba62f74de69b56002624bf205316f1
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - jax >=0.4.38
+    - jaxtyping >=0.2.24
+    - typing_extensions >=4.5.0
+    - equinox >=0.11.10
+    - lineax >=0.0.5
+    - optimistix >=0.0.10
+    - wadler-lindig >=0.1.1
+
+tests:
+  - python:
+      pip_check: true
+      python_version: ${{ python_min }}.*
+      imports:
+        - diffrax
+
+
+about:
+  summary: Numerical differential equation solvers in JAX.
+  description: |
+    Numerical differential equation solvers in JAX. Autodifferentiable and GPU-capable.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/patrick-kidger/diffrax
+  repository: https://github.com/patrick-kidger/diffrax
+  documentation: https://docs.kidger.site/diffrax/
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - dhirschfeld

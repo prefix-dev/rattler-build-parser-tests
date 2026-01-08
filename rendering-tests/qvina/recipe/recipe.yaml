@@ -1,0 +1,79 @@
+schema_version: 1
+
+context:
+  name: qvina
+  version: 2.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/hadim/qvina/archive/cmake.zip
+  sha256: da78b5dc3d7a0b145f13ac7698bae02a9f03fdf10b5fbf06dadce459b3f73a66
+
+build:
+  number: 7
+  script:
+    - if: unix
+      then: |
+        set -ex
+        # upstream smina uses deprecated boost headers; allow for now
+        export CXXFLAGS="${CXXFLAGS} -DBOOST_TIMER_ENABLE_DEPRECATED"
+        cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX $SRC_DIR
+        ninja -j $CPU_COUNT
+        ninja install
+    - if: win
+      then: |
+        setlocal EnableDelayedExpansion
+        :: upstream uses deprecated boost headers; allow for now
+        set "CXXFLAGS=%CXXFLAGS% -DBOOST_TIMER_ENABLE_DEPRECATED"
+        :: Configure using the CMakeFiles
+        cmake -G "Ninja" ^
+              -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
+              -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
+              -DCMAKE_BUILD_TYPE:STRING=Release ^
+              %SRC_DIR%
+        if errorlevel 1 exit 1
+        :: Build using Ninja
+        ninja
+        if errorlevel 1 exit 1
+        :: Install using Ninja
+        ninja install
+        if errorlevel 1 exit 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake >=3.12
+    - ninja
+  host:
+    - libboost-devel <=1.84
+
+tests:
+  - script:
+      # osx-arm64 with cross-compilation won't work because of "Bad CPU type" error
+      - if: build_platform == target_platform and not osx-arm64
+        then:
+          - vina --help
+          - qvina2 --help
+          - qvinaw --help
+  - package_contents:
+      bin:
+        - vina
+        - qvina2
+        - qvinaw
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Accurately speed up AutoDock Vina
+  homepage: https://qvina.github.io/
+  repository: https://github.com/QVina/qvina
+  documentation: https://qvina.github.io/
+
+extra:
+  recipe-maintainers:
+    - hadim

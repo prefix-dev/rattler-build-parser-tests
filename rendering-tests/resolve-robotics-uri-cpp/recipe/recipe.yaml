@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: libresolve-robotics-uri-cpp
+  version: 0.0.3
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ami-iit/resolve-robotics-uri-cpp/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 03c73cdda8ec2f0730d375639a9eb20b0c9a3182153bae74c96dc706e906cc75
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - pkg-config
+    - ninja
+  host:
+    - ycm-cmake-modules
+    - catch2
+
+tests:
+  - requirements:
+      run:
+        - cmake-package-check
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+    script:
+      - if: not win
+        then: test -f ${PREFIX}/include/ResolveRoboticsURICpp.h
+      - if: win
+        then: if not exist %PREFIX%\\Library\\include\\ResolveRoboticsURICpp.h exit 1
+      - cmake-package-check ResolveRoboticsURICpp --targets ResolveRoboticsURICpp::ResolveRoboticsURICpp
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Resolve a package:// or model:// URI to an absolute filename in C++.
+  homepage: https://github.com/ami-iit/resolve-robotics-uri-cpp
+
+extra:
+  feedstock-name: resolve-robotics-uri-cpp
+  recipe-maintainers:
+    - traversaro

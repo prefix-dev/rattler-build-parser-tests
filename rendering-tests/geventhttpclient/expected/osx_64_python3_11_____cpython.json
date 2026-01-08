@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geventhttpclient",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geventhttpclient/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geventhttpclient/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geventhttpclient/work"
+      },
+      "hash": {
+        "hash": "f58336b",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "geventhttpclient": {
+          "build_string": "py311hf58336b_0",
+          "name": "geventhttpclient",
+          "version": "2.3.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-13T07:54:06.620793145Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/geventhttpclient/geventhttpclient",
+        "license": "MIT",
+        "license_file": [
+          "dist/LICENSE-MIT",
+          "dist/llhttp/LICENSE-MIT"
+        ],
+        "summary": "A high performance, concurrent http client library for python with gevent"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd dist",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "py311hf58336b_0"
+      },
+      "context": {
+        "version": "2.3.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "geventhttpclient",
+        "version": "2.3.7"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "python",
+          "cross-python_osx-64"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "brotli-python",
+          "certifi",
+          "gevent",
+          "python",
+          "urllib3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "06c28d3d1aabddbaaf61721401a0e5852b216a1845ef2580f3819161e44e9b1c",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/g/geventhttpclient/geventhttpclient-2.3.7.tar.gz"
+        },
+        {
+          "sha256": "b35a749829cf0e7d5284759dbed9b012c48669f1e841d0d2528446c605671739",
+          "target_directory": "src",
+          "url": "https://github.com/geventhttpclient/geventhttpclient/archive/refs/tags/2.3.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "geventhttpclient"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "src/pyproject.toml",
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "dpkt",
+              "pip",
+              "pytest",
+              "requests"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

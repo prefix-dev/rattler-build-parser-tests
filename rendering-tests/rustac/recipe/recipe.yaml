@@ -1,0 +1,71 @@
+context:
+  name: rustac
+  version: "0.9.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/rustac-${{ version }}.tar.gz
+  sha256: d04097a9d558506688fcddd477c58b2f9102066ca866f043d9d429d397fc2850
+
+build:
+  number: 0
+  python:
+    entry_points:
+      - rustac = rustac:main
+  script:
+    - if: win # work around long path problem, https://github.com/conda-forge/staged-recipes/commit/d86e4bb10154fc3833cae054e197ea2d7119dac7
+      then: |
+        set CARGO_HOME=C:\.cargo
+        set MATURIN_PEP517_ARGS="--features=duckdb-bundled"
+        md %CARGO_HOME%
+      else: |
+        export MATURIN_PEP517_ARGS="--features=duckdb-bundled,openssl-vendored"
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip:
+    - match(python, "<3.11")
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler("cxx") }} # needed to compile libduckdb-sys
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+    - make # needed to compile openssl-sys
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - maturin >=1.7,<2.0
+        - python
+  host:
+    - maturin >=1.7,<2.0
+    - pip
+    - python
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - rustac
+      pip_check: true
+  - script:
+      - rustac --help
+
+about:
+  homepage: https://stac-utils.github.io/rustac-py
+  repository: https://github.com/stac-utils/rustac-py
+  summary: A no-dependency Python package for STAC, using Rust under the hood.
+  license: MIT OR Apache-2.0
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - gadomski
+    - weiji14

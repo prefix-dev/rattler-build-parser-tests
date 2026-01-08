@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  python_min: 3.13
+  name: strongtyping
+  version: "3.13.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/FelixTheC/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 2ef7944da03dfc6c94118630ae07b3eb8ca0bf8f18c02e36415d98a4b17e9268
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - ujson >=5.5.0,<6.0.0
+
+tests:
+  - python:
+      imports:
+        - strongtyping
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Decorator which checks whether the function is called with the correct type of parameters
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://strongtyping.readthedocs.io/en/latest/
+  repository: https://github.com/FelixTheC/strongtyping
+
+extra:
+  recipe-maintainers:
+    - thewchan

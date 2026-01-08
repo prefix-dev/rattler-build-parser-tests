@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_param-sweeps",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_param-sweeps/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_param-sweeps/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_param-sweeps/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "param-sweeps": {
+          "build_string": "pyhe01879c_0",
+          "name": "param-sweeps",
+          "version": "0.2.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:31.995859127Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The param-sweeps library contains two main modules. One is for generating sweep files,\nand the other is to run a sweep over some number of parameters in a driver application.",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/python-integration/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MiraGeoscience/param-sweeps",
+        "summary": "A Parameter sweeper for applications driven by ui.json files."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "param-sweeps",
+        "python_min": "3.10",
+        "version": "0.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "param-sweeps",
+        "version": "0.2.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "poetry-core >=1.0.0",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "geoh5py >=0.11.0,<0.12.dev",
+          "numpy >=1.26.0,<1.27.dev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "20f375cbe325e0fbcafca21d6692b42b4710982ffafcb660af28bd553e98474f",
+          "url": "https://github.com/MiraGeoscience/param-sweeps/archive/v0.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "param_sweeps"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pyyaml"
+            ]
+          },
+          "script": "pytest --ignore=tests/version_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

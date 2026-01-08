@@ -1,0 +1,54 @@
+context:
+  version: "11.0.2"
+
+package:
+  name: qsv
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jqnatividad/qsv/archive/${{ version }}.tar.gz
+  sha256: 239838d64ed956be64004beb38d382af3282d2b76e19c6de15b669292be00ca2
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - cmake
+    - libclang  # only used for a build binary
+    - make
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+    - pkg-config
+  host:
+    - if: osx
+      then: libiconv
+    - python
+    - if: linux
+      then: wayland
+  run:
+    - python
+
+tests:
+  - script:
+      - qsv --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Ultra-fast CSV data-wrangling toolkit
+  homepage: https://github.com/jqnatividad/qsv
+  repository: https://github.com/jqnatividad/qsv
+
+extra:
+  recipe-maintainers:
+    - danielnachun

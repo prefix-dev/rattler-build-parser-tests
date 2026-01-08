@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.37.0
+
+package:
+  name: regal
+  version: ${{ version }}
+
+source:
+  url: https://github.com/StyraInc/regal/archive/v${{ version }}.tar.gz
+  sha256: 0b5244f8cf7fa30ffbbc8c002c7b3999cb1d0e1edcf2de8fb1f244784c7eb86f
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - regal --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Regal is a linter and language server for Rego, bringing your policy development experience to the next level!
+  homepage: https://github.com/StyraInc/regal
+  repository: https://github.com/StyraInc/regal
+
+extra:
+  recipe-maintainers:
+    - danielnachun

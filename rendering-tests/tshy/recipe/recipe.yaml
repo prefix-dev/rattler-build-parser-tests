@@ -1,0 +1,40 @@
+context:
+  version: "3.1.0"
+
+package:
+  name: tshy
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/tshy/-/tshy-${{ version }}.tgz
+  sha256: f16a26aed6cde19923ab505bcc8d7ef417c089acfae0afcd7c146c0eb51e23aa
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "tshy 2>&1 | grep -q \"failed to read package.json\""
+
+about:
+  license: BlueOak-1.0.0
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: TypeScript HYbridizer
+  homepage: https://github.com/isaacs/tshy
+  repository: https://github.com/isaacs/tshy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,16 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index a80a014..f84dd1e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -39,8 +39,9 @@ install (TARGETS backward
+ 
+ #===============================================================================
+ # Used for the installed version.
+-if(APPLE)
+-  # On macOS, the full path to the library since DYLD_LIBRARY_PATH may not work.
++if(NOT WIN32)
++  # If we are not on Windows specify the full path as the different ways that dlopen
++  # has to find libraries without full path may not work (while on Windows PATH should work)
+   set(backward_library_name ${CMAKE_INSTALL_FULL_LIBDIR}/$<TARGET_FILE_NAME:backward>)
+ else()
+   set(backward_library_name $<TARGET_FILE_NAME:backward>)

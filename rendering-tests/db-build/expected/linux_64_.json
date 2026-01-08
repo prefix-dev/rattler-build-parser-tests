@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_db-build",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_db-build/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_db-build/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_db-build/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "db-build": {
+          "build_string": "pyhcf101f3_2",
+          "name": "db-build",
+          "version": "0.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:00.796235023Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/simonw/db-build",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Tools for building SQLite databases from files and directories"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "db-build = db_build.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "name": "db-build",
+        "version": "0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "db-build",
+        "version": "0.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "click",
+          "sqlite-utils"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "dee5b26c92e31239ff5a7bfd2adfc7816063b880cba578f28e4c2b73c467e2db",
+          "url": "https://pypi.org/packages/source/d/db-build/db-build-0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "db_build"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "db-build --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

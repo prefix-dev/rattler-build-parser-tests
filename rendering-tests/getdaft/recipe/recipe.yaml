@@ -1,0 +1,72 @@
+schema_version: 1
+
+context:
+  name: "getdaft"
+  version: "0.6.13"
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Eventual-Inc/Daft/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: ff2705e21dcdbfc60ac8e8e363fc17d405a54c753b2f1c792a7ea45776ec1303
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+        - maturin >=1.5.0,<2.0.0
+    - pkg-config
+    - make
+    - cargo-bundle-licenses
+    - if: unix
+      then: unzip
+    - nodejs
+  host:
+    - python
+    - pip
+    - maturin >=1.5.0,<2.0.0
+    - openssl
+    - xz-tools
+  run:
+    - python
+    - pyarrow >=8.0.0
+    - fsspec
+    - tqdm
+    - typing_extensions >=4.0.0
+    - packaging
+
+tests:
+  - python:
+      imports:
+        - daft
+  - script:
+      - pip check
+    requirements:
+      run:
+        - pip
+
+about:
+  license: Apache-2.0
+  summary: Distributed Dataframes for Multimodal Data
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://www.getdaft.io/
+  repository: https://github.com/Eventual-Inc/Daft
+  documentation: https://www.getdaft.io/projects/docs/
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - whophil

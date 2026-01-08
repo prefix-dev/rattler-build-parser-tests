@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.25.2
+
+package:
+  name: delve
+  version: ${{ version }}
+
+source:
+  url: https://github.com/go-delve/delve/archive/v${{ version }}.tar.gz
+  sha256: dda9adaafefa469662846d49a82cb7053605bce90bf2986d3f31be6929440ed0
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - dlv --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Debugger for the Go programming language
+  homepage: https://github.com/go-delve/delve
+  repository: https://github.com/go-delve/delve
+
+extra:
+  recipe-maintainers:
+    - danielnachun

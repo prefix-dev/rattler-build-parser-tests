@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbapcommon",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbapcommon/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbapcommon/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbapcommon/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbapcommon": {
+          "build_string": "pyhcf101f3_0",
+          "name": "lbapcommon",
+          "version": "0.14.26"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:50.780380509Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.cern.ch/lhcb-dpa/analysis-productions/LbAPCommon",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.cern.ch/lhcb-dpa/analysis-productions/LbAPCommon",
+        "summary": "Common utilities used by LHCb DPA WP2 related software"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "lbapcommon",
+        "python_min": "3.12",
+        "version": "0.14.26"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ryuwd",
+          "AidanWiederhold",
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbapcommon",
+        "version": "0.14.26"
+      },
+      "requirements": {
+        "host": [
+          "python 3.12.*",
+          "setuptools-scm",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.12",
+          "strictyaml",
+          "jinja2",
+          "lxml",
+          "pyyaml",
+          "setuptools",
+          "boost-histogram",
+          "hist",
+          "pandas",
+          "numpy",
+          "requests",
+          "uproot >=5.0.0",
+          "awkward >=2.1.1",
+          "matplotlib-base",
+          "networkx",
+          "lbdiracwrappers",
+          "pydantic >=2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8d9e3f6212462a2eaef28fca597d46723f9111871fee9f8f406bc07787a5bb45",
+          "url": "https://pypi.org/packages/source/l/lbapcommon/lbapcommon-0.14.26.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "LbAPCommon",
+              "LbAPCommon.linting",
+              "LbAPCommon.validators"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.12.*"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

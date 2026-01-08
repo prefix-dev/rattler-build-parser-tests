@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_serf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_serf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_serf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_serf/work"
+      },
+      "hash": {
+        "hash": "3a4db50"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "serf": {
+          "build_string": "h3a4db50_3",
+          "name": "serf",
+          "version": "1.3.10"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2025-12-13T07:53:29.606139240Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "expat": "2",
+        "openssl": "3.5",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://serf.apache.org/abi/timeline/serf/index.html",
+        "homepage": "https://serf.apache.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://serf.apache.org/contribute",
+        "summary": "A high performance C-based HTTP client library"
+      },
+      "build": {
+        "number": 3,
+        "string": "h3a4db50_3"
+      },
+      "context": {
+        "name": "serf",
+        "version": "1.3.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "scopatz",
+          "rfiorella"
+        ]
+      },
+      "package": {
+        "name": "serf",
+        "version": "1.3.10"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "openssl",
+          "libapr",
+          "libaprutil",
+          "zlib",
+          "scons",
+          "expat"
+        ],
+        "host": [
+          "openssl",
+          "libapr",
+          "libaprutil",
+          "zlib"
+        ],
+        "run": [
+          "libapr",
+          "libaprutil",
+          "openssl",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "serf",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "SConstruct.patch"
+          ],
+          "sha256": "be81ef08baa2516ecda76a77adf7def7bc3227eeb578b9a33b45f7b41dc064e6",
+          "url": "https://www.apache.org/dist/serf/serf-1.3.10.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/serf-1/serf.h",
+            "test -f ${PREFIX}/lib/libserf-1${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

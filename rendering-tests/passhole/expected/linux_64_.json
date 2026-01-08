@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_passhole",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_passhole/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_passhole/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_passhole/work"
+      },
+      "hash": {
+        "hash": "8f84b5b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "passhole": {
+          "build_string": "pyh8f84b5b_1",
+          "name": "passhole",
+          "version": "1.10.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2025-12-13T07:53:04.251984939Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/evidlo/passhole",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "CLI KeePass client with dmenu support"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "passhole = passhole.passhole:main",
+            "ph = passhole.passhole:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyh8f84b5b_1"
+      },
+      "context": {
+        "version": "1.10.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "passhole",
+        "version": "1.10.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "pynput",
+          "pykeepass >=4.0.3",
+          "pykeepass_cache",
+          "colorama",
+          "future",
+          "pyotp",
+          "qrcode",
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e71f110391f40f100023475e2d78544b2faae6f1a2c4258753877d1585d171d1",
+          "url": "https://pypi.org/packages/source/p/passhole/passhole-1.10.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "passhole"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "passhole --help",
+            "ph --help",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

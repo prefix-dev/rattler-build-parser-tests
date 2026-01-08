@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blender-mathutils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blender-mathutils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blender-mathutils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blender-mathutils/work"
+      },
+      "hash": {
+        "hash": "c51f775",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "blender-mathutils": {
+          "build_string": "py312hc51f775_1",
+          "name": "blender-mathutils",
+          "version": "3.3.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2025-12-13T07:53:08.259854242Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This module originated from Blender (the opens-source 3d package),\nwhere it has been used for some years in production as a utility module for use in areas including animation,\ngames and mesh manipulation.\n\nThis differs from numpy in that it is computer graphics focused,\ncombining Matrix and Vector types with rotation classes which is very useful\nfor use with animation or anywhere Euler and Quaternion values are used frequently.\n\nThis project is mainly a build system around the actively maintained mathutils code in\nBlender to allow non Blender related projects to make use of it.\n\nA link to the Blender repository is used so the source never gets out of sync.",
+        "homepage": "https://gitlab.com/ideasman42/blender-mathutils",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://gitlab.com/ideasman42/blender-mathutils",
+        "summary": "A general math utilities library providing Matrix, Vector, Quaternion, Euler and Color classes, written in C for speed."
+      },
+      "build": {
+        "number": 1,
+        "script": "python -m pip install . -vv",
+        "string": "py312hc51f775_1"
+      },
+      "context": {
+        "name": "blender-mathutils",
+        "version": "3.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "blender-mathutils",
+        "version": "3.3.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/py313_fix.patch"
+          ],
+          "sha256": "b9371af8149f3f3f05ee165cb583b2df7b3fbc9935406d1c505a5276b8e563af",
+          "url": "https://pypi.org/packages/source/m/mathutils/mathutils-3.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mathutils"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

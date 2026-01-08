@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pystack",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pystack/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pystack/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pystack/work"
+      },
+      "hash": {
+        "hash": "be2637b",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pystack": {
+          "build_string": "py313hbe2637b_2",
+          "name": "pystack",
+          "version": "1.5.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2025-12-13T07:52:30.651326929Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "elfutils": "0.193",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "PyStack is a tool that uses forbidden magic to let you\ninspect the stack frames of a running Python process or\na Python core dump.",
+        "documentation": "https://bloomberg.github.io/pystack/",
+        "homepage": "https://github.com/bloomberg/pystack",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/bloomberg/pystack",
+        "summary": "Analysis of the stack of remote python processes"
+      },
+      "build": {
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "pystack = pystack.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py313hbe2637b_2"
+      },
+      "context": {
+        "name": "pystack",
+        "version": "1.5.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "pystack",
+        "version": "1.5.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*"
+        ],
+        "host": [
+          "elfutils",
+          "python",
+          "setuptools",
+          "wheel",
+          "cython",
+          "pkgconfig",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9aa1a25ea2f1c3d2176059a280ef2f7c4e26c5540d37ed3c90ded65e6cc06f50",
+          "url": "https://pypi.org/packages/source/p/pystack/pystack-1.5.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pystack"
+            ]
+          }
+        },
+        {
+          "script": "pystack --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]

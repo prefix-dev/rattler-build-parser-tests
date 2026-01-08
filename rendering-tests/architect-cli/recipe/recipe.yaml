@@ -1,0 +1,40 @@
+context:
+  version: "0.2100.3"
+
+package:
+  name: architect-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@angular-devkit/architect-cli/-/architect-cli-${{ version }}.tgz
+  sha256: f5eca054ccc279b453f541f9e4722ecdd66ff3f430690e6a16d09dbe3b474e2f
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - architect --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Executable for running an Architect Builder.
+  homepage: https://github.com/angular/angular-cli
+  repository: https://github.com/angular/angular-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: ezsheets
+  version: 2025.11.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: b175bb85f9e66ef2d147271e97abab601371e36236a1fe96f22d69b284dff29a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - google-api-python-client
+    - google-auth-httplib2
+    - google-auth-oauthlib
+
+tests:
+  - python:
+      imports:
+        - ezsheets
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A Pythonic interface to the Google Sheets API that actually works as of August 2021.
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE.txt
+  homepage: https://github.com/asweigart/ezsheets
+
+extra:
+  recipe-maintainers:
+    - thewchan

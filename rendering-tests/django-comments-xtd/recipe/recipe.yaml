@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-comments-xtd
+  version: "2.10.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django_comments_xtd-${{ version }}.tar.gz
+  sha256: 4a37cb28adae793ea3d98bbccff49544a8a430da0ab0826c29bbe99cb579601c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=4,<6
+    - django-contrib-comments >=2.2,<2.3
+    - djangorestframework >=3.12,<3.16
+    - docutils
+    - pytz
+    - six
+
+tests:
+  - python:
+      imports:
+        - django_comments_xtd
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Django Comments Framework extension app with thread support, follow up notifications and email confirmations.
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: http://pypi.python.org/pypi/django-comments-xtd
+
+extra:
+  recipe-maintainers:
+    - rxm7706

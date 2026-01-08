@@ -1,0 +1,44 @@
+context:
+  version: "0.8.1"
+
+package:
+  name: t-rec
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sassman/t-rec-rs/archive/v${{ version }}.tar.gz
+  sha256: 3b008a13d773807d3ce92ff296106c779bea7f57b9bd6d6a5530f7159980cb7c
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - imagemagick
+    - if: osx
+      then: libiconv
+    - if: linux
+      then: xorg-libx11
+
+tests:
+  - script:
+      - t-rec --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Blazingly fast terminal recorder that generates animated gif images for the web
+  homepage: https://github.com/sassman/t-rec-rs
+  repository: https://github.com/sassman/t-rec-rs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

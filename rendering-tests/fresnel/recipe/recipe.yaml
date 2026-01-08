@@ -1,0 +1,73 @@
+schema_version: 1
+
+context:
+  name: "fresnel"
+  version: "0.13.8"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/glotzerlab/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.xz
+  sha256: 13efa3a967f0fd72d5f686af8563c1c26e6ee2fb00cf94804a9c50b51e9de67f
+
+build:
+  number: 2
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+        - pybind11
+
+  host:
+    - python
+    - numpy
+    - embree >=4.0.0
+    - tbb
+    - tbb-devel
+    - pybind11
+    - qhull ==2020.2
+
+  run:
+    - python
+    - embree >=4.0.0
+    - tbb
+    - pillow
+    - qhull ==2020.2
+
+tests:
+  - script:
+      - pytest --pyargs fresnel -v -ra
+    requirements:
+      run:
+        - pytest
+
+about:
+  homepage: https://github.com/glotzerlab/{{ name }}
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Path tracing for soft matter simulations.
+
+  description: |
+    Fresnel is a python library that path traces publication quality images of soft matter simulations in real time.
+  documentation: https://${{ name }}.readthedocs.io
+  repository: https://github.com/glotzerlab/${{ name }}
+
+extra:
+  recipe-maintainers:
+    - joaander
+    - tcmoore3
+    - SchoeniPhlippsn
+    - DomFijan
+    - janbridley
+    - tfteague
+    - sumitavaumich

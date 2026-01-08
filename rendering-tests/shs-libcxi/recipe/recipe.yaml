@@ -1,0 +1,64 @@
+context:
+  name: "shs-libcxi"
+  version: "13.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/HewlettPackard/shs-libcxi/archive/refs/tags/release/shs-${{ version }}.tar.gz
+    sha256: 48c11617352f48262400f3722e0f8a701c6bceb74701c39a9ea20e83ca690fe3
+    patches:
+      - fix-random.patch
+      - fix-udp-header.patch
+      - fix-fuse3-configure.patch
+      - fix-fuse3-stats.patch
+      - fix-fuse3-rh.patch
+
+build:
+  number: 1
+  script: build.sh
+  skip:
+    - win
+    - osx
+
+requirements:
+  run_exports:
+    - ${{ pin_subpackage('shs-libcxi', upper_bound='x') }}
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - autoconf
+    - automake
+    - libtool
+    - make
+    - pkg-config
+  host:
+    - libconfig
+    - libfuse >=3
+    - libnl
+    - libnuma
+    - libsystemd0
+    - libuv
+    - lm-sensors
+    - shs-cassini-headers
+    - shs-cxi-drivers
+    - yaml
+
+tests:
+  - script:
+      - test -f $PREFIX/lib/libcxi.so
+      - test -f $PREFIX/include/libcxi/libcxi.h
+
+about:
+  homepage: https://github.com/HewlettPackard/shs-libcxi
+  license: LGPL-2.1-only OR BSD-3-Clause
+  license_file: cray-libcxi.spec
+  summary: 'Library for CXI (Cassini eXtended Interface)'
+  description: |
+    Provides a userspace library for interacting with CXI hardware.
+
+extra:
+  recipe-maintainers:
+    - j34ni

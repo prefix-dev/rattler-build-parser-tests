@@ -1,0 +1,237 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panda3d",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panda3d/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panda3d/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panda3d/work"
+      },
+      "hash": {
+        "hash": "a1bcee2",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.0=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "panda3d": {
+          "build_string": "np2py311ha1bcee2_5",
+          "name": "panda3d",
+          "version": "1.10.15"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2025-12-13T07:54:51.450565802Z",
+      "variant": {
+        "assimp": "5.4.3",
+        "bullet_cpp": "3.25",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "ffmpeg": "8",
+        "fftw": "3",
+        "freetype": "2",
+        "libjpeg_turbo": "3",
+        "libode": "0.16.6",
+        "libpng": "1.6",
+        "mimalloc": "3.1.5",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.11.* *_cpython",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Panda3D is a game engine, a framework for 3D rendering \nand game development for Python and C++ programs. Panda3D \nis open-source and free for any purpose, including commercial \nventures, thanks to its liberal license. To learn more about \nPanda3D's capabilities, visit the gallery and the feature list. \nTo learn how to use Panda3D, check the documentation resources. \nIf you get stuck, ask for help from our active community.",
+        "documentation": "https://docs.panda3d.org/1.10/python/index",
+        "homepage": "https://www.panda3d.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/panda3d/panda3d",
+        "summary": "Panda3D is a game engine, a framework for 3D rendering and game development for Python and C++ programs"
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "Lib/site-packages/deploy_libs/**/*",
+            "Lib/site-packages/panda3d_tools/**/*",
+            "Lib/site-packages/pandac/**/*",
+            "Lib/site-packages/**/__pycache__",
+            "Library/**/*.pdb"
+          ],
+          "include": []
+        },
+        "number": 5,
+        "string": "np2py311ha1bcee2_5"
+      },
+      "context": {
+        "name": "panda3d",
+        "version": "1.10.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "olivier-roussel",
+          "ymontmarin"
+        ]
+      },
+      "package": {
+        "name": "panda3d",
+        "version": "1.10.15"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "cmake",
+          "pkg-config",
+          "doxygen"
+        ],
+        "host": [
+          "libogg",
+          "pillow",
+          "pip",
+          "python",
+          "numpy",
+          "setuptools",
+          "assimp",
+          "bullet-cpp",
+          "eigen",
+          "ffmpeg",
+          "fftw",
+          "fltk",
+          "freetype",
+          "harfbuzz",
+          "libjpeg-turbo",
+          "libode",
+          "libpng",
+          "libvorbis",
+          "mimalloc",
+          "openal-soft",
+          "openssl",
+          "tifffile",
+          "zlib",
+          "wxpython"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "numpy",
+              "upper_bound": "x"
+            }
+          },
+          "ffmpeg",
+          "openal-soft",
+          "openssl",
+          "tifffile",
+          "libtiff",
+          "libffi",
+          "sqlite",
+          "tk",
+          "xz-tools"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "panda3d",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/fix-makepanda-to-use-custom-3rd-party-libs-for-conda.patch",
+            "patches/0001-redirect-3rd-party-dir-to-conda-fix-lib-paths.patch",
+            "patches/0002-use-non-static-mimalloc.patch",
+            "patches/fix-model-path-in-config.prc-template.patch",
+            "patches/Use-Win32-native-calls-for-atomic-also-with-clang-cl.patch"
+          ],
+          "sha256": "dfe93123a73570377ef77c2a1b6ecff46c9b507750d8bedde07f9244cc1e741e",
+          "url": "https://github.com/panda3d/panda3d/archive/v1.10.15.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "panda3d/panda.h"
+            ],
+            "lib": [
+              "libpanda"
+            ]
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "panda3d",
+              "direct"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs_win-64",
+              "vs2022_win-64",
+              "cmake",
+              "ninja",
+              "eigen"
+            ]
+          },
+          "script": "run_test"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.51.0"
+    }
+  }
+]
