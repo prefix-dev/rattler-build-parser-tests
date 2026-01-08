@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -30,7 +30,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:20:47.686763111Z",
+      "timestamp": "2026-01-08T13:26:03.441953964Z",
       "variant": {
         "c_compiler": "gcc",
         "c_compiler_version": "14",
@@ -73,7 +73,7 @@
     "finalized_sources": null,
     "recipe": {
       "about": {
-        "description": "The NASA Vision Workbench is a general purpose image processing and computer vision library. It is part of the Ames Stereo Pipeline. ",
+        "description": "The NASA Vision Workbench is a general purpose image processing and computer vision library. It is part of the Ames Stereo Pipeline.",
         "documentation": "https://github.com/visionworkbench/visionworkbench",
         "homepage": "https://github.com/visionworkbench/visionworkbench",
         "license": "Apache-2.0",
@@ -86,10 +86,7 @@
       },
       "build": {
         "number": 2,
-        "script": {
-          "content": "build.sh",
-          "interpreter": "bash"
-        },
+        "script": "build.sh",
         "string": "hf14497d_2"
       },
       "context": {
@@ -135,12 +132,14 @@
       ],
       "tests": [
         {
-          "script": "hillshade $PREFIX/share/vw/tests/tinyDemAN.tif"
+          "script": [
+            "hillshade $PREFIX/share/vw/tests/tinyDemAN.tif"
+          ]
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
