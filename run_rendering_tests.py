@@ -193,12 +193,35 @@ def run_rattler_build(
     if target_platform:
         cmd.extend(["--target-platform", target_platform])
 
+    # Set up environment variables
+    env = os.environ.copy()
+
+    # If variant file exists, check for cuda_compiler_version and set CONDA_OVERRIDE_CUDA
+    if variant_file and variant_file.exists() and yaml is not None:
+        try:
+            with open(variant_file, 'r') as f:
+                variant_data = yaml.safe_load(f)
+
+            if variant_data and isinstance(variant_data, dict):
+                cuda_version = variant_data.get('cuda_compiler_version')
+                if cuda_version:
+                    # cuda_version is a list in the variant file
+                    if isinstance(cuda_version, list) and len(cuda_version) > 0:
+                        cuda_val = cuda_version[0]
+                        # Only set if not "None" (string)
+                        if cuda_val and cuda_val != 'None':
+                            env['CONDA_OVERRIDE_CUDA'] = str(cuda_val)
+        except Exception:
+            # If we can't parse the variant file, just continue without setting the env var
+            pass
+
     try:
         result = subprocess.run(
             cmd,
             capture_output=True,
             text=True,
-            timeout=120
+            timeout=120,
+            env=env
         )
 
         if result.returncode == 0:
@@ -716,7 +739,7 @@ def test_feedstock(
                 print(f"    Warning: Could not read metadata: {e}")
 
         variant_name = variant_file.name if variant_file else "no-variant"
-        print(f"  Testing variant: {variant_name}", end="")
+        print(f"\n  Testing variant: {variant_name}", end="")
         if target_platform:
             print(f" (target: {target_platform})", end="")
         print()
