@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -29,7 +29,7 @@
         "virtual_packages": [
           "__unix=0=0",
           "__osx=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2025-12-12T16:27:44.972074755Z",
+      "timestamp": "2026-01-12T18:22:55.730933990Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -80,14 +80,16 @@
         "python": {
           "version_independent": true
         },
-        "script": [
-          "mkdir -p \"${PREFIX}/etc/pixi/ty\"",
-          "touch \"${PREFIX}/etc/pixi/ty/global-ignore-conda-prefix\"",
-          "maturin build --release",
-          "${{ PYTHON }} -m pip install --find-links=ruff/target/wheels ty",
-          "cd ruff",
-          "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
-        ],
+        "script": {
+          "content": [
+            "mkdir -p \"${PREFIX}/etc/pixi/ty\"",
+            "touch \"${PREFIX}/etc/pixi/ty/global-ignore-conda-prefix\"",
+            "maturin build --release",
+            "${{ PYTHON }} -m pip install --find-links=ruff/target/wheels ty",
+            "cd ruff",
+            "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
+          ]
+        },
         "string": "he4d74a2_0"
       },
       "context": {
@@ -150,7 +152,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]

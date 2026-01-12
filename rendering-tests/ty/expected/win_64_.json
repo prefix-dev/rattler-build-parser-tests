@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -28,7 +28,7 @@
         "platform": "win-64",
         "virtual_packages": [
           "__win=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2025-12-12T16:27:45.273297661Z",
+      "timestamp": "2026-01-12T18:22:55.886915705Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "vs2022",
@@ -76,14 +76,16 @@
         "python": {
           "version_independent": true
         },
-        "script": [
-          "if not exist \"%PREFIX%\\\\etc\\\\pixi\" mkdir \"%PREFIX%\\\\etc\\\\pixi\\\\ty\"",
-          "type nul > \"%PREFIX%\\\\etc\\\\pixi\\\\ty\\\\global-ignore-conda-prefix\"",
-          "maturin build --release",
-          "${{ PYTHON }} -m pip install --find-links=ruff/target/wheels ty",
-          "cd ruff",
-          "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
-        ],
+        "script": {
+          "content": [
+            "if not exist \"%PREFIX%\\\\etc\\\\pixi\" mkdir \"%PREFIX%\\\\etc\\\\pixi\\\\ty\"",
+            "type nul > \"%PREFIX%\\\\etc\\\\pixi\\\\ty\\\\global-ignore-conda-prefix\"",
+            "maturin build --release",
+            "${{ PYTHON }} -m pip install --find-links=ruff/target/wheels ty",
+            "cd ruff",
+            "cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml"
+          ]
+        },
         "string": "hdcd44da_0"
       },
       "context": {
@@ -146,7 +148,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
