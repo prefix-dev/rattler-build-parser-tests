@@ -12,7 +12,7 @@ context:
   cuda_compiler_version: ${{ cuda_compiler_version | default('None') }}
   # construct some variables to use in the recipe
   # with_cuda can be used as a bool for cuda or not conditions
-  with_cuda: ${{ 'true' if cuda_compiler_version != 'None' else '' }}
+  with_cuda: ${{ true if cuda_compiler_version != 'None' else false }}
   # cuda_major is always the major version of cuda as an integer string ('0' if not with_cuda)
   cuda_major: >-
     ${{
