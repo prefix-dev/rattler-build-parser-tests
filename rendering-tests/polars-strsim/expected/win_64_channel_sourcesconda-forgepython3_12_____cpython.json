@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -29,7 +29,7 @@
         "platform": "win-64",
         "virtual_packages": [
           "__win=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2025-12-12T16:26:10.016540174Z",
+      "timestamp": "2026-01-13T16:41:37.926946417Z",
       "variant": {
         "c_compiler": "vs2022",
         "c_stdlib": "vs",
@@ -74,10 +74,12 @@
       },
       "build": {
         "number": 1,
-        "script": [
-          "python -m pip install . -vv",
-          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
-        ],
+        "script": {
+          "content": [
+            "python -m pip install . -vv",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+          ]
+        },
         "string": "py312hd944d65_1"
       },
       "context": {
@@ -130,7 +132,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
