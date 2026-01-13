@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -30,7 +30,7 @@
         "virtual_packages": [
           "__unix=0=0",
           "__osx=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=m1"
         ]
       },
@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2025-12-13T07:54:23.199013240Z",
+      "timestamp": "2026-01-13T16:40:57.029616831Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -170,15 +170,17 @@
               "abi3audit"
             ]
           },
-          "script": [
-            "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
-            "abi3audit $SP_DIR/polars_cloud/polars_cloud.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
-          ]
+          "script": {
+            "content": [
+              "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+              "abi3audit $SP_DIR/polars_cloud/polars_cloud.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
+            ]
+          }
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
