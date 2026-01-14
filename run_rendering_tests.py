@@ -248,6 +248,63 @@ def normalize_json_output(output: str) -> Dict:
         raise ValueError("Could not parse JSON from output")
 
 
+def get_output_sort_key(output: Dict) -> str:
+    """Get a sort key for an output based on package name."""
+    try:
+        return output.get('recipe', {}).get('package', {}).get('name', '')
+    except (AttributeError, TypeError):
+        return ''
+
+
+def sort_outputs_by_name(outputs: List[Dict]) -> Tuple[List[Dict], List[str]]:
+    """
+    Sort outputs by package name and return the sorted list plus original order.
+    Returns (sorted_outputs, original_names_order).
+    """
+    if not isinstance(outputs, list):
+        return outputs, []
+
+    original_names = [get_output_sort_key(o) for o in outputs]
+    sorted_outputs = sorted(outputs, key=get_output_sort_key)
+    return sorted_outputs, original_names
+
+
+def check_output_order_changed(expected: List[Dict], actual: List[Dict]) -> Optional[str]:
+    """
+    Check if outputs are in a different order between expected and actual.
+    Returns a message if order changed, None otherwise.
+    """
+    if not isinstance(expected, list) or not isinstance(actual, list):
+        return None
+
+    expected_names = [get_output_sort_key(o) for o in expected]
+    actual_names = [get_output_sort_key(o) for o in actual]
+
+    # Check if the names are the same but in different order
+    if sorted(expected_names) == sorted(actual_names) and expected_names != actual_names:
+        return f"Output order changed: expected {expected_names}, got {actual_names}"
+
+    return None
+
+
+def strip_order_dependent_fields(outputs: List[Dict]) -> List[Dict]:
+    """
+    Remove fields that depend on output order (like subpackages) for comparison.
+    Returns a deep copy with those fields removed.
+    """
+    if not isinstance(outputs, list):
+        return outputs
+
+    result = copy.deepcopy(outputs)
+    for output in result:
+        if isinstance(output, dict) and 'build_configuration' in output:
+            build_config = output['build_configuration']
+            if isinstance(build_config, dict):
+                # Remove subpackages - it tracks what was built before this output
+                build_config.pop('subpackages', None)
+    return result
+
+
 def compare_outputs(
     expected: Dict,
     actual: Dict,
@@ -263,25 +320,49 @@ def compare_outputs(
         r"root\[\d+\]\['build_configuration'\]\['directories'\]\['host_prefix'\]",
         r"root\[\d+\]\['build_configuration'\]\['host_platform'\]\['virtual_packages'\]",
         r"root\[\d+\]\['build_configuration'\]\['build_platform'\]\['virtual_packages'\]",
+        # subpackages tracks which packages were built before this one - order dependent
+        r"root\[\d+\]\['build_configuration'\]\['subpackages'\]",
     ]
 
-    if expected == actual:
+    # Check if output order changed (log this but don't fail on it)
+    order_change_msg = check_output_order_changed(expected, actual)
+
+    # Sort outputs by package name for order-independent comparison
+    # Also strip order-dependent fields like subpackages
+    if isinstance(expected, list) and isinstance(actual, list):
+        expected_sorted, _ = sort_outputs_by_name(expected)
+        actual_sorted, _ = sort_outputs_by_name(actual)
+        # Strip order-dependent fields for comparison
+        expected_sorted = strip_order_dependent_fields(expected_sorted)
+        actual_sorted = strip_order_dependent_fields(actual_sorted)
+    else:
+        expected_sorted = expected
+        actual_sorted = actual
+
+    if expected_sorted == actual_sorted:
+        if order_change_msg:
+            return True, f"Outputs match (note: {order_change_msg})"
         return True, "Outputs match exactly"
 
     if DeepDiff:
         deep_diff = DeepDiff(
-            expected,
-            actual,
+            expected_sorted,
+            actual_sorted,
             ignore_order=False,
             verbose_level=2,
             exclude_regex_paths=exclude_regex_paths
         )
 
         if not deep_diff:
-            return True, "Outputs match (ignoring timestamp and rattler-build version)"
+            msg = "Outputs match (ignoring timestamp and rattler-build version)"
+            if order_change_msg:
+                msg += f" (note: {order_change_msg})"
+            return True, msg
 
         # Generate diff message
         diff_msg = "Outputs differ:\n"
+        if order_change_msg:
+            diff_msg += f"Note: {order_change_msg}\n"
         diff_msg += deep_diff.pretty()
 
         # Save diff files if output directory specified
@@ -314,11 +395,13 @@ def compare_outputs(
 
         return False, diff_msg
     else:
-        # Basic comparison without deepdiff
-        expected_str = json.dumps(expected, indent=2, sort_keys=True)
-        actual_str = json.dumps(actual, indent=2, sort_keys=True)
+        # Basic comparison without deepdiff (use sorted outputs)
+        expected_str = json.dumps(expected_sorted, indent=2, sort_keys=True)
+        actual_str = json.dumps(actual_sorted, indent=2, sort_keys=True)
 
         if expected_str == actual_str:
+            if order_change_msg:
+                return True, f"Outputs match (note: {order_change_msg})"
             return True, "Outputs match"
 
         # Generate unified diff
@@ -333,7 +416,12 @@ def compare_outputs(
         if len(unified_diff) > 100:
             diff_preview += f"\n... ({len(unified_diff) - 100} more lines)"
 
-        return False, f"Outputs differ:\n{diff_preview}"
+        diff_msg = ""
+        if order_change_msg:
+            diff_msg = f"Note: {order_change_msg}\n"
+        diff_msg += f"Outputs differ:\n{diff_preview}"
+
+        return False, diff_msg
 
 
 def get_feedstock_dirs(tests_dir: Path) -> List[Path]:
