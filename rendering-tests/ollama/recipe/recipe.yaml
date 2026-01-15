@@ -1,6 +1,6 @@
 context:
   version: "0.13.2"
-  cuda: ${{ "true" if cuda_compiler_version != "None" else "" }}
+  cuda: ${{ cuda_compiler_version != "None" }}
   cuda_build_string: cuda_${{ cuda_compiler_version | version_to_buildstring }}
   string_prefix: ${{ cuda_build_string if cuda else "cpu_" }}
   build_number: 0
@@ -25,7 +25,7 @@ build:
       # use cuda from the variant config, e.g. to build multiple CUDA variants
       - ${{ "cuda" if cuda }}
     # this will down-prioritize the cuda variant versus other variants of the package
-    down_prioritize_variant: ${{ 1 if cuda == "true" else 0 }}
+    down_prioritize_variant: ${{ 1 if cuda else 0 }}
   script:
     - if: win
       then: [build.bat]
