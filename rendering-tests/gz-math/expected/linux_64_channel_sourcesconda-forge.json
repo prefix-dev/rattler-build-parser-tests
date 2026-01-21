@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -30,7 +30,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.523066653Z",
+      "timestamp": "2026-01-21T15:23:32.179667456Z",
       "variant": {
         "c_compiler": "gcc",
         "c_compiler_version": "14",
@@ -161,7 +161,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   },
   {
@@ -172,7 +172,168 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
+      },
+      "hash": {
+        "hash": "02e1d03",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-math-python": {
+          "build_string": "py313h02e1d03_0",
+          "name": "gz-math-python",
+          "version": "9.0.0"
+        },
+        "libgz-math": {
+          "build_string": "hed47212_0",
+          "name": "libgz-math",
+          "version": "9.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-21T15:23:32.239727031Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libgz_math": "9.0.0 hed47212_0",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-math",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/gazebosim/gz-math",
+        "summary": "General purpose math library for robot applications."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py313h02e1d03_0"
+      },
+      "context": {
+        "component_name": "math",
+        "cxx_name": "libgz-math",
+        "major_version": "9",
+        "name": "gz-math",
+        "python_name": "gz-math-python",
+        "repo_name": "gz-math",
+        "version": "9.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-math-python",
+        "version": "9.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
+          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.math"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -196,7 +357,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -218,7 +379,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.559520550Z",
+      "timestamp": "2026-01-21T15:23:32.240457454Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -322,7 +483,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   },
   {
@@ -333,7 +494,329 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
+      },
+      "hash": {
+        "hash": "2e8a064",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-math-python": {
+          "build_string": "py311h2e8a064_0",
+          "name": "gz-math-python",
+          "version": "9.0.0"
+        },
+        "libgz-math": {
+          "build_string": "hed47212_0",
+          "name": "libgz-math",
+          "version": "9.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-21T15:23:32.241099017Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libgz_math": "9.0.0 hed47212_0",
+        "pybind11_abi": "11",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-math",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/gazebosim/gz-math",
+        "summary": "General purpose math library for robot applications."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py311h2e8a064_0"
+      },
+      "context": {
+        "component_name": "math",
+        "cxx_name": "libgz-math",
+        "major_version": "9",
+        "name": "gz-math",
+        "python_name": "gz-math-python",
+        "repo_name": "gz-math",
+        "version": "9.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-math-python",
+        "version": "9.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
+          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.math"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
+      },
+      "hash": {
+        "hash": "881973c",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-math-python": {
+          "build_string": "py312h881973c_0",
+          "name": "gz-math-python",
+          "version": "9.0.0"
+        },
+        "libgz-math": {
+          "build_string": "hed47212_0",
+          "name": "libgz-math",
+          "version": "9.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-21T15:23:32.241702300Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libgz_math": "9.0.0 hed47212_0",
+        "pybind11_abi": "11",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-math",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/gazebosim/gz-math",
+        "summary": "General purpose math library for robot applications."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py312h881973c_0"
+      },
+      "context": {
+        "component_name": "math",
+        "cxx_name": "libgz-math",
+        "major_version": "9",
+        "name": "gz-math",
+        "python_name": "gz-math-python",
+        "repo_name": "gz-math",
+        "version": "9.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-math-python",
+        "version": "9.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "pkg-config",
+          "ninja"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-math"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
+          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.math"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -356,7 +839,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -372,7 +855,7 @@
           "version": "9.0.0"
         },
         "gz-math-python": {
-          "build_string": "py310hdf1d2c3_0",
+          "build_string": "py312h881973c_0",
           "name": "gz-math-python",
           "version": "9.0.0"
         },
@@ -383,7 +866,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.559725771Z",
+      "timestamp": "2026-01-21T15:23:32.242381453Z",
       "variant": {
         "c_compiler": "gcc",
         "c_compiler_version": "14",
@@ -488,505 +971,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
-      },
-      "hash": {
-        "hash": "2e8a064",
-        "prefix": "py311"
-      },
-      "host_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-math": {
-          "build_string": "h16466f9_0",
-          "name": "gz-math",
-          "version": "9.0.0"
-        },
-        "gz-math-python": {
-          "build_string": "py311h2e8a064_0",
-          "name": "gz-math-python",
-          "version": "9.0.0"
-        },
-        "libgz-math": {
-          "build_string": "hed47212_0",
-          "name": "libgz-math",
-          "version": "9.0.0"
-        }
-      },
-      "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.559967006Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libgz_math": "9.0.0 hed47212_0",
-        "pybind11_abi": "11",
-        "python": "3.11.* *_cpython",
-        "target_platform": "linux-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-math",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/gazebosim/gz-math",
-        "summary": "General purpose math library for robot applications."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py311h2e8a064_0"
-      },
-      "context": {
-        "component_name": "math",
-        "cxx_name": "libgz-math",
-        "major_version": "9",
-        "name": "gz-math",
-        "python_name": "gz-math-python",
-        "repo_name": "gz-math",
-        "version": "9.0.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-math-python",
-        "version": "9.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-64 14.*",
-          "sysroot_linux-64 2.17.*",
-          "gxx_linux-64 14.*",
-          "cmake",
-          "pkg-config",
-          "ninja"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
-          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.math"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
-      },
-      "hash": {
-        "hash": "881973c",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-math": {
-          "build_string": "h16466f9_0",
-          "name": "gz-math",
-          "version": "9.0.0"
-        },
-        "gz-math-python": {
-          "build_string": "py312h881973c_0",
-          "name": "gz-math-python",
-          "version": "9.0.0"
-        },
-        "libgz-math": {
-          "build_string": "hed47212_0",
-          "name": "libgz-math",
-          "version": "9.0.0"
-        }
-      },
-      "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.560179913Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libgz_math": "9.0.0 hed47212_0",
-        "pybind11_abi": "11",
-        "python": "3.12.* *_cpython",
-        "target_platform": "linux-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-math",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/gazebosim/gz-math",
-        "summary": "General purpose math library for robot applications."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py312h881973c_0"
-      },
-      "context": {
-        "component_name": "math",
-        "cxx_name": "libgz-math",
-        "major_version": "9",
-        "name": "gz-math",
-        "python_name": "gz-math-python",
-        "repo_name": "gz-math",
-        "version": "9.0.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-math-python",
-        "version": "9.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-64 14.*",
-          "sysroot_linux-64 2.17.*",
-          "gxx_linux-64 14.*",
-          "cmake",
-          "pkg-config",
-          "ninja"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
-          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.math"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-math-python/work"
-      },
-      "hash": {
-        "hash": "02e1d03",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-math": {
-          "build_string": "h16466f9_0",
-          "name": "gz-math",
-          "version": "9.0.0"
-        },
-        "gz-math-python": {
-          "build_string": "py313h02e1d03_0",
-          "name": "gz-math-python",
-          "version": "9.0.0"
-        },
-        "libgz-math": {
-          "build_string": "hed47212_0",
-          "name": "libgz-math",
-          "version": "9.0.0"
-        }
-      },
-      "target_platform": "linux-64",
-      "timestamp": "2025-12-12T16:27:45.560394439Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libgz_math": "9.0.0 hed47212_0",
-        "pybind11_abi": "11",
-        "python": "3.13.* *_cp313",
-        "target_platform": "linux-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-math",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/gazebosim/gz-math",
-        "summary": "General purpose math library for robot applications."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py313h02e1d03_0"
-      },
-      "context": {
-        "component_name": "math",
-        "cxx_name": "libgz-math",
-        "major_version": "9",
-        "name": "gz-math",
-        "python_name": "gz-math-python",
-        "repo_name": "gz-math",
-        "version": "9.0.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-math-python",
-        "version": "9.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-64 14.*",
-          "sysroot_linux-64 2.17.*",
-          "gxx_linux-64 14.*",
-          "cmake",
-          "pkg-config",
-          "ninja"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-math"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "e1eacfc2bf6b875ec270b6323cfaa8dfe043c9aaff9ceb8f87ff46e1cde9474a",
-          "url": "https://github.com/gazebosim/gz-math/archive/gz-math9_9.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.math"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
