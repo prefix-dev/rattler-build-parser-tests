@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -29,7 +29,7 @@
         "platform": "win-64",
         "virtual_packages": [
           "__win=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2025-12-12T16:21:31.688641846Z",
+      "timestamp": "2026-01-21T13:07:57.280377120Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "vs2022",
@@ -77,6 +77,8 @@
         "number": 0,
         "script": [
           "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ \"export OPENSSL_DIR=${PREFIX}\" if unix }}",
+          "${{ \"cargo install --force --locked bindgen-cli\" if unix }}",
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
         ],
         "string": "py310h3df959f_0"
@@ -158,7 +160,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
