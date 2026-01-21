@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -22,14 +22,14 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastemriwaveforms/work"
       },
       "hash": {
-        "hash": "2354592",
+        "hash": "59b9d3f",
         "prefix": "np2py313"
       },
       "host_platform": {
         "platform": "win-64",
         "virtual_packages": [
           "__win=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -40,13 +40,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "fastemriwaveforms": {
-          "build_string": "np2py313h2354592_111",
+          "build_string": "np2py313h59b9d3f_111",
           "name": "fastemriwaveforms",
           "version": "2.0.0"
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2025-12-12T16:26:14.848172297Z",
+      "timestamp": "2026-01-21T14:52:24.548142683Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "vs2022",
@@ -56,7 +56,6 @@
         "cxx_compiler": "vs2022",
         "libblas": "3.9.* *netlib",
         "liblapacke": "3.9.* *netlib",
-        "microarch_level": "1",
         "numpy": "2",
         "python": "3.13.* *_cp313",
         "target_platform": "win-64"
@@ -86,14 +85,12 @@
           ]
         },
         "script": {
-          "content": [
-            "${{ PYTHON }} -m pip install . -vv -Ccmake.define.FEW_LAPACKE_FETCH=OFF -Ccmake.define.FEW_WITH_GPU=OFF -Ccmake.define.FEW_LAPACKE_DETECT_WITH=PKGCONFIG ${{ microarch_option }}"
-          ],
+          "content": "${{ PYTHON }} -m pip install . -vv -Ccmake.define.FEW_LAPACKE_FETCH=OFF -Ccmake.define.FEW_WITH_GPU=OFF -Ccmake.define.FEW_LAPACKE_DETECT_WITH=PKGCONFIG ${{ microarch_option }}",
           "env": {
             "SETUPTOOLS_SCM_PRETEND_VERSION": "2.0.0"
           }
         },
-        "string": "np2py313h2354592_111"
+        "string": "np2py313h59b9d3f_111"
       },
       "context": {
         "RECIPE_DIR": ".",
@@ -101,6 +98,7 @@
         "build_with_microarch": 111,
         "cuda_major": 0,
         "microarch_level": 1,
+        "microarch_option": "",
         "name": "FastEMRIWaveforms",
         "version": "2.0.0"
       },
@@ -201,7 +199,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
