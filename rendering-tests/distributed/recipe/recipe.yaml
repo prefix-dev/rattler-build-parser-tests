@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   version: "2026.1.1"
-  version_split: ${{ version | split('.') }}
-  dask_core_version: ${{ version_split[:3] | join('.') if (version_split | length) == 4 else version }}
+  version_split: ${{ version | split('.') | list }}
+  dask_core_version: ${{ version_split[:3] | join('.') if version_split | length == 4 else version }}
   python_min: 3.10
 
 package:
