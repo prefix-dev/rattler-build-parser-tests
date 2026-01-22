@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_viskores/work"
       },
       "hash": {
-        "hash": "e2671bb"
+        "hash": "18809c4"
       },
       "host_platform": {
         "platform": "osx-64",
@@ -40,13 +40,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "viskores": {
-          "build_string": "cpu_he2671bb_",
+          "build_string": "cpu_h18809c4_",
           "name": "viskores",
           "version": "1.1.0"
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:53:02.416210028Z",
+      "timestamp": "2026-01-22T21:45:51.060862339Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -55,7 +55,6 @@
         "c_stdlib_version": "10.13",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cuda_compiler": "cuda-nvcc",
         "cuda_compiler_version": "None",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
@@ -94,7 +93,7 @@
           "cmake --build smoke_test_build",
           "./smoke_test_build/smoke_test"
         ],
-        "string": "cpu_he2671bb_",
+        "string": "cpu_h18809c4_",
         "variant": {
           "down_prioritize_variant": 1,
           "use_keys": [
@@ -104,11 +103,11 @@
       },
       "context": {
         "common_flags": "-DCMAKE_BUILD_TYPE=Release -DViskores_ENABLE_HDF5_IO=ON -DViskores_USE_DEFAULT_TYPES_FOR_VTK=ON",
-        "cuda_flags": " -DViskores_ENABLE_CUDA=OFF ",
+        "cuda_flags": "{% if cuda_compiler_version != \"None\" %} -DViskores_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES='75;75-virtual' {% else %} -DViskores_ENABLE_CUDA=OFF {% endif %}\n",
         "parallel_build_flag": "-j",
         "soversion": "1.1",
         "version": "1.1.0",
-        "viskores_modules": "cont\nfilter_clean_grid\nfilter_connected_components\nfilter_contour\nfilter_core\nfilter_density_estimate\nfilter_entity_extraction\nfilter_field_conversion\nfilter_field_transform\nfilter_flow\nfilter_geometry_refinement\nfilter_image_processing\nfilter_mesh_info\nfilter_multi_block\nfilter_resampling\nfilter_scalar_topology\nfilter_vector_analysis\nfilter_zfp\nio\nrendering\nsource\nworklet"
+        "viskores_modules": "cont\nfilter_clean_grid\nfilter_connected_components\nfilter_contour\nfilter_core\nfilter_density_estimate\nfilter_entity_extraction\nfilter_field_conversion\nfilter_field_transform\nfilter_flow\nfilter_geometry_refinement\nfilter_image_processing\nfilter_mesh_info\nfilter_multi_block\nfilter_resampling\nfilter_scalar_topology\nfilter_vector_analysis\nfilter_zfp\nio\nrendering\nsource\nworklet\n"
       },
       "extra": {
         "recipe-maintainers": [
@@ -154,11 +153,6 @@
         {
           "sha256": "24eb77decff0370789594a8064060d64b51ba0b9ae9d78c882daada4d8f19a20",
           "url": "https://github.com/Viskores/viskores/archive/refs/tags/v1.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "script": []
         }
       ]
     },

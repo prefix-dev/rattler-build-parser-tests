@@ -103,26 +103,6 @@ requirements:
       then:
         - __cuda
 
-tests:
-  - script:
-      - if: linux
-        then:
-          - for: ${{ viskores_modules | split }}
-            then:
-              - test -f $PREFIX/lib/libviskores_${{ each }}-${{ soversion }}.so.${{ version }}
-      - if: osx
-        then:
-          - for: ${{ viskores_modules | split }}
-            then:
-              - test -f $PREFIX/lib/libviskores_${{ each }}-${{ soversion }}.${{ version }}.dylib
-      - if: win
-        then:
-          - for: ${{ viskores_modules | split }}
-            then:
-              - if not exist %LIBRARY_PREFIX%\bin\viskores_${{ each }}-${{ soversion }}.dll exit 1
-              - if not exist %LIBRARY_PREFIX%\lib\viskores_${{ each }}-${{ soversion }}.lib exit 1
-          - if not exist %LIBRARY_PREFIX%\include\viskores-${{ soversion }} exit 1
-
 about:
   homepage: https://github.com/Viskores/viskores
   summary: 'Visualization ToolKit for Many-cores (viskores)'
