@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:36:03.698704247Z",
+      "timestamp": "2026-01-22T18:00:19.412037476Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "vs2022",
@@ -136,12 +136,8 @@
           "maturin >=1.8,<2.0"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "cross-python_win-64",
-            "python"
+            "cross-python_win-64"
           ]
         },
         "run": [
@@ -190,9 +186,9 @@
               "abi3audit"
             ]
           },
-          "script": [
-            "abi3audit %PREFIX%/Lib/site-packages/zensical/zensical.pyd -s -v --assume-minimum-abi3 ${{ python_min }}"
-          ]
+          "script": {
+            "content": "abi3audit %PREFIX%/Lib/site-packages/zensical/zensical.pyd -s -v --assume-minimum-abi3 ${{ python_min }}"
+          }
         },
         {
           "script": "zensical --version"

@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:36:03.503194149Z",
+      "timestamp": "2026-01-22T18:00:18.733393495Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -140,12 +140,8 @@
           "maturin >=1.8,<2.0"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "cross-python_linux-ppc64le",
-            "python"
+            "cross-python_linux-ppc64le"
           ]
         },
         "run": [
@@ -194,10 +190,12 @@
               "abi3audit"
             ]
           },
-          "script": [
-            "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
-            "abi3audit $SP_DIR/zensical/zensical.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
-          ]
+          "script": {
+            "content": [
+              "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+              "abi3audit $SP_DIR/zensical/zensical.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
+            ]
+          }
         },
         {
           "script": "zensical --version"
