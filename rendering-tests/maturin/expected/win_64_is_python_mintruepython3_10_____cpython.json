@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:50:28.254800782Z",
+      "timestamp": "2026-01-22T18:31:47.142073482Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "vs2022",
@@ -78,9 +78,13 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": {
           "content": [
             "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "${{ \"export OPENSSL_DIR=$PREFIX\" if unix }}",
             "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
           ],
           "env": {
@@ -124,12 +128,8 @@
           "tomli >=1.1.0"
         ],
         "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
           "from_package": [
-            "cross-python_win-64",
-            "python"
+            "cross-python_win-64"
           ]
         },
         "run": [
