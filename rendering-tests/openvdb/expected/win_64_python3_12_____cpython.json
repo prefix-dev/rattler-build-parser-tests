@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:44.049495453Z",
+      "timestamp": "2026-01-22T18:25:47.911527224Z",
       "variant": {
         "build_platform": "linux-64",
         "c_stdlib": "vs",
@@ -87,15 +87,15 @@
             "cmake --build . --target install --config Release"
           ],
           "env": {
-            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_CORE=ON -DOPENVDB_CORE_SHARED=ON -DOPENVDB_CORE_STATIC=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=ON -DOPENVDB_BUILD_PYTHON_MODULE=ON -DUSE_NUMPY=ON",
-            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF"
+            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_CORE=ON -DOPENVDB_CORE_SHARED=ON -DOPENVDB_CORE_STATIC=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=ON -DOPENVDB_BUILD_PYTHON_MODULE=ON -DUSE_NUMPY=ON\n",
+            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n"
           }
         },
         "string": "py312h3739429_0"
       },
       "context": {
         "nanovdb_version": "32.9.0",
-        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF",
+        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n",
         "version": "13.0.0"
       },
       "extra": {
@@ -202,6 +202,165 @@
         "https://conda.anaconda.org/conda-forge"
       ],
       "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/work"
+      },
+      "hash": {
+        "hash": "0ebab23",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openvdb": {
+          "build_string": "py312h3739429_0",
+          "name": "openvdb",
+          "version": "13.0.0"
+        },
+        "openvdb-tools": {
+          "build_string": "py312h0ebab23_0",
+          "name": "openvdb-tools",
+          "version": "13.0.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T18:25:47.971701519Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libboost_devel": "1.88",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64",
+        "tbb_devel": "2022",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "OpenVDB is an open source C++ library comprising a novel hierarchical data structure and a large suite of tools for the efficient storage and manipulation of sparse volumetric data discretized on three-dimensional grids. It was developed by DreamWorks Animation for use in volumetric applications typically encountered in feature film production.",
+        "homepage": "https://github.com/AcademySoftwareFoundation/openvdb",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "RE-LICENSE_NOTE.txt"
+        ],
+        "repository": "https://github.com/AcademySoftwareFoundation/openvdb",
+        "summary": "OpenVDB - Sparse volume data structure and tools"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "mkdir -p build",
+            "cd build",
+            "set CMAKE_BUILD_PARALLEL_LEVEL=%CPU_COUNT%",
+            "cmake .. %CMAKE_ARGS% %SHARED_CMAKE_ARGS% %OUTPUT_CMAKE_ARGS%",
+            "cmake --build . --target install --config Release"
+          ],
+          "env": {
+            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_BINARIES=ON -DOPENVDB_BUILD_VDB_PRINT=ON -DOPENVDB_BUILD_VDB_LOD=ON -DOPENVDB_BUILD_VDB_RENDER=ON -DOPENVDB_BUILD_VDB_VIEW=ON -DOPENVDB_BUILD_VDB_TOOL=ON\n",
+            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n"
+          }
+        },
+        "string": "py312h0ebab23_0"
+      },
+      "context": {
+        "nanovdb_version": "32.9.0",
+        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n",
+        "version": "13.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "versatran01",
+          "tetov"
+        ]
+      },
+      "package": {
+        "name": "openvdb-tools",
+        "version": "13.0.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake"
+        ],
+        "host": [
+          "blosc",
+          "libboost-devel",
+          "glfw",
+          "tbb-devel",
+          "zlib",
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "openvdb",
+              "upper_bound": "x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2138.patch",
+            "2148.patch"
+          ],
+          "sha256": "4d6a91df5f347017496fe8d22c3dbb7c4b5d7289499d4eb4d53dd2c75bb454e1",
+          "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/refs/tags/v13.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "vdb_print --help",
+            "vdb_lod --help",
+            "vdb_render --help",
+            "vdb_tool --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
         "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nanovdb",
         "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nanovdb/build_env",
         "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nanovdb/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
@@ -234,10 +393,15 @@
           "build_string": "py312h3739429_0",
           "name": "openvdb",
           "version": "13.0.0"
+        },
+        "openvdb-tools": {
+          "build_string": "py312h0ebab23_0",
+          "name": "openvdb-tools",
+          "version": "13.0.0"
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:44.203414727Z",
+      "timestamp": "2026-01-22T18:25:47.972401301Z",
       "variant": {
         "build_platform": "linux-64",
         "c_stdlib": "vs",
@@ -277,15 +441,15 @@
             "cmake --build . --target install --config Release"
           ],
           "env": {
-            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_NANOVDB=ON -DNANOVDB_USE_OPENVDB=ON -DNANOVDB_BUILD_PYTHON_MODULE=ON -DNANOVDB_USE_TBB=ON",
-            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF"
+            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_NANOVDB=ON -DNANOVDB_USE_OPENVDB=ON -DNANOVDB_BUILD_PYTHON_MODULE=ON -DNANOVDB_USE_TBB=ON\n",
+            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n"
           }
         },
         "string": "py312h9ed58a7_0"
       },
       "context": {
         "nanovdb_version": "32.9.0",
-        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF",
+        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n",
         "version": "13.0.0"
       },
       "extra": {
@@ -420,10 +584,15 @@
           "build_string": "py312h3739429_0",
           "name": "openvdb",
           "version": "13.0.0"
+        },
+        "openvdb-tools": {
+          "build_string": "py312h0ebab23_0",
+          "name": "openvdb-tools",
+          "version": "13.0.0"
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:44.203606528Z",
+      "timestamp": "2026-01-22T18:25:47.973017284Z",
       "variant": {
         "c_stdlib": "vs",
         "channel_sources": "conda-forge",
@@ -462,15 +631,15 @@
             "cmake --build . --target install --config Release"
           ],
           "env": {
-            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_NANOVDB=ON -DNANOVDB_USE_OPENVDB=ON -DNANOVDB_BUILD_TOOLS=ON",
-            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF"
+            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_NANOVDB=ON -DNANOVDB_USE_OPENVDB=ON -DNANOVDB_BUILD_TOOLS=ON\n",
+            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n"
           }
         },
         "string": "py312h0ebab23_0"
       },
       "context": {
         "nanovdb_version": "32.9.0",
-        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF",
+        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF\n",
         "version": "13.0.0"
       },
       "extra": {
@@ -526,175 +695,6 @@
             "nanovdb_convert --help",
             "nanovdb_print --help",
             "nanovdb_validate --help"
-          ]
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openvdb-tools/work"
-      },
-      "hash": {
-        "hash": "0ebab23",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "win-64",
-        "virtual_packages": [
-          "__win=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "nanovdb": {
-          "build_string": "py312h9ed58a7_0",
-          "name": "nanovdb",
-          "version": "32.9.0"
-        },
-        "nanovdb-tools": {
-          "build_string": "py312h0ebab23_0",
-          "name": "nanovdb-tools",
-          "version": "32.9.0"
-        },
-        "openvdb": {
-          "build_string": "py312h3739429_0",
-          "name": "openvdb",
-          "version": "13.0.0"
-        },
-        "openvdb-tools": {
-          "build_string": "py312h0ebab23_0",
-          "name": "openvdb-tools",
-          "version": "13.0.0"
-        }
-      },
-      "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:44.203846819Z",
-      "variant": {
-        "c_stdlib": "vs",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "vs2022",
-        "libboost_devel": "1.88",
-        "python": "3.12.* *_cpython",
-        "target_platform": "win-64",
-        "tbb_devel": "2022",
-        "zlib": "1"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "OpenVDB is an open source C++ library comprising a novel hierarchical data structure and a large suite of tools for the efficient storage and manipulation of sparse volumetric data discretized on three-dimensional grids. It was developed by DreamWorks Animation for use in volumetric applications typically encountered in feature film production.",
-        "homepage": "https://github.com/AcademySoftwareFoundation/openvdb",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE",
-          "RE-LICENSE_NOTE.txt"
-        ],
-        "repository": "https://github.com/AcademySoftwareFoundation/openvdb",
-        "summary": "OpenVDB - Sparse volume data structure and tools"
-      },
-      "build": {
-        "number": 0,
-        "script": {
-          "content": [
-            "mkdir -p build",
-            "cd build",
-            "set CMAKE_BUILD_PARALLEL_LEVEL=%CPU_COUNT%",
-            "cmake .. %CMAKE_ARGS% %SHARED_CMAKE_ARGS% %OUTPUT_CMAKE_ARGS%",
-            "cmake --build . --target install --config Release"
-          ],
-          "env": {
-            "OUTPUT_CMAKE_ARGS": "-DOPENVDB_BUILD_BINARIES=ON -DOPENVDB_BUILD_VDB_PRINT=ON -DOPENVDB_BUILD_VDB_LOD=ON -DOPENVDB_BUILD_VDB_RENDER=ON -DOPENVDB_BUILD_VDB_VIEW=ON -DOPENVDB_BUILD_VDB_TOOL=ON",
-            "SHARED_CMAKE_ARGS": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF"
-          }
-        },
-        "string": "py312h0ebab23_0"
-      },
-      "context": {
-        "nanovdb_version": "32.9.0",
-        "shared_cmake_args": "-Wno-dev -DOPENVDB_BUILD_CORE=OFF -DOPENVDB_BUILD_BINARIES=OFF -DOPENVDB_INSTALL_CMAKE_MODULES=OFF -DNANOVDB_BUILD_TOOLS=OFF -DUSE_EXPLICIT_INSTANTIATION=OFF",
-        "version": "13.0.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "versatran01",
-          "tetov"
-        ]
-      },
-      "package": {
-        "name": "openvdb-tools",
-        "version": "13.0.0"
-      },
-      "requirements": {
-        "build": [
-          "vs2022_win-64",
-          "vs_win-64",
-          "cmake"
-        ],
-        "host": [
-          "blosc",
-          "libboost-devel",
-          "glfw",
-          "tbb-devel",
-          "zlib",
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "openvdb",
-              "upper_bound": "x"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "2138.patch",
-            "2148.patch"
-          ],
-          "sha256": "4d6a91df5f347017496fe8d22c3dbb7c4b5d7289499d4eb4d53dd2c75bb454e1",
-          "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/refs/tags/v13.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "script": [
-            "vdb_print --help",
-            "vdb_lod --help",
-            "vdb_render --help",
-            "vdb_tool --help"
           ]
         }
       ]
