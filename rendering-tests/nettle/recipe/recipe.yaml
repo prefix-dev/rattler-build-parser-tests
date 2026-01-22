@@ -37,7 +37,7 @@ requirements:
   ignore_run_exports:
     from_package:
       # This is only needed for the test suite
-      - ${{ compiler('cxx') }}
+      - ${{ (compiler('cxx') | split(' '))[0] }}
   run_exports:
     - ${{ pin_subpackage('nettle', upper_bound='x.x') }}
 
