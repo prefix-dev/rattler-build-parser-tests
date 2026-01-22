@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:42.591009515Z",
+      "timestamp": "2026-01-22T18:23:02.925900798Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -80,6 +80,9 @@
       },
       "build": {
         "number": 1,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
           "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
@@ -116,14 +119,6 @@
           "maturin >=1.0,<2.0",
           "pip"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "python",
           "polars >=0.20.6"
