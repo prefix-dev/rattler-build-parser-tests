@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:19.870565303Z",
+      "timestamp": "2026-01-22T17:54:11.805773920Z",
       "variant": {
         "c_compiler": "vs2022",
         "c_stdlib": "vs",
@@ -72,6 +72,9 @@
       },
       "build": {
         "number": 1,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "sed -i.bak 's/features = \\[/features = \\[\"abi3\", /g' Cargo.toml",
           "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
@@ -106,14 +109,6 @@
           "maturin >=1.0,<2.0",
           "pip"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "python >=3.10"
         ]
