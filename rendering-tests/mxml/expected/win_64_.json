@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:38.190212087Z",
+      "timestamp": "2026-01-22T21:10:29.156590375Z",
       "variant": {
         "c_stdlib": "vs",
         "channel_sources": "conda-forge",
@@ -76,6 +76,8 @@
           "cmake -S . -B build -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON %CMAKE_ARGS% -DBUILD_SHARED_LIBS=ON",
           "if errorlevel 1 exit 1",
           "cmake --build build --config Release --parallel %CPU_COUNT%",
+          "if errorlevel 1 exit 1",
+          "ctest -V -C Release --test-dir build",
           "if errorlevel 1 exit 1",
           "cmake --install build",
           "if errorlevel 1 exit 1"
