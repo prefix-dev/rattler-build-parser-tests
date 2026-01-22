@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:47:56.492238381Z",
+      "timestamp": "2026-01-22T20:47:38.033390552Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -81,14 +81,16 @@
       },
       "build": {
         "number": 0,
-        "script": [
-          "export LIBGIT2_NO_VENDOR=\"true\"",
-          "export PKG_CONFIG=\"$BUILD_PREFIX/bin/pkg-config\"",
-          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
-          "cargo install --path git-cliff --bins --root \"${PREFIX}\" --locked",
-          "rm $PREFIX/.crates2.json",
-          "rm $PREFIX/.crates.toml"
-        ],
+        "script": {
+          "content": [
+            "export LIBGIT2_NO_VENDOR=\"true\"",
+            "export PKG_CONFIG=\"$BUILD_PREFIX/bin/pkg-config\"",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "cargo install --path git-cliff --bins --root \"${PREFIX}\" --locked",
+            "rm $PREFIX/.crates2.json",
+            "rm $PREFIX/.crates.toml"
+          ]
+        },
         "string": "hbf0d3c1_0"
       },
       "context": {

@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:47:56.784595028Z",
+      "timestamp": "2026-01-22T20:47:37.690400344Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_compiler": "clang",
@@ -81,14 +81,16 @@
       },
       "build": {
         "number": 0,
-        "script": [
-          "export LIBGIT2_NO_VENDOR=\"true\"",
-          "export PKG_CONFIG=\"$BUILD_PREFIX/bin/pkg-config\"",
-          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
-          "cargo install --path git-cliff --bins --root \"${PREFIX}\" --locked",
-          "rm $PREFIX/.crates2.json",
-          "rm $PREFIX/.crates.toml"
-        ],
+        "script": {
+          "content": [
+            "export LIBGIT2_NO_VENDOR=\"true\"",
+            "export PKG_CONFIG=\"$BUILD_PREFIX/bin/pkg-config\"",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "cargo install --path git-cliff --bins --root \"${PREFIX}\" --locked",
+            "rm $PREFIX/.crates2.json",
+            "rm $PREFIX/.crates.toml"
+          ]
+        },
         "string": "hfc1a3ab_0"
       },
       "context": {
