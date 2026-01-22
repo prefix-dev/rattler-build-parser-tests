@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:45:02.733753482Z",
+      "timestamp": "2026-01-22T18:31:18.993101135Z",
       "variant": {
         "c_compiler": "vs2022",
         "c_stdlib": "vs",
@@ -74,9 +74,9 @@
       },
       "build": {
         "number": 0,
-        "script": [
-          "git clone https://github.com/MediaArea/MediaInfo.git src --branch v${{ version }} --depth 1 --config core.symlinks=false\n\ncmake . -B build %CMAKE_ARGS% -G Ninja\n\nninja -v -C build install\n"
-        ],
+        "script": {
+          "content": "git clone https://github.com/MediaArea/MediaInfo.git src --branch v${{ version }} --depth 1 --config core.symlinks=false\n\ncmake . -B build %CMAKE_ARGS% -G Ninja\n\nninja -v -C build install\n"
+        },
         "string": "h8883371_0"
       },
       "context": {
