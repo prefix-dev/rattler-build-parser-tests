@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+context:
+  name: uarray
+  version: "0.9.3"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 08de4d513e2fa597cdccc046132be175b1a8b978fe82b13fdd4ce47ee8c5e886
+
+build:
+  number: 1
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  skip: match(python, "<${{ python_min }}")
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python ${{ python }}
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake >=3.15
+    - if: not win
+      then:
+        - make
+  host:
+    - python ${{ python }}
+    - setuptools >=64
+    - setuptools-scm >=8
+    - pip
+    - scikit-build-core >=0.10.0
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - uarray
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: A backend-dispatch mechanism for Python.
+  description: |
+    `uarray` is a backend-dispatch mechanism for Python.
+  homepage: https://github.com/Quansight-Labs/uarray
+  repository: https://github.com/Quansight-Labs/uarray
+  documentation: http://uarray.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - hameerabbasi

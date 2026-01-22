@@ -1,0 +1,56 @@
+context:
+  name: scippneutron
+  version: "25.11.2"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/scippneutron-${{ version }}.tar.gz
+  sha256: bcdedb3a10f3405a6939a431718a5032c2b44c5f2d8f2769ce917e771787175d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=77
+    - setuptools-scm >=8.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - python-dateutil >=2.8
+    - email-validator >=2
+    - h5py >=3.12
+    - lazy_loader >=0.4
+    - mpltoolbox >=24.6.0
+    - numpy >=1.20
+    - plopp >=24.09.1
+    - pydantic >=2
+    - scipp >=23.07.0
+    - scippnexus >=23.11.0
+    - scipy >=1.7.0
+
+tests:
+  - python:
+      imports:
+        - scippneutron
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Neutron scattering tools for Data Reduction
+  license: BSD-3-Clause
+  license_file: LICENSE
+  repository: https://github.com/scipp/scippneutron
+  homepage: https://scipp.github.io/scippneutron/
+
+extra:
+  recipe-maintainers:
+    - MridulS
+    - conda-forge/scipp

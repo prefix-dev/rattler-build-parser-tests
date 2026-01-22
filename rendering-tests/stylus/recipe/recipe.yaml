@@ -1,0 +1,39 @@
+context:
+  version: "0.64.0"
+
+package:
+  name: stylus
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/stylus/-/stylus-${{ version }}.tgz
+  sha256: adf0640453d8cc37cfc7997a53a468917b37dceb1b48774545abd6598b7ecd96
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - stylus --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Robust, expressive, and feature-rich CSS superset
+  homepage: https://github.com/stylus/stylus
+  repository: https://github.com/stylus/stylus
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: hepunits
+  version: "2.4.4"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hepunits-${{ version }}.tar.gz
+  sha256: 1846e729fa3e4fb36bff599ed7b8bd2cdc4abdc02906830fb75c205fd54905eb
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - toml
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - hepunits
+        - hepunits.constants
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Units and constants in the HEP system of units
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/hepunits
+  repository: https://github.com/scikit-hep/hepunits
+
+extra:
+  recipe-maintainers:
+    - eduardo-rodrigues
+    - conda-forge/scikit-hep
+    - chrisburr

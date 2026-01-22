@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-rle",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-rle/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-rle/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-rle/work"
+      },
+      "hash": {
+        "hash": "63e35e0",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pylibjpeg-rle": {
+          "build_string": "py310h63e35e0_1",
+          "name": "pylibjpeg-rle",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:36:08.613730892Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pydicom/pylibjpeg-rle",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Python bindings for a fast RLE decoder/encoder, with a focus on use as a plugin for pylibjpeg"
+      },
+      "build": {
+        "number": 1,
+        "script": "export CARGO_PROFILE_RELEASE_STRIP=symbols\nexport CARGO_PROFILE_RELEASE_LTO=fat\ncargo-bundle-licenses --format yaml --output THIRDPARTY.yml\n${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation\n",
+        "string": "py310h63e35e0_1"
+      },
+      "context": {
+        "name": "pylibjpeg-rle",
+        "python_name": "pylibjpeg_rle",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "psadil",
+          "scaramallion"
+        ]
+      },
+      "package": {
+        "name": "pylibjpeg-rle",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "cargo-bundle-licenses",
+          "rust_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.0,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy >=2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1a37353afbdd6f67aa3c2007879fff8ca30a98552cab7ed7f2aa00725ea4bb27",
+          "url": "https://pypi.org/packages/source/p/pylibjpeg-rle/pylibjpeg_rle-2.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rle"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

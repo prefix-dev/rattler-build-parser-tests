@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: igwn-segments
+  version: 2.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/i/igwn-segments/igwn_segments-${{ version }}.tar.gz
+  sha256: 672814d78f5de7582b5f39189cdc6016d7ffde95d2b8b8b8b82aa9b45e53f3dd
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip:
+    - "python_impl != 'cpython'"
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    # extras for cross-compiling:
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - pip
+    - python
+    - setuptools >=70.0.0
+    - setuptools-scm >=8
+  run:
+    - python
+
+tests:
+  - files:
+      source:
+        - test/
+    requirements:
+      run:
+        - pip
+        - pytest >=3.9.1
+        - if: not win and not match(python, ">=3.14")
+          then: python-lal
+    script:
+      - python -m pip check
+      - python -m pip show igwn-segments
+      - python -m pytest test
+
+about:
+  summary: Representations of semi-open intervals
+  description: |
+    This module defines the segment and segmentlist objects, as well as the
+    infinity object used to define semi-infinite and infinite segments.
+  homepage: https://git.ligo.org/computing/software/igwn-segments/
+  repository: https://git.ligo.org/computing/software/igwn-segments.git
+  documentation: https://igwn-segments.readthedocs.io/
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - lpsinger
+    - titodalcanton

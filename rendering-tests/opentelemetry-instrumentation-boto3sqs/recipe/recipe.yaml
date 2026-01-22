@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: opentelemetry-instrumentation-boto3sqs
+  version: "0.60b1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/opentelemetry_instrumentation_boto3sqs-${{ version }}.tar.gz
+  sha256: f13333abbc42241fbdde9b1ad84b420bd9814a4de7e00e134db7a0ddbfec0ba0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - opentelemetry-api >=1.12,<2.dev0
+    - opentelemetry-instrumentation ==${{ version }}
+    - opentelemetry-semantic-conventions ==${{ version }}
+    - wrapt >=1.0.0,<2.0.0
+    - boto3 >=1.0.0,<2.0.0
+
+tests:
+  - python:
+      imports:
+        - opentelemetry
+        - opentelemetry.instrumentation.boto3sqs
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Boto3 SQS service tracing for OpenTelemetry
+  homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-boto3sqs
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rxm7706
+    - conda-forge/opentelemetry-api

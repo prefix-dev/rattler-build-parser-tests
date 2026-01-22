@@ -1,0 +1,67 @@
+context:
+  version: "0.3.0"
+
+package:
+  name: "nvmolkit"
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NVIDIA-Digital-Bio/nvMolKit/archive/v${{ version }}.tar.gz
+  sha256: b0d9922c9f384e557bef9281e5fd2de4687be16e7bfb3f07be169a4a031a9ab0
+
+build:
+  number: 1
+  skip:
+    - osx
+    - win
+    - cuda_compiler_version == "None"
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('cuda') }}
+    - cmake >=3.30
+    - make
+  host:
+    - cuda-version ${{ cuda_compiler_version }}.*
+    - cuda-cudart-dev
+    - cuda-nvtx-dev
+    - eigen
+    - libboost-devel
+    - libboost-headers
+    - libboost-python-devel
+    - libcublas-dev
+    - libcurand-dev
+    - libcusolver-dev
+    - libgomp
+    - librdkit-dev ==${{ librdkit_dev }}
+    - pip
+    - python
+    - rdkit
+    - scikit-build
+    - setuptools
+  run:
+    - numpy
+    - python
+    - pytorch
+    - rdkit ==${{ librdkit_dev }}
+
+tests:
+  - python:
+      imports:
+        - nvmolkit
+
+about:
+  homepage: https://github.com/NVIDIA-Digital-Bio/nvMolKit
+  summary: nvMolKit is a CUDA-backed python library for accelerating common RDKit molecular operations
+  description: |
+    nvMolKit is a CUDA-backed python library for accelerating common RDKit molecular operations.
+    nvMolKit links to RDKit and nvMolKit operations work on RDKit RDMol objects.
+  license_file: LICENSE/License.txt
+  license: Apache-2.0
+
+extra:
+  recipe-maintainers:
+    - evasnow1992
+    - scal444

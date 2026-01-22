@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  version: 0.20.1
+
+package:
+  name: sos-r
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sos-r/sos-r-${{ version }}.tar.gz
+  sha256: d6d7a25b3d3ac2f04e61d0aaae1c02a7069fbfeb5354e51fc9fdfa61f57513d7
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - sos-notebook >=0.19.4
+    - pandas
+    - numpy
+    - feather-format
+    - r-irkernel
+    - r-feather
+
+tests:
+  - python:
+      imports:
+        - sos_r
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: SoS language module for the R programming language
+  homepage: https://github.com/vatlab/sos-r
+  repository: https://github.com/vatlab/sos-r
+  documentation: https://vatlab.github.io/sos-docs/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - BoPeng

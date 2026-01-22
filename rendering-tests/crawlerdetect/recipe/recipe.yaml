@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: crawlerdetect
+  version: 0.3.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/crawlerdetect-${{ version }}.tar.gz
+  sha256: 1c2f9ccbb786c756c4f5bce62503ac0792b88b0291df6dbd5633f3e9c8a7f432
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - crawlerdetect=crawlerdetect.cli:main
+
+requirements:
+  host:
+    - poetry-core
+    - python ${{ python_min }}.*
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - crawlerdetect
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - crawlerdetect --help
+
+about:
+  summary: CrawlerDetect is a Python class for detecting bots/crawlers/spiders via the user agent.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/moskrc/CrawlerDetect
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,224 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyzmq",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyzmq/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyzmq/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyzmq/work"
+      },
+      "hash": {
+        "hash": "c1847a3",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyzmq": {
+          "build_string": "py312hc1847a3_0",
+          "name": "pyzmq",
+          "version": "27.1.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:53.992729085Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_abi3": true,
+        "python": "3.12.* *_cpython",
+        "python_impl": "cpython",
+        "target_platform": "osx-64",
+        "zeromq": "4.3.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/zeromq/pyzmq",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "Python bindings for zeromq"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install -v ."
+          ],
+          "env": {
+            "PYZMQ_NO_BUNDLE": "1",
+            "SKBUILD_BUILD_VERBOSE": "true",
+            "SKBUILD_WHEEL_PY_API": "cp312"
+          }
+        },
+        "string": "py312hc1847a3_0"
+      },
+      "context": {
+        "abi3_python": "3.12",
+        "abi3_tag": "cp312",
+        "build_abi3": true,
+        "skip_abi3_python": ">=3.13",
+        "skip_build": false,
+        "version": "27.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "jakirkham",
+          "minrk",
+          "msarahan",
+          "pelson",
+          "SylvainCorlay",
+          "JohanMabille",
+          "ocefpaf"
+        ]
+      },
+      "package": {
+        "name": "pyzmq",
+        "version": "27.1.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "cython >=3.1",
+          "pkg-config",
+          "make",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake 4.0.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cython >=3.1",
+          "scikit-build-core",
+          "zeromq",
+          "python-abi3"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ac0765e3d44455adb6ddbf4417dcce460fc40a05978c08efdf2948072f6db540",
+          "url": "https://pypi.org/packages/source/p/pyzmq/pyzmq-27.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zmq",
+              "zmq.backend.cython"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest -v tests/"
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.12.*",
+              "abi3audit"
+            ]
+          },
+          "script": "abi3audit  $PREFIX/lib/python3.12/site-packages/zmq/backend/cython/_zmq*.so -s -v --assume-minimum-abi3 ${{ abi3_python }}"
+        },
+        {
+          "files": {
+            "recipe": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python 3.13.*"
+            ]
+          },
+          "script": "pytest -v tests/"
+        },
+        {
+          "files": {
+            "recipe": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python 3.14.*"
+            ]
+          },
+          "script": "pytest -v tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

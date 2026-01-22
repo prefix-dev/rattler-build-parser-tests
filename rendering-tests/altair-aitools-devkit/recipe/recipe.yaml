@@ -1,0 +1,60 @@
+context:
+  name: altair-aitools-devkit
+  version: 1.1
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://maven.rapidminer.com/repository/pypi-snapshot/packages/altair-aitools-devkit/${{ version }}/altair_aitools_devkit-${{ version }}.tar.gz
+  sha256: 113226bb9939b7a35635ff64fa6100d5e1c52ff2fd604b224075519c481d5c3a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - build-extension = altair_aitools.dev._builder:build_extension
+      - create-extension = altair_aitools.dev._create_extension:create_extension
+
+requirements:
+  host:
+    - python ==${{ python_min }}
+    - hatchling
+    - pip
+  run:
+  - python >=${{ python_min }}
+  - networkx >=3.0
+  - pipdeptree >=2.20
+  - pyyaml >=6.0.2
+  - conda-index >=0.6.1
+  - conda-lock >=3.0.4
+  - libmambapy >=2.0.8
+  - altair-aitools-runtime >=1.1
+
+tests:
+  - python:
+      imports:
+        - altair_aitools.ext
+        - altair_aitools.dev
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+      - build-extension --help
+      - create-extension --help
+
+about:
+  summary: altair-aitools-devkit is a comprehensive package that provides a set of tools to develop Altair RapidMiner AI tools extensions in Python
+  license: AGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://altair.com/altair-rapidminer
+
+extra:
+  recipe-maintainers:
+    - skontar-altair
+    - pczako-altair

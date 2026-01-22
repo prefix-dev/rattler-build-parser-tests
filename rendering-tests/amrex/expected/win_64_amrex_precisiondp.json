@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_amrex",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_amrex/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_amrex/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_amrex/work"
+      },
+      "hash": {
+        "hash": "6a6e4ec"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "amrex": {
+          "build_string": "nompi_dp_h6a6e4ec_100",
+          "name": "amrex",
+          "version": "26.01"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:08.896201416Z",
+      "variant": {
+        "amrex_precision": "dp",
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "fftw": "3",
+        "mpi": "nompi",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "AMReX is a software framework containing all the functionality to write\nmassively parallel, block-structured adaptive mesh refinement (AMR)\napplications. AMReX is an Established Project of the High Performance Software Foundation.",
+        "documentation": "https://amrex-codes.github.io/amrex/docs_html/",
+        "homepage": "https://amrex-codes.github.io/amrex/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/AMReX-Codes/amrex",
+        "summary": "A software framework for massively parallel, block-structured adaptive mesh refinement (AMR) applications"
+      },
+      "build": {
+        "number": 100,
+        "string": "nompi_dp_h6a6e4ec_100"
+      },
+      "context": {
+        "build": 0,
+        "mpi": "nompi",
+        "mpi_prefix": "nompi",
+        "name": "amrex",
+        "version": "26.01"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "atmyers",
+          "ax3l",
+          "EZoni",
+          "WeiqunZhang"
+        ]
+      },
+      "package": {
+        "name": "amrex",
+        "version": "26.01"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "clang",
+          "lld",
+          "llvm-openmp",
+          "ninja",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "fftw",
+          "vir-simd"
+        ],
+        "run_exports": {
+          "weak": [
+            "amrex * nompi_dp_*",
+            "amrex ==26.1"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fac2f78e8e2c4393f3821e7b1500a576763187420dbea335727be3fb0f0815d2",
+          "url": "https://github.com/AMReX-Codes/amrex/archive/refs/tags/26.01.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Library/cmake/AMReXConfig.cmake"
+            ],
+            "include": [
+              "AMReX.H"
+            ],
+            "lib": [
+              "amrex_1d",
+              "amrex_2d",
+              "amrex_3d"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_modal",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_modal/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_modal/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_modal/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "modal": {
+          "build_string": "pyhe01879c_0",
+          "name": "modal",
+          "version": "0.4.2.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:04.873350724Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/modAL-python/modAL",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A modular active learning framework for Python3"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "modal",
+        "version": "0.4.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "modal",
+        "version": "0.4.2.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.9",
+          "numpy >=1.13",
+          "scikit-learn >=0.18",
+          "scipy >=0.18",
+          "pandas",
+          "skorch >=0.9.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "relax-skorch.patch"
+          ],
+          "sha256": "b184dad157bbc58f92e688835a4885fd48413312661c1a24b9575bcfee9d9ad1",
+          "url": "https://pypi.org/packages/source/m/modAL-python/modAL-python-0.4.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "modAL",
+              "modAL.models"
+            ],
+            "python_version": "3.9.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbus",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbus/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbus/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbus/work"
+      },
+      "hash": {
+        "hash": "70963c4"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dbus": {
+          "build_string": "h70963c4_1",
+          "name": "dbus",
+          "version": "1.16.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:36:40.166035507Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "expat": "2",
+        "glib": "2",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "D-Bus is a message bus system, a simple way for applications\nto talk to one another. In addition to interprocess communication, D-Bus helps\ncoordinate process lifecycle; it makes it simple and reliable to code a \"single\ninstance\" application or daemon, and to launch applications and daemons on\ndemand when their services are needed.",
+        "documentation": "https://www.freedesktop.org/wiki/IntroductionToDBus/",
+        "homepage": "http://www.freedesktop.org/wiki/Software/dbus/",
+        "license": "AFL-2.1 OR GPL-2.0-or-later",
+        "license_file": [
+          "COPYING",
+          "LICENSES/AFL-2.1.txt",
+          "LICENSES/GPL-2.0-or-later.txt"
+        ],
+        "repository": "https://gitlab.freedesktop.org/dbus/dbus",
+        "summary": "Simple message bus system for applications to talk to one another"
+      },
+      "build": {
+        "number": 1,
+        "string": "h70963c4_1"
+      },
+      "context": {
+        "version": "1.16.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mingwandroid",
+          "ccordoba12",
+          "nehaljwani",
+          "ocefpaf",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "dbus",
+        "version": "1.16.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "pkg-config",
+          "meson"
+        ],
+        "host": [
+          "glib",
+          "expat",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "dbus",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Add-var-lib-dbus-machine-id-as-a-fallback.patch",
+            "patches/0002-Use-proc-sys-kernel-random-boot_id-as-last-resort-fa.patch",
+            "patches/0003-disable-fd-limit-tests-not-supported-in-docker.patch"
+          ],
+          "sha256": "0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb7e2",
+          "url": "http://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "dbus-daemon --version",
+            "dbus-uuidgen"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+schema_version: 1
+
+context:
+  version: 0.3.2
+
+package:
+  name: checkmake
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mrtazz/checkmake/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 450412ba6500ef7c4c8a0150a5e1a3d2e76591ce9f37609bcbd5508298ad9bef
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+    - make
+    - pandoc
+
+tests:
+  - script:
+      - checkmake --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Linter/analyzer for Makefiles
+  homepage: https://github.com/mrtazz/checkmake
+  repository: https://github.com/mrtazz/checkmake
+
+extra:
+  recipe-maintainers:
+    - danielnachun

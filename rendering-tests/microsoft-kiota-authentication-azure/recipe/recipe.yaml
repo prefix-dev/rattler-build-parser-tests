@@ -1,0 +1,48 @@
+context:
+  name: microsoft-kiota-authentication-azure
+  version: "1.9.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/microsoft_kiota_authentication_azure-${{ version }}.tar.gz
+  sha256: 8bc2b3819c650d10555b897c47d6f9ec231b1300fac0fb5756d7d3a612b9f1c9
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core >=1.0.0
+  run:
+    - python >=${{ python_min }},<4.0
+    - aiohttp >=3.8.0
+    - azure-core >=1.21.1
+    - microsoft-kiota-abstractions ${{ version }}.*
+    - opentelemetry-api >=1.27.0
+    - opentelemetry-sdk >=1.27.0
+
+tests:
+  - python:
+      imports:
+        - kiota_authentication_azure
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/microsoft/kiota-python/tree/main/packages/authentication/azure
+  summary: Authentication provider for Kiota using Azure Identity
+  license: MIT
+  license_file: LICENSE
+  documentation: https://github.com/microsoft/kiota-python/blob/main/packages/authentication/azure/README.md
+  repository: https://github.com/microsoft/kiota-python/tree/main/packages/authentication/azure
+
+extra:
+  recipe-maintainers:
+    - xylar

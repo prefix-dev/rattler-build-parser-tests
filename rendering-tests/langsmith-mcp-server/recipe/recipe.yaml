@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: langsmith-mcp-server
+  version: "0.0.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/langsmith_mcp_server-${{ version }}.tar.gz
+  sha256: 54c37a59be3fbf84a1374955e022db71b4b92656a990d21bacd9b4628c048315
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - langsmith-mcp-server = langsmith_mcp_server.server:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pdm-backend
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - fastmcp >=2.13
+    - langsmith >=0.4.42
+    - langchain-core >=0.3.56
+    - uvicorn >=0.34.0
+
+tests:
+  - python:
+      imports:
+        - langsmith_mcp_server
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - langsmith-mcp-server --help
+
+about:
+  summary: MCP server for Langsmith SDK integration
+  homepage: https://github.com/langchain-ai/langsmith-mcp-server
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rxm7706

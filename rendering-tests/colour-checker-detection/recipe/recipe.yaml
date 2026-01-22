@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: colour-checker-detection
+  version: 0.2.1
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/colour_checker_detection-${{ version }}.tar.gz
+  sha256: 68dd0d48aa0f4355ecd0640eee52d3b53c90b24a7d966f422f5513de1bc39e83
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - colour-checker-detection-inference = colour_checker_detection.scripts.inference:segmentation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - colour-science >=0.4.4,<0.4.7
+    - imageio >=2,<3
+    - numpy >=1.24,<3
+    - opencv >=4,<5
+    - scipy >=1.10,<2
+    - typing_extensions >=4,<5
+    - click >=8,<9
+
+tests:
+  - python:
+      imports:
+        - colour_checker_detection
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - colour-checker-detection-inference --help
+
+about:
+  summary: Colour checker detection with Python
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/colour-science/colour-checker-detection
+  documentation: https://colour-checker-detection.readthedocs.org
+
+extra:
+  recipe-maintainers:
+    - carlodri

@@ -1,0 +1,62 @@
+context:
+  name: easycrystallography
+  version: "0.9.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/easycrystallography-${{ version }}.tar.gz
+  sha256: bcf2e9159093082293dd8d24600244b3c776969a87badd31bbb5e7792b16f5d8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - versioningit
+    - pip
+  run:
+    - python >=${{ python_min }},<3.14
+    - asteval
+    - easyscience
+    - gemmi
+    - numpy
+    - periodictable
+    - uncertainties
+    - versioningit
+    - xarray
+
+tests:
+  - python:
+      imports:
+        - easycrystallography
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+        - pyproject.toml
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+        - pytest
+    script:
+      - pytest tests/
+
+about:
+  homepage: https://easyscience.github.io/EasyCrystallography/
+  summary: Crystallography in EasyScience
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - MridulS

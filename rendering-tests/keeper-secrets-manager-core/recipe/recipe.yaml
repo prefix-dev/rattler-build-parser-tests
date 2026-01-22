@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 17.0.0
+
+package:
+  name: keeper-secrets-manager-core
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/k/keeper-secrets-manager-core/keeper_secrets_manager_core-${{ version }}.tar.gz
+  sha256: f821d114b44ecd992870f4661d1daa5c50901d4abcc6d52c37926c372396d31c
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - cryptography >=39.0.1
+    - importlib-metadata
+
+tests:
+  - python:
+      imports:
+        - keeper_secrets_manager_core
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Keeper Secrets Manager for Python 3
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/Keeper-Security/secrets-manager
+
+extra:
+  recipe-maintainers:
+    - danielnachun

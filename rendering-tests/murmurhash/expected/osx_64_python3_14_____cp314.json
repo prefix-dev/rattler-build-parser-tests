@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/work"
+      },
+      "hash": {
+        "hash": "ff6441d",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "murmurhash": {
+          "build_string": "py314hff6441d_1",
+          "name": "murmurhash",
+          "version": "1.0.15"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:37.355574271Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/explosion/murmurhash/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Cython bindings for MurmurHash2"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv",
+        "string": "py314hff6441d_1"
+      },
+      "context": {
+        "name": "murmurhash",
+        "version": "1.0.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rmax",
+          "conda-forge/spacy",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "murmurhash",
+        "version": "1.0.15"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*"
+        ],
+        "host": [
+          "cython",
+          "python",
+          "pip",
+          "setuptools",
+          "wheel"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58e2b27b7847f9e2a6edf10b47a8c8dd70a4705f45dccb7bf76aeadacf56ba01",
+          "url": "https://pypi.org/packages/source/m/murmurhash/murmurhash-1.0.15.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "murmurhash",
+              "murmurhash.mrmr"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

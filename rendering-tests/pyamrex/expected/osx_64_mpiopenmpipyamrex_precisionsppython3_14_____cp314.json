@@ -1,0 +1,195 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyamrex",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyamrex/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyamrex/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyamrex/work"
+      },
+      "hash": {
+        "hash": "ee7ac30",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyamrex": {
+          "build_string": "mpi_openmpi_sp_py314hee7ac30_0",
+          "name": "pyamrex",
+          "version": "26.01"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:49:20.817031444Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "llvm_openmp": "19",
+        "mpi": "openmpi",
+        "numpy": "2",
+        "openmpi": "5",
+        "pyamrex_precision": "sp",
+        "pybind11_abi": "11",
+        "python": "3.14.* *_cp314",
+        "python_impl": "cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The Python binding pyAMReX bridges the compute in AMReX block-structured\ncodes and data science: it provides zero-copy application GPU data access\nfor AI/ML, in situ analysis, application coupling and enables rapid,\nmassively parallel prototyping. pyAMReX enhances the Block-Structured AMR\nSoftware Framework AMReX and its applications.\nAMReX is a software framework containing all the functionality to write\nmassively parallel, block-structured adaptive mesh refinement (AMR)\napplications.",
+        "documentation": "https://pyamrex.readthedocs.io/",
+        "homepage": "https://pyamrex.readthedocs.io/",
+        "license": "BSD-3-Clause-LBNL",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/AMReX-Codes/pyamrex",
+        "summary": "GPU-Enabled, Zero-Copy AMReX Python Bindings including AI/ML"
+      },
+      "build": {
+        "number": 0,
+        "string": "mpi_openmpi_sp_py314hee7ac30_0"
+      },
+      "context": {
+        "build": 0,
+        "mpi": "openmpi",
+        "mpi_prefix": "mpi_openmpi",
+        "name": "pyamrex",
+        "version": "26.01"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "atmyers",
+          "ax3l",
+          "dpgrote",
+          "EZoni",
+          "RemiLehe",
+          "roelof-groenewald",
+          "WeiqunZhang"
+        ]
+      },
+      "package": {
+        "name": "pyamrex",
+        "version": "26.01"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "pybind11",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "make",
+          "llvm-openmp",
+          "cmake",
+          "pkg-config",
+          "openmpi"
+        ],
+        "host": [
+          "amrex >=26.1 mpi_openmpi_sp_*",
+          "openmpi",
+          "python",
+          "pybind11",
+          "numpy",
+          "pip",
+          "pybind11",
+          "pybind11-abi",
+          "python",
+          "setuptools",
+          "vir-simd",
+          "wheel"
+        ],
+        "run": [
+          "amrex >=26.1 mpi_openmpi_sp_*",
+          "openmpi",
+          "mpi4py",
+          "python",
+          "libcxx"
+        ],
+        "run_exports": {
+          "weak": [
+            "pyamrex * mpi_openmpi_sp_*",
+            "pyamrex ==26.1"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6df3717456d08b9af8537bea55f3a05b71667a42b4944ef9f8e9e56273559f4b",
+          "url": "https://github.com/AMReX-Codes/pyamrex/archive/refs/tags/26.01.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "amrex"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": [
+            "export OMP_NUM_THREADS=2",
+            "export OMPI_MCA_btl=self,tcp\nexport OMPI_MCA_plm=isolated\nexport OMPI_MCA_rmaps_base_oversubscribe=yes\nexport OMPI_MCA_btl_vader_single_copy_mechanism=none\n",
+            "python -m pytest ./tests"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

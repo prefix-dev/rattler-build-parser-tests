@@ -1,0 +1,46 @@
+context:
+  version: "2.13.18"
+
+package:
+  name: scala2
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/scala/scala/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 7eb4e84b20967e49540c288214816f826314bae6c44ec81800b0426a885cd438
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - maven
+    - sbt
+    - sed
+    - openjdk =11
+  run:
+    # from https://docs.scala-lang.org/overviews/jdk-compatibility/overview.html
+    - openjdk >=11,<=25
+
+tests:
+  - script:
+      - scala -help
+      - scala -version
+      - ${SCALA_HOME}/bin/scala -help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: Scala 2 compiler and standard library.
+  homepage: https://scala-lang.org
+  repository: https://github.com/scala/scala
+  description: |-
+    A programming language that scales with you: from small scripts to large
+    multiplatform applications.
+
+extra:
+  recipe-maintainers:
+    - alberto-scolari

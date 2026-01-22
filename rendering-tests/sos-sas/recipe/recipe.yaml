@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  version: 0.20.0
+
+package:
+  name: sos-sas
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sos-sas/sos-sas-${{ version }}.tar.gz
+  sha256: fd81c5102afdc511ba98a9fd6ef1f535e5f127674e28e160bb993920de1a1949
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - sed -i '/saspy/d' setup.py
+    - sed -i '/sas-kernel/d' setup.py
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - sos-notebook >=0.19.4
+    - sas_kernel
+    - saspy
+    - sas7bdat
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - sos_sas
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: SoS language module for SAS
+  homepage: https://github.com/vatlab/sos-sas
+  repository: https://github.com/vatlab/sos-sas
+  documentation: https://vatlab.github.io/sos-docs/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - BoPeng

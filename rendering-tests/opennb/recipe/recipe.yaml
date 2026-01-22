@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: opennb
+  version: 0.3.0
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 0d34d7e8c6a3ef99881a1ebfae0d0cb3513269ad73158ea6852b018a0e6db593
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - opennb = opennb:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - notebook
+    - jupytext
+
+tests:
+  - python:
+      imports:
+        - opennb
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+      - opennb --help
+
+about:
+  summary: Open Jupyter notebooks from GitHub repositories or URLs directly in Jupyter.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/basnijholt/opennb
+
+extra:
+  recipe-maintainers:
+    - basnijholt

@@ -1,0 +1,330 @@
+schema_version: 1
+
+context:
+  name: parsl
+  version: "2026.1.19"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/parsl-${{ version }}.tar.gz
+  sha256: e3da042b4f1b6fc7bf5e69c087d898caf8e21cf79ac22b2900e0a1f43f11e4d8
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: ${{ name }}
+
+    build:
+      noarch: python
+      script: ${{ PYTHON }} -m pip install --no-deps --ignore-installed . --verbose
+      python:
+        entry_points:
+          - parsl-globus-auth=parsl.data_provider.globus:cli_run
+          - parsl-visualize=parsl.monitoring.visualization.app:cli_run
+          - parsl-perf=parsl.benchmark.perf:cli_run
+
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - pip
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+        # requirements.txt
+        - pyzmq >=17.1.2
+        - typeguard >=2.10,!=3.*,<5
+        - typing-extensions
+        - dill
+        - tblib
+        - requests
+        - sortedcontainers
+        - psutil >=5.5.1
+        - setproctitle
+        - filelock >=3.13,<4
+
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-monitoring
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - sqlalchemy >=2,<2.1
+
+    tests:
+      - python:
+          imports:
+            - parsl
+            - parsl.monitoring
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-visualization
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - ${{ name }}-with-monitoring
+        - pydot >=1.4.2
+        - networkx >=3.2,<3.3
+        - flask >=1.0.2
+        - flask-sqlalchemy
+        - pandas >=2.2,<3
+        - plotly
+        # 3.0.1 has a build without proper constraints on setuptools
+        - python-daemon !=3.0.1
+
+    tests:
+      - python:
+          imports:
+            - parsl
+            - parsl.monitoring
+          pip_check: true
+          python_version: ${{ python_min }}.*
+      - script:
+          - parsl-visualize --help
+
+  - package:
+      name: ${{ name }}-with-aws
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - boto3
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-kubernetes
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - python-kubernetes
+    tests:
+      - python:
+          imports:
+            - parsl.providers.kubernetes.kube
+            - kubernetes
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-google_cloud
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - google-auth
+        - google-api-python-client
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-gssapi
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - python-gssapi
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  # azure <= 4 cannot be installed with python >=3.10
+  # - package:
+  #     name: ${{ name }}-with-azure
+  #   build:
+  #     noarch: python
+  #   requirements:
+  #     host:
+  #       - python ${{ python_min }}.*
+  #     run:
+  #       - python >=${{ python_min }}
+  #       - ${{ pin_subpackage(name, exact=True) }}
+  #       - azure <=4
+  #       - msrestazure
+  #   tests:
+  #     - python:
+  #         imports:
+  #           - parsl
+  #         pip_check: true
+  #         python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-workqueue
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - ndcctools
+        # there is no work_queue pypi or conda-forge package
+        # - work_queue
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-flux
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - pyyaml
+        - cffi
+        - jsonschema
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-proxystore
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - proxystore
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-radical-pilot
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - radical.pilot ==1.90
+        - radical.utils ==1.90
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-globus_compute
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - globus-compute-sdk >=2.34.0
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: ${{ name }}-with-globus_transfer
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - globus-sdk
+    tests:
+      - python:
+          imports:
+            - parsl
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/Parsl/parsl
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Simple parallel workflows system for Python
+
+  description: |
+    Parsl is a Python library for programming and executing
+    data-oriented workflows (dataflows) in parallel.
+  documentation: https://parsl.readthedocs.io/
+  repository: https://github.com/Parsl/parsl
+
+extra:
+  recipe-maintainers:
+    - ZhuozhaoLi
+    - yadudoc
+    - xylar

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: beaupy
+  version: 3.11.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/beaupy-${{ version }}.tar.gz
+  sha256: c264d13061c5741ceef5462b3752e572a0a7c3b8bd8dac870d10aec8a7d6b2ee
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.2.0
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - rich >=12.2.0
+    - emoji >=2.0.0,<3.0.0
+    - questo >=0.4.1,<0.5.0
+    - python-yakh >=0.4.1,<0.5.0
+
+tests:
+  - python:
+      imports:
+        - beaupy
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A library of elements for interactive TUIs in Python
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/petereon/beaupy
+  documentation: https://petereon.github.io/beaupy/
+
+extra:
+  recipe-maintainers:
+    - petereon
+    - thewchan

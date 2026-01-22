@@ -1,0 +1,49 @@
+context:
+  version: "9.0.1"
+
+package:
+  name: valkey-server
+  version: ${{ version }}
+
+source:
+  url: https://github.com/valkey-io/valkey/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 9cfbc5f32a2a6058ee0f8c532b9c4d24167cc49d719f091dd75f1bb8353a1fc5
+
+build:
+  number: 0
+  skip: win
+  script:
+    - make install -j${CPU_COUNT}
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+
+  run_constraints:
+    # conflict with redis-server
+    - redis-server <0.a0
+
+tests:
+  - script:
+      - valkey-cli --version
+      - valkey-server --version
+      - redis-cli --version
+      - redis-server --version
+
+about:
+  homepage: https://valkey.io
+  repository: https://github.com/valkey-io/valkey
+  summary: A flexible distributed key-value datastore that supports both caching and beyond caching workloads.
+  description: |
+    Valkey is a high-performance data structure server that primarily serves
+    key/value workloads. It supports a wide range of native structures and an
+    extensible plugin system for adding new data structures and access patterns.
+  license: BSD-3-Clause
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - wolfv

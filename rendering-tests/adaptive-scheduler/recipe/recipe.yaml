@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/73cd2eed94c576213c5f25ab57adf6d8c83e792a/schema.json
+schema_version: 1
+
+context:
+  name: adaptive-scheduler
+  version: "2.16.0"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/adaptive_scheduler-${{ version }}.tar.gz
+  sha256: 56c55ac074fcc8f8df6113b669ac3c75cc12603b68ea31c3dcd0b0fd7226d5f5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - versioningit
+  run:
+    - python >=${{ python_min }}
+    - adaptive >=0.14.1
+    - cloudpickle
+    - dill
+    - ipyparallel
+    - ipywidgets
+    - itables
+    - loky
+    - numpy
+    - pandas
+    - psutil
+    - pyzmq
+    - rich
+    - structlog
+    - toolz
+    - tqdm
+    - versioningit
+
+tests:
+  - python:
+      imports:
+        - adaptive_scheduler
+      pip_check: false
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: An asynchronous scheduler for Adaptive
+  description: |
+    The Adaptive scheduler solves the following problem, you need to run a few 100
+    learners and can use >1k cores. `ipyparallel` and `dask.distributed` provide
+    very powerful engines for interactive sessions. However, when you want to
+    connect to >1k cores it starts to struggle. Besides that, on a shared cluster
+    there is often the problem of starting an interactive session with ample space
+    available. Our approach is to schedule a different job for each `
+    adaptive.Learner`. The creation and running of these jobs are managed by `
+    adaptive-scheduler`. This means that your calculation will definitely run, even
+    though the cluster might be fully occupied at the moment. Because of this
+    approach, there is almost no limit to how many cores you want to use. You can
+    either use 10 nodes for 1 job (`learner`) or 1 core for 1 job (`learner`) while
+    scheduling hundreds of jobs. Everything is written such that the computation is
+    maximally local. This means that is one of the jobs crashes, there is no
+    problem and it will automatically schedule a new one and continue the
+    calculation where it left off (because of Adaptive's periodic saving
+    functionality). Even if the central "job manager" dies, the jobs will continue
+    to run (although no new jobs will be scheduled.)
+  homepage: http://github.com/basnijholt/adaptive-scheduler
+  repository: https://github.com/basnijholt/adaptive-scheduler
+  documentation: http://adaptive-scheduler.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - basnijholt
+    - jbweston

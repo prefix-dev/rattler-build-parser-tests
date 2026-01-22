@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: python-idzip
+  version: "0.3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bauman/python-idzip/archive/refs/tags/${{ version }}.zip
+  sha256: 3bf0044b901f144c9a8f65f3ae6b40ee116feff22de96536dc462fa5bbd218fd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - idzip
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: DictZip - Random Access gzip files
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/bauman/python-idzip
+
+extra:
+  recipe-maintainers:
+    - hadim

@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: telnetlib3
+  version: 2.0.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/telnetlib3-${{ version }}.tar.gz
+  sha256: 08a2a7a3a6790f89617442b7d491da8b531d87706fffd6a33eeff57ac440b752
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - telnetlib3-server = telnetlib3.server:main
+      - telnetlib3-client = telnetlib3.client:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - telnetlib3
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+  - script:
+      - telnetlib3-server --help
+      - telnetlib3-client --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Python 3 asyncio Telnet server and client Protocol library
+  license: BSD-3-Clause AND Python-2.0
+  license_file: LICENSE.txt
+  homepage: http://telnetlib3.rtfd.org/
+  repository: https://github.com/jquast/telnetlib3
+
+extra:
+  recipe-maintainers:
+    - atrawog
+    - beenje

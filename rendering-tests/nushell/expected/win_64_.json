@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nushell",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nushell/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nushell/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nushell/work"
+      },
+      "hash": {
+        "hash": "e61bdd1"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nushell": {
+          "build_string": "he61bdd1_0",
+          "name": "nushell",
+          "version": "0.110.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:39.172601938Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://nushell.sh/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY_LICENSES.yaml"
+        ],
+        "repository": "https://github.com/nushell/nushell",
+        "summary": "A new type of shell"
+      },
+      "build": {
+        "number": 0,
+        "prefix_detection": {
+          "ignore_binary_files": true
+        },
+        "script": {
+          "content": [
+            "if not exist \"%PREFIX%\\\\etc\\\\pixi\" mkdir \"%PREFIX%\\\\etc\\\\pixi\\\\nu\"",
+            "type nul > \"%PREFIX%\\\\etc\\\\pixi\\\\nu\\\\global-ignore-conda-prefix\"",
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY_LICENSES.yaml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "he61bdd1_0"
+      },
+      "context": {
+        "version": "0.110.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thebigdalt",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "nushell",
+        "version": "0.110.0"
+      },
+      "requirements": {
+        "build": [
+          "rust_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ],
+        "host": [
+          "zlib",
+          "openssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e4c95f743cea3d985ab90e03fd35707a46eef926d407ed363f994155c1ca5055",
+          "url": "https://github.com/nushell/nushell/archive/refs/tags/0.110.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "nu --version",
+            "nu --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

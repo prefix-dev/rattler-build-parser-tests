@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wasmer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wasmer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wasmer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wasmer/work"
+      },
+      "hash": {
+        "hash": "8d159f0"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "wasmer": {
+          "build_string": "h8d159f0_2",
+          "name": "wasmer",
+          "version": "6.1.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:35:39.551205212Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libffi": "3.5",
+        "libxml2_devel": "2.14",
+        "llvmdev": "18",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Wasmer is a standalone JIT WebAssembly runtime, aiming to be fully\ncompatible with WASI and Emscripten.",
+        "documentation": "https://docs.wasmer.io/",
+        "homepage": "https://wasmer.io/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "docs/ATTRIBUTIONS.md",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/wasmerio/wasmer",
+        "summary": "Universal WebAssembly runtime"
+      },
+      "build": {
+        "number": 2,
+        "script": {
+          "file": "build-wasmer"
+        },
+        "string": "h8d159f0_2"
+      },
+      "context": {
+        "version": "6.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "wasmer",
+        "version": "6.1.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "pkg-config"
+        ],
+        "host": [
+          "libffi",
+          "openssl",
+          "zlib",
+          "libxkbcommon",
+          "libxml2-devel",
+          "llvm-tools",
+          "llvmdev",
+          "zstd"
+        ],
+        "run": [
+          "zstd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7bccb5b86724ea35ca9373fb81092080a615c1baa6129a8eeee9ed3e3f74b9b1",
+          "url": "https://github.com/wasmerio/wasmer/archive/v6.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "tests/wasi-wast/wasi/snapshot1/hello.wasm"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": [
+            "wasmer --version",
+            "wasmer --version | grep -ie \"${{ version | replace(\".\", \"\\\\.\") }}\"",
+            "wasmer --help",
+            "python run_test.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

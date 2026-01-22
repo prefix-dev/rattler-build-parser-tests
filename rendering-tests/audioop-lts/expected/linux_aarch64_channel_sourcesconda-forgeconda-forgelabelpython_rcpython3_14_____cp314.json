@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_audioop-lts",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_audioop-lts/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_audioop-lts/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_audioop-lts/work"
+      },
+      "hash": {
+        "hash": "c032435",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "audioop-lts": {
+          "build_string": "py314hc032435_1",
+          "name": "audioop-lts",
+          "version": "0.2.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:39:34.271379613Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/AbstractUmbra/audioop",
+        "license": "EPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "LTS Port of Python audioop"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py314hc032435_1"
+      },
+      "context": {
+        "name": "audioop-lts",
+        "version": "0.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bmcfee",
+          "IzerOnadimQC",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "audioop-lts",
+        "version": "0.2.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "python",
+          "cross-python_linux-aarch64"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "64d0c62d88e67b98a1a5e71987b7aa7b5bcffc7dcee65b635823dbdd0a8dbbd0",
+          "url": "https://pypi.org/packages/source/a/audioop-lts/audioop_lts-0.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "audioop"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import audioop; assert list(audioop.reverse(bytes([1,2,4,8]), 2)) == [4, 8, 1, 2]\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

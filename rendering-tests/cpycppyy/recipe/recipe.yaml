@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  version: 1.13.0
+
+package:
+  name: cpycppyy
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/cpycppyy/CPyCppyy-${{ version }}.tar.gz
+  sha256: 783b2a8e6addbfb21fd4f49c3b61cca887e692d0a59073ab6c0130f365ca3b9c
+  patches:
+    - 0001-use-host-but-not-build-cflags.patch
+
+build:
+  number: 0
+  skip: win
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-backend ==1.15.3
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-cling ==6.32.8
+  run:
+    - python
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-backend ==1.15.3
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-cling ==6.32.8
+
+tests:
+  - script:
+      - ls `python -c "import site; [print(p) for p in site.getsitepackages()]"`/libcppyy*.so
+      # Ensure that API.h was installed into CPyCppyy and not cpycppyy, see https://github.com/wlav/cppyy/issues/292
+      - test -f $PREFIX/include/python*/CPyCppyy/API.h
+
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  summary: CPython-C++ bindings interface based on Cling/LLVM
+  description: |
+    A CPython extension module to access Cling through cppyy-backend.
+  homepage: https://pypi.org/project/CPyCppyy/
+  repository: https://github.com/wlav/CPyCppyy
+  documentation: http://cppyy.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - saraedum
+    - isuruf

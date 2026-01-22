@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lm_eval",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lm_eval/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lm_eval/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lm_eval/work"
+      },
+      "hash": {
+        "hash": "75bc965",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lm_eval": {
+          "build_string": "py313h75bc965_0",
+          "name": "lm_eval",
+          "version": "0.4.9.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:39:55.061039100Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/EleutherAI/lm-evaluation-harness",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "A framework for evaluating autoregressive language models"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h75bc965_0"
+      },
+      "context": {
+        "name": "lm_eval",
+        "version": "0.4.9.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mediocretech",
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "lm_eval",
+        "version": "0.4.9.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "pybind11 >=2.6.2"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "pytorch",
+          "accelerate >=0.26.0",
+          "evaluate",
+          "datasets >=2.16.0",
+          "evaluate >=0.4.0",
+          "jsonlines",
+          "numexpr",
+          "peft >=0.2.0",
+          "pybind11 >=2.6.2",
+          "pytablewriter",
+          "rouge-score >=0.0.4",
+          "sacrebleu >=1.5.0",
+          "scikit-learn >=0.24.1",
+          "sqlitedict",
+          "tqdm-multiprocess",
+          "transformers >=4.1",
+          "zstandard",
+          "dill",
+          "word2number",
+          "more-itertools",
+          "mbstrdecoder ==1.1.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "131c2f21911beee92e6ab8286f08adce86d6aa23852f87451651e6a68b4a631a",
+          "url": "https://pypi.org/packages/source/l/lm_eval/lm_eval-0.4.9.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "lm_eval"
+            ]
+          }
+        },
+        {
+          "script": "lm_eval -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

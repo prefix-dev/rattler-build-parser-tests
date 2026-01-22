@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: lbenv
+  version: "2.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 007aa8df59c14619cfe9b03ace18e4ffdfacb7f3592229e8bc64791df96d9edf
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - lb-run = LbEnv.ProjectEnv.script:main
+      - lb-completion-helper = LbEnv.Utils.Completion:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.2
+    - setuptools-scm >=6.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - lbplatformutils >=4.2.3
+    - xenv <1.0.0
+    - importlib-resources
+    - importlib-metadata
+
+tests:
+  - python:
+      imports:
+        - LbEnv
+        - LbEnv.ProjectEnv
+        - LbEnv.Utils
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - lb-run --help
+      - lb-completion-helper --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: LHCb Environment tools
+  homepage: https://gitlab.cern.ch/lhcb-core/LbEnv
+  repository: https://gitlab.cern.ch/lhcb-core/LbEnv
+  documentation: https://gitlab.cern.ch/lhcb-core/LbEnv
+
+extra:
+  recipe-maintainers:
+    - chrisburr

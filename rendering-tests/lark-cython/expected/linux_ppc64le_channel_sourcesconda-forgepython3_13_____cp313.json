@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lark-cython",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lark-cython/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lark-cython/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lark-cython/work"
+      },
+      "hash": {
+        "hash": "590ca80",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lark-cython": {
+          "build_string": "py313h590ca80_3",
+          "name": "lark-cython",
+          "version": "0.0.17"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:32.454719847Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/lark-parser/lark_cython",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A Lark plugin that optimizes LALR parsing using Cython"
+      },
+      "build": {
+        "number": 3,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h590ca80_3"
+      },
+      "context": {
+        "cython_version": "3.0.*",
+        "lark_min": "1.1.7",
+        "version": "0.0.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "lark-cython",
+        "version": "0.0.17"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cross-python_linux-ppc64le",
+          "cython 3.0.*",
+          "python",
+          "setuptools"
+        ],
+        "host": [
+          "cython 3.0.*",
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "lark >=1.1.7",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a311c4dba35a8bc19f623ec6829ff5421d7ff493ea1a64f591a29fb08d90e884",
+          "url": "https://pypi.org/packages/source/l/lark-cython/lark_cython-0.0.17.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "lark_cython"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "lark 1.1.7.*",
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "coverage run --source=lark_cython --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=100"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.14.1"
+
+package:
+  name: python-symengine
+  version: ${{ version }}
+
+source:
+  url: https://github.com/symengine/symengine.py/archive/v${{ version }}.tar.gz
+  sha256: 3e79d39af5e9f024cd4b8d1372314ac2b83cace7d49cdbad482b4aec5b04c37b
+
+build:
+  number: 0
+  script:
+    file: build-python-symengine
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake <4
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - cython
+        - pip
+        - python
+        - setuptools
+    - if: unix
+      then: make
+      else: ninja
+  host:
+    - cython
+    - gmp
+    - libflint
+    - mpc
+    - mpfr
+    - pip
+    - python
+    - setuptools
+    - symengine ${{ (version | split("."))[:2] | join(".") }}.*
+  run:
+    - python
+
+tests:
+  - python:
+      imports: symengine
+      pip_check: true
+  - requirements:
+      run:
+        - pytest
+        - sympy
+    script:
+      interpreter: python
+      content: |
+        import symengine
+        if not symengine.test():
+            raise Exception("Tests failed")
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Python wrappers for SymEngine, a fast symbolic manipulation library, written in C++
+  homepage: https://pypi.org/project/symengine
+  repository: https://github.com/symengine/symengine.py
+
+extra:
+  recipe-maintainers:
+    - isuruf
+    - certik

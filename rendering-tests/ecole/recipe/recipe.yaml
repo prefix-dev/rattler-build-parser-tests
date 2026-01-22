@@ -1,0 +1,116 @@
+schema_version: 1
+
+context:
+  version: 0.8.2
+
+recipe:
+  name: ecole
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ds4dm/ecole/archive/v${{ version }}.tar.gz
+  sha256: f47f1cbc5bc43c904327f2a5a536367f0ba22f89e73e300b1d20ebac630771db
+
+build:
+  number: 1
+  skip: win or (linux and aarch64 and match(scip, "<10.0"))
+
+outputs:
+  - package:
+      name: libecole
+      version: ${{ version }}
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        - cmake >=3.15
+        - ninja
+      host:
+        - range-v3
+        - robin_hood
+        - scip
+        - fmt
+        - xtensor
+        - xsimd
+      run_exports:
+        - ${{ pin_subpackage('libecole', exact=True) }}
+      run_constraints:
+        - ${{ pin_compatible('xsimd') }}
+        - ${{ pin_compatible('xtensor') }}
+    tests:
+      - package_contents:
+          lib:
+            - ecole
+          include:
+            - ecole/environment/branching.hpp
+      - script: test-libecole.sh
+        files:
+          source:
+            - examples/libecole/
+        requirements:
+          run:
+            - ${{ compiler('cxx') }}
+            - ${{ stdlib("c") }}
+            - cmake >=3.15
+            - ninja
+            - xsimd
+            - xtensor
+
+  - package:
+      name: ecole
+      version: ${{ version }}
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        - cmake >=3.15
+        - ninja
+        - make
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - pybind11
+            - numpy
+            - scikit-build-core
+      host:
+        - ${{ pin_subpackage('libecole', exact=True) }}
+        - xtensor
+        - xsimd
+        - python
+        - pip
+        - scikit-build-core
+        - pybind11
+        - numpy
+        - xtensor-python
+      run:
+        - python
+        - numpy
+      run_constraints:
+        - ${{ pin_compatible('xtensor-python') }}
+        - pyscipopt >=3.0.1
+    tests:
+      - package_contents:
+          files:
+            not_exists:
+              - lib/libecole.so
+              - lib/libecole.dylib
+      - python:
+          imports:
+            - ecole
+            - ecole.reward
+            - ecole.environment
+      - script:
+          - python -c 'import ecole; next(ecole.instance.SetCoverGenerator())'
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Extensible Combinatorial Optimization Learning Environments
+  homepage: https://www.ecole.ai/
+  documentation: https://doc.ecole.ai/
+
+extra:
+  recipe-maintainers:
+    - AntoinePrv
+    - gasse

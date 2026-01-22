@@ -1,0 +1,186 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyjelly",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyjelly/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyjelly/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyjelly/work"
+      },
+      "hash": {
+        "hash": "54dd161",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyjelly": {
+          "build_string": "py313h54dd161_0",
+          "name": "pyjelly",
+          "version": "0.7.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:44:31.212662967Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jelly-rdf.github.io/pyjelly",
+        "homepage": "https://github.com/Jelly-RDF/pyjelly",
+        "license": "Apache-2.0",
+        "license_file": [
+          "dist/LICENSE",
+          "dist/submodules/protobuf/LICENSE"
+        ],
+        "summary": "Jelly-RDF implementation for Python"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} ${{ \"$RECIPE_DIR\" if unix else \"%RECIPE_DIR%\" }}/deref_symlinks.py",
+          "cd dist",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "py313h54dd161_0"
+      },
+      "context": {
+        "mypy_min": "1.8",
+        "mypy_not": "1.19",
+        "protobuf_check_min": "6.31.1",
+        "protobuf_min": "6.30.0",
+        "protobuf_submodule_commit": "38911dedbd4dc3c3b8f038520cec291b00d5b215",
+        "rdflib_min": "7.1.4",
+        "version": "0.7.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "pyjelly",
+        "version": "0.7.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "hatch-mypyc",
+          "hatchling >=1.24",
+          "mypy >=1.8,!=1.19",
+          "pip",
+          "python"
+        ],
+        "run": [
+          "mypy_extensions >=1.0.0",
+          "protobuf >=6.30.0",
+          "python",
+          "typing_extensions >=4.12.2"
+        ],
+        "run_constraints": [
+          "rdflib >=7.1.4"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "09131e4dc9fc0b3f2870bcb2c871922e46788d6bb577e2709ce1a45a0051e352",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/p/pyjelly/pyjelly-0.7.1.tar.gz"
+        },
+        {
+          "sha256": "a5836aa00afadc3f52a5d1632e064e0213ad6c21b765069f44a42c3f79e55a38",
+          "target_directory": "dist/submodules/protobuf",
+          "url": "https://github.com/Jelly-RDF/jelly-protobuf/archive/38911dedbd4dc3c3b8f038520cec291b00d5b215.tar.gz"
+        },
+        {
+          "sha256": "92f844daf94f447c26a4531bf85fe45dcc41174c1f476edecdad4a8e2907c1b6",
+          "target_directory": "src",
+          "url": "https://github.com/Jelly-RDF/pyjelly/archive/refs/tags/v0.7.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyjelly"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/",
+              "src/pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "hypothesis",
+              "inline-snapshot",
+              "pip",
+              "protobuf 6.31.1.*",
+              "pytest >=8.3.4,<8.5.0",
+              "pytest-mock",
+              "pytest-subtests",
+              "rdflib 7.1.4.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "cd src",
+            "coverage run --source=pyjelly --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=46"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 2.15
+
+package:
+  name: libsigsegv
+  version: ${{ version }}
+
+source:
+  url: https://ftp.gnu.org/gnu/libsigsegv/libsigsegv-${{ version }}.tar.gz
+  sha256: 036855660225cb3817a190fc00e6764ce7836051bacb48d35e26444b8c1729d9
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - autoconf
+    - automake
+    - gettext-tools
+    - make
+  host:
+    - libtool
+  run_exports:
+    - ${{ pin_subpackage('libsigsegv', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - test -f ${PREFIX}/lib/libsigsegv${SHLIB_EXT}
+
+about:
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  summary: GNU libsigsegv is a library for handling page faults in user mode.
+  description: |
+    GNU libsigsegv is a library for handling page faults in user mode.
+    A page fault occurs when a program tries to access to a region of
+    memory that is currently not available.
+  homepage: https://www.gnu.org/software/libsigsegv/
+  repository: http://savannah.gnu.org/projects/libsigsegv/
+  documentation: https://www.gnu.org/software/libsigsegv/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - jan-janssen

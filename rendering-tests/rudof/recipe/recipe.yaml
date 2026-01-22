@@ -1,0 +1,119 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.1.146"
+  maturin_min: "1"
+  maturin_max: "2"
+  python_check_max: "3.14"
+
+recipe:
+  name: rudof-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rudof-project/rudof/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 58ab855f118e6b71dc39fb1b571a58930d575b0bde8847601a9d9b44c35690e8
+
+build:
+  number: 0
+  skip: not (match(python, python_min ~ ".*") and is_abi3)
+
+outputs:
+  - package:
+      name: rudof
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("rust") }}
+        - ${{ stdlib("c") }}
+        - cargo-bundle-licenses
+        - make
+        - pkg-config
+        - if: win
+          then:
+            - perl
+      host:
+        - openssl
+    build:
+      script:
+        file: build-rudof
+    tests:
+      - script:
+          - rudof --version
+          - rudof --help
+    about:
+      license_file:
+        - LICENSE-APACHE
+        - LICENSE-MIT
+        - THIRDPARTY.yml
+
+  - package:
+      name: pyrudof
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("rust") }}
+        - ${{ stdlib("c") }}
+        - cargo-bundle-licenses
+        - make
+        - pkg-config
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - maturin >=${{ maturin_min }},<${{ maturin_max }}
+            - openssl
+            - python
+        - if: win
+          then:
+            - perl
+      host:
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+        - openssl
+        - pip
+        - python
+        - python-abi3
+    build:
+      python:
+        version_independent: true
+      script:
+        file: build-pyrudof
+    tests:
+      - python:
+          imports: pyrudof
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - pytest-cov
+        files:
+          source:
+            - python/tests/
+        script:
+          - cd python
+          - coverage run --source=pyrudof --branch -m pytest -vv --tb=long --color=yes
+          - coverage report --show-missing --skip-covered --fail-under=83
+    about:
+      license_file:
+        - LICENSE-APACHE
+        - LICENSE-MIT
+        - THIRDPARTY.yml
+      summary: This module contains the Python bindings of rudof which are called pyrudof
+
+about:
+  license: Apache-2.0 OR MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+  summary: |-
+    rudof is a command-line tool to inspect and validate RDF data using ShEx or
+    SHACL, and to allow conversion between different RDF data modeling languages
+    like ShEx, SHACL, DCTAP, etc.
+  homepage: https://github.com/rudof-project/rudof
+
+extra:
+  feedstock-name: rudof
+  recipe-maintainers:
+    - bollwyvl

@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_su2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_su2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_su2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_su2/work"
+      },
+      "hash": {
+        "hash": "ff3b0b9",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "su2": {
+          "build_string": "py310hff3b0b9_1",
+          "name": "su2",
+          "version": "8.3.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:56.380492474Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "openblas": "0.3.*",
+        "openmpi": "5",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://su2code.github.io/docs_v7/home/",
+        "homepage": "https://su2code.github.io/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "repository": "https://github.com/su2code/SU2",
+        "summary": "An Open-Source Suite for Multiphysics Simulation and Design"
+      },
+      "build": {
+        "number": 1,
+        "string": "py310hff3b0b9_1"
+      },
+      "context": {
+        "name": "su2",
+        "version": "8.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g"
+        ]
+      },
+      "package": {
+        "name": "su2",
+        "version": "8.3.0"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "sysroot_linux-aarch64 2.17.*",
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "pkg-config",
+          "ccache",
+          "swig"
+        ],
+        "host": [
+          "python",
+          "mpi4py",
+          "openblas",
+          "openmpi",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "libopenblas",
+          "openmpi"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "su2-meson.patch"
+          ],
+          "sha256": "33079d7988ea3bd8b0020f5c8a33b27caea6e357c1cb78fda8b1508c594444ef",
+          "url": "https://github.com/su2code/SU2/archive/refs/tags/v8.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "SU2_CFD --help",
+            "test -x ${PREFIX}/bin/SU2_DEF",
+            "test -x ${PREFIX}/bin/SU2_DOT",
+            "test -x ${PREFIX}/bin/SU2_GEO",
+            "test -x ${PREFIX}/bin/SU2_SOL"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

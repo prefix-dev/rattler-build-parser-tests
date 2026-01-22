@@ -1,0 +1,60 @@
+context:
+  version: "4.55.3"
+
+package:
+  name: rollup
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rollup/rollup/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 60f495e0f17b9992dabe3a1239b2bfc0f1e84a00fbe4250eec81560601f02c51
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - cmake
+    - make
+    - nodejs
+    - cargo-bundle-licenses
+    - if: unix
+      then: sed
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - rollup --help
+
+about:
+  summary: Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
+  description: |
+    Rollup is a module bundler for JavaScript which compiles small pieces of code
+    into something larger and more complex, such as a library or application.
+    It uses the standardized ES module format for code, instead of previous idiosyncratic
+    solutions such as CommonJS and AMD. ES modules let you freely and seamlessly combine
+    the most useful individual functions from your favorite libraries. Rollup can
+    optimize ES modules for faster native loading in modern browsers, or output a legacy
+    module format allowing ES module workflows today.
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - ThirdPartyLicenses.txt
+    - THIRDPARTY.yml
+  homepage: https://github.com/rollup/rollup
+  documentation: https://rollupjs.org/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - MementoRC

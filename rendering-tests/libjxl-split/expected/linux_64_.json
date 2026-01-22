@@ -1,0 +1,391 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl/work"
+      },
+      "hash": {
+        "hash": "a09017c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libjxl": {
+          "build_string": "ha09017c_8",
+          "name": "libjxl",
+          "version": "0.11.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:31.370456064Z",
+      "variant": {
+        "brotli": "1.2",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libhwy": "1.3",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This repository contains a reference implementation of JPEG XL (encoder and decoder),\ncalled libjxl. This software library is used by many applications that support JPEG XL.\n\n`libjxl` provides the core library.\nFor `cjxl`, `djxl`, `libjxl_extras_codec`, and other tools, use `libjxl-tools`.",
+        "documentation": "https://libjxl.readthedocs.io/",
+        "homepage": "https://jpeg.org/jpegxl/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/skcms/LICENSE"
+        ],
+        "repository": "https://github.com/libjxl/libjxl",
+        "summary": "JPEG XL image format reference implementation"
+      },
+      "build": {
+        "number": 8,
+        "script": {
+          "env": {
+            "JPEGXL_ENABLE_TOOLS": "OFF"
+          },
+          "file": "install"
+        },
+        "string": "ha09017c_8"
+      },
+      "context": {
+        "jpeg_turbo_version": "8ecba3647edb6dd940463fedf38ca33a8e2a73d1",
+        "skcms_version": "42030a771244ba67f86b1c1c76a6493f873c5f91",
+        "version": "0.11.1"
+      },
+      "extra": {
+        "feedstock-name": "libjxl",
+        "recipe-maintainers": [
+          "sshockwave"
+        ]
+      },
+      "package": {
+        "name": "libjxl",
+        "version": "0.11.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "pkg-config",
+          "cmake >=3.16",
+          "make"
+        ],
+        "host": [
+          "brotli",
+          "libhwy"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "libbrotlicommon"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x",
+                "name": "libjxl",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-CHECK_EXCLUDE_LIBS.patch",
+            "patches/0002-BACKPORT_FIX_LM_PKGCONFIG_LIBJXL_CMAKE.patch",
+            "patches/0003-FIX_LM_PKGCONFIG_LIBJXL_CMS_CMAKE.patch",
+            "patches/0004-FIX_LM_PKGCONFIG_LIBJXL_THREADS_CMAKE.patch"
+          ],
+          "sha256": "1492dfef8dd6c3036446ac3b340005d92ab92f7d48ee3271b5dac1d36945d3d9",
+          "url": "https://github.com/libjxl/libjxl/archive/v0.11.1.tar.gz"
+        },
+        {
+          "sha256": "f070f9f7ac770ea2aab977cdc628e087a0eabaae9dd04883a511dfd6e37232b5",
+          "target_directory": "third_party/skcms",
+          "url": "https://github.com/google/skcms/archive/42030a771244ba67f86b1c1c76a6493f873c5f91.tar.gz"
+        },
+        {
+          "sha256": "ed729127097af5000bfeddc6b3e679c4363bb1618ebfc07efb6b47f576471b4b",
+          "target_directory": "third_party/libjpeg-turbo",
+          "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/8ecba3647edb6dd940463fedf38ca33a8e2a73d1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f \"$PREFIX\"/include/jxl/encode.h",
+            "test -f \"$PREFIX\"/lib/libjxl\"$SHLIB_EXT\"",
+            "test ! -f \"$PREFIX\"/bin/cjxl",
+            "test ! -f \"$PREFIX\"/lib/libjxl.a"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libjxl-tools/work"
+      },
+      "hash": {
+        "hash": "3b39bfe"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libjxl": {
+          "build_string": "ha09017c_8",
+          "name": "libjxl",
+          "version": "0.11.1"
+        },
+        "libjxl-tools": {
+          "build_string": "h3b39bfe_8",
+          "name": "libjxl-tools",
+          "version": "0.11.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:31.591390752Z",
+      "variant": {
+        "brotli": "1.2",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "giflib": "5.2",
+        "libhwy": "1.3",
+        "libjpeg_turbo": "3",
+        "libjxl": "0.11.1 ha09017c_8",
+        "libpng": "1.6",
+        "openexr": "3.4",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This repository contains a reference implementation of JPEG XL (encoder and decoder),\ncalled libjxl. This software library is used by many applications that support JPEG XL.\n\n`libjxl` provides the core library.\nFor `cjxl`, `djxl`, `libjxl_extras_codec`, and other tools, use `libjxl-tools`.",
+        "documentation": "https://libjxl.readthedocs.io/",
+        "homepage": "https://jpeg.org/jpegxl/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/skcms/LICENSE"
+        ],
+        "repository": "https://github.com/libjxl/libjxl",
+        "summary": "JPEG XL image format reference implementation"
+      },
+      "build": {
+        "number": 8,
+        "script": {
+          "env": {
+            "JPEGXL_ENABLE_TOOLS": "ON"
+          },
+          "file": "install"
+        },
+        "string": "h3b39bfe_8"
+      },
+      "context": {
+        "jpeg_turbo_version": "8ecba3647edb6dd940463fedf38ca33a8e2a73d1",
+        "skcms_version": "42030a771244ba67f86b1c1c76a6493f873c5f91",
+        "version": "0.11.1"
+      },
+      "extra": {
+        "feedstock-name": "libjxl",
+        "recipe-maintainers": [
+          "sshockwave"
+        ]
+      },
+      "package": {
+        "name": "libjxl-tools",
+        "version": "0.11.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "pkg-config",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "brotli",
+          "libhwy",
+          "giflib",
+          "libjpeg-turbo",
+          "openexr",
+          "libpng",
+          "zlib",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libjxl"
+            }
+          }
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "libbrotlicommon",
+            "libzlib"
+          ]
+        },
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libjxl"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-CHECK_EXCLUDE_LIBS.patch",
+            "patches/0002-BACKPORT_FIX_LM_PKGCONFIG_LIBJXL_CMAKE.patch",
+            "patches/0003-FIX_LM_PKGCONFIG_LIBJXL_CMS_CMAKE.patch",
+            "patches/0004-FIX_LM_PKGCONFIG_LIBJXL_THREADS_CMAKE.patch"
+          ],
+          "sha256": "1492dfef8dd6c3036446ac3b340005d92ab92f7d48ee3271b5dac1d36945d3d9",
+          "url": "https://github.com/libjxl/libjxl/archive/v0.11.1.tar.gz"
+        },
+        {
+          "sha256": "f070f9f7ac770ea2aab977cdc628e087a0eabaae9dd04883a511dfd6e37232b5",
+          "target_directory": "third_party/skcms",
+          "url": "https://github.com/google/skcms/archive/42030a771244ba67f86b1c1c76a6493f873c5f91.tar.gz"
+        },
+        {
+          "sha256": "ed729127097af5000bfeddc6b3e679c4363bb1618ebfc07efb6b47f576471b4b",
+          "target_directory": "third_party/libjpeg-turbo",
+          "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/8ecba3647edb6dd940463fedf38ca33a8e2a73d1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "cjxl --version",
+            "djxl --version",
+            "cjpegli --help",
+            "djpegli --help",
+            "jxlinfo --help",
+            "printf \"P6 1 1 63 000\" > test.ppm",
+            "cjxl test.ppm test.jxl",
+            "djxl test.jxl test.ppm",
+            "jxlinfo test.jxl"
+          ]
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "pkg-config --print-errors --exact-version \"${{ version }}\" libjxl"
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config",
+              "gcc_linux-64 =14"
+            ]
+          },
+          "script": {
+            "file": "test_pkgconfig_link.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

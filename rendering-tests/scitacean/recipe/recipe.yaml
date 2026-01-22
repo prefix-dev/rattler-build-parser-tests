@@ -1,0 +1,52 @@
+context:
+  name: scitacean
+  version: "25.8.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/scitacean-${{ version }}.tar.gz
+  sha256: 170f5751db7fb415890f1a817fe48616a34018b3aa3c1d9c6b375e934769a8cb
+
+build:
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=68
+    - setuptools-scm >=8.0
+  run:
+    - python >=${{ python_min }}
+    - email-validator >=2
+    - httpx >=0.24
+    - paramiko >=3
+    - pydantic >=2
+    - python-dateutil >=2.8
+    - tomli >=2.2.0
+
+tests:
+  - python:
+      imports:
+        - scitacean
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://pypi.org/project/scitacean/
+  summary: High-level interface for SciCat
+  repository: https://github.com/SciCatProject/scitacean
+  documentation: https://scicatproject.github.io/scitacean/
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jl-wynen
+    - nitrosx

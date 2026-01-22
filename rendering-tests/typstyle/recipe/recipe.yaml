@@ -1,0 +1,39 @@
+context:
+  name: typstyle
+  version: "0.14.4"
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/typstyle-rs/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: c20a07b9535dc34c0099f744f435ebfb53668b92f05e59b115fd264ecb9f7187
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - typstyle --version
+
+about:
+  homepage: https://github.com/typstyle-rs/typstyle
+  repository: https://github.com/typstyle-rs/typstyle
+  documentation: https://typstyle-rs.github.io/typstyle/
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - crates/typstyle/THIRDPARTY_LICENSES.yaml
+  summary: Beautiful and reliable typst code formatter
+
+extra:
+  recipe-maintainers:
+    - pavelzw

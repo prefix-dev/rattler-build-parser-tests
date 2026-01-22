@@ -1,0 +1,45 @@
+context:
+  name: hatch-multi
+  version: "1.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/hatch_multi/hatch_multi-${{ version }}.tar.gz
+  sha256: 68b89a590d0e8f0e9a5a92987f429e8e3fdf47270757012c93adc2f9569be566
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - hatchling
+    - pydantic
+
+tests:
+  - python:
+      imports:
+      - hatch_multi.hooks
+      - hatch_multi.plugin
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: hatch plugin to create multiple discrete packages from optional-dependencies (extras)
+  homepage: https://github.com/python-project-templates/hatch-multi
+  repository: https://github.com/python-project-templates/hatch-multi
+
+extra:
+  recipe-maintainers:
+    - timkpaine

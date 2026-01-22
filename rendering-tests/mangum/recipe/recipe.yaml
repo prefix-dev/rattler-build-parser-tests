@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: mangum
+  version: 0.20.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mangum-${{ version }}.tar.gz
+  sha256: 0050447b60d832dcc45cc9d917c9e0f4e9174e2d9630f621d567510d51d286bd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - typing-extensions
+
+tests:
+  - python:
+      imports:
+        - mangum
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: AWS Lambda support for ASGI applications
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/jordaneremieff/mangum
+
+extra:
+  recipe-maintainers:
+    - thewchan

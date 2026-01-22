@@ -1,0 +1,177 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mednet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mednet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mednet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mednet/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mednet": {
+          "build_string": "pyhcf101f3_0",
+          "name": "mednet",
+          "version": "2.0.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:34.354443365Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://mednet.readthedocs.io/",
+        "homepage": "https://gitlab.idiap.ch/medai/software/mednet",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSES/GPL-3.0-or-later.txt"
+        ],
+        "repository": "https://gitlab.idiap.ch/medai/software/mednet",
+        "summary": "Multi-task Library to Develop Computer-Aided Tools for Medical Data Analysis"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "mednet = mednet.scripts.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "mednet",
+        "python_min": "3.11",
+        "version": "2.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "anjos"
+        ]
+      },
+      "package": {
+        "name": "mednet",
+        "version": "2.0.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "hatchling",
+          "versioningit",
+          "pip"
+        ],
+        "run": [
+          "python >=3.11",
+          "clapper >=1.3.4",
+          "click",
+          "colorlog",
+          "compact-json",
+          "credible >=1.0.2",
+          "grad-cam >=1.5.0",
+          "lightning >=2.2.0",
+          "loky",
+          "h5py",
+          "matplotlib-base",
+          "mlflow-skinny",
+          "numpy",
+          "peft",
+          "transformers >=4.36.0",
+          "pillow",
+          "psutil",
+          "python-gitlab",
+          "scikit-image",
+          "scikit-learn",
+          "scipy",
+          "tabulate",
+          "tensorboard",
+          "timm",
+          "torchvision >=0.18.0",
+          "pytorch",
+          "torchio",
+          "torchmetrics",
+          "tqdm",
+          "versioningit"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "312b476a012da7bb98c6b22703bc40a0296b3c2aa16db96febf457aad196ff3c",
+          "url": "https://files.pythonhosted.org/packages/98/9a/569edc4e67b14710cdef5b53ada6f312ac16fab5953a060c7fa570faf7ec/mednet-2.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mednet"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest"
+            ]
+          },
+          "script": [
+            "mednet --help",
+            "pytest --override-ini pythonpath=tests/src -sv tests/cli/test_cli.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

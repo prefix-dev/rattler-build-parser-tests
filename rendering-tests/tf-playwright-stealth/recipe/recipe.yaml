@@ -1,0 +1,42 @@
+context:
+  version: "1.2.0"
+
+package:
+  name: tf-playwright-stealth
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/t/tf-playwright-stealth/tf_playwright_stealth-${{ version }}.tar.gz
+    sha256: 7bb8d32d3e60324fbf6b9eeae540b8cd9f3b9e07baeb33b025dbc98ad47658ba
+
+build:
+  number: 1
+  skip:
+    - win
+  script: ${{ PYTHON }} -m pip install .
+
+requirements:
+  host:
+    - python
+    - pip
+    - poetry-core
+  run:
+    - python
+    - playwright-python >=1,<2
+    - fake-http-header >=0.3.5,<0.4.0
+
+tests:
+  - python:
+      imports:
+        - playwright_stealth
+      pip_check: true
+
+about:
+  homepage: https://www.agentql.com/
+  summary: Makes playwright stealthy like a ninja!
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

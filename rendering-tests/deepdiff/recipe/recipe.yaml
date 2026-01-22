@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: deepdiff
+  version: "8.6.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: ec56d7a769ca80891b5200ec7bd41eec300ced91ebcc7797b41eb2b3f3ff643a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - flit-core >=3.11,<4
+  run:
+    - orderly-set >=5.4.1,<6
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - deepdiff
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Deep Difference and Search of any Python object/data.
+  license: MIT
+  license_file: LICENSE
+  description: |
+    Deep Difference of dictionaries, iterables, strings and other objects.
+    It will recursively look for all the changes.
+  homepage: https://github.com/seperman/deepdiff
+  repository: https://github.com/seperman/deepdiff
+  documentation: http://deepdiff.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - loriab
+    - seperman
+    - synapticarbors

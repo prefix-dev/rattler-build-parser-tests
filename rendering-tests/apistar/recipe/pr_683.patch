@@ -1,0 +1,85 @@
+diff --git a/apistar/schemas/jsonschema.py b/apistar/schemas/jsonschema.py
+index d649f2c..9d62eb1 100644
+--- a/apistar/schemas/jsonschema.py
++++ b/apistar/schemas/jsonschema.py
+@@ -1,6 +1,6 @@
+ import typesystem
+ 
+-definitions = typesystem.SchemaDefinitions()
++definitions = typesystem.Definitions()
+ 
+ JSON_SCHEMA = (
+     typesystem.Object(
+diff --git a/apistar/schemas/openapi.py b/apistar/schemas/openapi.py
+index b874269..a894c77 100644
+--- a/apistar/schemas/openapi.py
++++ b/apistar/schemas/openapi.py
+@@ -15,7 +15,7 @@ RESPONSE_REF = typesystem.Object(
+     properties={"$ref": typesystem.String(pattern="^#/components/responses/")}
+ )
+ 
+-definitions = typesystem.SchemaDefinitions()
++definitions = typesystem.Definitions()
+ 
+ OPEN_API = typesystem.Object(
+     title="OpenAPI",
+@@ -367,7 +367,7 @@ class OpenAPI:
+         )
+ 
+     def get_schema_definitions(self, data):
+-        definitions = typesystem.SchemaDefinitions()
++        definitions = typesystem.Definitions()
+         schemas = lookup(data, ["components", "schemas"], {})
+         for key, value in schemas.items():
+             ref = f"#/components/schemas/{key}"
+diff --git a/apistar/schemas/swagger.py b/apistar/schemas/swagger.py
+index b8bd10a..74c21da 100644
+--- a/apistar/schemas/swagger.py
++++ b/apistar/schemas/swagger.py
+@@ -12,7 +12,7 @@ RESPONSE_REF = typesystem.Object(
+     properties={"$ref": typesystem.String(pattern="^#/responses/")}
+ )
+ 
+-definitions = typesystem.SchemaDefinitions()
++definitions = typesystem.Definitions()
+ 
+ SWAGGER = typesystem.Object(
+     title="Swagger",
+@@ -357,7 +357,7 @@ class Swagger:
+         )
+ 
+     def get_schema_definitions(self, data):
+-        definitions = typesystem.SchemaDefinitions()
++        definitions = typesystem.Definitions()
+         schemas = lookup(data, ["components", "schemas"], {})
+         for key, value in schemas.items():
+             ref = f"#/components/schemas/{key}"
+diff --git a/setup.py b/setup.py
+index 282b813..e169440 100755
+--- a/setup.py
++++ b/setup.py
+@@ -61,7 +61,7 @@ setup(
+     name="apistar",
+     version=version,
+     url="https://docs.apistar.com/",
+-    license="BSD",
++    license="BSD-3-Clause",
+     description="API documentation, validation, mocking, and clients.",
+     long_description=get_long_description("README.md"),
+     long_description_content_type="text/markdown",
+@@ -69,13 +69,13 @@ setup(
+     author_email="tom@tomchristie.com",
+     packages=get_packages("apistar"),
+     package_data=get_package_data("apistar"),
+-    install_requires=["click", "jinja2", "requests", "pyyaml", "typesystem"],
++    install_requires=["click", "jinja2", "requests", "pyyaml", "typesystem~=0.4"],
+     python_requires=">=3.6",
+     classifiers=[
+         "Development Status :: 3 - Alpha",
+         "Environment :: Web Environment",
+         "Intended Audience :: Developers",
+-        "License :: OSI Approved :: BSD License",
++        "License :: OSI Approved :: BSD-3-Clause",
+         "Operating System :: OS Independent",
+         "Topic :: Internet :: WWW/HTTP",
+         "Programming Language :: Python :: 3",

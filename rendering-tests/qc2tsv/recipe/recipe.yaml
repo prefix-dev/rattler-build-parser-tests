@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 0.2.0
+  python_min: 3.10
+
+package:
+  name: qc2tsv
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/q/qc2tsv/qc2tsv-${{ version }}.tar.gz
+  sha256: 788a1f0ca6d06a793680bc1ea6f3cf6bcbcdbf0241bade22d4d3e904106e06e2
+
+build:
+  number: 1
+  noarch: generic
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - autouri
+    - caper
+    - miniwdl >=1.13
+    - pandas
+    - python >=${{ python_min }}
+
+tests:
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - qc2tsv --help
+
+about:
+  summary: Converts multiple QC JSONs to a spread sheet (TSV/CSV)
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/ENCODE-DCC/qc2tsv
+
+extra:
+  recipe-maintainers:
+    - danielnachun

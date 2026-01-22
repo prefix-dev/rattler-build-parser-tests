@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: harlequin-databricks
+  version: 0.6.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/harlequin_databricks-${{ version }}.tar.gz
+  sha256: d1c45ac6dffaca6c3379ba3390033bb5aa1af786d533c47c78574dfbd45838b9
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - uv-build
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - harlequin >=2.5.0
+    - databricks-sql-connector >=4.2.3
+  run_constraints:
+    - databricks-sdk >=0.40.0
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - harlequin_databricks
+
+about:
+  summary: A Harlequin adapter for Databricks.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/alexmalins/harlequin-databricks
+
+extra:
+  recipe-maintainers:
+    - conda-forge/harlequin
+    - alexmalins

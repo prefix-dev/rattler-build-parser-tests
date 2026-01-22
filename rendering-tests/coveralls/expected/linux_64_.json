@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coveralls",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coveralls/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coveralls/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coveralls/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "coveralls": {
+          "build_string": "pyhcf101f3_0",
+          "name": "coveralls",
+          "version": "4.0.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:47:09.342570378Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "coveralls.io is a service for publishing your coverage stats online. This\npackage provides seamless integration with coverage.py (and thus py.test,\nnosetests, etc...) in your Python projects.",
+        "homepage": "https://github.com/coveralls-clients/coveralls-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "summary": "Show coverage stats online via coveralls.io"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "coveralls = coveralls.cli:main",
+            "python-coveralls = coveralls.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "coveralls",
+        "version": "4.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan",
+          "thekevjames"
+        ]
+      },
+      "package": {
+        "name": "coveralls",
+        "version": "4.0.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "poetry-core >=1.0.0",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10",
+          "coverage >=5.0,<8.0,!=6.0.*,!=6.1,!=6.1.1",
+          "docopt >=0.6.1,<0.7.0",
+          "requests >=1.0.0,<3.0.0",
+          "tomli"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7c21ffa2808d3052fa0cfca3842a9f3d21cc8eada02538c192d932199e5f07d4",
+          "url": "https://pypi.org/packages/source/c/coveralls/coveralls-4.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "coveralls"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10"
+            ]
+          },
+          "script": [
+            "coveralls --help",
+            "python-coveralls --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

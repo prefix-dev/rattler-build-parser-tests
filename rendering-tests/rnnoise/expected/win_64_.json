@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rnnoise",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rnnoise/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rnnoise/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rnnoise/work"
+      },
+      "hash": {
+        "hash": "6a83c73"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rnnoise": {
+          "build_string": "h6a83c73_0",
+          "name": "rnnoise",
+          "version": "0.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:38:30.900267063Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "RNNoise is a noise suppression library based on a recurrent neural network.\n\nFeatures:\n- Real-time noise suppression using deep learning\n- Optimized for speech enhancement\n- Low computational overhead\n- Works on 48 kHz mono audio\n- Designed by Xiph.Org Foundation\n\nRNNoise is particularly effective at:\n- Removing background noise from speech\n- Enhancing voice quality in VoIP applications\n- Improving audio quality in streaming applications\n- Processing audio in real-time scenarios\n\nThe library uses a GRU-based recurrent neural network trained on a large\ndataset of speech and noise samples. It's designed to run efficiently\non both desktop and mobile devices.",
+        "documentation": "https://gitlab.xiph.org/xiph/rnnoise/-/blob/main/README.md",
+        "homepage": "https://gitlab.xiph.org/xiph/rnnoise",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.xiph.org/xiph/rnnoise",
+        "summary": "Recurrent neural network for audio noise reduction"
+      },
+      "build": {
+        "number": 0,
+        "string": "h6a83c73_0"
+      },
+      "context": {
+        "model_version": "0b50c45",
+        "version": "0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "phreed"
+        ]
+      },
+      "package": {
+        "name": "rnnoise",
+        "version": "0.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "pkg-config",
+          "autotools_clang_conda"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "dump_features_windows_fix.patch"
+          ],
+          "sha256": "fafc947fdd24109a6e72b5f25e4224b54bc74660a2620af5548def85be8c733a",
+          "url": "https://gitlab.xiph.org/xiph/rnnoise/-/archive/v0.2/rnnoise-v0.2.tar.gz"
+        },
+        {
+          "sha256": "4ac81c5c0884ec4bd5907026aaae16209b7b76cd9d7f71af582094a2f98f4b43",
+          "url": "https://media.xiph.org/rnnoise/models/rnnoise_data-0b50c45.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Library/lib/pkgconfig/rnnoise.pc"
+            ],
+            "include": [
+              "rnnoise.h"
+            ],
+            "lib": [
+              "rnnoise*"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

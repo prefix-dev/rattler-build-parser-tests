@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_renode-cli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_renode-cli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_renode-cli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_renode-cli/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "renode-cli": {
+          "build_string": "h11686cb_0",
+          "name": "renode-cli",
+          "version": "1.16.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:50:30.598728215Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Renode was created by Antmicro as a virtual development tool for multi-node\nembedded networks (both wired and wireless) and is intended to enable a scalable\nworkflow for creating effective, tested and secure IoT systems.\n\nWith Renode, developing, testing, debugging and simulating unmodified software\nfor IoT devices is fast, cost-effective and reliable.",
+        "documentation": "https://renode.io/",
+        "homepage": "https://github.com/renode/renode",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "repository": "https://github.com/renode/renode",
+        "summary": "Antmicro's open source simulation and virtual development framework for complex embedded systems"
+      },
+      "build": {
+        "number": 0,
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "name": "renode-cli",
+        "version": "1.16.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC",
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "renode-cli",
+        "version": "1.16.0"
+      },
+      "requirements": {
+        "build": [
+          "dotnet >=9",
+          "nuget-license >=3.1",
+          "m2-bash",
+          "m2-coreutils",
+          "m2-findutils",
+          "m2-sed"
+        ],
+        "host": [
+          "renode-cores ==1.16.0"
+        ],
+        "run": [
+          "dotnet >=9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "dab46e73d07a3b1bf2c1cec2c615a37ab85d734dda448296dcdf39c4f7c9451a",
+          "url": "https://github.com/renode/renode/releases/download/v1.16.0/renode_1.16.0_source.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "renode"
+            ],
+            "files": [
+              "Library/share/renode-cli/scripts/monitor.py",
+              "Library/share/renode-cli/platforms/cpus/cortex-a9.repl",
+              "Library/share/renode-cli/tools/sel4_extensions/seL4Extensions.cs"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test-bundle/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "robotframework >=6.1",
+              "psutil >=5.9.3",
+              "python",
+              "pyyaml >=6.0"
+            ]
+          },
+          "script": [
+            "renode --help",
+            "LOCAL_TEST_PREFIX=./test-bundle test-bundle/${{ \"Library/\" if win }}bin/renode-test test-bundle/${{ \"Library/\" if win }}share/renode-cli/tests/unit-tests"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

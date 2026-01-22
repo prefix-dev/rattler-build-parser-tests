@@ -1,0 +1,55 @@
+context:
+  version: "0.19.0"
+
+package:
+  name: css_inline
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/css_inline/css_inline-${{ version }}.tar.gz
+  sha256: 1fe3432758262397332f137e427635062fb76df7c67425ce3d8df1069347385c
+
+build:
+  number: 0
+  skip: match(python, "<3.9")
+  script:
+    - pushd css-inline && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml && popd
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin >=1.1
+    - ${{ compiler("rust") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.1
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - css_inline
+      pip_check: true
+
+about:
+  summary: "High-performance library for inlining CSS into HTML 'style' attributes"
+  license: MIT
+  license_file:
+    - THIRDPARTY.yml
+    - LICENSE
+  homepage: https://github.com/Stranger6667/css-inline
+  repository: https://github.com/Stranger6667/css-inline/tree/master/bindings/python
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

@@ -1,0 +1,182 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbdevtools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbdevtools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbdevtools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbdevtools/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbdevtools": {
+          "build_string": "pyhe01879c_0",
+          "name": "lbdevtools",
+          "version": "2.1.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:39:54.424937364Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.cern.ch/lhcb-core/LbDevTools",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "LHCb development tools"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "lb-project-init = LbDevTools.ProjectInit:main",
+            "lb-dev = LbDevTools.ProjectDev:main",
+            "lb-devtools-datadir = LbDevTools:_print_data_location",
+            "lb-gen-release-notes = LbDevTools.ReleaseNotes:main",
+            "lb-check-copyright = LbDevTools.SourceTools:check_copyright",
+            "lb-add-copyright = LbDevTools.SourceTools:add_copyright",
+            "lb-format = LbDevTools.SourceTools:format",
+            "lb-clang-format = LbDevTools.SourceTools:clang_format",
+            "lb-glimpse = LbDevTools.Indexing:search",
+            "git-lb-use = LbDevTools.GitTools.use:main",
+            "git-lb-checkout = LbDevTools.GitTools.checkout:main",
+            "git-lb-push = LbDevTools.GitTools.push:main",
+            "git-lb-clone-pkg = LbDevTools.GitTools.clone_pkg:main",
+            "git-lb-reset-mtime = LbDevTools.GitTools.reset_mtime:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "lbdevtools",
+        "python_min": "3.12",
+        "version": "2.1.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bcouturi",
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbdevtools",
+        "version": "2.1.6"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.12.*",
+          "setuptools",
+          "setuptools_scm"
+        ],
+        "run": [
+          "gitdb2",
+          "gitpython",
+          "jinja2",
+          "lbenv >=0.3.0",
+          "lbplatformutils",
+          "python >=3.12",
+          "python-gitlab",
+          "six",
+          "whichcraft",
+          "yapf ==0.24.0",
+          "git",
+          "glimpse",
+          "setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e6bf9b614743a5c54c7f9727980fc8fc46765ec7e775eb07221a764c485e4b05",
+          "url": "https://pypi.org/packages/source/l/lbdevtools/lbdevtools-2.1.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "LbDevTools",
+              "LbDevTools.GitTools"
+            ],
+            "python_version": [
+              "3.12.*",
+              "*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.12"
+            ]
+          },
+          "script": [
+            "pip check",
+            "lb-project-init --help",
+            "MYSITEROOT=/tmp lb-dev --help",
+            "lb-devtools-datadir --help",
+            "lb-gen-release-notes --help",
+            "lb-check-copyright --help",
+            "lb-add-copyright --help",
+            "lb-format --help",
+            "lb-glimpse --help",
+            "git-lb-use --help",
+            "git-lb-checkout --help",
+            "git-lb-push --help",
+            "git-lb-clone-pkg --help",
+            "git-lb-reset-mtime --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

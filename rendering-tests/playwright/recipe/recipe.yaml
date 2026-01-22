@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: playwright
+  version: "1.57.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/microsoft/${{ name }}/archive//v${{ version }}.tar.gz
+  sha256: e04b148a60f20a5def539922cba10b451057103711be907522fff4e7a62d61ae
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - if: not win
+      then: nodejs
+      else: m2w64-jq
+  host:
+    - yarn <2
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - if: not win
+        then: playwright --version | grep "${{ version }}"
+        else:
+          - playwright --version | findstr "${{ version }}"
+          - where playwright
+
+about:
+  summary: Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API.
+  description: |
+    Playwright is a framework for Web Testing and Automation. It allows
+    testing Chromium, Firefox and WebKit with a single API.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://playwright.dev
+  repository: https://github.com/microsoft/playwright
+  documentation: https://playwright.dev/docs/
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    - IzerOnadimQC

@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: pytest-reportportal
+  version: "5.6.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: da378f95f4ca8a0bf7e771b265b45f72e5cb05f72b8f53dbe4b80ad73d90d62f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=68.0.0
+    - setuptools-scm
+    - wheel ==0.40.0
+  run:
+    - aenum >=3.1.0
+    - dill >=0.3.6
+    - pytest >=4.6.10
+    - python >=${{ python_min }}
+    - reportportal-client ~=5.7.0
+
+tests:
+  - python:
+      imports:
+        - pytest_reportportal
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Agent for Reporting results of tests to the Report Portal
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/reportportal/agent-python-pytest
+
+extra:
+  recipe-maintainers:
+    - thewchan

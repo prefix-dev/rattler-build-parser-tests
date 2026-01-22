@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/work"
+      },
+      "hash": {
+        "hash": "e774c54"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "snappy": {
+          "build_string": "he774c54_1",
+          "name": "snappy",
+          "version": "1.2.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:54.778550748Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "lz4_c": "1.10",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/google/snappy",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/google/snappy",
+        "summary": "A fast compressor/decompressor"
+      },
+      "build": {
+        "number": 1,
+        "string": "he774c54_1"
+      },
+      "context": {
+        "version": "1.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "groutr",
+          "jakirkham",
+          "wesm",
+          "xhochy",
+          "djsutherland"
+        ]
+      },
+      "package": {
+        "name": "snappy",
+        "version": "1.2.2"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "make",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*"
+        ],
+        "host": [
+          "gtest 1.13.*",
+          "gmock",
+          "lz4-c"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "lz4-c"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "snappy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-change-static-lib-output-name-on-windows.patch",
+            "patches/0002-Unbundle-gtest.patch",
+            "patches/0003-Disable-BMI2.patch",
+            "patches/0004-cmake-add-option-to-enable-disable-RTTI.patch",
+            "patches/0005-Omit-Werror-during-compilation.patch"
+          ],
+          "sha256": "90f74bc1fbf78a6c56b3c4a082a05103b3a56bb17bca1a27e052ea11723292dc",
+          "url": "https://github.com/google/snappy/archive/1.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -e $PREFIX/include/snappy.h",
+            "test -e $PREFIX/include/snappy-stubs-public.h",
+            "test -e $PREFIX/lib/libsnappy$SHLIB_EXT",
+            "test -f $PREFIX/lib/libsnappy.so.${PKG_VERSION}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,55 @@
+context:
+  name: cargo-insta
+  version: "1.46.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mitsuhiko/insta/releases/download/${{ version }}/source.tar.gz
+  sha256: be8e40098e119f85ee5ad61522509f9c95f2b40c4d3db1122a074a8e5c6eea8b
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path ./cargo-insta
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script: cargo-insta --help
+
+about:
+  homepage: https://insta.rs/
+  summary: A snapshot testing library for Rust
+  description: |
+    Snapshots tests (also sometimes called approval tests) are tests that
+    assert values against a reference value (the snapshot). This is similar
+    to how `assert_eq!` lets you compare a value against a reference value but
+    unlike simple string assertions, snapshot tests let you test against complex
+    values and come with comprehensive tools to review changes.
+
+    Snapshot tests are particularly useful if your reference values are very
+    large or change often.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: https://docs.rs/insta/
+  repository: https://github.com/mitsuhiko/insta
+
+extra:
+  recipe-maintainers:
+    - Hofer-Julian

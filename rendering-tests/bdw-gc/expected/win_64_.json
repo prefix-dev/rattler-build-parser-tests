@@ -1,0 +1,129 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bdw-gc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bdw-gc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bdw-gc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bdw-gc/work"
+      },
+      "hash": {
+        "hash": "5112557"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bdw-gc": {
+          "build_string": "h5112557_1",
+          "name": "bdw-gc",
+          "version": "8.2.10"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:34:55.283595840Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.hboehm.info/gc/",
+        "license": "LicenseRef-Bdwgc-Mit-Like",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Garbage collector for C and C++."
+      },
+      "build": {
+        "number": 1,
+        "string": "h5112557_1"
+      },
+      "context": {
+        "version": "8.2.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "isuruf",
+          "stefan-balke"
+        ]
+      },
+      "package": {
+        "name": "bdw-gc",
+        "version": "8.2.10"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "libatomic_ops"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "bdw-gc",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5858a417ab3eaac2add0daf79cd29ddf248c9f648e6c08092b775dcbfcbe1edb",
+          "url": "https://github.com/ivmai/bdwgc/archive/v8.2.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_INC%\\gc.h exit 1",
+            "if not exist %LIBRARY_BIN%\\gc.dll exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

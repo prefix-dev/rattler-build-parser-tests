@@ -1,0 +1,46 @@
+context:
+  name: certbot-dns-sakuracloud
+  version: "5.2.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: ec8e7a4104c853c54a3b13ced48bf25495bc7a41a155d676220f02f183a1e52b
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - acme >=${{ version }}
+    - certbot >=${{ version }}
+    - dns-lexicon >=3.14.1
+
+tests:
+  - python:
+      imports:
+        - certbot_dns_sakuracloud
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://certbot.eff.org
+  summary: Sakura Cloud DNS Authenticator plugin for Certbot
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  documentation: https://certbot.eff.org
+  repository: https://github.com/certbot/certbot
+
+extra:
+  recipe-maintainers:
+    - pavelzw

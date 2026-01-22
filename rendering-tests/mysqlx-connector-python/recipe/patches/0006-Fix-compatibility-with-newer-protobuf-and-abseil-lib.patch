@@ -1,0 +1,112 @@
+From ea2357b2ac9b7eaa7aeb377e0d5eddff71a6a6bd Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Sat, 20 Dec 2025 08:47:57 +0100
+Subject: [PATCH 6/6] Fix compatibility with newer protobuf and abseil
+ libraries
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Update ABSL_LIBS to reflect renamed/added abseil library components and
+fix mysqlxpb.cc to handle protobuf API change where field name methods
+now return std::string_view instead of std::string.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+---
+ mysqlx-connector-python/cpydist/__init__.py      |  7 ++++---
+ mysqlx-connector-python/src/mysqlxpb/mysqlxpb.cc | 11 ++++++-----
+ 2 files changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/mysqlx-connector-python/cpydist/__init__.py b/mysqlx-connector-python/cpydist/__init__.py
+index c0ce77e..8836e83 100644
+--- a/mysqlx-connector-python/cpydist/__init__.py
++++ b/mysqlx-connector-python/cpydist/__init__.py
+@@ -60,7 +60,6 @@ ABSL_LIBS = (
+     "absl_strings_internal",
+     "absl_string_view",
+     "absl_log_initialize",
+-    "absl_log_entry",
+     "absl_log_flags",
+     "absl_log_severity",
+     "absl_log_internal_check_op",
+@@ -74,7 +73,7 @@ ABSL_LIBS = (
+     "absl_log_sink",
+     "absl_raw_logging_internal",
+     "absl_log_globals",
+-    "utf8_validity",
++    "absl_utf8_for_code_point",
+     "absl_cord",
+     "absl_cordz_info",
+     "absl_cordz_handle",
+@@ -90,6 +89,7 @@ ABSL_LIBS = (
+     "absl_kernel_timeout_internal",
+     "absl_time",
+     "absl_time_zone",
++    "absl_civil_time",
+     "absl_int128",
+     "absl_examine_stack",
+     "absl_stacktrace",
+@@ -107,7 +107,8 @@ ABSL_LIBS = (
+     "absl_spinlock_wait",
+     "absl_status",
+     "absl_statusor",
+-    "absl_bad_optional_access",
++    "absl_vlog_config_internal",
++    "absl_tracing_internal",
+ ) if os.name != "nt" else ("abseil_dll", )
+ 
+ # Load version information
+diff --git a/mysqlx-connector-python/src/mysqlxpb/mysqlxpb.cc b/mysqlx-connector-python/src/mysqlxpb/mysqlxpb.cc
+index 08cf00a..383a1d0 100644
+--- a/mysqlx-connector-python/src/mysqlxpb/mysqlxpb.cc
++++ b/mysqlx-connector-python/src/mysqlxpb/mysqlxpb.cc
+@@ -37,6 +37,7 @@
+ #include <stdexcept>
+ #include <cstring>
+ #include <string>
++#include <string_view>
+ 
+ 
+ // This is a C++98-compatible class template to hold a pointer, which ensures
+@@ -601,10 +602,10 @@ static void PythonAddDict(PyObject* dict,
+   if (!obj) {
+     throw std::runtime_error(
+       "Failed to convert message field to Python object: " +
+-      field.full_name());
++      std::string(field.full_name()));
+   }
+ 
+-  PyDict_SetItemString(dict, field.name().c_str(), obj);
++  PyDict_SetItemString(dict, std::string(field.name()).c_str(), obj);
+   Py_CLEAR(obj);
+ }
+ 
+@@ -617,7 +618,7 @@ static void PythonAddList(PyObject* list, int index,
+   if (!obj) {
+     throw std::runtime_error(
+         "Failed to convert message field to Python object: " +
+-        field.full_name());
++        std::string(field.full_name()));
+   }
+ 
+   PyList_SetItem(list, index, obj);
+@@ -632,7 +633,7 @@ static PyObject* CreateMessage(const google::protobuf::Message& message) {
+ 
+   try {
+     // PyString_FromString which relies on PyUnicode_FromString returns a new reference
+-    desc_full_name = PyString_FromString(descriptor->full_name().c_str());
++    desc_full_name = PyString_FromString(std::string(descriptor->full_name()).c_str());
+ 
+     // PyDict_SetItemString does not steal a reference to val (last argument).
+     PyDict_SetItemString(dict, kMessageTypeKey, desc_full_name);
+@@ -656,7 +657,7 @@ static PyObject* CreateMessage(const google::protobuf::Message& message) {
+ 
+           for (int idx = 0; idx < listSize; ++idx)
+             PythonAddList(list, idx, message, *field);
+-          PyDict_SetItemString(dict, field->name().c_str(), list);
++          PyDict_SetItemString(dict, std::string(field->name()).c_str(), list);
+           Py_CLEAR(list);
+           break;
+         }

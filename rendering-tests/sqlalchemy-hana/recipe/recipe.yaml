@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: sqlalchemy-hana
+  version: 0.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sqlalchemy-hana-${{ version }}.tar.gz
+  sha256: 473fab3488fd885212aeb2dba2603091fe4d9212487f7ff826c59d8bf6ce4504
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - sqlalchemy >=1.0.0
+
+tests:
+  - python:
+      imports:
+        - sqlalchemy_hana
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: SQLAlchemy dialect for SAP HANA
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/SAP/sqlalchemy-hana/
+
+extra:
+  recipe-maintainers:
+    - swenger
+    - janjagusch

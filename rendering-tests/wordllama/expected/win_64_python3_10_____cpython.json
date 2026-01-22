@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wordllama",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wordllama/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wordllama/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wordllama/work"
+      },
+      "hash": {
+        "hash": "9015cab",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "wordllama": {
+          "build_string": "py310h9015cab_0",
+          "name": "wordllama",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:06.402936494Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.10.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/dleemiller/WordLlama",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Fast, lightweight NLP toolkit designed for tasks like fuzzy deduplication, similarity computation, ranking, clustering, and semantic text splitting."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "0.4.0"
+          }
+        },
+        "string": "py310h9015cab_0"
+      },
+      "context": {
+        "name": "wordllama",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "wordllama",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "setuptools_scm",
+          "cython",
+          "numpy >=2",
+          "tomli >=1",
+          "wheel"
+        ],
+        "run": [
+          "python",
+          "numpy >=2",
+          "safetensors",
+          "tokenizers",
+          "toml",
+          "pydantic >=2",
+          "requests"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3837b51d60dc511f91e0e918bc2bff190ea38051549d1c9772dac1a537f81943",
+          "url": "https://github.com/dleemiller/WordLlama/archive/refs/tags/v0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "wordllama"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

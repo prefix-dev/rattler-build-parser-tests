@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: tsml
+  version: "0.8.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/tsml-${{ version }}.tar.gz
+  sha256: 0deb10650029a622e166067e42904009a34041ad65876151ddff8e70cdd83afb
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61
+    - toml
+    - python-build
+    - pip
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - aeon >=1.0.0
+    - numba >=0.55.0
+    - numpy >=1.21.0
+    - scipy >=1.9.0
+    - pandas >=1.5.3
+    - scikit-learn >=1.0.0
+    - packaging >=20.0
+
+tests:
+  - python:
+      imports:
+        - tsml
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A development sandbox for time series machine learning algorithms which dont fit into aeon.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/time-series-machine-learning/tsml/
+
+extra:
+  recipe-maintainers:
+    - MatthewMiddlehurst

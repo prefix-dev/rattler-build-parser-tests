@@ -1,0 +1,123 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-yq",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-yq/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-yq/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-yq/work"
+      },
+      "hash": {
+        "hash": "6a83c73"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "go-yq": {
+          "build_string": "h6a83c73_0",
+          "name": "go-yq",
+          "version": "4.50.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:38:34.789804607Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A lightweight and portable command-line YAML, JSON and XML processor.\nyq uses jq like syntax but works with yaml files as well as json, xml,\nproperties, csv and tsv. It doesn't yet support everything jq does - but it\ndoes support the most common operations and functions, and more is being\nadded continuously.",
+        "documentation": "https://mikefarah.gitbook.io/yq/",
+        "homepage": "https://github.com/mikefarah/yq",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/mikefarah/yq",
+        "summary": "Process YAML documents from the CLI"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --save_path ../library_licenses",
+          "go build -ldflags=\"-s -w\" -v -o %LIBRARY_BIN%\\yq.exe"
+        ],
+        "string": "h6a83c73_0"
+      },
+      "context": {
+        "name": "go-yq",
+        "version": "4.50.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "go-yq",
+        "version": "4.50.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "go-cgo_win-64",
+          "make",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ec55f107fbfe1d8226c1d4d74def734672f9aa58165029819ddfb771339e53a1",
+          "target_directory": "src",
+          "url": "https://github.com/mikefarah/yq/archive/refs/tags/v4.50.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "yq --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: glass
+  version: "2025.3"
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/glass-${{ version }}.tar.gz
+  sha256: 1f55bd5e85dc4eb3964bc6cf9a61e8da0cba4b3ecd60531d58384a27debcda3d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatch-vcs
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - array-api-compat >=1.12.0
+    - array-api-extra >=0.9.0
+    - healpix >=2022.11.1
+    - healpy >=1.15.0
+    - transformcl >=2022.8.9
+
+tests:
+  - python:
+      imports:
+        - glass
+        - glass.algorithm
+        - glass.arraytools
+        - glass.fields
+        - glass.galaxies
+        - glass.grf
+        - glass.harmonics
+        - glass.lensing
+        - glass.observations
+        - glass.points
+        - glass.shapes
+        - glass.shells
+        - glass.user
+      pip_check: false
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Generator for Large Scale Structure
+  license: MIT
+  license_file: LICENSE
+  homepage: https://glass.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - connoraird
+    - ntessore
+    - paddyroddy
+    - Saransh-cpp

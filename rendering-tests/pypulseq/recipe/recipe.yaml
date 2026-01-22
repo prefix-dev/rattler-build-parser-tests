@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: pypulseq
+  version: "1.5.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pypulseq-${{ version }}.tar.gz
+  sha256: 81703a55f43c739d6bdd6ae694ba7c8e17811baaa25e06547b67cd2d1170d5fd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - coverage >=6.2
+    - matplotlib-base >=3.5.2
+    - numpy >=1.19.5
+    - scipy >=1.8.1
+
+tests:
+  - python:
+      imports: pypulseq
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+
+about:
+  summary: Pulseq in Python
+  license: AGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/imr-framework/pypulseq
+  documentation: https://pypulseq.readthedocs.io/
+  repository: https://github.com/imr-framework/pypulseq
+
+extra:
+  recipe-maintainers:
+    - schuenke
+    - sravan953
+    - wtclarke

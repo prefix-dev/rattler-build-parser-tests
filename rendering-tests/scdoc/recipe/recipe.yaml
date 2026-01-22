@@ -1,0 +1,39 @@
+context:
+  version: "1.11.4"
+
+package:
+  name: scdoc
+  version: ${{ version }}
+
+source:
+  url: https://git.sr.ht/~sircmpwn/scdoc/archive/${{ version }}.tar.gz
+  sha256: e1a9c2000f855123a1a50c8f897073e0ee95fc41787431efe3864c2f1c2e7092
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+    - sed
+  host:
+    - ncurses
+
+tests:
+  - script: |
+      scdoc --help 2>&1 | grep -q "Usage: scdoc < input.scd > output.roff"
+
+about:
+  summary: Small man page generator
+  license: MIT
+  license_file: COPYING
+  homepage: https://sr.ht/~sircmpwn/scdoc/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - pavelzw

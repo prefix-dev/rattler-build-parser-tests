@@ -1,0 +1,517 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: apache-airflow-providers-amazon
+  version: "9.20.0"
+  latest_airflow: 3.1.5
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apache_airflow_providers_amazon-${{ version }}.tar.gz
+  sha256: 17b9a09ceb9f9fe7bb64f6289e4769c282b1aefde5ab7d590e3d14db5bf06363
+
+build:
+  noarch: python
+  number: 0
+
+outputs:
+  - package:
+      name: ${{ name }}
+    build:
+      noarch: python
+      script:
+        file: install_airflow_providers_amazon.sh
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - flit-core ==3.12.0
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - apache-airflow >=2.11.0
+        - apache-airflow-providers-common-compat >=1.12.0
+        - apache-airflow-providers-common-sql >=1.27.0
+        - apache-airflow-providers-http
+        - boto3 >=1.37.2
+        - botocore >=1.37.2
+        - inflection >=0.5.1
+        - watchtower >=3.3.1,<4
+        - jsonpath-ng >=1.5.3
+        - redshift_connector >=2.1.3
+        - asgiref >=2.3.0
+        - pyathena >=3.10.0
+        - jmespath >=0.7.0
+        - sagemaker-studio >=1.0.9
+        # for python >=3.13 but want to stay noarch: python
+        - pydynamodb >=0.7.5
+        # for python >=3.13 but want to stay noarch: python
+        - sqlean.py >=3.47.0
+        - marshmallow >=3
+
+        # temporarily constrain pynacl to pass pip check, since conda-forge's
+        # pynacl 1.6.1 has looser cffi constraints than upstream
+        - pynacl <1.6.1
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-aiobotocore
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - aiobotocore >=2.21.1
+        # from aiobotocore[boto3] dependent on aiobotocore version so leaving it out
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-cncf-kubernetes
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-cncf-kubernetes >=7.2.0
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-s3fs
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - s3fs >=2023.10.0
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-python3-saml
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - python3-saml >=1.16.0
+        - xmlsec !=1.3.15,>=1.3.14
+        - lxml <5.4.0,>=5.3.2
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-apache-hive
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-apache-hive
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-exasol
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-exasol
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-fab
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        # for all python to stay noarch: python
+        - apache-airflow-providers-fab >=2.2.0
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-ftp
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-ftp
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-google
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-google
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-imap
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-imap
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-microsoft-azure
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-microsoft-azure
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-mongo
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-mongo
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-pandas
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        # more restrictive constraint for py >=3.13
+        - apache-airflow-providers-mongo
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-openlineage
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-openlineage >=2.3.0
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-salesforce
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-salesforce
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-ssh
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-ssh
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-standard
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-standard
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  - package:
+      name: ${{ name }}-with-common-messaging
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage(name, exact=True) }}
+        - apache-airflow-providers-common-messaging >=2.0.0
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            # temporarily test with latest airflow because issues with missing
+            # circular dependencies in some apache-airflow-task-sdk builds
+            - apache-airflow ${{ latest_airflow }}.*
+        script:
+          - python -c "import airflow.providers.amazon"
+          - pip check
+
+  # Would need to be added as a new output in admin requests.  Let's see if
+  # anyone needs it first.
+  # - package:
+  #     name: ${{ name }}-with-sqlalchemy
+  #   build:
+  #     noarch: python
+  #   requirements:
+  #     host:
+  #       - python ${{ python_min }}.*
+  #     run:
+  #       - python >=${{ python_min }}
+  #       - ${{ pin_subpackage(name, exact=True) }}
+  #       - sqlalchemy >=1.4.49
+  #   tests:
+  #     - requirements:
+  #         run:
+  #           - python ${{ python_min }}.*
+  #           - pip
+  #           # temporarily test with latest airflow because issues with missing
+  #           # circular dependencies in some apache-airflow-task-sdk builds
+  #           - apache-airflow ${{ latest_airflow }}.*
+  #       script:
+  #         - python -c "import airflow.providers.amazon"
+  #         - pip check
+
+about:
+  homepage: https://github.com/apache/airflow/
+  summary: Provider package apache-airflow-providers-amazon for Apache Airflow
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  documentation: https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/index.html
+  repository: https://github.com/apache/airflow/
+
+extra:
+  recipe-maintainers:
+    - xylar

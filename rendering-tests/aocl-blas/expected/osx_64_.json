@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/work"
+      },
+      "hash": {
+        "hash": "8b57581"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aocl-blas": {
+          "build_string": "h8b57581_0",
+          "name": "aocl-blas",
+          "version": "5.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:04.875713611Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "llvm_openmp": "19",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "AOCL-BLAS is AMD's optimized version of BLAS targeted for AMD EPYC and Ryzen CPUs.",
+        "homepage": "https://www.amd.com/en/developer/aocl/dense.html",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/amd/blis",
+        "summary": "AMD's fork of BLIS optimized for AMD processors."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_aoclblas",
+        "string": "h8b57581_0"
+      },
+      "context": {
+        "version": "5.2"
+      },
+      "extra": {
+        "feedstock-name": "aocl-blas",
+        "recipe-maintainers": [
+          "chillenb"
+        ]
+      },
+      "package": {
+        "name": "aocl-blas",
+        "version": "5.2"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "gfortran_osx-64 14.*",
+          "llvm-openmp",
+          "ninja",
+          "cmake"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c553bd543eedc87920df9b82634ae4c02662145ed737f51fdf4c9bca5e588028",
+          "target_directory": "aoclblas",
+          "url": "https://github.com/amd/blis/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "patches": [
+            "fixlinkflags.patch"
+          ],
+          "sha256": "fb5fe5128f718050c9911443fcf7ed91b60538a40d57084ed0124bb91afabb9b",
+          "target_directory": "aocllapack",
+          "url": "https://github.com/amd/libflame/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "sha256": "db0d807170a6eb73fcccd720a65a3e3aa8a787ae656c46479f7d9b4e1f9ed08a",
+          "target_directory": "aoclutils",
+          "url": "https://github.com/amd/aocl-utils/archive/refs/tags/5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/lib/libblis-mt${SHLIB_EXT}",
+            "test -f $PREFIX/include/blis.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

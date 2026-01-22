@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: aiodataloader
+  version: "0.4.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/aiodataloader-${{ version }}.tar.gz
+  sha256: b8c07ed7fddfdccc2d6298c247b1e5fe9779e5b1c38f2e6ec541a041683ef7e8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - typing_extensions >=4.1.1
+
+tests:
+  - python:
+      imports:
+        - aiodataloader
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+      pip_check: true
+
+about:
+  summary: Asyncio DataLoader implementation for Python
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/syrusakbary/aiodataloader
+  repository: https://github.com/syrusakbary/aiodataloader
+
+extra:
+  recipe-maintainers:
+    - beenje

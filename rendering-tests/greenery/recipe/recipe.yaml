@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: greenery
+  version: 4.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/greenery-${{ version }}.tar.gz
+  sha256: 6221d5727d19b4f46fc794635aa00b3dbbab33ed7ff1d686a0011d9197a4b7a0
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - greenery
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+
+about:
+  summary: Greenery allows manipulation of regular expressions as finite state machines
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/qntm/greenery
+
+extra:
+  recipe-maintainers:
+    - beenje

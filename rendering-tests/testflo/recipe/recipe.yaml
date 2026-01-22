@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 1.4.20
+
+package:
+  name: testflo
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/testflo/testflo-${{ version }}.tar.gz
+  sha256: 46dd0de0556817fc7cc566c5817803c3242bac312545fb1571239be0796fae28
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - testflo = testflo.main:main
+
+requirements:
+  host:
+    - hatchling
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - coverage >=6.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: testflo
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - testflo --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  summary: A simple flow-based testing framework
+  homepage: http://openmdao.org
+  repository: https://github.com/OpenMDAO/testflo
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

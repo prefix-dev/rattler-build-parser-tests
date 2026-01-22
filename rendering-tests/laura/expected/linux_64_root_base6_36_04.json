@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_laura",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_laura/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_laura/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_laura/work"
+      },
+      "hash": {
+        "hash": "e625f23"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "laura": {
+          "build_string": "he625f23_3",
+          "name": "laura",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:30.135820161Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "root_base": "6.36.04",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Laura++ is a maximum likelihood fitting package for performing Dalitz-plot\nanalysis.  It is written in C++ and depends only on the ROOT\n<https://root.cern.ch> data analysis framework.",
+        "documentation": "https://laura.hepforge.org/doc/",
+        "homepage": "https://laura.hepforge.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE-2.0"
+        ],
+        "repository": "https://phab.hepforge.org/source/laura",
+        "summary": "A maximum likelihood fitter for Dalitz-plot analysis"
+      },
+      "build": {
+        "number": 3,
+        "string": "he625f23_3"
+      },
+      "context": {
+        "name": "laura",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "tomlatham"
+        ]
+      },
+      "package": {
+        "name": "laura",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "root",
+          "root_base"
+        ],
+        "run": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "root_base",
+              "upper_bound": "x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "laura",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "file_name": "Laura.tar.gz",
+          "sha256": "04dec63b2f6b958558b138f6ce0e6f9a95bc21b21f614e5a585ab405e90840e3",
+          "url": "https://laura.hepforge.org/downloads?f=Laura-3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-64 =14",
+              "gxx_linux-64 =14"
+            ]
+          },
+          "script": "cmake-package-check Laura --targets Laura::Laura++"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

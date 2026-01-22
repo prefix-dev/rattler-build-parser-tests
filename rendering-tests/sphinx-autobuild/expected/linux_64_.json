@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-autobuild",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-autobuild/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-autobuild/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sphinx-autobuild/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sphinx-autobuild": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sphinx-autobuild",
+          "version": "2025.8.25"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:44:23.397850853Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/sphinx-doc/sphinx-autobuild",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "summary": "Rebuild Sphinx documentation on changes, with live-reload in the browser."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "sphinx-autobuild = sphinx_autobuild.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "python_min": "3.11",
+        "version": "2025.8.25"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jrderuiter",
+          "xhochy",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "sphinx-autobuild",
+        "version": "2025.8.25"
+      },
+      "requirements": {
+        "host": [
+          "flit-core >=3.7",
+          "pip",
+          "python 3.11.*"
+        ],
+        "run": [
+          "colorama >=0.4.6",
+          "python >=3.11",
+          "sphinx",
+          "starlette >=0.35",
+          "uvicorn >=0.25",
+          "watchfiles >=0.20",
+          "websockets >=11"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9cf5aab32853c8c31af572e4fecdc09c997e2b8be5a07daf2a389e270e85b213",
+          "url": "https://pypi.org/packages/source/s/sphinx-autobuild/sphinx_autobuild-2025.8.25.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sphinx_autobuild"
+            ],
+            "python_version": [
+              "3.11.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "httpx",
+              "mock",
+              "pytest >=6",
+              "python 3.11.*"
+            ]
+          },
+          "script": [
+            "sphinx-autobuild --version",
+            "sphinx-autobuild --help",
+            "pytest -vv --color=yes --tb=long -k \"not test_application\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

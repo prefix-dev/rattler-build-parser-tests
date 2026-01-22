@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: autodynatrace
+  version: 2.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/autodynatrace-${{ version }}.tar.gz
+  sha256: 0b75732f541bcb2af57ef87342b238e8cb47b5cc96bcc6fa2ff9d7dfb17ee490
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatch
+  run:
+    - autowrapt >=1.0
+    - oneagent-sdk >=1.3.0
+    - python >=${{ python_min }}
+    - six >=1.10.0
+    - wrapt >=1.11.2
+
+tests:
+  - python:
+      imports:
+        - autodynatrace
+        - autodynatrace.wrappers
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Auto instrumentation for the OneAgent SDK
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/dlopes7/autodynatrace
+
+extra:
+  recipe-maintainers:
+    - janjagusch

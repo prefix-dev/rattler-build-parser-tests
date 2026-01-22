@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ruff",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ruff/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ruff/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ruff/work"
+      },
+      "hash": {
+        "hash": "4196e79"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ruff": {
+          "build_string": "h4196e79_0",
+          "name": "ruff",
+          "version": "0.14.13"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:51.499874600Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.90",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "An extremely fast Python linter, written in Rust. Ruff can be used to\nreplace Flake8 (plus a variety of plugins), isort, pydocstyle, yesqa, and\neven a subset of pyupgrade and autoflake all while executing tens or\nhundreds of times faster than any individual tool.",
+        "homepage": "https://github.com/astral-sh/ruff",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/astral-sh/ruff",
+        "summary": "An extremely fast Python linter, written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install -v --use-pep517 --no-deps --no-build-isolation .",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+          ],
+          "env": {
+            "PYTHONIOENCODING": "utf-8"
+          }
+        },
+        "string": "h4196e79_0"
+      },
+      "context": {
+        "name": "ruff",
+        "version": "0.14.13"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dhruvmanila",
+          "ntBre",
+          "zanieb",
+          "messense",
+          "charliermarsh"
+        ]
+      },
+      "package": {
+        "name": "ruff",
+        "version": "0.14.13"
+      },
+      "requirements": {
+        "build": [
+          "cargo-bundle-licenses",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "rust_linux-64 1.90.*",
+          "make",
+          "maturin >=1.2.2,<2"
+        ],
+        "host": [
+          "python 3.10.*",
+          "maturin <2",
+          "pip"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_linux-64",
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "83cd6c0763190784b99650a20fec7633c59f6ebe41c5cc9d45ee42749563ad47",
+          "url": "https://pypi.org/packages/source/r/ruff/ruff-0.14.13.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ruff"
+            ]
+          }
+        },
+        {
+          "script": "ruff --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

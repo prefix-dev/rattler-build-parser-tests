@@ -1,0 +1,52 @@
+context:
+  name: s3-proxy
+  version: "4.19.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - target_directory: src
+    url: https://github.com/oxyno-zeta/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: ca28c9b94d2ccc92f22ebf65b8da9ad0f0131f0fe9a4d09745075c01aae7fab5
+  - url: https://raw.githubusercontent.com/jmespath/go-jmespath/refs/heads/master/LICENSE
+    sha256: cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30
+    file_name: LICENSE-go-jmespath
+build:
+  number: 0
+  script:
+    - if: win
+      then:
+        - cd src/cmd/s3-proxy
+        - go build -o %LIBRARY_BIN%\s3-proxy.exe || exit 1
+        - go-licenses save . --ignore github.com/go-chi/httptracer --ignore github.com/jmespath/go-jmespath --save_path ..\..\..\library_licenses || exit 1
+      else:
+        - cd src/cmd/s3-proxy
+        - go build -o $PREFIX/bin/s3-proxy
+        - go-licenses save . --ignore github.com/go-chi/httptracer --ignore github.com/jmespath/go-jmespath --save_path ../../../library_licenses
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - ${{ stdlib("c") }}
+    - go-licenses
+
+tests:
+  - script:
+      - s3-proxy --help
+
+about:
+  homepage: https://github.com/oxyno-zeta/s3-proxy
+  summary: S3 Reverse Proxy with GET, PUT and DELETE methods and authentication (OpenID Connect and Basic Auth)
+  license: Apache-2.0
+  license_file:
+    - src/LICENSE
+    - LICENSE-go-chi-httptracer
+    - LICENSE-go-jmespath
+    # https://github.com/prefix-dev/rattler-build/issues/1443
+    - library_licenses/**/*
+
+extra:
+  recipe-maintainers:
+    - pavelzw

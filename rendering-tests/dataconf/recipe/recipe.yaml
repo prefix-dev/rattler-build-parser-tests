@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: dataconf
+  version: 3.6.0
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/dataconf-${{ version }}.tar.gz
+  sha256: 85c662f27dbdd06664808334ef867535eda0392e560e65fc7cf47e049199cb35
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - dataconf = dataconf.cli:run
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.1.0
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }},<4.0
+    - python-dateutil >=2.9.0.post0,<3.0.0
+    - pyyaml >=6.0.2,<7.0.0
+    - isodate >=0.7.2,<0.8.0
+    - pyhocon <0.4.0,>=0.3.61
+    - pyparsing >=3.2.3,<4.0.0
+
+tests:
+  - python:
+      imports:
+        - dataconf
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - dataconf --help
+
+about:
+  summary: Simple dataclasses configuration management for Python with hocon/json/yaml/properties/env-vars/dict support
+  license: MPL-2.0
+  license_file: LICENSE
+  homepage: https://github.com/zifeo/dataconf
+
+extra:
+  recipe-maintainers:
+    - dwsmith1983
+    - thewchan
+    - zifeo

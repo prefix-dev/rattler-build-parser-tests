@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: b3denv
+  version: 0.0.21
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/b3denv-${{ version }}.tar.gz
+  sha256: 6075423d5787901028bafae682d5bc37719ce44c675642f64a8b05f2fb3f887a
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - b3denv = b3denv:main
+      - bdv = b3denv:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - b3denv
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - b3denv --version
+      - bdv --version
+
+about:
+  summary: Helpers for blender command-line use
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/stenson/b3denv
+
+extra:
+  recipe-maintainers:
+    - thewchan

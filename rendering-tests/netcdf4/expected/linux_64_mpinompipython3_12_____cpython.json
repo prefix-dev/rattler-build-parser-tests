@@ -1,0 +1,192 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netcdf4",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netcdf4/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netcdf4/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netcdf4/work"
+      },
+      "hash": {
+        "hash": "25f8dc5",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "netcdf4": {
+          "build_string": "nompi_py312h25f8dc5_102",
+          "name": "netcdf4",
+          "version": "1.7.4"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:53:00.265994071Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "hdf5": "1.14.6",
+        "libnetcdf": "4.9.3",
+        "mpi": "nompi",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://unidata.github.io/netcdf4-python",
+        "homepage": "http://github.com/Unidata/netcdf4-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Unidata/netcdf4-python",
+        "summary": "Provides an object-oriented python interface to the netCDF version 4 library"
+      },
+      "build": {
+        "number": 102,
+        "python": {
+          "entry_points": [
+            "ncinfo = netCDF4.utils:ncinfo",
+            "nc4tonc3 = netCDF4.utils:nc4tonc3",
+            "nc3tonc4 = netCDF4.utils:nc3tonc4"
+          ]
+        },
+        "string": "nompi_py312h25f8dc5_102"
+      },
+      "context": {
+        "build": 2,
+        "build_number": 102,
+        "mpi": "nompi",
+        "mpi_prefix": "nompi",
+        "name": "netcdf4",
+        "version": "1.7.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ocefpaf",
+          "pelson",
+          "dopplershift",
+          "xylar"
+        ]
+      },
+      "package": {
+        "name": "netcdf4",
+        "version": "1.7.4"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "numpy >=2.0.0",
+          "cython >=0.29",
+          "cftime >=1.0.1",
+          "hdf5",
+          "hdf5 * nompi_*",
+          "libnetcdf",
+          "libnetcdf * nompi_*",
+          "setuptools >=77.0.1",
+          "setuptools_scm >=3.4",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "certifi",
+          "cftime",
+          "numpy",
+          "hdf5",
+          "libnetcdf"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c792977eb762fd29fa46b78f44dd8c15729fe7733c2cd2ecd34552089734ce4b",
+          "url": "https://github.com/Unidata/netcdf4-python/archive/refs/tags/v1.7.4rel.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "netCDF4",
+              "cftime"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "cython",
+              "packaging",
+              "pytest"
+            ]
+          },
+          "script": [
+            "python -c \"from netCDF4.utils import ncinfo; ncinfo()\"",
+            "ncinfo -h",
+            "nc4tonc3 -h",
+            "nc3tonc4 -h",
+            "cd test && python run_all.py"
+          ]
+        },
+        {
+          "files": {
+            "recipe": [
+              "parallel_test.py"
+            ]
+          },
+          "script": "echo \"Skipping MPI tests (nompi variant)\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

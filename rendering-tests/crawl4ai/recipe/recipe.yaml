@@ -1,0 +1,79 @@
+context:
+  version: "0.7.2"
+  python_min: "3.10"
+
+package:
+  name: crawl4ai
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/c/crawl4ai/crawl4ai-${{ version }}.tar.gz
+    sha256: 9544283e41febda44a91544f104fe9d1e1936511dda9c7f486d4638e764ed6f3
+
+build:
+  number: 0
+  python:
+    entry_points:
+      - crawl4ai-download-models=crawl4ai.model_loader:main
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - aiosqlite >=0.20
+    - lxml >=5.3,<6.dev0
+    - litellm >=1.53.1
+    - numpy >=1.26.0,<3
+    - pillow >=10.4,<11.dev0
+    - playwright-python >=1.49
+    - python-dotenv >=1.0,<2.dev0
+    - requests >=2.26,<3.dev0
+    - beautifulsoup4 >=4.12,<5.dev0
+    - tf-playwright-stealth >=1.1.0
+    - python-xxhash >=3.4,<4.dev0
+    - rank-bm25 >=0.2
+    - aiofiles >=24.1.0
+    - colorama >=0.4
+    - snowballstemmer >=2.2,<2.3
+    - pydantic >=2.10
+    - pyopenssl >=24.3.0
+    - psutil >=6.1.1
+    - nltk >=3.9.1
+    - rich >=13.9.4
+    - cssselect >=1.2.0
+    - httpx ==0.27.2
+    - html2text
+    - fake-useragent >=2.0.3
+    - faust-cchardet
+    - humanize
+    - pyperclip
+    - chardet
+    - lark
+    - alphashape
+    - sentence-transformers
+    - shapely
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - crawl4ai
+      pip_check: true
+  - script:
+      - crawl4ai-download-models --help
+
+about:
+  homepage: https://github.com/unclecode/crawl4ai
+  summary: "🔥🕷️ Crawl4AI: Open-source LLM Friendly Web Crawler & scraper"
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
+    - moritzwilksch

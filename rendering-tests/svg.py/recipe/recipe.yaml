@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  version: "1.10.0"
+
+package:
+  name: svg.py
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/svg.py/svg_py-${{ version }}.tar.gz
+  sha256: 2e1391411a205220a0e72ca303f3c2d11dbd564cb1dbc445406c5e11421bcc4b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - flit-core >=2,<4
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - svg
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: SVG drawing library
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/orsinium-labs/svg
+
+extra:
+  recipe-maintainers:
+    - thewchan

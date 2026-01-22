@@ -1,0 +1,202 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dismod-at",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dismod-at/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dismod-at/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dismod-at/work"
+      },
+      "hash": {
+        "hash": "b478563",
+        "prefix": "np2"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dismod-at": {
+          "build_string": "np2hb478563_5",
+          "name": "dismod-at",
+          "version": "2026.0.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:27.680584287Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "is_python_min": true,
+        "numpy": "2",
+        "python_min": "3.10",
+        "sqlite": "3",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://dismod-at.readthedocs.io/stable-2025/",
+        "homepage": "https://dismod-at.readthedocs.io/stable-2025",
+        "license": "AGPL-3.0-or-later",
+        "license_file": [
+          "agpl-3.0.txt"
+        ],
+        "repository": "https://github.com/bradbell/dismod_at",
+        "summary": "Estimating disease rates as functions of age and time."
+      },
+      "build": {
+        "number": 5,
+        "python": {
+          "entry_points": [
+            "dismod-at = dismod_at:main"
+          ],
+          "version_independent": true
+        },
+        "string": "np2hb478563_5"
+      },
+      "context": {
+        "cppad_mixed_minimum": "2026.0.0",
+        "name": "dismod-at",
+        "version": "2026.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bradbell"
+        ]
+      },
+      "package": {
+        "name": "dismod-at",
+        "version": "2026.0.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "pkg-config",
+          "cppad-mixed >=2026.0.0",
+          "sqlite",
+          "eigen",
+          "numpy",
+          "matplotlib-base",
+          "scipy"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python >=3.10",
+          "numpy",
+          "matplotlib-base",
+          "scipy"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "dismod-at",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2026.0.1.patch"
+          ],
+          "sha256": "e157312ede3beefbd24b2544c677a73d34b10a05246fac1111e1de039cf7e35a",
+          "url": "https://github.com/bradbell/dismod_at/archive/2026.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "dismod_at"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "example/get_started/get_started_db.py",
+              "example/get_started/fit_command.py",
+              "test/user/db2csv.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "numpy",
+              "matplotlib",
+              "scipy",
+              "sqlite"
+            ]
+          },
+          "script": {
+            "file": "run_test.py",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

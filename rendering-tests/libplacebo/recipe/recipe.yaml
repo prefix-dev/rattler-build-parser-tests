@@ -1,0 +1,64 @@
+context:
+  name: libplacebo
+  version: "7.351.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://code.videolan.org/videolan/libplacebo/-/archive/v${{ version }}/libplacebo-v${{ version }}.tar.gz
+  sha256: 4efe1c8d4da3c61295eb5fdfa50e6037409d8425eb3c15dd86788679c4ce59ee
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ninja
+    - cmake
+    - pkg-config
+    - meson
+    - jinja2
+    - python <3.13 # pins python to compatible version for meson
+  host:
+    - fast_float
+    - lcms2
+    - markupsafe
+    - libvulkan-headers
+    - libvulkan-loader
+    - shaderc
+    - xxhash
+  run_exports:
+    - ${{ pin_subpackage('libplacebo', upper_bound='x.x.x') }}
+  ignore_run_exports:
+    from_package:
+      - xxhash
+
+tests:
+  - package_contents:
+      lib:
+        - libplacebo
+  - script:
+      - if pkg-config --exists libplacebo; then echo "Libplacebo found"; else echo "Libplacebo not found"; exit 1; fi
+    requirements:
+      run:
+        - pkg-config
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: LICENSE
+  summary: Core rendering algorithms and ideas from mpv as an independent library
+  description: |
+    Libplacebo is, in a nutshell, the core rendering algorithms and ideas of
+    mpv rewritten as an independent library. It provides robust and efficient
+    GPU rendering for a variety of multimedia applications.
+  homepage: https://code.videolan.org/videolan/libplacebo
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer

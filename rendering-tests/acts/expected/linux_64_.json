@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acts-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acts-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acts-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_acts-core/work"
+      },
+      "hash": {
+        "hash": "51eeee4",
+        "prefix": "np2"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "acts-core": {
+          "build_string": "np2h51eeee4_0",
+          "name": "acts-core",
+          "version": "44.4.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:48:03.402712128Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "numpy": "2",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The ACTS project provides high-level track reconstruction modules that can\nbe used for any tracking detector.\nThe tracking detector geometry description is optimized for efficient\nnavigation and fast extrapolation of tracks.\nConverters for several common geometry description packages are available.\nIn addition to the algorithmic code, this project also provides an event data\nmodel for the description of track parameters and measurements.",
+        "documentation": "https://acts.readthedocs.io/",
+        "homepage": "https://acts.readthedocs.io/",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/acts-project/acts",
+        "summary": "ACTS is an experiment-independent toolkit for (charged) particle track\nreconstruction in (high energy) physics experiments implemented in modern\nC++."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DACTS_USE_SYSTEM_LIBS=ON -S . -B build",
+          "cmake -LH build",
+          "cmake --build build --parallel=${CPU_COUNT}",
+          "cmake --install build"
+        ],
+        "string": "np2h51eeee4_0"
+      },
+      "context": {
+        "name": "acts",
+        "version": "44.4.0"
+      },
+      "extra": {
+        "feedstock-name": "acts",
+        "recipe-maintainers": [
+          "matthewfeickert",
+          "paulgessinger"
+        ]
+      },
+      "package": {
+        "name": "acts-core",
+        "version": "44.4.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake",
+          "make",
+          "python 3.13.*",
+          "hatchling",
+          "numpy",
+          "sympy",
+          "particle"
+        ],
+        "host": [
+          "libboost-devel",
+          "eigen"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a208829f081c1781856ff9d2768554fad1ac0b955e4f2404f33c4d16cc4673fe",
+          "url": "https://github.com/acts-project/acts/archive/refs/tags/v44.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "this_acts.sh",
+              "this_acts_withdeps.sh"
+            ],
+            "files": [
+              "lib/cmake/Acts/ActsConfigVersion.cmake",
+              "lib/cmake/Acts/ActsConfig.cmake",
+              "lib/cmake/Acts/Modules/FindFastJet.cmake",
+              "lib/cmake/Acts/Modules/FindFilesystem.cmake",
+              "lib/cmake/Acts/Modules/FindPythia8.cmake",
+              "lib/cmake/Acts/Modules/FindSphinx.cmake",
+              "lib/cmake/Acts/Modules/FindTBB.cmake",
+              "lib/cmake/Acts/Modules/FindTensorRT.cmake",
+              "lib/cmake/Acts/Modules/FindZSTD.cmake",
+              "lib/cmake/Acts/Modules/Findonnxruntime.cmake",
+              "lib/cmake/Acts/ActsCoreTargets.cmake"
+            ],
+            "include": [
+              "Acts/*"
+            ],
+            "lib": [
+              "ActsCore"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

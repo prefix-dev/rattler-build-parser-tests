@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.11.0
+
+package:
+  name: github-release
+  version: ${{ version }}
+
+source:
+  url: https://github.com/github-release/github-release/archive/v${{ version }}.tar.gz
+  sha256: 6e6d3d77ce7d6acf6c4e4e0e005c71641ba7c2eb67d9f1f2e2cf2cc5f5c68086
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - github-release --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Commandline app to create and edit releases on Github (and upload artifacts)
+  homepage: https://github.com/github-release/github-release
+  repository: https://github.com/github-release/github-release
+
+extra:
+  recipe-maintainers:
+    - danielnachun

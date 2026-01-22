@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_highspy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_highspy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_highspy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_highspy/work"
+      },
+      "hash": {
+        "hash": "230c07e",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "highspy": {
+          "build_string": "np2py310h230c07e_0",
+          "name": "highspy",
+          "version": "1.12.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:29.231790276Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "numpy": "2",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HiGHS is a high performance serial and parallel solver for large scale\nsparse linear optimization problems of the form\n\nmin \u00bd x\u1d40 Q x + c\u1d40 x     s.t. L \u2264 Ax \u2264 U; l \u2264 x \u2264 u\n\nwhere Q must be positive semi-definite and, if Q is zero, there may be a\nrequirement that some of the variables take integer values. Thus HiGHS can\nsolve linear programming (LP) problems, convex quadratic programming (QP)\nproblems, and mixed integer programming (MIP) problems. It is mainly written in\nC++, but also has some C. It has been developed and tested on various Linux,\nMacOS and Windows installations.",
+        "documentation": "https://ergo-code.github.io/HiGHS/stable/",
+        "homepage": "https://github.com/ERGO-Code/HiGHS",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/ERGO-Code/HiGHS",
+        "summary": "High performance serial and parallel solver for large scale sparse linear optimization problems"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "np2py310h230c07e_0"
+      },
+      "context": {
+        "name": "highspy",
+        "version": "1.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "galabovaa",
+          "adament"
+        ]
+      },
+      "package": {
+        "name": "highspy",
+        "version": "1.12.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "scikit-build-core",
+          "numpy",
+          "pybind11"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "numpy"
+          ]
+        },
+        "run": [
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cd0daddaca57e66b55524588d715dc62dcee06b5ab9ad186412dc23bc71ae342",
+          "url": "https://github.com/ERGO-Code/HiGHS/archive/refs/tags/v1.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "highspy"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python",
+              "pytest"
+            ]
+          },
+          "script": "python -m pytest tests/test_highspy.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

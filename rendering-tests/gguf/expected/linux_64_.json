@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gguf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gguf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gguf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gguf/work"
+      },
+      "hash": {
+        "hash": "c364b38",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gguf": {
+          "build_string": "pyhc364b38_0",
+          "name": "gguf",
+          "version": "0.17.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:21.056578435Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://ggml.ai/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Read and write ML models in GGUF for GGML"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "gguf-convert-endian = \"scripts:gguf_convert_endian_entrypoint\"",
+            "gguf-dump = \"scripts:gguf_dump_entrypoint\"",
+            "gguf-set-metadata = \"scripts:gguf_set_metadata_entrypoint\""
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhc364b38_0"
+      },
+      "context": {
+        "name": "gguf",
+        "version": "0.17.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sodre",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "gguf",
+        "version": "0.17.1"
+      },
+      "requirements": {
+        "host": [
+          "python >=3.8",
+          "pip",
+          "poetry-core"
+        ],
+        "run": [
+          "python >=3.8",
+          "numpy >=1.17",
+          "tqdm >=4.27",
+          "pyyaml >=5.1",
+          "sentencepiece >=0.1.98,<=0.2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "36ad71aad900a3e75fc94ebe96ea6029f03a4e44be7627ef7ad3d03e8c7bcb53",
+          "url": "https://pypi.io/packages/source/g/gguf/gguf-0.17.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gguf"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

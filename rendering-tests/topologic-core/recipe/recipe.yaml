@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: topologic-core
+  version: 8.0.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wassimj/Topologic/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3684bfa03dff61b4e8d5390af2c1ce3331c411889323cd7201ed7d3ece95b880
+
+build:
+  number: 6
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+    - pybind11
+    - python
+  host:
+    - occt
+    - scipy
+    - python
+  run:
+    - numpy
+    - python
+    - if: linux
+      then: libuuid
+
+tests:
+  - python:
+      imports:
+        - topologic_core
+
+about:
+  license: AGPL-3.0-or-later
+  license_file: LICENSE
+  summary: Topologic is a software development kit and plug-in that enables logical, hierarchical and topological representation of spaces and entities
+  description: |
+    Topologic is a software modelling library enabling hierarchical and topological
+    representations of architectural spaces, buildings and artefacts through non-manifold topology
+  homepage: https://topologic.app/
+  repository: https://github.com/wassimj/Topologic
+
+extra:
+  recipe-maintainers:
+    - Krande

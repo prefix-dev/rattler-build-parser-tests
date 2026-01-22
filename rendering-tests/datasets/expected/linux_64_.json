@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datasets",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datasets/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datasets/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datasets/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "datasets": {
+          "build_string": "pyhcf101f3_0",
+          "name": "datasets",
+          "version": "4.4.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:15.030618930Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Datasets is a lightweight library providing one-line dataloaders for many\npublic datasets and one liners to download and pre-process any of the number\nof datasets major public datasets provided on the HuggingFace Datasets Hub.\nDatasets are ready to use in a dataloader for training/evaluating a ML model\n(Numpy/Pandas/PyTorch/TensorFlow/JAX). Datasets also provide an API for\nsimple, fast, and reproducible data pre-processing for the above public\ndatasets as well as your own local datasets in CSV/JSON/text.",
+        "documentation": "https://huggingface.co/docs/datasets/",
+        "homepage": "https://github.com/huggingface/datasets",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/huggingface/datasets",
+        "summary": "HuggingFace/Datasets is an open library of NLP datasets."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "datasets-cli = datasets.commands.datasets_cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "datasets",
+        "version": "4.4.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oblute",
+          "Tata17",
+          "thewchan",
+          "mxr-conda"
+        ]
+      },
+      "package": {
+        "name": "datasets",
+        "version": "4.4.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "filelock",
+          "numpy >=1.17",
+          "pyarrow >=21.0.0",
+          "dill >=0.3.0,<0.4.1",
+          "pandas",
+          "requests >=2.32.2",
+          "httpx <1.0.0",
+          "tqdm >=4.66.3",
+          "python-xxhash",
+          "multiprocess <0.70.19",
+          "fsspec >=2023.1.0,<=2025.10.0",
+          "huggingface_hub >=0.25.0,<2.0",
+          "packaging",
+          "pyyaml >=5.1",
+          "aiohttp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9de16e415c4ba4713eac0493f7c7dc74f3aa21599297f00cc6ddab409cb7b24b",
+          "url": "https://pypi.org/packages/source/d/datasets/datasets-4.4.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "datasets"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "datasets-cli --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

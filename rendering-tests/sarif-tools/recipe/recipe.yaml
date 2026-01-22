@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.0.5"
+
+package:
+  name: sarif-tools
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sarif-tools/sarif_tools-${{ version }}.tar.gz
+  sha256: 52d09c101121231fb3489ad8c7af56896b8a95415cef726a6db5e7d74c6834d2
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - sarif = sarif.cmdline.main:main
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
+  run:
+    - jinja2 >=3.1.6,<4.0.0
+    - jsonpath-ng >=1.6.0,<2.0.0
+    - matplotlib-base >=3.7.0,<4.0.0
+    - python >=${{ python_min }}
+    - python-docx >=1.1.2,<2.0.0
+    - pyyaml >=6.0.1,<7.0.0
+
+tests:
+  - python:
+      imports: sarif
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - sarif --version
+      - sarif --help
+      - sarif --version | python -c "import sys; v = sys.stdin.read().strip(); assert v == 'SARIF tools v${{ version }}', v"
+
+about:
+  summary: SARIF tools
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/microsoft/sarif-tools
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

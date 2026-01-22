@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sleap-io",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sleap-io/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sleap-io/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sleap-io/work"
+      },
+      "hash": {
+        "hash": "c364b38",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sleap-io": {
+          "build_string": "pyhc364b38_0",
+          "name": "sleap-io",
+          "version": "0.5.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:34:37.624832928Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://io.sleap.ai/",
+        "homepage": "https://github.com/talmolab/sleap-io",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Standalone utilities for working with pose data from SLEAP and other tools."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhc364b38_0"
+      },
+      "context": {
+        "name": "sleap-io",
+        "version": "0.5.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "talmo"
+        ]
+      },
+      "package": {
+        "name": "sleap-io",
+        "version": "0.5.5"
+      },
+      "requirements": {
+        "host": [
+          "python >=3.8",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.8",
+          "ffmpeg",
+          "imageio",
+          "imageio-ffmpeg >=0.5.0",
+          "tifffile",
+          "attrs",
+          "pandas",
+          "simplejson",
+          "h5py >=3.8.0",
+          "hdmf",
+          "numpy",
+          "opencv",
+          "pynwb",
+          "ndx-pose >=0.2.1",
+          "tqdm",
+          "pyyaml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b698d99d3fcb6fb549dd791f2ed3dee93fae9cf1a2d343ed762a73818e8b0fa1",
+          "url": "https://pypi.org/packages/source/s/sleap-io/sleap_io-0.5.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sleap_io"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "libopencv *=headless*"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

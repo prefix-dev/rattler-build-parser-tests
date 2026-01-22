@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_line_profiler",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_line_profiler/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_line_profiler/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_line_profiler/work"
+      },
+      "hash": {
+        "hash": "c6cfed1",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "line_profiler": {
+          "build_string": "py314hc6cfed1_1",
+          "name": "line_profiler",
+          "version": "5.0.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:38.178251607Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.14.* *_cp314",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/pyutils/line_profiler",
+        "homepage": "https://github.com/pyutils/line_profiler",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pyutils/line_profiler",
+        "summary": "A module for monitoring memory usage of a python program"
+      },
+      "build": {
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "kernprof = kernprof:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py314hc6cfed1_1"
+      },
+      "context": {
+        "name": "line_profiler",
+        "version": "5.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jakirkham",
+          "grlee77",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "line_profiler",
+        "version": "5.0.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "cython >=3.0.3",
+          "scikit-build",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cython >=3.0.3",
+          "scikit-build >=0.17",
+          "setuptools"
+        ],
+        "run": [
+          "python"
+        ],
+        "run_constraints": [
+          "ipython >=8.14.0",
+          "rich >=12.3.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a80f0afb05ba0d275d9dddc5ff97eab637471167ff3e66dcc7d135755059398c",
+          "url": "https://pypi.org/packages/source/l/line_profiler/line_profiler-5.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "kernprof",
+              "line_profiler"
+            ]
+          }
+        },
+        {
+          "script": [
+            "kernprof --help",
+            "python -m kernprof --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

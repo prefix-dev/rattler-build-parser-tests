@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  version: "0.30.0"
+
+package:
+  name: awscrt
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/awscrt/awscrt-${{ version }}.tar.gz
+  sha256: e1a133430e71116e9c0f101b0d11227f47b7c561ad5303f5af00f6c33a16f382
+  patches:
+    - 0001-Don-t-force-static-linkage.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - if: win
+      then: nasm
+  host:
+    - python
+    - pip
+    - setuptools
+    - if: linux
+      then: s2n
+    - aws-checksums
+    - aws-c-common
+    - aws-c-cal
+    - aws-c-io
+    - aws-c-event-stream
+    - aws-c-http
+    - aws-c-auth
+    - aws-c-mqtt
+    - aws-c-s3
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - awscrt
+        - awscrt.eventstream
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: A common runtime for AWS Python projects
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/awslabs/aws-crt-python
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - xhochy

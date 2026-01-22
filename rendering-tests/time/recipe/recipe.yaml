@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: 1.9
+
+package:
+  name: time
+  version: ${{ version }}
+
+source:
+  url: http://mirrors.ocf.berkeley.edu/gnu/time/time-${{ version }}.tar.gz
+  sha256: fbacf0c81e62429df3e33bda4cee38756604f18e01d977338e23306a3e3b521e
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - autoconf
+    - automake
+    - make
+    - texinfo
+    - sed
+
+tests:
+  - script:
+      - $(which time) -v echo test
+
+about:
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: time command from GNU
+  description: |
+    `time' is a program that measures many of the CPU resources, such as
+    time and memory, that other programs use.  The GNU version can format
+    the output in arbitrary ways by using a printf-style format string to
+    include various resource measurements.  Some systems do not provide
+    much information about program resource use; `time' reports
+    unavailable information as zero values.
+  homepage: http://www.gnu.org/software/time/
+  repository: http://git.savannah.gnu.org/cgit/time.git
+  documentation: http://man7.org/linux/man-pages/man1/time.1.html
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - epruesse
+    - martin-g

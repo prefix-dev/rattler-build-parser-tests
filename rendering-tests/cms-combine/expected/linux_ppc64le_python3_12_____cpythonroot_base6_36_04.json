@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cms-combine",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cms-combine/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cms-combine/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cms-combine/work"
+      },
+      "hash": {
+        "hash": "22df0b6",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cms-combine": {
+          "build_string": "py312h22df0b6_0",
+          "name": "cms-combine",
+          "version": "10.4.2"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:15.157607721Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "python": "3.12.* *_cpython",
+        "root_base": "6.36.04",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Combine is a RooStats / RooFit - based software tool used for statistical analysis within the\nCMS experiment. Note that while this tool was originally developed in the Higgs PAG, its usage\nis now widespread within CMS. Combine provides a command-line interface to many different statistical\ntechniques, available inside RooFit/RooStats, that are used widely inside CMS.",
+        "documentation": "https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/",
+        "homepage": "https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "HiggsAnalysis/CombinedLimit/LICENSE"
+        ],
+        "repository": "https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit",
+        "summary": "A software tool used for statistical analysis within the CMS experiment"
+      },
+      "build": {
+        "number": 0,
+        "string": "py312h22df0b6_0"
+      },
+      "context": {
+        "name": "cms-combine",
+        "version": "10.4.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "nsmith-",
+          "anigamova",
+          "kcormi"
+        ]
+      },
+      "package": {
+        "name": "cms-combine",
+        "version": "10.4.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "root_base",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "python",
+          "root_base",
+          "libboost-devel",
+          "eigen",
+          "vdt"
+        ],
+        "run": [
+          "python",
+          "pandas",
+          "six",
+          "gsl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3e56bd9f2d626d223eae9abac56fed8f00f46f1f48a3d641eee0c37097f590e0",
+          "target_directory": "HiggsAnalysis/CombinedLimit",
+          "url": "https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit/archive/refs/tags/v10.4.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "HiggsAnalysis.CombinedLimit.PhysicsModel"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "HiggsAnalysis/CombinedLimit/data/tutorials/multiDim/",
+              "HiggsAnalysis/CombinedLimit/data/tutorials/CAT23001/"
+            ]
+          },
+          "script": [
+            "combine -h",
+            "text2workspace.py -h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

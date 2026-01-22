@@ -1,0 +1,301 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn/work"
+      },
+      "hash": {
+        "hash": "2a4fcdb"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "onednn": {
+          "build_string": "tbb_h2a4fcdb_0",
+          "name": "onednn",
+          "version": "3.10.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:33.455716733Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "dnnl_cpu_runtime": "tbb",
+        "target_platform": "linux-64",
+        "tbb_devel": "2022"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "oneAPI Deep Neural Network Library (oneDNN) is an open-source\ncross-platform performance library of basic building blocks for deep\nlearning applications.\n\noneDNN is intended for deep learning applications and framework\ndevelopers interested in improving application performance.\nDeep learning practitioners should use one of the applications\nenabled with oneDNN.\n\nIn this package oneDNN is built with the TBB CPU runtime.\n\nFor more information please read oneDNN developer guide:\nhttps://oneapi-src.github.io/oneDNN/",
+        "homepage": "https://github.com/oneapi-src/oneDNN",
+        "license": "Apache-2.0",
+        "license_file": [
+          "THIRD-PARTY-PROGRAMS",
+          "LICENSE"
+        ],
+        "summary": "oneAPI Deep Neural Network Library (oneDNN)"
+      },
+      "build": {
+        "number": 0,
+        "script": "build-onednn",
+        "string": "tbb_h2a4fcdb_0",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build": 0,
+        "desc_dpcpp": "In this package oneDNN is built with the DPC++ CPU and GPU runtimes.",
+        "desc_omp": "In this package oneDNN is built with the OpenMP CPU runtime.",
+        "desc_tbb": "In this package oneDNN is built with the TBB CPU runtime.",
+        "desc_threadpool": "In this package oneDNN is built with the Threadpool CPU runtime.\noneDNN requires the user to implement a Threadpool interface to enable\nthe library to perform computations using multiple threads.",
+        "name": "oneDNN",
+        "version": "3.10.2"
+      },
+      "extra": {
+        "feedstock-name": "onednn",
+        "recipe-maintainers": [
+          "xhochy",
+          "densamoilov",
+          "spalicki"
+        ]
+      },
+      "package": {
+        "name": "onednn",
+        "version": "3.10.2"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "ninja",
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "tbb-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "onednn",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58a7399c86789bf3756117072ed946d764ba59dd1480f0e42efd4f9b6b7b9a64",
+          "url": "https://github.com/oneapi-src/oneDNN/archive/v3.10.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/lib/libdnnl${SHLIB_EXT}",
+            "test -f ${PREFIX}/include/oneapi/dnnl/dnnl.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn-cpu-tbb",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn-cpu-tbb/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn-cpu-tbb/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_onednn-cpu-tbb/work"
+      },
+      "hash": {
+        "hash": "6ffe13a"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "onednn": {
+          "build_string": "tbb_h2a4fcdb_0",
+          "name": "onednn",
+          "version": "3.10.2"
+        },
+        "onednn-cpu-tbb": {
+          "build_string": "tbb_h6ffe13a_0",
+          "name": "onednn-cpu-tbb",
+          "version": "3.10.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:33.513733523Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "dnnl_cpu_runtime": "tbb",
+        "dnnl_cpu_runtime_name": "cpu-tbb",
+        "onednn": "3.10.2 tbb_h2a4fcdb_0",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "oneAPI Deep Neural Network Library (oneDNN) is an open-source\ncross-platform performance library of basic building blocks for deep\nlearning applications.\n\noneDNN is intended for deep learning applications and framework\ndevelopers interested in improving application performance.\nDeep learning practitioners should use one of the applications\nenabled with oneDNN.\n\nIn this package oneDNN is built with the TBB CPU runtime.\n\nFor more information please read oneDNN developer guide:\nhttps://oneapi-src.github.io/oneDNN/",
+        "homepage": "https://github.com/oneapi-src/oneDNN",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "oneAPI Deep Neural Network Library (oneDNN)"
+      },
+      "build": {
+        "number": 0,
+        "string": "tbb_h6ffe13a_0",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build": 0,
+        "desc_dpcpp": "In this package oneDNN is built with the DPC++ CPU and GPU runtimes.",
+        "desc_omp": "In this package oneDNN is built with the OpenMP CPU runtime.",
+        "desc_tbb": "In this package oneDNN is built with the TBB CPU runtime.",
+        "desc_threadpool": "In this package oneDNN is built with the Threadpool CPU runtime.\noneDNN requires the user to implement a Threadpool interface to enable\nthe library to perform computations using multiple threads.",
+        "name": "oneDNN",
+        "version": "3.10.2"
+      },
+      "extra": {
+        "feedstock-name": "onednn",
+        "recipe-maintainers": [
+          "xhochy",
+          "densamoilov",
+          "spalicki"
+        ]
+      },
+      "package": {
+        "name": "onednn-cpu-tbb",
+        "version": "3.10.2"
+      },
+      "requirements": {
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "onednn"
+            }
+          }
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "onednn"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "onednn",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58a7399c86789bf3756117072ed946d764ba59dd1480f0e42efd4f9b6b7b9a64",
+          "url": "https://github.com/oneapi-src/oneDNN/archive/v3.10.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "exit 0"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

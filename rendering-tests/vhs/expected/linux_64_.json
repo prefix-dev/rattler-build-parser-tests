@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vhs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vhs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vhs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vhs/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vhs": {
+          "build_string": "hfc2019e_1",
+          "name": "vhs",
+          "version": "0.10.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:53:01.936014491Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/charmbracelet/vhs",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/",
+          "go-localereader-LICENSE"
+        ],
+        "repository": "https://github.com/charmbracelet/vhs",
+        "summary": "Your CLI home video recorder"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "mv LICENSE go-localereader-LICENSE",
+          "cd src",
+          "go-licenses save . --ignore github.com/mattn/go-localereader --save_path=../library_licenses",
+          "go build -v -o $PREFIX/bin/vhs -ldflags=\"-s -w -X main.Version=${{ version }}\""
+        ],
+        "string": "hfc2019e_1"
+      },
+      "context": {
+        "name": "vhs",
+        "version": "0.10.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "vhs",
+        "version": "0.10.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ],
+        "run": [
+          "ffmpeg",
+          "ttyd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ae37fe7e52ade753f850ab81c7d5344f8e540ab6886f877bf5b613620c909893",
+          "target_directory": "src",
+          "url": "https://github.com/charmbracelet/vhs/archive/refs/tags/v0.10.0.tar.gz"
+        },
+        {
+          "sha256": "dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3",
+          "url": "https://github.com/mattn/go-localereader/raw/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "vhs"
+            ],
+            "strict": true
+          }
+        },
+        {
+          "script": "vhs --version | grep \"vhs version ${{ version | replace('.', '\\\\.') }}\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

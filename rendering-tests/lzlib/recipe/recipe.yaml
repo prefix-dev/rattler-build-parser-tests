@@ -1,0 +1,40 @@
+context:
+  version: "1.15"
+
+package:
+  name: lzlib
+  version: ${{ version }}
+
+source:
+  url: https://download.savannah.gnu.org/releases/lzip/lzlib/lzlib-${{ version }}.tar.gz
+  sha256: 4afab907a46d5a7d14e927a1080c3f4d7e3ca5a0f9aea81747d8fed0292377ff
+  patches:
+    - if: osx
+      then: make-shared-lib-work-on-macOS.patch
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+  run_constraints:
+    - ${{ pin_subpackage('lzlib') }}
+
+tests:
+  - script:
+      - test -f $PREFIX/lib/liblz${SHLIB_EXT}
+
+about:
+  license: BSD-2-Clause
+  license_file: COPYING
+  summary: Data compression library
+  homepage: https://www.nongnu.org/lzip/lzlib.html
+  repository: https://www.nongnu.org/lzip/lzlib.html
+
+extra:
+  recipe-maintainers:
+    - danielnachun

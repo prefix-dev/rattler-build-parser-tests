@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: falcon-docs
+  version: 0.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/piotrmaslanka/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 1f8e0ae72ba22cb5ddf87d0b769bfbeba6fbc8836057016705dea0039820a7a0
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - falcon
+    - six
+    - markdown2
+
+tests:
+  - python:
+      imports:
+        - falcondocs
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: API documentation generator from docstrings, for Python's Falcon framework
+  homepage: https://github.com/piotrmaslanka/falcon-docs
+  repository: https://github.com/piotrmaslanka/falcon-docs
+
+extra:
+  recipe-maintainers:
+    - carlodri

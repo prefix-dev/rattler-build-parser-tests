@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ezc3d",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ezc3d/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ezc3d/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ezc3d/work"
+      },
+      "hash": {
+        "hash": "71e9510",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ezc3d": {
+          "build_string": "np2py313h71e9510_0",
+          "name": "ezc3d",
+          "version": "1.6.3"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:25.669469522Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "EZC3D is an easy to use reader, modifier and writer for C3D format files. It\nis written en C++ with proper binders for Python and MATLAB scripting\nlangages.",
+        "documentation": "https://pyomeca.github.io/Documentation/ezc3d/",
+        "homepage": "https://github.com/pyomeca/ezc3d",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pyomeca/ezc3d",
+        "summary": "Easy to use C3D reader/writer in C++, Python"
+      },
+      "build": {
+        "dynamic_linking": {
+          "rpaths": [
+            "lib/",
+            "lib/ezc3d/"
+          ]
+        },
+        "number": 0,
+        "string": "np2py313h71e9510_0"
+      },
+      "context": {
+        "version": "1.6.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "melund",
+          "pariterre"
+        ]
+      },
+      "package": {
+        "name": "ezc3d",
+        "version": "1.6.3"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "ninja",
+          "pkgconfig",
+          "swig",
+          "python",
+          "cross-python_osx-arm64",
+          "numpy",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*"
+        ],
+        "host": [
+          "python",
+          "numpy"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "49f297b1046214771b5a4b2037621642c7bb8a454ca3976a7f5cacb222670af3",
+          "url": "https://github.com/pyomeca/ezc3d/archive/Release_1.6.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "build": [
+              "clangxx_osx-arm64 =19",
+              "macosx_deployment_target_osx-arm64 =11.0",
+              "cmake",
+              "ninja"
+            ]
+          },
+          "script": [
+            "cmake info/recipe/tests ${CMAKE_ARGS} -B info/recipe/tests/build -GNinja -DCMAKE_BUILD_TYPE=Release",
+            "cmake --build info/recipe/tests/build"
+          ]
+        },
+        {
+          "python": {
+            "imports": [
+              "ezc3d"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

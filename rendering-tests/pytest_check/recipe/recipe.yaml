@@ -1,0 +1,80 @@
+schema_version: 1
+
+context:
+  name: pytest-check-meta
+  version: 2.6.2
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/pytest-check/pytest_check-${{ version }}.tar.gz
+  sha256: 5e2128405b14978ad74f21f3225fcc52bbb1cc7c41a55d5eaad9f1e3cd27e42e
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: pytest-check
+    build:
+      noarch: python
+      script: ${PYTHON} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - hatchling
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - pytest
+        - typing-extensions >=4.12.2
+    tests:
+      - python:
+          imports:
+            - pytest_check
+          pip_check: true
+          python_version: ${{ python_min }}.*
+      - files:
+          source:
+            - tests/
+            - examples/
+            - tox.ini
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - pytest -k "not test_max_tb"
+    # Meta-package to the main package, that just installs it
+    # it is here to keep-up with the legacy name, containing an
+    # underscore ("_") instead of a dash.
+  - package:
+      name: pytest_check
+    build:
+      noarch: generic
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - ${{ pin_subpackage("pytest-check", exact=True) }}
+    tests:
+      - python:
+          imports:
+            - pytest_check
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+
+about:
+  summary: A pytest plugin that allows multiple failures per test.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/okken/pytest-check
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - bskinn
+    - anjos

@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ouch",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ouch/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ouch/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ouch/work"
+      },
+      "hash": {
+        "hash": "72d5492"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ouch": {
+          "build_string": "h72d5492_1",
+          "name": "ouch",
+          "version": "0.6.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:40.147944250Z",
+      "variant": {
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "18",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ouch-org/ouch",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Painless compression and decompression in the terminal"
+      },
+      "build": {
+        "number": 1,
+        "string": "h72d5492_1"
+      },
+      "context": {
+        "name": "ouch",
+        "version": "0.6.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "ouch",
+        "version": "0.6.1"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-64",
+          "clang_linux-64 18.*",
+          "clangxx_linux-64 18.*",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "libclang"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e6265071affab228ba7d3ca85f2206029445038b3a3d96036e9bf02b795ad651",
+          "url": "https://github.com/ouch-org/ouch/archive/refs/tags/0.6.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "ouch --version",
+            "ouch --help",
+            "touch test.txt",
+            "ouch compress test.txt test.7z",
+            "ouch compress test.txt test.br",
+            "ouch compress test.txt test.bz2",
+            "ouch compress test.txt test.bz3",
+            "ouch compress test.txt test.gz",
+            "ouch compress test.txt test.lz4",
+            "ouch compress test.txt test.sz",
+            "ouch compress test.txt test.xz",
+            "ouch compress test.txt test.zip",
+            "ouch compress test.txt test.zst"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

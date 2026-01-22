@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbplatformutils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbplatformutils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbplatformutils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbplatformutils/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbplatformutils": {
+          "build_string": "pyhcf101f3_0",
+          "name": "lbplatformutils",
+          "version": "4.5.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:29.950790857Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://gitlab.cern.ch/lhcb-core/LbPlatformUtils",
+        "homepage": "https://gitlab.cern.ch/lhcb-core/LbPlatformUtils",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.cern.ch/lhcb-core/LbPlatformUtils",
+        "summary": "utilities from platform detection"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "lb-debug-platform = LbPlatformUtils.debug:main",
+            "lb-describe-platform = LbPlatformUtils.describe:main",
+            "lb-host-binary-tag = LbPlatformUtils.describe:host_binary_tag_script"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "lbplatformutils",
+        "version": "4.5.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbplatformutils",
+        "version": "4.5.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "poetry"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "517d67af3df7e75335fd56132bc401799c1fe2ea40b5406a925a0752b6f7ffc1",
+          "url": "https://pypi.org/packages/source/l/lbplatformutils/lbplatformutils-4.5.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "LbPlatformUtils"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "lb-debug-platform --help",
+            "lb-describe-platform --help",
+            "lb-host-binary-tag --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

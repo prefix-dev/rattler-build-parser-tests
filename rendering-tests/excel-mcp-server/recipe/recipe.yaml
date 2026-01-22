@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: excel-mcp-server
+  version: "0.1.7"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/excel_mcp_server-${{ version }}.tar.gz
+  sha256: b18e46ec72e3221d38303fb4dfc1e6f4aaf695b1f3dab505907e8a7f9cbddae7
+  patches:
+    - patches/fix-package-location.patch
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install .
+  python:
+    entry_points:
+      - excel-mcp-server = excel_mcp.__main__:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - mcp >=1.10.1
+    - fastmcp >=2.0.0,<3.0.0
+    - openpyxl >=3.1.5
+    - typer >=0.16.0
+    - python-dotenv >=1.0.0
+
+tests:
+  - python:
+      imports:
+        - excel_mcp
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - excel-mcp-server --help
+
+about:
+  homepage: https://excelmcpserver.com
+  repository: https://github.com/haris-musa/excel-mcp-server
+  summary: Excel MCP Server for manipulating Excel files
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rxm7706

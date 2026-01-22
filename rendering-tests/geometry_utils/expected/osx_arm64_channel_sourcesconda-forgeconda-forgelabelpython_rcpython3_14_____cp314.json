@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geometry_utils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geometry_utils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geometry_utils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geometry_utils/work"
+      },
+      "hash": {
+        "hash": "6013fcd",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "geometry_utils": {
+          "build_string": "np2py314h6013fcd_1",
+          "name": "geometry_utils",
+          "version": "0.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:21.701096698Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/NOAA-ORR-ERD/geometry_utils",
+        "license": "CC0-1.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Utilities for basic computational geometry directly with numpy arrays."
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install -vv --no-deps .",
+        "string": "np2py314h6013fcd_1"
+      },
+      "context": {
+        "version": "0.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ChrisBarker-NOAA",
+          "JamesMakela-NOAA",
+          "PythonCHB"
+        ]
+      },
+      "package": {
+        "name": "geometry_utils",
+        "version": "0.1.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cross-python_osx-arm64",
+          "python",
+          "numpy",
+          "cython >=3",
+          "make",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cython >=3",
+          "numpy",
+          "scikit-build-core",
+          "cython-cmake"
+        ],
+        "run": [
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3677fe5df9bc3c2f954f7b6865b84da9e5772d865def37199c9088afe4bd7703",
+          "url": "https://github.com/NOAA-ORR-ERD/geometry_utils/archive/v0.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "geometry_utils"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest --pyargs geometry_utils"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

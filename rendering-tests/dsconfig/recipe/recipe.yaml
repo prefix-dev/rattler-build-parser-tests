@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: dsconfig
+  version: 1.9.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/dsconfig-${{ version }}.tar.gz
+  sha256: 7e2c5106f02f5652a8dfbdbc86863139580cfe194aa8b466bc215f5425731b41
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - xls2json = dsconfig.excel:main
+      - json2tango = dsconfig.json2tango:main
+      - tango2json = dsconfig.dump:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+  run:
+    - jsonpatch >=1.13
+    - jsonschema
+    - pytango
+    - python >=${{ python_min }}
+    - xlrd
+
+tests:
+  - python:
+      imports:
+        - dsconfig
+        - dsconfig.appending_dict
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+      pip_check: true
+  - script:
+      - xls2json --help
+      - json2tango --help
+      - tango2json --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Library and utilities for Tango device configuration.
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  description: |
+    This is a command line tool for managing configuration of Tango device servers.
+    Tango-Controls is a software toolkit for building control systems.
+  homepage: https://gitlab.com/MaxIV/lib-maxiv-dsconfig
+  repository: https://gitlab.com/MaxIV/lib-maxiv-dsconfig
+
+extra:
+  recipe-maintainers:
+    - beenje

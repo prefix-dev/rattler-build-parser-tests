@@ -1,0 +1,56 @@
+context:
+  name: csp-bot
+  version: "1.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/csp-bot/csp_bot-${{ version }}.tar.gz
+  sha256: d41be6f213e6c06749f647a9335f9f2f77fe998d8fc45ddd0d56e2e61b65a2d7
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - beautifulsoup4
+    - ccflow >=0.5.2
+    - croniter
+    - csp >=0.9,<1
+    - csp-gateway >=2,<3
+    - csp-adapter-discord
+    - csp-adapter-slack
+    - csp-adapter-symphony
+    - dateparser
+    - hydra-core
+    - pandas
+    - pydantic >=2
+
+tests:
+  - python:
+      imports:
+        - csp_bot
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Reactive chat bot framework
+  homepage: https://github.com/Point72/csp-bot/wiki
+  repository: https://github.com/Point72/csp-bot
+
+extra:
+  recipe-maintainers:
+    - arhamchopra
+    - ptomecek
+    - timkpaine

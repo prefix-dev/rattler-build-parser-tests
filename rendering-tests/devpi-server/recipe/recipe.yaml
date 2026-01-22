@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "6.17.0"
+  python_min: ${{ python_min | default("3.9") }}
+
+package:
+  name: devpi-server
+  version: ${{ version }}
+
+source:
+  url:
+    # `-` vs `_` seems to flip-flop between releases
+    - https://pypi.org/packages/source/d/devpi-server/devpi_server-${{ version }}.tar.gz
+    - https://pypi.org/packages/source/d/devpi-server/devpi_server-${{ version }}.tar.gz
+  sha256: b49a6b802512808001ddac078d42150d92820c5f676ad337eff21b89785e9e8e
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - devpi-export = devpi_server.importexport:export
+      - devpi-fsck = devpi_server.fsck:fsck
+      - devpi-gen-config = devpi_server.genconfig:genconfig
+      - devpi-gen-secret = devpi_server.config:gensecret
+      - devpi-import = devpi_server.importexport:import_
+      - devpi-init = devpi_server.init:init
+      - devpi-passwd = devpi_server.passwd:passwd
+      - devpi-server = devpi_server.main:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - argon2-cffi
+    - attrs >=22.2.0
+    - defusedxml
+    - devpi-common >3.6.0,<5
+    - httpx <1
+    - itsdangerous >=0.24
+    - lazy
+    - legacy-cgi
+    - passlib
+    - platformdirs
+    - pluggy >=0.6.0,<2.0
+    - py >=1.4.23
+    - pyramid >=2
+    - python >=${{ python_min }}
+    - repoze.lru >=0.6
+    - ruamel.yaml
+    - strictyaml
+    - waitress >=1.0.1
+
+tests:
+  - python:
+      imports:
+        - devpi_server
+        - pytest_devpi_server
+        - test_devpi_server
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - devpi-export --help
+      - devpi-fsck --help
+      - devpi-gen-config --help
+      - devpi-gen-secret --help
+      - devpi-import --help
+      - devpi-init --help
+      - devpi-passwd --help
+      - devpi-server --help
+
+about:
+  homepage: https://devpi.net
+  summary: |-
+    devpi-server: reliable private and pypi.org caching server
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/devpi/devpi
+  documentation: https://docs.devpi.net
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

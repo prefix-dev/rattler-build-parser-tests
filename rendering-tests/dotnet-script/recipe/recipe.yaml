@@ -1,0 +1,38 @@
+context:
+  version: "2.0.0"
+
+package:
+  name: dotnet-script
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dotnet-script/dotnet-script/archive/${{ version }}.tar.gz
+  sha256: a0112d4baa5e2653f06ef12881d954d613248e83626a6a5eade1abed7337e5da
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - dotnet-script --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Run C# scripts from the .NET CLI
+  homepage: https://github.com/dotnet-script/dotnet-script
+  repository: https://github.com/dotnet-script/dotnet-script
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: smirnoff-plugins
+  version: 2025.09.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/openforcefield/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 382297b21cddbcfac07faea60b3dcfee9ab71cb89f67dba7fd3adae9b66b5788
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - openff-toolkit >=0.16
+    - openff-interchange-base ~=0.4.6  # could probably work with 0.5 but wait until released
+    - numpy
+    - openmm
+
+tests:
+  - python:
+      imports:
+        - smirnoff_plugins
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - smirnoff_plugins/_tests
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+    script:
+      - pytest -v --maxfail=1 --disable-warnings
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Custom classes for extending SMIRNOFF force fields.
+  description: |
+    A framework that provides chasses which enable the use of custom force field
+    functional forms in SMIRNOFF force fields via plugins in OpenFF infrastructure
+  homepage: https://github.com/openforcefield/smirnoff-plugins
+  repository: https://github.com/openforcefield/smirnoff-plugins
+  documentation: https://github.com/openforcefield/smirnoff-plugins
+
+extra:
+  recipe-maintainers:
+    - simonboothroyd
+    - jthorton
+    - mattwthompson
+    - fjclark

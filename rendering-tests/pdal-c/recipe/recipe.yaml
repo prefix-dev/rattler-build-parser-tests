@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: pdal-c
+  version: 2.2.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/PDAL/CAPI/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 69161ed5abcdde26192fd4a02b646fcb5f3451dea3bebf73e92ba2f28a7346f4
+
+build:
+  number: 10
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: not win
+      then: make
+    - if: win
+      then: ninja
+  host:
+    - libpdal-core
+  run:
+    - libpdal-core
+
+tests:
+  - script:
+      - test_pdalc
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: C API for the PDAL Point Cloud Data Abstraction Layer
+  description: |
+    PDAL is a C++ library for translating and manipulating point cloud data. This package provides a C API to the package.
+  homepage: https://github.com/pdal/capi
+  repository: https://github.com/pdal/capi
+  documentation: https://pdal.io/CAPI/doxygen/html/index.html
+
+extra:
+  recipe-maintainers:
+    - Runette
+    - hobu

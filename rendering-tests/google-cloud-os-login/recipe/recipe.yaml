@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: google-cloud-os-login
+  version: 2.19.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_os_login-${{ version }}.tar.gz
+  sha256: 7210257aa325609785a673bd5aa57f3464caa5e22b1d93ec80228c97dc6ca0ba
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    # constraining python <3.14 until grpcio >= 1.75.1 (required upstream) is available on conda-forge
+    - python >=${{ python_min }},<3.14
+    - google-api-core >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,!=2.10.*
+    - google-api-core-grpc
+    - google-auth >=2.14.1,<3.0.0,!=2.24.0,!=2.25.0
+    - grpcio >=1.33.2,<2.0.0
+    # more restrictive version for python 3.13
+    - proto-plus >=1.25.0,<2.0.0
+    - protobuf >=3.20.2,<7.0.0,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
+
+tests:
+  - python:
+      imports:
+        - grpc
+        - google.cloud.oslogin
+        - google.cloud.oslogin_v1
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Google Cloud Os Login API client library
+  license: Apache-2.0
+  license_file: LICENSE
+  description: "Google Cloud OS Login API is a Google Cloud service that lets you manage SSH access to your instances using IAM without having to create and manage individual SSH keys. OS Login maintains a consistent Linux user identity across VM instances and is the recommended way to manage many users across multiple instances:: - or projects.\nSee the [quick start guide](https://googleapis.dev/python/oslogin/latest/index.html#quick-start)."
+  homepage: https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-os-login
+  repository: https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-os-login
+  documentation: https://googleapis.dev/python/oslogin/latest/index.html
+
+extra:
+  recipe-maintainers:
+    - parthea
+    - xylar

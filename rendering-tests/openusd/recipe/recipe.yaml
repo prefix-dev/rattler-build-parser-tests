@@ -1,0 +1,107 @@
+schema_version: 1
+
+context:
+  name: openusd
+  version: "25.11"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/PixarAnimationStudios/OpenUSD/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: c37c633b5037a4552f61574670ecca8836229b78326bd62622f3422671188667
+    patches:
+      - link_python_to_executables.patch
+      - add_pxr_install_dll_in_bin.patch
+      # Fix https://github.com/conda-forge/openusd-feedstock/issues/11
+      - 3759.patch
+      - remove_hardcoded_prefix.patch
+
+build:
+  number: 2
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ninja
+    - cmake
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+        - pyside6
+  host:
+    - if: linux
+      then:
+        - libgl-devel
+        - libglx-devel
+        - xorg-libxrandr
+    - glfw
+    - tbb-devel
+    - libboost-devel
+    - libopensubdiv
+    - python
+    - jinja2
+    - pyside6
+    - pyopengl
+  run:
+    - python
+    # Without tbb-devel, CMake's find_package(pxr REQUIRED) fails
+    # Furthermore, openusd exposes internal header-only symbols of tbb in its public headers/public symbols,
+    # so even if the tbb itself is ABI stable, we need to pin the major minor version of tbb-devel to ensure that
+    # the symbols contained in the library match the one that the downstream consumers expect to use, see 
+    # https://github.com/conda-forge/openusd-feedstock/issues/9 for more details
+    - ${{ pin_compatible('tbb-devel', upper_bound='x.x') }}
+    # Required by usdview
+    - pyside6
+    - pyopengl
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      include:
+        - pxr/pxr.h
+      lib:
+        - usd_usd
+  - script:
+      - cmake-package-check pxr
+      # Specify the minimum number of usd plugins that should be found in the package
+      - python openusd_plugins_sanity_check.py 40
+      - usdInitSchema --help
+      - usdview --help
+      - if: win
+        then:
+          - pip list | findstr "usd-core"
+        else:
+          - test $(pip list | grep usd-core | tr -s " " | grep ${PKG_VERSION//\.0/.} | wc -l) -eq 1
+    files:
+      recipe:
+        - openusd_plugins_sanity_check.py
+    requirements:
+      run:
+        - cmake-package-check
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - pip
+  - python:
+      imports:
+        - pxr
+        - pxr.Usd
+        - pxr.UsdGeom
+
+about:
+  # The main openusd license is the Tomorrow Open Source Technology License 1.0 (see https://forum.aousd.org/t/upcoming-openusd-license-update/1561)
+  # The license is not OSI-approved or have an official SPDX identified, so we use LicenseRef-Tomorrow-Open-Source-Technology-License-1.0
+  # openusd vendors several  other libraries, but all their licenses are listed in LICENSE.txt and listed in the following
+  license: LicenseRef-Tomorrow-Open-Source-Technology-License-1.0 AND Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-3-Clause AND JSON AND BSL-1.0
+  license_file: LICENSE.txt
+  summary: Library to read and write Universal Scene Description (USD) files.
+  homepage: https://github.com/PixarAnimationStudios/OpenUSD
+
+extra:
+  recipe-maintainers:
+    - traversaro

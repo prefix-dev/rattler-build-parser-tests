@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: dbt-protos
+  version: "1.0.419"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/dbt_protos-${{ version }}.tar.gz
+  sha256: 5a9ba360351be68a902c6709d38995ffaa0a89955439aabf0fb2d6b8f2032d81
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - protobuf >=3.17.1
+
+tests:
+  - python:
+      imports:
+        - dbtlabs
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+
+about:
+  summary: Public proto bindings for dbt
+  homepage: https://github.com/dbt-labs/proto-python-public
+  description: |
+    Public proto bindings for dbt.
+  repository: https://github.com/dbt-labs/proto-python-public
+  documentation: https://github.com/dbt-labs/proto-python-public/blob/main/README.md
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rxm7706

@@ -1,0 +1,25 @@
+From ed06dba23efd0aa098c51d8b28f21da58175f654 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Tue, 22 Jun 2021 08:46:11 +0200
+Subject: [PATCH] do not use build system compiler flags when cross-compiling
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index f5a6e14..e8ff673 100755
+--- a/setup.py
++++ b/setup.py
+@@ -75,7 +75,7 @@ class my_build_cpplib(_build_ext):
+         if not os.path.exists(self.build_temp):
+             log.info('creating %s', self.build_temp)
+             os.makedirs(self.build_temp)
+-        extra_postargs = ['-O2']+get_cflags().split()
++        extra_postargs = ['-O2', '-pthread', '-std=c++17']
+         if 'win32' in sys.platform:
+         # /EHsc and sometimes /MT are hardwired in distutils, but the compiler/linker will
+         # let the last argument take precedence
+-- 
+2.52.0
+

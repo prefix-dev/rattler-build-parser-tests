@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_las-geoh5",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_las-geoh5/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_las-geoh5/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_las-geoh5/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "las-geoh5": {
+          "build_string": "pyhe01879c_0",
+          "name": "las-geoh5",
+          "version": "0.3.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:29.851047164Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Import/Export LAS files to/from geoh5 format.\n\nThis package allows for import and export of LAS files to and from a drillhole group.\nThere is a module each for import and export operations. Each of these includes a driver and a ui.json \nthat parameterizes the driver and renders a UI for use within Geoscience ANALYST Pro.",
+        "documentation": "https://mirageoscience-las-geoh5.readthedocs-hosted.com/",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/python-integration/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MiraGeoscience/las-geoh5",
+        "summary": "Import/Export LAS files to/from geoh5 format."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "geoh5_to_las = las_geoh5.scripts.geoh5_to_las:main",
+            "las_to_geoh5 = las_geoh5.scripts.las_to_geoh5:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "las-geoh5",
+        "python_min": "3.10",
+        "version": "0.3.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "las-geoh5",
+        "version": "0.3.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "poetry-core >=1.0.0",
+          "setuptools",
+          "setuptools_scm"
+        ],
+        "run": [
+          "python >=3.10",
+          "geoh5py >=0.11.0,<0.12.dev",
+          "lasio >=0.31,<0.32.dev",
+          "numpy >=1.26.0,<1.27.dev",
+          "pydantic >=2.5.2,<3.0.dev",
+          "tqdm >=4.66.1,<5.0.dev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "81fda897e3afffccb528d0eee0ac1546e45bdd1d0449a40b274650a7f6232cb3",
+          "url": "https://github.com/MiraGeoscience/las-geoh5/archive/v0.3.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "las_geoh5",
+              "geoh5py",
+              "lasio"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest --ignore=tests/version_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

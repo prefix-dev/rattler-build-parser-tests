@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: apptools
+  version: 5.3.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apptools-${{ version }}.tar.gz
+  sha256: 7dd8f3a95ca02fc1c03f82cebbe6bed0f74e74fb93e4f66987fa4d8e606ff167
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - traits >=6.2.0
+    - pyface
+    - traitsui
+    - configobj
+
+tests:
+  - python:
+      imports:
+        - apptools
+        - apptools.logger.api
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: application tools
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  homepage: https://docs.enthought.com/apptools
+
+extra:
+  recipe-maintainers:
+    - grlee77
+    - JaRoSchm

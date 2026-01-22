@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: kagglesdk
+  version: "0.1.15"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/kagglesdk-${{ version }}.tar.gz
+  sha256: a26ecc64b1334b5a4c5cadd076bdeb503c04eab51c10d7cac2ff04959c9baba0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - protobuf
+
+tests:
+  - python:
+      imports:
+        - kagglesdk
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/Kaggle/kagglesdk
+  repository: https://github.com/Kaggle/kagglesdk
+  summary: Bindings to access kaggle's external-facing APIs
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

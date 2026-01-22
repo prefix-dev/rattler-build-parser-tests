@@ -1,0 +1,53 @@
+context:
+  version: "0.4.0"
+  python_min: 3.13
+
+package:
+  name: drsclient
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/drsclient/drsclient-${{ version }}.tar.gz
+  sha256: b8fbffbe23fe4e9722f9c511821b7d0c79c8a1ada5a54557e1a0a138894a9422
+
+build:
+  number: 0
+  noarch: python
+  script: |
+    sed -i '/asyncio/d' pyproject.toml  # remove unneeded dependency
+    ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry
+    - poetry-core
+    - pip
+    - sed
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - setuptools
+    - httpx >=0.28.0
+    - backoff >=1.10.0,<2.0.0
+
+tests:
+  - python:
+      imports:
+        - drsclient
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: GA4GH DRS Client
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/uc-cdis/drsclient
+
+extra:
+  recipe-maintainers:
+    - danielnachun

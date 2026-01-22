@@ -1,0 +1,38 @@
+context:
+  version: 0.20.0
+
+package:
+  name: melody
+  version: ${{ version }}
+
+source:
+  url: https://github.com/yoav-lavi/melody/archive/v${{ version }}.tar.gz
+  sha256: b0dd1b0ecc1af97f09f98a9a741e0dddbf92380c9980140140ff1b4262b9a44a
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - melody --help
+
+about:
+  license: MIT AND Apache-2.0
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Language that compiles to regular expressions
+  homepage: https://yoav-lavi.github.io/melody/book
+  repository: https://github.com/yoav-lavi/melody
+
+extra:
+  recipe-maintainers:
+    - danielnachun

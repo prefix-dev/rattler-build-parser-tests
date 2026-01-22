@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 0.3.2
+
+package:
+  name: cargo-patch
+  version: ${{ version }}
+
+source:
+  url: https://github.com/itmettkeDE/cargo-patch/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 41243074b5de18e8df15ee8d4ddd7bc5542b31c5cbbdd631c76aaf6a043169f8
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }} 1.79.*
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-auditable
+    - cargo-bundle-licenses
+    - pkg-config
+    - if: build_platform != target_platform and not (osx and arm64)
+      then: zlib
+  host:
+    - openssl
+    - if: not osx
+      then: zlib
+
+tests:
+  - script:
+      - test -f $PREFIX/bin/cargo-patch
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Cargo Subcommand which allows patching dependencies using patch files.
+  homepage: https://github.com/itmettkeDE/cargo-patch
+  repository: https://github.com/itmettkeDE/cargo-patch
+
+extra:
+  recipe-maintainers:
+    - pavelzw
+    - borchero
+    - xhochy

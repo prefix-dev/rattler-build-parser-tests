@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/cargo-patch-dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlglotrs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlglotrs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlglotrs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlglotrs/work"
+      },
+      "hash": {
+        "hash": "2fc9d26",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sqlglotrs": {
+          "build_string": "py314h2fc9d26_1",
+          "name": "sqlglotrs",
+          "version": "0.11.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:53:02.966346742Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge/label/cargo-patch-dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/tobymao/sqlglot",
+        "license": "MIT",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE"
+        ],
+        "repository": "https://github.com/tobymao/sqlglot/tree/main/sqlglotrs",
+        "summary": "SQLGlot tokenizer implementation in Rust"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cargo patch",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py314h2fc9d26_1"
+      },
+      "context": {
+        "name": "sqlglotrs",
+        "version": "0.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "sqlglotrs",
+        "version": "0.11.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "maturin >=1.4,<2.0",
+          "cargo-patch",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.4,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a9fd11690a7bb1160ad157d0c1b6d389d19cc6542854016b6745510253ba502d",
+          "url": "https://pypi.org/packages/source/s/sqlglotrs/sqlglotrs-0.11.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sqlglotrs"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

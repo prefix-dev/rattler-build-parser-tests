@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: azure-batch
+  version: 14.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/azure-batch-${{ version }}.tar.gz
+  sha256: c79267d6c3d3fe14a16a422ab5bbfabcbd68ed0b58b6bbcdfa0c8345c4c78532
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - msrestazure >=0.4.32,<2.0.0
+    - azure-common >=1.1,<2.dev0
+
+tests:
+  - python:
+      imports:
+        - azure.batch
+        - azure.batch.custom
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Microsoft Azure Batch Client Library for Python
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/Azure/azure-sdk-for-python
+  repository: https://github.com/Azure/azure-sdk-for-python
+  documentation: https://docs.microsoft.com/en-us/azure/developer/python/
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - janjagusch

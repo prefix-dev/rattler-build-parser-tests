@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netbird",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netbird/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netbird/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_netbird/work"
+      },
+      "hash": {
+        "hash": "ccc6df8"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "netbird": {
+          "build_string": "hccc6df8_0",
+          "name": "netbird",
+          "version": "0.64.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:37.706102403Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/netbirdio/netbird",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/",
+          "LICENSE-jmespath"
+        ],
+        "repository": "https://github.com/netbirdio/netbird",
+        "summary": "Connect your devices into a secure WireGuard\u00ae-based overlay network with SSO, MFA and granular access controls."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "cd client",
+          "go-licenses save . --save_path ../../library_licenses --ignore github.com/jmespath/go-jmespath",
+          "go build -v -o $PREFIX/bin/netbird -ldflags=\"-s -w\""
+        ],
+        "string": "hccc6df8_0"
+      },
+      "context": {
+        "name": "netbird",
+        "version": "0.64.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "netbird",
+        "version": "0.64.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9435249c570dbdb0b5a90ff9147549ab027fc66290ba57a54b4d961392a7aad6",
+          "target_directory": "src",
+          "url": "https://github.com/netbirdio/netbird/archive/refs/tags/v0.64.0.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-jmespath",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "url": "https://raw.githubusercontent.com/jmespath/go-jmespath/b89213a6ec69212a244ef0d07d893bef7f2d9091/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "netbird -h"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "netbird"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

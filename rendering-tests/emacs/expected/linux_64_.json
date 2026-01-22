@@ -1,0 +1,212 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emacs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emacs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emacs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_emacs/work"
+      },
+      "hash": {
+        "hash": "03648c8"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "emacs": {
+          "build_string": "h03648c8_2",
+          "name": "emacs",
+          "version": "30.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:37:03.874057019Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "cairo": "1",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "expat": "2",
+        "giflib": "5.2",
+        "glib": "2",
+        "gmp": "6",
+        "gnutls": "3.8",
+        "libjpeg_turbo": "3",
+        "libpng": "1.6",
+        "librsvg": "2",
+        "libtiff": "4.7",
+        "libxml2_devel": "2.14",
+        "mpfr": "4",
+        "ncurses": "6",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://www.gnu.org/software/emacs/",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "GNU Emacs is an extensible, customizable text editor."
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "lib/gdk-pixbuf-*/*/loaders.cache",
+            "lib/gtk-*/*/immodules.cache",
+            "share/glib-*/schemas/gschemas.compiled",
+            "share/icons/hicolor/icon-theme.cache"
+          ],
+          "include": []
+        },
+        "number": 2,
+        "prefix_detection": {
+          "ignore": [
+            "lib/emacs/jit/bin/*",
+            "lib/emacs/jit/lib/**/*.o",
+            "lib/emacs/jit/lib/**/*.so.*"
+          ]
+        },
+        "string": "h03648c8_2"
+      },
+      "context": {
+        "gcc_version": "14.3.0",
+        "tree_sitter_version": "0.25.*",
+        "version": "30.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "asmeurer",
+          "jmakovicka",
+          "msarahan",
+          "notestaff"
+        ]
+      },
+      "package": {
+        "name": "emacs",
+        "version": "30.2"
+      },
+      "requirements": {
+        "build": [
+          "pkg-config",
+          "gnuconfig",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "autoconf",
+          "automake",
+          "m4",
+          "make",
+          "texinfo"
+        ],
+        "host": [
+          "sysroot_linux-64 2.17.*",
+          "binutils",
+          "cairo",
+          "gtk3",
+          "harfbuzz",
+          "mpc",
+          "mpfr",
+          "xorg-libxaw",
+          "xorg-libxcomposite",
+          "xorg-libxfixes",
+          "xorg-libxi",
+          "xorg-libxinerama",
+          "xorg-libxrandr",
+          "xorg-xorgproto",
+          "expat",
+          "giflib",
+          "glib",
+          "gmp",
+          "gnutls",
+          "libjpeg-turbo",
+          "libpng",
+          "librsvg",
+          "libtiff",
+          "libtree-sitter 0.25.*",
+          "libxml2-devel",
+          "ncurses",
+          "zlib"
+        ],
+        "run": [
+          "binutils"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0008-do-not-dump-configure-info-directory.patch",
+            "0009-disable-malloc-set-state.patch",
+            "0010-disable-fchmodat.patch"
+          ],
+          "sha256": "b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9",
+          "url": "https://ftpmirror.gnu.org/gnu/emacs/emacs-30.2.tar.xz"
+        },
+        {
+          "sha256": "e0dc77297625631ac8e50fa92fffefe899a4eb702592da5c32ef04e2293aca3a",
+          "target_directory": "gcc",
+          "url": "https://ftpmirror.gnu.org/gnu/gcc/gcc-14.3.0/gcc-14.3.0.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "$PREFIX/bin/emacs --help",
+            "$PREFIX/bin/emacsclient --help",
+            "$PREFIX/bin/ctags --help",
+            "$PREFIX/bin/ebrowse --help",
+            "$PREFIX/bin/etags --help",
+            "$PREFIX/bin/emacs -nw -Q --kill --batch",
+            "$PREFIX/bin/emacs -Q --kill --batch",
+            "$PREFIX/bin/emacs --batch --eval '(unless (treesit-available-p) (kill-emacs 1))'",
+            "$PREFIX/bin/emacs --batch --eval '(unless (json-available-p) (kill-emacs 1))'",
+            "$PREFIX/bin/emacs --batch --eval \"(unless (string= \\\"${PREFIX}/share/info\\\" configure-info-directory) (kill-emacs 1))\"",
+            "$PREFIX/bin/emacs --batch --eval '(batch-native-compile t)' $PREFIX/share/emacs/${{ version }}/lisp/calculator.elc"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

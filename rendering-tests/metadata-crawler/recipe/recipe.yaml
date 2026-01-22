@@ -1,0 +1,98 @@
+context:
+  name: metadata-crawler
+  version: "2511.2.2"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/metadata_crawler-${{ version }}.tar.gz
+  sha256: 68d24afee1342549e3c4b80db695ada85f56000d58ab4365e464299890ea4c4a
+
+build:
+  number: 0
+  python:
+    entry_points:
+      - metadata-crawler = metadata_crawler.cli:cli
+      - mdc = metadata_crawler.cli:cli
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - python -m pip install . -vv --no-deps --no-build-isolation
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - pip
+    - maturin >=1.10,<2.0
+  run:
+    - python
+    - aiohttp
+    - appdirs
+    - ciso8601
+    - fsspec
+    - diskcache
+    - s3fs
+    - jinja2
+    - intake
+    - intake-xarray
+    - intake-esm
+    - pandas
+    - python-dateutil
+    - numpy
+    - orjson
+    - pyarrow
+    - h5netcdf
+    - pydantic
+    - rich
+    - rich-argparse
+    - rtoml
+    - tomlkit
+    - typing_extensions
+    - zarr
+    - xarray
+    - httpx
+    - ${{ "uvloop" if not win }}
+    - motor
+
+tests:
+  - python:
+      imports:
+        - metadata_crawler
+  - script:
+      - pip check
+      - metadata-crawler --help
+      - mdc --help
+    requirements:
+      run:
+        - python
+        - pip
+
+about:
+  summary: Crawl, extract and push climate metadata for indexing.
+  homepage: https://github.com/freva-org/metadata-crawler
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  description: |
+    Harvest, normalise, and index climate / earth-system metadata from POSIX,
+    S3/MinIO, and OpenStack Swift using configurable DRS dialects (CMIP6, CMIP5,
+    CORDEX, …). Output to a temporary catalogue (JSONLines) and then index into
+    systems such as Solr or MongoDB. Configuration is TOML with inheritance,
+    templating, and computed rules.
+
+extra:
+  recipe-maintainers:
+    - antarcticrainforest
+    - mo-dkrz

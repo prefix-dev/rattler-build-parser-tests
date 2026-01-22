@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: shapiq
+  version: 1.4.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/shapiq-${{ version }}.tar.gz
+  sha256: 7f612c84fcfe4746ff826db72efa2944f9aa693c5c00c6e17a882613471534f8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - scipy
+    - pandas
+    - scikit-learn
+    - tqdm
+    - requests
+    - sparse-transform
+    - galois
+    - matplotlib-base
+    - networkx
+    - colour
+    - pillow
+    - joblib
+tests:
+  - python:
+      imports:
+        - shapiq
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Shapley Interactions for Machine Learning
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/mmschlk/shapiq
+
+extra:
+  recipe-maintainers:
+    - janjagusch

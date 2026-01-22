@@ -1,0 +1,288 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-windows",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-windows/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-windows/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-windows/work"
+      },
+      "hash": {
+        "hash": "ba2a2ff",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mitmproxy-windows": {
+          "build_string": "py312hba2a2ff_0",
+          "name": "mitmproxy-windows",
+          "version": "0.12.8"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:48:37.309915779Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# mitmproxy_rs\n\nThis package contains mitmproxy's Rust bits.\n\n[![dev documentation](https://shields.mitmproxy.org/badge/docs-Python%20API-blue.svg)](https://mitmproxy.github.io/mitmproxy_rs/)\n\nhttps://github.com/mitmproxy/mitmproxy_rs\n",
+        "homepage": "https://github.com/mitmproxy/mitmproxy_rs",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mitmproxy/mitmproxy-rs",
+        "summary": "This package contains mitmproxy's Rust bits."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo auditable build --release --package windows-redirector",
+          "${{ PYTHON }} -m pip install ./mitmproxy-windows",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "py312hba2a2ff_0"
+      },
+      "context": {
+        "version": "0.12.8"
+      },
+      "extra": {
+        "feedstock-name": "mitmproxy-rs",
+        "recipe-maintainers": [
+          "moritzwilksch",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "mitmproxy-windows",
+        "version": "0.12.8"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "rust_win-64",
+          "maturin >=1.10.1,<2",
+          "cargo-auditable",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "hatchling",
+          "pip",
+          "maturin >=1.10.1,<2"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "59550c3f4352f64c50d46de976788db8ea15710fac8ce2af39755304e9676d0e",
+          "url": "https://github.com/mitmproxy/mitmproxy_rs/archive/refs/tags/v0.12.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mitmproxy_windows"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/work"
+      },
+      "hash": {
+        "hash": "59ec33a",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mitmproxy-rs": {
+          "build_string": "py312h59ec33a_0",
+          "name": "mitmproxy-rs",
+          "version": "0.12.8"
+        },
+        "mitmproxy-windows": {
+          "build_string": "py312hba2a2ff_0",
+          "name": "mitmproxy-windows",
+          "version": "0.12.8"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:48:37.369226031Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "mitmproxy_windows": "0.12.8 py312hba2a2ff_0",
+        "python": "3.12.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# mitmproxy_rs\n\nThis package contains mitmproxy's Rust bits.\n\n[![dev documentation](https://shields.mitmproxy.org/badge/docs-Python%20API-blue.svg)](https://mitmproxy.github.io/mitmproxy_rs/)\n\nhttps://github.com/mitmproxy/mitmproxy_rs\n",
+        "homepage": "https://github.com/mitmproxy/mitmproxy_rs",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mitmproxy/mitmproxy-rs",
+        "summary": "This package contains mitmproxy's Rust bits."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} -m pip install ./mitmproxy-rs",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "py312h59ec33a_0"
+      },
+      "context": {
+        "version": "0.12.8"
+      },
+      "extra": {
+        "feedstock-name": "mitmproxy-rs",
+        "recipe-maintainers": [
+          "moritzwilksch",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "mitmproxy-rs",
+        "version": "0.12.8"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "maturin >=1.10.1,<2",
+          "python",
+          "cross-python_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "hatchling",
+          "pip",
+          "maturin >=1.10.1,<2"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "mitmproxy-windows"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "59550c3f4352f64c50d46de976788db8ea15710fac8ce2af39755304e9676d0e",
+          "url": "https://github.com/mitmproxy/mitmproxy_rs/archive/refs/tags/v0.12.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mitmproxy_rs"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

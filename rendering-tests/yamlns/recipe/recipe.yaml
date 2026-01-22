@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: yamlns
+  version: 0.12.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/yamlns-${{ version }}.tar.gz
+  sha256: 5ea72a8b9d2f7d999f46ee9931a8f4b9b93c47a16d3fa597ad034fc8140ecbcc
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=20.4
+  run:
+    - python >=${{ python_min }}
+    - pytest
+    - pyyaml >=5.3.1
+    - setuptools >=20.4
+    - pytest-cov
+
+tests:
+  - python:
+      imports:
+        - yamlns
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: YAML serializable dictionary with dual item and attribute accessors
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/GuifiBaix/python-yamlns
+
+extra:
+  recipe-maintainers:
+    - thewchan

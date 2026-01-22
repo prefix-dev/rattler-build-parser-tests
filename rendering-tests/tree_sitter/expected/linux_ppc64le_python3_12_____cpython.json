@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree_sitter",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree_sitter/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree_sitter/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree_sitter/work"
+      },
+      "hash": {
+        "hash": "ee3c976",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree_sitter": {
+          "build_string": "py312hee3c976_1",
+          "name": "tree_sitter",
+          "version": "0.25.2"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:39:41.064784247Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/tree-sitter/py-tree-sitter",
+        "license": "MIT and EPL-2.0",
+        "license_file": [
+          "LICENSE",
+          "tree_sitter/core/lib/src/unicode/LICENSE"
+        ],
+        "summary": "Python bindings to the Tree-sitter parsing library"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "export CFLAGS=\"-D_BSD_SOURCE\"",
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv"
+        ],
+        "string": "py312hee3c976_1"
+      },
+      "context": {
+        "version": "0.25.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "thewchan",
+          "davidbrochart"
+        ]
+      },
+      "package": {
+        "name": "tree_sitter",
+        "version": "0.25.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cross-python_linux-ppc64le",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=43"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fe43c158555da46723b28b52e058ad444195afd1db3ca7720c59a254544e9c20",
+          "url": "https://pypi.org/packages/source/t/tree_sitter/tree-sitter-0.25.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-licenses",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-licenses/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-licenses/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_go-licenses/work"
+      },
+      "hash": {
+        "hash": "a70c05e"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "go-licenses": {
+          "build_string": "ha70c05e_0",
+          "name": "go-licenses",
+          "version": "2.0.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:22.920756428Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/google/go-licenses",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "summary": "A tool to collect licenses from the dependency tree of a Go package in order to comply with redistribution terms."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-go-licenses"
+        },
+        "string": "ha70c05e_0"
+      },
+      "context": {
+        "version": "2.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dhirschfeld",
+          "mbargull",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "go-licenses",
+        "version": "2.0.1"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_win-64"
+        ],
+        "run": [
+          "go"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "04a875604c0cc62217fea3d283c243a2e4298142cdfeafb088b9e486daabded3",
+          "url": "https://github.com/google/go-licenses/archive/refs/tags/v2.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "git",
+              "go"
+            ]
+          },
+          "script": [
+            "git clone --depth=1 \"https://github.com/google/go-licenses\"",
+            "cd go-licenses",
+            "go-licenses csv . | findstr \"Apache-2.0 BSD-.-Clause MIT\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

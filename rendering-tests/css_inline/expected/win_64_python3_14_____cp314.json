@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_css_inline",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_css_inline/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_css_inline/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_css_inline/work"
+      },
+      "hash": {
+        "hash": "c0eee95",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "css_inline": {
+          "build_string": "py314hc0eee95_0",
+          "name": "css_inline",
+          "version": "0.19.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:16.560462639Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Stranger6667/css-inline",
+        "license": "MIT",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Stranger6667/css-inline/tree/master/bindings/python",
+        "summary": "High-performance library for inlining CSS into HTML 'style' attributes"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "pushd css-inline && cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml && popd",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py314hc0eee95_0"
+      },
+      "context": {
+        "version": "0.19.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "css_inline",
+        "version": "0.19.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "crossenv",
+          "maturin >=1.1",
+          "rust_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.1",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1fe3432758262397332f137e427635062fb76df7c67425ce3d8df1069347385c",
+          "url": "https://pypi.org/packages/source/c/css_inline/css_inline-0.19.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "css_inline"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

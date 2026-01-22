@@ -1,0 +1,60 @@
+context:
+  name: google-auth
+  version: 2.47.0
+  sdist_name: google_auth
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ sdist_name }}-${{ version }}.tar.gz
+  sha256: 833229070a9dfee1a353ae9877dcd2dec069a8281a4e72e72f77d4a70ff945da
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pyasn1-modules >=0.2.1
+    - rsa >=3.1.4,<5
+    # aiohttp and requests extras
+    - aiohttp >=3.6.2,<4.0.0
+    - requests >=2.20.0,<3.0.0
+    # pyopenssl extra
+    - pyopenssl >=20.0.0
+    - cryptography >=38.0.3
+    # reauth extra
+    - pyu2f >=0.1.5
+
+tests:
+  - python:
+      imports:
+        - google.auth
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/googleapis/google-auth-library-python
+  summary: Google authentication library for Python
+  description: This library provides the ability to authenticate to Google APIs using various methods. It also provides integration with several HTTP libraries.
+  license: Apache-2.0
+  license_file: LICENSE
+  documentation: https://google-auth.readthedocs.io/en/latest/
+  repository: https://github.com/googleapis/google-auth-library-python
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - jan-janssen
+    - jreback
+    - parthea
+    - theacodes
+    - tswast

@@ -1,0 +1,81 @@
+schema_version: 1
+
+context:
+  name: sqlfluff
+  version: 4.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sqlfluff-${{ version }}.tar.gz
+  sha256: b2478983adbeff096327f20763c78ddc36c5b48871c0ea6b084d296136dc4e3e
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - sqlfluff = sqlfluff.cli.commands:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=40.8.0
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - platformdirs
+    - chardet
+    - click <8.4.0
+    - colorama >=0.3
+    - diff-cover >=2.5.0
+    - jinja2
+    - pathspec
+    - pytest
+    - pyyaml >=5.1
+    - regex
+    - tblib
+    - tomli
+    - tqdm
+
+tests:
+  - python:
+      imports:
+        - sqlfluff
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - test
+    requirements:
+      run:
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - sqlfluff --help
+      - pytest -vvv --capture=tee-sys -k "not test_rules_test_case_has_variable_introspection " test
+
+about:
+  summary: The SQL Linter for Humans
+  license: MIT
+  license_file: LICENSE.md
+  description: |
+    SQLFluff is a dialect-flexible and configurable SQL linter. Designed
+    with ELT applications in mind, SQLFluff also works with Jinja
+    templating and dbt. SQLFluff will auto-fix most linting errors,
+    allowing you to focus your time on what matters.
+
+
+  homepage: https://www.sqlfluff.com/
+  repository: https://github.com/sqlfluff/sqlfluff
+  documentation: https://docs.sqlfluff.com/en/stable/index.html
+
+extra:
+  recipe-maintainers:
+    - svengiegerich
+    - borchero
+    - thewchan

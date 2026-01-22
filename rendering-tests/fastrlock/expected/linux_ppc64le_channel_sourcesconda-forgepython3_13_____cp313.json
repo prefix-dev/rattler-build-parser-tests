@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastrlock",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastrlock/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastrlock/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastrlock/work"
+      },
+      "hash": {
+        "hash": "e85dbcf",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastrlock": {
+          "build_string": "py313he85dbcf_2",
+          "name": "fastrlock",
+          "version": "0.8.3"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:21.735402081Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a C-level implementation of a fast, re-entrant,\noptimistic lock for CPython. It is a drop-in replacement for\nthreading.RLock. FastRLock is implemented in Cython and also provides a\nC-API for direct use from Cython code via from fastrlock cimport rlock.\n\nUnder normal conditions, it is about 10x faster than threading.RLock in\nPython 2.7 because it avoids all locking unless two or more threads try to\nacquire it at the same time. Under congestion, it is still about 10% faster\nthan RLock due to being implemented in Cython.\n\nThis is mostly equivalent to the revised RLock implementation in Python\n3.2, but still faster due to being implemented in Cython. Note that the\nthreading.RLock implementation in Python 3.4 and later tends to be as fast\nor even faster than the lock provided by this package, when called through\nthe Python API. FastRLock is still faster also on these systems when called\nthrough its Cython API.",
+        "homepage": "https://github.com/scoder/fastrlock",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/scoder/fastrlock",
+        "summary": "This is a C-level implementation of a fast, re-entrant, optimistic lock for CPython"
+      },
+      "build": {
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . --global-option=\"--with-cython\" -vv",
+        "string": "py313he85dbcf_2"
+      },
+      "context": {
+        "name": "fastrlock",
+        "version": "0.8.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "fastrlock",
+        "version": "0.8.3"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "cython",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cython"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4af6734d92eaa3ab4373e6c9a1dd0d5ad1304e172b1521733c6c3b3d73c8fa5d",
+          "url": "https://pypi.org/packages/source/f/fastrlock/fastrlock-0.8.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastrlock"
+            ],
+            "pip_check": false
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

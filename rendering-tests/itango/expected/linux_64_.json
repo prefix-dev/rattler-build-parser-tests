@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_itango",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_itango/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_itango/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_itango/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "itango": {
+          "build_string": "pyhe01879c_1",
+          "name": "itango",
+          "version": "0.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:26.771682474Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "ITango is a PyTango CLI based on IPython.\nIt is designed to be used as an IPython profile.",
+        "documentation": "https://itango.readthedocs.io/",
+        "homepage": "https://gitlab.com/tango-controls/itango",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/tango-controls/itango",
+        "summary": "An interactive Tango client"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "itango = itango:run",
+            "itango3 = itango:run",
+            "itango-qt = itango:run_qt",
+            "itango3-qt = itango:run_qt"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "itango",
+        "version": "0.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje",
+          "ajoubertza"
+        ]
+      },
+      "package": {
+        "name": "itango",
+        "version": "0.3.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools >=77.0.3",
+          "setuptools-scm"
+        ],
+        "run": [
+          "python >=3.9",
+          "pytango >=9.3.0",
+          "ipython >=8.5,<10.0",
+          "packaging"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1409cff2814f2945d2848c3c2777e5ed8ae5f45c6f16380abafcb9b5f3fed9d8",
+          "url": "https://pypi.org/packages/source/i/itango/itango-0.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "itango"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pytest",
+              "gevent",
+              "tango-test"
+            ]
+          },
+          "script": [
+            "itango --help",
+            "itango3 --help",
+            "pytest -v tests"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

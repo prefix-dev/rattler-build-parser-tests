@@ -1,0 +1,80 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: fastmcp
+  version: "2.14.3"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastmcp-${{ version }}.tar.gz
+  sha256: abc9113d5fcf79dfb4c060a1e1c55fccb0d4bce4a2e3eab15ca352341eec8dd6
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - fastmcp = fastmcp.cli:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - uv-dynamic-versioning >=0.7.0
+    - pip
+  run:
+    - python >=${{ python_min }},<4
+    - python-dotenv >=1.1.0
+    - exceptiongroup >=1.2.2
+    - httpx >=0.28.1
+    - mcp >=1.24
+    - openapi-pydantic >=0.5.1
+    - platformdirs >=4.0.0
+    - pydocket >=0.15.5
+    - rich >=13.9.4
+    - cyclopts >=4.0.0
+    - authlib >=1.6.5
+    - pydantic >=2.11.7
+    - pyperclip >=1.9.0
+    - py-key-value-aio >=0.3.0,<0.4.0
+    - uvicorn >=0.35
+    - websockets >=15.0.1
+    - jsonschema-path >=0.3.4
+    # py-key-value-aio[disk]
+    - diskcache >=5.6.0
+    - pathvalidate >=3.3.1
+    # py-key-value-aio[memory]
+    - cachetools >=6.0.0
+    # py-key-value-aio[keyring]
+    - keyring >=25.6.0
+  run_constraints:
+    - openai >=1.102.0
+
+tests:
+  - python:
+      imports:
+        - fastmcp
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - fastmcp --help
+
+about:
+  summary: The fast, Pythonic way to build MCP servers.
+  homepage: https://github.com/jlowin/fastmcp
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - rxm7706
+    - dbast

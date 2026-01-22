@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_evermore",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_evermore/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_evermore/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_evermore/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "evermore": {
+          "build_string": "pyhcf101f3_0",
+          "name": "evermore",
+          "version": "0.3.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:19.024458355Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://evermore.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/pfackeldey/evermore",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pfackeldey/evermore",
+        "summary": "Differentiable (binned) likelihoods in JAX."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "evermore",
+        "python_min": "3.11",
+        "version": "0.3.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pfackeldey"
+        ]
+      },
+      "package": {
+        "name": "evermore",
+        "version": "0.3.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.11",
+          "jax >=0.7.0",
+          "jaxlib",
+          "jaxtyping",
+          "equinox >=0.10.6",
+          "treescope"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "97f5c4d280c4e6540895766054f433ed813d8979fb0e2f2aeae196c21725044e",
+          "url": "https://pypi.org/packages/source/e/evermore/evermore-0.3.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "evermore"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,97 @@
+schema_version: 1
+
+context:
+  name: pyinterp
+  version: 2025.11.0
+  build_number: 2
+  sha256: ead3eeb41dc9378918a3b42afb2b9bf64b48593f369c9b3afbbd14f369c88a58
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/CNES/pangeo-${{ name }}/releases/download/${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: ${{ build_number }}
+  skip:
+    - (aarch64 or ppc64le) and blas == "mkl"
+  string: ${{ blas }}_py${{ python | version_to_buildstring }}h${{ hash }}_${{ build_number }}
+  variant:
+    down_prioritize_variant: ${{ 1 if blas == "mkl" else 0 }}
+  script: '${{ PYTHON }} -m pip install . -vv --no-build-isolation -Cmkl=${{ "yes" if blas == "mkl" else "no" }} ${{ "-Cgenerator=\"Visual Studio 17 2022\"" if win else "" }}'
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - setuptools
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - if: linux or osx
+      then: make
+  host:
+    - dask
+    - libboost-devel >=1.79.0
+    - if: blas == "mkl"
+      then: mkl-devel
+    - if: (blas == "openblas") and (win or linux)
+      then: openblas
+    - if: osx
+      then: blas * accelerate
+    - numpy
+    - pip
+    - pytest
+    - python
+    - setuptools
+    - xarray
+  run:
+    - dask *
+    - if: blas == "mkl"
+      then: mkl *
+    - if: (blas == "openblas") and (win or linux)
+      then: openblas *
+    - if: osx
+      then: blas * accelerate
+    - python
+    - xarray >=0.13
+  ignore_run_exports:
+    from_package:
+      - xarray
+      - numpy
+      - libboost-devel
+
+tests:
+  - requirements:
+      run:
+        - pytest
+    script:
+      interpreter: python
+      content: |
+        import pathlib
+        import pytest
+        import pyinterp
+        test_dir = pathlib.Path(pyinterp.__file__).parent / 'tests'
+        pytest.main(["-q", str(test_dir), "--measure-coverage"])
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Python library for optimized geo-referenced interpolation
+  description: |
+    Tools for interpolating geo-referenced data used in the field of
+    geosciences. There are other libraries that cover this problem, but written
+    entirely in Python, the performance of these projects was not quite
+    sufficient for our needs. That is why this project was created.
+  homepage: https://github.com/CNES/pangeo-pyinterp
+  repository: https://github.com/CNES/pangeo-pyinterp
+  documentation: https://cnes.github.io/pangeo-pyinterp/
+
+extra:
+  recipe-maintainers:
+    - fbriol

@@ -1,0 +1,69 @@
+context:
+  name: k9s
+  version: "0.50.18"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/derailed/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 4a438b4bc480c05ba6f78a1573ee7e1dad7956ef3e30912ae22c744cea031f96
+    target_directory: src
+  - url: https://raw.githubusercontent.com/xi2/xz/refs/heads/master/LICENSE
+    sha256: 5c640056d513f276d56635af7a0bed81cb7eac02a31b6e56d40c416557a8d8ce
+    target_directory: xz-LICENSE-1
+  # xi2/xz uses 0BSD from xz-embedded and 0BSD from xz test data
+  - url: https://raw.githubusercontent.com/tukaani-project/xz-embedded/refs/heads/master/COPYING
+    sha256: d9ff4f089509582e7b197e86f3d2d66948b89169f27c1f2349eb0d1ed4459309
+    target_directory: xz-LICENSE-2
+  - url: https://raw.githubusercontent.com/tukaani-project/xz/refs/heads/master/COPYING
+    sha256: 616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8
+    target_directory: xz-LICENSE-3
+  - url: https://raw.githubusercontent.com/tukaani-project/xz/refs/heads/master/COPYING.0BSD
+    sha256: 0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1
+    target_directory: xz-LICENSE-4
+  - url: https://gitlab.com/cznic/mathutil/-/raw/master/LICENSE
+    sha256: bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5
+    target_directory: mathutil-LICENSE
+  - url: https://raw.githubusercontent.com/deitch/magic/refs/heads/main/LICENSE
+    sha256: 2423c6eb9948e617a61f7a2d1cb463c69d60e599fbae5931551631d2a8730838
+    target_directory: magic-LICENSE
+
+build:
+  script:
+    - cd src
+    - go-licenses save . --ignore github.com/derailed/popeye --ignore github.com/xi2/xz --ignore modernc.org/mathutil --ignore github.com/deitch/magic --save_path ../library_licenses
+    - if: win
+      then: go build -v -o %LIBRARY_BIN%\k9s.exe -ldflags="-X github.com/derailed/k9s/cmd.version=${{ version }}"
+      else: go build -v -o $PREFIX/bin/k9s -ldflags="-X github.com/derailed/k9s/cmd.version=${{ version }}"
+  number: 0
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - k9s --help
+      - k9s version
+
+about:
+  homepage: https://k9scli.io
+  summary: 🐶 Kubernetes CLI To Manage Your Clusters In Style!
+  license: Apache-2.0
+  license_file:
+    - src/LICENSE
+    - library_licenses/
+    - xz-LICENSE-1/LICENSE
+    - xz-LICENSE-2/COPYING
+    - mathutil-LICENSE/LICENSE
+  repository: https://github.com/derailed/k9s
+  documentation: https://k9scli.io
+
+extra:
+  recipe-maintainers:
+    - pavelzw
+    - ytausch

@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_berglas",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_berglas/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_berglas/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_berglas/work"
+      },
+      "hash": {
+        "hash": "a1ccbab"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "berglas": {
+          "build_string": "ha1ccbab_0",
+          "name": "berglas",
+          "version": "2.0.9"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:09.553223878Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/GoogleCloudPlatform/berglas",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "summary": "Tool for managing secrets on Google Cloud"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go build -ldflags=\"-s -w -X github.com/GoogleCloudPlatform/berglas/v2/internal/version.name=berglas -X github.com/GoogleCloudPlatform/berglas/v2/internal/version.version=${{ version }}\" -o $PREFIX/bin/berglas",
+          "mkdir -p $PREFIX/share/bash-completion/completions",
+          "$PREFIX/bin/berglas completion bash > $PREFIX/share/bash-completion/completions/berglas",
+          "mkdir -p $PREFIX/share/zsh/site-functions",
+          "$PREFIX/bin/berglas completion zsh > $PREFIX/share/zsh/site-functions/_berglas",
+          "go-licenses save --save_path ${{ \"$SRC_DIR\" if unix else \"%SRC_DIR%\" }}/license-files ."
+        ],
+        "string": "ha1ccbab_0"
+      },
+      "context": {
+        "version": "2.0.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "berglas",
+        "version": "2.0.9"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c6a7cd7ed4322ff4277b5d0b4e19ad1449d48f37051a5a2fa5415f274b247dd8",
+          "url": "https://github.com/GoogleCloudPlatform/berglas/archive/refs/tags/v2.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "berglas --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

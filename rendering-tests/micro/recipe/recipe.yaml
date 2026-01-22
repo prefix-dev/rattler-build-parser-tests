@@ -1,0 +1,41 @@
+context:
+  version: "2.0.15"
+
+package:
+  name: micro
+  version: ${{ version }}
+
+source:
+  url: https://github.com/zyedidia/micro/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 612c775321c268c8f9e1767505ff378bca9b9ab66f5c41b69ecb2464ecf15084
+
+build:
+  number: 0
+  dynamic_linking:
+    binary_relocation: false
+
+requirements:
+  build:
+    - ${{ compiler('go-cgo') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+    - make
+
+tests:
+  - script:
+      - micro --version
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A modern and intuitive terminal-based text editor
+  homepage: https://micro-editor.github.io/
+  repository: https://github.com/zyedidia/micro
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - dhirschfeld

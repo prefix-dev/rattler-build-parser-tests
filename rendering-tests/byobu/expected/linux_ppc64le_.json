@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_byobu",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_byobu/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_byobu/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_byobu/work"
+      },
+      "hash": {
+        "hash": "a2bf2a4"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "byobu": {
+          "build_string": "ha2bf2a4_4",
+          "name": "byobu",
+          "version": "6.13"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:10.151894748Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Byobu is a GPLv3 open source text-based window manager and terminal\nmultiplexer. It was originally designed to provide elegant enhancements to\nthe otherwise functional, plain, practical GNU Screen, for the Ubuntu server\ndistribution. Byobu now includes an enhanced profiles, convenient\nkeybindings, configuration utilities, and toggle-able system status\nnotifications for both the GNU Screen window manager and the more modern\nTmux terminal multiplexer, and works on most Linux, BSD, and Mac\ndistributions.",
+        "documentation": "https://www.byobu.org/documentation",
+        "homepage": "https://www.byobu.org/",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/dustinkirkland/byobu",
+        "summary": "Text-based window manager and terminal multiplexer"
+      },
+      "build": {
+        "number": 4,
+        "string": "ha2bf2a4_4"
+      },
+      "context": {
+        "name": "byobu",
+        "version": "6.13"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sodre",
+          "matthiasdiener",
+          "aywi"
+        ]
+      },
+      "package": {
+        "name": "byobu",
+        "version": "6.13"
+      },
+      "requirements": {
+        "build": [
+          "autoconf",
+          "automake",
+          "make"
+        ],
+        "run": [
+          "newt",
+          "tmux >=1.5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-use-local-python.diff",
+            "0002-byobu-conda.diff"
+          ],
+          "sha256": "9690c629588e8f95d16b2461950d39934faaf8005dd2a283886d4e3bd6c86df6",
+          "url": "https://github.com/dustinkirkland/byobu/archive/6.13.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "set -ex",
+            "byobu -c 'echo \"Hello conda-forge!\"'",
+            "test \"$(command -v python)\" -ef \"$(env -u BYOBU_PYTHON byobu -c 'printenv BYOBU_PYTHON')\"",
+            "test -x \"${CONDA_PREFIX}/bin/byobu-conda\"",
+            "test -x \"${CONDA_PREFIX}/bin/byobu-disable-conda\"",
+            "test -x \"${CONDA_PREFIX}/bin/byobu-enable-conda\"",
+            "test \"$CONDA_PREFIX\" -ef \"$(env -i HOME=\"$HOME\" PATH=\"$PATH\" QEMU_LD_PREFIX=\"$QEMU_LD_PREFIX\" USER=\"$USER\" byobu -c 'printenv CONDA_PREFIX')\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

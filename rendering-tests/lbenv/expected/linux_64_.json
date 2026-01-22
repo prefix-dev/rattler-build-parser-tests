@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbenv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbenv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbenv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lbenv/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lbenv": {
+          "build_string": "pyhcf101f3_0",
+          "name": "lbenv",
+          "version": "2.4.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:29.925749734Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://gitlab.cern.ch/lhcb-core/LbEnv",
+        "homepage": "https://gitlab.cern.ch/lhcb-core/LbEnv",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.cern.ch/lhcb-core/LbEnv",
+        "summary": "LHCb Environment tools"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "lb-run = LbEnv.ProjectEnv.script:main",
+            "lb-completion-helper = LbEnv.Utils.Completion:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "lbenv",
+        "version": "2.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "lbenv",
+        "version": "2.4.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=61.2",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "lbplatformutils >=4.2.3",
+          "xenv <1.0.0",
+          "importlib-resources",
+          "importlib-metadata"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "007aa8df59c14619cfe9b03ace18e4ffdfacb7f3592229e8bc64791df96d9edf",
+          "url": "https://pypi.org/packages/source/l/lbenv/lbenv-2.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "LbEnv",
+              "LbEnv.ProjectEnv",
+              "LbEnv.Utils"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "lb-run --help",
+            "lb-completion-helper --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

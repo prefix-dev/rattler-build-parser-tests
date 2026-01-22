@@ -1,0 +1,40 @@
+context:
+  version: "6.0.0"
+
+package:
+  name: cake
+  version: ${{ version }}
+
+source:
+  url: https://github.com/cake-build/cake/archive/v${{ version }}.tar.gz
+  sha256: cdfe2444b684d595c1f8644828b244540402c8ee09f6fef6db1e20eb3d933617
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - sed
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - cake --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Cake (C# Make) is a cross platform build automation system
+  homepage: https://cakebuild.net
+  repository: https://github.com/cake-build/cake
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_altair-aitools-devkit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_altair-aitools-devkit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_altair-aitools-devkit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_altair-aitools-devkit/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "altair-aitools-devkit": {
+          "build_string": "pyhcf101f3_0",
+          "name": "altair-aitools-devkit",
+          "version": "1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:01.929685333Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://altair.com/altair-rapidminer",
+        "license": "AGPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "altair-aitools-devkit is a comprehensive package that provides a set of tools to develop Altair RapidMiner AI tools extensions in Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "build-extension = altair_aitools.dev._builder:build_extension",
+            "create-extension = altair_aitools.dev._create_extension:create_extension"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "altair-aitools-devkit",
+        "python_min": "3.10",
+        "version": "1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "skontar-altair",
+          "pczako-altair"
+        ]
+      },
+      "package": {
+        "name": "altair-aitools-devkit",
+        "version": "1.1"
+      },
+      "requirements": {
+        "host": [
+          "python ==3.10",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "networkx >=3.0",
+          "pipdeptree >=2.20",
+          "pyyaml >=6.0.2",
+          "conda-index >=0.6.1",
+          "conda-lock >=3.0.4",
+          "libmambapy >=2.0.8",
+          "altair-aitools-runtime >=1.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "113226bb9939b7a35635ff64fa6100d5e1c52ff2fd604b224075519c481d5c3a",
+          "url": "https://maven.rapidminer.com/repository/pypi-snapshot/packages/altair-aitools-devkit/1.1/altair_aitools_devkit-1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "altair_aitools.ext",
+              "altair_aitools.dev"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "build-extension --help",
+            "create-extension --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

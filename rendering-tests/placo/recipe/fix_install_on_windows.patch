@@ -1,0 +1,26 @@
+From 7383d7ff47a04779e723b92ca52c079e31fac2e6 Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Sun, 30 Nov 2025 22:57:14 +0100
+Subject: [PATCH] Update installation paths in CMakeLists.txt
+
+---
+ CMakeLists.txt | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8635233d..350fde17 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -193,7 +193,8 @@ set_target_properties(placo PROPERTIES INSTALL_RPATH "\$ORIGIN/../..")
+ set_target_properties(libplaco PROPERTIES INSTALL_RPATH "\$ORIGIN")
+ endif()
+ 
+-install(TARGETS libplaco DESTINATION lib)
+-install(TARGETS placo DESTINATION ${PYTHON_SITELIB})
+-install(FILES ${PLACO_PY_TO_INSTALL} DESTINATION ${PYTHON_SITELIB})
+-install(DIRECTORY ${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo_utils DESTINATION ${PYTHON_SITELIB})
++install(TARGETS libplaco)
++cmake_path(CONVERT $ENV{SP_DIR} TO_CMAKE_PATH_LIST SP_DIR_CMAKE_PATH)
++install(TARGETS placo DESTINATION ${SP_DIR_CMAKE_PATH})
++install(FILES ${PLACO_PY_TO_INSTALL} DESTINATION ${SP_DIR_CMAKE_PATH})
++install(DIRECTORY ${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo_utils DESTINATION ${SP_DIR_CMAKE_PATH})

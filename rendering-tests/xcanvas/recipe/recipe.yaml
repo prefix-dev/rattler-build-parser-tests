@@ -1,0 +1,51 @@
+context:
+  version: "0.6.1"
+  build_number: 0
+
+package:
+  name: xcanvas
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jupyter-xeus/xcanvas/archive/${{ version }}.tar.gz
+  sha256: a3da8bb4687df0ddfb6536db61a9141f4c9d839fd5481da96c4c24f0f94152e2
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  run_exports:
+    - ${{ pin_subpackage('xcanvas', upper_bound='x.x') }}
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - if: unix
+      then:
+        - make
+  host:
+    - xproperty >=0.12.0,<0.13
+    - xwidgets >=0.29.2,<0.30
+  run:
+    - ipycanvas >=0.11.0,<0.12
+
+tests:
+  - package_contents:
+      files:
+        exists:
+          - ${{ "Library/" if win }}include/xcanvas/xcanvas.hpp
+          - ${{ "Library/" if win }}lib/cmake/xcanvas/xcanvasConfig.cmake
+          - ${{ "Library/" if win }}lib/cmake/xcanvas/xcanvasConfigVersion.cmake
+
+about:
+  homepage: https://github.com/martinRenou/xcanvas
+  repository: https://github.com/martinRenou/xcanvas
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: C++ back-end for ipycanvas
+
+extra:
+  recipe-maintainers:
+    - JohanMabille
+    - martinRenou

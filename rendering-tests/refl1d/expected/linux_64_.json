@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_refl1d",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_refl1d/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_refl1d/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_refl1d/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "refl1d": {
+          "build_string": "pyhcf101f3_0",
+          "name": "refl1d",
+          "version": "1.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:48.994668852Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://github.com/reflectometry/refl1d",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Neutron and X-ray reflectometry analysis"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "refl1d = refl1d.webview.server.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "refl1d",
+        "version": "1.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MridulS",
+          "bmaranville",
+          "glass-ships"
+        ]
+      },
+      "package": {
+        "name": "refl1d",
+        "version": "1.0.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "versioningit",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "bumps >=1.0.3",
+          "matplotlib-base",
+          "numba",
+          "numpy",
+          "periodictable",
+          "scipy",
+          "orsopy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0303868db79dd4826b87988adb0ab2e1564b888f267a4b179b17b66528a6d4c9",
+          "url": "https://pypi.org/packages/source/r/refl1d/refl1d-1.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "refl1d"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": {
+            "content": "refl1d --help\n",
+            "env": {
+              "PYTHONIOENCODING": "utf8"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 2.3.1
+
+package:
+  name: gitql
+  version: ${{ version }}
+
+source:
+  url: https://github.com/filhodanuvem/gitql/archive/v${{ version }}.tar.gz
+  sha256: e3d34649f3dc714cb3189638103918314cf63b1ddbfd99a067d802730d1119b2
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gitql --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Git query language
+  homepage: https://github.com/filhodanuvem/gitql
+  repository: https://github.com/filhodanuvem/gitql
+
+extra:
+  recipe-maintainers:
+    - danielnachun

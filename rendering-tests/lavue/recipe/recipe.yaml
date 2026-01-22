@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: lavue
+  version: "3.6.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/lavue-${{ version }}.tar.gz
+  sha256: acb55da0f3db38933647259fac1bbe0e56087cc073f9491c4476f3761171baef
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - h5py
+    - numpy >1.6.0
+    - pyqt
+    - pyqtgraph >=0.10.0
+    - python >=${{ python_min }}
+    - pytz
+    - pyzmq
+    - requests
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - lavuelib
+        - lavuelib.plugins
+      python_version: ["${{ python_min }}.*", "3.*"]
+  - script:
+      - lavue --help
+      - lavuemonitor --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  license: GPL-2.0-or-later
+  license_file: LICENSE
+  summary: Live image viewer application for photon science detectors.
+  description: |
+    This is a simple implementation of a live viewer front end.
+    It is supposed to show a live image view from xray-detectors
+    at PETRA3 @ desy.de, e.g. Pilatus, Lambda, Eiger, PerkinElmer,
+    PCO, LimaCCD, and others.
+  homepage: https://github.com/lavue-org/lavue
+  repository: https://github.com/lavue-org/lavue
+  documentation: https://lavue-org.github.io/lavue/stable/index.html
+
+extra:
+  recipe-maintainers:
+    - beenje

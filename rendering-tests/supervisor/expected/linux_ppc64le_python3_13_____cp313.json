@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_supervisor",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_supervisor/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_supervisor/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_supervisor/work"
+      },
+      "hash": {
+        "hash": "9052c52",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "supervisor": {
+          "build_string": "py313h9052c52_0",
+          "name": "supervisor",
+          "version": "4.3.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:53:01.518598100Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Supervisor is a client/server system that allows its users to monitor and\ncontrol a number of processes on UNIX-like operating systems.",
+        "documentation": "http://supervisord.org/",
+        "homepage": "http://supervisord.org/",
+        "license": "BSD-3-Clause-Modification AND BSD-3-Clause AND PSF-2.0",
+        "license_file": [
+          "LICENSES.txt"
+        ],
+        "repository": "https://github.com/Supervisor/supervisor",
+        "summary": "A Process Control System"
+      },
+      "build": {
+        "number": 0,
+        "string": "py313h9052c52_0"
+      },
+      "context": {
+        "name": "supervisor",
+        "version": "4.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kalefranz",
+          "sodre",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "supervisor",
+        "version": "4.3.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "sed"
+        ],
+        "host": [
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4a2bf149adf42997e1bb44b70c43b613275ec9852c3edacca86a9166b27e945e",
+          "url": "https://pypi.org/packages/source/s/supervisor/supervisor-4.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "supervisor"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "supervisor/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest >=2.5.2",
+              "mock >=0.5.0",
+              "pip"
+            ]
+          },
+          "script": [
+            "cp -r supervisor/tests $(python -c 'import site; print(site.getsitepackages()[0])')/supervisor",
+            "py.test supervisor/tests",
+            "supervisord -h",
+            "supervisorctl -h",
+            "echo_supervisord_conf -h",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

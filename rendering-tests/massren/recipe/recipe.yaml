@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  version: 1.5.7
+
+package:
+  name: massren
+  version: ${{ version }}
+
+source:
+  url: https://github.com/laurent22/massren/archive/v${{ version }}.tar.gz
+  sha256: 7e7dd149bd3364235247268cc684b5a35badd9bee22f39960e075c792d037a8c
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('go-cgo') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - go-licenses
+  host:
+    - sqlite
+
+tests:
+  - script:
+      - massren --help
+
+about:
+  license: MIT
+  license_file:
+    - README.md
+    - license-files/
+  summary: Easily rename multiple files using your text editor
+  homepage: https://github.com/laurent22/massren
+  repository: https://github.com/laurent22/massren
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,39 @@
+context:
+  version: "7.4.1"
+
+package:
+  name: fastify-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/fastify-cli/-/fastify-cli-${{ version }}.tgz
+  sha256: d82d4049aeb87121a5a11954fabb798a383e66c024b15b915edaca1fbddbd36b
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - fastify --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Run a fastify route with one command!
+  homepage: https://github.com/fastify/fastify-cli
+  repository: https://github.com/fastify/fastify-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

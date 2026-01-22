@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: fastobo
+  version: "0.14.1"
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: a230d780581332d041db29299f6c1b960b0228285d8de9981364540c14d069bc
+
+build:
+  number: 2
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=1,<2
+
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - pip
+    - maturin >=1,<2
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - fastobo
+
+about:
+  license: MIT
+  license_file:
+    - COPYING
+    - THIRDPARTY.yml
+  summary: Faultless AST for Open Biomedical Ontologies in Python
+  homepage: https://github.com/fastobo/fastobo-py
+  documentation: https://fastobo.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - althonos

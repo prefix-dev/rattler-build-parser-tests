@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docling-core/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "docling-core": {
+          "build_string": "pyhe01879c_0",
+          "name": "docling-core",
+          "version": "2.44.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:17.417948490Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/docling-project/docling-core",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A python library to define and validate data types in Docling."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "validate = docling_core.utils.validate:main",
+            "generate_jsonschema = docling_core.utils.generate_jsonschema:main",
+            "generate_docs = docling_core.utils.generate_docs:main",
+            "docling-view = docling_core.cli.view:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "docling-core",
+        "version": "2.44.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "docling-core",
+        "version": "2.44.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "poetry-core >=1.0.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "jsonschema >=4.16.0,<5.0.0",
+          "pydantic >=2.6.0,<3.0.0",
+          "jsonref >=1.1.0,<2.0.0",
+          "tabulate >=0.9.0,<1.0.0",
+          "pandas >=2.1.4,<3.0.0",
+          "pillow >=10.0.0,<12.0.0",
+          "pyyaml >=5.1,<7.0.0",
+          "typing-extensions >=4.12.2,<5.0.0",
+          "transformers >=4.34.0,<5.0.0",
+          "semchunk >=2.2.0,<3.0.0",
+          "typer >=0.12.5,<0.16.0",
+          "latex2mathml >=3.77.0,<4.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "de75ee451e62eb211069ce411b143dff463a8d779b23b771a8cde450957ff861",
+          "url": "https://pypi.org/packages/source/d/docling-core/docling_core-2.44.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "docling_core"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "validate --help",
+            "generate_jsonschema --help",
+            "generate_docs --help",
+            "docling-view --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

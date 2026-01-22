@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: google-cloud-core
+  version: 2.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7c1b7ef5c92311717bd05301aa1a91ffbc565673d3b0b4163a52d8413a186963
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    # excluding python 3.14 for now because we don't have the required grpcio on conda-forge
+    - python >=${{ python_min }},<3.14
+    - google-api-core >=1.31.6,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0
+    - google-auth >=1.25.0,<3.0.0
+    # grpc extra, python < 3.14
+    - grpcio >=1.38.0,<2.0.0
+    - grpcio-status >=1.38.0,<2.0.0
+
+tests:
+  - python:
+      imports:
+        - google.api_core.client_info
+        - google.cloud.client
+        - google.cloud.environment_vars
+        - google.cloud.exceptions
+        - google.cloud.operation
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: "API Client library for Google Cloud: Core Helpers"
+  description: This library is not meant to stand-alone. Instead it defines common helpers (e.g. base Client and Connection classes) used by all of the  google-cloud-*.
+  homepage: https://github.com/googleapis/python-cloud-core
+  repository: https://github.com/googleapis/python-cloud-core
+  documentation: https://googleapis.dev/python/google-cloud-core/latest/
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - parthea
+    - tswast

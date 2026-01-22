@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  version: 1.2.2
+
+package:
+  name: biotraj
+  version: ${{ version }}
+
+source:
+  url: https://github.com/biotite-dev/biotraj/archive/v${{ version }}.tar.gz
+  sha256: cc692e8048c5625d20996162b2c1d332b5b626dbc121b3d1a73f1eb546af2b7a
+
+build:
+  number: 2
+  skip: match(python, "<3.10")
+  script:
+    - if: not win
+      then: export SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}
+    - if: win
+      then: set SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - if: build_platform != target_platform
+      then: cython >=3.0
+    - if: build_platform != target_platform
+      then: numpy >=2.0
+    - ${{ stdlib("c") }}
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+  host:
+    - python
+    - pip
+    - setuptools >=64
+    - setuptools_scm >=8
+    - wheel >=0.30
+    - cython >=3.0
+    - numpy >=2.0
+  run:
+    - python
+    - numpy >=1.26
+    - scipy >=1.13
+
+tests:
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest
+        - netcdf4
+    script:
+      - pytest
+
+about:
+  license: LGPL-2.1-only
+  license_file: LICENSE.rst
+  summary: The package is internally used by https://github.com/biotite-dev/biotite
+  homepage: https://github.com/biotite-dev/biotraj/
+  repository: https://github.com/biotite-dev/biotraj
+
+extra:
+  recipe-maintainers:
+    - padix-key
+    - JHKru

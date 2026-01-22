@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.13.0
+
+package:
+  name: golines
+  version: ${{ version }}
+
+source:
+  url: https://github.com/segmentio/golines/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: ec1933e0fb73cf0517fd007d325603007aa65ce430267a70fc78cfea43d9716e
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - golines --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A golang formatter that fixes long lines
+  homepage: https://github.com/segmentio/golines
+  repository: https://github.com/segmentio/golines
+
+extra:
+  recipe-maintainers:
+    - danielnachun

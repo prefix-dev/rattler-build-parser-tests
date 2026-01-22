@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  version: 0.20.9
+
+package:
+  name: sos-pbs
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sos-pbs/sos-pbs-${{ version }}.tar.gz
+  sha256: 56f39c6eb96461df58cb492f209ede9ad5e2192b5922f12ae2610ac6a232ba1e
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+    - sos >=0.17.0
+
+tests:
+  - python:
+      imports:
+        - sos_pbs
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: PBS task engine for Script of Scripts (SoS)
+  homepage: https://github.com/vatlab/SOS
+  documentation: https://vatlab.github.io/sos-docs/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - BoPeng
+    - gaow
+    - jdblischak

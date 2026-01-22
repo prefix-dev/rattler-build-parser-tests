@@ -1,0 +1,82 @@
+schema_version: 1
+
+context:
+  name: correctionlib
+  version: "2.7.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/correctionlib-${{ version }}.tar.gz
+  sha256: e4116fe64941bc107be1e0b57a6be713dea177b8df92fc21c32701b6a1110a6f
+
+build:
+  number: 0
+  script:
+    # Travis ppc64le doesn't have enough memory to build in more than one thread.
+    - if: not (linux and ppc64le)
+      then: export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}
+      else: export CMAKE_BUILD_PARALLEL_LEVEL=1
+    - ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - correction = correctionlib.cli:main
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+  host:
+    - pip
+    - python
+    - zlib
+    - setuptools-scm
+    - scikit-build-core
+  run:
+    - packaging
+    - numpy >=1.13.3
+    - pydantic >=2
+    - python
+    - rich
+    - if: match(python, "<3.8")
+      then: typing-extensions
+
+tests:
+  - python:
+      imports:
+        - correctionlib
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+      - correction --help
+
+about:
+  summary: A generic correction library
+  description: |
+    The purpose of this library is to provide a well-structured JSON data format for
+    a wide variety of ad-hoc correction factors encountered in a typical HEP analysis
+    and a companion evaluation tool suitable for use in C++ and python programs. Here
+    we restrict our definition of correction factors to a class of functions with scalar
+    inputs that produce a scalar output.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://cms-nanoaod.github.io/correctionlib
+  repository: https://github.com/cms-nanoAOD/correctionlib
+
+extra:
+  recipe-maintainers:
+    - lgray
+    - nsmith-
+    - pieterdavid
+    - IzaakWN

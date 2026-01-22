@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: 2.1.0
+
+package:
+  name: dead
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/dead/dead-${{ version }}.tar.gz
+  sha256: e2b53c1ade71fc4aadafa74237b034b622d0bd3d81811d336d64e67083439d76
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - dead=dead:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - identify
+
+tests:
+  - python:
+      imports:
+        - dead
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - dead --help
+
+about:
+  summary: dead simple python dead code detection
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/asottile/dead
+
+extra:
+  recipe-maintainers:
+    - danielnachun

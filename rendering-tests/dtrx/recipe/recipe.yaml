@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: 8.7.1
+
+package:
+  name: dtrx
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/dtrx/dtrx-${{ version }}.tar.gz
+  sha256: d3be625ce7860c82d5159a551bbd215eada8a11cf4f82557e4f77eabc0986e43
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - dtrx = dtrx.dtrx:main
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+    - wheel
+  run:
+    - bzip2
+    - p7zip
+    - python >=${{ python_min }}
+    - unzip
+    - xz-tools
+
+tests:
+  - python:
+      imports:
+        - dtrx
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - dtrx --help
+
+about:
+  summary: Script to intelligently extract multiple archive types
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  homepage: https://github.com/dtrx-py/dtrx
+
+extra:
+  recipe-maintainers:
+    - danielnachun

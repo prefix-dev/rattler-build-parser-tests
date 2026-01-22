@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.7.1"
+
+package:
+  name: panoptes-client
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/panoptes-client/panoptes_client-${{ version }}.tar.gz
+  sha256: 325b67673c5bfa63651db00b62c3c9c0a617b6a44a55a453151082d96fe27b2b
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - future >=0.16
+    - python >=${{ python_min }}
+    - python-magic >=0.4
+    - redo >=1.7
+    - requests >=2.4.2
+    - six >=1.9
+
+tests:
+  - python:
+      imports: panoptes_client
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source panoptes_client --branch -m pytest -vv --tb=long --color=yes --pyargs panoptes_client
+      - coverage report --show-missing --skip-covered --fail-under=69
+
+about:
+  summary: This package is the Python SDK for Panoptes, the platform behind the Zooniverse.
+  license: Apache-2.0
+  license_file: LICENSE
+  description: |-
+    This module is intended to allow programmatic management of projects,
+    providing high level access to the API for common project management tasks.
+  homepage: https://github.com/zooniverse/panoptes-python-client
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

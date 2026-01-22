@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: simpeg-drivers
+  version: "0.3.0"
+  python_min: '3.10'
+  python_max: '3.12'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/MiraGeoscience/${{ name }}/archive/v${{ version }}.zip
+  sha256: 1f6d58aaba5c7fa939ac57d59d0cdb06beb2050011826f439e05d69edd535acc
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry-core >=1.0.0
+  run:
+    - python >=${{ python_min }},<${{ python_max }}
+    # Mira packages
+    - geoapps-utils >=0.5.0, <0.6.dev
+    - geoh5py >=0.11.0, <0.12.dev
+    - mira-simpeg >=0.23.0.1, <0.23.1.dev
+    - octree-creation-app >=0.3.0, <0.4.dev
+    - param-sweeps >=0.2.1, <0.3.dev
+    # direct dependencies
+    - dask-core >=2025.3, <2025.4.dev
+    - discretize >=0.11.0, <0.12.dev
+    - distributed >=2025.3, <2025.4.dev
+    - numpy >=1.26.0, <1.27.dev
+    - pydantic >=2.5.2, <3.0.dev
+    - scikit-learn >=1.4.0, <1.5.dev
+    - scipy >=1.14.0, <1.15.dev
+    - tqdm >=4.66.1, <5.0.dev
+    # constrain version for some indirect dependencies from SimPEG
+    - geoana >=0.7.0, <0.8.dev
+    - matplotlib-base >=3.8.4, <3.9.dev
+    - pymatsolver >=0.3.0, <0.4.dev
+    - zarr >=2.14.2, <2.15.dev
+    # although one of pydiso or mumps is sufficient, list them both
+    - pydiso >=0.1.0,<0.2.dev
+    - python-mumps >=0.0.3,<0.0.4.dev
+  run_constraints:
+    - __glibc >=2.17
+    - bokeh >=3.6.0, <3.7.dev
+    - fsspec >=2022.0
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - simpeg_drivers
+        - dask
+        - distributed
+        - geoh5py
+        - simpeg
+      pip_check: true
+  # TODO: select some test to run, not too heavy on memory for the conda-forge pipeline
+  # - script:
+  #     - pytest --ignore=tests/version_test.py
+  #   requirements:
+  #     run:
+  #       - pytest
+  #   files:
+  #     source:
+  #       - tests/
+
+about:
+  summary: Application to run SimPEG inversions with geoh5 files from Geoscience Analyst.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://www.mirageoscience.com/mining-industry-software/python-integration/
+  repository: https://github.com/MiraGeoscience/simpeg-drivers
+  documentation: https://mirageoscience-simpeg-drivers.readthedocs-hosted.com/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/geoh5py

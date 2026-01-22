@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.17.0
+
+package:
+  name: go-gum
+  version: ${{ version }}
+
+source:
+  url: https://github.com/charmbracelet/gum/archive/v${{ version }}.tar.gz
+  sha256: 763a7f89dfebf8e77f86e680bace48a09423cfb9e4b4f4ba22d2c9836d311f95
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gum --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Tool for glamorous shell scripts
+  homepage: https://github.com/charmbracelet/gum
+  repository: https://github.com/charmbracelet/gum
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,1050 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtiledbsoma",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtiledbsoma/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtiledbsoma/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtiledbsoma/work"
+      },
+      "hash": {
+        "hash": "77b3010"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.030992371Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "spdlog": "1.17",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Configure\ncmake -G Ninja \\\n  ${CMAKE_ARGS} \\\n  -DCMAKE_BUILD_TYPE=\"Release\" \\\n  -DCMAKE_INSTALL_PREFIX=${PREFIX} \\\n  -DDOWNLOAD_TILEDB_PREBUILT=OFF \\\n  -DOVERRIDE_INSTALL_PREFIX=OFF \\\n  -DFORCE_BUILD_TILEDB=OFF \\\n  -DTILEDBSOMA_BUILD_PYTHON=ON \\\n  -DTILEDBSOMA_BUILD_CLI=ON \\\n  -DTILEDBSOMA_ENABLE_TESTING=OFF \\\n  -DTILEDBSOMA_ENABLE_WERROR=OFF \\\n  -DTileDB_DIR=\"${PREFIX}\" \\\n  -DSPDLOG_LINK_SHARED=ON \\\n  -B build/ \\\n  -S $SRC_DIR/libtiledbsoma\n\n# Compile\ncmake --build build/ -j ${CPU_COUNT}\n\n# Install\ncmake --build build/ -j ${CPU_COUNT} --target install-libtiledbsoma\n",
+        "string": "h77b3010_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "libtiledbsoma",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "tiledb",
+          "spdlog",
+          "fmt"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "exact": true,
+                "name": "libtiledbsoma"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "script": "tdbsoma"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "tdbsoma"
+            ],
+            "files": [
+              "lib/cmake/tiledbsoma/TileDBSomaConfig.cmake",
+              "lib/cmake/tiledbsoma/TileDBSomaTargets-release.cmake",
+              "lib/cmake/tiledbsoma/TileDBSomaTargets.cmake"
+            ],
+            "include": [
+              "tiledbsoma/nanoarrow/nanoarrow.h",
+              "tiledbsoma/nanoarrow/nanoarrow.hpp",
+              "tiledbsoma/nlohmann/json.hpp",
+              "tiledbsoma/reindexer/reindexer.h",
+              "tiledbsoma/soma/array_buffers.h",
+              "tiledbsoma/soma/column_buffer.h",
+              "tiledbsoma/soma/enums.h",
+              "tiledbsoma/soma/logger_public.h",
+              "tiledbsoma/soma/managed_query.h",
+              "tiledbsoma/soma/soma_array.h",
+              "tiledbsoma/soma/soma_collection.h",
+              "tiledbsoma/soma/soma_context.h",
+              "tiledbsoma/soma/soma_dataframe.h",
+              "tiledbsoma/soma/soma_dense_ndarray.h",
+              "tiledbsoma/soma/soma_experiment.h",
+              "tiledbsoma/soma/soma_geometry_dataframe.h",
+              "tiledbsoma/soma/soma_group.h",
+              "tiledbsoma/soma/soma_measurement.h",
+              "tiledbsoma/soma/soma_multiscale_image.h",
+              "tiledbsoma/soma/soma_object.h",
+              "tiledbsoma/soma/soma_point_cloud_dataframe.h",
+              "tiledbsoma/soma/soma_scene.h",
+              "tiledbsoma/soma/soma_sparse_ndarray.h",
+              "tiledbsoma/tiledbsoma",
+              "tiledbsoma/tiledbsoma_export.h",
+              "tiledbsoma/utils/arrow_adapter.h",
+              "tiledbsoma/utils/common.h",
+              "tiledbsoma/utils/fastercsx.h",
+              "tiledbsoma/utils/parallel_functions.h",
+              "tiledbsoma/utils/stats.h",
+              "tiledbsoma/utils/util.h",
+              "tiledbsoma/utils/version.h"
+            ],
+            "lib": [
+              "tiledbsoma"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/work"
+      },
+      "hash": {
+        "hash": "4e6b772",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        },
+        "tiledbsoma-py": {
+          "build_string": "py310h4e6b772_1",
+          "name": "tiledbsoma-py",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.201408998Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.10.* *_cpython",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Set the version\necho \"${PKG_VERSION}\" > ${SRC_DIR}/apis/python/RELEASE-VERSION\n\n# Define prefix for tiledb and tiledbsoma\nexport TILEDB_PATH=\"$PREFIX\"\nexport TILEDBSOMA_PATH=\"$PREFIX\"\n\n# Use Ninja\nexport CMAKE_GENERATOR=\"Ninja\"\n\n# Build the python binding\n${{ PYTHON }} -m pip install apis/python/ -vv --no-deps --no-build-isolation\n",
+        "string": "py310h4e6b772_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "tiledbsoma-py",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.10.0",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools >=70.1",
+          "pip",
+          "pybind11 >=2.10.0",
+          "libtiledbsoma",
+          "tiledb"
+        ],
+        "run": [
+          "python",
+          "anndata >=0.10.1",
+          "attrs >=22.2",
+          "more-itertools",
+          "numpy",
+          "pandas",
+          "pyarrow",
+          "scanpy >=1.9.2",
+          "scipy",
+          "somacore ==1.0.29",
+          "typing_extensions >=4.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tiledbsoma"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "apis/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "typeguard"
+            ]
+          },
+          "script": "# NOTE: we only test a subset of the test suite to avoid long build times but\n# still make sure the package is working.\npytest -vvv \\\n  apis/python/tests/test_experiment_basic.py \\\n  apis/python/tests/test_type_system.py \\\n  apis/python/tests/test_stats.py \\\n  apis/python/tests/test_simple.py \\\n  apis/python/tests/test_scene.py \\\n  apis/python/tests/test_reindexer_api.py \\\n  apis/python/tests/test_regression.py \\\n  apis/python/tests/test_point_cloud_dataframe.py\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/work"
+      },
+      "hash": {
+        "hash": "8202cc0",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        },
+        "tiledbsoma-py": {
+          "build_string": "py311h8202cc0_1",
+          "name": "tiledbsoma-py",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.201698929Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Set the version\necho \"${PKG_VERSION}\" > ${SRC_DIR}/apis/python/RELEASE-VERSION\n\n# Define prefix for tiledb and tiledbsoma\nexport TILEDB_PATH=\"$PREFIX\"\nexport TILEDBSOMA_PATH=\"$PREFIX\"\n\n# Use Ninja\nexport CMAKE_GENERATOR=\"Ninja\"\n\n# Build the python binding\n${{ PYTHON }} -m pip install apis/python/ -vv --no-deps --no-build-isolation\n",
+        "string": "py311h8202cc0_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "tiledbsoma-py",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.10.0",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools >=70.1",
+          "pip",
+          "pybind11 >=2.10.0",
+          "libtiledbsoma",
+          "tiledb"
+        ],
+        "run": [
+          "python",
+          "anndata >=0.10.1",
+          "attrs >=22.2",
+          "more-itertools",
+          "numpy",
+          "pandas",
+          "pyarrow",
+          "scanpy >=1.9.2",
+          "scipy",
+          "somacore ==1.0.29",
+          "typing_extensions >=4.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tiledbsoma"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "apis/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "typeguard"
+            ]
+          },
+          "script": "# NOTE: we only test a subset of the test suite to avoid long build times but\n# still make sure the package is working.\npytest -vvv \\\n  apis/python/tests/test_experiment_basic.py \\\n  apis/python/tests/test_type_system.py \\\n  apis/python/tests/test_stats.py \\\n  apis/python/tests/test_simple.py \\\n  apis/python/tests/test_scene.py \\\n  apis/python/tests/test_reindexer_api.py \\\n  apis/python/tests/test_regression.py \\\n  apis/python/tests/test_point_cloud_dataframe.py\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/work"
+      },
+      "hash": {
+        "hash": "6fe0bbd",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        },
+        "tiledbsoma-py": {
+          "build_string": "py312h6fe0bbd_1",
+          "name": "tiledbsoma-py",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.201969620Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Set the version\necho \"${PKG_VERSION}\" > ${SRC_DIR}/apis/python/RELEASE-VERSION\n\n# Define prefix for tiledb and tiledbsoma\nexport TILEDB_PATH=\"$PREFIX\"\nexport TILEDBSOMA_PATH=\"$PREFIX\"\n\n# Use Ninja\nexport CMAKE_GENERATOR=\"Ninja\"\n\n# Build the python binding\n${{ PYTHON }} -m pip install apis/python/ -vv --no-deps --no-build-isolation\n",
+        "string": "py312h6fe0bbd_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "tiledbsoma-py",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.10.0",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools >=70.1",
+          "pip",
+          "pybind11 >=2.10.0",
+          "libtiledbsoma",
+          "tiledb"
+        ],
+        "run": [
+          "python",
+          "anndata >=0.10.1",
+          "attrs >=22.2",
+          "more-itertools",
+          "numpy",
+          "pandas",
+          "pyarrow",
+          "scanpy >=1.9.2",
+          "scipy",
+          "somacore ==1.0.29",
+          "typing_extensions >=4.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tiledbsoma"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "apis/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "typeguard"
+            ]
+          },
+          "script": "# NOTE: we only test a subset of the test suite to avoid long build times but\n# still make sure the package is working.\npytest -vvv \\\n  apis/python/tests/test_experiment_basic.py \\\n  apis/python/tests/test_type_system.py \\\n  apis/python/tests/test_stats.py \\\n  apis/python/tests/test_simple.py \\\n  apis/python/tests/test_scene.py \\\n  apis/python/tests/test_reindexer_api.py \\\n  apis/python/tests/test_regression.py \\\n  apis/python/tests/test_point_cloud_dataframe.py\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/work"
+      },
+      "hash": {
+        "hash": "e1e2645",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        },
+        "tiledbsoma-py": {
+          "build_string": "py313he1e2645_1",
+          "name": "tiledbsoma-py",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.202255171Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Set the version\necho \"${PKG_VERSION}\" > ${SRC_DIR}/apis/python/RELEASE-VERSION\n\n# Define prefix for tiledb and tiledbsoma\nexport TILEDB_PATH=\"$PREFIX\"\nexport TILEDBSOMA_PATH=\"$PREFIX\"\n\n# Use Ninja\nexport CMAKE_GENERATOR=\"Ninja\"\n\n# Build the python binding\n${{ PYTHON }} -m pip install apis/python/ -vv --no-deps --no-build-isolation\n",
+        "string": "py313he1e2645_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "tiledbsoma-py",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.10.0",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools >=70.1",
+          "pip",
+          "pybind11 >=2.10.0",
+          "libtiledbsoma",
+          "tiledb"
+        ],
+        "run": [
+          "python",
+          "anndata >=0.10.1",
+          "attrs >=22.2",
+          "more-itertools",
+          "numpy",
+          "pandas",
+          "pyarrow",
+          "scanpy >=1.9.2",
+          "scipy",
+          "somacore ==1.0.29",
+          "typing_extensions >=4.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tiledbsoma"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "apis/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "typeguard"
+            ]
+          },
+          "script": "# NOTE: we only test a subset of the test suite to avoid long build times but\n# still make sure the package is working.\npytest -vvv \\\n  apis/python/tests/test_experiment_basic.py \\\n  apis/python/tests/test_type_system.py \\\n  apis/python/tests/test_stats.py \\\n  apis/python/tests/test_simple.py \\\n  apis/python/tests/test_scene.py \\\n  apis/python/tests/test_reindexer_api.py \\\n  apis/python/tests/test_regression.py \\\n  apis/python/tests/test_point_cloud_dataframe.py\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tiledbsoma-py/work"
+      },
+      "hash": {
+        "hash": "d541f0c",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtiledbsoma": {
+          "build_string": "h77b3010_1",
+          "name": "libtiledbsoma",
+          "version": "2.2.0"
+        },
+        "tiledbsoma-py": {
+          "build_string": "py314hd541f0c_1",
+          "name": "tiledbsoma-py",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.202520141Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64",
+        "tiledb": "2.30"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/single-cell-data/TileDB-SOMA/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python and R SOMA APIs using TileDB's cloud-native format. Ideal for single-cell data at any scale."
+      },
+      "build": {
+        "number": 1,
+        "script": "# Set the version\necho \"${PKG_VERSION}\" > ${SRC_DIR}/apis/python/RELEASE-VERSION\n\n# Define prefix for tiledb and tiledbsoma\nexport TILEDB_PATH=\"$PREFIX\"\nexport TILEDBSOMA_PATH=\"$PREFIX\"\n\n# Use Ninja\nexport CMAKE_GENERATOR=\"Ninja\"\n\n# Build the python binding\n${{ PYTHON }} -m pip install apis/python/ -vv --no-deps --no-build-isolation\n",
+        "string": "py314hd541f0c_1"
+      },
+      "context": {
+        "name": "tiledbsoma",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "feedstock-name": "tiledbsoma",
+        "recipe-maintainers": [
+          "jp-dark",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "tiledbsoma-py",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11 >=2.10.0",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake >=3.21,<4",
+          "ninja",
+          "pkg-config",
+          "git"
+        ],
+        "host": [
+          "python",
+          "setuptools >=70.1",
+          "pip",
+          "pybind11 >=2.10.0",
+          "libtiledbsoma",
+          "tiledb"
+        ],
+        "run": [
+          "python",
+          "anndata >=0.10.1",
+          "attrs >=22.2",
+          "more-itertools",
+          "numpy",
+          "pandas",
+          "pyarrow",
+          "scanpy >=1.9.2",
+          "scipy",
+          "somacore ==1.0.29",
+          "typing_extensions >=4.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "include-thread-pool.patch"
+          ],
+          "sha256": "68c8ec12aad19dc121105085ffe637df1619843f00185826d331c64be10ad582",
+          "url": "https://github.com/single-cell-data/TileDB-SOMA/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tiledbsoma"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "apis/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "typeguard"
+            ]
+          },
+          "script": "# NOTE: we only test a subset of the test suite to avoid long build times but\n# still make sure the package is working.\npytest -vvv \\\n  apis/python/tests/test_experiment_basic.py \\\n  apis/python/tests/test_type_system.py \\\n  apis/python/tests/test_stats.py \\\n  apis/python/tests/test_simple.py \\\n  apis/python/tests/test_scene.py \\\n  apis/python/tests/test_reindexer_api.py \\\n  apis/python/tests/test_regression.py \\\n  apis/python/tests/test_point_cloud_dataframe.py\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: colour-runner
+  version: 0.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 38b1ad31ffc34a517a8b8e39026b63f6cbe165852c30e0912dc18e0c2f9939f9
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - blessings
+    - pygments
+
+tests:
+  - python:
+      imports:
+        - colour_runner
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Colour formatting for unittest output
+  homepage: https://github.com/meshy/colour-runner
+  repository: https://github.com/meshy/colour-runner
+
+extra:
+  recipe-maintainers:
+    - philip-khor

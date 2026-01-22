@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 0.3.21
+
+package:
+  name: vim-vint
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/v/vim-vint/vim-vint-${{ version }}.tar.gz
+  sha256: 5dc59b2e5c2a746c88f5f51f3fafea3d639c6b0fdbb116bb74af27bf1c820d97
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - vint = vint:main
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools >=36.2.2
+  run:
+    - ansicolor
+    - chardet >=2.3.0
+    - python >=${{ python_min }}
+    - pyyaml >=3.11
+    - setuptools >=36.2.2
+    - typing >=3.6.2
+
+tests:
+  - python:
+      imports:
+        - vint
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - vint --help
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: Lint tool for Vim script Language
+  homepage: https://github.com/Kuniwak/vint
+  repository: https://github.com/Kuniwak/vint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

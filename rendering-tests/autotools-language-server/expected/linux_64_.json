@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autotools-language-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autotools-language-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autotools-language-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_autotools-language-server/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "autotools-language-server": {
+          "build_string": "pyhcf101f3_0",
+          "name": "autotools-language-server",
+          "version": "0.0.23"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:07.764920368Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Freed-Wu/autotools-language-server",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Freed-Wu/autotools-language-server",
+        "summary": "Language server for makefile and configure.ac"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "make-language-server = make_language_server.__main__:main",
+            "autoconf-language-server = make_language_server.__main__:main",
+            "autotools-language-server = make_language_server.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.0.23"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "autotools-language-server",
+        "version": "0.0.23"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "setuptools-scm >=6.2",
+          "setuptools-generate >=0.0.6",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "lsp-tree-sitter >=0.0.16",
+          "tree-sitter-make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fab272a1e049f854541f43c486bc8f73b9bde6e483245245f9d19c5273481964",
+          "url": "https://pypi.org/packages/source/a/autotools-language-server/autotools_language_server-0.0.23.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "autoconf_language_server",
+              "make_language_server"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python =3.10"
+            ]
+          },
+          "script": [
+            "pip check",
+            "make-language-server --help",
+            "autoconf-language-server --help",
+            "autotools-language-server --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

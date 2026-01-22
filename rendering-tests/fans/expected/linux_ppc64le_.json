@@ -1,0 +1,175 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fans",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fans/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fans/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fans/work"
+      },
+      "hash": {
+        "hash": "d8a7b1b"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fans": {
+          "build_string": "hd8a7b1b_0",
+          "name": "fans",
+          "version": "0.6.1"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:19.438495979Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Fourier-Accelerated Nodal Solver (FANS) is an FFT-based homogenization solver for microscale multiphysics problems.\nFANS is written in C++, built using CMake, and it has MPI parallelization.\nThe package exposes the binary FANS and the Python-bindings via libFANS.",
+        "homepage": "https://github.com/DataAnalyticsEngineering/FANS",
+        "license": "LGPL-3.0-only",
+        "license_family": "LGPL",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "FANS: an open-source, efficient, and parallel FFT-based homogenization solver designed to solve microscale multiphysics problems."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export OMPI_CC=$CC",
+          "export OMPI_CXX=$CXX",
+          "export OMPI_FC=$FC",
+          "export OPAL_PREFIX=\"$PREFIX\"",
+          "export FFLAGS=\"${FFLAGS} -DAVOID_MPI_IN_PLACE\"",
+          "export LDFLAGS=\"${LDFLAGS} -headerpad_max_install_names\"",
+          "# Filter out host-only CPU flags safely\nfor var in CFLAGS CXXFLAGS DEBUG_CFLAGS DEBUG_CXXFLAGS; do\n  val=\"${!var}\"\n  # Remove -march=nocona and -mtune=haswell as whole tokens\n  val=\"$(echo \"$val\" | sed -E 's/(^|[[:space:]])-march=nocona([[:space:]]|$)/ /g; s/(^|[[:space:]])-mtune=haswell([[:space:]]|$)/ /g')\"\n  # Normalize spacing (trim and collapse multiple spaces)\n  val=\"$(echo \"$val\" | tr -s ' ' | sed -E 's/^ //; s/ $//')\"\n  export \"$var=$val\"\ndone\nfor var in CFLAGS CXXFLAGS DEBUG_CFLAGS DEBUG_CXXFLAGS; do\n  echo \"$var cleaned: '${!var}'\"\ndone\n",
+          "mkdir build",
+          "cd build",
+          "cmake .. $CMAKE_ARGS -DFANS_LIBRARY_FOR_MICRO_MANAGER=ON",
+          "cmake --build . -j",
+          "cmake --install ."
+        ],
+        "string": "hd8a7b1b_0"
+      },
+      "context": {
+        "version": "0.6.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sanathkeshav",
+          "claudiushaag",
+          "EMMAOpenSource"
+        ]
+      },
+      "package": {
+        "name": "fans",
+        "version": "0.6.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake",
+          "make",
+          "ninja",
+          "pybind11",
+          "openmpi-mpicxx"
+        ],
+        "host": [
+          "hdf5 * mpi_openmpi*",
+          "fftw * mpi_openmpi*",
+          "openmpi-mpicxx",
+          "eigen",
+          "nlohmann_json"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7dc154337b29f0d3b66eee49c6bde3dc291cb06d49a0bbf554546f16ebf201f5",
+          "url": "https://github.com/DataAnalyticsEngineering/FANS/archive/refs/tags/v0.6.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "FANS"
+            ],
+            "lib": [
+              "FANS"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "jq"
+            ]
+          },
+          "script": [
+            "JSON_FILE=\"$PREFIX/etc/conda/test-files/$PKG_NAME/0/test/input_files/test_LinearElastic.json\"",
+            "MODIFIED_JSON_FILE=\"$PREFIX/etc/conda/test-files/$PKG_NAME/0/test/input_files/test_LinearElastic_mod.json\"",
+            "NEW_MS_FILENAME=\"$PREFIX/etc/conda/test-files/$PKG_NAME/0/test/microstructures/sphere32.h5\"",
+            "jq --arg new_filename \"$NEW_MS_FILENAME\" '.microstructure.filepath = $new_filename' \"$JSON_FILE\" > \"$MODIFIED_JSON_FILE\"",
+            "mpiexec -n 1 FANS \"$MODIFIED_JSON_FILE\" \"$PREFIX/etc/conda/test-files/$PKG_NAME/0//test/test_results.h5\""
+          ]
+        },
+        {
+          "script": "FANS --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

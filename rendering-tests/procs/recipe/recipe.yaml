@@ -1,0 +1,37 @@
+context:
+  version: "0.14.10"
+
+package:
+  name: procs
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dalance/procs/archive/v${{ version }}.tar.gz
+  sha256: 7b287ac253fd1d202b0ea6a9a8ba2ed97598cf8e7dfd539bd40e382c6dc6d350
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - procs --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Modern replacement for ps written by Rust
+  homepage: https://github.com/dalance/procs
+  repository: https://github.com/dalance/procs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,363 @@
+From e982abae8822c76122876917cf79d10dc0f33a90 Mon Sep 17 00:00:00 2001
+From: h-vetinari <h.vetinari@gmx.com>
+Date: Wed, 17 Dec 2025 04:50:37 +1100
+Subject: [PATCH 1/2] BLD: Add CMake option to build Python bindings without
+ rebuilding libz3 (redux) (#8088)
+
+* Add CMake option to build only Python bindings without rebuilding libz3
+
+Introduce Z3_BUILD_LIBZ3_CORE option (default ON) to control whether libz3 is built.
+When set to OFF with Z3_BUILD_PYTHON_BINDINGS=ON, only Python bindings are built
+using a pre-installed libz3 library. This is useful for package managers like
+conda-forge to avoid rebuilding libz3 for each Python version.
+
+Changes:
+- Add Z3_BUILD_LIBZ3_CORE option in src/CMakeLists.txt
+- When OFF, find and use pre-installed libz3 as imported target
+- Update Python bindings CMakeLists.txt to handle both built and imported libz3
+- Add documentation in README-CMake.md with usage examples
+
+Co-authored-by: NikolajBjorner <3085284+NikolajBjorner@users.noreply.github.com>
+
+* Fix CMake export issues when building only Python bindings
+
+Conditionally export Z3_EXPORTED_TARGETS only when Z3_BUILD_LIBZ3_CORE=ON
+to avoid errors when building Python bindings without building libz3.
+
+Co-authored-by: NikolajBjorner <3085284+NikolajBjorner@users.noreply.github.com>
+
+* Disable executable and test builds when not building libz3 core
+
+When Z3_BUILD_LIBZ3_CORE=OFF, automatically disable Z3_BUILD_EXECUTABLE
+and Z3_BUILD_TEST_EXECUTABLES to avoid build/install errors.
+
+Co-authored-by: NikolajBjorner <3085284+NikolajBjorner@users.noreply.github.com>
+
+* only build src/ folder if Z3_BUILD_LIBZ3_CORE is TRUE
+
+* move z3 python bindings to main CMake
+
+* move more logic to main CMakeLists.txt
+
+* move Z3_API_HEADER_FILES_TO_SCAN to main CMakeLists.txt
+
+---------
+
+Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com>
+Co-authored-by: NikolajBjorner <3085284+NikolajBjorner@users.noreply.github.com>
+---
+ CMakeLists.txt                | 103 +++++++++++++++++++++++++++++-----
+ README-CMake.md               |  46 ++++++++++++++-
+ src/CMakeLists.txt            |  43 +-------------
+ src/api/python/CMakeLists.txt |  33 ++++++++---
+ 4 files changed, 162 insertions(+), 63 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6d66f8dc4..1ff592e0e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -548,21 +548,93 @@ set(Z3_GENERATED_FILE_EXTRA_DEPENDENCIES
+ )
+ 
+ ################################################################################
+-# Z3 components, library and executables
++# API header files
+ ################################################################################
+-include(${PROJECT_SOURCE_DIR}/cmake/z3_add_component.cmake)
+-include(${PROJECT_SOURCE_DIR}/cmake/z3_append_linker_flag_list_to_target.cmake)
+-add_subdirectory(src)
++# This lists the API header files that are scanned by
++# some of the build rules to generate some files needed
++# by the build; needs to come before add_subdirectory(src)
++set(Z3_API_HEADER_FILES_TO_SCAN
++  z3_api.h
++  z3_ast_containers.h
++  z3_algebraic.h
++  z3_polynomial.h
++  z3_rcf.h
++  z3_fixedpoint.h
++  z3_optimization.h
++  z3_fpa.h
++  z3_spacer.h
++)
++set(Z3_FULL_PATH_API_HEADER_FILES_TO_SCAN "")
++foreach (header_file ${Z3_API_HEADER_FILES_TO_SCAN})
++  set(full_path_api_header_file "${CMAKE_CURRENT_SOURCE_DIR}/src/api/${header_file}")
++  list(APPEND Z3_FULL_PATH_API_HEADER_FILES_TO_SCAN "${full_path_api_header_file}")
++  if (NOT EXISTS "${full_path_api_header_file}")
++    message(FATAL_ERROR "API header file \"${full_path_api_header_file}\" does not exist")
++  endif()
++endforeach()
+ 
+ ################################################################################
+ # Create `Z3Config.cmake` and related files for the build tree so clients can
+ # use Z3 via CMake.
+ ################################################################################
+ include(CMakePackageConfigHelpers)
+-export(EXPORT Z3_EXPORTED_TARGETS
+-   NAMESPACE z3::
+-   FILE "${PROJECT_BINARY_DIR}/Z3Targets.cmake"
+-)
++
++option(Z3_BUILD_LIBZ3_CORE "Build the core libz3 library" ON)
++# Only export targets if we built libz3
++if (Z3_BUILD_LIBZ3_CORE)
++  ################################################################################
++  # Z3 components, library and executables
++  ################################################################################
++  include(${PROJECT_SOURCE_DIR}/cmake/z3_add_component.cmake)
++  include(${PROJECT_SOURCE_DIR}/cmake/z3_append_linker_flag_list_to_target.cmake)
++  add_subdirectory(src)
++
++  export(EXPORT Z3_EXPORTED_TARGETS
++     NAMESPACE z3::
++     FILE "${PROJECT_BINARY_DIR}/Z3Targets.cmake"
++  )
++else()
++  # When not building libz3, we need to find it
++  message(STATUS "Not building libz3, will look for pre-installed library")
++  find_library(Z3_LIBRARY NAMES z3 libz3
++    HINTS ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
++    PATH_SUFFIXES lib lib64
++  )
++  if (NOT Z3_LIBRARY)
++    message(FATAL_ERROR "Could not find pre-installed libz3. Please ensure libz3 is installed or set Z3_BUILD_LIBZ3_CORE=ON")
++  endif()
++  message(STATUS "Found libz3: ${Z3_LIBRARY}")
++
++  # Create an imported target for the pre-installed libz3
++  add_library(libz3 SHARED IMPORTED)
++  set_target_properties(libz3 PROPERTIES
++    IMPORTED_LOCATION "${Z3_LIBRARY}"
++  )
++  # Set include directories for the imported target
++  target_include_directories(libz3 INTERFACE
++    ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR}
++  )
++endif()
++
++################################################################################
++# Z3 API bindings
++################################################################################
++option(Z3_BUILD_PYTHON_BINDINGS "Build Python bindings for Z3" OFF)
++if (Z3_BUILD_PYTHON_BINDINGS)
++  # Validate configuration for Python bindings
++  if (Z3_BUILD_LIBZ3_CORE)
++    # Building libz3 together with Python bindings
++    if (NOT Z3_BUILD_LIBZ3_SHARED)
++      message(FATAL_ERROR "The python bindings will not work with a static libz3. "
++              "You either need to disable Z3_BUILD_PYTHON_BINDINGS or enable Z3_BUILD_LIBZ3_SHARED")
++    endif()
++  else()
++    # Using pre-installed libz3 for Python bindings
++    message(STATUS "Building Python bindings with pre-installed libz3")
++  endif()
++  add_subdirectory(src/api/python)
++endif()
++
+ set(Z3_FIRST_PACKAGE_INCLUDE_DIR "${PROJECT_BINARY_DIR}/src/api")
+ set(Z3_SECOND_PACKAGE_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/src/api")
+ set(Z3_CXX_PACKAGE_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/src/api/c++")
+@@ -593,12 +665,15 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/z3.pc.cmake.in"
+ # Create `Z3Config.cmake` and related files for install tree so clients can use
+ # Z3 via CMake.
+ ################################################################################
+-install(EXPORT
+-  Z3_EXPORTED_TARGETS
+-  FILE "Z3Targets.cmake"
+-  NAMESPACE z3::
+-  DESTINATION "${CMAKE_INSTALL_Z3_CMAKE_PACKAGE_DIR}"
+-)
++# Only install targets if we built libz3
++if (Z3_BUILD_LIBZ3_CORE)
++  install(EXPORT
++    Z3_EXPORTED_TARGETS
++    FILE "Z3Targets.cmake"
++    NAMESPACE z3::
++    DESTINATION "${CMAKE_INSTALL_Z3_CMAKE_PACKAGE_DIR}"
++  )
++endif()
+ set(Z3_INSTALL_TREE_CMAKE_CONFIG_FILE "${PROJECT_BINARY_DIR}/cmake/Z3Config.cmake")
+ set(Z3_FIRST_PACKAGE_INCLUDE_DIR "${CMAKE_INSTALL_INCLUDEDIR}")
+ set(Z3_SECOND_INCLUDE_DIR "")
+diff --git a/README-CMake.md b/README-CMake.md
+index c8fa0faae..26bde8f37 100644
+--- a/README-CMake.md
++++ b/README-CMake.md
+@@ -410,9 +410,10 @@ The following useful options can be passed to CMake whilst configuring.
+ * ``Python3_EXECUTABLE`` - STRING. The python executable to use during the build.
+ * ``Z3_ENABLE_TRACING_FOR_NON_DEBUG`` - BOOL. If set to ``TRUE`` enable tracing in non-debug builds, if set to ``FALSE`` disable tracing in non-debug builds. Note in debug builds tracing is always enabled.
+ * ``Z3_BUILD_LIBZ3_SHARED`` - BOOL. If set to ``TRUE`` build libz3 as a shared library otherwise build as a static library.
++* ``Z3_BUILD_LIBZ3_CORE`` - BOOL. If set to ``TRUE`` (default) build the core libz3 library. If set to ``FALSE``, skip building libz3 and look for a pre-installed library instead. This is useful when building only Python bindings on top of an already-installed libz3.
+ * ``Z3_ENABLE_EXAMPLE_TARGETS`` - BOOL. If set to ``TRUE`` add the build targets for building the API examples.
+ * ``Z3_USE_LIB_GMP`` - BOOL. If set to ``TRUE`` use the GNU multiple precision library. If set to ``FALSE`` use an internal implementation.
+-* ``Z3_BUILD_PYTHON_BINDINGS`` - BOOL. If set to ``TRUE`` then Z3's python bindings will be built.
++* ``Z3_BUILD_PYTHON_BINDINGS`` - BOOL. If set to ``TRUE`` then Z3's python bindings will be built. When ``Z3_BUILD_LIBZ3_CORE`` is ``FALSE``, this will build only the Python bindings using a pre-installed libz3.
+ * ``Z3_INSTALL_PYTHON_BINDINGS`` - BOOL. If set to ``TRUE`` and ``Z3_BUILD_PYTHON_BINDINGS`` is ``TRUE`` then running the ``install`` target will install Z3's Python bindings.
+ * ``Z3_BUILD_DOTNET_BINDINGS`` - BOOL. If set to ``TRUE`` then Z3's .NET bindings will be built.
+ * ``Z3_INSTALL_DOTNET_BINDINGS`` - BOOL. If set to ``TRUE`` and ``Z3_BUILD_DOTNET_BINDINGS`` is ``TRUE`` then running the ``install`` target will install Z3's .NET bindings.
+@@ -464,6 +465,49 @@ cmake -DCMAKE_BUILD_TYPE=Release -DZ3_ENABLE_TRACING_FOR_NON_DEBUG=FALSE ../
+ Z3 exposes various language bindings for its API. Below are some notes on building
+ and/or installing these bindings when building Z3 with CMake.
+ 
++### Python bindings
++
++#### Building Python bindings with libz3
++
++The default behavior when ``Z3_BUILD_PYTHON_BINDINGS=ON`` is to build both the libz3 library
++and the Python bindings together:
++
++```
++mkdir build
++cd build
++cmake -DZ3_BUILD_PYTHON_BINDINGS=ON -DZ3_BUILD_LIBZ3_SHARED=ON ../
++make
++```
++
++#### Building only Python bindings (using pre-installed libz3)
++
++For package managers like conda-forge that want to avoid rebuilding libz3 for each Python version,
++you can build only the Python bindings by setting ``Z3_BUILD_LIBZ3_CORE=OFF``. This assumes
++libz3 is already installed on your system:
++
++```
++# First, build and install libz3 (once)
++mkdir build-libz3
++cd build-libz3
++cmake -DZ3_BUILD_LIBZ3_SHARED=ON -DCMAKE_INSTALL_PREFIX=/path/to/prefix ../
++make
++make install
++
++# Then, build Python bindings for each Python version (quickly, without rebuilding libz3)
++cd ..
++mkdir build-py310
++cd build-py310
++cmake -DZ3_BUILD_LIBZ3_CORE=OFF \
++      -DZ3_BUILD_PYTHON_BINDINGS=ON \
++      -DCMAKE_INSTALL_PREFIX=/path/to/prefix \
++      -DPython3_EXECUTABLE=/path/to/python3.10 ../
++make
++make install
++```
++
++This approach significantly reduces build time when packaging for multiple Python versions,
++as the expensive libz3 compilation happens only once.
++
+ ### Java bindings
+ 
+ The CMake build uses the ``FindJava`` and ``FindJNI`` cmake modules to detect the
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 8441901e1..2af9a7170 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,29 +1,3 @@
+-################################################################################
+-# API header files
+-################################################################################
+-# This lists the API header files that are scanned by
+-# some of the build rules to generate some files needed
+-# by the build
+-set(Z3_API_HEADER_FILES_TO_SCAN
+-  z3_api.h
+-  z3_ast_containers.h
+-  z3_algebraic.h
+-  z3_polynomial.h
+-  z3_rcf.h
+-  z3_fixedpoint.h
+-  z3_optimization.h
+-  z3_fpa.h
+-  z3_spacer.h
+-)
+-set(Z3_FULL_PATH_API_HEADER_FILES_TO_SCAN "")
+-foreach (header_file ${Z3_API_HEADER_FILES_TO_SCAN})
+-  set(full_path_api_header_file "${CMAKE_CURRENT_SOURCE_DIR}/api/${header_file}")
+-  list(APPEND Z3_FULL_PATH_API_HEADER_FILES_TO_SCAN "${full_path_api_header_file}")
+-  if (NOT EXISTS "${full_path_api_header_file}")
+-    message(FATAL_ERROR "API header file \"${full_path_api_header_file}\" does not exist")
+-  endif()
+-endforeach()
+-
+ ################################################################################
+ # Traverse directories each adding a Z3 component
+ ################################################################################
+@@ -305,7 +279,7 @@ endif()
+ ################################################################################
+ cmake_dependent_option(Z3_BUILD_EXECUTABLE
+     "Build the z3 executable" ON
+-    "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
++    "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR;Z3_BUILD_LIBZ3_CORE" OFF)
+ 
+ if (Z3_BUILD_EXECUTABLE)
+     add_subdirectory(shell)
+@@ -317,26 +291,13 @@ endif()
+ 
+ cmake_dependent_option(Z3_BUILD_TEST_EXECUTABLES
+     "Build test executables" ON
+-    "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR" OFF)
++    "CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR;Z3_BUILD_LIBZ3_CORE" OFF)
+ 
+ 
+ if (Z3_BUILD_TEST_EXECUTABLES)
+     add_subdirectory(test)
+ endif()
+ 
+-
+-################################################################################
+-# Z3 API bindings
+-################################################################################
+-option(Z3_BUILD_PYTHON_BINDINGS "Build Python bindings for Z3" OFF)
+-if (Z3_BUILD_PYTHON_BINDINGS)
+-  if (NOT Z3_BUILD_LIBZ3_SHARED)
+-    message(FATAL_ERROR "The python bindings will not work with a static libz3. "
+-            "You either need to disable Z3_BUILD_PYTHON_BINDINGS or enable Z3_BUILD_LIBZ3_SHARED")
+-  endif()
+-  add_subdirectory(api/python)
+-endif()
+-
+ ################################################################################
+ # .NET bindings
+ ################################################################################
+diff --git a/src/api/python/CMakeLists.txt b/src/api/python/CMakeLists.txt
+index 5da66dfe4..e420c4c04 100644
+--- a/src/api/python/CMakeLists.txt
++++ b/src/api/python/CMakeLists.txt
+@@ -70,13 +70,32 @@ else()
+ endif()
+ 
+ # Link libz3 into the python directory so bindings work out of the box
+-add_custom_command(OUTPUT "${z3py_bindings_build_dest}/libz3${CMAKE_SHARED_MODULE_SUFFIX}"
+-  COMMAND "${CMAKE_COMMAND}" "-E" "${LINK_COMMAND}"
+-    "${PROJECT_BINARY_DIR}/libz3${CMAKE_SHARED_MODULE_SUFFIX}"
+-    "${z3py_bindings_build_dest}/libz3${CMAKE_SHARED_MODULE_SUFFIX}"
+-  DEPENDS libz3
+-  COMMENT "Linking libz3 into python directory"
+-)
++# Handle both built libz3 and pre-installed libz3
++if (TARGET libz3)
++  # Get the libz3 location - handle both regular and imported targets
++  get_target_property(LIBZ3_IS_IMPORTED libz3 IMPORTED)
++  if (LIBZ3_IS_IMPORTED)
++    # For imported targets, get the IMPORTED_LOCATION
++    get_target_property(LIBZ3_SOURCE_PATH libz3 IMPORTED_LOCATION)
++    # No dependency on libz3 target since it's pre-built
++    set(LIBZ3_DEPENDS "")
++  else()
++    # For regular targets, use the build output location
++    set(LIBZ3_SOURCE_PATH "${PROJECT_BINARY_DIR}/libz3${CMAKE_SHARED_MODULE_SUFFIX}")
++    set(LIBZ3_DEPENDS libz3)
++  endif()
++
++  add_custom_command(OUTPUT "${z3py_bindings_build_dest}/libz3${CMAKE_SHARED_MODULE_SUFFIX}"
++    COMMAND "${CMAKE_COMMAND}" "-E" "${LINK_COMMAND}"
++      "${LIBZ3_SOURCE_PATH}"
++      "${z3py_bindings_build_dest}/libz3${CMAKE_SHARED_MODULE_SUFFIX}"
++    DEPENDS ${LIBZ3_DEPENDS}
++    COMMENT "Linking libz3 into python directory"
++  )
++else()
++  message(FATAL_ERROR "libz3 target not found. Cannot build Python bindings.")
++endif()
++
+ 
+ # Convenient top-level target
+ add_custom_target(build_z3_python_bindings

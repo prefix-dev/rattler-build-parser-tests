@@ -1,0 +1,40 @@
+context:
+  version: "0.26.2"
+
+package:
+  name: prettierd
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@fsouza/prettierd/-/prettierd-${{ version }}.tgz
+  sha256: 452b29cb958b4f5623ad06e8f3bf54ca16f6b668bfface1ee023c5278166fc42
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - prettierd --help
+
+about:
+  license: ISC
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: prettier, as a daemon, for ludicrous formatting speed
+  homepage: https://github.com/fsouza/prettierd
+  repository: https://github.com/fsouza/prettierd
+
+extra:
+  recipe-maintainers:
+    - danielnachun

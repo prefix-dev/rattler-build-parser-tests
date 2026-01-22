@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-assistant",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-assistant/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-assistant/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-assistant/work"
+      },
+      "hash": {
+        "hash": "cfc39dd"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pixi-assistant": {
+          "build_string": "hcfc39dd_1",
+          "name": "pixi-assistant",
+          "version": "0.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:50:44.689553580Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Helper CLI to check local system settings to work with pixi projects",
+        "documentation": "https://github.com/fmi-faim/pixi-assistant",
+        "homepage": "https://github.com/fmi-faim/pixi-assistant",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/fmi-faim/pixi-assistant",
+        "summary": "Summary of the package."
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "content": [
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hcfc39dd_1"
+      },
+      "context": {
+        "name": "pixi-assistant",
+        "version": "0.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "imagejan"
+        ]
+      },
+      "package": {
+        "name": "pixi-assistant",
+        "version": "0.1.0"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "62dfcecbfdb074df893824c43d048def0d679f513e3a4a4bd288d270e5cd477b",
+          "url": "https://github.com/fmi-faim/pixi-assistant/archive/refs/tags/0.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "pixi-assistant --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

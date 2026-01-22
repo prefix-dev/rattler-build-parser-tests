@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: structuretoolkit
+  version: "0.0.39"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/structuretoolkit-${{ version }}.tar.gz
+  sha256: e8307d7d1007631b14c690230c9592c32706f082450423539503a2ac189f7395
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - ase
+    - numpy
+    - scipy
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - ase >=3.20.1,<=3.27.0
+    - numpy >=1.23.5,<=2.3.5
+    - scipy >=1.9.3,<=1.16.3
+
+tests:
+  - python:
+      imports:
+        - structuretoolkit
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: structuretoolkit - to analyse, build and visualise atomistic structures.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyiron/structuretoolkit
+
+extra:
+  recipe-maintainers:
+    - niklassiemer
+    - pmrv
+    - srmnitc
+    - pyiron-runner
+    - jan-janssen

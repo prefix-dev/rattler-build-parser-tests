@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  version: 8.2.10
+
+package:
+  name: bdw-gc
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ivmai/bdwgc/archive/v${{ version }}.tar.gz
+  sha256: 5858a417ab3eaac2add0daf79cd29ddf248c9f648e6c08092b775dcbfcbe1edb
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: unix
+      then:
+        - autoconf
+        - automake
+        - libtool
+        - pkg-config
+        - make
+        - cmake
+        - ninja
+  host:
+    - if: win
+      then: libatomic_ops
+  run_exports:
+    - ${{ pin_subpackage('bdw-gc') }}
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -e $PREFIX/include/gc.h
+          - test -e $PREFIX/lib/libgc${SHLIB_EXT}
+      - if: win
+        then:
+          - if not exist %LIBRARY_INC%\gc.h exit 1
+          - if not exist %LIBRARY_BIN%\gc.dll exit 1
+
+about:
+  license: LicenseRef-Bdwgc-Mit-Like
+  license_file: LICENSE
+  summary: Garbage collector for C and C++.
+  homepage: http://www.hboehm.info/gc/
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - isuruf
+    - stefan-balke

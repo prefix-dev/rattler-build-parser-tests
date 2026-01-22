@@ -1,0 +1,462 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-core/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sardana-core": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sardana-core",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:51.378009091Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sardana is a software suite for Supervision,\nControl and Data Acquisition in scientific installations.\nIt aims to reduce cost and time of design, development and support of\nthe control and data acquisition systems.\nSardana development was started at the ALBA synchrotron and today is supported\nby a larger community which includes several other laboratories and individuals\n(ALBA, DESY, MaxIV, Solaris, ESRF).",
+        "documentation": "https://sardana-controls.org/",
+        "homepage": "http://www.sardana-controls.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/sardana-org/sardana",
+        "summary": "Sardana is a software suite for Supervision, Control and Data Acquisition in scientific installations."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "sardanactl = sardana.cli:main",
+            "MacroServer = sardana.tango.macroserver:main",
+            "Pool = sardana.tango.pool:main",
+            "Sardana = sardana.tango:main",
+            "spock = sardana.spock:main",
+            "diffractometeralignment = sardana.taurus.qt.qtgui.extra_hkl.diffractometeralignment:main",
+            "hklscan = sardana.taurus.qt.qtgui.extra_hkl.hklscan:main",
+            "macroexecutor = sardana.taurus.qt.qtgui.extra_macroexecutor.macroexecutor:_main",
+            "sequencer = sardana.taurus.qt.qtgui.extra_macroexecutor.sequenceeditor:_main",
+            "ubmatrix = sardana.taurus.qt.qtgui.extra_hkl.ubmatrix:main",
+            "showscan = sardana.taurus.qt.qtgui.extra_sardana.showscanonline:_main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install --no-deps -vv .",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "sardana",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rhomspuron",
+          "beenje",
+          "cpascual",
+          "reszelaz"
+        ]
+      },
+      "package": {
+        "name": "sardana-core",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "click",
+          "itango >=0.1.6",
+          "ipython >=5.1",
+          "lxml >=2.3",
+          "pytango >=9.2.5",
+          "python >=3.10",
+          "taurus-core >=5.1.4"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9956baebddd9ac18508fb2f4c8b42698032b15fadc32ecc629669d99ed505267",
+          "url": "https://pypi.org/packages/source/s/sardana/sardana-3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sardana",
+              "sardana.macroserver",
+              "sardana.pool"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "sardanactl --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-qt",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-qt/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-qt/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana-qt/work"
+      },
+      "hash": {
+        "hash": "a9aa47b"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sardana-core": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sardana-core",
+          "version": "3.6.0"
+        },
+        "sardana-qt": {
+          "build_string": "ha9aa47b_0",
+          "name": "sardana-qt",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:51.611087176Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "sardana_core": "3.6.0 pyhcf101f3_0",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sardana is a software suite for Supervision,\nControl and Data Acquisition in scientific installations.\nIt aims to reduce cost and time of design, development and support of\nthe control and data acquisition systems.\nSardana development was started at the ALBA synchrotron and today is supported\nby a larger community which includes several other laboratories and individuals\n(ALBA, DESY, MaxIV, Solaris, ESRF).",
+        "documentation": "https://sardana-controls.org/",
+        "homepage": "http://www.sardana-controls.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/sardana-org/sardana",
+        "summary": "Sardana is a software suite for Supervision, Control and Data Acquisition in scientific installations."
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "ha9aa47b_0"
+      },
+      "context": {
+        "name": "sardana",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rhomspuron",
+          "beenje",
+          "cpascual",
+          "reszelaz"
+        ]
+      },
+      "package": {
+        "name": "sardana-qt",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "run": [
+          "python >=3.10",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "sardana-core"
+            }
+          },
+          "taurus-qt >=5.1.4"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9956baebddd9ac18508fb2f4c8b42698032b15fadc32ecc629669d99ed505267",
+          "url": "https://pypi.org/packages/source/s/sardana/sardana-3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sardana.spock"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "sardanactl --help",
+            "sardanactl spock --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sardana/work"
+      },
+      "hash": {
+        "hash": "cdb87bc"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sardana": {
+          "build_string": "hcdb87bc_0",
+          "name": "sardana",
+          "version": "3.6.0"
+        },
+        "sardana-core": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sardana-core",
+          "version": "3.6.0"
+        },
+        "sardana-qt": {
+          "build_string": "ha9aa47b_0",
+          "name": "sardana-qt",
+          "version": "3.6.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:51.611341937Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "sardana_core": "3.6.0 pyhcf101f3_0",
+        "sardana_qt": "3.6.0 ha9aa47b_0",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sardana is a software suite for Supervision,\nControl and Data Acquisition in scientific installations.\nIt aims to reduce cost and time of design, development and support of\nthe control and data acquisition systems.\nSardana development was started at the ALBA synchrotron and today is supported\nby a larger community which includes several other laboratories and individuals\n(ALBA, DESY, MaxIV, Solaris, ESRF).",
+        "documentation": "https://sardana-controls.org/",
+        "homepage": "http://www.sardana-controls.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/sardana-org/sardana",
+        "summary": "Sardana is a software suite for Supervision, Control and Data Acquisition in scientific installations."
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "hcdb87bc_0"
+      },
+      "context": {
+        "name": "sardana",
+        "version": "3.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rhomspuron",
+          "beenje",
+          "cpascual",
+          "reszelaz"
+        ]
+      },
+      "package": {
+        "name": "sardana",
+        "version": "3.6.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "sardana-core"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "sardana-qt"
+            }
+          },
+          "sardana-config >=3.6.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9956baebddd9ac18508fb2f4c8b42698032b15fadc32ecc629669d99ed505267",
+          "url": "https://pypi.org/packages/source/s/sardana/sardana-3.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sardana"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "sardanactl --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

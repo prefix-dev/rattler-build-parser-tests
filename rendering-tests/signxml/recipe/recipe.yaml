@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: signxml
+  version: "4.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 5317b71f682d6b9ebd4a827d564eb43fe8f6edf98030fc30eb629621045441c6
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vvv --no-deps
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+  run:
+    - certifi >=2023.11.17
+    - cryptography >=43
+    - lxml >=5.2.1,<6
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - signxml
+        - signxml.util
+      python_version: ${{ python_min }}.*
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Python XML Signature library
+  homepage: https://xml-security.github.io/signxml/
+  repository: https://github.com/XML-Security/signxml
+  documentation: https://xml-security.github.io/signxml/
+
+extra:
+  recipe-maintainers:
+    - fhoehle

@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_healpix-geo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_healpix-geo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_healpix-geo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_healpix-geo/work"
+      },
+      "hash": {
+        "hash": "5eb8f6c",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "healpix-geo": {
+          "build_string": "py312h5eb8f6c_0",
+          "name": "healpix-geo",
+          "version": "0.0.9"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:30.973437027Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "healpix-geo uses the cdshealpix, moc, and geodesy crates to provide\nspecialized algorithms for the geosciences.",
+        "documentation": "https://healpix-geo.readthedocs.io/",
+        "homepage": "https://github.com/eopf-dggs/healpix-geo",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/eopf-dggs/healpix-geo",
+        "summary": "healpix for the geo-sciences"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "python -m pip install . -vv --no-build-isolation --no-deps"
+        ],
+        "string": "py312h5eb8f6c_0"
+      },
+      "context": {
+        "name": "healpix-geo",
+        "version": "0.0.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "keewis"
+        ]
+      },
+      "package": {
+        "name": "healpix-geo",
+        "version": "0.0.9"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "maturin >=1.7.0,<2.0",
+          "cargo-bundle-licenses",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "rust_linux-aarch64"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.7.0,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e7abafa947a0db74d3f2aff5c4cad159f61229c12d45480934aa892eaf9001b7",
+          "url": "https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v0.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "healpix_geo",
+              "healpix_geo.nested",
+              "healpix_geo.ring",
+              "healpix_geo.slices"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsodium",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsodium/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsodium/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsodium/work"
+      },
+      "hash": {
+        "hash": "280c20c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsodium": {
+          "build_string": "h280c20c_0",
+          "name": "libsodium",
+          "version": "1.0.21"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:31.617111017Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sodium is a new, easy-to-use software library for encryption, decryption,\nsignatures, password hashing and more. It is a portable, cross-compilable,\ninstallable, packageable fork of NaCl, with a compatible API, and an\nextended API to improve usability even further. Its goal is to provide all\nof the core operations needed to build higher-level cryptographic tools.",
+        "documentation": "https://download.libsodium.org/doc",
+        "homepage": "https://libsodium.org/",
+        "license": "ISC",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/jedisct1/libsodium",
+        "summary": "A modern and easy-to-use crypto library"
+      },
+      "build": {
+        "number": 0,
+        "script": "build",
+        "string": "h280c20c_0"
+      },
+      "context": {
+        "version": "1.0.21"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jakirkham",
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "libsodium",
+        "version": "1.0.21"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "libtool",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libsodium",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "6702f69bef6044163acc7715e6ac7e430890ce78.patch"
+          ],
+          "sha256": "9e4285c7a419e82dedb0be63a72eea357d6943bc3e28e6735bf600dd4883feaf",
+          "url": "https://download.libsodium.org/libsodium/releases/libsodium-1.0.21.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "not_exists": [
+                "lib/libsodium.a"
+              ]
+            },
+            "include": [
+              "sodium.h",
+              "sodium/version.h"
+            ],
+            "lib": [
+              "sodium"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

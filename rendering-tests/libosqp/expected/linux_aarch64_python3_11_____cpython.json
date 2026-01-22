@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libosqp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libosqp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libosqp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libosqp/work"
+      },
+      "hash": {
+        "hash": "5048fd8",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libosqp": {
+          "build_string": "np2py311h5048fd8_2",
+          "name": "libosqp",
+          "version": "1.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:32.916233818Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/osqp/osqp",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "algebra/_common/lin_sys/qdldl/amd/LICENSE"
+        ],
+        "summary": "The Operator Splitting QP Solver."
+      },
+      "build": {
+        "number": 2,
+        "string": "np2py311h5048fd8_2"
+      },
+      "context": {
+        "qdldlversion": "0.1.8",
+        "version": "1.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "libosqp",
+        "version": "1.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "ninja",
+          "python",
+          "numpy",
+          "scipy"
+        ],
+        "host": [
+          "libqdldl 0.1.8.*"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "numpy"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libosqp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Use-relative-path-to-testcodes-directory.patch",
+            "patches/0002-Link-against-qdldl-shared-library.patch",
+            "patches/0004-expose-missing-functions-windows-backport-744.patch"
+          ],
+          "sha256": "dd6a1c2e7e921485697d5e7cdeeb043c712526c395b3700601f51d472a7d8e48",
+          "url": "https://github.com/osqp/osqp/archive/refs/tags/v1.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/osqp/osqp-config.cmake"
+            ],
+            "include": [
+              "osqp/osqp.h"
+            ],
+            "lib": [
+              "osqp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

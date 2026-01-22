@@ -1,0 +1,38 @@
+context:
+  version: "2.79.0"
+
+package:
+  name: docfx
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dotnet/docfx/archive/v${{ version }}.tar.gz
+  sha256: cbb6c69a56c94f90303c3c1e2a61bd98720342223cdd667fecdb6a6e16c841d1
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - docfx --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Static site generator for .NET API documentation.
+  homepage: https://github.com/dotnet/docfx
+  repository: https://github.com/dotnet/docfx
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elixir",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elixir/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elixir/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elixir/work"
+      },
+      "hash": {
+        "hash": "3de5593"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "elixir": {
+          "build_string": "h3de5593_0",
+          "name": "elixir",
+          "version": "1.19.5"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:42:22.852097501Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "erlang_min": "26",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://elixir-lang.org/docs.html",
+        "homepage": "https://elixir-lang.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "LICENSES"
+        ],
+        "repository": "https://github.com/elixir-lang/elixir",
+        "summary": "Elixir is a dynamic, functional language designed for building scalable and maintainable applications"
+      },
+      "build": {
+        "number": 0,
+        "script": "make prefix=${PREFIX} install",
+        "string": "h3de5593_0"
+      },
+      "context": {
+        "version": "1.19.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "elixir",
+        "version": "1.19.5"
+      },
+      "requirements": {
+        "build": [
+          "git",
+          "make"
+        ],
+        "host": [
+          "erlang 26.*"
+        ],
+        "run": [
+          "erlang >=26"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "10750b8bd74b10ac1e25afab6df03e3d86999890fa359b5f02aa81de18a78e36",
+          "url": "https://github.com/elixir-lang/elixir/archive/v1.19.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "erlang 26.*"
+            ]
+          },
+          "script": [
+            "elixir --version",
+            "mix --version"
+          ]
+        },
+        {
+          "requirements": {
+            "run": [
+              "erlang >=26,!=26.*"
+            ]
+          },
+          "script": [
+            "elixir --version",
+            "mix --version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

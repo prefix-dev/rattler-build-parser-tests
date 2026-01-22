@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  python_min: 3.11
+  name: pokerkit
+  version: "0.7.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pokerkit-${{ version }}.tar.gz
+  sha256: 16a13b08b51ef360bc8ed5e8202543ac92fe4d782f3fec1c94d7b50187b6f21f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pokerkit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A Python package for various poker tools
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/uoftcprg/pokerkit
+
+extra:
+  recipe-maintainers:
+    - thewchan

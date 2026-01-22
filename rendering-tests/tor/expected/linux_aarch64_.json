@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tor",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tor/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tor/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tor/work"
+      },
+      "hash": {
+        "hash": "5a40e15"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tor": {
+          "build_string": "h5a40e15_0",
+          "name": "tor",
+          "version": "0.4.8.21"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:59.373173851Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libevent": "2.1.12",
+        "liblzma_devel": "5",
+        "openssl": "3.5",
+        "target_platform": "linux-aarch64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://torproject.org/",
+        "license": "BSD-2-Clause AND BSD-3-Clause AND MIT AND NCSA",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.torproject.org/tpo/core/tor",
+        "summary": "Anonymizing overlay network for TCP"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export CPPFLAGS=\"${CPPFLAGS/-DNDEBUG/}\"",
+          "echo $CPPFLAGS",
+          "./configure --prefix=\"$PREFIX\"${{ ' --disable-tool-name-check' if build_platform != target_platform else '' }}",
+          "make install"
+        ],
+        "string": "h5a40e15_0"
+      },
+      "context": {
+        "name": "tor",
+        "version": "0.4.8.21"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "tor",
+        "version": "0.4.8.21"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "libevent",
+          "libscrypt",
+          "openssl",
+          "zlib",
+          "liblzma-devel",
+          "zstd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "eaf6f5b73091b95576945eade98816ddff7cd005befe4d94718a6f766b840903",
+          "url": "https://www.torproject.org/dist/tor-0.4.8.21.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "tor --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

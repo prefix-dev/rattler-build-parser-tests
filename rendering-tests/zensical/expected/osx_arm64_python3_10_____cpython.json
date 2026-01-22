@@ -1,0 +1,211 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensical",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensical/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensical/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensical/work"
+      },
+      "hash": {
+        "hash": "2a75bce",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zensical": {
+          "build_string": "py310h2a75bce_0",
+          "name": "zensical",
+          "version": "0.0.17"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:36:03.205651603Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Write your documentation in Markdown and create a professional static site for your Open Source or commercial project in minutes \u2013 searchable, customizable, more than 60 languages, for all devices.",
+        "documentation": "https://zensical.org/",
+        "homepage": "https://zensical.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.md",
+          "THIRD_PARTY.yml",
+          "python/zensical/templates/.icons/fontawesome/LICENSE.txt",
+          "python/zensical/templates/.icons/material/LICENSE",
+          "python/zensical/templates/.icons/octicons/LICENSE",
+          "python/zensical/templates/.icons/simple/LICENSE.md",
+          "python/zensical/templates/.icons/lucide/LICENSE",
+          "python/zensical/templates/assets/javascripts/LICENSE",
+          "LICENSE-zensical-ui"
+        ],
+        "repository": "https://github.com/zensical/zensical",
+        "summary": "A modern static site generator by the creators of Material for MkDocs"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "zensical = zensical.main:cli"
+          ],
+          "version_independent": true
+        },
+        "script": {
+          "content": [
+            "cp ${RECIPE_DIR}/cargo-auditable-wrapper.sh ${BUILD_PREFIX}/bin/cargo-auditable-wrapper",
+            "python -m pip install . -vv",
+            "cargo-bundle-licenses --format yaml --output ./THIRD_PARTY.yml"
+          ],
+          "env": {
+            "CARGO": "cargo-auditable-wrapper",
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "py310h2a75bce_0"
+      },
+      "context": {
+        "name": "zensical",
+        "version": "0.0.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "zensical",
+        "version": "0.0.17"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses",
+          "cargo-auditable",
+          "python",
+          "cross-python_osx-arm64",
+          "maturin >=1.8,<2.0"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "pip",
+          "maturin >=1.8,<2.0"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_osx-arm64",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "click >=8.1.8",
+          "deepmerge >=2.0",
+          "markdown >=3.7",
+          "pygments >=2.16",
+          "pymdown-extensions >=10.15",
+          "pyyaml >=6.0.2",
+          "tomli >=2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9000183544d8e975cf81e1f8e2c4963f288c7f3f436902e8a10dcaf46e6809e2",
+          "url": "https://pypi.org/packages/source/z/zensical/zensical-0.0.17.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-zensical-ui",
+          "sha256": "c6e9d82df957f1f6c57a2a5d22e079556c3ba1d296b5a99562d075332e1218e5",
+          "url": "https://raw.githubusercontent.com/zensical/ui/refs/heads/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zensical"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "package_contents": {
+            "site_packages": [
+              "zensical/bootstrap/.github/workflows/docs.yml",
+              "zensical-0.0.17.dist-info/*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": [
+            "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+            "abi3audit $SP_DIR/zensical/zensical.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
+          ]
+        },
+        {
+          "script": "zensical --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

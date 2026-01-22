@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_roounfold",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_roounfold/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_roounfold/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_roounfold/work"
+      },
+      "hash": {
+        "hash": "0fd3fdb",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "roounfold": {
+          "build_string": "py310h0fd3fdb_4",
+          "name": "roounfold",
+          "version": "3.1.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:50.665987012Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.10.* *_cpython",
+        "root_base": "6.34.10",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "RooUnfold is a framework for unfolding (AKA \"deconvolution\" or\n\"unsmearing\").  It can be used from the ROOT prompt, or compiled and\nlinked against the ROOT libraries.  It currently implements seven\nmethods:\n  - iterative (\"Bayesian\");\n  - singular value decomposition (SVD, as proposed by H\u00f6cker and Kartvelishvili and implemented in TSVDUnfold);\n  - bin-by-bin (simple correction factors);\n  - an interface to the TUnfold method developed by Stefan Schmitt\n  - simple inversion of the response matrix without regularisation\n  - iterative dynamically stabilized (IDS) unfolding\n  - usage of gaussian processes (GP) for regularizing a kernel, as developed by Adam Bosson\n  - Poisson unfolding, a simple likelihood unfolding",
+        "documentation": "https://gitlab.cern.ch/RooUnfold/documentation/-/blob/master/RooUnfold_user_guide.pdf",
+        "homepage": "https://gitlab.cern.ch/RooUnfold/RooUnfold",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.cern.ch/RooUnfold/RooUnfold",
+        "summary": "RooUnfold is a framework for unfolding (AKA \"deconvolution\" or \"unsmearing\")."
+      },
+      "build": {
+        "number": 4,
+        "script": [
+          "cmake ${CMAKE_ARGS}  -S . -B build",
+          "cmake --build build --clean-first --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build",
+          "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+          "python -c \"import shutil, os, sysconfig; shutil.copytree(os.path.join(os.environ['SRC_DIR'], 'python'), os.path.join(os.environ['SP_DIR'], 'RooUnfold'), dirs_exist_ok=True)\""
+        ],
+        "string": "py310h0fd3fdb_4"
+      },
+      "context": {
+        "name": "RooUnfold",
+        "version": "3.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kratsg",
+          "cburgard"
+        ]
+      },
+      "package": {
+        "name": "roounfold",
+        "version": "3.1.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make",
+          "cross-python_osx-64",
+          "python",
+          "root_base"
+        ],
+        "host": [
+          "root_base",
+          "python"
+        ],
+        "run": [
+          "root_base",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/cmake-minimum-3.5.patch",
+            "patches/fix-so-import-for-osx.patch"
+          ],
+          "sha256": "14d83344c8f361e0738fb99af0dd1291db05fefc9b763b8749402235be3d755c",
+          "url": "https://gitlab.cern.ch/RooUnfold/RooUnfold/-/archive/3.1.0/RooUnfold-3.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "RooUnfold"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "root_base",
+              "python"
+            ]
+          },
+          "script": "printenv"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

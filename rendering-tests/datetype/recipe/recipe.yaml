@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: datetype
+  version: "2025.11.30"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/datetype-${{ version }}.tar.gz
+  sha256: 96ca1e81788e2978ec17eef0bb2286ca9dd5c418091a918881c607367f364578
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0.0
+    - pip
+    - wheel
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - datetype
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A type wrapper for the standard library `datetime` that supplies stricter checks.
+  license: AGPL-3.0-only
+  license_file: LICENSE.txt
+  homepage: https://github.com/glyph/DateType
+
+extra:
+  recipe-maintainers:
+    - thewchan

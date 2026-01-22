@@ -1,0 +1,44 @@
+context:
+  name: pyswagger
+  version: 0.8.39
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 6bde5b9aeebf0b032556aecd898e47264e84eefecd6249a0dc0dd826fd0640dd
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - pyaml >=15.03.1
+    - python >=${{ python_min }}
+    - six >=1.7.2
+    - validate_email
+
+tests:
+  - python:
+      imports:
+        - pyswagger
+        - pyswagger.consts
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A type-safe, dynamic, spec-compliant swagger client & converter for python
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pypi.org/project/pyswagger/
+
+extra:
+  recipe-maintainers:
+    - hadim

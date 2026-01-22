@@ -1,0 +1,198 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ogre",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ogre/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ogre/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ogre/work"
+      },
+      "hash": {
+        "hash": "5288fd0",
+        "prefix": "np2"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ogre": {
+          "build_string": "np2h5288fd0_0",
+          "name": "ogre",
+          "version": "14.5.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:39.398670441Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "assimp": "5.4.3",
+        "bullet_cpp": "3.25",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "freetype": "2",
+        "numpy": "2",
+        "openexr": "3.4",
+        "pugixml": "1.15",
+        "sdl2": "2",
+        "target_platform": "osx-arm64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://www.ogre3d.org/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "OGRE is a scene-oriented, flexible 3D engine written in C++ designed to make it easier and more intuitive for developers to produce games and demos utilising 3D hardware."
+      },
+      "build": {
+        "number": 0,
+        "string": "np2h5288fd0_0"
+      },
+      "context": {
+        "name": "ogre",
+        "version": "14.5.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "seanyen",
+          "wolfv",
+          "Tobias-Fischer",
+          "baszalmstra"
+        ]
+      },
+      "package": {
+        "name": "ogre",
+        "version": "14.5.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "xorg-libx11",
+          "xorg-libxaw",
+          "xorg-libxt",
+          "freetype",
+          "pugixml",
+          "zlib",
+          "zziplib",
+          "freeimage",
+          "openexr",
+          "sdl2",
+          "numpy",
+          "swig 4.0.*",
+          "bullet-cpp",
+          "assimp"
+        ],
+        "run": [
+          "xorg-libx11",
+          "xorg-libxaw",
+          "xorg-libxt",
+          "freetype",
+          "zlib",
+          "zziplib",
+          "freeimage",
+          "openexr",
+          "sdl2",
+          "lxml",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "numpy",
+              "upper_bound": "x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "ogre",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0002-osx-no-framework.patch",
+            "0003-clang11-fix.patch"
+          ],
+          "sha256": "7be194cd8ca5a075c2786bd76b7fce14ce3aa7e96fb4687ba6d68d8db940225d",
+          "url": "https://github.com/OGRECave/ogre/archive/v14.5.1.tar.gz"
+        },
+        {
+          "sha256": "4c7255f49d814a389c23d170ac4f25dfe9b84a392307b92abc77fa63114ce2b5",
+          "target_directory": "Components/Overlay/src/imgui/",
+          "url": "https://github.com/ocornut/imgui/archive/v1.73.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/pkgconfig/OGRE.pc"
+            ],
+            "include": [
+              "OGRE/OgreRoot.h"
+            ],
+            "lib": [
+              "OgreMain",
+              "OgreRTShaderSystem"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

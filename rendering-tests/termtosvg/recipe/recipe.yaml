@@ -1,0 +1,49 @@
+context:
+  name: termtosvg
+  version: 1.1.0
+  python_min: 3.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/termtosvg-${{ version }}.tar.gz
+  sha256: ed38f1615d7f873e784761d1b406ac73abbd2bbf0c517362f5c2fdc1919d65ee
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - termtosvg = termtosvg.main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - lxml
+    - pyte
+    - wcwidth
+
+tests:
+  - python:
+      imports:
+        - termtosvg
+      python_version: ${{ python_min }}.*
+  - script:
+      - termtosvg --help
+
+about:
+  summary: Record terminal sessions as SVG animations
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/nbedos/termtosvg
+
+extra:
+  recipe-maintainers:
+    - baszalmstra

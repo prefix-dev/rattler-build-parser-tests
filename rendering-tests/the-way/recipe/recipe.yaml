@@ -1,0 +1,38 @@
+context:
+  version: 0.20.3
+
+package:
+  name: the-way
+  version: ${{ version }}
+
+source:
+  url: https://github.com/out-of-cheese-error/the-way/archive/v${{ version }}.tar.gz
+  sha256: 84e0610f6b74c886c6cfa92cbce5f1d4f4d12b6e504d379c11659ab9ef980e97
+
+build:
+  number: 0
+  skip: win or ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - the-way --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: A code snippets manager for your terminal
+  homepage: https://github.com/out-of-cheese-error/the-way
+  repository: https://github.com/out-of-cheese-error/the-way
+
+extra:
+  recipe-maintainers:
+    - danielnachun

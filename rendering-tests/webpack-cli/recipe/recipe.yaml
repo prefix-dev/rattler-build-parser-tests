@@ -1,0 +1,39 @@
+context:
+  version: "6.0.1"
+
+package:
+  name: webpack-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/webpack-cli/-/webpack-cli-${{ version }}.tgz
+  sha256: f407788079854b0d48fb750da496c59cf00762dce3731520a4b375a377dec183
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - webpack-cli --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A bundler for javascript and friends.
+  homepage: https://github.com/webpack/webpack-cli
+  repository: https://github.com/webpack/webpack-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

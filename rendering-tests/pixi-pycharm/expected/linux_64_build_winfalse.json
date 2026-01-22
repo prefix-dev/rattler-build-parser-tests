@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-pycharm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-pycharm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-pycharm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi-pycharm/work"
+      },
+      "hash": {
+        "hash": "f108a03"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pixi-pycharm": {
+          "build_string": "unix_hf108a03_0",
+          "name": "pixi-pycharm",
+          "version": "0.0.10"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:41.682419158Z",
+      "variant": {
+        "__unix": "__unix",
+        "build_win": false,
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pixi.sh/latest/integration/editor/jetbrains",
+        "homepage": "https://pixi.sh/latest/integration/editor/jetbrains",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pavelzw/pixi-pycharm",
+        "summary": "Conda shim for PyCharm that proxies pixi"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": [
+          "mkdir -p $PREFIX/libexec",
+          "echo \"#!$PREFIX/bin/python\" > $PREFIX/libexec/conda",
+          "cat conda >> $PREFIX/libexec/conda",
+          "sed -i '2d' $PREFIX/libexec/conda",
+          "chmod +x $PREFIX/libexec/conda"
+        ],
+        "string": "unix_hf108a03_0"
+      },
+      "context": {
+        "build": 0,
+        "name": "pixi-pycharm",
+        "version": "0.0.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "pixi-pycharm",
+        "version": "0.0.10"
+      },
+      "requirements": {
+        "build": [
+          "sed"
+        ],
+        "run": [
+          "__unix",
+          "python >=3.8"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5240aa1f5e4c76cf75e901621a4f1ffaf232765235245462a6bee281a0395437",
+          "url": "https://github.com/pavelzw/pixi-pycharm/archive/refs/tags/v0.0.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -x $PREFIX/libexec/conda"
+        },
+        {
+          "package_contents": {
+            "files": [
+              "libexec/conda"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

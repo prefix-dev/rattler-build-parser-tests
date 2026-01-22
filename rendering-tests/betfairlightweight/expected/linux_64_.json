@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_betfairlightweight",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_betfairlightweight/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_betfairlightweight/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_betfairlightweight/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "betfairlightweight": {
+          "build_string": "pyhcf101f3_0",
+          "name": "betfairlightweight",
+          "version": "2.22.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:50:48.890269100Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Lightweight, super fast pythonic wrapper for Betfair API-NG allowing all\nbetting operations (including market and order streaming) and most account operations.",
+        "homepage": "https://github.com/betcode-org/betfair",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/betcode-org/betfair",
+        "summary": "Lightweight python wrapper for Betfair API-NG"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "betfairlightweight",
+        "version": "2.22.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors",
+          "liampauling"
+        ]
+      },
+      "package": {
+        "name": "betfairlightweight",
+        "version": "2.22.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.10",
+          "requests <2.33.0",
+          "orjson >=3.11.4",
+          "ciso8601 >=2.3.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "93ceee4bdde90f7663104d6163f2dfc8357f78bb57b631e0c3440d2904542f0a",
+          "url": "https://pypi.org/packages/source/b/betfairlightweight/betfairlightweight-2.22.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "betfairlightweight",
+              "betfairlightweight.endpoints",
+              "betfairlightweight.resources",
+              "betfairlightweight.streaming"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/*",
+              "HISTORY.rst"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "mock",
+              "python 3.10.*"
+            ]
+          },
+          "script": "python -m unittest discover -s tests --verbose"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotite",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotite/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotite/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotite/work"
+      },
+      "hash": {
+        "hash": "7b233e0",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biotite": {
+          "build_string": "py314h7b233e0_1",
+          "name": "biotite",
+          "version": "1.5.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:12.433647220Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.14.* *_cp314",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://www.biotite-python.org/",
+        "homepage": "https://www.biotite-python.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "repository": "https://github.com/biotite-dev/biotite",
+        "summary": "A comprehensive library for computational molecular biology"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "content": [
+            "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+          ],
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "1.5.0"
+          }
+        },
+        "string": "py314h7b233e0_1"
+      },
+      "context": {
+        "version": "1.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "t0mdavid-m",
+          "padix-key"
+        ]
+      },
+      "package": {
+        "name": "biotite",
+        "version": "1.5.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "cython",
+          "numpy >=2.0,<2.4",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "hatchling",
+          "hatch-vcs",
+          "hatch-cython",
+          "wheel >=0.30",
+          "cython >=3.0",
+          "numpy >=2.0,<2.4"
+        ],
+        "run": [
+          "python",
+          "biotraj >=1.0,<2.0",
+          "requests >=2.12",
+          "numpy >=1.26,<2.4",
+          "msgpack-python",
+          "networkx >=2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ffa59572a1b7c84be39cfbf4f0126fa2a441dcd500fd879d0a9b81b4e77abd84",
+          "url": "https://github.com/biotite-dev/biotite/archive/v1.5.0.tar.gz"
+        },
+        {
+          "sha256": "990acee8f10e90f370da2d431e9e6aba03720f1d20fb677fb95f93e0a0f56f02",
+          "target_directory": "src/biotite/structure/info/",
+          "url": "https://github.com/biotite-dev/biotite/releases/download/v1.5.0/components.bcif"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest tests//structure tests//sequence"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

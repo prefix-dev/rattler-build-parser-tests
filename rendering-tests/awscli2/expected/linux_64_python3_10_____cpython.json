@@ -1,0 +1,200 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscli",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscli/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscli/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscli/work"
+      },
+      "hash": {
+        "hash": "d3bfc61",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "awscli": {
+          "build_string": "py310hd3bfc61_0",
+          "name": "awscli",
+          "version": "2.33.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:10.344382002Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://aws.amazon.com/cli/",
+        "homepage": "https://aws.amazon.com/cli/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/aws/aws-cli",
+        "summary": "Universal Command Line Environment for AWS."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv",
+          "mkdir -p $PREFIX/share/bash-completions/completions && echo complete -C aws_completer aws >$PREFIX/share/bash-completions/completions/aws"
+        ],
+        "string": "py310hd3bfc61_0"
+      },
+      "context": {
+        "name": "awscli",
+        "version": "2.33.3"
+      },
+      "extra": {
+        "feedstock-name": "awscli2",
+        "recipe-maintainers": [
+          "xhochy",
+          "tkelman"
+        ]
+      },
+      "package": {
+        "name": "awscli",
+        "version": "2.33.3"
+      },
+      "requirements": {
+        "host": [
+          "python",
+          "flit-core ==3.9.0",
+          "pip",
+          "colorama >=0.2.5,<0.4.7",
+          "docutils >=0.10,<0.20",
+          "ruamel.yaml >=0.15.0,<=0.17.21",
+          "ruamel.yaml.clib >=0.2.0,<=0.2.12",
+          "prompt-toolkit >=3.0.24,<3.0.52",
+          "distro >=1.5.0,<1.9.0",
+          "awscrt ==0.29.1",
+          "python-dateutil >=2.1,<=2.9.0",
+          "jmespath >=0.7.1,<1.1.0",
+          "urllib3 >=1.25.4,<=2.6.3"
+        ],
+        "run": [
+          "python",
+          "colorama >=0.2.5,<0.4.7",
+          "docutils >=0.10,<0.20",
+          "ruamel.yaml >=0.15.0,<=0.17.21",
+          "ruamel.yaml.clib >=0.2.0,<=0.2.12",
+          "prompt-toolkit >=3.0.24,<3.0.52",
+          "distro >=1.5.0,<1.9.0",
+          "awscrt ==0.29.1",
+          "python-dateutil >=2.1,<=2.9.0",
+          "jmespath >=0.7.1,<1.1.0",
+          "urllib3 >=1.25.4,<=2.6.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9090e98fb20a67aa580855f3f4ed48499fead06d7fdb5e2f8cd40495f8641779",
+          "url": "https://github.com/aws/aws-cli/archive/2.33.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "awscli",
+              "awscli.autocomplete",
+              "awscli.autocomplete.local",
+              "awscli.autocomplete.serverside",
+              "awscli.autocomplete.serverside.custom_completers",
+              "awscli.autocomplete.serverside.custom_completers.ddb",
+              "awscli.autocomplete.serverside.custom_completers.logs",
+              "awscli.autoprompt",
+              "awscli.bcdoc",
+              "awscli.botocore",
+              "awscli.botocore.crt",
+              "awscli.botocore.docs",
+              "awscli.botocore.docs.bcdoc",
+              "awscli.botocore.retries",
+              "awscli.botocore.vendored",
+              "awscli.botocore.vendored.requests",
+              "awscli.botocore.vendored.requests.packages",
+              "awscli.botocore.vendored.requests.packages.urllib3",
+              "awscli.customizations",
+              "awscli.customizations.cloudformation",
+              "awscli.customizations.cloudtrail",
+              "awscli.customizations.codeartifact",
+              "awscli.customizations.codedeploy",
+              "awscli.customizations.configservice",
+              "awscli.customizations.configure",
+              "awscli.customizations.datapipeline",
+              "awscli.customizations.dlm",
+              "awscli.customizations.dynamodb",
+              "awscli.customizations.ec2",
+              "awscli.customizations.ec2instanceconnect",
+              "awscli.customizations.ecs",
+              "awscli.customizations.eks",
+              "awscli.customizations.emr",
+              "awscli.customizations.emrcontainers",
+              "awscli.customizations.gamelift",
+              "awscli.customizations.history",
+              "awscli.customizations.lightsail",
+              "awscli.customizations.logs",
+              "awscli.customizations.s3",
+              "awscli.customizations.s3.syncstrategy",
+              "awscli.customizations.servicecatalog",
+              "awscli.customizations.sso",
+              "awscli.customizations.wizard",
+              "awscli.customizations.wizard.ui",
+              "awscli.s3transfer"
+            ]
+          }
+        },
+        {
+          "script": [
+            "aws --version",
+            "aws_completer",
+            "python -c \"import awscli, os; assert os.stat(os.path.join(os.path.dirname(awscli.__file__), 'data', 'ac.index')).st_size > 1e6\"",
+            "COMP_LINE=\"aws ec2 describe-inst\" aws_completer"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

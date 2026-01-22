@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  name: lisaconstants
+  version: 2.0.2
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/${{ name | first }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 8b37c261810d09af964fd4cf1d2012c3b93994a811d90fd0a2d47e00a3c02400
+
+build:
+  number: 0
+  noarch: python
+  script:
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION_FOR_LISACONSTANTS: ${{ version }}
+    content: ${{ PYTHON }} -m pip install --use-pep517 .
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools_scm
+    - poetry-core
+    - poetry-dynamic-versioning
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - jinja2
+
+tests:
+  - python:
+      imports:
+        - lisaconstants
+      pip_check: true
+  - files:
+      source:
+        - tests/test_cheader.py
+        - tests/test_constants.py
+    requirements:
+      run:
+        - python ${{ python_min }}
+        - pip
+        - pytest
+    script:
+      - python -m pytest tests/test_cheader.py
+      - python -m pytest tests/test_constants.py
+
+about:
+  summary: Provides physical constants and LISA mission parameters sanctioned by the LISA Consortium
+  description: >
+    LISA Constants is a Python package providing values sanctioned by the LISA
+    Consortium for physical constants and mission parameters. LISA Constants is
+    intended to be consistently used by other pieces of software related to the
+    simulation of the instrument, of gravitational wave signals, and others.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://gitlab.esa.int/lisa-sgs/commons/lisa-constants
+  repository: https://gitlab.esa.int/lisa-sgs/commons/lisa-constants
+  documentation: https://lisa-sgs.io.esa.int/commons/lisa-constants
+
+extra:
+  recipe-maintainers:
+    - j2bbayle
+    - mpigou

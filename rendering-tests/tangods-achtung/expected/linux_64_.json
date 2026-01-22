@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tangods-achtung",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tangods-achtung/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tangods-achtung/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tangods-achtung/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tangods-achtung": {
+          "build_string": "pyhcf101f3_0",
+          "name": "tangods-achtung",
+          "version": "0.15.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:06.320829488Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.com/MaxIV/dev-maxiv-achtung",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://gitlab.com/MaxIV/dev-maxiv-achtung",
+        "summary": "Achtung, a Tango device for managing alarms (Panic compatible)"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "Achtung = achtung.achtung:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "tangods-achtung",
+        "version": "0.15.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje",
+          "johanfforsberg"
+        ]
+      },
+      "package": {
+        "name": "tangods-achtung",
+        "version": "0.15.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=45",
+          "wheel",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "pytango",
+          "pyparsing",
+          "httpx"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9d519696a9f623cea057c01582d186d2adaed580438ba04188c416b8cf01f076",
+          "url": "https://pypi.org/packages/source/t/tangods-achtung/tangods_achtung-0.15.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "achtung"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "Achtung --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.2.1
+
+package:
+  name: gaze
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wtetsu/gaze/archive/v${{ version }}.tar.gz
+  sha256: ba2878f5b0ddd385afbe6c8b3fcf92acdcd722113b97e52d2fafc53ee3cef918
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gaze --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Execute commands for you
+  homepage: https://github.com/whetsu/gaze
+  repository: https://github.com/whetsu/gaze
+
+extra:
+  recipe-maintainers:
+    - danielnachun

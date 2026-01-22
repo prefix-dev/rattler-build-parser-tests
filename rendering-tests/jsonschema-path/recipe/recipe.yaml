@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.3.4
+
+package:
+  name: jsonschema-path
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jsonschema-path/jsonschema_path-${{ version }}.tar.gz
+  sha256: 8365356039f16cc65fddffafda5f58766e34bebab7d6d105616ab52bc4297001
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
+  run:
+    - pathable >=0.4.1,<0.5.0
+    - python >=${{ python_min }}
+    - pyyaml >=5.1
+    - referencing <0.37.0
+    - requests >=2.31.0,<3.0.0
+
+tests:
+  - python:
+      pip_check: true
+      python_version: ${{ python_min }}.*
+      imports:
+        - jsonschema_path
+  - requirements:
+      run:
+        - mypy
+        - types-pyyaml
+        - types-requests
+        - python ${{ python_min }}.*
+    script:
+      - mypy -p jsonschema_path
+
+about:
+  summary: JSONSchema Spec with object-oriented paths
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/p1c2u/jsonschema-path
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

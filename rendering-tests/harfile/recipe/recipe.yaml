@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: harfile
+  version: "0.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/harfile-${{ version }}.tar.gz
+  sha256: 34e2d9ef34101d769566bffab3c420e147776174308bed1a036ed8db600cabde
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - harfile
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Writer for HTTP Archive (HAR) files
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/schemathesis/harfile
+
+extra:
+  recipe-maintainers:
+    - thewchan

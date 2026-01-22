@@ -1,0 +1,39 @@
+schema_version: 1
+
+context:
+  version: 0.16.0
+
+package:
+  name: hexyl
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sharkdp/hexyl/archive/v${{ version }}.tar.gz
+  sha256: 52853b4edede889b40fd6ff132e1354d957d1f26ee0c26ebdea380f8ce82cb0b
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - hexyl --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: A command-line hex viewer
+  homepage: https://github.com/sharkdp/hexyl
+
+extra:
+  recipe-maintainers:
+    - apcamargo
+    - danielnachun

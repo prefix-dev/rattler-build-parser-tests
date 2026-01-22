@@ -1,0 +1,40 @@
+context:
+  version: "7.0.0"
+
+package:
+  name: gtsjs
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/gts/-/gts-${{ version }}.tgz
+  sha256: b3f1245787fe6286ddf65440736d65d59c1faffc4f949cd5306226945adbdc5b
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - gts --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: TypeScript style guide, formatter, and linter.
+  homepage: https://github.com/google/gts
+  repository: https://github.com/google/gts
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-crfsuite",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-crfsuite/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-crfsuite/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-crfsuite/work"
+      },
+      "hash": {
+        "hash": "f55c4e8",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-crfsuite": {
+          "build_string": "py312hf55c4e8_0",
+          "name": "python-crfsuite",
+          "version": "0.9.12"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:55.845422599Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://python-crfsuite.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/scrapinghub/python-crfsuite",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt",
+          "liblbfgs/COPYING",
+          "crfsuite/COPYING"
+        ],
+        "repository": "https://github.com/scrapinghub/python-crfsuite",
+        "summary": "Python binding for CRFsuite"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-pycrfsuite"
+        },
+        "string": "py312hf55c4e8_0"
+      },
+      "context": {
+        "cov_fail_under": "91",
+        "version": "0.9.12"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wyseguy7",
+          "rmax",
+          "mcs07",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "python-crfsuite",
+        "version": "0.9.12"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cross-python_linux-aarch64",
+          "cython",
+          "python",
+          "setuptools >=42"
+        ],
+        "host": [
+          "cython",
+          "pip",
+          "python",
+          "setuptools >=42"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "db37fccc3bd8f0c49c28a7697ca79c89d67b3fd5bf119122866169240ac4c480",
+          "url": "https://pypi.org/packages/source/p/python-crfsuite/python_crfsuite-0.9.12.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pycrfsuite"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "coverage run --source=pycrfsuite --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: jaraco.context
+  version: "6.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/jaraco_context-${{ version }}.tar.gz
+  sha256: 129a341b0a85a7db7879e22acd66902fda67882db771754574338898b2d5d86f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=56
+    - setuptools_scm >=3.4.1
+  run:
+    - python >=${{ python_min }}
+    - backports.tarfile
+
+tests:
+  - python:
+      imports:
+        - jaraco.context
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Context managers by jaraco
+  homepage: https://github.com/jaraco/jaraco.context
+  repository: https://github.com/jaraco/jaraco.context
+  documentation: https://jaracocontext.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - carlodri

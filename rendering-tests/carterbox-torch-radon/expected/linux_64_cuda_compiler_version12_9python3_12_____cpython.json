@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carterbox-torch-radon",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carterbox-torch-radon/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carterbox-torch-radon/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carterbox-torch-radon/work"
+      },
+      "hash": {
+        "hash": "9f70797",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "carterbox-torch-radon": {
+          "build_string": "py312h9f70797_7",
+          "name": "carterbox-torch-radon",
+          "version": "3.0.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:47:55.687313065Z",
+      "variant": {
+        "__cuda": "__cuda",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libtorch": "2.9",
+        "python": "3.12.* *_cpython",
+        "pytorch": "2.9",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "TorchRadon is a PyTorch extension written in CUDA that implements\ndifferentiable tomography operators.",
+        "homepage": "https://github.com/carterbox/torch-radon",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Tomography operators for Pytorch"
+      },
+      "build": {
+        "number": 7,
+        "script": {
+          "content": "python -m pip install . --no-deps -vv\n",
+          "env": {
+            "TORCH_CUDA_ARCH_LIST": "5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
+          }
+        },
+        "string": "py312h9f70797_7"
+      },
+      "context": {
+        "version": "3.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "carterbox"
+        ]
+      },
+      "package": {
+        "name": "carterbox-torch-radon",
+        "version": "3.0.0"
+      },
+      "requirements": {
+        "build": [
+          "cuda-nvcc_linux-64 12.9.*",
+          "gxx_linux-64 14.*",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "cuda-version 12.9.*",
+          "cuda-cudart-dev",
+          "libcurand-dev",
+          "python",
+          "pip",
+          "pytorch",
+          "pytorch * cuda*",
+          "libtorch",
+          "setuptools",
+          "setuptools-scm",
+          "toml"
+        ],
+        "run": [
+          "__cuda",
+          "python",
+          "pytorch * cuda*",
+          "scipy",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8b2cc1ae62e357517f805b878a8f23aeb9a1c43e09397f79e884d3eb83ef8aaf",
+          "url": "https://github.com/carterbox/torch-radon/releases/download/v3.0.0/torch-radon-v3.0.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

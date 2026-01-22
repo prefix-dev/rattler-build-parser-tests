@@ -1,0 +1,94 @@
+context:
+  name: cog3pio
+  python_min: "3.12"
+  version: 0.0.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cog3pio-${{ version }}.tar.gz
+  sha256: f48e14b75355316a7ee540248229fe846bea353a740afc8a3ebb9a00b4b9eb9a
+
+build:
+  number: 2
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    version_independent: true
+  skip:
+    - not ((match(python, python_min ~ ".*") and is_abi3) or is_freethreading)
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - maturin >=1.4,<2.0
+        - python
+  host:
+    - maturin >=1.4,<2.0
+    - pip
+    - python
+    - if: is_abi3
+      then:
+        - python-abi3
+  run:
+    - numpy >=2.0
+    - python
+    - if: not is_freethreading
+      then:
+        - xarray >=2023.12.0
+      else:
+        - python-freethreading
+
+tests:
+  - python:
+      imports:
+        - cog3pio
+      # Re-enable pip_check when pandas (dependency of xarray) supports freethreading
+      # https://github.com/conda-forge/pandas-feedstock/pull/224
+      pip_check: false
+      python_version: ${{ python_min + ".*" if is_abi3 else null }}
+  - script:
+      # NOTE: we must manually set SP_DIR since it is not set.
+      # Can be removed once https://github.com/prefix-dev/rattler-build/issues/1733 is fixed.
+      - if: unix and is_abi3
+        then:
+          - export SP_DIR=$(python -c "import site; print(site.getsitepackages()[0])")
+          - abi3audit $SP_DIR/cog3pio/cog3pio.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
+      - if: win and is_abi3
+        then:
+          - set "SP_DIR=%PREFIX%\\Lib\\site-packages"
+          - abi3audit %SP_DIR%\\cog3pio\\cog3pio.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
+      # Needed to avoid "expected field `script` to be a list of commands" on is_freethreading
+      - if: not is_abi3
+        then: true
+    requirements:
+      run:
+        - if: is_abi3
+          then:
+            - abi3audit
+
+about:
+  homepage: https://cog3pio.readthedocs.io
+  repository: https://github.com/weiji14/cog3pio
+  summary: "Cloud-optimized GeoTIFF ... Parallel I/O"
+  license: Apache-2.0 OR MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - weiji14

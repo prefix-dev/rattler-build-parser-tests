@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fandango",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fandango/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fandango/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fandango/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fandango": {
+          "build_string": "pyhcf101f3_0",
+          "name": "fandango",
+          "version": "16.0.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:39:24.450477488Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pythonhosted.org/fandango/",
+        "homepage": "https://gitlab.com/tango-controls/fandango",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Simplify the configuration of big Tango control systems"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "fandango = fandango.scripts.fandango_cli:main",
+            "tango2csv = fandango.scripts.tango2csv:main",
+            "tango2json = fandango.scripts.tango2json:main",
+            "tango_host = fandango.scripts.tango_host:main",
+            "tango_monitor = fandango.scripts.tango_monitor:main",
+            "tango_servers = fandango.scripts.tango_servers:main",
+            "CopyCatDS = fandango.interface.CopyCatDS:main",
+            "DynamicDS = fandango.device.DynamicDS:main",
+            "FolderDS = fandango.device.FolderDS:main",
+            "WorkerDS = fandango.device.WorkerDS:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "fandango",
+        "python_min": "3.10",
+        "version": "16.0.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sergirubio",
+          "ovallcorba"
+        ]
+      },
+      "package": {
+        "name": "fandango",
+        "version": "16.0.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "88064c6aa63acd4d8e23b62db711efc38468633e1bbefbe85f926cc1c2daa6b0",
+          "url": "https://pypi.org/packages/source/f/fandango/fandango-16.0.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fandango"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": "fandango --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

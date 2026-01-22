@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-solo
+  version: "2.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: ca3b2e44dbb4726446941ca8d765c247123f709f051d07e62eacf97330ffde01
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=3.2
+
+tests:
+  - python:
+      imports:
+        - solo
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Django Solo helps working with singletons
+  license: CC-BY-3.0
+  license_file: LICENSE
+  homepage: https://github.com/lazybird/django-solo/
+
+extra:
+  recipe-maintainers:
+    - rxm7706

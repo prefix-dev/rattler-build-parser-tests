@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_planingfsi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_planingfsi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_planingfsi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_planingfsi/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "planingfsi": {
+          "build_string": "pyhcf101f3_0",
+          "name": "planingfsi",
+          "version": "0.5.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:41.894374013Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://planingfsi.readthedocs.io/",
+        "homepage": "https://github.com/mattkram/planingfsi",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mattkram/planingfsi",
+        "summary": "Fluid-Structure Interaction for large deformation planing surfaces"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "planingfsi = planingfsi.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "planingfsi",
+        "version": "0.5.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mattkram"
+        ]
+      },
+      "package": {
+        "name": "planingfsi",
+        "version": "0.5.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=42",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "click <=8.3.1",
+          "click-log <=0.4.0",
+          "matplotlib-base <=3.10.8",
+          "numpy <=2.4.0",
+          "scipy <=1.16.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1958edbaa74cccaa109c4fc13842b5d9bd30771bb7c8172baaa0cc3178d7542f",
+          "url": "https://pypi.org/packages/source/p/planingfsi/planingfsi-0.5.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "planingfsi"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": "planingfsi --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

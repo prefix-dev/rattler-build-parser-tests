@@ -1,0 +1,47 @@
+context:
+  version: "1.1.5"
+
+package:
+  name: xauth
+  version: ${{ version }}
+
+source:
+  url: https://www.x.org/pub/individual/app/xauth-${{ version }}.tar.xz
+  sha256: a4000e2f441facebf569026bedecc23ba262cc6927be52070abe0002625cfbe0
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+  host:
+    - xorg-kbproto
+    - xorg-libx11
+    - xorg-libxmu
+    - xorg-libxext
+    - xorg-libxmu
+    - xorg-xextproto
+    - xorg-xproto
+    - if: linux
+      then:
+        - libxcb
+        - xorg-libxdmcp
+
+tests:
+  - script:
+      - xauth -h 2>&1 | grep -q "usage: "xauth \\[-options ...\\] \\[command arg ...\\]\""
+
+about:
+  license: MIT
+  license_file: COPYING
+  summary: X.Org authorization settings program
+  homepage: https://xorg.freedesktop.org/
+
+extra:
+  recipe-maintainers:
+    - danielnachun

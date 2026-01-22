@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzfse",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzfse/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzfse/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lzfse/work"
+      },
+      "hash": {
+        "hash": "1839187"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lzfse": {
+          "build_string": "h1839187_1",
+          "name": "lzfse",
+          "version": "1.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:34.214868819Z",
+      "variant": {
+        "c_compiler": "vs2019",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LZFSE is a Lempel-Ziv style data compression algorithm using Finite State\nEntropy coding. It targets similar compression rates at higher compression\nand decompression speed compared to deflate using zlib.",
+        "homepage": "https://github.com/lzfse/lzfse",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Reference C implementation of the LZFSE compressor"
+      },
+      "build": {
+        "number": 1,
+        "string": "h1839187_1"
+      },
+      "context": {
+        "version": "1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "rmax"
+        ]
+      },
+      "package": {
+        "name": "lzfse",
+        "version": "1.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2019_win-64",
+          "vs_win-64",
+          "python *",
+          "cmake",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "941c2e39493f7669ee4547f3b3d9007ffb0d33c6e3d5990af5423b7b77b90bad",
+          "url": "https://github.com/lzfse/lzfse/archive/lzfse-1.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "lzfse -h",
+            "if not exist %LIBRARY_PREFIX%\\bin\\lzfse.dll exit 1",
+            "if not exist %LIBRARY_PREFIX%\\lib\\lzfse.lib exit 1",
+            "if not exist %LIBRARY_PREFIX%\\include\\lzfse.h exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

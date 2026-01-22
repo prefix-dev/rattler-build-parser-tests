@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "6.2.0"
+
+package:
+  name: twine
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/twine/twine-${{ version }}.tar.gz
+  sha256: e5ed0d2fd70c9959770dce51c8f39c8945c574e18173a7b81802dab51b4b75cf
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - twine = twine.__main__:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=77.0.3
+    - setuptools_scm >=6.0
+  run:
+    - id
+    - importlib-metadata >=3.6
+    - keyring >=21.2.0
+    - packaging >=24.0
+    - python >=${{ python_min }}
+    - readme_renderer >=35.0
+    - requests >=2.20
+    - requests-toolbelt >=0.8.0,!=0.9.0
+    - rfc3986 >=1.4.0
+    - rich >=12.0.0
+    - urllib3 >=1.26.0
+
+tests:
+  - python:
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+      imports:
+        - twine
+        - twine.commands
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - twine --version
+      - twine --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Collection of utilities for interacting with PyPI
+  homepage: https://github.com/pypa/twine
+  documentation: https://twine.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - SylvainCorlay
+    - bollwyvl

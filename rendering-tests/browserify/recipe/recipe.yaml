@@ -1,0 +1,39 @@
+context:
+  version: "17.0.1"
+
+package:
+  name: browserify
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/browserify/-/browserify-${{ version }}.tgz
+  sha256: 599ed96d127b06d608bc7aaff0ddbfe85d05f408d72cc378a620d766c60a8cb8
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - browserify --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: browser-side require() the node way
+  homepage: https://github.com/browserify/browserify
+  repository: https://github.com/browserify/browserify
+
+extra:
+  recipe-maintainers:
+    - danielnachun

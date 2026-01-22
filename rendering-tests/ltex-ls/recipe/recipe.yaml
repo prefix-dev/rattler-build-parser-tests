@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  version: 18.6.1
+  python_min: 3.10
+
+package:
+  name: ltex-ls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ltex-plus/ltex-ls-plus/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 16fa8c88cea5f579fba4a33c7c89b15a1ed45b9b14dd32a07aee740b3d5506c9
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - maven
+    - openjdk
+    - python >=${{ python_min }}
+    - sed
+  run:
+    - openjdk
+    - python >=${{ python_min }}
+
+tests:
+  - script:
+      - ltex-ls --help
+      - ltex-cli --help
+      - ltex-ls-plus --help
+      - ltex-cli-plus --help
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE.md
+    - target/generated-resources/licenses/
+  summary: LSP language server for LanguageTool with support for LaTeX, Markdown, and others
+  homepage: https://github.com/valentjn/ltex-ls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

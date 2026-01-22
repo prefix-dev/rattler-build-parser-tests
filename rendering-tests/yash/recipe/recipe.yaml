@@ -1,0 +1,65 @@
+context:
+  name: Yash
+  version: "2.60"
+  author: magicant
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/${{ author }}/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 15574a494fde1f90d95c1c659bf834c2d91ea4948dcfd055cac89c70ec5568f5
+
+build:
+  number: 1
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - asciidoc
+    - docbook-xsl
+    - gettext
+    - libxslt
+    - make
+    - pkg-config
+  host:
+    - if: linux
+      then: gettext
+    - if: osx
+      then: libintl-devel
+    - if: osx and arm64
+      then: libiconv
+    - ncurses
+
+tests:
+  - script:
+      - test "$(yash -c 'echo Hello, Yash')" = "Hello, Yash"
+
+about:
+  homepage: https://magicant.github.io/yash
+  repository: https://github.com/magicant/yash
+  documentation: https://magicant.github.io/yash/doc
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: Yet another shell
+  description: |
+    Yash, yet another shell, is a POSIX-compliant command line shell written in C99 (ISO/IEC 9899:1999).
+    Yash is intended to be the most POSIX-compliant shell in the world while supporting features for daily interactive and scripting use.
+    Notable features are:
+      - Global aliases
+      - Arrays
+      - Socket redirection, pipeline redirection, and process redirection
+      - Brace expansion and extended globbing
+      - Fractional numbers in arithmetic expansion
+      - Prompt command and command-not-found handler
+      - Command line completion with predefined completion scripts for more than 100 commands
+      - Command line prediction based on command history
+
+extra:
+  recipe-maintainers:
+    - eunos-1128

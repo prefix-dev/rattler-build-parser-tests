@@ -1,0 +1,41 @@
+schema_version: 1
+
+context:
+  version: "1.5.0"
+
+package:
+  name: impl
+  version: ${{ version }}
+
+source:
+  url: https://github.com/josharian/impl/archive/v${{ version }}.tar.gz
+  sha256: d97ef0f70d877fe1b83e971d70bacc5c3b179fb42b0dde08f53bedad7957ac73
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - impl --help 2>&1 | grep -q "impl generates method stubs for recv to implement iface"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: impl generates method stubs for implementing an interface
+  homepage: https://github.com/josharian/impl
+  repository: https://github.com/josharian/impl
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,38 @@
+context:
+  name: sqruff
+  version: "0.25.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/quarylabs/sqruff/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: e41fff5a3cdce813ec01a40d5c4cf4099acc842369d3c573030570db57c4a45f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - sqruff --help
+
+about:
+  homepage: https://github.com/quarylabs/sqruff
+  summary: Fast SQL formatter/linter
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

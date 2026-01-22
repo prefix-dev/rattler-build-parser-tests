@@ -1,0 +1,41 @@
+schema_version: 1
+
+context:
+  version: 0.8
+
+package:
+  name: godoctor
+  version: ${{ version }}
+
+source:
+  url: https://github.com/godoctor/godoctor/archive/v${{ version }}.tar.gz
+  sha256: c1517a444783224fdad46b7a7ce82407b714b121f60b17e9df9834b5b6773332
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - godoctor --help 2>&1 | grep -q "Go source code refactoring tool"
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Go Doctor - The Golang Refactoring Engine
+  homepage: https://github.com/godoctor/godoctor
+  repository: https://github.com/godoctor/godoctor
+
+extra:
+  recipe-maintainers:
+    - danielnachun

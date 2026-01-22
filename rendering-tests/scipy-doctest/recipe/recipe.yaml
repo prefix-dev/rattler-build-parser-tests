@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: scipy-doctest
+  version: "2.0.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/scipy_doctest-${{ version }}.tar.gz
+  sha256: 0436106ab92a243f6a779c10632530a2937919bf55e9b7fdbaf450827db70f1e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.2,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.19.5
+    - pytest
+
+tests:
+  - python:
+      imports:
+        - scipy_doctest
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Configurable, whitespace-insensitive, floating-point-aware doctest helpers.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scipy/scipy_doctest
+
+extra:
+  recipe-maintainers:
+    - lucascolley

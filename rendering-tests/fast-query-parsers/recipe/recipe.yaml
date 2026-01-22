@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 1.0.3
+  maturin_version: "0.14"
+  python_check_max: "3.13"
+
+package:
+  name: fast-query-parsers
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/fast-query-parsers/fast_query_parsers-${{ version }}.tar.gz
+  sha256: 5200a9e02997ad51d4d76a60ea1b256a68a184b04359540eb6310a15013df68f
+
+build:
+  number: 3
+  python:
+    version_independent: true
+  # only build for the minimal python version
+  skip: not (match(python, python_min ~ ".*") and is_abi3)
+  script:
+    file: build-fast-query-parsers
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin ${{ maturin_version }}.*
+  host:
+    - maturin ${{ maturin_version }}.*
+    - pip
+    - python
+    - python-abi3
+  run:
+    - python
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+
+tests:
+  - python:
+      imports: fast_query_parsers
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - mypy
+        - pytest-cov
+    script:
+      - coverage run --source=fast_query_parsers --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=83
+      - mypy -p fast_query_parsers
+
+about:
+  summary: Ultra-fast query string and url-encoded form-data parsers
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/litestar-org/fast-query-parsers
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_at-cascade",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_at-cascade/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_at-cascade/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_at-cascade/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "at-cascade": {
+          "build_string": "pyhcf101f3_2",
+          "name": "at-cascade",
+          "version": "2026.0.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:07.236612103Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://at-cascade.readthedocs.io/stable-2025/",
+        "homepage": "https://at-cascade.readthedocs.io/stable-2025/",
+        "license": "AGPL-3.0-or-later",
+        "license_file": [
+          "agpl-3.0.txt"
+        ],
+        "repository": "https://github.com/bradbell/at_cascade",
+        "summary": "Cascading dismod_at from parent to child regions"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "version": "2026.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bradbell"
+        ]
+      },
+      "package": {
+        "name": "at-cascade",
+        "version": "2026.0.0"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "dismod-at >=2026.0.0",
+          "numpy",
+          "python >=3.10",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2026.0.0.patch"
+          ],
+          "sha256": "22235b2747f8fb30b75ae547b5e0255615a25ad68ca98ee3193d5b1c0c78e660",
+          "url": "https://github.com/bradbell/at_cascade/archive/2026.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "at_cascade"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "example/csv/sim_fit_pred.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "python example/csv/sim_fit_pred.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

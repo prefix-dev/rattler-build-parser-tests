@@ -1,0 +1,38 @@
+context:
+  version: "0.61"
+
+package:
+  name: ktfmt
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/ktfmt/archive/v${{ version }}.tar.gz
+  sha256: 4270802d15b293c7244a33303e05511e9a5e464b34b2565c7ec46995ff74c203
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - maven
+    - openjdk =17
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - ktfmt --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - build/reports/dependency-license/
+  summary: A program that reformats Kotlin source code to comply with the common community standard for Kotlin code conventions.
+  homepage: https://github.com/facebook/ktfmt
+  repository: https://github.com/facebook/ktfmt
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpv/work"
+      },
+      "hash": {
+        "hash": "be52bbe"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mpv": {
+          "build_string": "hbe52bbe_0",
+          "name": "mpv",
+          "version": "0.41.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:38:04.241194623Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "expat": "2",
+        "ffmpeg": "8",
+        "freetype": "2",
+        "lcms2": "2",
+        "libarchive": "3.8",
+        "libiconv": "1",
+        "libjpeg_turbo": "3",
+        "liblzma_devel": "5",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MPV is a free, open-source, and cross-platform media player based on\nMPlayer and mplayer2. It supports a wide variety of video file formats,\naudio and video codecs, and subtitle types.",
+        "homepage": "https://mpv.io/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE.GPL"
+        ],
+        "summary": "Media player based on MPlayer and mplayer2"
+      },
+      "build": {
+        "number": 0,
+        "string": "hbe52bbe_0"
+      },
+      "context": {
+        "name": "mpv",
+        "version": "0.41.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "mpv",
+        "version": "0.41.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.15.*",
+          "clangxx_osx-64 19.*",
+          "meson",
+          "ninja",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "ffmpeg",
+          "libjpeg-turbo",
+          "libiconv",
+          "libarchive",
+          "libass",
+          "lcms2",
+          "vapoursynth",
+          "yt-dlp",
+          "liblzma-devel",
+          "zlib",
+          "libplacebo",
+          "expat",
+          "freetype"
+        ],
+        "run": [
+          "vapoursynth",
+          "yt-dlp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "fix-ffmpeg8.patch"
+          ],
+          "sha256": "ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209",
+          "url": "https://github.com/mpv-player/mpv/archive/refs/tags/v0.41.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "mpv --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

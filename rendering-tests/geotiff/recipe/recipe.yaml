@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  version: 1.7.4
+
+package:
+  name: geotiff
+  version: ${{ version }}
+
+source:
+  url: http://download.osgeo.org/geotiff/libgeotiff/libgeotiff-${{ version }}.tar.gz
+  sha256: c598d04fdf2ba25c4352844dafa81dde3f7fd968daa7ad131228cd91e9d3dc47
+
+build:
+  number: 4
+
+requirements:
+  build:
+    # cmake 3.28 had windows build failure GH63
+    - if: win
+      then: cmake <3.28
+    - if: not win
+      then: cmake
+    - make
+    - if: unix
+      then: gnuconfig
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - proj
+    - zlib
+    - libjpeg-turbo
+    - libtiff
+  run:
+    - proj
+    - zlib
+    - libjpeg-turbo
+    - libtiff
+  run_exports:
+    - ${{ pin_subpackage('geotiff', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: not win
+        then: test -f $PREFIX/lib/libgeotiff${SHLIB_EXT}
+      - if: win
+        then: if not exist %LIBRARY_LIB%\\geotiff_i.lib exit 1
+      - if: win
+        then: if not exist %LIBRARY_BIN%\\geotiff.dll exit 1
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: TIFF based interchange format for georeferenced raster imagery
+  description: |
+    GeoTIFF represents an effort by over 160 different remote sensing,
+    GIS, cartographic, and surveying related companies and organizations
+    to establish a TIFF based interchange format for georeferenced raster imagery.
+
+
+  homepage: https://trac.osgeo.org/geotiff
+
+extra:
+  recipe-maintainers:
+    - akrherz
+    - gillins
+    - ocefpaf
+    - xylar
+    - hobu

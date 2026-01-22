@@ -1,0 +1,40 @@
+context:
+  version: "8.1.1"
+
+package:
+  name: hexo
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/hexo/-/hexo-${{ version }}.tgz
+  sha256: c414b9b5e70643c0488dcef4e9440662c36f8b5a67ed399f09a0e4feba1c173c
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - hexo --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A fast, simple & powerful blog framework, powered by Node.js.
+  homepage: https://github.com/hexojs/hexo
+  repository: https://github.com/hexojs/hexo
+
+extra:
+  recipe-maintainers:
+    - danielnachun

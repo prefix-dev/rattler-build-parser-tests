@@ -1,0 +1,59 @@
+{% set version = "8.2" %}
+
+package:
+  name: zope.interface
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/z/zope.interface/zope_interface-{{ version }}.tar.gz
+  sha256: afb20c371a601d261b4f6edb53c3c418c249db1a9717b0baafc9a9bb39ba1224
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - {{ compiler('c') }}
+    - {{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+    - setuptools
+
+test:
+  imports:
+    - zope
+    - zope.interface
+    - zope.interface.common
+    - zope.interface.common.tests
+    - zope.interface.common.mapping
+    - zope.interface._zope_interface_coptimizations  # [python_impl != "pypy"]
+    - zope.interface.tests
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: http://docs.zope.org/zope.interface/
+  license: ZPL-2.1
+  license_family: Other
+  license_file: LICENSE.txt
+  summary: Interfaces for Python
+  description: |
+    Provides an implementation of object interfaces for Python.Interfaces are objects
+    that specify the external behavior of objects that provide them.
+  doc_url: http://docs.zope.org/zope.interface/
+  doc_source_url: https://github.com/zopefoundation/zope.interface//blob/master/docs/index.rst
+  dev_url: https://github.com/zopefoundation/zope.interface
+
+extra:
+  recipe-maintainers:
+    - isuruf
+    - ocefpaf

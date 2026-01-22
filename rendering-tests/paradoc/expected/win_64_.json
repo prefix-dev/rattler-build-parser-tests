@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_paradoc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_paradoc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_paradoc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_paradoc/work"
+      },
+      "hash": {
+        "hash": "8f84b5b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "paradoc": {
+          "build_string": "pyh8f84b5b_0",
+          "name": "paradoc",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:49:39.179842326Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/krande/paradoc",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A Python library for Parametric Documentation"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "paradoc = paradoc.cli_app:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyh8f84b5b_0"
+      },
+      "context": {
+        "name": "paradoc",
+        "python_min": "3.10",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "paradoc",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "pandoc",
+          "pandoc-crossref",
+          "pypandoc",
+          "python-docx",
+          "python-kaleido",
+          "numpy",
+          "pandas",
+          "openpyxl",
+          "tabulate",
+          "pydantic",
+          "svgwrite",
+          "pytexit",
+          "websockets",
+          "plotly",
+          "typer",
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/add_future_annotations.patch"
+          ],
+          "sha256": "b5b0ba186090f9c83aeece75fa6de51ed5a09fc860aab6f3c74b5f46b221f04f",
+          "url": "https://github.com/Krande/paradoc/archive/v0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests",
+              "files"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-cov",
+              "python 3.10.*",
+              "playwright",
+              "pytest-playwright"
+            ]
+          },
+          "script": "pytest tests --ignore=tests/frontend"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

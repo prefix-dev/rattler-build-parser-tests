@@ -1,0 +1,50 @@
+context:
+  name: apache-airflow-providers-sftp
+  version: "5.6.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apache_airflow_providers_sftp-${{ version }}.tar.gz
+  sha256: 30089005d9ecf5d4b40e65982cc3707a09c6fe69269b5f2a0ad8c0f07966027b
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - flit-core ==3.12.0
+  run:
+    - python >=${{ python_min }}
+    - apache-airflow >=2.11.0
+    - apache-airflow-providers-ssh >=4.0.0
+    - apache-airflow-providers-common-compat >=1.12.0
+    - paramiko >=2.9.0,<4.0.0
+    - asyncssh >=2.12.0
+
+tests:
+  - python:
+      imports:
+      - airflow.providers.sftp
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/apache/airflow/
+  summary: Provider package apache-airflow-providers-sftp for Apache Airflow
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  documentation: https://airflow.apache.org/docs/apache-airflow-providers-sftp/stable/index.html
+  repository: https://github.com/apache/airflow/
+
+extra:
+  recipe-maintainers:
+    - xylar

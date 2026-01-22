@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_photos",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_photos/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_photos/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_photos/work"
+      },
+      "hash": {
+        "hash": "f272025"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "photos": {
+          "build_string": "hf272025_1",
+          "name": "photos",
+          "version": "3.64"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:43:01.382520853Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "18",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://photospp.web.cern.ch/photospp/resources/PHOTOS.3.64/Photos_interface_design.3.64.pdf",
+        "homepage": "https://photospp.web.cern.ch/photospp/",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "PHOTOS Monte Carlo for precision simulation of QED in decays"
+      },
+      "build": {
+        "number": 1,
+        "string": "hf272025_1"
+      },
+      "context": {
+        "name": "photos",
+        "version": "3.64"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "photos",
+        "version": "3.64"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 18.*",
+          "clangxx_osx-arm64 18.*",
+          "make",
+          "autoconf",
+          "automake",
+          "libtool",
+          "gnuconfig",
+          "pkg-config"
+        ],
+        "host": [
+          "hepmc2",
+          "hepmc3"
+        ],
+        "run": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "hepmc2",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "hepmc3",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "photos",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Fix-linking-HepMC-and-HepMC3.patch"
+          ],
+          "sha256": "cb4096b4804289fc4d54a992caa566cbbd33f41f65f8906deb01200dc5163027",
+          "url": "http://photospp.web.cern.ch/photospp/resources/PHOTOS.3.64/PHOTOS.3.64-LHC.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f \"$PREFIX/lib/libPhotosppHEPEVT$SHLIB_EXT\"",
+            "test -f \"$PREFIX/lib/libPhotosppHepMC3$SHLIB_EXT\"",
+            "test -f \"$PREFIX/lib/libPhotosppHepMC$SHLIB_EXT\"",
+            "test -f \"$PREFIX/lib/libPhotospp$SHLIB_EXT\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

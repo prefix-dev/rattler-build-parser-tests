@@ -1,0 +1,502 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-base",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-base/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-base/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-base/work"
+      },
+      "hash": {
+        "hash": "c90fa1f",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jupyterhub-base": {
+          "build_string": "pyhc90fa1f_0",
+          "name": "jupyterhub-base",
+          "version": "5.4.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:28.341750172Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "noarch_platform": "unix",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jupyterhub.readthedocs.io/",
+        "homepage": "https://hub.jupyter.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "share/jupyterhub/static/components/@fortawesome/fontawesome-free/LICENSE.txt",
+          "share/jupyterhub/static/components/bootstrap/LICENSE",
+          "share/jupyterhub/static/components/jquery/LICENSE.txt",
+          "share/jupyterhub/static/components/moment/LICENSE",
+          "share/jupyterhub/static/js/admin-react.js.LICENSE.txt"
+        ],
+        "repository": "https://github.com/jupyterhub/jupyterhub",
+        "summary": "A multi-user server for Jupyter notebooks"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "jupyterhub = jupyterhub.app:main",
+            "jupyterhub-singleuser = jupyterhub.singleuser:main"
+          ]
+        },
+        "script": "python -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check",
+        "string": "pyhc90fa1f_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "5.4.3"
+      },
+      "extra": {
+        "feedstock-name": "jupyterhub",
+        "recipe-maintainers": [
+          "minrk",
+          "blink1073",
+          "consideRatio",
+          "manics",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jupyterhub-base",
+        "version": "5.4.3"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "setuptools-scm"
+        ],
+        "run": [
+          "__unix",
+          "alembic >=1.4",
+          "certipy >=0.1.2",
+          "idna",
+          "jinja2 >=2.11.0",
+          "jupyter_events",
+          "oauthlib >=3.0",
+          "packaging",
+          "prometheus_client >=0.5.0",
+          "pydantic >=2",
+          "python >=3.10",
+          "python-dateutil",
+          "requests",
+          "sqlalchemy >=1.4.1",
+          "tornado >=5.1",
+          "traitlets >=4.3.2",
+          "pamela"
+        ],
+        "run_constraints": [
+          "psutil >=5.6.5",
+          "pamela >=1.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2411a3eabe46d53995122ba05a0a0857c5aa228184802b724d99eb43b3faf888",
+          "url": "https://pypi.org/packages/source/j/jupyterhub/jupyterhub-5.4.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "share/jupyterhub/templates/page.html",
+              "share/jupyterhub/static/components/jquery/dist/jquery.min.js",
+              "share/jupyterhub/static/css/style.min.css",
+              "share/jupyterhub/static/js/home.js"
+            ]
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "jupyterhub",
+              "jupyterhub.apihandlers",
+              "jupyterhub.handlers",
+              "jupyterhub.app"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "python -m pip list --format=freeze",
+            "python -m pip list --format=freeze | python -c \"import sys; assert 'jupyterhub==${{ version }}' in sys.stdin.read()\"",
+            "jupyterhub --version",
+            "jupyterhub --version | python -c \"import sys; assert sys.stdin.read().strip() == '${{ version }}'\"",
+            "jupyterhub --help-all"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub/work"
+      },
+      "hash": {
+        "hash": "22fd4b0"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jupyterhub": {
+          "build_string": "h22fd4b0_0",
+          "name": "jupyterhub",
+          "version": "5.4.3"
+        },
+        "jupyterhub-base": {
+          "build_string": "pyhc90fa1f_0",
+          "name": "jupyterhub-base",
+          "version": "5.4.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:28.423257736Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "jupyterhub_base": "5.4.3 pyhc90fa1f_0",
+        "noarch_platform": "unix",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jupyterhub.readthedocs.io/",
+        "homepage": "https://hub.jupyter.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "share/jupyterhub/static/components/@fortawesome/fontawesome-free/LICENSE.txt",
+          "share/jupyterhub/static/components/bootstrap/LICENSE",
+          "share/jupyterhub/static/components/jquery/LICENSE.txt",
+          "share/jupyterhub/static/components/moment/LICENSE",
+          "share/jupyterhub/static/js/admin-react.js.LICENSE.txt"
+        ],
+        "repository": "https://github.com/jupyterhub/jupyterhub",
+        "summary": "A multi-user server for Jupyter notebooks"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "h22fd4b0_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "5.4.3"
+      },
+      "extra": {
+        "feedstock-name": "jupyterhub",
+        "recipe-maintainers": [
+          "minrk",
+          "blink1073",
+          "consideRatio",
+          "manics",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jupyterhub",
+        "version": "5.4.3"
+      },
+      "requirements": {
+        "run": [
+          "__unix",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "jupyterhub-base"
+            }
+          },
+          "configurable-http-proxy >=4",
+          "nodejs >=12",
+          "psutil",
+          "pycurl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2411a3eabe46d53995122ba05a0a0857c5aa228184802b724d99eb43b3faf888",
+          "url": "https://pypi.org/packages/source/j/jupyterhub/jupyterhub-5.4.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jupyterhub"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "script": [
+            "jupyterhub --help-all",
+            "configurable-http-proxy --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-singleuser",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-singleuser/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-singleuser/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyterhub-singleuser/work"
+      },
+      "hash": {
+        "hash": "22fd4b0"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jupyterhub": {
+          "build_string": "h22fd4b0_0",
+          "name": "jupyterhub",
+          "version": "5.4.3"
+        },
+        "jupyterhub-base": {
+          "build_string": "pyhc90fa1f_0",
+          "name": "jupyterhub-base",
+          "version": "5.4.3"
+        },
+        "jupyterhub-singleuser": {
+          "build_string": "h22fd4b0_0",
+          "name": "jupyterhub-singleuser",
+          "version": "5.4.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:28.423518067Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "jupyterhub_base": "5.4.3 pyhc90fa1f_0",
+        "noarch_platform": "unix",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jupyterhub.readthedocs.io/",
+        "homepage": "https://hub.jupyter.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "share/jupyterhub/static/components/@fortawesome/fontawesome-free/LICENSE.txt",
+          "share/jupyterhub/static/components/bootstrap/LICENSE",
+          "share/jupyterhub/static/components/jquery/LICENSE.txt",
+          "share/jupyterhub/static/components/moment/LICENSE",
+          "share/jupyterhub/static/js/admin-react.js.LICENSE.txt"
+        ],
+        "repository": "https://github.com/jupyterhub/jupyterhub",
+        "summary": "A multi-user server for Jupyter notebooks"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "h22fd4b0_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "5.4.3"
+      },
+      "extra": {
+        "feedstock-name": "jupyterhub",
+        "recipe-maintainers": [
+          "minrk",
+          "blink1073",
+          "consideRatio",
+          "manics",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jupyterhub-singleuser",
+        "version": "5.4.3"
+      },
+      "requirements": {
+        "run": [
+          "__unix",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "jupyterhub-base"
+            }
+          },
+          "jupyterlab >=3.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2411a3eabe46d53995122ba05a0a0857c5aa228184802b724d99eb43b3faf888",
+          "url": "https://pypi.org/packages/source/j/jupyterhub/jupyterhub-5.4.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jupyterhub.singleuser"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "jupyterhub-singleuser --help-all"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+context:
+  name: display3d
+  version: "0.2.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/renpenguin/display3d/archive/v${{ version }}.tar.gz
+  sha256: 123859d194fe9ee2e5f7088dabc2d6228dd73c210fc1d372bc42a89b40ebc75a
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - display3d --version
+
+about:
+  homepage: https://github.com/renpenguin/display3d
+  summary: A command line interface for rendering and animating 3D objects
+  description: display3d is a command line interface for rendering and animating 3D objects using ANSI escape codes, written using gemini-engine in the Rust programming language.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/renpenguin/display3d
+
+extra:
+  recipe-maintainers:
+    - pavelzw

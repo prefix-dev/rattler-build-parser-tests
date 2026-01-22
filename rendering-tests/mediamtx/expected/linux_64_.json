@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediamtx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediamtx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediamtx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediamtx/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mediamtx": {
+          "build_string": "hfc2019e_0",
+          "name": "mediamtx",
+          "version": "1.15.6"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:42:03.909602826Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MediaMTX is a ready-to-use and zero-dependency real-time media server and\nmedia proxy that allows to publish, read, proxy, record and playback video and audio streams.\nIt has been conceived as a \"media router\" that routes media streams from one end to the other.",
+        "documentation": "https://github.com/bluenviron/mediamtx/blob/main/README.md",
+        "homepage": "https://github.com/bluenviron/mediamtx",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/bluenviron/mediamtx",
+        "summary": "Ready-to-use and zero-dependency real-time media server and media proxy"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "echo \"v${{ version }}\" > VERSION",
+          "go generate ./...",
+          "go-licenses save . --save_path ../library_licenses --ignore golang.org/x/sys --ignore golang.org/x/crypto  --ignore github.com/ugorji/go --ignore github.com/benburkert/openpgp",
+          "go build -v -o $PREFIX/bin/mediamtx -ldflags=\"-s -w\"",
+          "mkdir -p $PREFIX/config",
+          "cp ../service-config/service.yaml $PREFIX/config/service.yaml",
+          "cp -r ${RECIPE_DIR}/library_licenses/* ${SRC_DIR}/library_licenses"
+        ],
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "version": "1.15.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "phreed"
+        ]
+      },
+      "package": {
+        "name": "mediamtx",
+        "version": "1.15.6"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "153e8486230b1e54a02d852376264d731c0ad709e2998fedfdfaa5709e97695a",
+          "target_directory": "src",
+          "url": "https://github.com/bluenviron/mediamtx/archive/refs/tags/v1.15.6.tar.gz"
+        },
+        {
+          "path": "service.yaml",
+          "target_directory": "service-config"
+        }
+      ],
+      "tests": [
+        {
+          "script": "mediamtx --version"
+        },
+        {
+          "script": "mediamtx --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "mediamtx"
+            ],
+            "files": [
+              "config/service.yaml"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

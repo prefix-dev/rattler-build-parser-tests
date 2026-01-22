@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: pegasus-wms.worker
+  version: 5.1.1
+
+package:
+  name: ${{ name | lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pegasus_wms_worker-${{ version }}.tar.gz
+  sha256: b33382c28b5d5eb58950d4e37acfffb2780eaf521e1749f54c5c6c351d74dd6c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools <69
+    - wheel
+  run:
+    - boto3 >1.12
+    - globus-sdk >=3.23.0,<4.0.0a0
+    - python >=${{ python_min }}
+    - six >=1.9.0
+
+tests:
+  - python:
+      imports:
+        - Pegasus.tools.worker_utils
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - python -m pip check
+      - python -m Pegasus.cli.pegasus-globus-online-init --help
+      - python -m Pegasus.cli.pegasus-globus-online --help
+      - python -m Pegasus.cli.pegasus-integrity --help
+      - python -m Pegasus.cli.pegasus-transfer --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Pegasus Workflow Management System Python API
+  homepage: https://pegasus.isi.edu
+  repository: https://github.com/pegasus-isi/pegasus.git
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - mayani
+    - rynge

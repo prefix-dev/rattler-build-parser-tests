@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  version: 2.3.0
+
+package:
+  name: neutcurve
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/n/neutcurve/neutcurve-${{ version }}.tar.gz
+  sha256: ac69bb0fb13cc509550c78426363f5ca4dc41645de358302d05455761b4d4241
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - dmslogo >=0.2.1
+    - matplotlib-base >=3.0.0
+    - openpyxl >=3.0
+    - pandas >=1.0.1
+    - pyyaml >=3.13
+    - scipy >=1.1.0
+    - xlrd >=1.2
+
+tests:
+  - python:
+      imports:
+        - neutcurve
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Plot and fit neutralization curves.
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://github.com/jbloomlab/neutcurve
+
+extra:
+  recipe-maintainers:
+    - danielnachun

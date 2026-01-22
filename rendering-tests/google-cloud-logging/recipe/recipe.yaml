@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: google-cloud-logging
+  version: 3.13.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 3aae0573b1a1a4f59ecdf4571f4e7881b5823bd129fe469561c1c49a7fa8a4c1
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - google-api-core >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,!=2.10.*
+    - google-api-core-grpc
+    - google-auth >=2.14.1,<3.0.0,!=2.24.0,!=2.25.0
+    - google-cloud-appengine-logging >=0.1.3,<2.0.0
+    - google-cloud-audit-log >=0.3.1,<1.0.0
+    - google-cloud-core >=2.0.0,<3.0.0
+    - grpc-google-iam-v1 >=0.12.4,<1.0.0
+    - opentelemetry-api >=1.9.0
+    # most restrictive version for py >=3.13
+    - proto-plus >=1.25.0,<2.0.0
+    - protobuf >=3.20.2,<7.0.0,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
+
+tests:
+  - python:
+      imports:
+        - google.cloud.logging
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Stackdriver Logging API client library
+  description: |
+    The Stackdriver Logging API writes log entries and manages your Stackdriver Logging configuration.
+    See the [usage guide](https://googleapis.dev/python/logging/latest/usage.html).
+
+  homepage: https://github.com/googleapis/python-logging
+  repository: https://github.com/googleapis/python-logging
+  documentation: https://googleapis.dev/python/logging/latest/index.html
+
+extra:
+  recipe-maintainers:
+    - parthea
+    - xylar

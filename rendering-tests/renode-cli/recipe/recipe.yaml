@@ -1,0 +1,76 @@
+context:
+  name: renode-cli
+  version: "1.16.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/renode/renode/releases/download/v${{ version }}/renode_${{ version }}_source.tar.xz
+    sha256: dab46e73d07a3b1bf2c1cec2c615a37ab85d734dda448296dcdf39c4f7c9451a
+
+build:
+  number: 0
+  skip: ppc64le
+
+requirements:
+  build:
+    - dotnet >=9
+    - nuget-license >=3.1
+    - if: unix
+      then:
+        - sed
+        - bash
+      else:
+        - m2-bash
+        - m2-coreutils
+        - m2-findutils
+        - m2-sed
+  host:
+    - renode-cores ==${{ version }}
+  run:
+    - dotnet >=9
+
+tests:
+  - package_contents:
+      bin:
+        - renode
+      files:
+        - ${{ "Library/" if win }}share/renode-cli/scripts/monitor.py
+        - ${{ "Library/" if win }}share/renode-cli/platforms/cpus/cortex-a9.repl
+        - ${{ "Library/" if win }}share/renode-cli/tools/sel4_extensions/seL4Extensions.cs
+  - script:
+      - renode --help
+      - LOCAL_TEST_PREFIX=./test-bundle test-bundle/${{ "Library/" if win }}bin/renode-test test-bundle/${{ "Library/" if win }}share/renode-cli/tests/unit-tests
+    requirements:
+      run:
+        - robotframework >=6.1
+        - psutil >=5.9.3
+        - python
+        - pyyaml >=6.0
+    files:
+      source:
+        - test-bundle/
+
+about:
+  homepage: https://github.com/renode/renode
+  summary: "Antmicro's open source simulation and virtual development framework for complex embedded systems"
+  description: |
+    Renode was created by Antmicro as a virtual development tool for multi-node
+    embedded networks (both wired and wireless) and is intended to enable a scalable
+    workflow for creating effective, tested and secure IoT systems.
+
+    With Renode, developing, testing, debugging and simulating unmodified software
+    for IoT devices is fast, cost-effective and reliable.
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  documentation: https://renode.io/
+  repository: https://github.com/renode/renode
+
+extra:
+  recipe-maintainers:
+    - MementoRC
+    - danielnachun

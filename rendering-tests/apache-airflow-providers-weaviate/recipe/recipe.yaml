@@ -1,0 +1,51 @@
+context:
+  name: apache-airflow-providers-weaviate
+  version: "3.3.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apache_airflow_providers_weaviate-${{ version }}.tar.gz
+  sha256: 840eb8547d893d40e111803a5911342372640d0533d5482c2b225b44f025d237
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - flit-core ==3.12.0
+  run:
+    - python >=${{ python_min }}
+    - apache-airflow >=2.11.0
+    - apache-airflow-providers-common-compat >=1.8.0
+    - httpx >=0.25.0
+    - weaviate-client >=4.4.0,!=4.16.7
+    # more restrictive for python >=3.13
+    - pandas >=2.2.3
+
+tests:
+  - python:
+      imports:
+        - airflow.providers.weaviate
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/apache/airflow/
+  summary: Provider package apache-airflow-providers-weaviate for Apache Airflow
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  documentation: https://airflow.apache.org/docs/apache-airflow-providers-weaviate/stable/index.html
+  repository: https://github.com/apache/airflow/
+
+extra:
+  recipe-maintainers:
+    - xylar

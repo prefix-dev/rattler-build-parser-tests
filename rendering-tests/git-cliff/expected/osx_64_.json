@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-cliff",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-cliff/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-cliff/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-cliff/work"
+      },
+      "hash": {
+        "hash": "bf0d3c1"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "git-cliff": {
+          "build_string": "hbf0d3c1_0",
+          "name": "git-cliff",
+          "version": "2.12.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:47:56.492238381Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libgit2": "1.9",
+        "libssh2": "1",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A highly customizable Changelog Generator that follows Conventional Commit specifications \u26f0\ufe0f",
+        "documentation": "https://git-cliff.org/docs/",
+        "homepage": "https://git-cliff.org/",
+        "license": "MIT OR Apache-2.0",
+        "license_file": [
+          "LICENSE-MIT",
+          "LICENSE-APACHE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/orhun/git-cliff",
+        "summary": "A highly customizable changelog generator"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export LIBGIT2_NO_VENDOR=\"true\"",
+          "export PKG_CONFIG=\"$BUILD_PREFIX/bin/pkg-config\"",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "cargo install --path git-cliff --bins --root \"${PREFIX}\" --locked",
+          "rm $PREFIX/.crates2.json",
+          "rm $PREFIX/.crates.toml"
+        ],
+        "string": "hbf0d3c1_0"
+      },
+      "context": {
+        "name": "git-cliff",
+        "version": "2.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim",
+          "orhun"
+        ]
+      },
+      "package": {
+        "name": "git-cliff",
+        "version": "2.12.0"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-64",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "pkg-config",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "libgit2",
+          "libssh2",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2a55fd44467dfb6b0a0a494328af2b664775f938367603e1f0441f66c7146732",
+          "url": "https://github.com/orhun/git-cliff/archive/refs/tags/v2.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "git-cliff --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "git-cliff",
+              "git-cliff-completions",
+              "git-cliff-mangen"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: 7zip
+  version: 25.01
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ip7z/7zip/archive/${{ version }}.tar.gz
+  sha256: 8772e4ef86540c98bf4c23a6d9e13b3a25794d4bb30986ef0b1b9f20075b34c9
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - if: not win
+      then:
+        - make
+    - if: osx
+      then:
+        - uutils-coreutils
+  run_constraints:
+    - 7za ==999999999
+
+tests:
+  - script:
+    - 7z
+    - 7za
+    - 7zr
+    - 7zz
+
+about:
+  license: LGPL-2.1-or-later AND LicenseRef-LGPL-2.1-or-later-with-unRAR-restriction
+  license_file:
+    - LICENSE.txt
+    - UNRAR_LICENSE.txt
+  summary: 7-Zip is a file archiver with a high compression ratio.
+  homepage: https://www.7-zip.org/
+  repository: https://github.com/ip7z/7zip
+
+extra:
+  recipe-maintainers:
+    - XhstormR
+    - wolfv

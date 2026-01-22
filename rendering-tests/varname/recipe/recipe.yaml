@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: varname
+  version: "0.15.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/varname-${{ version }}.tar.gz
+  sha256: cf1b9aa38197f4df5ad9bd9db32ce0439aa6b43e24456fe5d20ad352a8014ade
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - poetry-core
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - executing >=2.1.0,<3.0.0
+    - typing_extensions >=4.13.0,<5.0.0
+
+tests:
+  - python:
+      imports:
+        - varname
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Dark magics about variable names in python.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pwwang/python-varname
+
+extra:
+  recipe-maintainers:
+    - thewchan

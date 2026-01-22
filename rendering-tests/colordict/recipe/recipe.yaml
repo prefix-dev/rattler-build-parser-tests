@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  name: colordict
+  version: 1.2.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/colordict-${{ version }}.tar.gz
+  sha256: 75854912094196622c7395898c364d0954078f55b32a72d774da739696977dbc
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - colordict
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A package to allow for easy maintenance of a color dictionary with palettes, so you can use the colors that you like in your different projects.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/aleferna12/colordict
+
+extra:
+  recipe-maintainers:
+    - carlodri

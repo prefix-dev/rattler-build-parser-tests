@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.6.2
+
+package:
+  name: rdflib-jsonld
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/rdflib-jsonld/rdflib-jsonld-${{ version }}.tar.gz
+  sha256: 107cd3019d41354c31687e64af5e3fd3c3e3fa5052ce635f5ce595fd31853a63
+
+build:
+  number: 6
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - rdflib >=5.0.0
+
+tests:
+  - python:
+      imports: rdflib_jsonld
+      pip_check: false
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: rdflib extension adding JSON-LD parser and serializer
+  homepage: https://github.com/RDFLib/rdflib-jsonld
+  repository: https://github.com/RDFLib/rdflib-jsonld
+
+extra:
+  recipe-maintainers:
+    - croth1
+    - bollwyvl

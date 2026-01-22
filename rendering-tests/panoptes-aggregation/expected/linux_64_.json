@@ -1,0 +1,461 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "panoptes-aggregation": {
+          "build_string": "pyhe01879c_0",
+          "name": "panoptes-aggregation",
+          "version": "5.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.247956951Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://aggregation-caesar.zooniverse.org/docs",
+        "homepage": "https://github.com/zooniverse/aggregation-for-caesar",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Aggregation code for Zooniverse panoptes projects."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "panoptes_aggregation = panoptes_aggregation.scripts.aggregation_parser:main",
+            "panoptes_aggregation_gui = panoptes_aggregation.scripts.gui:gui"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "python_check_max": "3.13",
+        "version": "5.3.0"
+      },
+      "extra": {
+        "feedstock-name": "panoptes-aggregation",
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "panoptes-aggregation",
+        "version": "5.3.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "flit-core >=3.2,<4"
+        ],
+        "run": [
+          "beautifulsoup4 >=4.8.1,<4.13",
+          "collatex-python >=2.3,<2.4",
+          "contourpy >=1.3.0,<1.4.0",
+          "lxml >=4.4,<5.4",
+          "numpy >=1.26.4,<2.3",
+          "packaging >=20.1,<24.3",
+          "pandas >=2",
+          "progressbar2 >=3.39,<4.6",
+          "python >=3.9",
+          "python-levenshtein >=0.12.0,<0.27",
+          "python-slugify >=7.0.0,<8.1",
+          "pyyaml >=6.0,<6.1",
+          "scikit-learn >=1.3.2,<1.7",
+          "scipy >=1.10.0",
+          "shapely >=2.0,<2.1",
+          "shapelysmooth >=0.2.0,<1.0",
+          "werkzeug >=2.3.0,<3.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4d1db0dbff93d1809b6f28f216067a18527ece3a0bdf24ce7fad1952bdef3073",
+          "url": "https://pypi.org/packages/source/p/panoptes-aggregation/panoptes_aggregation-5.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "panoptes_aggregation"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest",
+              "pytest-cov",
+              "pytest-subtests",
+              "python 3.9.*",
+              "requests"
+            ]
+          },
+          "script": [
+            "pip check",
+            "panoptes_aggregation --help",
+            "python run_test.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-gui",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-gui/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-gui/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-gui/work"
+      },
+      "hash": {
+        "hash": "e01879c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "panoptes-aggregation": {
+          "build_string": "pyhe01879c_0",
+          "name": "panoptes-aggregation",
+          "version": "5.3.0"
+        },
+        "panoptes-aggregation-with-gui": {
+          "build_string": "he01879c_0",
+          "name": "panoptes-aggregation-with-gui",
+          "version": "5.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.386280096Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://aggregation-caesar.zooniverse.org/docs",
+        "homepage": "https://github.com/zooniverse/aggregation-for-caesar",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Aggregation code for Zooniverse panoptes projects. (with [gui])"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "he01879c_0"
+      },
+      "context": {
+        "python_check_max": "3.13",
+        "version": "5.3.0"
+      },
+      "extra": {
+        "feedstock-name": "panoptes-aggregation",
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "panoptes-aggregation-with-gui",
+        "version": "5.3.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "panoptes-aggregation",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "gooey >=1.0.8.1,<1.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4d1db0dbff93d1809b6f28f216067a18527ece3a0bdf24ce7fad1952bdef3073",
+          "url": "https://pypi.org/packages/source/p/panoptes-aggregation/panoptes_aggregation-5.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "panoptes_aggregation"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.10.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9.*"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-online",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-online/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-online/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-aggregation-with-online/work"
+      },
+      "hash": {
+        "hash": "e01879c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "panoptes-aggregation": {
+          "build_string": "pyhe01879c_0",
+          "name": "panoptes-aggregation",
+          "version": "5.3.0"
+        },
+        "panoptes-aggregation-with-gui": {
+          "build_string": "he01879c_0",
+          "name": "panoptes-aggregation-with-gui",
+          "version": "5.3.0"
+        },
+        "panoptes-aggregation-with-online": {
+          "build_string": "he01879c_0",
+          "name": "panoptes-aggregation-with-online",
+          "version": "5.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.386573067Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://aggregation-caesar.zooniverse.org/docs",
+        "homepage": "https://github.com/zooniverse/aggregation-for-caesar",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Aggregation code for Zooniverse panoptes projects. (with [online])"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "string": "he01879c_0"
+      },
+      "context": {
+        "python_check_max": "3.13",
+        "version": "5.3.0"
+      },
+      "extra": {
+        "feedstock-name": "panoptes-aggregation",
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "panoptes-aggregation-with-online",
+        "version": "5.3.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "panoptes-aggregation",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "azure-identity >=1,<2",
+          "azure-storage-blob >=12,<13",
+          "celery >=5.3,<5.5",
+          "flask-cors >=3.0,<5.1",
+          "flask >=2.3,<3.2",
+          "flower >=2,<3",
+          "gitpython >=3.0.0,<3.2",
+          "gunicorn >=20.0,<24.0",
+          "newrelic >=8.4.0,<10.4",
+          "panoptes-client >=1.6,<1.7",
+          "redis-py >=5,<6",
+          "requests >=2.28,<2.33",
+          "setuptools >=75.8,<76.0",
+          "standard-imghdr >=3.13,<4.0",
+          "sentry-sdk >=2.19,<2.20",
+          "blinker >=1.1",
+          "markupsafe"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4d1db0dbff93d1809b6f28f216067a18527ece3a0bdf24ce7fad1952bdef3073",
+          "url": "https://pypi.org/packages/source/p/panoptes-aggregation/panoptes_aggregation-5.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "panoptes_aggregation"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.12.*"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

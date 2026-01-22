@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pint",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pint/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pint/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pint/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pint": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pint",
+          "version": "0.25.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:45:00.572444876Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Pint is a Python package to define, operate and manipulate physical\nquantities: the product of a numerical value and a unit of measurement.\nIt allows arithmetic operations between them and conversions from and to\ndifferent units. It is distributed with a comprehensive list of physical\nunits, prefixes and constants. Due to its modular design, you can extend\n(or even rewrite!) the complete list without changing the source code.\nIt supports a lot of numpy mathematical operations without monkey\npatching or wrapping numpy.",
+        "documentation": "https://pint.readthedocs.org/",
+        "homepage": "https://github.com/hgrecco/pint",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/hgrecco/pint",
+        "summary": "Operate and manipulate physical quantities in Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} ${{ PYTHON }} -m pip install . -v",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "Pint",
+        "python_min": "3.11",
+        "version": "0.25.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "dopplershift"
+        ]
+      },
+      "package": {
+        "name": "pint",
+        "version": "0.25.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.11.*",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.11",
+          "platformdirs >=2.1.0",
+          "flexcache >=0.3",
+          "flexparser >=0.4",
+          "typing_extensions >=4.0.0"
+        ],
+        "run_constraints": [
+          "numpy >=1.23"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "85a45d1da8fe9c9f7477fed8aef59ad2b939af3d6611507e1a9cbdacdcd3450a",
+          "url": "https://pypi.org/packages/source/P/Pint/pint-0.25.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pint"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.11.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"import pint; ver = pint.__version__; assert ver != '0.0.0'\"",
+            "pint-convert --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

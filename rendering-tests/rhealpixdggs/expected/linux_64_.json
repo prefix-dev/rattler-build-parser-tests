@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rhealpixdggs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rhealpixdggs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rhealpixdggs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rhealpixdggs/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rhealpixdggs": {
+          "build_string": "pyhcf101f3_0",
+          "name": "rhealpixdggs",
+          "version": "0.5.13"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:46:19.842664575Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/manaakiwhenua/rhealpixdggs-py",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/manaakiwhenua/rhealpixdggs-py",
+        "summary": "An implementation of the rHEALPix discrete global grid system"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "python -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "rhealpixdggs",
+        "python_min": "3.12",
+        "version": "0.5.13"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "alpha-beta-soup"
+        ],
+        "tags": [
+          "rhealpix",
+          "DGGS",
+          "Discrete Global Grid System",
+          "geospatial",
+          "spatial",
+          "reference system"
+        ]
+      },
+      "package": {
+        "name": "rhealpixdggs",
+        "version": "0.5.13"
+      },
+      "requirements": {
+        "host": [
+          "python ==3.12",
+          "poetry-core >=1.0.0",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python 3.12.*",
+          "numpy >=2.0",
+          "scipy >=1.11",
+          "matplotlib-base >=3.7",
+          "pyproj >=3.6",
+          "shapely >=2.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "760920161854d6c2b85ae356ff37a26acbea15972c7f53d3935456802adbae3d",
+          "url": "https://pypi.org/packages/source/r/rhealpixdggs/rhealpixdggs-0.5.13.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rhealpixdggs"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/",
+              "docs/",
+              "rhealpixdggs/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python ==3.12"
+            ]
+          },
+          "script": [
+            "python -m unittest discover tests/",
+            "pytest -v --doctest-glob=introduction.rst docs/source/",
+            "pytest -v --doctest-modules rhealpixdggs -k \"not rhealpixdggs.projection_wrapper.Projection\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

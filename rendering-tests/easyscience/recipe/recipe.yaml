@@ -1,0 +1,49 @@
+context:
+  name: easyscience
+  version: "2.1.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/easyscience-${{ version }}.tar.gz
+  sha256: 5080441eaa7e4ce09f2a6b1678fd9e1db3984074f8fe44bcb50f7018ea509c4e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling <=1.21.0
+    - setuptools-git-versioning
+    - pip
+  run:
+    - python >=${{ python_min }},<3.14
+    - asteval
+    - bumps
+    - dfo-ls
+    - lmfit
+    - numpy
+    - uncertainties
+    - scipp
+
+tests:
+  - script: python -c "import easyscience"
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/easyscience/corelib
+  summary: Generic logic for easyScience libraries
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - MridulS

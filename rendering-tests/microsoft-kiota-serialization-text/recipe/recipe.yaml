@@ -1,0 +1,42 @@
+context:
+  name: microsoft-kiota-serialization-text
+  version: "1.9.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/microsoft_kiota_serialization_text-${{ version }}.tar.gz
+  sha256: 4e94c3b5a85cfc630249956f390ada2311708de43129f6d2c91bee38c2c6d5fd
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry-core >=1.0.0
+  run:
+    - python >=${{ python_min }},<4.0
+    - microsoft-kiota-abstractions ${{ version }}.*
+
+tests:
+  - python:
+      imports:
+        - kiota_serialization_text
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/microsoft/kiota-python/tree/main/packages/serialization/text
+  summary: Core abstractions for kiota generated libraries in Python
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - xylar

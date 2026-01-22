@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: langgraph-prebuilt
+  version: 1.0.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/langgraph_prebuilt-${{ version }}.tar.gz
+  sha256: c5f6cf0f5a0ac47643d2e26ae6faa38cb28885ecde67911190df9e30c4f72361
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - langgraph-checkpoint >=2.1.0,<5.0.0
+    - langchain-core >=1.0.0
+tests:
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Library with high-level APIs for creating and executing LangGraph agents and tools.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://www.github.com/langchain-ai/langgraph
+
+extra:
+  recipe-maintainers:
+    - jan-janssen

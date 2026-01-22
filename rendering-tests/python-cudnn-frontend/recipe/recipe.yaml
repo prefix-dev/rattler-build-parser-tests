@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  build_number: 1
+  version: "1.17.0"
+
+package:
+  name: python-cudnn-frontend
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NVIDIA/cudnn-frontend/archive/v${{ version }}.tar.gz
+  sha256: 08930ae85aba1db1d2d164b8425649199562f89dda8ad25d79bfd0d0bbaab72c
+
+build:
+  number: ${{ build_number }}
+  string: cuda${{ cuda_compiler_version | replace('.', '') }}_py${{ python | version_to_buildstring }}_h${{ hash }}_${{ build_number }}
+  skip: cuda_compiler_version in (undefined, "None") or (not linux)
+  script:
+    env:
+      CUDNN_FRONTEND_LOG_INFO: "1"
+    content:
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('cuda') }}
+    - ${{ stdlib("c") }}
+    - cmake >=3.18
+    - make
+    - ninja
+  host:
+    - cudnn
+    - pip
+    - pybind11
+    - python
+    - setuptools >=64
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - cudnn
+        # - cudnn.gemm_swiglu
+        # - cudnn.gemm_amax
+        # - cudnn.native_sparse_attention
+        # - cudnn.native_sparse_attention.selection
+        # - cudnn.native_sparse_attention.sliding_window_attention
+        # - cudnn.native_sparse_attention.top_k
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        # - nvidia-cutlass-dsl==4.3.1
+    script:
+      - python -c "import cudnn; assert cudnn.backend_version() >= 91000, cudnn.backend_version()"
+
+      # PY_VER is not available in 'tests' section with rattler-build
+      - export PY_VER=$(python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+      - ls -lh $PREFIX/lib/python$PY_VER/site-packages/include/*
+      - test -f $PREFIX/lib/python$PY_VER/site-packages/include/cudnn_frontend.h
+
+about:
+  summary: cuDNN FrontEnd API
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - include/cudnn_frontend/thirdparty/nlohmann/LICENSE.MIT
+  homepage: https://github.com/NVIDIA/cudnn-frontend
+
+extra:
+  recipe-maintainers:
+    - jameslamb
+    - weiji14

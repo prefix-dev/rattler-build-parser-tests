@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: transformcl
+  version: "2025.1"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/transformcl-${{ version }}.tar.gz
+  sha256: 7d9dafee8fe380a66da5131daa9ebf0aa37e002679ad8a0282f25c77313ad6c5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - array-api-compat
+    - flt >=2025.1
+
+tests:
+  - python:
+      imports:
+        - transformcl
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: transform angular power spectra and correlation functions
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/cltools/transformcl
+
+extra:
+  recipe-maintainers:
+    - connoraird
+    - ntessore
+    - paddyroddy
+    - Saransh-cpp

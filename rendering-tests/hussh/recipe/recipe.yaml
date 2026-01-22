@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: hussh
+  version: "0.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hussh-${{ version }}.tar.gz
+  sha256: 3b3e75be647e38eab33f0268dec3c4f8267729e5c144d11111e58dbc4eeb41b0
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - make
+    - if: win
+      then: perl
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.5,<2.0
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - hussh
+      pip_check: true
+
+about:
+  summary: Client-side ssh library that offers low level performance through a high level interface
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/JacobCallahan/Hussh
+
+extra:
+  recipe-maintainers:
+    - thewchan

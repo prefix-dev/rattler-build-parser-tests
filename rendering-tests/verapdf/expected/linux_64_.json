@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_verapdf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_verapdf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_verapdf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_verapdf/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "verapdf": {
+          "build_string": "hfc2019e_0",
+          "name": "verapdf",
+          "version": "1.29.202"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:45:48.178884849Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.verapdf.org/",
+        "homepage": "https://github.com/veraPDF/veraPDF-apps",
+        "license": "GPL-3.0-or-later OR MPL-2.0",
+        "license_file": [
+          "LICENSE.GPL",
+          "LICENSE.MPL"
+        ],
+        "summary": "Command line and GUI industry supported PDF/A and PDF/UA Validation"
+      },
+      "build": {
+        "number": 0,
+        "script": "python ${{ RECIPE_DIR }}/builder.py",
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "openjdk_min": "9",
+        "version": "1.29.202"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "verapdf",
+        "version": "1.29.202"
+      },
+      "requirements": {
+        "build": [
+          "maven",
+          "python >=3.9",
+          "openjdk 9.*"
+        ],
+        "run": [
+          "openjdk >=9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "490e51007527312e4de7934c0312e9a01ad65c202ff080a77ddcdbf27257d24a",
+          "url": "https://github.com/veraPDF/veraPDF-apps/archive/refs/tags/v1.29.202.tar.gz"
+        },
+        {
+          "sha256": "b8bf0b00fd789ef8d8548d2eeb7e83194db394d9f1be741f2d0ef1d62bff50c6",
+          "url": "https://pdfa.org/wp-content/uploads/2021/04/Matterhorn-Protocol-1-1.pdf"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "Matterhorn-Protocol-1-1.pdf"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "openjdk 9.*"
+            ]
+          },
+          "script": "python run_test.py"
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "Matterhorn-Protocol-1-1.pdf"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

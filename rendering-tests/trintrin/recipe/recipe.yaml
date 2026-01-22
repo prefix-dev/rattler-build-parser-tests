@@ -1,0 +1,114 @@
+context:
+  version: "0.1.0"
+
+recipe:
+  name: trintrin-split
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/ami-iit/trintrin/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: b38f78e79a3f473d99d4c4fa6e8ae8367dddc3f866a351f17c2ddcaea61fe652
+
+build:
+  number: 3
+
+outputs:
+  - package:
+      name: libtrintrin
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+        - if: build_platform != target_platform
+          then:
+            - libyarp
+      host:
+        - ycm-cmake-modules
+        - libyarp
+      run_exports:
+        - ${{ pin_subpackage('libtrintrin', upper_bound='x.x') }}
+    tests:
+      - script:
+          - cmake-package-check trintrin --targets trintrin::msgs
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+
+  - package:
+      name: trintrin-python
+    build:
+      script:
+        - if: unix
+          then: build_py.sh
+        - if: win
+          then: bld_py.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - python
+      host:
+        - ${{ pin_subpackage('libtrintrin', upper_bound='x.x.x') }}
+        - python
+        - libyarp
+        - pybind11
+        - pybind11-abi
+      run:
+        - ${{ pin_subpackage('libtrintrin', upper_bound='x.x.x') }}
+        - python
+    tests:
+      - python:
+          imports:
+            - trintrin
+
+  - package:
+      name: trintrin
+    requirements:
+      host:
+        - libyarp
+      run:
+        - ${{ pin_subpackage('libtrintrin', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('trintrin-python', upper_bound='x.x.x') }}
+    tests:
+      - script:
+          - cmake-package-check trintrin --targets trintrin::msgs
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+      - python:
+          imports:
+            - trintrin
+
+about:
+  homepage: https://github.com/ami-iit/trintrin
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Set of messages and interfaces used in Artificial Mechanical Intelligence lab at Italian Institute of Technology.
+
+extra:
+  feedstock-name: trintrin
+  recipe-maintainers:
+    - traversaro

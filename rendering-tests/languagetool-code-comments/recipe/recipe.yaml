@@ -1,0 +1,42 @@
+context:
+  version: 0.6.3
+
+package:
+  name: languagetool-code-comments
+  version: ${{ version }}
+
+source:
+  git: https://github.com/dustinblackman/languagetool-code-comments
+  tag: v${{ version }}
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - make
+  host:
+    - openssl
+
+tests:
+  - script:
+      - languagetool-code-comments --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: LanguageTool API in Rust
+  homepage: https://github.com/dustinblackman/languagetool-code-comments
+  repository: https://github.com/dustinblackman/languagetool-code-comments
+
+extra:
+  recipe-maintainers:
+    - danielnachun

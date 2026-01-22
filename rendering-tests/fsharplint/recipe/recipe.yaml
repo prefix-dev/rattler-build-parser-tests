@@ -1,0 +1,41 @@
+context:
+  version: 0.26.8
+
+package:
+  name: fsharplint
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/fsprojects/fsharplint
+    tag: v${{ version }}
+  - url: https://github.com/fsprojects/FSharpLint/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 8610d082031a8010b3a9ffc33fd1050c3f66461ec45c030f5317a25c176f69cb
+    target_directory: archive
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  build:
+    - paket
+    - dotnet
+    - nuget-license
+    - sed
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - dotnet-fsharplint --help
+
+about:
+  homepage: https://github.com/fsprojects/fsharplint
+  license: MIT
+  license_file: LICENSE
+  summary: Lint tool for F#
+  repository: https://github.com/fsprojects/fsharplint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

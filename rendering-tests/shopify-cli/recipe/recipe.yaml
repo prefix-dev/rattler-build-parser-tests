@@ -1,0 +1,41 @@
+context:
+  name: shopify-cli
+  version: "3.89.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@shopify/cli/-/cli-${{ version }}.tgz
+  sha256: 0dd44ad9b9edd4d1b60d6ade66393a28b153963bd5c33ed100f5e015f0367758
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - shopify --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Build apps, themes, and hydrogen storefronts for Shopify
+  homepage: https://github.com/Shopify/cli
+  repository: https://github.com/Shopify/cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,190 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pesummary",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pesummary/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pesummary/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pesummary/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pesummary": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pesummary",
+          "version": "1.6.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.765754699Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package helps the user to generate summary webpages to\nvisualise the output from any parameter estimation code",
+        "documentation": "https://lscsoft.docs.ligo.org/pesummary/",
+        "homepage": "https://git.ligo.org/lscsoft/pesummary",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Python package to produce summary pages for Parameter estimation codes"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "summaryclassification = pesummary.cli.summaryclassification:main",
+            "summaryclean = pesummary.cli.summaryclean:main",
+            "summarycombine = pesummary.cli.summarycombine:main",
+            "summarycombine_posteriors = pesummary.cli.summarycombine_posteriors:main",
+            "summarycompare = pesummary.cli.summarycompare:main",
+            "summarydetchar = pesummary.cli.summarydetchar:main",
+            "summaryextract = pesummary.cli.summaryextract:main",
+            "summarygracedb = pesummary.cli.summarygracedb:main",
+            "summaryjscompare = pesummary.cli.summaryjscompare:main",
+            "summarymodify = pesummary.cli.summarymodify:main",
+            "summarypages = pesummary.cli.summarypages:main",
+            "summarypageslw = pesummary.cli.summarypageslw:main",
+            "summarypipe = pesummary.cli.summarypipe:main",
+            "summaryplots = pesummary.cli.summaryplots:main",
+            "summarypublication = pesummary.cli.summarypublication:main",
+            "summaryrecreate = pesummary.cli.summaryrecreate:main",
+            "summaryreview = pesummary.cli.summaryreview:main",
+            "summarysplit = pesummary.cli.summarysplit:main",
+            "summarytest = pesummary.cli.summarytest:main",
+            "summarytgr = pesummary.cli.summarytgr:main",
+            "summaryversion = pesummary.cli.summaryversion:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "pesummary",
+        "version": "1.6.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "hoyc1"
+        ]
+      },
+      "package": {
+        "name": "pesummary",
+        "version": "1.6.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "setuptools_scm"
+        ],
+        "run": [
+          "astropy-base >=5.0",
+          "corner",
+          "gwpy >=3.0.11",
+          "h5py",
+          "python-ligo-lw <2.0.0",
+          "ligo-gracedb",
+          "matplotlib-base >=3.10.0",
+          "numpy >=1.15.4,<2.4.0",
+          "pandas",
+          "plotly",
+          "pygments",
+          "python >=3.10",
+          "python-lal",
+          "python-lalsimulation >=5.0.0",
+          "python-lalinference",
+          "scipy >=1.8.0,<1.17.0",
+          "tqdm >=4.44.0"
+        ],
+        "run_constraints": [
+          "bilby >=1.1.1",
+          "ligo.em-bright >=1.1.5",
+          "seaborn-base >=0.13.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Remove-unneeded-requirements.patch"
+          ],
+          "sha256": "5fa6322a077a7d516bc1a038487053af7d00f23445f3a20587b75dde0da34c5b",
+          "url": "https://pypi.org/packages/source/p/pesummary/pesummary-1.6.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "bilby",
+              "coloredlogs",
+              "gitpython",
+              "gwosc",
+              "ligo.em-bright",
+              "ligo.skymap",
+              "nbformat",
+              "pip",
+              "pycbc",
+              "python 3.10",
+              "seaborn-base"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m pip show pesummary",
+            "summarytest --type imports",
+            "summarytest --type executables"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

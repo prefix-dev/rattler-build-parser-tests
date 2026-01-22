@@ -1,0 +1,123 @@
+schema_version: 1
+
+context:
+  name: shap
+  version: 0.50.0
+  build: 0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: bdc559acf7f647bc3bb22c6a1fea9f50716ed357ad595bc357b43082ae4dc6b9
+  patches:
+    - if: cuda_compiler_version == "11.8"
+      then: 0001-Build-for-all-CUDA-11-arches.patch
+    - if: (cuda_compiler_version or "") is startingwith("12")
+      then: 0001-Build-for-all-CUDA-12-arches.patch
+    # Taken and adapted from https://github.com/shap/shap/pull/3311
+    - if: (cuda_compiler_version or "") is startingwith("12")
+      then: 0002-remove-old-kepler-architecture-for-cuda-build.patch
+
+build:
+  number: ${{ build if cuda_compiler_version == "None" else build + 200 }}
+  string: ${{ "cpu" if cuda_compiler_version == "None" else "cuda" + (cuda_compiler_version | replace('.', '')) }}_py${{ python | version_to_buildstring }}h${{ hash }}_${{ build if cuda_compiler_version == "None" else build + 200 }}
+  skip: cuda_compiler_version == "11.2" or match(python, "<3.11") or ppc64le
+  script:
+    - if: unix
+      then: export NVCC_PREPEND_FLAGS="-ccbin ${CXX}"
+    - ${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: cuda_compiler_version != "None"
+      then: ${{ compiler('cuda') }}
+    - if: unix
+      then: make
+    - if: build_platform != target_platform
+      then: 
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+  host:
+    - python
+    - pip
+    - setuptools >=61.0
+    - setuptools-scm >=8.0
+    - packaging >=20.9
+    - numpy
+    - cython
+    - if: (cuda_compiler_version or "") is startingwith("12")
+      then: cuda-cudart-dev
+  run:
+    - typing_extensions
+    - python
+    - packaging >20.9
+    - numpy >=2
+    - scipy
+    - scikit-learn
+    - pandas
+    - tqdm >=4.27.0
+    - slicer ==0.0.8
+    - numba >=0.54
+    - cloudpickle
+    - if: cuda_compiler_version != "None"
+      then: __cuda
+
+tests:
+  - python:
+      imports:
+        - shap
+        - shap._cext
+        - if: cuda_compiler_version != "None"
+          then: shap._cext_gpu
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - pip
+        - pytest
+        - pytest-mpl
+        - matplotlib-base
+        - ipython
+        - xgboost
+        - if: osx or linux64
+          then: pytorch
+        - if: not (win or ppc64le or aarch64)
+          then: transformers
+        - if: not ppc64le
+          then: catboost >=1.2.7
+        - if: not match(python, ">=3.13")
+          then: ngboost
+        - pyod >=1
+        - lightgbm
+        - sentencepiece
+    script:
+      - pip check
+      # https://github.com/shap/shap/issues/4179
+      - if: cuda_compiler_version == "None" and build_platform != "osx-64"
+        then: pytest -k "not xslow" -sv tests
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: A unified approach to explain the output of any machine learning model.
+  description: |
+    SHAP (SHapley Additive exPlanations) is a unified approach to explain the output of any machine learning model. SHAP connects game theory with local explanations, uniting several previous methods and representing the only possible consistent and locally accurate additive feature attribution method based on expectations.
+  homepage: https://github.com/slundberg/shap
+  repository: https://github.com/slundberg/shap
+  documentation: https://shap.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - connortann
+    - mrandrewandrade
+    - primozgodec
+    - slundberg
+    - xhochy

@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_podman-compose",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_podman-compose/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_podman-compose/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_podman-compose/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "podman-compose": {
+          "build_string": "pyhe01879c_0",
+          "name": "podman-compose",
+          "version": "1.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:42.562616446Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/containers/podman-compose",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A script to run docker-compose.yml using podman"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "podman-compose = podman_compose:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "version": "1.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "podman-compose",
+        "version": "1.5.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.9",
+          "python-dotenv",
+          "pyyaml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5cc09362852711ce5d27648e41cb5fd058ea5a75acbcdec2f8d0b0c114a18e8e",
+          "url": "https://pypi.org/packages/source/p/podman-compose/podman_compose-1.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "podman_compose"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": "podman-compose --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

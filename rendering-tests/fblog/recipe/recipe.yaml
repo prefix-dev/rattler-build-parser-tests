@@ -1,0 +1,37 @@
+context:
+  version: "4.17.0"
+
+package:
+  name: fblog
+  version: ${{ version }}
+
+source:
+  url: https://github.com/brocode/fblog/archive/v${{ version }}.tar.gz
+  sha256: 6582020850aa9205fbdc4e169401c20e8ecc9b5decdc25dfcceeb955c83e3bcf
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - fblog --help
+
+about:
+  license: WTFPL
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Small command-line JSON log viewer
+  homepage: https://github.com/brocode/fblog
+  repository: https://github.com/brocode/fblog
+
+extra:
+  recipe-maintainers:
+    - danielnachun

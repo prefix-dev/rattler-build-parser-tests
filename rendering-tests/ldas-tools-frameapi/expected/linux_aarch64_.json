@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ldas-tools-frameapi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ldas-tools-frameapi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ldas-tools-frameapi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ldas-tools-frameapi/work"
+      },
+      "hash": {
+        "hash": "b3dda32"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ldas-tools-frameapi": {
+          "build_string": "hb3dda32_0",
+          "name": "ldas-tools-frameapi",
+          "version": "3.0.5"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:46:55.411480721Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This provides the runtime libraries for the frameAPI library.",
+        "homepage": "https://wiki.ligo.org/Computing/LDASTools",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://git.ligo.org/ldastools/LDAS_Tools",
+        "summary": "LDAS tools frameAPI library"
+      },
+      "build": {
+        "dynamic_linking": {
+          "overdepending_behavior": "error",
+          "overlinking_behavior": "error"
+        },
+        "number": 0,
+        "string": "hb3dda32_0"
+      },
+      "context": {
+        "ldas_tools_al_version": "2.7.0",
+        "ldas_tools_cmake_version": "1.3.0",
+        "ldas_tools_filters_version": "2.6.6",
+        "ldas_tools_framecpp_version": "3.0.5",
+        "ldas_tools_ldasgen_version": "2.7.4",
+        "name": "ldas-tools-frameAPI",
+        "version": "3.0.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "emaros"
+        ]
+      },
+      "package": {
+        "name": "ldas-tools-frameapi",
+        "version": "3.0.5"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cmake >=3.6",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "ldas-tools-al >=2.7.0",
+          "ldas-tools-cmake >=1.3.0",
+          "ldas-tools-filters >=2.6.6",
+          "ldas-tools-framecpp >=3.0.5",
+          "ldas-tools-ldasgen >=2.7.4",
+          "libboost-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "ldas-tools-frameapi",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e56a4714b980ab117cebb3b99f25fd9a3c90672ca5ab971cdd77ac157c56ddc7",
+          "url": "http://software.ligo.org/lscsoft/source/ldas-tools-frameAPI-3.0.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "framecpp_sample",
+            "ldas_analysis_ready --frame-file-pattern \"*.gwf\" --ifo Z0 --analysis-ready-channel RAMPED_INT_8U_1",
+            "test -d ${PREFIX}/include/frameAPI",
+            "pkg-config --print-errors --exact-version ${{ version }} ldastools-ldasframe"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

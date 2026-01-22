@@ -1,0 +1,114 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-onsas",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-onsas/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-onsas/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-onsas/work"
+      },
+      "hash": {
+        "hash": "c364b38"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "octave-onsas": {
+          "build_string": "hc364b38_0",
+          "name": "octave-onsas",
+          "version": "0.2.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:38.570512583Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ONSAS/ONSAS.m",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "onsas/COPYING"
+        ],
+        "summary": "Open nonlinear structural analysis solver for GNU Octave"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": "tar -czf ${{ name }}-${{ version }}.tar.gz ${{ name }}\noctave -W -H --eval \"pkg install -global -verbose ${{ name }}-${{ version }}.tar.gz\"\n\nmkdir -p $PREFIX/bin\ncp $RECIPE_DIR/post-link.sh $PREFIX/bin/.octave-${{ name }}-post-link.sh\nchmod +x $PREFIX/bin/.octave-${{ name }}-post-link.sh\n",
+        "string": "hc364b38_0"
+      },
+      "context": {
+        "name": "onsas",
+        "version": "0.2.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "arjxn-py"
+        ]
+      },
+      "package": {
+        "name": "octave-onsas",
+        "version": "0.2.5"
+      },
+      "requirements": {
+        "host": [
+          "octave"
+        ],
+        "run": [
+          "octave"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "537c14f7ad920601dc9d1538fd54a6cc5faef86c778cd3ad6337dff3b8003d86",
+          "target_directory": "onsas",
+          "url": "https://github.com/ONSAS/ONSAS.m/archive/refs/tags/v0.2.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "octave -W -H --eval \"\\\n  pkg list; \\\n  pkg load ${{ name }}; disp('${{ name }} loaded') \\\n\"\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

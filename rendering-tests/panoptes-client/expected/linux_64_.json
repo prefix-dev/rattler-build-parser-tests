@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-client",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-client/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-client/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_panoptes-client/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "panoptes-client": {
+          "build_string": "pyhe01879c_0",
+          "name": "panoptes-client",
+          "version": "1.7.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:10.554448507Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This module is intended to allow programmatic management of projects,\nproviding high level access to the API for common project management tasks.",
+        "homepage": "https://github.com/zooniverse/panoptes-python-client",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "This package is the Python SDK for Panoptes, the platform behind the Zooniverse."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "version": "1.7.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "panoptes-client",
+        "version": "1.7.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "future >=0.16",
+          "python >=3.9",
+          "python-magic >=0.4",
+          "redo >=1.7",
+          "requests >=2.4.2",
+          "six >=1.9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "325b67673c5bfa63651db00b62c3c9c0a617b6a44a55a453151082d96fe27b2b",
+          "url": "https://pypi.org/packages/source/p/panoptes-client/panoptes_client-1.7.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "panoptes_client"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest-cov",
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "coverage run --source panoptes_client --branch -m pytest -vv --tb=long --color=yes --pyargs panoptes_client",
+            "coverage report --show-missing --skip-covered --fail-under=69"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

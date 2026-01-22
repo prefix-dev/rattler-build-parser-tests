@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: libmicrohttpd
+  version: 1.0.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-${{ version }}.tar.gz
+  sha256: df324fcd0834175dab07483133902d9774a605bfa298025f69883288fd20a8c7
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - if: unix
+      then: gnuconfig
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - make
+  host:
+    - gnutls
+  run_exports:
+    - ${{ pin_subpackage("libmicrohttpd", upper_bound="x.x") }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/lib/libmicrohttpd${SHLIB_EXT}
+      - if: unix
+        then: test -f $PREFIX/include/microhttpd.h
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: COPYING
+  summary: Light HTTP/1.1 server library
+  homepage: https://www.gnu.org/software/libmicrohttpd/
+
+extra:
+  recipe-maintainers:
+    - xhochy

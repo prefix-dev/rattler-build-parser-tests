@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: django-typer
+  version: "3.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django_typer-${{ version }}.tar.gz
+  sha256: 9e9a6e9093b97fcb61c003a192f4398249830346c64f60276485f4c8b1e331f8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - django >=4.2,<6.1
+    - click >=8.1.8,<8.4
+    - typer-slim >=0.20.1,<0.22.0
+    - shellingham >=1.5.4,<2.0
+    - typing_extensions >=3.7.4.3
+
+tests:
+  - python:
+      imports:
+        - django_typer
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+
+about:
+  homepage: https://github.com/django-commons/django-typer
+  summary: Use Typer to define the CLI for your Django management commands.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,127 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conftest",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conftest/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conftest/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conftest/work"
+      },
+      "hash": {
+        "hash": "a2bf2a4"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "conftest": {
+          "build_string": "ha2bf2a4_0",
+          "name": "conftest",
+          "version": "0.66.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:48:14.833532371Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Conftest helps you write tests against structured configuration data. Using Conftest you can write tests for your Kubernetes configuration, Tekton pipeline definitions, Terraform code, Serverless configs or any other config files.\n\nConftest uses the Rego language from Open Policy Agent for writing the assertions. You can read more about Rego in How do I write policies in the Open Policy Agent documentation.",
+        "documentation": "https://conftest.dev/",
+        "homepage": "https://github.com/open-policy-agent/conftest",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/open-policy-agent/conftest",
+        "summary": "Write tests against structured configuration data using the Open Policy Agent Rego query language"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --save_path ../library_licenses --ignore github.com/open-policy-agent/conftest",
+          "go build -v -o $PREFIX/bin/conftest -ldflags=\"-s -w\""
+        ],
+        "string": "ha2bf2a4_0"
+      },
+      "context": {
+        "name": "conftest",
+        "version": "0.66.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "conftest",
+        "version": "0.66.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-ppc64le",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cf639c2efa2410699e294689f1115298aa9dbc6587f198a839f27a310c18c6c0",
+          "target_directory": "src",
+          "url": "https://github.com/open-policy-agent/conftest/archive/refs/tags/v0.66.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "conftest --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "conftest"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

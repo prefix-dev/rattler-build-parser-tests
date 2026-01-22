@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: pixi
+  version: "0.63.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/prefix-dev/pixi/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 350bba330edf8192bc768f29a8509c2ce72933a13490f2e0944c23477445e0a1
+
+build:
+  number: 0
+
+  script:
+    env:
+      # This env var  specifies the base 2 log of the allocator page size
+      JEMALLOC_SYS_WITH_LG_PAGE: ${{ "16" if target_platform == "linux-aarch64" or target_platform == "linux-ppc64le" }}
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+    interpreter: nu
+    content: |
+      $env.OPENSSL_DIR = $env.PREFIX
+      if $nu.os-info.name == "linux" {
+        # This flag is needed for tree-sitter on linux
+        $env.CFLAGS = $"($env.CFLAGS) -D_BSD_SOURCE"
+      }
+      cargo install --locked --root $env.PREFIX --no-track --path crates/pixi
+      cargo-bundle-licenses --format yaml --output $"($env.SRC_DIR)/THIRDPARTY.yml"
+
+
+
+requirements:
+  build:
+    - nushell
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    # to compile the libsolv parts
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - pkg-config
+    - cmake
+    - cargo-auditable
+    - if: unix
+      then: make
+  host:
+    - if: linux
+      then: openssl
+    - if: win
+      then: libgit2
+
+tests:
+  - script:
+      - pixi --help
+
+about:
+  summary: pixi is a cross-platform, multi-language package manager and workflow tool build on the shoulders of the conda ecosystem.
+  description: |
+    pixi is a cross-platform, multi-language package manager and workflow tool build on the shoulders of the conda ecosystem.
+
+    pixi provides all developers the exceptional experience that is usually found with package managers like cargo or yarn but for any language.
+
+    # Highlights
+
+    - Support for multiple languages like Python, C++ and R using Conda packages
+    - All OS's: Linux, Windows, macOS (including Apple Silicon)
+    - A lockfile is always included and always up-to-date.
+    - A clean and simple Cargo-like command-line interface.
+    - Install tools per-project or system-wide.
+    - Completely written in Rust and build on top of the rattler library.
+
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/prefix-dev/pixi
+
+extra:
+  recipe-maintainers:
+    - wolfv
+    - baszalmstra
+    - tdejager
+    - ruben-arts
+    - Hofer-Julian

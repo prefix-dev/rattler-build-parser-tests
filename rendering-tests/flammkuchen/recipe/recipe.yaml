@@ -1,0 +1,45 @@
+context:
+  name: flammkuchen
+  version: 1.0.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: cfaf0706c53d27aa1ef3e60be0e39088c61046cdd36540ccf9edacb2aa3a0452
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - scipy
+    - pytables
+
+tests:
+  - python:
+      imports:
+        - flammkuchen
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Flexible HDF5 saving/loading library forked from deepdish (University of Chicago) and maintained by the Portugues lab
+  homepage: https://github.com/portugueslab/flammkuchen
+  repository: https://github.com/portugueslab/flammkuchen
+  documentation: https://github.com/portugueslab/flammkuchen
+
+extra:
+  recipe-maintainers:
+    - hadim

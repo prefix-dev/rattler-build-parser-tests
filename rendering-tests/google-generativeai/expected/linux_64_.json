@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_google-generativeai",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_google-generativeai/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_google-generativeai/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_google-generativeai/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "google-generativeai": {
+          "build_string": "pyhcf101f3_0",
+          "name": "google-generativeai",
+          "version": "0.8.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:47:44.703073700Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/google/generative-ai-python",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "The Gemini API Python SDK enables developers to use Google's state-of-the-art generative AI models to build AI-powered features and applications."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "google-generativeai",
+        "version": "0.8.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "moritzwilksch"
+        ]
+      },
+      "package": {
+        "name": "google-generativeai",
+        "version": "0.8.6"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "typing_extensions",
+          "python >=3.10",
+          "google-ai-generativelanguage ==0.6.15",
+          "google-api-core",
+          "google-api-python-client",
+          "google-auth >=2.15.0",
+          "protobuf",
+          "pydantic",
+          "tqdm",
+          "grpcio"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e58365ea1c36da40e07c8917cd50b647f6eaf4189f6682728d79327c84ab7e70",
+          "url": "https://github.com/google-gemini/generative-ai-python/archive/v0.8.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "google",
+              "google.generativeai"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

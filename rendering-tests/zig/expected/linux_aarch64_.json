@@ -1,0 +1,185 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zig",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zig/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zig/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zig/work"
+      },
+      "hash": {
+        "hash": "a658b79"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zig": {
+          "build_string": "ha658b79_6",
+          "name": "zig",
+          "version": "0.15.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:48:07.246624454Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.28",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libxml2_devel": "2.14",
+        "target_platform": "linux-aarch64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.\nRobust: Behavior is correct even for edge cases such as out of memory.\nOptimal: Write programs the best way they can behave and perform.\nReusable: The same code works in many environments which have different constraints.\nMaintainable: Precisely communicate intent to the compiler and other programmers.\n  The language imposes a low overhead to reading code and is resilient to changing requirements and environments.",
+        "documentation": "https://ziglang.org/documentation/0.15.2/",
+        "homepage": "https://ziglang.org/",
+        "license": "MIT",
+        "license_file": [
+          "zig-source/LICENSE"
+        ],
+        "repository": "https://github.com/ziglang/zig",
+        "summary": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
+      },
+      "build": {
+        "number": 6,
+        "string": "ha658b79_6"
+      },
+      "context": {
+        "llvm_src_version": "20.1.8",
+        "llvm_version": "20",
+        "name": "zig",
+        "version": "0.15.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC",
+          "xmnlab",
+          "tdejager"
+        ]
+      },
+      "package": {
+        "name": "zig",
+        "version": "0.15.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.28.*",
+          "cmake >=3.5",
+          "ninja",
+          "perl 5.32.*",
+          "zig ==0.15.2 *_3",
+          "bash",
+          "file"
+        ],
+        "host": [
+          "clangdev 20.*",
+          "libclang-cpp 20.*",
+          "libxml2-devel",
+          "llvm 20.*",
+          "llvmdev 20.*",
+          "lld 20.*",
+          "zlib",
+          "zstd",
+          "gxx_linux-aarch64 14.*"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-linux-maxrss-build.zig.patch"
+          ],
+          "sha256": "ebe6eb7006f6bbb72e54bd25d0675f2794084909d63a95aa315f2dcf2af5fd99",
+          "target_directory": "zig-source",
+          "url": "https://github.com/ziglang/zig/archive/refs/tags/0.15.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "zig"
+            ],
+            "files": [
+              "lib/zig/c.zig",
+              "lib/zig/compiler_rt.zig",
+              "lib/zig/zig.h",
+              "lib/zig/compiler/**",
+              "lib/zig/compiler_rt/**",
+              "lib/zig/docs/**",
+              "lib/zig/include/**",
+              "lib/zig/init/**",
+              "lib/zig/libc/**",
+              "lib/zig/libcxx/**",
+              "lib/zig/libcxxabi/**",
+              "lib/zig/libunwind/**",
+              "lib/zig/std/**"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "zig-source/test"
+            ]
+          },
+          "script": [
+            "zig version",
+            "zig zen",
+            "zig init",
+            "zig test zig-source/test/behavior.zig"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

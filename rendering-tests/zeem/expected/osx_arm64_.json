@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeem",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeem/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeem/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zeem/work"
+      },
+      "hash": {
+        "hash": "9ebc462"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zeem": {
+          "build_string": "h9ebc462_3",
+          "name": "zeem",
+          "version": "2.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:41:52.019607312Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a feature complete XML library containing a validating parser as well as a modern C++ API for the data structures. It also supports serializing custom data structures.\nThe core of this library is a validating XML parser with DTD processing and all. On top of this are implemented an API for manipulating XML data in a DOM like fashion and a serialization API. As a bonus there\u2019s also an XPath implementation, albeit this is limited to XPath 1.0.\nThis XML library was extracted from [libzeep](https://github.com/mhekkel/libzeep) since having a separate and simple XML library is more convenient. The API is unfortunately no longer compatible since the goal was to be more standards compliant. E.g., zeem::element should now be a complete [Sequence Container](https://en.cppreference.com/w/cpp/named_req/SequenceContainer).",
+        "documentation": "https://mhekkel.github.io/zeem",
+        "homepage": "https://mhekkel.github.io/zeem",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mhekkel/zeem",
+        "summary": "A C++ Module Library offering a full XML library with validating parser, DOM tree, XPaths and serialization."
+      },
+      "build": {
+        "number": 3,
+        "script": [
+          "sed -i.bak 's#CPMAddPackage(\"gh:catchorg/Catch2@3.4.0\")#find_package(Catch2 REQUIRED)#' test/CMakeLists.txt",
+          "set -exo pipefail\n\nexport CXXFLAGS=\"${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY\"\n\nif [[ ${build_platform} != ${target_platform} ]]; then\n  extra_cmake_args=\"-DTEST_STD_CHRONO_FROM_STREAM_R=ON -DCMAKE_CROSSCOMPILING=ON\"\nfi\n\n# Skip tests for cross compilation for macos\nif [[ ${build_platform} != ${target_platform} && ${target_platform} == \"osx-arm64\" ]]; then\n  cmake -S . -B build ${CMAKE_ARGS} -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON\nelse\n  cmake -S . -B build ${CMAKE_ARGS} -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON ${extra_cmake_args}\nfi\n\ncmake --build build --config Release --parallel ${CPU_COUNT}\nctest -V -C Release --test-dir build\ncmake --install build\n"
+        ],
+        "string": "h9ebc462_3"
+      },
+      "context": {
+        "author": "mhekkel",
+        "name": "zeem",
+        "version": "2.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "zeem",
+        "version": "2.1.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "catch2",
+          "fast_float",
+          "howardhinnant_date"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "catch2"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "zeem",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8b7998cc732f3220f57bfd9d01964e5aa005bc1288f0c9eee25d38a71c1eb0eb",
+          "url": "https://github.com/mhekkel/zeem/archive/refs/tags/v2.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -d ${PREFIX}/include/zeem\ntest -f ${PREFIX}/lib/libzeem${SHLIB_EXT}\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

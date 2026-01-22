@@ -1,0 +1,170 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fast-query-parsers",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fast-query-parsers/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fast-query-parsers/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fast-query-parsers/work"
+      },
+      "hash": {
+        "hash": "1570de5",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fast-query-parsers": {
+          "build_string": "py310h1570de5_3",
+          "name": "fast-query-parsers",
+          "version": "1.0.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:38:25.773915463Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/litestar-org/fast-query-parsers",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Ultra-fast query string and url-encoded form-data parsers"
+      },
+      "build": {
+        "number": 3,
+        "script": {
+          "file": "build-fast-query-parsers"
+        },
+        "string": "py310h1570de5_3"
+      },
+      "context": {
+        "maturin_version": "0.14",
+        "python_check_max": "3.13",
+        "version": "1.0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "fast-query-parsers",
+        "version": "1.0.3"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "maturin 0.14.*",
+          "pip",
+          "python",
+          "python-abi3"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_linux-64",
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5200a9e02997ad51d4d76a60ea1b256a68a184b04359540eb6310a15013df68f",
+          "url": "https://pypi.org/packages/source/f/fast-query-parsers/fast_query_parsers-1.0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fast_query_parsers"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "mypy",
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "coverage run --source=fast_query_parsers --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=83",
+            "mypy -p fast_query_parsers"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

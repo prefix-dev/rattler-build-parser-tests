@@ -1,0 +1,45 @@
+context:
+  name: drawarrow
+  version: "0.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/drawarrow/drawarrow-${{ version }}.tar.gz
+  sha256: e7be36bac90f13054e58b3ea8ffaa52f9c13a6189c25d86d2a930a00c26875ad
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base
+
+tests:
+  - python:
+      imports:
+        - drawarrow
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/JosephBARBIERDARNAL/drawarrow
+  summary: 'Drawing arrows for matplotlib made easy.'
+  description: |
+    Drawing arrows for matplotlib made easy.
+  license: MIT
+  license_file: LICENSE
+  documentation: https://python-graph-gallery.com/drawarrow/
+
+extra:
+  recipe-maintainers:
+    - claudiushaag

@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_djc-core-html-parser",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_djc-core-html-parser/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_djc-core-html-parser/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_djc-core-html-parser/work"
+      },
+      "hash": {
+        "hash": "c8a8a6f",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "djc-core-html-parser": {
+          "build_string": "py311hc8a8a6f_0",
+          "name": "djc-core-html-parser",
+          "version": "1.0.3"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:50:23.794122596Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HTML parser used by django-components written in Rust.",
+        "documentation": "https://github.com/django-components/djc-core-html-parser/blob/main/README.md",
+        "homepage": "https://github.com/django-components/djc-core-html-parser",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/django-components/djc-core-html-parser",
+        "summary": "HTML parser used by django-components written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }}  -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py311hc8a8a6f_0"
+      },
+      "context": {
+        "name": "djc-core-html-parser",
+        "version": "1.0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "djc-core-html-parser",
+        "version": "1.0.3"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "crossenv",
+          "maturin >=1,<2",
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1,<2"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "735c556440d029739d82b6f69a4c152a2a352c9355166dd5778cc42e664d715f",
+          "url": "https://pypi.org/packages/source/d/djc-core-html-parser/djc_core_html_parser-1.0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "djc_core_html_parser"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

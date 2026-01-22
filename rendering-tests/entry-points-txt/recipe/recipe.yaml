@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: entry-points-txt
+  version: "0.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 957f508508a761671f18870edd9deb83b36844c66251e9c8a0df55ee8ae0bf52
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - entry_points_txt
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Read & write entry_points.txt files
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/wheelodex/entry-points-txt
+
+extra:
+  recipe-maintainers:
+    - beenje

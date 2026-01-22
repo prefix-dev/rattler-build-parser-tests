@@ -1,0 +1,43 @@
+context:
+  name: biothings_client
+  version: 0.4.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/biothings_client-${{ version }}.tar.gz
+  sha256: 5b34e09c905280b5bd2538f1f34b6fc780c53c8da9b4074e3ff304836046f613
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - httpx >=0.22.0
+    - pandas >=1.1.5
+    - pyld >=0.7.2
+
+tests:
+  - python:
+      imports:
+        - biothings_client
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python Client for BioThings API services.
+  license: BSD-2-Clause
+  license_file: LICENSE.txt
+  homepage: https://github.com/biothings/biothings_client.py
+
+extra:
+  recipe-maintainers:
+    - hadim

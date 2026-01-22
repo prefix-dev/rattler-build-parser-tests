@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: heliclockter
+  version: "3.0.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/heliclockter-${{ version }}.tar.gz
+  sha256: bedc66fe18548abc9088d0bb7c2bcd764f980607cb1954ac83f0e17b1d366c10
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools-scm
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - heliclockter
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A robust way of dealing with datetimes in python by ensuring all datetimes are timezone aware at runtime.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/channable/heliclockter
+
+extra:
+  recipe-maintainers:
+    - thewchan

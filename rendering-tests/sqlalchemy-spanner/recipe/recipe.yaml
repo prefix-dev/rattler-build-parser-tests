@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: sqlalchemy-spanner
+  version: 1.17.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sqlalchemy_spanner-${{ version }}.tar.gz
+  sha256: 56ce4da7168a27442d80ffd71c29ed639b5056d7e69b1e69bb9c1e10190b67c4
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - sqlalchemy >=1.1.13
+    - google-cloud-spanner >=3.55.0
+    - alembic
+
+tests:
+  - python:
+      imports:
+        - google.cloud.sqlalchemy_spanner
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: SQLAlchemy dialect integrated into Cloud Spanner database
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/cloudspannerecosystem/python-spanner-sqlalchemy
+
+extra:
+  recipe-maintainers:
+    - xylar

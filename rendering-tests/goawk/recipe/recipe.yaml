@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "1.31.0"
+
+package:
+  name: goawk
+  version: ${{ version }}
+
+source:
+  url: https://github.com/benhoyt/goawk/archive/v${{ version }}.tar.gz
+  sha256: 2df274d8680a9405646b0729b6465b8952f795f118358cf8a25fe1526cbd0909
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - goawk --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: POSIX-compliant AWK interpreter written in Go
+  homepage: https://benhoyt.com/writings/goawk
+  repository: https://github.com/benhoyt/goawk
+
+extra:
+  recipe-maintainers:
+    - danielnachun

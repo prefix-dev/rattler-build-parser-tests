@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensus2pgsql",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensus2pgsql/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensus2pgsql/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zensus2pgsql/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zensus2pgsql": {
+          "build_string": "pyhcf101f3_0",
+          "name": "zensus2pgsql",
+          "version": "0.2.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:47.112363779Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://travishathaway.github.io/zensus2pgsql",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "A Python CLI program that collects Zensus GIS data from Germany and imports it into PostgreSQL"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "zensus2pgsql = zensus2pgsql.cli:app",
+            "zpg = zensus2pgsql.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "zensus2pgsql",
+        "python_min": "3.10",
+        "version": "0.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "travishathaway"
+        ]
+      },
+      "package": {
+        "name": "zensus2pgsql",
+        "version": "0.2.1"
+      },
+      "requirements": {
+        "host": [
+          "python ==3.10",
+          "hatchling >=1.27.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "aiocsv >=1.4.0",
+          "aiofiles >=25.1.0",
+          "asyncpg >=0.30.0",
+          "httpx >=0.28.1",
+          "platformdirs >=4.5.0",
+          "rich >=14.2.0",
+          "typer >=0.15.1",
+          "types-aiofiles >=25.1.0.20251011"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "00517129cf7747e7580f57c680e143de5e5accca928407cd79bc88c114502ec5",
+          "url": "https://pypi.org/packages/source/z/zensus2pgsql/zensus2pgsql-0.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "zensus2pgsql",
+              "zensus2pgsql.commands.create",
+              "zensus2pgsql.commands.cache",
+              "zensus2pgsql.commands.drop",
+              "zensus2pgsql.commands.list",
+              "zensus2pgsql.cache",
+              "zensus2pgsql.constants",
+              "zensus2pgsql.errors",
+              "zensus2pgsql.logging",
+              "zensus2pgsql.retry"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python ==3.10"
+            ]
+          },
+          "script": [
+            "zensus2pgsql --help",
+            "zpg --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: a2wsgi
+  version: "1.10.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/a2wsgi-${{ version }}.tar.gz
+  sha256: a5bcffb52081ba39df0d5e9a884fc6f819d92e3a42389343ba77cbf809fe1f45
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pdm-backend
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - a2wsgi
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Convert WSGI app to ASGI app or ASGI app to WSGI app.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/abersheeran/a2wsgi
+  repository: https://github.com/abersheeran/a2wsgi
+
+extra:
+  recipe-maintainers:
+    - rxm7706

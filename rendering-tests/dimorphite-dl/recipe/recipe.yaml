@@ -1,0 +1,50 @@
+context:
+  name: dimorphite-dl
+  version: "2.0.2"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/dimorphite_dl-${{ version }}.tar.gz
+  sha256: fa042935312c9681203a3b0f3df04252eb1d17f73cd71c8e7d8ed248380fae9c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.0
+    - setuptools-scm >=8
+  run:
+    - python >=${{ python_min }}
+    - loguru >=0.7.2,<0.8
+    - rdkit >=2020.3.3,<2026
+
+tests:
+  - python:
+      imports:
+        - dimorphite_dl
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - script:
+      - dimorphite_dl --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE.md
+  summary: "Adds or removes hydrogen atoms to achieve the appropriate molecular protonation state for a user-specified pH range"
+  homepage: https://github.com/durrantlab/dimorphite_dl
+
+extra:
+  recipe-maintainers:
+    - hadim

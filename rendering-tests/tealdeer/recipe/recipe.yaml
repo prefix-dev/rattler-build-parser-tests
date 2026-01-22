@@ -1,0 +1,38 @@
+context:
+  version: "1.8.1"
+
+package:
+  name: tealdeer
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dbrgn/tealdeer/archive/v${{ version }}.tar.gz
+  sha256: 8b9ea7ef8dd594d6fb8b452733b0c883a68153cec266b23564ce185bdf22fcfa
+
+build:
+  number: 0
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - tldr --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE-APACHE
+    - THIRDPARTY.yml
+  summary: Very fast implementation of tldr in Rust
+  homepage: https://github.com/dbrgn/tealdeer
+  repository: https://github.com/dbrgn/tealdeer
+
+extra:
+  recipe-maintainers:
+    - danielnachun

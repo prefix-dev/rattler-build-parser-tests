@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvalkey",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvalkey/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvalkey/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvalkey/work"
+      },
+      "hash": {
+        "hash": "6a83c73"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libvalkey": {
+          "build_string": "h6a83c73_2",
+          "name": "libvalkey",
+          "version": "0.2.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:32.158719845Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Libvalkey is the official C client for the [Valkey](https://valkey.io) database.\nIt also supports any server that uses the `RESP` protocol (version 2 or 3).\nThis project supports both standalone and cluster modes.",
+        "homepage": "https://github.com/valkey-io/libvalkey",
+        "license": "MIT",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/valkey-io/libvalkey",
+        "summary": "Valkey client library in C"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "cmake . -B build %CMAKE_ARGS% -D ENABLE_TLS=1 -G Ninja",
+          "ninja -v -C build install"
+        ],
+        "string": "h6a83c73_2"
+      },
+      "context": {
+        "name": "libvalkey",
+        "version": "0.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "trim21"
+        ]
+      },
+      "package": {
+        "name": "libvalkey",
+        "version": "0.2.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "openssl >=3"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libvalkey",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "70a114376edf0a6756de26244f2688f577532697af4cc579d58f89175a952d23",
+          "url": "https://github.com/valkey-io/libvalkey/archive/refs/tags/0.2.1.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "**/valkey_tls/valkey_tls-targets.cmake"
+            ],
+            "include": [
+              "valkey/valkey.h"
+            ],
+            "lib": [
+              "valkey",
+              "valkey_tls"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

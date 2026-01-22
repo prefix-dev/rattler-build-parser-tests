@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gto",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gto/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gto/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gto/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gto": {
+          "build_string": "pyhcf101f3_0",
+          "name": "gto",
+          "version": "1.9.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:23.764249081Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://dvc.org/doc/gto",
+        "homepage": "https://github.com/iterative/gto",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/iterative/gto",
+        "summary": "Version and deploy your models following GitOps principles"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "gto = gto.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "gto",
+        "version": "1.9.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aguschin",
+          "shcheklein",
+          "pmrowla",
+          "bgalvao",
+          "janjagusch",
+          "efiop",
+          "skshetry"
+        ]
+      },
+      "package": {
+        "name": "gto",
+        "version": "1.9.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=48",
+          "setuptools-scm >=6.3.1",
+          "setuptools_scm_git_archive ==1.1",
+          "fastentrypoints >=0.12",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "scmrepo >=3,<4",
+          "typer >=0.4.1",
+          "rich",
+          "pydantic >=2",
+          "ruamel.yaml",
+          "semver >=2.13.0",
+          "entrypoints",
+          "tabulate >=0.8.10",
+          "funcy",
+          "pydantic-settings >=2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3beb5c652a98585ad083dbb6879a580ffe926271661d9b7a50e428cd591005ea",
+          "url": "https://pypi.org/packages/source/g/gto/gto-1.9.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gto"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "gto --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

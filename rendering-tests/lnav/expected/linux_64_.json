@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lnav",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lnav/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lnav/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lnav/work"
+      },
+      "hash": {
+        "hash": "8eec3e5"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lnav": {
+          "build_string": "h8eec3e5_1",
+          "name": "lnav",
+          "version": "0.13.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:35:50.026689149Z",
+      "variant": {
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libarchive": "3.8",
+        "ncurses": "6",
+        "pcre2": "10.47",
+        "readline": "8",
+        "rust_compiler": "rust",
+        "sqlite": "3",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The Logfile Navigator is a log file viewer for the terminal. Given a set of files/directories, lnav will:\n\n  - decompress as needed;\n  - detect their format;\n  - merge the files by time into a single view;\n  - tail the files, follow renames, find new files in directories;\n  - build an index of errors and warnings;\n  - pretty-print JSON-lines.\n\nThen, in the lnav TUI, you can:\n\n  - jump quickly to the previous/next error (press e/E);\n  - search using regular expressions (press /);\n  - highlight text with a regular expression (:highlight command);\n  - filter messages using regular expressions or SQLite expressions;\n  - pretty-print structured text (press P);\n  - view a histogram of messages over time (press i);\n  - analyze messages using SQLite (press ;)",
+        "documentation": "https://docs.lnav.org/",
+        "homepage": "https://lnav.org/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/tstack/lnav",
+        "summary": "A log file viewer for the terminal"
+      },
+      "build": {
+        "number": 1,
+        "string": "h8eec3e5_1"
+      },
+      "context": {
+        "name": "lnav",
+        "sha256": "2b40158e36aafce780075e05419924faf8dd99d1c0d4ae25a15b00bc944f4d60",
+        "version": "0.13.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "lnav",
+        "version": "0.13.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "make",
+          "pkg-config",
+          "sed"
+        ],
+        "host": [
+          "bzip2",
+          "jemalloc",
+          "libarchive",
+          "libcurl >=7.80.0",
+          "libunistring",
+          "ncurses",
+          "pcre2",
+          "readline",
+          "sqlite",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2b40158e36aafce780075e05419924faf8dd99d1c0d4ae25a15b00bc944f4d60",
+          "url": "https://github.com/tstack/lnav/releases/download/v0.13.2/lnav-0.13.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "lnav -V",
+            "printf 'lnav' | lnav -n -c ';from [{ col1=1 }] | take 1' | grep -q col1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

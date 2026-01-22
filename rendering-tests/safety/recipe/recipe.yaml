@@ -1,0 +1,85 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.7.0"
+
+package:
+  name: safety
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/safety/safety-${{ version }}.tar.gz
+  sha256: daec15a393cafc32b846b7ef93f9c952a1708863e242341ab5bde2e4beabb54e
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - safety = safety.cli:cli
+
+requirements:
+  host:
+    - hatchling
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - authlib >=1.2.0
+    - click >=8.0.2
+    - dparse >=0.6.4
+    - filelock >=3.16.1,<4.0
+    - httpx <1.0
+    - jinja2 >=3.1.0
+    - marshmallow >=3.15.0
+    - nltk >=3.9
+    - packaging >=21.0
+    - pydantic >=2.6.0
+    - python >=${{ python_min }}
+    - requests
+    - ruamel.yaml >=0.17.21
+    - safety-schemas ==0.0.16
+    - tenacity >=8.1.0
+    - tomli
+    - tomlkit
+    - typer >=0.16.0
+    - typing_extensions >=4.7.1
+
+tests:
+  - python:
+      pip_check: true
+      imports: safety
+      python_version:
+        - ${{ python_min }}.*
+        - 3.14.*
+  - files:
+      recipe:
+        - run_test.py
+      source:
+        - tests/
+    requirements:
+      run:
+        - coverage
+        - git
+        - pip
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - safety --help
+      - safety --version
+      - python run_test.py
+
+about:
+  license: MIT
+  license_file: LICENSES/
+  summary: Safety checks your installed dependencies for known security vulnerabilities.
+  homepage: https://pyup.io/safety
+  repository: https://github.com/pyupio/safety
+  documentation: https://pyup.io/docs
+
+extra:
+  recipe-maintainers:
+    - jkornblum
+    - bollwyvl

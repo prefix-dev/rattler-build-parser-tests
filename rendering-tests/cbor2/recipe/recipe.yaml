@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: cbor2
+  version: "5.8.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cbor2-${{ version }}.tar.gz
+  sha256: b19c35fcae9688ac01ef75bad5db27300c2537eb4ee00ed07e05d8456a0d4931
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - cbor2=cbor2.tool:main
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - python
+    - setuptools >=77
+    - setuptools-scm >=6.4
+    - tomli
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - cbor2
+      pip_check: true
+  - script:
+      - cbor2 --help
+
+about:
+  summary: CBOR (de)serializer with extensive tag support
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/agronholm/cbor2
+  documentation: https://cbor2.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

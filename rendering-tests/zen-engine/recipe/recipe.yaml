@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  name: zen-engine
+  version: "0.51.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/zen_engine-${{ version }}.tar.gz
+  sha256: f593fd151ce953ebff414e13df6a57de53e5edd1f344dfa1b62af05b02512a9d
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: win
+        then: "*/api-ms-win-core-winrt-*.dll"
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin
+    - pip
+    - rust
+    - if: win
+      then: git
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - zen
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Open-Source Business Rules Engine
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://gorules.io/
+
+extra:
+  recipe-maintainers:
+    - carinapeng
+    - janjagusch
+    - ivergara
+    - nick-harmening

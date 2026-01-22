@@ -1,0 +1,181 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-learn",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-learn/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-learn/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-learn/work"
+      },
+      "hash": {
+        "hash": "8477d53",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scikit-learn": {
+          "build_string": "np2py311h8477d53_1",
+          "name": "scikit-learn",
+          "version": "1.8.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:59.436299434Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "python_impl": "cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://scikit-learn.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/scikit-learn/scikit-learn",
+        "summary": "A set of python modules for machine learning and data mining"
+      },
+      "build": {
+        "number": 1,
+        "string": "np2py311h8477d53_1"
+      },
+      "context": {
+        "version": "1.8.0",
+        "version_sanitized": "1.8.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "amueller",
+          "astaric",
+          "jakirkham",
+          "ogrisel",
+          "ocefpaf",
+          "lesteve",
+          "jnothman",
+          "rth",
+          "adrinjalali",
+          "glemaitre",
+          "jeremiedbb",
+          "thomasjpfan",
+          "jjerphan"
+        ]
+      },
+      "package": {
+        "name": "scikit-learn",
+        "version": "1.8.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "meson-python >=0.17.1",
+          "ninja",
+          "cython >=3.1.2",
+          "numpy",
+          "scipy",
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "python-build",
+          "meson-python >=0.17.1",
+          "ninja",
+          "cython >=3.1.2",
+          "numpy",
+          "scipy >=1.10.0",
+          "joblib >=1.3.0",
+          "threadpoolctl >=3.2.0"
+        ],
+        "run": [
+          "python",
+          "numpy >=1.24.1",
+          "scipy >=1.10.0",
+          "joblib >=1.3.0",
+          "threadpoolctl >=3.2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "603bff01ab8bd0a9de5a3ab0a9351b5d7f5594594cc070d763c537ecf397264f",
+          "url": "https://github.com/scikit-learn/scikit-learn/archive/1.8.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sklearn"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest >=7.1.2",
+              "cython >=3.1.2",
+              "pytest-xdist",
+              "pytest-timeout"
+            ]
+          },
+          "script": {
+            "content": [
+              "import os",
+              "import pytest",
+              "tests_to_skip = \"_not_a_real_test\"",
+              "tests_to_skip += \" or test_loadings_converges\"",
+              "args = [\"--pyargs\", \"sklearn\", \"-k\", f\"not ({tests_to_skip})\", \"-nauto\", \"--timeout=1200\", \"--durations=50\"]",
+              "print(f\"running pytest with args: {args}\")",
+              "pytest.main(args)"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

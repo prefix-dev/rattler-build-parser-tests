@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tea",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tea/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tea/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tea/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tea": {
+          "build_string": "h11686cb_0",
+          "name": "tea",
+          "version": "0.11.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:58.203102337Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "tea is the official CLI for Gitea. It can be used to manage and\ninteract with Gitea servers from the command line.",
+        "documentation": "https://gitea.com/gitea/tea",
+        "homepage": "https://gitea.com/gitea/tea",
+        "license": "MIT",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://gitea.com/gitea/tea",
+        "summary": "A command line tool to interact with Gitea servers"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --save_path ../library_licenses ${{ \"--ignore github.com/mattn/go-localereader\" if win }}",
+          "mkdir ..\\library_licenses\\github.com\\mattn\\go-localereader",
+          "copy ..\\go-localereader-license\\LICENSE ..\\library_licenses\\github.com\\mattn\\go-localereader\\LICENSE",
+          "go build -v -o %LIBRARY_BIN%\\tea.exe -ldflags=\"-s\""
+        ],
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "version": "0.11.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "tea",
+        "version": "0.11.1"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_win-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1da6b6d2534bd6ffb0931400014bbdef26242cf4d35d4ba44c24928811825805",
+          "target_directory": "src",
+          "url": "https://gitea.com/gitea/tea/archive/v0.11.1.tar.gz"
+        },
+        {
+          "file_name": "LICENSE",
+          "sha256": "dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3",
+          "target_directory": "go-localereader-license",
+          "url": "https://github.com/mattn/go-localereader/raw/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "tea --version"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "tea"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

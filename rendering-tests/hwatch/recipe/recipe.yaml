@@ -1,0 +1,39 @@
+schema_version: 1
+
+context:
+  version: 0.3.19
+
+package:
+  name: hwatch
+  version: ${{ version }}
+
+source:
+  url: https://github.com/blacknon/hwatch/archive/refs/tags/${{ version }}.tar.gz
+  sha256: b0c7da2b8279e483a88019f07a058c978c324f37cd67c34b50de46fb5bd0db16
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - hwatch --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Modern alternative to the watch command
+  homepage: https://github.com/blacknon/hwatch
+  repository: https://github.com/blacknon/hwatch
+
+extra:
+  recipe-maintainers:
+    - danielnachun

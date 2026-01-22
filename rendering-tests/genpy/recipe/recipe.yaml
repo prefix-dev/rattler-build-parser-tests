@@ -1,0 +1,45 @@
+context:
+  name: genpy
+  version: "2022.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 14665b4255206c98e7ba20da292fef565ada315985175700424ed2dda3d65f1e
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - pytools
+    - six
+
+tests:
+  - python:
+      imports:
+        - ${{ name }}
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: http://pypi.python.org/pypi/genpy
+  license: MIT
+  license_file: LICENSE
+  summary: AST-based Python source generation
+  repository: http://github.com/inducer/genpy
+
+extra:
+  recipe-maintainers:
+    - inducer
+    - isuruf

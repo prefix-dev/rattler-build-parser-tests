@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elfutils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elfutils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elfutils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_elfutils/work"
+      },
+      "hash": {
+        "hash": "7d8af26"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "elfutils": {
+          "build_string": "h7d8af26_0",
+          "name": "elfutils",
+          "version": "0.194"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:18.635242028Z",
+      "variant": {
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libarchive": "3.8",
+        "libcurl": "8",
+        "liblzma_devel": "5",
+        "libmicrohttpd": "1.0",
+        "sqlite": "3",
+        "target_platform": "linux-aarch64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://fedorahosted.org/elfutils/",
+        "license": "LGPL-3.0-only",
+        "license_file": [
+          "COPYING-LGPLV3"
+        ],
+        "summary": "a set of utilities and libraries for handling ELF (Executable and Linkable Format) files."
+      },
+      "build": {
+        "number": 0,
+        "string": "h7d8af26_0"
+      },
+      "context": {
+        "version": "0.194"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "edisongustavo",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "elfutils",
+        "version": "0.194"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "pkg-config",
+          "make",
+          "gettext-tools",
+          "libtool",
+          "automake"
+        ],
+        "host": [
+          "bzip2",
+          "libarchive",
+          "libcurl",
+          "libmicrohttpd",
+          "m4",
+          "sqlite",
+          "liblzma-devel",
+          "zlib",
+          "zstd"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "elfutils",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "disable-werror.patch"
+          ],
+          "sha256": "09e2ff033d39baa8b388a2d7fbc5390bfde99ae3b7c67c7daaf7433fbcf0f01e",
+          "url": "https://fedorahosted.org/releases/e/l/elfutils/0.194/elfutils-0.194.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test_libdwarf.c"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_linux-aarch64 =14",
+              "pkg-config"
+            ]
+          },
+          "script": {
+            "content": "run_test.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

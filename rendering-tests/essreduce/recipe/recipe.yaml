@@ -1,0 +1,57 @@
+context:
+  name: essreduce
+  version: "26.1.1"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/essreduce-${{ version }}.tar.gz
+  sha256: aa14f69064f96517fb818aa5137c203b25e428af198f3c3c5bd79408883c34b0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - grow-nexus = ess.reduce.scripts.grow_nexus:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=77
+    - setuptools-scm >=8.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - sciline >=25.11.0
+    - scipp >=25.04.0
+    - scippneutron >=25.11.1
+    - scippnexus >=25.06.0
+
+tests:
+  - python:
+      imports:
+        - ess
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - grow-nexus --help
+
+about:
+  summary: Common data reduction tools for the ESS facility
+  license: BSD-3-Clause
+  license_file: LICENSE
+  repository: https://github.com/scipp/essreduce
+  homepage: https://scipp.github.io/essreduce/
+
+extra:
+  recipe-maintainers:
+    - MridulS
+    - conda-forge/scipp

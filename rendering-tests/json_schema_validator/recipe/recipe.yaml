@@ -1,0 +1,55 @@
+context:
+  version: "2.4.0"
+  build_number: 0
+
+package:
+  name: json_schema_validator
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pboettch/json-schema-validator/archive/${{ version }}.tar.gz
+  sha256: 24cbb114609cc9b43d4018b8d03e082ff5d2f26f5dce8bd36538097267b63af9
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  run_exports:
+    - ${{ pin_subpackage('json_schema_validator', upper_bound='x.x') }}
+  build:
+    - cmake
+    - ninja
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+  host:
+    - nlohmann_json
+  run:
+    - ${{ pin_compatible('nlohmann_json', upper_bound='x.x.x') }}
+
+tests:
+  - package_contents:
+      files:
+        exists:
+          - ${{ "Library/" if win }}include/nlohmann/json-schema.hpp
+          - if: win
+            then:
+              - Library/bin/nlohmann_json_schema_validator.dll
+              - Library/lib/nlohmann_json_schema_validator.lib
+          - if: linux
+            then:
+              - lib/libnlohmann_json_schema_validator.so
+          - if: osx 
+            then:
+              - lib/libnlohmann_json_schema_validator.dylib
+
+about:
+  homepage: https://github.com/pboettch/json-schema-validator
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: JSON schema validator for JSON for Modern C++
+
+extra:
+  recipe-maintainers:
+    - JohanMabille
+    - asafkahlon

@@ -1,0 +1,50 @@
+context:
+  version: "2.2.2"
+
+package:
+  name: kalker
+  version: ${{ version }}
+
+source:
+  url: https://github.com/PaddiM8/kalker/archive/v${{ version }}.tar.gz
+  sha256: 4f35555e19c8a1a05ceba6a7043088a00fea3fbf780bbd4af90696172ce9f7c3
+
+build:
+  number: 2
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - m4
+    - make
+    - sed
+    - if: build_platform != target_platform
+      then:
+        - gmp
+        - mpc
+        - mpfr
+  host:
+    - gmp
+    - mpc
+    - mpfr
+
+tests:
+  - script:
+      - kalker --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Full-featured calculator with math syntax
+  homepage: https://github.com/PaddiM8/kalker
+  repository: https://github.com/PaddiM8/kalker
+
+extra:
+  recipe-maintainers:
+    - danielnachun

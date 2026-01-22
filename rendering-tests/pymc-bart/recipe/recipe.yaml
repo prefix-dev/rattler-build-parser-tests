@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: pymc-bart
+  version: "0.11.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pymc_bart-${{ version }}.tar.gz
+  sha256: fc107a29f12c7a4345fca33ae3fda5208da4788e0f5e776a37a71cb871097d95
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pymc >=5.24.0
+    - arviz-stats >=0.6.0
+    - numba
+    - matplotlib-base
+    - numpy >=2.0
+
+tests:
+  - python:
+      imports:
+        - pymc_bart
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Bayesian Additive Regression Trees for Probabilistic programming with PyMC
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: http://github.com/pymc-devs/pymc-bart
+
+extra:
+  recipe-maintainers:
+    - ricardoV94
+    - aloctavodia
+    - maresb

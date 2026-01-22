@@ -1,0 +1,78 @@
+schema_version: 1
+
+context:
+  python_min: 3.10
+  name: paradoc
+  version: 0.4.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Krande/paradoc/archive/v${{ version }}.tar.gz
+  sha256: b5b0ba186090f9c83aeece75fa6de51ed5a09fc860aab6f3c74b5f46b221f04f
+  patches:
+    - patches/add_future_annotations.patch
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - paradoc=paradoc.cli_app:app
+
+requirements:
+  host:
+    - python 3.10.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pandoc
+    - pandoc-crossref
+    - pypandoc
+    - python-docx
+    - python-kaleido
+    - numpy
+    - pandas
+    - openpyxl
+    - tabulate
+    - pydantic
+    - svgwrite
+    - pytexit
+    - websockets
+    - plotly
+    - typer
+    - if: unix
+      then: __unix
+    - if: win
+      then: __win
+    - if: win
+      then: pywin32
+
+tests:
+  - files:
+      source:
+        - tests
+        - files
+    requirements:
+      run:
+        - pytest
+        - pytest-cov
+        - python ${{ python_min }}.*
+        - playwright
+        - pytest-playwright
+    script:
+      - pytest tests --ignore=tests/frontend
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: A Python library for Parametric Documentation
+  homepage: https://github.com/krande/paradoc
+
+extra:
+  recipe-maintainers:
+    - Krande

@@ -1,0 +1,307 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-linux",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-linux/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-linux/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-linux/work"
+      },
+      "hash": {
+        "hash": "9cf0462",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mitmproxy-linux": {
+          "build_string": "py313h9cf0462_0",
+          "name": "mitmproxy-linux",
+          "version": "0.12.8"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:48:36.403158233Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# mitmproxy_rs\n\nThis package contains mitmproxy's Rust bits.\n\n[![dev documentation](https://shields.mitmproxy.org/badge/docs-Python%20API-blue.svg)](https://mitmproxy.github.io/mitmproxy_rs/)\n\nhttps://github.com/mitmproxy/mitmproxy_rs\n",
+        "homepage": "https://github.com/mitmproxy/mitmproxy_rs",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mitmproxy/mitmproxy-rs",
+        "summary": "This package contains mitmproxy's Rust bits."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "mkdir -p ./custom-build-tools",
+          "cp \"${RECIPE_DIR}/cargo\" ./custom-build-tools/cargo",
+          "export PATH=\"$(pwd)/custom-build-tools:${PATH}\"",
+          "export CARGO_BUILD_RUSTFLAGS=\"\"",
+          "export LDFLAGS=\"\"",
+          "env",
+          "${{ PYTHON }} -m pip install ./mitmproxy-linux",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "py313h9cf0462_0"
+      },
+      "context": {
+        "version": "0.12.8"
+      },
+      "extra": {
+        "feedstock-name": "mitmproxy-rs",
+        "recipe-maintainers": [
+          "moritzwilksch",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "mitmproxy-linux",
+        "version": "0.12.8"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "rust_linux-aarch64",
+          "rust-src",
+          "maturin >=1.10.1,<2",
+          "cargo-bundle-licenses",
+          "bpf-linker"
+        ],
+        "host": [
+          "python",
+          "hatchling",
+          "pip",
+          "maturin >=1.10.1,<2"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "59550c3f4352f64c50d46de976788db8ea15710fac8ce2af39755304e9676d0e",
+          "url": "https://github.com/mitmproxy/mitmproxy_rs/archive/refs/tags/v0.12.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mitmproxy_linux"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mitmproxy-rs/work"
+      },
+      "hash": {
+        "hash": "76aa712",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mitmproxy-linux": {
+          "build_string": "py313h9cf0462_0",
+          "name": "mitmproxy-linux",
+          "version": "0.12.8"
+        },
+        "mitmproxy-rs": {
+          "build_string": "py313h76aa712_0",
+          "name": "mitmproxy-rs",
+          "version": "0.12.8"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:48:36.460795447Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "mitmproxy_linux": "0.12.8 py313h9cf0462_0",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# mitmproxy_rs\n\nThis package contains mitmproxy's Rust bits.\n\n[![dev documentation](https://shields.mitmproxy.org/badge/docs-Python%20API-blue.svg)](https://mitmproxy.github.io/mitmproxy_rs/)\n\nhttps://github.com/mitmproxy/mitmproxy_rs\n",
+        "homepage": "https://github.com/mitmproxy/mitmproxy_rs",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mitmproxy/mitmproxy-rs",
+        "summary": "This package contains mitmproxy's Rust bits."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export CFLAGS=\"$CFLAGS -D_BSD_SOURCE\"",
+          "${{ PYTHON }} -m pip install ./mitmproxy-rs",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "py313h76aa712_0"
+      },
+      "context": {
+        "version": "0.12.8"
+      },
+      "extra": {
+        "feedstock-name": "mitmproxy-rs",
+        "recipe-maintainers": [
+          "moritzwilksch",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "mitmproxy-rs",
+        "version": "0.12.8"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "rust_linux-aarch64",
+          "maturin >=1.10.1,<2",
+          "python",
+          "cross-python_linux-aarch64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "hatchling",
+          "pip",
+          "maturin >=1.10.1,<2"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "mitmproxy-linux"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "59550c3f4352f64c50d46de976788db8ea15710fac8ce2af39755304e9676d0e",
+          "url": "https://github.com/mitmproxy/mitmproxy_rs/archive/refs/tags/v0.12.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mitmproxy_rs"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

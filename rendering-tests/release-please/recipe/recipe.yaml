@@ -1,0 +1,40 @@
+context:
+  version: "17.2.0"
+
+package:
+  name: release-please
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/release-please/-/release-please-${{ version }}.tgz
+  sha256: 39522c2998144c8aad96970b892e7eb34342bef7b78f64f75fde666ae7647d98
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - release-please --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: generate release PRs based on the conventionalcommits.org spec
+  homepage: https://github.com/googleapis/release-please
+  repository: https://github.com/googleapis/release-please
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fd/work"
+      },
+      "hash": {
+        "hash": "280c20c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fd": {
+          "build_string": "h280c20c_1",
+          "name": "fd",
+          "version": "8.61.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:19.544369962Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The Fd software has evolved from its early use in the Virgo DAQ system of transporting frames\nover the network using the Cm package to a more general I/O framework for online and offline\napplications. Its main purpose is to provide data in the frame format from and to files, shared\nmemory and network connection. Basic data conditioning tools like channel filtering, resampling\nare now included in Fd as well as frame manipulation like channels selection, frame resizing,\ntrend frame building and frame merging between different streams. The frames handled by the Fd\npackage could contain any frame structures, from time series to events.",
+        "homepage": "https://git.ligo.org/virgo/virgoapp/Cfg",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Frame distribution library"
+      },
+      "build": {
+        "dynamic_linking": {
+          "overdepending_behavior": "error",
+          "overlinking_behavior": "error"
+        },
+        "number": 1,
+        "string": "h280c20c_1"
+      },
+      "context": {
+        "name": "fd",
+        "version": "8.61.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "erinelizabethseder-virgo",
+          "fcarbogn"
+        ]
+      },
+      "package": {
+        "name": "fd",
+        "version": "8.61.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "make",
+          "meson",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "cfg >=10.5.5",
+          "cm >=10.3.7",
+          "frv >=4.38.7",
+          "libframel >=8.46.1"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "fd",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0717aab001355d4f55af5a1b77179da88d3e272a1b9233371920ebb109c0ed48",
+          "url": "http://software.igwn.org/lscsoft/source/fd-8.61.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "test -x ${PREFIX}/bin/FdGetChannelsList",
+            "test -x ${PREFIX}/bin/FdGetFramesInMemory",
+            "test -x ${PREFIX}/bin/FdIOServer",
+            "test -x ${PREFIX}/bin/FdMoni",
+            "test -x ${PREFIX}/bin/FdRangeGating",
+            "test -x ${PREFIX}/bin/FdSend",
+            "test -x ${PREFIX}/bin/FdStat",
+            "test -x ${PREFIX}/bin/FdWrite",
+            "test -r ${PREFIX}/lib/libfd.so",
+            "test -f ${PREFIX}/include/fd/Fd.h",
+            "pkg-config --print-errors --exact-version \"${{ version }}\" fd"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

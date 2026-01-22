@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_essreduce",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_essreduce/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_essreduce/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_essreduce/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "essreduce": {
+          "build_string": "pyhcf101f3_0",
+          "name": "essreduce",
+          "version": "26.1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:18.962013198Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://scipp.github.io/essreduce/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/scipp/essreduce",
+        "summary": "Common data reduction tools for the ESS facility"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "grow-nexus = ess.reduce.scripts.grow_nexus:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "essreduce",
+        "python_min": "3.11",
+        "version": "26.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MridulS",
+          "conda-forge/scipp"
+        ]
+      },
+      "package": {
+        "name": "essreduce",
+        "version": "26.1.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "setuptools >=77",
+          "setuptools-scm >=8.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.11",
+          "sciline >=25.11.0",
+          "scipp >=25.4.0",
+          "scippneutron >=25.11.1",
+          "scippnexus >=25.6.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "aa14f69064f96517fb818aa5137c203b25e428af198f3c3c5bd79408883c34b0",
+          "url": "https://pypi.org/packages/source/e/essreduce/essreduce-26.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ess"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*"
+            ]
+          },
+          "script": "grow-nexus --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,304 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-rendering",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-rendering/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-rendering/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgz-rendering/work"
+      },
+      "hash": {
+        "hash": "39b0f4b"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgz-rendering": {
+          "build_string": "h39b0f4b_0",
+          "name": "libgz-rendering",
+          "version": "10.0.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:25.559575745Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libgz_common": "7",
+        "libgz_math": "9",
+        "libgz_plugin": "4",
+        "libgz_utils": "4",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-rendering",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "C++ library designed to provide an abstraction for different rendering engines. It offers unified APIs for creating 3D graphics applications."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_cxx.sh",
+        "string": "h39b0f4b_0"
+      },
+      "context": {
+        "component_name": "rendering",
+        "component_version": "rendering10",
+        "cxx_name": "libgz-rendering",
+        "major_version": "10",
+        "name": "gz-rendering",
+        "repo_name": "gz-rendering",
+        "version": "10.0.1"
+      },
+      "extra": {
+        "feedstock-name": "gz-rendering",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "libgz-rendering",
+        "version": "10.0.1"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "ninja",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "libgz-math",
+          "libgz-common",
+          "libgz-plugin",
+          "libgz-utils",
+          "ogre-next",
+          "ogre 1.10.*"
+        ],
+        "run": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "ogre",
+              "upper_bound": "x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-rendering",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d9a666e2109872f48dcde1a5b89d5aa40376d4ea90eccbfeefcd9bd0d2a00f13",
+          "url": "https://github.com/gazebosim/gz-rendering/archive/gz-rendering10_10.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/gz/${{ component_version }}/gz/${{ component_name }}.hh",
+            "test -f ${PREFIX}/lib/lib${{ name }}${SHLIB_EXT}",
+            "test -f ${PREFIX}/lib/cmake/${{ name }}/${{ name }}-config.cmake",
+            "test -f ${PREFIX}/lib/gz-${{ component_name }}-${{ major_version }}/engine-plugins/lib${{ name }}-ogre${SHLIB_EXT}",
+            "test -f ${PREFIX}/lib/gz-${{ component_name }}-${{ major_version }}/engine-plugins/lib${{ name }}-ogre2${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-rendering",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-rendering/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-rendering/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-rendering/work"
+      },
+      "hash": {
+        "hash": "4e5c242"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-rendering": {
+          "build_string": "h4e5c242_0",
+          "name": "gz-rendering",
+          "version": "10.0.1"
+        },
+        "libgz-rendering": {
+          "build_string": "h39b0f4b_0",
+          "name": "libgz-rendering",
+          "version": "10.0.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:25.762851400Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libgz_rendering": "10.0.1 h39b0f4b_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-rendering",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "C++ library designed to provide an abstraction for different rendering engines. It offers unified APIs for creating 3D graphics applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "h4e5c242_0"
+      },
+      "context": {
+        "component_name": "rendering",
+        "component_version": "rendering10",
+        "cxx_name": "libgz-rendering",
+        "major_version": "10",
+        "name": "gz-rendering",
+        "repo_name": "gz-rendering",
+        "version": "10.0.1"
+      },
+      "extra": {
+        "feedstock-name": "gz-rendering",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "gz-rendering",
+        "version": "10.0.1"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-rendering"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-rendering",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d9a666e2109872f48dcde1a5b89d5aa40376d4ea90eccbfeefcd9bd0d2a00f13",
+          "url": "https://github.com/gazebosim/gz-rendering/archive/gz-rendering10_10.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/gz/${{ component_version }}/gz/${{ component_name }}.hh",
+            "test -f ${PREFIX}/lib/cmake/${{ name }}/${{ name }}-config.cmake",
+            "test -f ${PREFIX}/lib/lib${{ name }}.dylib"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

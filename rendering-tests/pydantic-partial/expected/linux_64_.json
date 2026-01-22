@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-partial",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-partial/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-partial/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-partial/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pydantic-partial": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pydantic-partial",
+          "version": "0.10.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:44.561459733Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/team23/pydantic-partial",
+        "license": "MIT",
+        "license_file": [
+          "dist/LICENSE"
+        ],
+        "summary": "Create partial models from your pydantic models. Partial models may allow None for certain or all fields."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "cd dist",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.10.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "pydantic-partial",
+        "version": "0.10.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "uv-build >=0.8.22,<0.9.0",
+          "python 3.10.*"
+        ],
+        "run": [
+          "pydantic >=2.0.0,<3.0.0",
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "32cd8e2df06793375d17603c33a6cce17a94419ba04313de57d6a31c2e9501e1",
+          "target_directory": "dist",
+          "url": "https://pypi.org/packages/source/p/pydantic-partial/pydantic_partial-0.10.1.tar.gz"
+        },
+        {
+          "sha256": "f021d898887490da045745cc77963b3041bc5548faef12e3ceda4f6a52659455",
+          "target_directory": "src",
+          "url": "https://github.com/team23/pydantic-partial/archive/refs/tags/v0.10.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pydantic_partial"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "fastapi",
+              "pytest",
+              "python 3.10.*",
+              "trio"
+            ]
+          },
+          "script": [
+            "coverage run --source=pydantic_partial --branch -m pytest -vv --color=yes --tb=long",
+            "coverage report --show-missing --skip-covered --fail-under=94"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

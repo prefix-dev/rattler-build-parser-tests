@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cffi-buildtool",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cffi-buildtool/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cffi-buildtool/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cffi-buildtool/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cffi-buildtool": {
+          "build_string": "pyhe01879c_0",
+          "name": "cffi-buildtool",
+          "version": "1.1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:58.576470935Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/inklesspen/cffi-buildtool",
+        "license": "Unlicense AND MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/inklesspen/cffi-buildtool",
+        "summary": "CFFI Buildtool helps build CFFI-based Python extension modules without setuptools."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "gen-cffi-src = cffi_buildtool.cli:run"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "cffi-buildtool",
+        "version": "1.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "cffi-buildtool",
+        "version": "1.1.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "meson-python",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "cffi >=1.17.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "eeaebfaf6245832b45c97ae8acf62ced049aa72ef7460a1527ef2eaa46777a18",
+          "url": "https://pypi.org/packages/source/c/cffi-buildtool/cffi_buildtool-1.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cffi_buildtool"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9.*"
+            ]
+          },
+          "script": "gen-cffi-src --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

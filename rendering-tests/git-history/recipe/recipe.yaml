@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: git-history
+  version: 0.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: f872738d2f9285059a7136457773d65305f276cc0c5648f86ccfe458a8858e1e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - git-history=git_history.cli:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - click
+    - gitpython
+    - python >=${{ python_min }}
+    - sqlite-utils >=3.19
+
+tests:
+  - python:
+      imports:
+        - git_history
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - gitpython
+        - if: unix
+          then: git
+        - if: win
+          then: m2-git
+        - python ${{ python_min }}.*
+    script:
+      - git-history --help
+
+about:
+  summary: Tools for analyzing Git history using SQLite
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/simonw/git-history
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  version: "25.07.1"
+  name: helix
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/helix-editor/helix/releases/download/${{ version }}/${{ name }}-${{ version }}-source.tar.xz
+  sha256: 2d0cf264ac77f8c25386a636e2b3a09a23dec555568cc9a5b2927f84322f544e
+  patches:
+    - headerpad.patch
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - hx --health
+      - hx --health | grep -qv "Runtime directory does not exist"
+
+about:
+  summary: A post-modern modal text editor
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/helix-editor/helix
+
+extra:
+  recipe-maintainers:
+    - joaander
+    - jonashaag
+    - baszalmstra

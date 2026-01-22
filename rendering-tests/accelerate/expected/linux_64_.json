@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_accelerate",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_accelerate/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_accelerate/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_accelerate/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "accelerate": {
+          "build_string": "pyhcf101f3_0",
+          "name": "accelerate",
+          "version": "1.12.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:47:11.917723714Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://huggingface.co/docs/accelerate",
+        "homepage": "https://github.com/huggingface/accelerate",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Training loop of PyTorch without boilerplate code"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "accelerate = accelerate.commands.accelerate_cli:main",
+            "accelerate-config = accelerate.commands.config:main",
+            "accelerate-estimate-memory = accelerate.commands.estimate:main",
+            "accelerate-launch = accelerate.commands.launch:main",
+            "accelerate-merge-weights = accelerate.commands.merge:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "accelerate",
+        "version": "1.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "accelerate",
+        "version": "1.12.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy >=1.17",
+          "packaging >=20.0",
+          "psutil",
+          "pyyaml",
+          "pytorch >=2.0.0",
+          "huggingface_hub >=0.21.0",
+          "safetensors >=0.4.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "70988c352feb481887077d2ab845125024b2a137a5090d6d7a32b57d03a45df6",
+          "url": "https://pypi.org/packages/source/a/accelerate/accelerate-1.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "accelerate"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "datasets",
+              "evaluate",
+              "pip",
+              "pytest",
+              "scipy",
+              "scikit-learn",
+              "transformers",
+              "tqdm"
+            ]
+          },
+          "script": [
+            "accelerate --help",
+            "accelerate-config --help",
+            "accelerate-launch --help",
+            "accelerate-estimate-memory --help",
+            "accelerate-merge-weights --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

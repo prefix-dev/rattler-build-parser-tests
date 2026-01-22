@@ -1,0 +1,82 @@
+context:
+  name: raysect
+  version: "0.9.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/${{ name|lower }}/source/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 526c964ebdd551ea10b3ce9934bf0ed5856b34019200ede97b580f72a98a2168
+  patches:
+    - cross_compile.patch
+
+build:
+  number: 1
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ninja
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pkg-config
+        - cython >=3.1
+        - numpy
+  host:
+    - python
+    - python-build
+    - pkg-config
+    - pip
+    - meson-python
+    - setuptools
+    - setuptools-scm
+    - cython >=3.1
+    - numpy
+  run:
+    - python
+    - matplotlib-base
+    - opencv
+  run_exports:
+    - ${{ pin_subpackage("raysect", upper_bound="x.x") }}
+
+tests:
+  - python:
+      imports:
+        - raysect
+        - raysect.core
+        - raysect.optical
+        - raysect.optical.library
+        - raysect.optical.observer
+        - raysect.primitive
+        - raysect.primitive.lens
+
+  - script:
+      - python -m unittest discover raysect -v
+
+about:
+  homepage: http://www.raysect.org
+  summary: A Ray-tracing Framework for Science and Engineering
+  description: |
+    A ray-tracing framework for optical/non-optical physics simulations.
+
+    The aims of the Raysect project are as follows:
+
+    - develop a ray-tracer that is easy for scientists and engineers to use and extend
+    - the raytracer must be robust and high precision
+
+    The general development philosophy is ease of use trumps performance, but performance is not to be ignored.
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  documentation: http://www.raysect.org
+  repository: https://github.com/raysect/source.git
+
+extra:
+  recipe-maintainers:
+    - munechika-koyo

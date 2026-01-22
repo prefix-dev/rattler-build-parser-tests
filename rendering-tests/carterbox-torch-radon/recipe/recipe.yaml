@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  version: 3.0.0
+
+package:
+  name: carterbox-torch-radon
+  version: ${{ version }}
+
+source:
+  url: https://github.com/carterbox/torch-radon/releases/download/v${{ version }}/torch-radon-v${{ version }}.zip
+  sha256: 8b2cc1ae62e357517f805b878a8f23aeb9a1c43e09397f79e884d3eb83ef8aaf
+
+build:
+  # pytorch in conda-forge does not support CUDA 11.8 as of v2.5
+  # Windows compile fails with syntax errors
+  number: 7
+  skip:
+    - win
+    - cuda_compiler_version in (None, "None")
+  script:
+    env:
+      TORCH_CUDA_ARCH_LIST: "5.0;6.0;7.0;7.5;8.0;8.6;9.0;10.0;12.0+PTX"
+    content: |
+      python -m pip install . --no-deps -vv
+
+requirements:
+  build:
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+  host:
+    - cuda-version ${{ cuda_compiler_version }}.*
+    - cuda-cudart-dev
+    - libcurand-dev
+    - python
+    - pip
+    - pytorch
+    # We must have the CUDA variant of pytorch
+    - pytorch * cuda*
+    - libtorch
+    - setuptools
+    - setuptools-scm
+    - toml
+  run:
+    - __cuda
+    - python
+    - pytorch * cuda*
+    - scipy
+    - numpy
+
+tests:
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Tomography operators for Pytorch
+  description: |
+    TorchRadon is a PyTorch extension written in CUDA that implements
+    differentiable tomography operators.
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/carterbox/torch-radon
+
+extra:
+  recipe-maintainers:
+    - carterbox

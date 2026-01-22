@@ -1,0 +1,125 @@
+diff --git a/guiqwt/curve.py b/guiqwt/curve.py
+index be388c7..b95ff9b 100644
+--- a/guiqwt/curve.py
++++ b/guiqwt/curve.py
+@@ -496,8 +496,8 @@ class CurveItem(QwtPlotCurve):
+             * x: NumPy array
+             * y: NumPy array
+         """
+-        self._x = np.array(x, copy=False)
+-        self._y = np.array(y, copy=False)
++        self._x = np.asarray(x)
++        self._y = np.asarray(y)
+         self.setData(self._x, self._y)
+ 
+     def is_empty(self):
+@@ -774,9 +774,9 @@ class PolygonMapItem(QwtPlotItem):
+             * x: NumPy array
+             * y: NumPy array
+         """
+-        self._pts = np.array(pts, copy=False)
+-        self._n = np.array(n, copy=False)
+-        self._c = np.array(c, copy=False)
++        self._pts = np.asarray(pts)
++        self._n = np.asarray(n)
++        self._c = np.asarray(c)
+         xmin, ymin = self._pts.min(axis=0)
+         xmax, ymax = self._pts.max(axis=0)
+         self.bounds = QRectF(xmin, ymin, xmax - xmin, ymax - ymin)
+@@ -948,11 +948,11 @@ class ErrorBarCurveItem(CurveItem):
+         """
+         CurveItem.set_data(self, x, y)
+         if dx is not None:
+-            dx = np.array(dx, copy=False)
++            dx = np.asarray(dx)
+             if dx.size == 0:
+                 dx = None
+         if dy is not None:
+-            dy = np.array(dy, copy=False)
++            dy = np.asarray(dy)
+             if dy.size == 0:
+                 dy = None
+         self._dx = dx
+diff --git a/guiqwt/label.py b/guiqwt/label.py
+index 5bc31b5..d2dd42c 100644
+--- a/guiqwt/label.py
++++ b/guiqwt/label.py
+@@ -575,7 +575,7 @@ class RangeComputation(ObjectInfo):
+             elif i0 == i1:
+                 import numpy as np
+ 
+-                vectors.append(np.array([np.NaN]))
++                vectors.append(np.array([np.nan]))
+             else:
+                 vectors.append(vector[i0:i1])
+         return self.label % self.func(*vectors)
+diff --git a/guiqwt/plot.py b/guiqwt/plot.py
+index 85766c4..7eb8eaf 100644
+--- a/guiqwt/plot.py
++++ b/guiqwt/plot.py
+@@ -100,7 +100,7 @@ Reference
+ """
+ 
+ import weakref
+-from numpy.lib.arraysetops import isin
++from numpy import isin
+ 
+ from qtpy.QtWidgets import (
+     QDialogButtonBox,
+diff --git a/guiqwt/tests/computations.py b/guiqwt/tests/computations.py
+index bfe00f4..cf54543 100644
+--- a/guiqwt/tests/computations.py
++++ b/guiqwt/tests/computations.py
+@@ -29,7 +29,11 @@ def test():
+ 
+     _app = guidata.qapplication()
+     # --
+-    from numpy import linspace, sin, trapz
++    from numpy import linspace, sin
++    try:
++        from numpy import trapz
++    except ImportError:
++        import numpy.trapezoid as trapz
+ 
+     x = linspace(-10, 10, 1000)
+     y = sin(sin(sin(x)))
+diff --git a/guiqwt/tests/mandelbrot.py b/guiqwt/tests/mandelbrot.py
+index 1a70e47..d9cd51a 100644
+--- a/guiqwt/tests/mandelbrot.py
++++ b/guiqwt/tests/mandelbrot.py
+@@ -56,7 +56,7 @@ class MandelItem(RawImageItem):
+         NX = x2 - x1
+         NY = y2 - y1
+         if self.data.shape != (NX, NY):
+-            self.data = np.zeros((NY, NX), np.uint8)
++            self.data = np.zeros((NY, NX), np.int8)
+         mandelbrot(i1, j1, i2, j2, self.data, self.IMAX)
+ 
+         srcRect = (0, 0, NX, NY)
+diff --git a/guiqwt/tools.py b/guiqwt/tools.py
+index 21d12a4..a22d408 100644
+--- a/guiqwt/tools.py
++++ b/guiqwt/tools.py
+@@ -243,6 +243,11 @@ import numpy as np
+ import weakref
+ import os.path as osp
+ 
++try:
++    from numpy import trapz
++except ImportError:
++    import numpy.trapezoid as trapz
++
+ from qtpy.QtCore import Qt, QObject, QPointF, Signal
+ from qtpy.QtGui import QKeySequence
+ from qtpy.QtPrintSupport import QPrinter, QPrintDialog
+@@ -1427,8 +1432,8 @@ class SignalStatsTool(BaseCursorTool):
+                     ),
+                     (curve, "&lt;y&gt;=%g", lambda *args: args[1].mean()),
+                     (curve, "σ(y)=%g", lambda *args: args[1].std()),
+-                    (curve, "∑(y)=%g", lambda *args: np.trapz(args[1])),
+-                    (curve, "∫ydx=%g", lambda *args: np.trapz(args[1], args[0])),
++                    (curve, "∑(y)=%g", lambda *args: trapz(args[1])),
++                    (curve, "∫ydx=%g", lambda *args: trapz(args[1], args[0])),
+                 ],
+             )
+             self.label.attach(plot)

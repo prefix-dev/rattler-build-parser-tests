@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: pypika
+  version: 0.50.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 2ff66a153adc8d8877879ff2abd5a3b050a5d2adfdf8659d3402076e385e35b3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - typing_extensions >=4.5.0
+
+tests:
+  - python:
+      imports:
+        - pypika
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A SQL query builder API for Python
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  homepage: https://github.com/kayak/pypika
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - mccarthyryanc

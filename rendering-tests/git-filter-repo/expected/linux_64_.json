@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-filter-repo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-filter-repo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-filter-repo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_git-filter-repo/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "git-filter-repo": {
+          "build_string": "pyhcf101f3_0",
+          "name": "git-filter-repo",
+          "version": "2.47.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:42:21.558681160Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/newren/git-filter-repo",
+        "license": "MIT",
+        "license_file": [
+          "COPYING.mit"
+        ],
+        "repository": "https://github.com/newren/git-filter-repo",
+        "summary": "Quickly rewrite git repository history"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "git-filter-repo = git_filter_repo:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "git-filter-repo",
+        "version": "2.47.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod"
+        ]
+      },
+      "package": {
+        "name": "git-filter-repo",
+        "version": "2.47.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "setuptools_scm"
+        ],
+        "run": [
+          "git >=2.26.0",
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "411b27e68a080c07a69c233cb526dbc2d848b09a72f10477f4444dd0822cf290",
+          "url": "https://pypi.org/packages/source/g/git-filter-repo/git_filter_repo-2.47.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m pip show git-filter-repo",
+            "git-filter-repo --version",
+            "git filter-repo --version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

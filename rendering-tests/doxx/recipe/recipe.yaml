@@ -1,0 +1,53 @@
+context:
+  name: doxx
+  version: "0.1.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bgreenwell/doxx/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3627e65f39e437d954e1d4f02c30911fef1c5c99388bf6098564e1e89722e80d
+
+build:
+  number: 0
+  script:
+    - if: unix
+      then:
+        - cargo install --locked --root ${PREFIX} --path . --no-track
+        - cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml
+      else:
+        - cargo install --locked --root %PREFIX% --path . --no-track
+        - if errorlevel 1 exit 1
+        - cargo-bundle-licenses --format yaml --output %SRC_DIR%/THIRDPARTY.yml
+        - if errorlevel 1 exit 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - cargo-bundle-licenses
+    - if: linux
+      then:
+        - libxcb
+
+tests:
+  - script:
+      - doxx --version
+
+about:
+  homepage: https://bgreenwell.github.io/doxx
+  summary: 'Expose the contents of .docx files without leaving your terminal. Fast, safe, and smart — no Office required!'
+  description: |
+    A fast, terminal-native document viewer for Word files. View, search, and export .docx documents without leaving your command line.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/bgreenwell/doxx
+
+extra:
+  recipe-maintainers:
+    - claudiushaag

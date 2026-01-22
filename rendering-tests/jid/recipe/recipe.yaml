@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.7.6
+
+package:
+  name: jid
+  version: ${{ version }}
+
+source:
+  url: https://github.com/simeji/jid/archive/v${{ version }}.tar.gz
+  sha256: 0912050b3be3760804afaf7ecd6b42bfe79e7160066587fbc0afa5324b03fb48
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - jid --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Json incremental digger
+  homepage: https://github.com/simeji/jid
+  repository: https://github.com/simeji/jid
+
+extra:
+  recipe-maintainers:
+    - danielnachun

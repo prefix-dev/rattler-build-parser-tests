@@ -1,0 +1,163 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servicex",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servicex/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servicex/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servicex/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "servicex": {
+          "build_string": "pyhcf101f3_0",
+          "name": "servicex",
+          "version": "3.2.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:52.813457535Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://servicex-frontend.readthedocs.io/",
+        "homepage": "https://github.com/ssl-hep/ServiceX_frontend",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ssl-hep/ServiceX_frontend",
+        "summary": "Python SDK and CLI Client for ServiceX"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "servicex = servicex.app.main:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "servicex",
+        "python_min": "3.9",
+        "version": "3.2.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matthewfeickert",
+          "gordonwatts",
+          "ponyisi",
+          "BenGalewsky"
+        ]
+      },
+      "package": {
+        "name": "servicex",
+        "version": "3.2.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "hatchling >=1.13.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "qastle >=0.17",
+          "func-adl >=3.2.6",
+          "requests >=2.31",
+          "pydantic >=2.6.0",
+          "aiohttp-retry >=2.8.3",
+          "httpx >=0.24",
+          "httpx-retries >=0.3.2",
+          "aioboto3 >=14.1.0",
+          "tinydb >=4.7",
+          "google-auth >=2.17",
+          "typer >=0.12.1",
+          "pyyaml >=6.0",
+          "types-pyyaml >=6.0",
+          "importlib-metadata",
+          "typing_extensions",
+          "rich >=13.0.0",
+          "aiofile",
+          "make-it-sync",
+          "ruamel.yaml >=0.18.7",
+          "filelock >=3.12.0",
+          "tenacity >=9.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "211c9c7c0a15c10d896a16ec9f6413cf6b96508b0d25da355876f0de4fe20ae5",
+          "url": "https://pypi.org/packages/source/s/servicex/servicex-3.2.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "servicex"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pip"
+            ]
+          },
+          "script": "servicex --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

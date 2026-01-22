@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.7.0"
+  jupyterlab_min: "4.5.0"
+  jupyterlab_max: "4.6.0"
+  jupyterlite_core_min: "0.7.0"
+  jupyterlite_core_max: "0.8.0"
+  python_check_max: "3.14"
+  # derived
+  js_version: ${{ version | replace("a", "-alpha.") | replace("b", "-beta.") | replace("rc", "-rc.") }}
+
+
+package:
+  name: jupyterlite-pyodide-kernel
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jupyterlite-pyodide-kernel/jupyterlite_pyodide_kernel-${{ version }}.tar.gz
+  sha256: 4c2b6763518faf6d72eea91b2db31e215fbc9aa3099cc3cfa5a2866cbd1c380e
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - jupyter-piplite = jupyterlite_pyodide_kernel.app:main
+
+requirements:
+  host:
+    - hatchling >=1.4.0
+    - jupyterlab ${{ jupyterlab_min }}.*
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - jupyterlite-core >=${{ jupyterlite_core_min }}
+    - pkginfo
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: jupyterlite_pyodide_kernel
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - jupyterlab ${{ jupyterlab_min }}.*
+        - jupyterlite-core ${{ jupyterlite_core_min }}.*
+        - python ${{ python_min }}.*
+    script:
+      - jupyter piplite --version
+      - jupyter-piplite --help
+      - jupyter labextension list
+      - jupyter labextension list 2>&1 | python -c "import re, sys; assert re.search(r'@jupyterlite/pyodide-kernel-extension.*v${{ js_version | replace(".", "\\.") }}.*OK', sys.stdin.read())"
+      - jupyter lite build
+      - python -c "from pathlib import Path; assert b'pyodide-kernel-extension' in Path('_output/jupyter-lite.json').read_bytes()"
+
+about:
+  summary: Python kernel for JupyterLite powered by Pyodide
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - jupyterlite_pyodide_kernel/labextension/static/third-party-licenses.json
+  homepage: https://github.com/jupyterlite/pyodide-kernel
+  documentation: https://jupyterlite-pyodide-kernel.rtfd.io
+
+extra:
+  recipe-maintainers:
+    - agriyakhetarpal
+    - bollwyvl
+    - jtpio
+    - martinRenou

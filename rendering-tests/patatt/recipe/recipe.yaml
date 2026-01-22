@@ -1,0 +1,58 @@
+context:
+  version: "0.7.0"
+
+package:
+  name: patatt
+  version: ${{ version }}
+
+source:
+  url: https://mirrors.edge.kernel.org/pub/software/devel/patatt/patatt-${{ version }}.tar.gz
+  sha256: ee545ee4e1d724c8e9f94851c1c9a8d4fb8d8307e086f8f01f591a86176f5469
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - patatt=patatt:command
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pynacl
+
+tests:
+  - python:
+      imports:
+        - patatt
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - patatt --help
+
+about:
+  summary: A simple library to add cryptographic attestation to patches sent via email
+  description: |
+    This utility allows an easy way to add end-to-end cryptographic attestation
+    to patches sent via mail. It does so by adapting the DKIM email signature
+    standard to include cryptographic signatures via the X-Developer-Signature
+    email header.
+
+    If your project workflow doesn't use patches sent via email, then you don't
+    need this and should simply start signing your tags and commits.
+  license: MIT
+  license_file: COPYING
+  homepage: https://git.kernel.org/pub/scm/utils/patatt/patatt.git/about/
+
+extra:
+  recipe-maintainers:
+    - blmaier

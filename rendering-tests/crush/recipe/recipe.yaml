@@ -1,0 +1,55 @@
+context:
+  version: "0.34.0"
+
+package:
+  name: crush
+  version: ${{ version }}
+
+source:
+  url: https://github.com/charmbracelet/crush/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 9ee7c64687402d783b3f592163fc93967615298ee2309291d0495ea1aeabe310
+  target_directory: src
+
+build:
+  number: 0
+  script:
+    - cd src
+    - go-licenses save . --save_path ../library_licenses
+    - if: unix
+      then:
+        - set -x
+        - go build -v -o $PREFIX/bin/crush -ldflags="-s -w -X=github.com/charmbracelet/crush/internal/version.Version=${{ version }}"
+      else: go build -v -o %LIBRARY_BIN%\crush.exe -ldflags="-s -X=github.com/charmbracelet/crush/internal/version.Version=${{ version }}"
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - go-licenses
+
+tests:
+  - script:
+      - crush --help
+      - crush --version
+      - if: unix
+        then: crush --version | grep "crush version ${{ version | replace('.', '\\.') }}"
+  - package_contents:
+      bin:
+        - crush
+      strict: true
+
+about:
+  homepage: https://github.com/charmbracelet/crush
+  summary: The glamourous AI coding agent for your favourite terminal 💘
+  description: |
+    Your new coding bestie, now available in your favourite terminal.
+    Your tools, your code, and your workflows, wired into your LLM of choice.
+  license: FSL-1.1-MIT AND MIT
+  license_file:
+    - src/LICENSE.md
+    - library_licenses/
+  documentation: https://pkg.go.dev/github.com/charmbracelet/crush
+  repository: https://github.com/charmbracelet/crush
+
+extra:
+  recipe-maintainers:
+    - pavelzw

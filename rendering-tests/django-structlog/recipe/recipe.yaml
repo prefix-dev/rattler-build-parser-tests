@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-structlog
+  version: "10.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 4e3fa4a930697fb9b649470e389419bb73b916a1ecf4f4bf2f8727f5cbfdb002
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=4.2
+    - structlog >=21.4.0
+    - asgiref >=3.6.0
+    - django-ipware >=6.0.2
+
+tests:
+  - python:
+      imports:
+        - django_structlog
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Structured Logging for Django
+  license: MIT
+  license_file: LICENSE.rst
+  homepage: https://github.com/jrobichaud/django-structlog
+
+extra:
+  recipe-maintainers:
+    - rxm7706

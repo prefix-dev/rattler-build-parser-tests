@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+context:
+  version: "20251212"
+
+package:
+  name: acpica-tools
+  version: ${{ version }}
+
+source:
+  url: https://github.com/acpica/acpica/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 6f77bd550655183c63f0a307fb0f29ef6140b1f522d61783a16b2af8d9149a0d
+
+build:
+  number: 0
+  script: |
+    make PREFIX="${PREFIX}" OPT_CFLAGS="-DACPI_PACKED_POINTERS_NOT_SUPPORTED"
+    make PREFIX="${PREFIX}" INSTALL="${BUILD_PREFIX}/bin/install" INSTALLFLAGS="-c --strip-program=${STRIP} -m 555 -s" install
+  skip: not unix
+
+requirements:
+  build:
+    - make
+    - coreutils
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - bison
+    - flex
+    - m4
+
+tests:
+  - script: acpihelp -u
+
+about:
+  license: Intel-ACPI OR GPL-2.0-only
+  license_file: LICENSE
+  summary: OS-independent implementation of the ACPI specification
+  description: |
+    ACPICA (ACPI Component Architecture) project provides an OS-independent
+    reference implementation of the Advanced Configuration and Power Interface
+    Specification (ACPI).
+  homepage: https://www.acpica.org/
+  repository: https://github.com/acpica/acpica
+  documentation: https://www.acpica.org/
+
+extra:
+  recipe-maintainers:
+    - hameerabbasi

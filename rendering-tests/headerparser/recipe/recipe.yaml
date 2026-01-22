@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: headerparser
+  version: 0.5.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/headerparser-${{ version }}.tar.gz
+  sha256: 2e24ae218ed5d2ef5839fafeff084c40ee1e317bbbe6489cfe333385d7cb98e7
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - attrs >=20.1.0
+    - deprecated >=1.2
+
+tests:
+  - python:
+      imports:
+        - headerparser
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+
+about:
+  summary: argparse for mail-style headers
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/wheelodex/headerparser
+
+extra:
+  recipe-maintainers:
+    - beenje

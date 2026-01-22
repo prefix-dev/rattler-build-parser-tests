@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 0.2.8
+
+package:
+  name: xmlformatter
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/x/xmlformatter/xmlformatter-${{ version }}.tar.gz
+  sha256: ddc82e7cb4ff2669f54014e2eaf86b493d5e2da95b536f974f0a15f02763f64c
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - xmlformat=xmlformatter:cli
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - xmlformatter
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - 'xmlformat --help 2>&1 | grep -q "Usage: xmlformat"'
+
+about:
+  summary: Format and compress XML documents
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: http://pamoller.com/xmlformatter.html
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,122 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lilipod",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lilipod/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lilipod/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lilipod/work"
+      },
+      "hash": {
+        "hash": "b5cd7dd"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lilipod": {
+          "build_string": "hb5cd7dd_1",
+          "name": "lilipod",
+          "version": "0.0.3"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:48:10.775119588Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Lilipod is a very simple container manager with minimal features to:\n\n  - Download and manager images\n  - Create and run containers\n\nIt tries to keep a somewhat compatible CLI interface with Podman/Docker/Nerdctl.",
+        "documentation": "https://github.com/89luca89/lilipod/blob/v0.0.3/README.md",
+        "homepage": "https://github.com/89luca89/lilipod",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING.md",
+          "license-files/"
+        ],
+        "repository": "https://github.com/89luca89/lilipod",
+        "summary": "Lilipod is a simple container manager, able to download, unpack and use OCI images from various container registries."
+      },
+      "build": {
+        "number": 1,
+        "script": "set -exo pipefail\n\nmake\nmkdir -p ${PREFIX}/bin/\ninstall -m 755 lilipod ${PREFIX}/bin/\ngo-licenses save . --save_path=./license-files --ignore github.com/89luca89/lilipod\n",
+        "string": "hb5cd7dd_1"
+      },
+      "context": {
+        "version": "0.0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "lilipod",
+        "version": "0.0.3"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-aarch64",
+          "sysroot_linux-aarch64 2.17.*",
+          "go-licenses",
+          "make",
+          "wget"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e1f8f94659d64fe06ae22e43c09fdedbdbddb88eb62897c4df44cd2f996d4e00",
+          "url": "https://github.com/89luca89/lilipod/archive/refs/tags/v0.0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "lilipod --version",
+            "lilipod --help",
+            "lilipod pull alpine"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

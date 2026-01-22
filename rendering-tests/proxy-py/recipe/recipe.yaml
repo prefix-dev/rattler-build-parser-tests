@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 2.4.10
+
+package:
+  name: proxy-py
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/proxy.py/proxy_py-${{ version }}.tar.gz
+  sha256: 41b9e9d3aae6f80e2304d3726e8e9c583a510d8de224eada53d115f48a63a9ce
+
+build:
+  number: 0
+  noarch: python
+  script:
+    env:
+      PYTHONIOENCODING: utf-8
+      PYTHONLEGACYTEXTENCODING: utf-8
+    content:
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - proxy = proxy:entry_point
+      - grout = proxy:grout
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm >=7.0.5
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      pip_check: true
+      python_version: ${{ python_min }}.*
+      imports: proxy
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - proxy --help
+      - which grout || where grout
+
+about:
+  summary: Proxy Server, Web Server, PubSub, Work acceptor & executor framework.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/abhinavsingh/proxy.py
+  documentation: https://proxypy.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

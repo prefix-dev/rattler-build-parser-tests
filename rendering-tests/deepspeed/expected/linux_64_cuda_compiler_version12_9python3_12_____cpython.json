@@ -1,0 +1,173 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deepspeed",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deepspeed/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deepspeed/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deepspeed/work"
+      },
+      "hash": {
+        "hash": "b4f918a",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "deepspeed": {
+          "build_string": "cuda129_py312_hb4f918a_0",
+          "name": "deepspeed",
+          "version": "0.18.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:38:38.165365394Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://deepspeed.ai/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/deepspeedai/DeepSpeed",
+        "summary": "DeepSpeed library"
+      },
+      "build": {
+        "number": 0,
+        "string": "cuda129_py312_hb4f918a_0"
+      },
+      "context": {
+        "build_number": 0,
+        "name": "deepspeed",
+        "torch_proc_type": "cuda129",
+        "version": "0.18.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "loadams",
+          "weiji14"
+        ]
+      },
+      "package": {
+        "name": "deepspeed",
+        "version": "0.18.3"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cuda-nvcc_linux-64 12.9.*",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools",
+          "libaio",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev",
+          "oneccl-devel",
+          "pytorch * cuda129*"
+        ],
+        "run": [
+          "einops",
+          "hjson-py",
+          "msgpack-python",
+          "numpy",
+          "packaging >=20.0",
+          "psutil",
+          "py-cpuinfo",
+          "pydantic >=2.0.0",
+          "python",
+          "pytorch * cuda129*",
+          "tqdm",
+          "nvidia-ml-py"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0ee0002d8205667ee8463dab8461fb5914dac1583440fe1c48a3a385bb4130ea",
+          "url": "https://pypi.org/packages/source/d/deepspeed/deepspeed-0.18.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "deepspeed"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "ninja"
+            ]
+          },
+          "script": [
+            "ds_report",
+            "deepspeed --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

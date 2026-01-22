@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  version: 1.15.3
+
+package:
+  name: cppyy-backend
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/cppyy-backend/cppyy-backend-${{ version }}.tar.gz
+  sha256: 4578216c16667f858a3f05bb30baa12d3d8cb8ee365bddd904e25fc2d3488d65
+  patches:
+    - 0001-do-not-use-build-system-compiler-flags-when-cross-co.patch
+
+build:
+  number: 0
+  skip: win
+  script: pip install -v .
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-cling ==6.32.8
+  run:
+    - python
+    # cppyy-cling, cppyy-backend, cpycppyy and cppyy are essentially a single package, so we always pin exactly between these.
+    - cppyy-cling ==6.32.8
+
+tests:
+  - python:
+      imports:
+        - cppyy_backend
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  summary: Automatic Python-C++ bindings
+  description: |
+    C/C++ wrapper around Cling, the LLVM-based interactive C++ interpreter, for
+    use by cppyy, providing stable C and C++ Reflection APIs.
+  homepage: https://pypi.org/project/cppyy-backend/
+  repository: https://github.com/wlav/cppyy-backend
+  documentation: http://cppyy.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - saraedum
+    - isuruf

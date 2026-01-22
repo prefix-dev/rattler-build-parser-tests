@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-xdt",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-xdt/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-xdt/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-xdt/work"
+      },
+      "hash": {
+        "hash": "902ca64",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "polars-xdt": {
+          "build_string": "py311h902ca64_0",
+          "name": "polars-xdt",
+          "version": "0.17.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:47.767042650Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://marcogorelli.github.io/polars-xdt-docs",
+        "homepage": "https://github.com/pola-rs/polars-xdt",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml",
+          "licenses/NUMPY_LICENSE.txt",
+          "licenses/PANDAS_LICENSE.txt"
+        ],
+        "repository": "https://github.com/pola-rs/polars-xdt",
+        "summary": "Polars plugin offering eXtra stuff for DateTimes"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "python -m pip install . -vv",
+          "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+        ],
+        "string": "py311h902ca64_0"
+      },
+      "context": {
+        "name": "polars-xdt",
+        "version": "0.17.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "polars-xdt",
+        "version": "0.17.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1,<2",
+          "polars >=1.5.0"
+        ],
+        "run": [
+          "python",
+          "polars >=1.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3a3860bf3c3015d519192102af4de687feabc6dbf6a038fc2f60cde72e9d0c45",
+          "url": "https://pypi.org/packages/source/p/polars-xdt/polars_xdt-0.17.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "polars_xdt"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

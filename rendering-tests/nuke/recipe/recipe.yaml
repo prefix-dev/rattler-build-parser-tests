@@ -1,0 +1,38 @@
+context:
+  version: "10.1.0"
+
+package:
+  name: nuke
+  version: ${{ version }}
+
+source:
+  url: https://github.com/nuke-build/nuke/archive/${{ version }}.tar.gz
+  sha256: 1991cd268b1e48b25081adff412b3bf3bbf0b3d34dfbfdb8673eac8999e1556a
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet =10
+    - nuget-license
+  run:
+    - dotnet =10
+
+tests:
+  - script:
+      - nuke | grep -q "Could not find .nuke directory/file"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: The AKEless Build System for C#/.NET
+  homepage: https://nuke.build
+  repository: https://github.com/nuke-build/nuke
+
+extra:
+  recipe-maintainers:
+    - danielnachun

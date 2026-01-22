@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  version: "3.2.0"
+  python_check_max: "3.14"
+
+package:
+  name: mistune
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/m/mistune/mistune-${{ version }}.tar.gz
+  sha256: 708487c8a8cdd99c9d90eb3ed4c3ed961246ff78ac82f03418f5183ab70e398a
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - typing_extensions
+
+tests:
+  - python:
+      imports: mistune
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source=mistune --branch -m pytest -vv --color=yes --tb=long
+      - coverage report --show-missing --skip-covered --fail-under=93
+
+about:
+  summary: A sane and fast Markdown parser with useful plugins and renderers
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/lepture/mistune
+  repository: https://github.com/lepture/mistune
+  documentation: https://mistune.lepture.com
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - pelson
+    - bollwyvl
+    - ocefpaf

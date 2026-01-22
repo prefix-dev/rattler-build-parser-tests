@@ -1,0 +1,78 @@
+schema_version: 1
+
+context:
+  name: itkdb
+  version: "0.6.17"
+  python_min: '3.8'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/itkdb-${{ version }}.tar.gz
+  sha256: 698f94aaa25d39ea9794a14c2ffd6353b83480b00ff63140435f3a120e29da9b
+  patches:
+    - patches/0001-drop-pylibmagic-dependency-for-pip-check.patch
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - itkdb = itkdb.commandline:entrypoint
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=0.7
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - requests >=2.0
+    - urllib3 >=1.26.20
+    - certifi
+    - cachecontrol
+    - filelock # cachecontrol needs
+    - click >=6.0
+    - python-jose
+    - attrs
+    - python-dotenv
+    - simple-settings
+    - importlib-resources
+    - python-magic
+    - libmagic
+    - typing_extensions >=4.0
+    - pycurl
+    - html2text
+
+tests:
+  - python:
+      imports:
+        - itkdb
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - itkdb --help
+      - itkdb --version
+      - python -c "import itkdb; assert itkdb.utils.get_mimetype(None, (itkdb.data / '1x1.jpg').open('rb')) == 'image/jpeg'"
+
+about:
+  summary: Python wrapper to interface with ITk DB.
+  homepage: https://gitlab.cern.ch/atlas-itk/sw/db/itkdb
+  repository: https://gitlab.cern.ch/atlas-itk/sw/db/itkdb
+  documentation: https://itkdb.docs.cern.ch/latest/
+  license: MIT
+  license_file:
+    - LICENSE
+
+extra:
+  recipe-maintainers:
+    - lime86
+    - kratsg

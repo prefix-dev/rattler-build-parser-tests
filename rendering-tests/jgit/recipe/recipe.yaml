@@ -1,0 +1,41 @@
+context:
+  version: 7.5.0.202512021534
+
+package:
+  name: jgit
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/eclipse-jgit/jgit.git
+    tag: v${{ version }}-r
+    target_directory: src
+  - url: https://github.com/eclipse-jgit/jgit/archive/refs/tags/v${{ version }}-r.tar.gz
+    sha256: dd44cc146115ac84b77db0ad5bde097cb1b00d94d3c268a25d8ab400750f4c64
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - maven
+    - openjdk =17
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - "jgit --help 2>&1 | grep -q 'jgit --git-dir GIT_DIR'"
+
+about:
+  license: EPL-1.0
+  license_file:
+    - LICENSE
+    - src/target/generated-resources/licenses/
+  summary: JGit, the Java implementation of git
+  homepage: https://github.com/eclipse-jgit/jgit
+  repository: https://github.com/eclipse-jgit/jgit
+
+extra:
+  recipe-maintainers:
+    - danielnachun

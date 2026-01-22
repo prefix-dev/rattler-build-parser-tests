@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyhf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyhf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyhf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyhf/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyhf": {
+          "build_string": "pyhcf101f3_7",
+          "name": "pyhf",
+          "version": "0.7.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.208853072Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The HistFactory p.d.f. template [CERN-OPEN-2012-016] is per-se independent\nof its implementation in ROOT and sometimes, it's useful to be able to run\nstatistical analysis outside of ROOT, RooFit, RooStats framework.\n\nThis repo is a pure-python implementation of that statistical model for\nmulti-bin histogram-based analysis and its interval estimation is based on\nthe asymptotic formulas of \"Asymptotic formulae for likelihood-based tests\nof new physics\" [arXiv:1007.1727]. The aim is also to support modern\ncomputational graph libraries such as PyTorch, JAX, and TensorFlow in order\nto make use of features such as automatic differentiation and GPU\nacceleration.",
+        "documentation": "https://pyhf.readthedocs.io/",
+        "homepage": "https://github.com/scikit-hep/pyhf",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/scikit-hep/pyhf",
+        "summary": "pure-Python HistFactory implementation"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 7,
+        "python": {
+          "entry_points": [
+            "pyhf = pyhf.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_7"
+      },
+      "context": {
+        "name": "pyhf",
+        "python_min": "3.7",
+        "version": "0.7.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matthewfeickert",
+          "lukasheinrich",
+          "kratsg",
+          "conda-forge/scikit-hep"
+        ]
+      },
+      "package": {
+        "name": "pyhf",
+        "version": "0.7.6"
+      },
+      "requirements": {
+        "host": [
+          "python 3.7.*",
+          "pip",
+          "hatchling >=1.13.0",
+          "hatch-vcs >=0.3.0"
+        ],
+        "run": [
+          "python >=3.7",
+          "scipy >=1.2.0,!=1.16.0,!=1.16.1,!=1.16.2",
+          "click >=8.0.0",
+          "tqdm >=4.56.0",
+          "jsonschema >=4.15.0",
+          "jsonpatch >=1.15",
+          "pyyaml >=5.1",
+          "importlib_resources >=1.4.0",
+          "typing_extensions >=3.7.4.3",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d41d9cdce5555863a77a37efd0784ad81d84b817295aa07ebc1cfa5ec50cc78c",
+          "url": "https://pypi.org/packages/source/p/pyhf/pyhf-0.7.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyhf"
+            ],
+            "python_version": "3.7.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.7.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pyhf --version",
+            "pyhf --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

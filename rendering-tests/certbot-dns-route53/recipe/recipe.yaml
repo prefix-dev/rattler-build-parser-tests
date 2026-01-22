@@ -1,0 +1,46 @@
+context:
+  name: certbot-dns-route53
+  version: "5.2.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: a168050de3ef62b453bae7533b8ab25973a9506bbeb8a34aa50f522c82728530
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - acme >=${{ version }}
+    - certbot >=${{ version }}
+    - boto3 >=1.20.34
+
+tests:
+  - python:
+      imports:
+        - certbot_dns_route53
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://certbot.eff.org
+  summary: Amazon Web Services Route 53 DNS Authenticator plugin for Certbot
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  documentation: https://certbot.eff.org
+  repository: https://github.com/certbot/certbot
+
+extra:
+  recipe-maintainers:
+    - pavelzw

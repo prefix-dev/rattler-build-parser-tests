@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.33.1"
+  maturin_min: "1.5"
+  maturin_max: "2.0"
+  python_check_max: "3.14"
+
+package:
+  name: tach
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/tach/tach-${{ version }}.tar.gz
+  sha256: dc1d214acb66e28613eccbd68b9fa9ed762c8607dc50a88f87c26a47137765f5
+
+build:
+  number: 1
+  skip: is_abi3 and not is_python_min
+  python:
+    version_independent: ${{ is_abi3 }}
+    entry_points:
+      - tach = tach.start:start
+  script:
+    file: build-tach
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+  host:
+    - maturin >=${{ maturin_min }},<${{ maturin_max }}
+    - pip
+    - python
+    - if: is_abi3
+      then:
+      - python-abi3
+  run:
+    - gitpython >=3.1,<4.0
+    - networkx >=2.6,<4.0
+    - prompt-toolkit >=3.0,<4.0
+    - pydot >=2,<5
+    - python
+    - pyyaml >=6.0,<7.0
+    - rich >=13.0
+    - tomli >=1.2.2
+    - tomli-w >=1.0,<2.0
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+
+tests:
+  - if: is_abi3
+    then:
+      python:
+        imports: tach
+        pip_check: true
+        python_version:
+          - ${{ python_min }}.*
+          - ${{ python_check_max }}.*
+    else:
+      python:
+        imports: tach
+        pip_check: true
+  - files:
+      source:
+        - python/tests/
+        - Cargo.toml
+        - pyproject.toml
+    requirements:
+      run:
+        - coverage
+        - pytest
+        - pytest-mock
+        - python ${{ "!=" ~ python_min ~ ".*" if is_abi3 }}
+    script:
+      - tach --help
+      - tach --version
+      - tach --version | python -c "import sys; assert '${{ version }}' in sys.stdin.read()"
+      # windows tests don't exit/cleanup properly, and generally have path issues
+      - if: unix
+        then:
+          - coverage run --source=tach --branch -m pytest -vv --tb=long --color=yes -k "not export_report_diagnostics"
+          - coverage report --show-missing --skip-covered --fail-under=47
+
+about:
+  summary: A Python tool to maintain a modular package architecture.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://pypi.org/project/tach
+  repository: https://github.com/tach-org/tach
+  documentation: https://docs.gauge.sh
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

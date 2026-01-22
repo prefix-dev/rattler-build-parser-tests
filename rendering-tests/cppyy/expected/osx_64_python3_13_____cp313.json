@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy/work"
+      },
+      "hash": {
+        "hash": "8f7b669",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cppyy": {
+          "build_string": "py313h8f7b669_0",
+          "name": "cppyy",
+          "version": "3.5.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:13.588458856Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "An automatic Python-C++ bindings generator, for calling C++ from Python and\nPython from C++, designed for large scale programs in high performance\ncomputing that use modern C++.",
+        "documentation": "http://cppyy.readthedocs.io/",
+        "homepage": "https://pypi.org/project/cppyy/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/wlav/cppyy",
+        "summary": "Python-C++ bindings interface based on Cling/LLVM"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "py313h8f7b669_0"
+      },
+      "context": {
+        "version": "3.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "saraedum",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "cppyy",
+        "version": "3.5.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cpycppyy ==1.13.0",
+          "cppyy-backend ==1.15.3",
+          "cppyy-cling ==6.32.8"
+        ],
+        "run": [
+          "python",
+          "cpycppyy ==1.13.0",
+          "cppyy-backend ==1.15.3",
+          "cppyy-cling ==6.32.8"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-do-not-rebuild-allDict.patch"
+          ],
+          "sha256": "b9cfd48bd0c6e0c7399a82cca2105d7d90699adb3083904aaf30bf3632224e79",
+          "url": "https://pypi.org/packages/source/c/cppyy/cppyy-3.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cppyy"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "gmp"
+            ]
+          },
+          "script": [
+            "python -c 'import cppyy;V = cppyy.gbl.std.vector[int]();V.push_back(1)'",
+            "python -c 'import cppyy;cppyy.load_library(\"gmp\")'",
+            "python -c 'import cppyy;cppyy.include(\"gmp.h\")'"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,73 @@
+schema_version: 1
+
+context:
+  name: gnupg
+  version: "2.5.16"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-${{ version }}.tar.bz2
+  sha256: 05144040fedb828ced2a6bafa2c4a0479ee4cceacf3b6d68ccc75b175ac13b7e
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - if: unix
+      then:
+        - gnuconfig
+        - make
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: build_platform != target_platform
+      then: libgpg-error
+  host:
+    - bzip2
+    - sqlite
+    - libgcrypt
+    - libgpg-error
+    - libksba
+    - libassuan
+    - ntbtls
+    - npth
+    - readline
+    - libiconv
+  run:
+    - bzip2
+    - readline
+    - libiconv
+    - sqlite
+  run_exports:
+    - ${{ pin_subpackage('gnupg', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - gpg --help
+
+about:
+  summary: The New GNU Privacy Guard
+  license: LGPL-3.0-or-later
+  license_file: COPYING
+  description: |
+    GnuPG is a complete and free implementation of the OpenPGP standard as defined
+    by RFC4880 (also known as PGP). GnuPG allows you to encrypt and sign your data
+    and communications; it features a versatile key management system, along with
+    access modules for all kinds of public key directories. GnuPG, also known as GPG,
+    is a command line tool with features for easy integration with other applications.
+    A wealth of frontend applications and libraries are available. GnuPG also provides
+    support for S/MIME and Secure Shell (ssh).
+
+
+  homepage: https://www.gnupg.org
+
+extra:
+  recipe-maintainers:
+    - zklaus
+    - mariusvniekerk
+    - xhochy

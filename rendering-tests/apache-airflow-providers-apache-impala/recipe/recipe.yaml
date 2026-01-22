@@ -1,0 +1,49 @@
+context:
+  name: apache-airflow-providers-apache-impala
+  version: "1.8.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apache_airflow_providers_apache_impala-${{ version }}.tar.gz
+  sha256: 556cfb3a5038a943519854b3a064c37c7d54f2aede5c87f38668e61029a9590e
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - flit-core ==3.12.0
+  run:
+    - python >=${{ python_min }}
+    - impyla >=0.22.0,<1.0
+    - apache-airflow-providers-common-compat >=1.12.0
+    - apache-airflow-providers-common-sql >=1.26.0
+    - apache-airflow >=2.11.0
+
+tests:
+  - python:
+      imports:
+        - airflow.providers.apache.impala
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/apache/airflow/
+  summary: Provider package apache-airflow-providers-apache-impala for Apache Airflow
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  documentation: https://airflow.apache.org/docs/apache-airflow-providers-apache-impala/stable/index.html
+  repository: https://github.com/apache/airflow/
+
+extra:
+  recipe-maintainers:
+    - xylar

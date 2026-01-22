@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: portend
+  version: 3.2.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: aa9d40ab1f9e14bdb7d401f42210df35d017c9b97991baeb18568cedfb8c6489
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools_scm >=3.4.1
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - tempora >=1.8
+
+tests:
+  - python:
+      imports:
+        - portend
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: TCP port monitoring utilities
+  homepage: https://github.com/jaraco/portend
+  repository: https://github.com/jaraco/portend
+
+extra:
+  recipe-maintainers:
+    - pmlandwehr
+    - carlodri

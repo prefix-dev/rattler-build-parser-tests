@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscrt",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscrt/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscrt/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_awscrt/work"
+      },
+      "hash": {
+        "hash": "f0c57aa",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "awscrt": {
+          "build_string": "py311hf0c57aa_0",
+          "name": "awscrt",
+          "version": "0.30.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:11.776497263Z",
+      "variant": {
+        "aws_c_auth": "0.9.3",
+        "aws_c_cal": "0.9.13",
+        "aws_c_common": "0.12.6",
+        "aws_c_event_stream": "0.5.7",
+        "aws_c_http": "0.10.7",
+        "aws_c_io": "0.23.3",
+        "aws_c_mqtt": "0.13.3",
+        "aws_c_s3": "0.11.3",
+        "aws_checksums": "0.2.7",
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "s2n": "1.6.2",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/awslabs/aws-crt-python",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A common runtime for AWS Python projects"
+      },
+      "build": {
+        "number": 0,
+        "string": "py311hf0c57aa_0"
+      },
+      "context": {
+        "version": "0.30.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ocefpaf",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "awscrt",
+        "version": "0.30.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "s2n",
+          "aws-checksums",
+          "aws-c-common",
+          "aws-c-cal",
+          "aws-c-io",
+          "aws-c-event-stream",
+          "aws-c-http",
+          "aws-c-auth",
+          "aws-c-mqtt",
+          "aws-c-s3"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Don-t-force-static-linkage.patch"
+          ],
+          "sha256": "e1a133430e71116e9c0f101b0d11227f47b7c561ad5303f5af00f6c33a16f382",
+          "url": "https://pypi.org/packages/source/a/awscrt/awscrt-0.30.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "awscrt",
+              "awscrt.eventstream"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

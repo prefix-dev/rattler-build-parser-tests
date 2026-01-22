@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymeasure",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymeasure/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymeasure/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymeasure/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pymeasure": {
+          "build_string": "pyhe01879c_2",
+          "name": "pymeasure",
+          "version": "0.15.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.468852416Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "PyMeasure makes scientific measurements easy to set up and run. The package contains a\nrepository of instrument classes and a system for running experiment procedures,\nwhich provides graphical interfaces for graphing live data and managing queues of\nexperiments. Both parts of the package are independent, and when combined provide\nall the necessary requirements for advanced measurements with only limited coding.",
+        "documentation": "http://pymeasure.readthedocs.io/",
+        "homepage": "https://github.com/pymeasure/pymeasure",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pymeasure/pymeasure",
+        "summary": "Scientific measurement library for instruments, experiments, and live-plotting."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_2"
+      },
+      "context": {
+        "name": "pymeasure",
+        "version": "0.15.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "BenediktBurger",
+          "melund",
+          "ddale",
+          "cjermain",
+          "bilderbuchi",
+          "CasperSchippers"
+        ]
+      },
+      "package": {
+        "name": "pymeasure",
+        "version": "0.15.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools",
+          "setuptools_scm >=8.1.0"
+        ],
+        "run": [
+          "python >=3.9",
+          "numpy >=1.6.1,<3",
+          "pandas >=0.14,<3",
+          "pint",
+          "pyqtgraph >=0.12",
+          "pyserial >=2.7",
+          "pyvisa >=1.9"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2867db427948ac3487b365c64ed5805507899808b08450285327f21e72a36ae1",
+          "url": "https://pypi.org/packages/source/p/pymeasure/pymeasure-0.15.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pymeasure",
+              "pymeasure.adapters"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.9"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

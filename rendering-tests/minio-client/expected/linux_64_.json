@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minio-client",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minio-client/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minio-client/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minio-client/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "minio-client": {
+          "build_string": "hfc2019e_0",
+          "name": "minio-client",
+          "version": "2025.08.13.08.35.41"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:35.996546245Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MinIO Client (mc) provides a modern alternative to UNIX commands like ls, cat, cp, mirror, diff, find etc. It supports filesystems and Amazon S3 compatible cloud storage service (AWS Signature v2 and v4).",
+        "homepage": "https://min.io/",
+        "license": "AGPL-3.0-or-later",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses",
+          "manual-licenses",
+          "minio-madmin-go-LICENSE",
+          "minio-pkg-LICENSE"
+        ],
+        "repository": "https://github.com/minio/mc",
+        "summary": "Unix like utilities for object store"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go build -o $PREFIX/bin/mc",
+          "go-licenses save --save_path=../library_licenses . --ignore=github.com/minio/mc --ignore=github.com/minio/colorjson --ignore=github.com/minio/filepath --ignore=github.com/minio/madmin-go/v3 --ignore=github.com/minio/pkg/v3${{ ' --ignore=github.com/mattn/go-localereader' if win else '' }}"
+        ],
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "name": "minio-client",
+        "version": "2025-08-13T08-35-41Z"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "minio-client",
+        "version": "2025.08.13.08.35.41"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "29db22500374169a43951c7cef09daf19e7291ea5ba00ac10f321371b0a35b32",
+          "target_directory": "src",
+          "url": "https://github.com/minio/mc/archive/refs/tags/RELEASE.2025-08-13T08-35-41Z.tar.gz"
+        },
+        {
+          "file_name": "minio-madmin-go-LICENSE",
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "url": "https://raw.githubusercontent.com/minio/madmin-go/refs/heads/main/LICENSE"
+        },
+        {
+          "file_name": "minio-pkg-LICENSE",
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "url": "https://raw.githubusercontent.com/minio/pkg/refs/heads/main/LICENSE"
+        },
+        {
+          "file_name": "mattn-go-localereader-LICENSE",
+          "sha256": "dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3",
+          "url": "https://raw.githubusercontent.com/mattn/go-localereader/refs/heads/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": {
+            "content": "mc --version"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

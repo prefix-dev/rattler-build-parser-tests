@@ -1,0 +1,408 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ocaml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ocaml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ocaml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ocaml/work"
+      },
+      "hash": {
+        "hash": "67764c2"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ocaml": {
+          "build_string": "h67764c2_4",
+          "name": "ocaml",
+          "version": "5.3.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:38.334060190Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-ppc64le",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "OCaml is an implementation of the ML language, based on the Caml Light\ndialect extended with a complete class-based object system and a powerful\nmodule system in the style of Standard ML.\n\nOCaml comprises two compilers. One generates bytecode which is then\ninterpreted by a C program. This compiler runs quickly, generates compact\ncode with moderate memory requirements, and is portable to essentially any\n32 or 64 bit Unix platform. Performance of generated programs is quite good\nfor a bytecoded implementation.  This compiler can be used either as a\nstandalone, batch-oriented compiler that produces standalone programs, or as\nan interactive, toplevel-based system.\n\nThe other compiler generates high-performance native code for a number of\nprocessors. Compilation takes longer and generates bigger code, but the\ngenerated programs deliver excellent performance, while retaining the\nmoderate memory requirements of the bytecode compiler.",
+        "documentation": "https://ocaml.org/docs/",
+        "homepage": "https://ocaml.org/",
+        "license": "LGPL-2.1-only WITH OCaml-LGPL-linking-exception",
+        "license_family": "LGPL",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ocaml/ocaml",
+        "summary": "Objective Caml (OCaml) is an implementation of the ML language."
+      },
+      "build": {
+        "dynamic_linking": {
+          "missing_dso_allowlist": [
+            "ld-linux-aarch64.so.1",
+            "ld64.so.2"
+          ]
+        },
+        "number": 4,
+        "prefix_detection": {
+          "force_file_type": {
+            "text": [
+              "lib/ocaml/ld.conf",
+              "lib/ocaml/Makefile.config",
+              "lib/ocaml/runtime-launch-info",
+              "lib/ocaml-cross-compilers/*/lib/ocaml/ld.conf",
+              "lib/ocaml-cross-compilers/*/lib/ocaml/Makefile.config",
+              "lib/ocaml-cross-compilers/*/lib/ocaml/runtime-launch-info"
+            ]
+          },
+          "ignore": [
+            "lib/ocaml/**/*.cmo",
+            "lib/ocaml/**/*.cma",
+            "lib/ocaml/**/*.cmi",
+            "lib/ocaml/**/*.cmx",
+            "lib/ocaml/**/*.cmt",
+            "lib/ocaml/**/*.cmti",
+            "bin/ocaml",
+            "bin/ocamlc.byte",
+            "bin/ocamlcmt",
+            "bin/ocamlcp",
+            "bin/ocamldebug",
+            "bin/ocamldoc",
+            "bin/ocamldep.byte",
+            "bin/ocamllex.byte",
+            "bin/ocamlmklib",
+            "bin/ocamlmktop",
+            "bin/ocamlobjinfo.byte",
+            "bin/ocamlopt.byte",
+            "bin/ocamloptp",
+            "bin/ocamlprof"
+          ]
+        },
+        "script": {
+          "env": {
+            "SKIP_MAKE_TESTS": "1"
+          }
+        },
+        "string": "h67764c2_4"
+      },
+      "context": {
+        "build_num": 4,
+        "dot": "./",
+        "flexdll_version": "0.44",
+        "name": "ocaml",
+        "sh": "sh",
+        "so": "so",
+        "version": "5.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf",
+          "dslarm",
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "ocaml",
+        "version": "5.3.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "bash >=5.2",
+          "file",
+          "findutils",
+          "gawk",
+          "grep",
+          "make",
+          "sed",
+          "tar",
+          "binutils",
+          "ocaml >=5.3",
+          "zstd"
+        ],
+        "host": [
+          "zstd"
+        ],
+        "run": [
+          "zstd"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "ocaml",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "eb9eab2f21758d3cfb1e78c7f83f0b4dd6302824316aba4abee047a5a4f85029",
+          "url": "https://github.com/ocaml/ocaml/archive/refs/tags/5.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "conda-ocaml-ar",
+              "conda-ocaml-as",
+              "conda-ocaml-cc",
+              "conda-ocaml-ld",
+              "conda-ocaml-mkdll",
+              "conda-ocaml-mkexe",
+              "conda-ocaml-ranlib",
+              "ocaml",
+              "ocamlc",
+              "ocamlc.byte",
+              "ocamlc.opt",
+              "ocamlcmt",
+              "ocamlcp",
+              "ocamldep",
+              "ocamldep.byte",
+              "ocamldep.opt",
+              "ocamllex",
+              "ocamllex.byte",
+              "ocamllex.opt",
+              "ocamlmklib",
+              "ocamlmktop",
+              "ocamlobjinfo",
+              "ocamlobjinfo.byte",
+              "ocamlobjinfo.opt",
+              "ocamlopt",
+              "ocamlopt.byte",
+              "ocamlopt.opt",
+              "ocamloptp",
+              "ocamlprof",
+              "ocamlrun",
+              "ocamlrund",
+              "ocamlyacc",
+              "ocamlruni"
+            ],
+            "files": [
+              "etc/conda/activate.d/ocaml_activate.sh",
+              "etc/conda/deactivate.d/ocaml_deactivate.sh",
+              "lib/ocaml/ld.conf",
+              "lib/ocaml/libasmrun.a",
+              "lib/ocaml/Makefile.config",
+              "lib/ocaml/runtime-launch-info",
+              "lib/ocaml/*.a",
+              "lib/ocaml/*.cma",
+              "lib/ocaml/*.cmi",
+              "lib/ocaml/*.cmo",
+              "lib/ocaml/*.cmt",
+              "lib/ocaml/*.cmti",
+              "lib/ocaml/*.cmx",
+              "lib/ocaml/*.cmxa",
+              "lib/ocaml/*.ml",
+              "lib/ocaml/*.mli",
+              "lib/ocaml/*.o",
+              "lib/ocaml/caml/*.h",
+              "lib/ocaml/compiler-libs/*",
+              "lib/ocaml/dynlink/*",
+              "lib/ocaml/profiling/*",
+              "lib/ocaml/str/*",
+              "lib/ocaml/threads/*",
+              "lib/ocaml/unix/*",
+              "lib/ocaml/stublibs/dll*.so",
+              "share/doc/ocaml/*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-env-paths.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "binutils",
+              "grep"
+            ]
+          },
+          "script": "cd testing && ${{ dot }}test-env-paths.${{ sh }}"
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-config.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "binutils_impl_linux-ppc64le",
+              "grep"
+            ]
+          },
+          "script": "cd testing && ./test-config.sh"
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-cross-arch.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "binutils"
+            ]
+          },
+          "script": "cd testing && ${{ dot }}test-cross-arch.${{ sh }} ${{ target_platform }}"
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-tool-versions.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "grep"
+            ]
+          },
+          "script": {
+            "content": [
+              "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}"
+            ],
+            "env": {
+              "OCAMLRUNPARAM": "s=4M,o=1000"
+            }
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-native-only-tools.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "grep"
+            ]
+          },
+          "script": {
+            "content": [
+              "echo \"Skipping native-only tools (cross-build or Windows)\""
+            ],
+            "env": {
+              "OCAMLRUNPARAM": "s=4M,o=1000"
+            }
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-compilation.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_impl_linux-ppc64le >=14",
+              "file",
+              "grep"
+            ]
+          },
+          "script": {
+            "content": [
+              "echo \"Skipping compilation tests (cross-compiled package, QEMU limitation)\""
+            ],
+            "env": {
+              "OCAMLRUNPARAM": "s=4M,o=1000"
+            }
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-cross-compilers.sh",
+              "testing/test-prims-architecture.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "grep"
+            ]
+          },
+          "script": {
+            "content": [
+              "echo \"Cross-compilers only tested on linux-64 and osx-64\""
+            ],
+            "env": {
+              "OCAMLRUNPARAM": "s=4M,o=1000"
+            }
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "testing/test-toolchain-vars.sh"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_impl_linux-ppc64le >=14",
+              "grep"
+            ]
+          },
+          "script": {
+            "content": [
+              "echo \"Toolchain var tests only on native builds\""
+            ],
+            "env": {
+              "OCAMLRUNPARAM": "s=4M,o=1000"
+            }
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

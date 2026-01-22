@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: onnxmltools
+  version: "1.15.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/onnxmltools-${{ version }}.tar.gz
+    sha256: 99125770e515122126077fbb663bcdb164c9252ed78c871d5bbfe9ecf0aa32ba
+  - url: https://raw.githubusercontent.com/onnx/onnxmltools/v${{ version }}/requirements.txt
+    sha256: f92d283a3e3737a71589af98ef83d528fd8d6f104b11fde77da04c3a8c38d897
+    file_name: requirements.txt
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - onnx
+    - skl2onnx
+
+tests:
+  - python:
+      imports:
+        - onnxmltools
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: ONNXMLTools enables conversion of models to ONNX
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/onnx/onnxmltools
+
+extra:
+  recipe-maintainers:
+    - xhochy
+    - janjagusch

@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: google-cloud-dns
+  version: 0.36.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 4b0a4ec76c273901d48b1b73132c3fdcd31874850ca6424cd75e6d631ae3711e
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - google-cloud-core >=1.4.4,<3.0.0
+
+tests:
+  - python:
+      imports:
+        - google.cloud.client
+        - google.cloud.dns
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Google Cloud DNS API client library
+  description: "Google Cloud DNS API provides methods that you can use to manage DNS for your applications. Google Cloud DNS is a scalable, reliable, and managed authoritative Domain Name System (DNS) service running on the same infrastructure as Google. It has low latency, high availability and is a cost-effective way to:: - make your applications and services available to your users. You can easily publish and manage millions of DNS zones and records using our API.\nSee the [quick start guide](https://googleapis.dev/python/dns/latest/index.html#quick-start)."
+  homepage: https://github.com/googleapis/python-dns
+  repository: https://github.com/googleapis/python-dns
+  documentation: https://googleapis.dev/python/dns/latest/index.html
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - parthea

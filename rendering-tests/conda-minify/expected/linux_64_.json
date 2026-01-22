@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda-minify",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda-minify/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda-minify/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_conda-minify/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "conda-minify": {
+          "build_string": "pyhcf101f3_2",
+          "name": "conda-minify",
+          "version": "0.1.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:12.717705292Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jamespreed/conda-minify",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A simple library to create minified or relaxed versions of Conda environment specs for cross-platform sharing."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "conda-minify = conda_minify.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "name": "conda-minify",
+        "version": "0.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "conda-minify",
+        "version": "0.1.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "conda >=4.3.0,<25.9.0",
+          "pyyaml >3.0",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "conda >=4.3.0,<25.9.0",
+          "pyyaml >3.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1de1b33faa0eb05a40b0f4136470397a7db4dbfdd98ad8c441e3b07cce6daa77",
+          "url": "https://pypi.org/packages/source/c/conda-minify/conda-minify-0.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "conda_minify"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "conda-minify --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

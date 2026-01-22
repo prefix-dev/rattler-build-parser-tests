@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: wsaccel
+  version: 0.6.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: aea79ba46b1a3792dbd1fe364aeb8a10128659c67057770c5c320d1f58588a8c
+
+build:
+  number: 0
+  skip: python_impl == "pypy"
+  script: python -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools >=77.0.2
+    - cython >=3.0.11,<3.1
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - wsaccel
+        - wsaccel.xormask
+        - wsaccel.utf8validator
+      pip_check: true
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: WSAccell is WebSocket accelerator for AutobahnPython, and ws4py
+  homepage: https://github.com/methane/wsaccel
+  repository: https://github.com/methane/wsaccel
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

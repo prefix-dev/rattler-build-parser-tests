@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cross-python_linux-64",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cross-python_linux-64/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cross-python_linux-64/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cross-python_linux-64/work"
+      },
+      "hash": {
+        "hash": "f21789e"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cross-python_linux-64": {
+          "build_string": "54_cp314t",
+          "name": "cross-python_linux-64",
+          "version": "3.14"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:43:30.277273346Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cross_target_platform": "linux-64",
+        "freethreading": "yes",
+        "py_impl": "cp314t",
+        "target_platform": "osx-arm64",
+        "version": "3.14"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/conda-forge/cross-python-feedstock",
+        "license": "LicenseRef-OTHER",
+        "summary": "A meta-package to set up a cross compiling env for python in conda-build"
+      },
+      "build": {
+        "number": 54,
+        "string": "54_cp314t"
+      },
+      "context": {
+        "build_number": 54
+      },
+      "extra": {
+        "feedstock-name": "cross-python",
+        "recipe-maintainers": [
+          "chrisburr",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "cross-python_linux-64",
+        "version": "3.14"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*"
+        ],
+        "run": [
+          "python 3.14.* *_cp314t",
+          "crossenv >=1.1.4",
+          "rsync",
+          "sed",
+          "gxx_impl_linux-64"
+        ],
+        "run_exports": {
+          "strong": [
+            "python 3.14.* *_cp314t"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/etc/conda/activate.d/activate_z-cross-python_${{ cross_target_platform }}.sh",
+            "echo ${{ freethreading }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

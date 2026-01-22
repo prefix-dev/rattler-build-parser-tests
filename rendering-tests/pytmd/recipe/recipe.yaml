@@ -1,0 +1,91 @@
+schema_version: 1
+
+context:
+  name: pyTMD
+  version: 3.0.1
+  sha256: 406dd374ea01e5eaadd0d504d55cbe074103705304ce7b4b69d273750af52be3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|lower }}-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+  number: 0
+  python:
+    entry_points:
+      - fetch_arcticdata.py = pyTMD.datasets.fetch_arcticdata:main
+      - fetch_aviso_fes.py = pyTMD.datasets.fetch_aviso_fes:main
+      - fetch_gsfc_got.py = pyTMD.datasets.fetch_gsfc_got:main
+      - fetch_iers_opole.py = pyTMD.datasets.fetch_iers_opole:main
+      - fetch_jpl_ssd.py = pyTMD.datasets.fetch_jpl_ssd:main
+      - fetch_test_data.py = pyTMD.datasets.fetch_test_data:main
+      - verify_box_tpxo.py = pyTMD.datasets.verify_box_tpxo:main
+      - reduce_otis.py = pyTMD.datasets.reduce_otis:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=64
+    - pip
+  run:
+    - cartopy
+    - dask
+    - h5netcdf
+    - ipyleaflet
+    - ipywidgets
+    - jplephem
+    - jupyterlab
+    - lxml
+    - matplotlib-base
+    - numpy
+    - pandas
+    - pint
+    - platformdirs
+    - pyproj >=2.5.0
+    - python >=${{ python_min }}
+    - scipy >=1.10.1
+    - timescale >=0.0.8
+    - xarray
+
+tests:
+  - python:
+      imports:
+        - pyTMD
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - fetch_arcticdata.py --help
+      - fetch_aviso_fes.py --help
+      - fetch_gsfc_got.py --help
+      - fetch_iers_opole.py --help
+      - fetch_jpl_ssd.py --help
+      - fetch_test_data.py --help
+      - reduce_otis.py --help
+      - verify_box_tpxo.py --help
+
+about:
+  summary: Python-based tidal prediction software
+  license: MIT
+  license_file: LICENSE
+  description: |
+    Python-based tidal prediction software for estimating ocean, load,
+    solid Earth and pole tides
+  homepage: https://github.com/pyTMD/pyTMD
+  repository: https://github.com/pyTMD/pyTMD
+  documentation: https://pytmd.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - tsutterley
+    - mrsiegfried

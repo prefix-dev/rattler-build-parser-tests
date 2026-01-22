@@ -1,0 +1,40 @@
+context:
+  version: "7.4.0"
+
+package:
+  name: cmake-js
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/cmake-js/-/cmake-js-${{ version }}.tgz
+  sha256: 6bbfede1d69d6e6923bb8c7cc046eb1f62d5878dfc9f639e8940a73424dcca0a
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - cmake
+    - nodejs
+
+tests:
+  - script:
+      - cmake-js --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: CMake.js is a Node.js native addon build tool which works (almost) exactly like node-gyp, but instead of gyp, it is based on CMake build system.
+  homepage: https://github.com/cmake-js/cmake-js
+  repository: https://github.com/cmake-js/cmake-js
+
+extra:
+  recipe-maintainers:
+    - danielnachun

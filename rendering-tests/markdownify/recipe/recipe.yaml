@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: markdownify
+  version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/markdownify-${{ version }}.tar.gz
+  sha256: f6c367c54eb24ee953921804dfe6d6575c5e5b42c643955e7242034435de634c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - markdownify = markdownify.main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - beautifulsoup4 >=4.9,<5
+    - six >=1.15,<2
+
+tests:
+  - python:
+      imports:
+        - markdownify
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - markdownify --help
+
+about:
+  summary: Convert HTML to markdown.
+  license: MIT
+  license_file: LICENSE
+  homepage: http://github.com/matthewwithanm/python-markdownify
+
+extra:
+  recipe-maintainers:
+    - gscoppino
+    - moritzwilksch

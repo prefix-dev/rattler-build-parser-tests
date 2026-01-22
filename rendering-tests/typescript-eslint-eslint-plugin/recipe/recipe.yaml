@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: typescript-eslint-eslint-plugin
+  version: "8.53.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/typescript-eslint/typescript-eslint/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 03c8ec485e05d70126348f1e75675066584c40f457c14cc2fb4e34e0d28daee3
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - make
+    - nodejs
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+    - yarn
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - if: unix
+        then: test -d $PREFIX/lib/node_modules/@typescript-eslint/eslint-plugin
+      - if: win
+        then: if not exist %LIBRARY_INC%\\lib\\node_modules\\@typescript-eslint\\eslint-plugin 1
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - packages/eslint-plugin/ThirdPartyLicenses.txt
+  summary: Find and fix problems in your JavaScript code.
+  homepage: https://github.com/typescript-eslint/typescript-eslint
+
+extra:
+  recipe-maintainers:
+    - xhochy

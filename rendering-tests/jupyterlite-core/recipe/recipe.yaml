@@ -1,0 +1,290 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.7.1"
+  jupyterlab_min: "4.5.1"
+  jupyterlab_max: "4.6.0"
+  notebook_min: "7.5.1"
+  notebook_max: "7.6.0"
+  python_check_max: "3.14"
+
+recipe:
+  name: jupyterlite-core-split
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jupyterlite-core/jupyterlite_core-${{ version }}.tar.gz
+  sha256: e9c1068f875c2e75dca3771a035eb31826a41343e62bbb77c80ad2a3478b6986
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: jupyterlite-core
+    build:
+      noarch: python
+      script:
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+        - ${{ PYTHON }} ${{ RECIPE_DIR }}/extract-third-party-licenses.py
+      python:
+        entry_points:
+          - jupyter-lite = jupyterlite_core.app:main
+    requirements:
+      host:
+        - hatchling >=1.6.3,<2
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - doit >=0.34,<1
+        - jupyter_core >=4.7
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter-lite --help
+    about:
+      summary: Tools for building JupyterLite sites
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+        - third-party-licenses.json
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-libarchive
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - python-libarchive-c >=4.0
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with libarchive)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-lab
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - jupyterlab >=${{ jupyterlab_min }},<${{ jupyterlab_max }}
+        - notebook >=${{ notebook_min }},<${{ notebook_max }}
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with jupyterlab)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-contents
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - jupyter_server
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with contents)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-translation
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - jupyterlab_server >=2.8.1,<3
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with translation)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-serve
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - tornado >=6.1
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with serve)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+
+  - package:
+      name: jupyterlite-core-with-check
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+        - jsonschema-with-format-nongpl >=3
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - jupyter lite --help
+    about:
+      summary: Tools for building JupyterLite sites (with check)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+  - package:
+      name: jupyterlite-core-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("jupyterlite-core-with-check", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core-with-contents", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core-with-lab", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core-with-libarchive", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core-with-serve", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core-with-translation", exact=True) }}
+        - ${{ pin_subpackage("jupyterlite-core", exact=True) }}
+    tests:
+      - python:
+          imports: jupyterlite_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - pytest-console-scripts >=1.4.0
+            - pytest-cov <7
+            - python ${{ python_min }}.*
+            - if: linux
+              then:
+                - diffoscope
+        script:
+          env:
+            JUPYTER_PLATFORM_DIRS: "1"
+          content:
+            - pip check
+            - jupyter lite --help
+            - pytest -vv --tb=long --color=yes --pyargs jupyterlite_core --script-launch-mode=subprocess --cov=jupyterlite_core --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=93
+    about:
+      summary: Tools for building JupyterLite sites (with all)
+      license: BSD-3-Clause
+      license_file:
+        - LICENSE
+      homepage: https://github.com/jupyterlite/jupyterlite
+      documentation: https://jupyterlite.readthedocs.io
+
+about:
+  summary: Tools for building JupyterLite sites
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/jupyterlite/jupyterlite
+  documentation: https://jupyterlite.readthedocs.io
+
+extra:
+  feedstock-name: jupyterlite-core
+  recipe-maintainers:
+    - bollwyvl
+    - jtpio
+    - martinRenou

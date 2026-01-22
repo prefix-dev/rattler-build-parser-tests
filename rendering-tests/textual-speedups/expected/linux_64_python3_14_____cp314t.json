@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_textual-speedups",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_textual-speedups/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_textual-speedups/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_textual-speedups/work"
+      },
+      "hash": {
+        "hash": "2925d53",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "textual-speedups": {
+          "build_string": "py314h2925d53_2",
+          "name": "textual-speedups",
+          "version": "0.2.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:45:58.213618106Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314t",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "textual-speedups provides optional Rust implementations of performance-critical\nclasses used by Textual. Currently includes Rust implementations of geometry\nclasses (Offset, Size, Region, Spacing) that are heavily used in layout updates.\nInstall alongside Textual and set TEXTUAL_SPEEDUPS=1 to enable.",
+        "homepage": "https://github.com/willmcgugan/textual-speedups",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/willmcgugan/textual-speedups",
+        "summary": "Rust speedups for Textual terminal UI framework"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py314h2925d53_2"
+      },
+      "context": {
+        "name": "textual-speedups",
+        "version": "0.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "textual-speedups",
+        "version": "0.2.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1.8,<2.0"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "72cf0f7bdeede015367b59b70bcf724ba2c3080a8641ebc5eb94b36ad1536824",
+          "url": "https://pypi.org/packages/source/t/textual-speedups/textual_speedups-0.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "textual_speedups"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

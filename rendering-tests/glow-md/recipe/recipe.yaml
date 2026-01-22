@@ -1,0 +1,36 @@
+schema_version: 1
+
+context:
+  version: 2.1.1
+
+package:
+  name: glow-md
+  version: ${{ version }}
+
+source:
+  url: https://github.com/charmbracelet/glow/archive/v${{ version }}.tar.gz
+  sha256: f13e1d6be1ab4baf725a7fedc4cd240fc7e5c7276af2d92f199e590e1ef33967
+
+build:
+  number: 0
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - glow --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Render markdown on the CLI
+  homepage: https://github.com/charmbracelet/glow
+  repository: https://github.com/charmbracelet/glow
+
+extra:
+  recipe-maintainers:
+    - danielnachun

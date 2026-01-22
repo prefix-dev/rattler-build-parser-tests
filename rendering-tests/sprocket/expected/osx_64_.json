@@ -1,0 +1,130 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sprocket",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sprocket/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sprocket/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sprocket/work"
+      },
+      "hash": {
+        "hash": "9660e92"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sprocket": {
+          "build_string": "h9660e92_0",
+          "name": "sprocket",
+          "version": "0.17.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:37:49.485603797Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "openssl": "3",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Sprocket is an bioinformatics workflow execution engine built on top of the Workflow Description Language.\nThe project has multiple high-level goals, including to:\n\n- Provide a high-performance workflow execution engine capable of orchestrating massive bioinformatics workloads (the stated target is 20,000+ concurrent jobs).\n- Develop a suite of modern development tools that brings bioinformatics development on par with other modern languages (e.g., wdl-lsp).\n- Maintain an community-focused codebase that enables a diverse set of contributors from academic, non-profit, and commercial organizations.\n- Build on an open, domain-tailored standard to ensure the toolset remains singularly focused on unencumbered innovation within bioinformatics.\n- Retain a simple and accessible user experience when complexity isn't warranted.",
+        "documentation": "https://sprocket.bio/overview.html",
+        "homepage": "https://sprocket.bio/",
+        "license": "MIT OR Apache-2.0",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/stjude-rust-labs/sprocket",
+        "summary": "A bioinformatics workflow engine built on top of the Workflow Description Language (WDL)."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "export OPENSSL_DIR=${{ PREFIX }}",
+          "cargo install --locked --bins --no-track --root ${{ PREFIX }} --path ."
+        ],
+        "string": "h9660e92_0"
+      },
+      "context": {
+        "name": "sprocket",
+        "version": "0.17.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "luizirber"
+        ]
+      },
+      "package": {
+        "name": "sprocket",
+        "version": "0.17.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64 >=1.82",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "openssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cf72f8d4930ce16ae3adc73f82c9ed82aceb8f09330e5f78658a88e0b5d99986",
+          "url": "https://github.com/stjude-rust-labs/sprocket/archive/refs/tags/v0.17.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "sprocket help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,166 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iminuit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iminuit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iminuit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iminuit/work"
+      },
+      "hash": {
+        "hash": "c771bb0",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "iminuit": {
+          "build_string": "py314hc771bb0_0",
+          "name": "iminuit",
+          "version": "2.32.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:34.230839675Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "iminuit is designed from ground up to be fast, interactive and cython\nfriendly. iminuit extract function signature very permissively starting\nfrom checking func_code down to last resort of parsing docstring (or you\ncould tell iminuit to stop looking and take your answer). The interface is\ninspired heavily by PyMinuit and the status printout is inspired by ROOT\nMinuit. iminuit is mostly compatible with PyMinuit (with few exceptions).\nExisting PyMinuit code can be ported to iminuit by just changing the\nimport statement.",
+        "documentation": "http://iminuit.readthedocs.io/",
+        "homepage": "https://github.com/scikit-hep/iminuit",
+        "license": "LGPL-2.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/scikit-hep/iminuit",
+        "summary": "Interactive Minimization Tools based on MINUIT"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py314hc771bb0_0"
+      },
+      "context": {
+        "name": "iminuit",
+        "version": "2.32.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "mwcraig",
+          "bsipocz",
+          "HDembinski",
+          "chrisburr",
+          "henryiii"
+        ]
+      },
+      "package": {
+        "name": "iminuit",
+        "version": "2.32.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake >=3.15",
+          "make"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "scikit-build-core",
+          "pybind11 >=3"
+        ],
+        "run": [
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a32b34d18665959be75ad6bdb1dd80459bb94466c62b455631c00568accdf7d2",
+          "url": "https://pypi.org/packages/source/i/iminuit/iminuit-2.32.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "iminuit"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pip"
+            ]
+          },
+          "script": [
+            "python -m pytest tests",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

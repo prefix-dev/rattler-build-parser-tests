@@ -1,0 +1,52 @@
+context:
+  version: "12-9"
+  name: "saxon-he"
+  build: 0
+
+package:
+  name: ${{ name }}
+  version: ${{ version | split("-") | join(".") }}
+
+source:
+  url: https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE${{ version }}/SaxonHE${{ version }}J.zip
+  sha256: f2895bef3794112c650a158be27c39a86e88c1717ebb8e0e88067d1f07635d12
+
+build:
+  number: ${{ build }}
+  noarch: generic
+
+requirements:
+  run:
+    - openjdk
+    - if: unix
+      then: __unix
+    - if: win
+      then: __win
+
+tests:
+  - package_contents:
+      files:
+        - etc/conda/activate.d/${{ name }}_activate.*
+        - etc/conda/deactivate.d/${{ name }}_deactivate.*
+        - ${{ "Library/" if win }}lib/SaxonHE/saxon-he-*.jar
+        - ${{ "Library/" if win }}lib/SaxonHE/doc/*
+        - ${{ "Library/" if win }}lib/SaxonHE/notices/*
+        - ${{ "Library/" if win }}lib/SaxonHE/lib/*.jar
+
+  - script:
+      - if: unix
+        then: java -cp ${CLASSPATH} net.sf.saxon.Transform -?
+      - if: win
+        then: java -cp %CLASSPATH% net.sf.saxon.Transform -?
+
+about:
+  homepage: http://saxon.sourceforge.net
+  license: MPL-2.0
+  license_file: LICENSE.txt
+  summary: "Open Source SAXON XSLT processor developed by Saxonica Limited."
+  documentation: https://www.saxonica.com/documentation/index.html
+  repository: https://github.com/Saxonica/Saxon-HE
+
+extra:
+  recipe-maintainers:
+    - munechika-koyo

@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: rubicon-objc
+  version: "0.5.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 74c25920c5951a05db9d3a1aac31d23816ec7dacc841a5b124d911b99ea71b9a
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools ==80.9.0
+    - setuptools-scm ==9.2.2
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - rubicon
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A bridge between an Objective C runtime environment and Python.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://beeware.org/rubicon
+  repository: https://github.com/beeware/rubicon-objc
+
+extra:
+  recipe-maintainers:
+    - thewchan

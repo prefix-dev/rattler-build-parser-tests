@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pycares",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pycares/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pycares/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pycares/work"
+      },
+      "hash": {
+        "hash": "f93134c",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pycares": {
+          "build_string": "py314hf93134c_0",
+          "name": "pycares",
+          "version": "5.0.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:47.792560340Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314t",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "pycares is a Python module which provides an interface to c-ares. c-ares\nis a C library that performs DNS requests and name resolutions\nasynchronously.",
+        "documentation": "http://readthedocs.org/docs/pycares/",
+        "homepage": "https://pypi.org/project/pycares/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/saghul/pycares",
+        "summary": "Python interface for c-ares"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "set PYCARES_USE_SYSTEM_LIB=1",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py314hf93134c_0"
+      },
+      "context": {
+        "name": "pycares",
+        "version": "5.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "CurtLH",
+          "xhochy",
+          "rfiorella"
+        ]
+      },
+      "package": {
+        "name": "pycares",
+        "version": "5.0.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "cffi",
+          "vs2022_win-64",
+          "vs_win-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cffi >=1.5.0",
+          "setuptools",
+          "c-ares"
+        ],
+        "run": [
+          "python",
+          "cffi >=1.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5a3c249c830432631439815f9a818463416f2a8cbdb1e988e78757de9ae75081",
+          "url": "https://pypi.org/packages/source/p/pycares/pycares-5.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pycares"
+            ]
+          }
+        },
+        {
+          "script": "python -m pycares google.com"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

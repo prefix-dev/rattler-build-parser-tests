@@ -1,0 +1,37 @@
+context:
+  version: "2.16.1"
+
+package:
+  name: felix
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kyoheiu/felix/archive/v${{ version }}.tar.gz
+  sha256: a001dfe81cdbdfa19ba653a4711a17e4c92aa528139739c895df5791a26ea9f5
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - felix --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: tui file manager with vim-like key mapping
+  homepage: https://github.com/kyoheiu/felix
+  repository: https://github.com/kyoheiu/felix
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mxml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mxml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mxml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mxml/work"
+      },
+      "hash": {
+        "hash": "dc560ac"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mxml": {
+          "build_string": "hdc560ac_2",
+          "name": "mxml",
+          "version": "2.0.4"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.704707408Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a feature complete XML library containing a validating parser as well as a modern C++ API for the data structures. It also supports serializing custom data structures.\nThe core of this library is a validating XML parser with DTD processing and all. On top of this are implemented an API for manipulating XML data in a DOM like fashion and a serialization API. As a bonus there\u2019s also an XPath implementation, albeit this is limited to XPath 1.0.\nThis XML library was extracted from [libzeep](https://github.com/mhekkel/libzeep) since having a separate and simple XML library is more convenient. The API is unfortunately no longer compatible since the goal was to be more standards compliant. E.g., mxml::element should now be a complete [Sequence Container](https://en.cppreference.com/w/cpp/named_req/SequenceContainer).",
+        "documentation": "https://mhekkel.github.io/mxml",
+        "homepage": "https://mhekkel.github.io/mxml",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mhekkel/mxml",
+        "summary": "A C++ Module Library offering a full XML library with validating parser, DOM tree, XPaths and serialization."
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "set -exo pipefail",
+          "export CXXFLAGS=\"${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY\"",
+          "cmake -S . -B build ${CMAKE_ARGS} -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON",
+          "cmake --build build --config Release --parallel ${CPU_COUNT}",
+          "ctest -V -C Release --test-dir build",
+          "cmake --install build"
+        ],
+        "string": "hdc560ac_2"
+      },
+      "context": {
+        "build_number": 2,
+        "name": "mxml",
+        "sha256": "06e1ff2ee662b250162e5510cb5f7ddee6ce2eb4a42b9e267f0f22ca7b857f7c",
+        "version": "2.0.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "mxml",
+        "version": "2.0.4"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "make",
+          "pkg-config",
+          "sed"
+        ],
+        "host": [
+          "fast_float",
+          "howardhinnant_date"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mxml",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "06e1ff2ee662b250162e5510cb5f7ddee6ce2eb4a42b9e267f0f22ca7b857f7c",
+          "url": "https://github.com/mhekkel/mxml/archive/refs/tags/v2.0.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -d ${PREFIX}/include/mxml",
+            "test -f ${PREFIX}/lib/libmxml${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

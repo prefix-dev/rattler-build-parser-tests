@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aws-sdk-cpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aws-sdk-cpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aws-sdk-cpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aws-sdk-cpp/work"
+      },
+      "hash": {
+        "hash": "ac16450"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aws-sdk-cpp": {
+          "build_string": "hac16450_10",
+          "name": "aws-sdk-cpp",
+          "version": "1.11.606"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:40:55.291238827Z",
+      "variant": {
+        "aws_c_common": "0.12.6",
+        "aws_c_event_stream": "0.5.7",
+        "aws_crt_cpp": "0.35.4",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The AWS SDK for C++ provides a modern C++ (version C++ 11 or later) interface for Amazon Web Services (AWS).\nIt is meant to be performant and fully functioning with low- and high-level SDKs,\nwhile minimizing dependencies and providing platform portability (Windows, OSX, Linux, and mobile).",
+        "documentation": "https://aws.amazon.com/documentation/sdk-for-cpp/",
+        "homepage": "https://github.com/aws/aws-sdk-cpp",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/aws/aws-sdk-cpp",
+        "summary": "C++ library that makes it easy to integrate C++ applications with AWS services"
+      },
+      "build": {
+        "number": 10,
+        "string": "hac16450_10"
+      },
+      "context": {
+        "version": "1.11.606"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pitrou",
+          "ihnorton",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "aws-sdk-cpp",
+        "version": "1.11.606"
+      },
+      "requirements": {
+        "build": [
+          "cmake >=3.5",
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "ninja"
+        ],
+        "host": [
+          "aws-c-common",
+          "aws-c-event-stream",
+          "aws-crt-cpp",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "aws-sdk-cpp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "98c7cab1e51114e7269bc866bc3a57c15900d1e1f0f3af1219ad027fb655dcc5",
+          "url": "https://github.com/aws/aws-sdk-cpp/archive/1.11.606.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.cpp",
+              "CMakeLists.txt",
+              "run_test.bat"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "cmake >=3.5",
+              "vs2022_win-64",
+              "vs2022_win-64",
+              "ninja"
+            ]
+          },
+          "script": "./run_test${{ \".bat\" if win else \".sh\" }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: aws-durable-execution-sdk-python
+  version: "1.1.1"
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/aws_durable_execution_sdk_python-${{ version }}.tar.gz
+  sha256: 3812b60a72ab5c5fd9c1c1ffeca96260a9a79910b2c1fe4cb47c758b7768b1ce
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+    - sed
+  run:
+    - python >=${{ python_min }}
+    - boto3 >=1.42.1
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - aws_durable_execution_sdk_python
+      pip_check: true
+
+about:
+  homepage: https://github.com/aws/aws-durable-execution-sdk-python
+  repository: https://github.com/aws/aws-durable-execution-sdk-python
+  summary: AWS Durable Execution SDK for Python
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+
+extra:
+  recipe-maintainers:
+    - xhochy

@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  version: "0.2.18"
+
+package:
+  name: patiencediff
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/patiencediff/patiencediff-${{ version }}.tar.gz
+  sha256: a678d8252bfb060f1f280fd32d47d917d323e93e1a94ff4ddaaba693a6f66aad
+
+build:
+  number: 0
+  script:
+    env:
+      CFLAGS: "-Wno-int-conversion"
+    content:
+      - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - pip
+    - python
+    - setuptools
+    - setuptools-rust
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - patiencediff
+  - requirements:
+      run:
+        - pip
+        - python
+    script:
+      - pip check
+
+about:
+  license: GPL-2.0-or-later
+  license_file:
+    - COPYING
+    - THIRDPARTY.yml
+  summary: Python implementation of the patiencediff algorithm
+  homepage: https://github.com/breezy-team/patiencediff
+
+extra:
+  recipe-maintainers:
+    - danielnachun

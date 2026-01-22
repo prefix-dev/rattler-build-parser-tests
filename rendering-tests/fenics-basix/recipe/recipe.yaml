@@ -1,0 +1,156 @@
+schema_version: 1
+
+context:
+  name: fenics-basix
+  version: "0.10.0"
+  # cxx_compiler_version not specified on Windows
+  # extract from cxx_compiler
+  cxx_compiler_version: ${{ cxx_compiler_version | default(cxx_compiler | replace("vs", "")) }}
+  abi_version: 2.${{ nanobind_abi }}
+  # Python Stable ABI
+  abi3_tag: cp312
+  build_abi3: ${{ is_abi3 and match(python, "3.12.*") }}
+  skip_abi3: ${{ is_abi3 and match(python, ">=3.13") }}
+
+recipe:
+  name: ${{ name|lower }}-meta
+  version: ${{ version }}
+
+source:
+  url: https://github.com/fenics/basix/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 2e168b2a27be6f71d0a19ef4c1c8f6cae5d52b8034f01a22ae03e80afb60eede
+
+build:
+  number: 0
+  variant:
+    use_keys:
+      - python
+  skip: skip_abi3
+
+outputs:
+  - package:
+      name: fenics-libbasix
+    build:
+      script: build-libbasix
+    requirements:
+      build:
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - if: unix
+          then: make
+        - pkg-config
+      host:
+        - libblas
+        - libcblas  # not linked, but needed for FindLAPACK during build
+        - liblapack
+      run_exports:
+        - ${{ pin_subpackage("fenics-libbasix", upper_bound="x.x.x") }}
+    tests:
+      - package_contents:
+          lib: basix
+  - package:
+      name: fenics-basix
+    build:
+      script:
+        file: build-basix-py
+        env:
+          SKBUILD_BUILD_VERBOSE: "true"
+          SKBUILD_WHEEL_PY_API: ${{ abi3_tag if build_abi3 else "" }}
+      python:
+        version_independent: ${{ build_abi3 }}
+    requirements:
+      build:
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - make
+        - pkg-config
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - nanobind
+            - nanobind-abi
+      host:
+        - scikit-build-core
+        - python
+        - if: build_abi3
+          then:
+            - python-abi3
+        - pip
+        - nanobind
+        - nanobind-abi
+        - ${{ pin_subpackage('fenics-libbasix', exact=True) }}
+      run:
+        - python
+        - ${{ pin_subpackage('fenics-libbasix', exact=True) }}
+        - numpy >=1.21
+        - fenics-basix-nanobind-abi ${{ abi_version }}.*
+      run_exports:
+        - fenics-basix-nanobind-abi ${{ abi_version }}.*
+    tests:
+      - python:
+          imports:
+            - basix
+          pip_check: true
+          python_version:
+            - if: build_abi3
+              then:
+                - "3.12.*"
+                - "3.13.*"
+                - "3.14.*"
+      - files:
+          source:
+            - test
+        requirements:
+          run:
+            - pip
+            - pytest
+            - pytest-xdist
+            - if: not win
+              then:
+                - ${{ cxx_compiler }}
+                - ${{ cxx_compiler }}_impl_${{ target_platform }}
+              else:
+                - vs_${{ target_platform }}
+                - blas * openblas
+            - ${{ compiler("cxx") }}
+        script:
+          - pytest -v test/test_create.py
+
+      - if: build_abi3 and not win
+        then:
+          - script:
+              - abi3audit $PREFIX/lib/python3.13/site-packages/basix/*.so --assume-minimum-abi3 3.12
+            requirements:
+              run:
+                - abi3audit
+                - python 3.13.*
+  - package:
+      name: fenics-basix-nanobind-abi
+      version: ${{ abi_version }}
+    requirements:
+      run_exports:
+        strong:
+          - fenics-basix-nanobind-abi ${{ abi_version }}.*
+      run_constraints:
+        - nanobind-abi ${{ nanobind_abi }}.*
+        # confine to nanobind builds with nanobind_abi constraints
+        - nanobind >=2.4
+    tests:
+      - script:
+          - echo 'ok'
+
+about:
+  summary: Basix is a finite element definition and tabulation runtime library
+  license: MIT
+  license_file: LICENSE
+  homepage: https://fenicsproject.org
+  repository: https://github.com/fenics/basix
+  documentation: https://docs.fenicsproject.org/basix/main/
+
+extra:
+  feedstock-name: fenics-basix
+  recipe-maintainers:
+    - minrk

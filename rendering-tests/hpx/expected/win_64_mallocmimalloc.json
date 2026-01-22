@@ -1,0 +1,176 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hpx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hpx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hpx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hpx/work"
+      },
+      "hash": {
+        "hash": "91b3e12"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hpx": {
+          "build_string": "mimalloc_91b3e12_12",
+          "name": "hpx",
+          "version": "1.11.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:26.268707662Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libboost_devel": "1.88",
+        "libhwloc": "2.12.2",
+        "malloc": "mimalloc",
+        "mimalloc": "3.1.5",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HPX is a C++ Standard Library for Concurrency and Parallelism. It implements all of the\ncorresponding facilities as defined by the C++ Standard. Additionally, in HPX we implement\nfunctionalities proposed as part of the ongoing C++ standardization process. We also extend\nthe C++ Standard APIs to the distributed case.",
+        "documentation": "https://hpx.stellar-group.org/documentation",
+        "homepage": "https://github.com/STEllAR-GROUP/hpx",
+        "license": "BSL-1.0",
+        "license_file": [
+          "LICENSE_1_0.txt"
+        ],
+        "repository": "https://github.com/STEllAR-GROUP/hpx",
+        "summary": "The C++ Standard Library for Parallelism and Concurrency"
+      },
+      "build": {
+        "number": 12,
+        "script": {
+          "env": {
+            "malloc": "mimalloc"
+          },
+          "file": "build.bat",
+          "interpreter": "cmd"
+        },
+        "string": "mimalloc_91b3e12_12",
+        "variant": {
+          "down_prioritize_variant": 0,
+          "use_keys": [
+            "malloc"
+          ]
+        }
+      },
+      "context": {
+        "build_number": 12,
+        "name": "hpx",
+        "version": "1.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kordejong",
+          "oliverschmitz",
+          "hkaiser"
+        ]
+      },
+      "package": {
+        "name": "hpx",
+        "version": "1.11.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "python *",
+          "git"
+        ],
+        "host": [
+          "asio",
+          "libboost-devel",
+          "libhwloc",
+          "mimalloc"
+        ],
+        "run": [
+          "asio",
+          "libboost-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "hpx",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "01ec47228a2253b41e318bb09c83325a75021eb6ef3262400fbda30ac7389279",
+          "url": "https://github.com/STEllAR-GROUP/hpx/archive/refs/tags/v1.11.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test/CMakeLists.txt",
+              "test/hello_hpx.cpp"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-64",
+              "vs_win-64",
+              "cmake"
+            ]
+          },
+          "script": "run_test.bat"
+        },
+        {
+          "package_contents": {
+            "files": [
+              "Library/bin/hpxrun.py"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

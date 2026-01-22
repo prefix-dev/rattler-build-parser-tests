@@ -1,0 +1,166 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gtksourceview",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gtksourceview/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gtksourceview/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gtksourceview/work"
+      },
+      "hash": {
+        "hash": "3f4a1bb"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gtksourceview": {
+          "build_string": "h3f4a1bb_1",
+          "name": "gtksourceview",
+          "version": "5.18.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:42:32.359871462Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.15",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.15",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "expat": "2",
+        "fontconfig": "2",
+        "glib": "2",
+        "libxml2_devel": "2.15",
+        "pango": "1",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "GtkSourceView is a GNOME library that extends GtkTextView, the standard GTK\nwidget for multiline text editing. GtkSourceView adds support for syntax\nhighlighting, file loading and saving, search and replace, code completion,\nsnippets, Vim emulation, printing, displaying line numbers, and other features\ntypical of a source code editor.",
+        "documentation": "https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/",
+        "homepage": "https://gitlab.gnome.org/GNOME/gtksourceview",
+        "license": "LGPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.gnome.org/GNOME/gtksourceview",
+        "summary": "A GNOME library that extends GtkTextView"
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "**/gschemas.compiled",
+            "**/icon-theme.cache",
+            "**/loaders.cache"
+          ],
+          "include": []
+        },
+        "number": 1,
+        "script": [
+          "# Define _DARWIN_C_SOURCE to expose POSIX.1-2008 functions like strnlen\nexport CFLAGS=\"${CFLAGS} -D_DARWIN_C_SOURCE\"\n",
+          "meson setup ${MESON_ARGS} \\\n    --prefix=$PREFIX \\\n    --default-library=shared \\\n    --wrap-mode=nofallback \\\n    -Dintrospection=enabled \\\n    -Ddocumentation=false \\\n    -Dvapi=false \\\n    builddir\nninja -v -C builddir -j ${CPU_COUNT}\nninja -C builddir install -j ${CPU_COUNT}\n"
+        ],
+        "string": "h3f4a1bb_1"
+      },
+      "context": {
+        "name": "gtksourceview",
+        "version": "5.18.0",
+        "version_majmin": "5.18"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danyeaw",
+          "pkgw",
+          "ryanvolz"
+        ]
+      },
+      "package": {
+        "name": "gtksourceview",
+        "version": "5.18.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.15.*",
+          "meson",
+          "ninja",
+          "pkg-config",
+          "gobject-introspection"
+        ],
+        "host": [
+          "expat",
+          "fontconfig",
+          "fribidi",
+          "glib",
+          "gobject-introspection",
+          "gtk4",
+          "libxml2-devel",
+          "zlib",
+          "pango"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "libexpat",
+            "adwaita-icon-theme",
+            "libzlib"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "051a78fe38f793328047e5bcd6d855c6425c0b480c20d9432179e356742c6ac0",
+          "url": "https://download.gnome.org/sources/gtksourceview/5.18/gtksourceview-5.18.0.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/pkgconfig/gtksourceview-5.pc"
+            ],
+            "lib": [
+              "gtksourceview-5"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+context:
+  version: "0.9.19"
+  build_number: 0
+
+recipe:
+  name: placo-split
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/Rhoban/placo/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 7996b6ac66d6562786fdd3e1f4699bcf017b8e85135a474fc02ffa01d4666c09
+    patches:
+      - external_placo_pyi_cross_compilation.patch
+      - fix_placo_python_module_win_extension.patch
+      - fix_install_on_windows.patch
+
+  # In general conda-forge recipes only use tarballs. However, placo explicitly excluedes its
+  # tests from the tarball using export-ignore in .gitattributes, see 
+  # https://github.com/Rhoban/placo/blob/v0.9.14/.gitattributes#L1
+  # so we need to clone the git repository to get the tests.
+  - git: https://github.com/Rhoban/placo.git
+    tag: v${{ version }}
+    target_directory: placo-tests
+
+build:
+  number: ${{ build_number }}
+
+outputs:
+  - package:
+      name: placo
+    build:
+      script:
+        - if: unix
+          then: build_placo.sh
+        - if: win
+          then: build_placo.bat
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - numpy
+            - setuptools
+            - doxystub
+            - libpinocchio
+            - pinocchio-python
+            - eigenpy
+            - eiquadprog
+            - jsoncpp
+            - python
+            - meshcat-python
+            - pinocchio-python
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - pkg-config
+        - ninja
+        # To avoid operator overloading confusion on Windows we use clang-cl
+        - if: win
+          then:
+            - clang
+      host:
+        - python
+        - pip
+        - setuptools
+        - doxystub
+        - libpinocchio
+        - pinocchio-python
+        - numpy
+        - eigenpy
+        - eiquadprog
+        - jsoncpp
+      run:
+        - python
+        - meshcat-python
+        - pinocchio-python
+      run_exports:
+        - ${{ pin_subpackage('placo', upper_bound='x.x.x') }}
+
+    tests:
+      - python:
+          imports:
+            - placo
+          pip_check: true
+
+  - package:
+      name: placo-tests
+    build:
+      script: ${{ 'true' if unix else 'exit /b 0' }}
+    requirements:
+      run:
+        - ${{ pin_subpackage('placo', upper_bound="x.x.x") }}
+    tests:
+      - files:
+          source:
+            - placo-tests/python/tests
+        requirements:
+          run:
+            - pytest
+            - matplotlib-base
+        script:
+          - python -m unittest discover placo-tests/python/tests/ "*_test.py"
+
+about:
+  homepage: https://github.com/Rhoban/placo
+  license: MIT
+  license_file:
+    - LICENSE
+  summary: Rhoban Planning and Control.
+
+extra:
+  recipe-maintainers:
+    - traversaro
+  feedstock-name: placo

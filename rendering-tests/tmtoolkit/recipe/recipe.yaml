@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 0.12.0
+
+package:
+  name: tmtoolkit
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/tmtoolkit/tmtoolkit-${{ version }}.tar.gz
+  sha256: 6df5429cd675989f21d9f075ddb11fe5ae273d6544fc337a2589bab2bc331909
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - bidict
+    - globre
+    - matplotlib-base
+    - numpy <2.0
+    - openpyxl
+    - pandas
+    - python >=${{ python_min }}
+    - scipy
+    - wheel
+    - xlrd
+
+tests:
+  - python:
+      imports:
+        - tmtoolkit
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Text Mining and Topic Modeling Toolkit
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/internaut/tmtoolkit
+  repository: https://github.com/internaut/tmtoolkit
+
+extra:
+  recipe-maintainers:
+    - danielnachun

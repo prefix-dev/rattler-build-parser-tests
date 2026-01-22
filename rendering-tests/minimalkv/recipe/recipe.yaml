@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: minimalkv
+  version: 1.11.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/minimalkv-${{ version }}.tar.gz
+  sha256: b710496ef0de373eaf084c6d511fff0b4a50099e85fe52dc4e2745fe885d6861
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools_scm
+  run:
+    - python >=${{ python_min }}
+    - uritools
+  run_constraints:
+    - gcsfs >=2022.10.0
+
+tests:
+  - python:
+      imports:
+        - minimalkv
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - "python -c 'from minimalkv import get_store; get_store(\"fs\", path=\".\")'"
+      - "python -c 'from minimalkv import get_store; get_store(\"hfs\", path=\".\")'"
+
+about:
+  summary: A key-value storage for binary data, support many backends.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/data-engineering-collective/minimalkv
+
+extra:
+  recipe-maintainers:
+    - jtilly
+    - fjetter
+    - mlondschien
+    - siboehm
+    - xhochy

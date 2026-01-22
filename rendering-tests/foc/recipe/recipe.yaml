@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: foc
+  version: 0.6.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/foc-${{ version }}.tar.gz
+  sha256: 9e74b122b818e1fd3d061526014b6e5eff5164973441fd1c702f21035f816a37
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - foc
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: "A collection of python functions for somebody's sanity"
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/thyeem/foc
+
+extra:
+  recipe-maintainers:
+    - thewchan

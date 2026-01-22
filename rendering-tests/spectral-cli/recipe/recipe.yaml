@@ -1,0 +1,40 @@
+context:
+  version: "6.15.0"
+
+package:
+  name: spectral-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@stoplight/spectral-cli/-/spectral-cli-${{ version }}.tgz
+  sha256: d4e7bd215586ba1619bb495b6d7ecc336431eab9ab0214f0b16ab56a9c145072
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - spectral --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: JSON/YAML linter and support OpenAPI v3.1/v3.0/v2.0, and AsyncAPI v2.x
+  homepage: https://github.com/stoplightio/spectral
+  repository: https://github.com/stoplightio/spectral
+
+extra:
+  recipe-maintainers:
+    - danielnachun

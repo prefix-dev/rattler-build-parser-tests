@@ -1,0 +1,74 @@
+context:
+  version: 0.3.5
+
+recipe:
+  name: python-lzf-split
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/python-neo-lzf/python_neo_lzf-${{ version }}.tar.gz
+  sha256: 77395b729d224c65b7b69c2b8ba89995f9bbc21bf7a8401865763c8fcafa90a7
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: python-neo-lzf
+
+    build:
+      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+        - if: (build_platform != host_platform)
+          then:
+            - cross-python_${{ host_platform }}
+            - python
+        - setuptools
+
+      host:
+        - python
+        - pip
+        - setuptools
+
+      run:
+        - python
+
+    tests:
+      - python:
+          imports:
+            - lzf
+
+      - files:
+          recipe:
+            - tests.py
+          source:
+            - lzf_module.c
+
+        script:
+          - python tests.py
+
+  - package:
+      name: python-lzf
+
+    requirements:
+      run:
+        - ${{ pin_subpackage('python-neo-lzf', exact=True) }}
+
+    tests:
+      - python:
+          imports:
+            - lzf
+
+about:
+  summary: C Extension for liblzf
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/FledgeXu/python-neo-lzf
+
+extra:
+  recipe-maintainers:
+    - tetov

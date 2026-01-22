@@ -1,0 +1,1313 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libyarp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libyarp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libyarp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libyarp/work"
+      },
+      "hash": {
+        "hash": "92baf94"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.522803894Z",
+      "variant": {
+        "ace": "8.0.5",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "ffmpeg": "8",
+        "libjpeg_turbo": "3",
+        "libopencv": "4.12.0",
+        "libpng": "1.6",
+        "portaudio": "19.7",
+        "qt_main": "5.15",
+        "sqlite": "3",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_cxx.bat",
+        "string": "h92baf94_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "libyarp",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "multisheller",
+          "ycm-cmake-modules"
+        ],
+        "host": [
+          "ace",
+          "tinyxml",
+          "eigen",
+          "sdl",
+          "sqlite",
+          "libjpeg-turbo",
+          "robot-testing-framework",
+          "libpng",
+          "zlib",
+          "soxr",
+          "libopencv",
+          "portaudio",
+          "qt-main",
+          "ffmpeg"
+        ],
+        "run": [
+          "ycm-cmake-modules",
+          "eigen"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libyarp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "yarp help",
+            "if not exist %PREFIX%\\\\Library\\\\include\\\\yarp\\\\os\\\\all.h exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\include\\\\yarp\\\\cv\\\\Cv.h exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\lib\\\\YARP_os.lib exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\bin\\\\YARP_os.dll exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\YARP_os\\\\YARP_osConfig.cmake exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\lib\\\\yarp\\\\yarp_pm_depthimage_compression_zlib.dll exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-cxx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-cxx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-cxx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-cxx/work"
+      },
+      "hash": {
+        "hash": "868e5b3"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.648998835Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libyarp": "3.12.2 h92baf94_1",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "string": "h868e5b3_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-cxx",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libyarp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "yarp help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-rerun",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-rerun/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-rerun/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-rerun/work"
+      },
+      "hash": {
+        "hash": "5a36a78"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.649295136Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libyarp": "3.12.2 h92baf94_1",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_rerun.bat",
+        "string": "h5a36a78_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-rerun",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "ninja",
+          "cmake"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "librerun-sdk"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "if not exist %PREFIX%\\\\Library\\\\bin\\\\yarpRerun.exe exit 1"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/work"
+      },
+      "hash": {
+        "hash": "613b6c5",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-python": {
+          "build_string": "py310h613b6c5_1",
+          "name": "yarp-python",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.649530077Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libyarp": "3.12.2 h92baf94_1",
+        "openssl": "3.5",
+        "python": "3.10.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_py.bat",
+        "string": "py310h613b6c5_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-python",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "ninja",
+          "cmake",
+          "python",
+          "cross-python_win-64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "openssl"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "yarp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/work"
+      },
+      "hash": {
+        "hash": "939b468",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-python": {
+          "build_string": "py311h939b468_1",
+          "name": "yarp-python",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.650059228Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libyarp": "3.12.2 h92baf94_1",
+        "openssl": "3.5",
+        "python": "3.11.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_py.bat",
+        "string": "py311h939b468_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-python",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "ninja",
+          "cmake",
+          "python",
+          "cross-python_win-64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "openssl"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "yarp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/work"
+      },
+      "hash": {
+        "hash": "1c70fe4",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-python": {
+          "build_string": "py312h1c70fe4_1",
+          "name": "yarp-python",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.650341759Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libyarp": "3.12.2 h92baf94_1",
+        "openssl": "3.5",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_py.bat",
+        "string": "py312h1c70fe4_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-python",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "ninja",
+          "cmake",
+          "python",
+          "cross-python_win-64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "openssl"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "yarp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp-python/work"
+      },
+      "hash": {
+        "hash": "1cb66fc",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-python": {
+          "build_string": "py313h1cb66fc_1",
+          "name": "yarp-python",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.650596680Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libyarp": "3.12.2 h92baf94_1",
+        "openssl": "3.5",
+        "python": "3.13.* *_cp313",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "script": "bld_py.bat",
+        "string": "py313h1cb66fc_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp-python",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "ninja",
+          "cmake",
+          "python",
+          "cross-python_win-64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "openssl"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          "python",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "yarp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarp/work"
+      },
+      "hash": {
+        "hash": "868e5b3"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libyarp": {
+          "build_string": "h92baf94_1",
+          "name": "libyarp",
+          "version": "3.12.2"
+        },
+        "yarp": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp",
+          "version": "3.12.2"
+        },
+        "yarp-cxx": {
+          "build_string": "h868e5b3_1",
+          "name": "yarp-cxx",
+          "version": "3.12.2"
+        },
+        "yarp-python": {
+          "build_string": "py310h613b6c5_1",
+          "name": "yarp-python",
+          "version": "3.12.2"
+        },
+        "yarp-rerun": {
+          "build_string": "h5a36a78_1",
+          "name": "yarp-rerun",
+          "version": "3.12.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:05.649764707Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libyarp": "3.12.2 h92baf94_1",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/yarp",
+        "license": "BSD-3-Clause AND MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "COPYING",
+          "extern/thrift/LICENSES/BSD-3-Clause.txt",
+          "extern/dirent/dirent/LICENSE"
+        ],
+        "summary": "YARP is a library and toolkit for communication and device interfaces, used on everything from humanoids to embedded devices."
+      },
+      "build": {
+        "number": 1,
+        "string": "h868e5b3_1"
+      },
+      "context": {
+        "name": "yarp",
+        "namecxx": "libyarp",
+        "namepython": "yarp-python",
+        "version": "3.12.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Nicogene",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "yarp",
+        "version": "3.12.2"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libyarp"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "yarp-python",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "yarp-rerun",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libyarp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "2983.patch",
+            "skip_yarp_generate_device_param_parser_tests.patch"
+          ],
+          "sha256": "e29500d919129e30f07fd42da12f69d3cdd4380d42e528baf790c9b1e4e06eb6",
+          "url": "https://github.com/robotology/yarp/archive/refs/tags/v3.12.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "yarp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/cargo-patch-dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qh3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qh3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qh3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qh3/work"
+      },
+      "hash": {
+        "hash": "9efa624",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "qh3": {
+          "build_string": "py311h9efa624_1",
+          "name": "qh3",
+          "version": "1.5.6"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:34:49.628471592Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge/label/cargo-patch-dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jawah/qh3",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "A lightway and fast implementation of QUIC and HTTP/3"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "content": [
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+          ],
+          "env": {
+            "AWS_LC_SYS_CMAKE_BUILDER": "1"
+          }
+        },
+        "string": "py311h9efa624_1"
+      },
+      "context": {
+        "name": "qh3",
+        "version": "1.5.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "qh3",
+        "version": "1.5.6"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "maturin >=1.2,<2.0",
+          "cross-python_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "rust_win-64",
+          "cmake",
+          "make",
+          "nasm",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.2,<2.0",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5c7fb081a07512dcace9a49179a40dc00ad1f77b2779ee4bb7ca176f96552f66",
+          "url": "https://pypi.org/packages/source/q/qh3/qh3-1.5.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "qh3"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

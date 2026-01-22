@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: pydifact
+  version: 0.1.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydifact-${{ version }}.tar.gz
+  sha256: 5853ce94e6e3983e7b330d7f0860b81be5c2b140b6ae1590d751b0cba5d78cc5
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }},<3.10
+
+tests:
+  - python:
+      imports:
+        - pydifact
+        - pydifact.control
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: A Python EDI file parser.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/nerdocs/pydifact
+
+extra:
+  recipe-maintainers:
+    - fhoehle

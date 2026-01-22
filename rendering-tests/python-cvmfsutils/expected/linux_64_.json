@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-cvmfsutils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-cvmfsutils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-cvmfsutils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-cvmfsutils/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-cvmfsutils": {
+          "build_string": "pyhe01879c_0",
+          "name": "python-cvmfsutils",
+          "version": "0.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:40:27.066997020Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Python utilities for inspection of CernVM-FS repositories.\nAllows browsing file catalog hierarchies, inspecting repository \nmanifests, and exploring named snapshot histories.",
+        "homepage": "https://github.com/cvmfs-contrib/python-cvmfsutils",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/cvmfs-contrib/python-cvmfsutils",
+        "summary": "Inspect CernVM-FS repositories"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "big_catalogs = cvmfs.scripts.big_catalogs:main",
+            "catdirusage = cvmfs.scripts.catdirusage:main",
+            "cvmfs_search = cvmfs.scripts.cvmfs_search:main"
+          ]
+        },
+        "script": "env SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYTHON_CVMFSUTILS=${{ version }} python -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "python_min": "3.9",
+        "version": "0.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "python-cvmfsutils",
+        "version": "0.5.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pip",
+          "setuptools >=80",
+          "setuptools-scm >=8"
+        ],
+        "run": [
+          "python >=3.9",
+          "python-dateutil >=1.4.1",
+          "requests >=1.1.0",
+          "m2crypto >=0.20.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "40.patch"
+          ],
+          "sha256": "dece682debfdbb4e5eb0a0c7a22b28dcc97fc0846bc0c8c7715ed7d17f979a5e",
+          "url": "https://github.com/cvmfs-contrib/python-cvmfsutils/archive/v0.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cvmfs"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "script": [
+            "big_catalogs --help",
+            "catdirusage --help",
+            "cvmfs_search --help",
+            "catdirusage http://cvmfs-stratum-one.cern.ch/cvmfs/lhcb-condb.cern.ch /"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

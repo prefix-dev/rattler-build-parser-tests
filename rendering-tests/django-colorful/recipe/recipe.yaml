@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-colorful
+  version: "1.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django-colorful-${{ version }}.tar.gz
+  sha256: fd246f2fb297ed074dc4349966d33a1c82d0308b7fb0d6ef6e2e76b90cefffb7
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - colorful
+    - django
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=1.11
+
+tests:
+  - python:
+      imports:
+        - colorful
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: An extension to the Django web framework that provides database and form color fields
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/charettes/django-colorful
+
+extra:
+  recipe-maintainers:
+    - rxm7706

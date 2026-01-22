@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: vit-pytorch
+  version: "1.17.5"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: adaf8926e64213740d1b1533d68052797cf6f484ff949589f6dbdcf2b5e8f65f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61
+  run:
+    - einops >=0.7.0
+    - python >=${{ python_min }}
+    - pytorch >=1.10
+    - torchvision
+
+tests:
+  - python:
+      imports:
+        - vit_pytorch
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests/test_vit.py
+    requirements:
+      run:
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - pytest --verbose tests/*.py
+
+about:
+  homepage: https://github.com/lucidrains/vit-pytorch
+  license: MIT
+  license_file: LICENSE
+  summary: Vision Transformer (ViT) - Pytorch
+
+extra:
+  recipe-maintainers:
+    - weiji14

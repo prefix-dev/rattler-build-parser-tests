@@ -1,0 +1,66 @@
+context:
+  name: oras
+  version: "1.2.3"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/oras-project/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: f08ddcccaedbb336e85942b6ccb9625c2a7e4e411d5909bd6f670eb0d7ab3977
+
+build:
+  number: 0
+  script:
+    - if: unix
+      then:
+        - mkdir -p $PREFIX/bin
+
+    - if: osx
+      then:
+        - make build-mac
+        - mv bin/darwin/amd64/oras $PREFIX/bin/oras
+
+    - if: linux
+      then:
+        - make build-linux
+        - mv bin/linux/amd64/oras $PREFIX/bin/oras
+
+    - if: unix
+      then:
+        # Make sure a binary has been installed for all unix platforms
+        - which oras
+        - bash $RECIPE_DIR/collect_licenses.sh
+
+    - if: win
+      then:
+        - setlocal enableextensions
+        - mkdir -p %PREFIX%\Library\bin
+        - make build-windows
+        - move bin\windows\amd64\oras.exe %PREFIX%\Library\bin\oras.exe
+        - bash %RECIPE_DIR%\collect_licenses.sh
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - {if: win, then: m2-make, else: make}
+    - go-licenses
+
+tests:
+  - script:
+    - oras --help
+
+about:
+  homepage: https://github.com/oras-project/oras
+  documentation: https://oras.land/
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+  summary: ORAS project provides a way to push and pull OCI Artifacts to and from OCI Registries.
+
+extra:
+  recipe-maintainers:
+    - borchero
+    - wolfv

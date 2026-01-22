@@ -1,0 +1,40 @@
+context:
+  version: "7.3.0"
+
+package:
+  name: schema-engine-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/prisma/prisma-engines/archive/${{ version }}.tar.gz
+  sha256: d83291b49f99a6320420d3e12a60acc85b714df4e51e326b222b6969968f6cad
+
+build:
+  number: 0
+  skip: win or ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - openssl
+
+tests:
+  - script:
+      - schema-engine --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Engine components of Prisma ORM
+  homepage: https://github.com/prisma/prisma-engines
+  repository: https://github.com/prisma/prisma-engines
+
+extra:
+  recipe-maintainers:
+    - danielnachun

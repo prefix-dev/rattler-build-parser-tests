@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: diazo
+  version: "2.0.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/diazo-${{ version }}.tar.gz
+  sha256: 71de35c2c45cd21855787f7d6d65b47eab0565c16d3fa448eb4c63869a9a6d82
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - diazocompiler = diazo.compiler:main
+      - diazorun = diazo.run:main
+      - diazopreprocessor = diazo.rules:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - cssselect
+    - lxml
+    - webob
+
+tests:
+  - python:
+      imports:
+        - diazo
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - diazocompiler --help
+      - diazorun --help
+      - diazopreprocessor --help
+
+about:
+  summary: |
+    Diazo implements a Deliverance like language using a pure XSLT engine. With Diazo, you "compile" your theme and ruleset in one step, then use a superfast/simple transform on each request thereafter. Alternatively, compile your theme during development, check it into version control, and not touch Diazo during
+    deployment.
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  homepage: http://diazo.org
+
+extra:
+  recipe-maintainers:
+    - rxm7706

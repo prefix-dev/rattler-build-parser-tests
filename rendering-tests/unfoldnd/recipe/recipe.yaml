@@ -1,0 +1,49 @@
+context:
+  name: unfoldNd
+  version: "0.2.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/unfoldnd-${{ version }}.tar.gz
+  sha256: f5b5121d05dafdd70e873ac64a3ecdadfc4c0e8840a0facc86986ede664ab188
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pytorch
+    - numpy
+    - packaging
+
+tests:
+  - python:
+      imports:
+        - unfoldNd
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: N-dimensional unfold (im2col) and fold (col2im) in PyTorch
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/f-dangel/unfoldNd
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer

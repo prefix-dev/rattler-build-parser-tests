@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "80.9.0.20251223"
+
+package:
+  name: types-setuptools
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/t/types-setuptools/types_setuptools-${{ version }}.tar.gz
+    sha256: d3411059ae2f5f03985217d86ac6084efea2c9e9cacd5f0869ef950f308169b2
+  - url: https://raw.githubusercontent.com/python/typeshed/main/LICENSE
+    sha256: 295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+  run_constraints:
+    # https://github.com/python/typeshed/blob/main/stubs/setuptools/METADATA.toml#L4C54-L4C62
+    - setuptools >=71.1
+
+tests:
+  - files:
+      recipe:
+        - run_test.py
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      # check for errors
+      - pip check
+      # check for existence of stubs
+      - python run_test.py
+  - requirements:
+      run:
+        - mypy
+        - packaging
+        - python ${{ python_min }}.*
+        - setuptools
+    script:
+      - pip check
+      - mypy -p setuptools -p distutils --exclude "/tests/"
+
+about:
+  summary: Typing stubs for setuptools
+  license: Apache-2.0 AND MIT
+  license_file: LICENSE
+  homepage: https://github.com/python/typeshed
+
+extra:
+  recipe-maintainers:
+    - fhoehle
+    - conda-forge/mypy
+    - wolfv

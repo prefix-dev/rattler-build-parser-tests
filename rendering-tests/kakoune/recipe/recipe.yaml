@@ -1,0 +1,44 @@
+context:
+  name: Kakoune
+  version: "2025.06.03"
+  author: mawww
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/${{ author }}/${{ name|lower }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: e065dbb715bfe6b0abdaeee775243115748bd540a346d0212fdca6c20c13d340
+
+build:
+  number: 0
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - make
+    - if: linux
+      then: binutils
+
+tests:
+  - script:
+    - kak -ui dummy -e q
+
+about:
+  homepage: https://kakoune.org
+  repository: https://github.com/mawww/Kakoune
+  documentation: https://github.com/mawww/kakoune/blob/master/README.asciidoc
+  license: Unlicense
+  license_file: UNLICENSE
+  summary: "Selection-based modal text editor"
+  description: |
+    Kakoune is a selection-based modal text editor that implements Vi's "multiple selections" concept in a more intuitive and efficient way.
+
+extra:
+  recipe-maintainers:
+    - eunos-1128

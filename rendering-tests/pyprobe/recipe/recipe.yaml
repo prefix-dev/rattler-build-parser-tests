@@ -1,0 +1,47 @@
+context:
+  name: PyProbe
+  version: 0.1.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 3c4b0b7cb008851f3bd2629702bcf54f62d5284ee0556069cdbf1097f6866ce9
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - ffmpeg
+
+tests:
+  - python:
+      imports:
+        - pyprobe
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Extract metadata from video files using ffprobe or mediainfo
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Protinon/PyProbe
+
+extra:
+  recipe-maintainers:
+    - hadim

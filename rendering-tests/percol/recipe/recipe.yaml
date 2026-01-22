@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 0.2.1
+
+package:
+  name: percol
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/percol/percol-${{ version }}.tar.gz
+  sha256: 7a649c6fae61635519d12a6bcacc742241aad1bff3230baef2cedd693ed9cfe8
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - cmigemo
+    - python >=${{ python_min }}
+    - six >=1.7.3
+    - __unix
+
+tests:
+  - python:
+      imports:
+        - percol
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Adds flavor of interactive filtering to the traditional pipe concept of shell
+  homepage: https://github.com/mooz/percol
+
+extra:
+  recipe-maintainers:
+    - danielnachun

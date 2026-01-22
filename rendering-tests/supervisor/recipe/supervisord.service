@@ -1,0 +1,15 @@
+[Unit]
+Description=Process Monitoring and Control Daemon
+After=rc-local.service
+WorkingDirectory=${PREFIX}
+#User=conda
+#Group=conda
+
+[Service]
+Type=forking
+ExecStart=${PREFIX}/bin/supervisord -c ${PREFIX}/etc/supervisord.conf
+PIDFile=${PREFIX}/var/run/supervisord.pid
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target

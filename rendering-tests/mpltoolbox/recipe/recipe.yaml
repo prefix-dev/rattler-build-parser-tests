@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: mpltoolbox
+  version: "25.10.0"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mpltoolbox-${{ version }}.tar.gz
+  sha256: 08ae7f15ec88ede8bfe25d21533c41c7012bc0d6993f72f34ddfae89bfd6ebef
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=77
+    - setuptools-scm >=8.0
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - mpltoolbox
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Interactive tools for matplotlib
+  license: BSD-3-Clause
+  license_file: LICENSE
+  repository: https://github.com/mpltoolbox/mpltoolbox
+  homepage: https://scipp.github.io/mpltoolbox/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/scipp

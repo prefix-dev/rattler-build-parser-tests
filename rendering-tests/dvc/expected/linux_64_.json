@@ -1,0 +1,195 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dvc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dvc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dvc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dvc/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dvc": {
+          "build_string": "pyhcf101f3_0",
+          "name": "dvc",
+          "version": "3.66.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:17.657613196Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Data Version Control or DVC is an open-source tool for data science\nand machine learning projects.",
+        "documentation": "https://dvc.org/doc",
+        "homepage": "https://dvc.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/treeverse/dvc",
+        "summary": "DVC tracks ML models and data sets"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "dvc = dvc.cli:main"
+          ]
+        },
+        "script": "python -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "dvc",
+        "version": "3.66.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "daavoo",
+          "shcheklein",
+          "efiop",
+          "skshetry",
+          "pmrowla",
+          "weiji14"
+        ]
+      },
+      "package": {
+        "name": "dvc",
+        "version": "3.66.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "setuptools_scm >=7"
+        ],
+        "run": [
+          "python >=3.10",
+          "attrs >=22.2.0",
+          "celery",
+          "colorama >=0.3.9",
+          "configobj >=5.0.9",
+          "distro >=1.3",
+          "dpath <3,>=2.1.0",
+          "dulwich",
+          "dvc-data >=3.18.0,<3.19.0",
+          "dvc-http >=2.29.0",
+          "dvc-objects",
+          "dvc-render >=1.0.1,<2",
+          "dvc-studio-client >=0.21,<1",
+          "dvc-task >=0.3.0,<1",
+          "flatten-dict <1,>=0.4.1",
+          "flufl.lock >=8.1.0,<10",
+          "fsspec >=2024.2.0",
+          "funcy >=1.14",
+          "grandalf <1,>=0.7",
+          "gto >=1.6.0,<2",
+          "hydra-core >=1.1",
+          "iterative-telemetry >=0.0.7",
+          "kombu",
+          "networkx >=2.5",
+          "omegaconf",
+          "packaging >=19",
+          "pathspec >=0.10.3,<1",
+          "platformdirs <5,>=3.1.1",
+          "psutil >=5.8",
+          "pydot >=1.2.4",
+          "pygtrie >=2.3.2",
+          "pyparsing >=2.4.7",
+          "requests >=2.22",
+          "rich >=12",
+          "ruamel.yaml >=0.17.11",
+          "scmrepo >=3.5.2,<4",
+          "shortuuid >=0.5",
+          "shtab <2,>=1.3.4",
+          "tabulate >=0.8.7",
+          "tomlkit >=0.11.1",
+          "tqdm <5,>=4.63.1",
+          "voluptuous >=0.11.7",
+          "zc.lockfile >=1.2.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "build.patch"
+          ],
+          "sha256": "ed8e07050fdf1fc222ea95afbef8540820179e42022bc068c7b343f2a1304e69",
+          "url": "https://pypi.org/packages/source/d/dvc/dvc-3.66.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "dvc",
+              "dvc.repo"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "git",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "dvc version",
+            "dvc version | grep ${{ version }}",
+            "dvc version | grep https"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

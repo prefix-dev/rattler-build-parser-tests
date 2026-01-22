@@ -1,0 +1,50 @@
+From 8e2ce7fee3fbcb8dfdb9c6043a955a58a60ca2d2 Mon Sep 17 00:00:00 2001
+From: Cacodemon345 <wahil1976@outlook.com>
+Date: Tue, 12 Aug 2025 17:44:26 +0600
+Subject: [PATCH] Fix pkg-config files being broken on MSVC-built static
+ libraries (#2754) (not relevant in this patch and removed)
+
+* Simplify math library listing in pkg-config file
+
+(cherry picked from commit d3fa9b5a9ea0cd9ad81acebb4446c6bb50bd3075)
+
+Remove libm dependency when building with MSVC (#4314)
+
+Co-authored-by: Eugene Kliuchnikov <eustas@google.com>
+(cherry picked from commit 3d0a160d34145b890b6a5db71fd601cf4f97547f)
+
+Specific to this conda-forge patch:
+* merged the two commits mentioned above into one correct.
+* removed some aspects not relevant to fixing 0.11.1 such as "Fix pkg-config files being broken on MSVC-built static libraries" that are not relevant to conda-forge's shared builds and will be pushed in next version anyway.
+
+Co-Authored-By: Nils DEYBACH <68770774+ndeybach@users.noreply.github.com>
+---
+ lib/jxl.cmake | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/lib/jxl.cmake b/lib/jxl.cmake
+index 59b2cca4..2b8cbb51 100644
+--- a/lib/jxl.cmake
++++ b/lib/jxl.cmake
+@@ -269,12 +269,17 @@ install(TARGETS jxl
+ set(JPEGXL_LIBRARY_REQUIRES
+     "libhwy libbrotlienc libbrotlidec libjxl_cms")
+ 
++# MSVCRT bundles math functions so no explicit libm dependency is required
+ if (BUILD_SHARED_LIBS)
+   set(JPEGXL_REQUIRES_TYPE "Requires.private")
+-  set(JPEGXL_PRIVATE_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
++  if(NOT WIN32 AND NOT APPLE)
++    set(JPEGXL_PRIVATE_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
++  endif()
+ else()
+   set(JPEGXL_REQUIRES_TYPE "Requires")
+-  set(JPEGXL_PUBLIC_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
++  if(NOT WIN32 AND NOT APPLE)
++    set(JPEGXL_PUBLIC_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
++  endif()
+ endif()
+ 
+ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/jxl/libjxl.pc.in"
+-- 
+2.52.0

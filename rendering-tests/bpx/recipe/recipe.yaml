@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: bpx
+  version: 0.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bpx-${{ version }}.tar.gz
+  sha256: 141f9056cf614d67515a05fd552d4fbc9af9d2c13c2555bc7efb1dfd25d7f1af
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pydantic >=2.6
+    - pyparsing
+    - pyyaml
+
+tests:
+  - python:
+      imports:
+        - bpx
+        - bpx.interpolated_table
+        - bpx.expression_parser
+        - bpx.function
+        - bpx.validators
+        - bpx.schema
+        - bpx.parsers
+        - bpx.utilities
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: BPX schema and parsers
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://github.com/FaradayInstitution/BPX
+  repository: https://github.com/FaradayInstitution/BPX
+
+extra:
+  recipe-maintainers:
+    - Saransh-cpp

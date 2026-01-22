@@ -1,0 +1,89 @@
+schema_version: 1
+
+context:
+  name: guardian
+  version: 1.5.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://git.ligo.org/cds/software/${{ name }}/-/archive/${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: fa1b62b9c64249e6735c9dfbe905cfbee81058aa37b149048df657d28ecd30ac
+  patches:
+    # replace most of the scripts with entry points
+    - entry-points.patch
+    # handle guardlog per platform
+    - if: win
+      # don't install guardlog at all on windows (it won't work)
+      then: no-guardlog.patch
+      # insert the anaconda1 prefix placeholder into the guardlog script
+      else: guardlog-prefix.patch
+
+build:
+  noarch: python
+  number: 1
+  python:
+    entry_points:
+      - guardian = guardian.__main__:main
+      - guardmedm = guardian.medm.__main__:main
+      - guardutil = guardian.guardutil:main
+      - guardctrl = guardctrl.__main__:main
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - if: unix
+      then: __unix
+    - if: win
+      then: __win
+    - gpstime
+    - matplotlib-base
+    - networkx
+    - numpy
+    - pcaspy
+    - pydotplus
+    - pyepics
+    - python >=${{ python_min }}
+    - python-dateutil
+    - setproctitle
+    - termcolor
+
+tests:
+  - python:
+      imports:
+        - guardctrl
+        - guardian
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - guardian --help
+      - guardutil --help
+
+about:
+  summary: aLIGO Guardian
+  description: |
+    Designed by and for the Advanced LIGO project, Guardian is a flexible,
+    modular, distributed, hierarchical, state machine automation platform.
+    It is not specific to aLIGO, though; it should be useful for an large
+    or small experiment that could benefit from state-machine supervisory
+    control.
+  homepage: https://git.ligo.org/cds/guardian/
+  repository: https://git.ligo.org/cds/guardian/
+  documentation: https://docs.ligo.org/cds/guardian/
+  license: GPL-3.0-or-later
+  license_file: COPYING-GPL-3
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - evonreis
+    - jrollins

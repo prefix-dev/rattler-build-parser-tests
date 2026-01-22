@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_simpeg-drivers",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_simpeg-drivers/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_simpeg-drivers/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_simpeg-drivers/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "simpeg-drivers": {
+          "build_string": "pyhcf101f3_0",
+          "name": "simpeg-drivers",
+          "version": "0.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:51:32.467053973Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://mirageoscience-simpeg-drivers.readthedocs-hosted.com/",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/python-integration/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MiraGeoscience/simpeg-drivers",
+        "summary": "Application to run SimPEG inversions with geoh5 files from Geoscience Analyst."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "simpeg-drivers",
+        "python_max": "3.12",
+        "python_min": "3.10",
+        "version": "0.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "simpeg-drivers",
+        "version": "0.3.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "poetry-core >=1.0.0"
+        ],
+        "run": [
+          "python >=3.10,<3.12",
+          "geoapps-utils >=0.5.0,<0.6.dev",
+          "geoh5py >=0.11.0,<0.12.dev",
+          "mira-simpeg >=0.23.0.1,<0.23.1.dev",
+          "octree-creation-app >=0.3.0,<0.4.dev",
+          "param-sweeps >=0.2.1,<0.3.dev",
+          "dask-core >=2025.3,<2025.4.dev",
+          "discretize >=0.11.0,<0.12.dev",
+          "distributed >=2025.3,<2025.4.dev",
+          "numpy >=1.26.0,<1.27.dev",
+          "pydantic >=2.5.2,<3.0.dev",
+          "scikit-learn >=1.4.0,<1.5.dev",
+          "scipy >=1.14.0,<1.15.dev",
+          "tqdm >=4.66.1,<5.0.dev",
+          "geoana >=0.7.0,<0.8.dev",
+          "matplotlib-base >=3.8.4,<3.9.dev",
+          "pymatsolver >=0.3.0,<0.4.dev",
+          "zarr >=2.14.2,<2.15.dev",
+          "pydiso >=0.1.0,<0.2.dev",
+          "python-mumps >=0.0.3,<0.0.4.dev"
+        ],
+        "run_constraints": [
+          "__glibc >=2.17",
+          "bokeh >=3.6.0,<3.7.dev",
+          "fsspec >=2022.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1f6d58aaba5c7fa939ac57d59d0cdb06beb2050011826f439e05d69edd535acc",
+          "url": "https://github.com/MiraGeoscience/simpeg-drivers/archive/v0.3.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "simpeg_drivers",
+              "dask",
+              "distributed",
+              "geoh5py",
+              "simpeg"
+            ],
+            "python_version": "3.10.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

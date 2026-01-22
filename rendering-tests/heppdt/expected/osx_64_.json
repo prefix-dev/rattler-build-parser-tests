@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_heppdt",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_heppdt/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_heppdt/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_heppdt/work"
+      },
+      "hash": {
+        "hash": "0e4daf1"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "heppdt": {
+          "build_string": "h0e4daf1_0",
+          "name": "heppdt",
+          "version": "2.06.01"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:48:09.906262169Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HepPDT is a C++ library containing two main components:\n\n- HepPDT: A particle data table package that can maintain a table of\n  particle properties, including decay mode information. The main class\n  is HepPDTable, which contains HepParticleData objects with properties\n  closely related to what is published by the Particle Data Group (PDG).\n\n- HepPID: Translation methods for particle IDs between various Monte Carlo\n  generators (Pythia, Herwig, EvtGen, Isajet, QQ) and the PDG standard\n  numbering scheme.\n\nThe library provides information including measured mass with errors,\nmeasured width and/or decay length, charge, spin, and color information\nfor different particle types.",
+        "documentation": "http://lcgapp.cern.ch/project/simu/HepPDT/",
+        "homepage": "https://cdcvs.fnal.gov/redmine/projects/heppdt/wiki",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "README"
+        ],
+        "repository": "https://cdcvs.fnal.gov/redmine/projects/heppdt/",
+        "summary": "C++ library for particle data tables and particle ID translations"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cp $BUILD_PREFIX/share/gnuconfig/config.* .",
+          "autoreconf -fiv",
+          "./configure --prefix=$PREFIX --enable-shared",
+          "make -j${CPU_COUNT}",
+          "make install"
+        ],
+        "string": "h0e4daf1_0"
+      },
+      "context": {
+        "version": "2.06.01"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "heppdt",
+        "version": "2.06.01"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "make",
+          "gnuconfig",
+          "autoconf",
+          "automake",
+          "libtool"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "heppdt",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "enable-shared-macos.patch"
+          ],
+          "sha256": "12a1b6ffdd626603fa3b4d70f44f6e95a36f8f3b6d4fd614bac14880467a2c2e",
+          "url": "https://lcgpackages.web.cern.ch/lcgpackages/tarFiles/sources/HepPDT-2.06.01.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/libHepPDT.a",
+              "lib/libHepPID.a"
+            ],
+            "include": [
+              "HepPDT/defs.h",
+              "HepPDT/ParticleDataTable.hh",
+              "HepPID/ParticleIDMethods.hh"
+            ],
+            "lib": [
+              "libHepPDT",
+              "libHepPID"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

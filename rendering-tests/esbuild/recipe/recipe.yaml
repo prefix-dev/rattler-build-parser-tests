@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  version: "0.27.2"
+
+package:
+  name: esbuild
+  version: ${{ version }}
+
+source:
+  url: https://github.com/evanw/esbuild/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: d16527a0b29c747d80afaa1cd362d7eee5814c0569af6cc2080e7343482b28d2
+
+build:
+  # Go-built binaries do not react well to prefix replacement. They don't need it, though.
+  number: 0
+  dynamic_linking:
+    binary_relocation: false
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - if: unix
+      then: make
+    - if: win
+      then:
+        - m2-base
+        - m2-make
+    - nodejs >=14
+
+tests:
+  - script:
+      - esbuild --version
+
+about:
+  license: MIT
+  license_file: LICENSE.md
+  summary: An extremely fast javascript bundler
+  homepage: https://esbuild.github.io/
+  repository: https://github.com/evanw/esbuild
+
+extra:
+  recipe-maintainers:
+    - xhochy
+    - msarahan

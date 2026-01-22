@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: django-upgrade
+  version: "1.29.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 8c53b6bcd326a638a5dc908a707f26d71593bad5789b33775c90a8dc8a76afd5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - django-upgrade = django_upgrade.main:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - tokenize-rt >=4.1
+
+tests:
+  - python:
+      imports:
+        - django_upgrade
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - django-upgrade --help
+
+about:
+  summary: Automatically upgrade your Django projects.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/adamchainz/django-upgrade
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-libjpeg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-libjpeg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-libjpeg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pylibjpeg-libjpeg/work"
+      },
+      "hash": {
+        "hash": "4f39f55",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pylibjpeg-libjpeg": {
+          "build_string": "py313h4f39f55_6",
+          "name": "pylibjpeg-libjpeg",
+          "version": "2.3.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:47.559600297Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "m2w64_c_stdlib": "m2w64-sysroot",
+        "m2w64_c_stdlib_version": "12",
+        "m2w64_cxx_compiler": "gxx",
+        "m2w64_cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pydicom/pylibjpeg-libjpeg",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A Python wrapper for libjpeg, with a focus on use as a plugin for for pylibjpeg"
+      },
+      "build": {
+        "number": 6,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h4f39f55_6"
+      },
+      "context": {
+        "name": "pylibjpeg-libjpeg",
+        "version": "2.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "psadil",
+          "scaramallion"
+        ]
+      },
+      "package": {
+        "name": "pylibjpeg-libjpeg",
+        "version": "2.3.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_win-64 14.*",
+          "m2w64-sysroot_win-64 12.*"
+        ],
+        "host": [
+          "cython >=3.0.10",
+          "numpy >=2.0.0,<3.0.0",
+          "pip",
+          "poetry-core >=1.8,<2",
+          "python",
+          "setuptools"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "cython",
+            "numpy",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "numpy >=2.0.0,<3.0.0",
+          "cython >=3.0.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ffb736acee1dfd446f387d45dfec83a144c7971e5cde290d9aafefa5dee99dd0",
+          "url": "https://pypi.org/packages/source/p/pylibjpeg-libjpeg/pylibjpeg_libjpeg-2.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "libjpeg"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cython >=3.0.10",
+              "pip",
+              "python"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

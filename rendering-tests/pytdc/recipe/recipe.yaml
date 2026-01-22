@@ -1,0 +1,67 @@
+context:
+  name: pytdc
+  version: "1.1.14"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: fd50d5644490a18b2446cc23d1d8eda6755ce3b8fd553b23cc7e868dd0ba3610
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=38.6.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - accelerate ==0.33.0
+    - dataclasses >=0.6,<1.0
+    - datasets <2.20.0
+    - evaluate ==0.4.2
+    - fuzzywuzzy >=0.18.0,<1.0
+    - huggingface_hub >=0.20.3,<1.0
+    - numpy >=1.26.4,<2.0.0
+    - openpyxl >=3.0.10,<4.0.0
+    - pandas >=2.1.4,<3.0.0
+    - requests >=2.31.0,<3.0.0
+    - scikit-learn ==1.2.2
+    - seaborn >=0.12.2,<1.0.0
+    - tqdm >=4.65.0,<5.0.0
+    - transformers ==4.43.4
+    # NOTE: 1.15.0 is not available on c-f. Only >=1.16.2
+    - cellxgene-census >=1.15.0
+    - gget >=0.28.4,<1.0.0
+    - pydantic >=2.6.3,<3.0.0
+    - rdkit >=2023.9.5,<2024.3.1
+    - tiledbsoma-py >=1.7.2,<2.0.0
+    - yapf >=0.40.2,<1.0.0
+
+tests:
+  - python:
+      imports:
+        - tdc
+      # NOTE: disabling pip check cuz:
+      # - pytdc 1.1.11 has requirement cellxgene-census==1.15.0, but you have cellxgene-census 1.16.2.
+      # - multiprocess 0.70.17 has requirement dill>=0.3.9, but you have dill 0.3.8.
+      # - multiprocess 0.70.17 is not supported on this platform
+      pip_check: false
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Therapeutics Data Commons
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/mims-harvard/TDC
+
+extra:
+  recipe-maintainers:
+    - hadim

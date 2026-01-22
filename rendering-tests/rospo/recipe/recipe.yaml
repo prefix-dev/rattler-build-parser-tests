@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.15.1
+
+package:
+  name: rospo
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ferama/rospo/archive/v${{ version }}.tar.gz
+  sha256: 338157a7a34abf35f7fdb84a1667c49e07d95cd3ef33e8e5f9ce2cb0e55d4647
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - rospo --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Simple, reliable, persistent ssh tunnels with embedded ssh server
+  homepage: https://github.com/ferama/rospo
+  repository: https://github.com/ferama/rospo
+
+extra:
+  recipe-maintainers:
+    - danielnachun

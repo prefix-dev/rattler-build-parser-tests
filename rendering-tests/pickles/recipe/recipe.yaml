@@ -1,0 +1,39 @@
+context:
+  version: 4.0.3
+
+package:
+  name: pickles
+  version: ${{ version }}
+
+source:
+  url: https://github.com/picklesdoc/pickles/archive/v${{ version }}.tar.gz
+  sha256: ab84fe00be6f864543716a2d05f86bd328e7a3f667754999df364237a0c2ba3c
+
+build:
+  number: 1
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+    - sed
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - pickles --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: The open source living documentation generator
+  homepage: https://github.com/picklesdoc/pickles
+  repository: https://github.com/picklesdoc/pickles
+
+extra:
+  recipe-maintainers:
+    - danielnachun

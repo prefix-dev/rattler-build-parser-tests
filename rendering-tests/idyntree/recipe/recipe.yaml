@@ -1,0 +1,155 @@
+context:
+  version: "14.2.0"
+  name: idyntree
+  build: 0
+
+recipe:
+  name: ${{ name }}-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/robotology/idyntree/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 51fee8457f415dc2710ca93e9a66a846aec9445dde09efea75520d00099deb66
+
+build:
+  number: ${{ build }}
+
+outputs:
+  - package:
+      name: libidyntree
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: build_cxx.bat
+      string: ${{ IDYNTREE_DEPS_VARIANT }}h${{ hash }}_${{ build if IDYNTREE_DEPS_VARIANT == "base" else build + 200 }}
+      # sdformat variant gets a higher build number to ensure that it is installed unless
+      # there are dependencies conflicts
+      number: ${{ build if IDYNTREE_DEPS_VARIANT == "base" else build + 200 }}
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+        - pkg-config
+      host:
+        - libxml2-devel
+        - ipopt
+        - eigen
+        - glfw
+        - irrlicht
+        - libosqp
+        - osqp-eigen
+        - assimp
+        - if: IDYNTREE_DEPS_VARIANT == "sdformat"
+          then:
+            - libsdformat
+        - if: linux
+          then:
+            - libgl-devel
+            - xorg-libx11
+            - xorg-libxrandr
+            - xorg-libxfixes
+      run_exports:
+        - ${{ pin_subpackage('libidyntree', upper_bound='x') }}
+    tests:
+      - package_contents:
+          include:
+            - iDynTree/KinDynComputations.h
+          lib:
+            - idyntree-core
+      - script:
+          - cmake-package-check iDynTree --targets iDynTree::idyntree-core
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+    about:
+      summary: iDynTree C++ library.
+
+  - package:
+      name: idyntree-python
+      version: ${{ version }}
+    build:
+      script:
+        - if: unix
+          then: build_py.sh
+        - if: win
+          then: build_py.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+        - pkg-config
+        - swig
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - python
+            - numpy
+      host:
+        - ${{ pin_subpackage('libidyntree', upper_bound='x.x.x') }}
+        - python
+        - numpy
+      run:
+        - python
+        - ${{ pin_subpackage('libidyntree', upper_bound='x.x.x') }}
+    tests:
+      - python:
+          imports:
+            - idyntree
+          pip_check: true
+    about:
+      summary: Python bindings for iDynTree.
+
+  - package:
+      name: idyntree
+    requirements:
+      run:
+        # Do not pin exact to avoid creating problems with different variants
+        - ${{ pin_subpackage('libidyntree', upper_bound='x.x.x') }}
+        - ${{ pin_subpackage('idyntree-python', upper_bound='x.x.x') }}
+      # This is just for backward compatibility with old unified idyntree package
+      # In new recipes, please only depend on libidyntree on host, and add an explicit
+      # idyntree-python run dependency where needed
+      run_exports:
+        - ${{ pin_subpackage('libidyntree', upper_bound='x') }}
+        - ${{ pin_subpackage('idyntree', upper_bound='x') }}
+
+    tests:
+      - script:
+          - cmake-package-check iDynTree --targets iDynTree::idyntree-core
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+      - python:
+          imports:
+            - idyntree
+    about:
+      summary: iDynTree metapackage that depends on libidyntree and idyntree-python.
+
+about:
+  homepage: https://github.com/robotology/idyntree
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Multibody Dynamics Library designed for Free Floating Robots.
+  description: |
+    iDynTree is a library of dynamics computations for articulated robots with
+    floating base, supporting algorithms for kinematics, dynamics, estimation,
+    and visualization, with optional Python bindings.
+  repository: https://github.com/robotology/idyntree
+
+extra:
+  recipe-maintainers:
+    - traversaro

@@ -1,0 +1,50 @@
+context:
+  name: curvlinops-for-pytorch
+  version: "3.0.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/curvlinops_for_pytorch-${{ version }}.tar.gz
+  sha256: 916dd1f1a145d2fed062fcbbcc860561164bbe28b3e02174f8c7d78a006f54a7
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - backpack-for-pytorch >=1.6.0
+    - pytorch >=2.0
+    - scipy >=1.7.1
+    - tqdm >=4.61.0
+    - einops >=0.3.0
+    - einconv >=0.1.0
+    - numpy >=1.21
+    - linear_operator >=0.2.0
+    - opt-einsum
+
+tests:
+  - python:
+      imports: curvlinops
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: scipy Linear operators for curvature matrices in PyTorch
+  homepage: https://github.com/f-dangel/curvlinops
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer

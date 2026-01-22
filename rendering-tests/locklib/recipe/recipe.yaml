@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: locklib
+  version: 0.0.18
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/locklib-${{ version }}.tar.gz
+  sha256: 2d622db4c80984d81f186acb4db33e61978ab362f4535381b313282fcef6dc5f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools ==68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - locklib
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Useful additions to the standard thread synchronization tools.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pomponchik/locklib
+
+extra:
+  recipe-maintainers:
+    - thewchan

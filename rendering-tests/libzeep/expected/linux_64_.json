@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libzeep",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libzeep/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libzeep/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libzeep/work"
+      },
+      "hash": {
+        "hash": "2dd78cb"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libzeep": {
+          "build_string": "h2dd78cb_0",
+          "name": "libzeep",
+          "version": "7.3.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:32.159043457Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Libzeep is a web application framework written in C++.\nTo see a starter project visit the [libzeep-webapp-starter](https://github.com/mhekkel/libzeep-webapp-starter.git) page.",
+        "documentation": "https://mhekkel.github.io/libzeep",
+        "homepage": "https://mhekkel.github.io/libzeep",
+        "license": "BSL-1.0",
+        "license_file": [
+          "LICENSE_1_0.txt"
+        ],
+        "repository": "https://github.com/mhekkel/libzeep",
+        "summary": "C++ library for reading and writing XML and creating web, REST and SOAP servers."
+      },
+      "build": {
+        "number": 0,
+        "script": "set -exo pipefail\nexport CXXFLAGS=\"${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY\"\ncmake -S . -B build ${CMAKE_ARGS} -DBUILD_SHARED_LIBS=ON\ncmake --build build --config Release --parallel ${CPU_COUNT}\nif [[ \"${build_platform}\" == \"${target_platform}\" ]]; then\n  ctest -V -C Release --test-dir build\nfi\ncmake --install build\n",
+        "string": "h2dd78cb_0"
+      },
+      "context": {
+        "name": "libzeep",
+        "version": "7.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "libzeep",
+        "version": "7.3.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "catch2",
+          "howardhinnant_date",
+          "libboost-devel",
+          "nlohmann_json",
+          "zeem"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "catch2"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libzeep",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1855b0ed61e1002895c60f0f3c059290f3a3df8a64589ddb9358854453470580",
+          "url": "https://github.com/mhekkel/libzeep/archive/refs/tags/v7.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -d ${PREFIX}/include/zeep",
+            "test -f ${PREFIX}/lib/libzeep${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

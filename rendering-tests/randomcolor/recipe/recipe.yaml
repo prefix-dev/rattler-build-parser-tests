@@ -1,0 +1,40 @@
+context:
+  name: randomcolor
+  version: 0.4.4.6
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: d2b66f07ea8606aee55b648aed82e810964bbd3f6dfba0e6d57818761d437c93
+
+build:
+  number: 3
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - randomcolor
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: "A port of David Merfield's randomColor to python."
+  homepage: https://github.com/kevinwuhoo/randomcolor-py
+
+extra:
+  recipe-maintainers:
+    - hadim

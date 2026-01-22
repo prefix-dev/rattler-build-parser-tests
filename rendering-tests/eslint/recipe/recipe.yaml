@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  version: "9.39.2"
+
+package:
+  name: eslint
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/eslint/-/eslint-${{ version }}.tgz
+  sha256: 8c9e8f7ca8b93a6ada759036d45d4543874d034e6ecd3c18667125df9330e2a3
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - eslint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Find and fix problems in your JavaScript code.
+  homepage: https://github.com/eslint/eslint
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - xhochy

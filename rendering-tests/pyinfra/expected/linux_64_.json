@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinfra",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinfra/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinfra/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinfra/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyinfra": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pyinfra",
+          "version": "3.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.376548528Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.pyinfra.com/",
+        "homepage": "https://pyinfra.com/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "repository": "https://github.com/Fizzadar/pyinfra",
+        "summary": "pyinfra automates/provisions/manages/deploys infrastructure."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pyinfra = pyinfra_cli.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "pyinfra",
+        "version": "3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "pyinfra",
+        "version": "3.6"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "hatchling",
+          "uv-dynamic-versioning"
+        ],
+        "run": [
+          "python >=3.10",
+          "gevent >=1.5",
+          "paramiko >=2.7,<4",
+          "click >2",
+          "jinja2 >3,<4",
+          "python-dateutil >2,<3",
+          "typeguard >=4,<5",
+          "distro >=1.6,<2",
+          "packaging >=16.1",
+          "typing-extensions",
+          "pydantic >=2.11,<3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4ce84ec94c8d8915eaad108f183aa4eabf58687679f14f78aad44414bc79a4cd",
+          "url": "https://pypi.org/packages/source/p/pyinfra/pyinfra-3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyinfra",
+              "pyinfra_cli"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "pyinfra --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

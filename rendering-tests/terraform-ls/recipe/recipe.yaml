@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.38.3
+
+package:
+  name: terraform-ls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/hashicorp/terraform-ls/archive/v${{ version }}.tar.gz
+  sha256: 97f5992c57d6cabba72b3ffb69f18c953001f273ee7f24d56603b601fd3f7a40
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - terraform-ls --help
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Terraform Language Server
+  homepage: https://github.com/hashicorp/terraform-ls
+  repository: https://github.com/hashicorp/terraform-ls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

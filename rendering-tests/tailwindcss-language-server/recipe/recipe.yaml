@@ -1,0 +1,37 @@
+context:
+  version: "0.14.29"
+
+package:
+  name: tailwindcss-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@tailwindcss/language-server/-/language-server-${{ version }}.tgz
+  sha256: 8e5056431d0f156544344c0bd5c02660fe779d48b85d62e3207c69bed4c1cc8d
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - tailwindcss-language-server &
+      - exe_pid=$!
+      - "trap \"kill -SIGTERM ${exe_pid}\" SIGTERM"
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Language Server Protocol implementation for Tailwind CSS
+  homepage: https://github.com/tailwindlabs/tailwindcss-intellisense
+  repository: https://github.com/tailwindlabs/tailwindcss-intellisense
+
+extra:
+  recipe-maintainers:
+    - danielnachun

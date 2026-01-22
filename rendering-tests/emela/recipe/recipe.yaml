@@ -1,0 +1,136 @@
+schema_version: 1
+
+context:
+  name: emela
+  version: "1.0.1"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/gstagnit/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 4495aaf754fb9da22d222f2a58761262beb012a907d6d2ec1d9b637c4f4743d2
+  target_directory: source
+
+build:
+  number: 0
+  skip: win
+  script:
+    - cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DWITH_LHAPDF=ON -S source -B build
+    - cmake -LH build
+    - cmake --build build --clean-first --parallel="${CPU_COUNT}"
+    - cmake --install build
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('fortran') }}
+    - cmake
+    - make
+  host:
+    - libboost-devel
+    - lhapdf
+  run:
+    - lhapdf
+  run_exports:
+    - ${{ pin_subpackage('emela', upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      strict: true
+      files:
+        - etc/conda/test-files/emela/0/source/example/*
+      include:
+        - eMELA/version.h
+        - eMELA/bspdf.hh
+        - eMELA/analytics.hh
+        - eMELA/specialfunctions.hh
+        - eMELA/version.h.in
+        - eMELA/constants.hh
+        - eMELA/eMELA.hh
+        - eMELA/grid.hh
+        - eMELA/ilc500.hh
+        - eMELA/numerics.hh
+      lib:
+        - eMELA
+      bin:
+        - eMELA-config
+
+  - files:
+      source:
+        - source/example
+    requirements:
+      run:
+        - ${{ compiler('cxx') }}
+        - cmake
+        - make
+        - curl
+        - tar
+    script:
+      - eMELA-config --help
+      - eMELA-config --version
+      - eMELA-config --prefix
+      - eMELA-config --incdir
+      - eMELA-config --libdir
+      - eMELA-config --data
+      - eMELA-config --cppflags
+      - eMELA-config --cxxflags
+      - eMELA-config --ldflags
+
+      - cd source/example
+      - $CXX CreateGrid.cc -o CreateGrid $CXXFLAGS $LDFLAGS $(eMELA-config --ldflags)
+      # Skip as extremely slow with 50000 grid points
+      # - ./CreateGrid NLL DELTA MSBAR
+      - test -f ./CreateGrid
+      - $CXX GetPdf.cc -o GetPdf $CXXFLAGS $LDFLAGS $(eMELA-config --ldflags)
+      - ./GetPdf
+
+      # Download the grids from the GitHub releases page
+      # https://github.com/gstagnit/eMELA/releases/tag/v1.0.1
+      - curl -sLO https://github.com/gstagnit/eMELA/releases/download/v${{ version }}/grids.tar.gz
+      - tar -xzf grids.tar.gz
+      - export LHAPDF_DATA_PATH=$(readlink -f ./grids):$(lhapdf-config --datadir):$LHAPDF_DATA_PATH
+
+      - $CXX GetPdfGrid.cc -o GetPdfGrid $CXXFLAGS $LDFLAGS $(eMELA-config --ldflags) $(lhapdf-config --ldflags)
+      - ./GetPdfGrid
+
+about:
+  summary: "emela: an improved QED-version of MELA"
+  description: |
+    ``eMELA`` is a library that implements the evolution in pure QED of the
+    unpolarised electron parton distribution functions (PDFs) up to
+    next-to-leading logarithmic (NLL) approximation, according to the papers
+    listed on the GitHub repository. ``eMELA`` includes the evolution with
+    multiple fermion families and their mass thresholds, and it gives one the
+    possibility of choosing among three different UV-renormalisation schemes
+    (`MSBAR`: $\overline{\rm MS}$, `ALPMZ`: $\alpha(m_Z)$, `ALGMU`: $G_\mu$)
+    and two different factorisation schemes
+    (`MSBAR`: $\overline{\rm MS}$, `DELTA`: $\Delta$).
+
+    More in detail, ``eMELA`` is an improved QED-version of
+    [MELA](https://github.com/vbertone/MELA). It consists of a Fortran code
+    responsible for the numerical evolution of the PDFs, and a C++ wrapper that
+    provides one with the analytical solutions in the asymptotic $z \to 1$
+    region. Moreover, the possibility is given to the user to output the PDFs
+    as grids compliant with the
+    [LHAPDF](https://lhapdf.hepforge.org/index.html) format, that can be
+    employed at a later stage. Regardless of whether the numerical solution is
+    computed at runtime or read from the grids, eMELA offers the possibility
+    to switch to the analytical solution in the asymptotic region. This must be
+    considered as the default option when using the PDFs for physics
+    simulations.
+
+    **Note**: eMELA supersedes [ePDF](https://github.com/gstagnit/ePDF), that
+    was limited to the evolution with a single lepton in the $\overline{\rm MS}$
+    renormalisation and factorisation schemes.
+  license: MIT
+  license_file: source/LICENSE
+  homepage: https://github.com/gstagnit/eMELA
+  repository: https://github.com/gstagnit/eMELA
+
+extra:
+  recipe-maintainers:
+    - gstagnit
+    - matthewfeickert

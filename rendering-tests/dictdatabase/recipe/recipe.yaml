@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: dictdatabase
+  version: 2.5.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/dictdatabase-${{ version }}.tar.gz
+  sha256: bda14fc0ceb0ce0c43e33ae2d14aebf4095210eff394fc6962654bbde8e9c10b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - orjson >=3.9.0,<4.0.0
+
+tests:
+  - python:
+      imports:
+        - dictdatabase
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Easy-to-use database using dicts
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/mkrd/DictDataBase
+
+extra:
+  recipe-maintainers:
+    - thewchan

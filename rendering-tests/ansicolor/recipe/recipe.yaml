@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  version: 0.3.2
+
+package:
+  name: ansicolor
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/a/ansicolor/ansicolor-${{ version }}.tar.gz
+  sha256: 3b840a6b1184b5f1568635b1adab28147947522707d41ceba02d5ed0a0877279
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - ansicolor
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: A library to produce ansi color output and colored highlighting and diffing
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/numerodix/ansicolor
+
+extra:
+  recipe-maintainers:
+    - danielnachun

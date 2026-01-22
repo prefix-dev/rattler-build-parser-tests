@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mutmut",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mutmut/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mutmut/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mutmut/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mutmut": {
+          "build_string": "pyhcf101f3_0",
+          "name": "mutmut",
+          "version": "3.4.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:43:04.404451041Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Mutmut is a mutation testing system for Python,\nwith a strong focus on ease of use.",
+        "documentation": "https://mutmut.readthedocs.io/",
+        "homepage": "https://github.com/boxed/mutmut",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/boxed/mutmut",
+        "summary": "mutmut - python mutation tester"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "mutmut = mutmut.__main__:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "mutmut",
+        "version": "3.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "carlodri"
+        ]
+      },
+      "package": {
+        "name": "mutmut",
+        "version": "3.4.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "uv-build"
+        ],
+        "run": [
+          "python >=3.10",
+          "coverage >=7.3.0",
+          "libcst >=1.8.5",
+          "click >=8.0.0",
+          "textual >=1.0.0",
+          "setproctitle >=1.0.0",
+          "pytest >=6.2.5",
+          "toml >=0.10.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b3b47e60828192c9f2e7737316469777f769a9163d0e384776129b80f7e8aa3e",
+          "url": "https://pypi.org/packages/source/m/mutmut/mutmut-3.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "mutmut --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

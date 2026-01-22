@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediainfo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediainfo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediainfo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mediainfo/work"
+      },
+      "hash": {
+        "hash": "ca2167e"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mediainfo": {
+          "build_string": "hca2167e_0",
+          "name": "mediainfo",
+          "version": "25.10"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:45:02.345520876Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MediaInfo is a convenient unified display of the most relevant technical and tag data for video and audio files.",
+        "documentation": "https://mediaarea.net/MediaInfo",
+        "homepage": "https://mediaarea.net/MediaInfo",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "src/LICENSE",
+          "src/License.html"
+        ],
+        "repository": "https://github.com/MediaArea/MediaInfo",
+        "summary": "Convenient unified display of the most relevant technical and tag data for video and audio files"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "pushd src/Project/GNU/CLI\nautoreconf -fi\n./configure --prefix=\"$PREFIX\" || (cat config.log && false)\nmake install\n"
+        ],
+        "string": "hca2167e_0"
+      },
+      "context": {
+        "name": "mediainfo",
+        "version": "25.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "mediainfo",
+        "version": "25.10"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "pkg-config",
+          "autoconf",
+          "libtool",
+          "automake",
+          "make"
+        ],
+        "host": [
+          "libmediainfo 25.10.*",
+          "libzen",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2edaff16dfad9ee372d17d6d01eb2e3d2f8ee8dd4af606b1ee6f045c9b009662",
+          "target_directory": "src",
+          "url": "https://github.com/MediaArea/MediaInfo/archive/refs/tags/v25.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "mediainfo --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "mediainfo"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

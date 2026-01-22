@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: cachier
+  version: "4.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cachier-${{ version }}.tar.gz
+  sha256: 83fbc941829f66068d83ba1ecd0d5406a65bd67bb623a0c2a0cf926dc36508b4
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - cachier=cachier.__main__:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - portalocker >=2.3.2
+    - python >=${{ python_min }}
+    - watchdog >=2.3.1
+    # Not listed as required (it's optional) upstream but needed for import
+    - click
+    - pymongo
+
+tests:
+  - python:
+      imports:
+        - cachier
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - cachier --help
+
+about:
+  summary: Persistent, stale-free, local and cross-machine caching for Python functions.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/shaypal5/cachier
+
+extra:
+  recipe-maintainers:
+    - thewchan

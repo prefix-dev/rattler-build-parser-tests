@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: autoregistry
+  version: "1.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/autoregistry-${{ version }}.tar.gz
+  sha256: 6ef26a2ad7a34b2f8cf97e53699e5dd49d92d15474e22bfef625ae1b8734e877
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - hatch-vcs
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - autoregistry
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Automatic registry design-pattern for mapping names to functionality.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/BrianPugh/autoregistry
+
+extra:
+  recipe-maintainers:
+    - thewchan

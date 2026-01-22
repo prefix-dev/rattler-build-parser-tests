@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  version: 0.6.3
+
+package:
+  name: ffi-navigator
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/ffi-navigator/ffi_navigator-${{ version }}.tar.gz
+  sha256: ce12a02719f11908e0b79c36cf3a5ff2de2e58b7e2eba51f335eb7784cfcb5d9
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - attrs
+    - python >=${{ python_min }}
+    - python-jsonrpc-server
+
+tests:
+  - python:
+      imports:
+        - ffi_navigator
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Language server for navigating FFI calls
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/tqchen/ffi-navigator
+
+extra:
+  recipe-maintainers:
+    - danielnachun

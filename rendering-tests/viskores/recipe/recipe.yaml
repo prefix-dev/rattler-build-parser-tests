@@ -1,0 +1,147 @@
+# This recipe uses the v1 YAML format introduced by CEP 13
+# For more information see: https://prefix-dev.github.io/rattler-build/latest/reference/recipe_file/
+
+context:
+  version: "1.1.0"
+  soversion: ${{ (version | split('.'))[:2] | join('.') }}
+  viskores_modules: |
+    cont
+    filter_clean_grid
+    filter_connected_components
+    filter_contour
+    filter_core
+    filter_density_estimate
+    filter_entity_extraction
+    filter_field_conversion
+    filter_field_transform
+    filter_flow
+    filter_geometry_refinement
+    filter_image_processing
+    filter_mesh_info
+    filter_multi_block
+    filter_resampling
+    filter_scalar_topology
+    filter_vector_analysis
+    filter_zfp
+    io
+    rendering
+    source
+    worklet
+  common_flags: -DCMAKE_BUILD_TYPE=Release -DViskores_ENABLE_HDF5_IO=ON -DViskores_USE_DEFAULT_TYPES_FOR_VTK=ON
+  cuda_flags: >
+    {% if cuda_compiler_version != "None" %}
+    -DViskores_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES='75;75-virtual'
+    {% else %}
+    -DViskores_ENABLE_CUDA=OFF
+    {% endif %}
+  parallel_build_flag: ${{ '-j3' if cuda_compiler_version != "None" else '-j' }}
+
+package:
+  name: viskores
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Viskores/viskores/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 24eb77decff0370789594a8064060d64b51ba0b9ae9d78c882daada4d8f19a20
+
+build:
+  number: 3
+  string: ${{ "cuda" ~ cuda_compiler_version ~ "_h" ~ hash ~ "_" ~ number if cuda_compiler_version != "None" else "cpu_h" ~ hash ~ "_" ~ number }}
+  skip:
+    - cuda_compiler_version != "None" and win
+  variant:
+    use_keys:
+      - cuda_compiler_version
+    down_prioritize_variant: ${{ 1 if cuda_compiler_version == "None" else 0 }}
+  script:
+    - if: unix
+      then:
+        - cmake -GNinja -S $SRC_DIR -B build -DCMAKE_INSTALL_PREFIX=$PREFIX -DViskores_ENABLE_OPENMP=ON ${{ common_flags }} ${{ cuda_flags }}
+        - cmake --build build ${{ parallel_build_flag }}
+        - cmake --install build
+        - Viskores_DIR=$PREFIX cmake -GNinja -S $SRC_DIR/examples/smoke_test/ -B smoke_test_build
+        - cmake --build smoke_test_build
+        - if: x86_64
+          then:
+            - ./smoke_test_build/smoke_test
+    - if: win
+      then:
+        - cmake -GNinja -S %SRC_DIR% -B build -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ${{ common_flags }} ${{ cuda_flags }}
+        - cmake --build build -j
+        - cmake --install build
+
+requirements:
+  run_exports:
+    - ${{ pin_subpackage("viskores", upper_bound='x.x') }}
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - if: cuda_compiler_version != "None"
+      then: ${{ compiler('cuda') }}
+    - cmake >=3.23
+    - gnuconfig
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp
+    - ninja
+    - pkg-config
+  host:
+    - glew
+    - hdf5
+    - mesalib
+    - zfp
+    - if: cuda_compiler_version != "None"
+      then: cuda-version=${{ cuda_compiler_version }}
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp
+  run:
+    - if: cuda_compiler_version != "None"
+      then:
+        - __cuda
+
+tests:
+  - script:
+      - if: linux
+        then:
+          - for: ${{ viskores_modules | split }}
+            then:
+              - test -f $PREFIX/lib/libviskores_${{ each }}-${{ soversion }}.so.${{ version }}
+      - if: osx
+        then:
+          - for: ${{ viskores_modules | split }}
+            then:
+              - test -f $PREFIX/lib/libviskores_${{ each }}-${{ soversion }}.${{ version }}.dylib
+      - if: win
+        then:
+          - for: ${{ viskores_modules | split }}
+            then:
+              - if not exist %LIBRARY_PREFIX%\bin\viskores_${{ each }}-${{ soversion }}.dll exit 1
+              - if not exist %LIBRARY_PREFIX%\lib\viskores_${{ each }}-${{ soversion }}.lib exit 1
+          - if not exist %LIBRARY_PREFIX%\include\viskores-${{ soversion }} exit 1
+
+about:
+  homepage: https://github.com/Viskores/viskores
+  summary: 'Visualization ToolKit for Many-cores (viskores)'
+  description: |
+    Viskores is a toolkit of scientific visualization algorithms for emerging
+    processor architectures. Viskores supports the fine-grained concurrency for
+    data analysis and visualization algorithms required to drive extreme scale
+    computing by providing abstract models for data and execution that can be
+    applied to a variety of algorithms across many different processor
+    architectures.
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE.txt
+    - viskores/thirdparty/diy/viskoresdiy/LICENSE.txt
+    - viskores/thirdparty/lcl/viskoreslcl/LICENSE.md
+    - viskores/thirdparty/lodepng/viskoreslodepng/LICENSE
+  documentation: https://viskores.readthedocs.io/
+  repository: https://github.com/Viskores/viskores
+
+extra:
+  recipe-maintainers:
+    - vicentebolea

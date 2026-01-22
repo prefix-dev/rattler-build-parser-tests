@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: apistar
+  version: 0.7.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 8da0d3f15748c8ed6e68914ba5b8f6dd5dff5afbe137950d07103575df0bce73
+  patches:
+    # taken almost 1:1 from https://github.com/encode/apistar/pull/683
+    # credit to @aminalaee
+    - pr_683.patch
+
+build:
+  number: 1
+  noarch: python
+  script: python -m pip install --no-deps --ignore-installed -vv .
+  python:
+    entry_points:
+      - apistar = apistar.cli:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - click
+    - jinja2
+    - pyyaml
+    - requests
+    - typesystem =0.4.1
+    - legacy-cgi
+
+tests:
+  - python:
+      imports:
+        - apistar
+      python_version: ${{ python_min }}.*
+  - script:
+      - apistar --help
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  summary: API documentation, validation, mocking, and clients.
+  homepage: https://github.com/encode/apistar
+  repository: https://github.com/encode/apistar
+  documentation: https://docs.apistar.com/
+
+extra:
+  recipe-maintainers:
+    - k-dominik
+    - carlodri

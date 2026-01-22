@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsass",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsass/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsass/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsass/work"
+      },
+      "hash": {
+        "hash": "4aeab78",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsass": {
+          "build_string": "py311h4aeab78_3",
+          "name": "libsass",
+          "version": "0.23.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:45:30.556944978Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package provides a simple Python extension module sass which is binding\nLibsass (written in C/C++ by Hampton Catlin and Aaron Leung). It's very\nstraightforward and there isn't any headache related Python distribution/deployment.",
+        "documentation": "https://hongminhee.org/libsass-python/",
+        "homepage": "https://github.com/dahlia/libsass-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/dahlia/libsass-python",
+        "summary": "A straightforward binding of libsass for Python. Compile Sass/SCSS in Python with no Ruby stack at all!"
+      },
+      "build": {
+        "number": 3,
+        "python": {
+          "entry_points": [
+            "pysassc = pysassc:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py311h4aeab78_3"
+      },
+      "context": {
+        "name": "libsass",
+        "version": "0.23.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "cshaley",
+          "sannykr",
+          "isuruf",
+          "marcelotrevisani",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "libsass",
+        "version": "0.23.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "472.patch"
+          ],
+          "sha256": "6f209955ede26684e76912caf329f4ccb57e4a043fd77fe0e7348dd9574f1880",
+          "url": "https://pypi.org/packages/source/l/libsass/libsass-0.23.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sass"
+            ]
+          }
+        },
+        {
+          "script": "pysassc --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

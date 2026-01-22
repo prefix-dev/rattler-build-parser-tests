@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: robotframework-databaselibrary
+  version: "2.4.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/robotframework_databaselibrary-${{ version }}.tar.gz
+  sha256: b43c9ea82b3221c26bda02fe6936c873fe010c7a8600ef28546b6a9b141b5c98
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - robotframework >=5.0.1
+    - robotframework-assertion-engine
+    - sqlparse
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - robotframework >=5.0.1
+    - robotframework-assertion-engine
+    - sqlparse
+
+tests:
+  - python:
+      imports:
+        - DatabaseLibrary
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Database Library for Robot Framework
+  license: Apache-2.0
+  license_file: LICENSE
+  documentation: https://pythonhosted.org/robotframework-databaselibrary/
+  homepage: https://github.com/franz-see/Robotframework-Database-Library
+
+extra:
+  recipe-maintainers:
+    - rxm7706

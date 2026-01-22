@@ -1,0 +1,112 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ko",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ko/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ko/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ko/work"
+      },
+      "hash": {
+        "hash": "11686cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ko": {
+          "build_string": "h11686cb_0",
+          "name": "ko",
+          "version": "0.18.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:29.726357771Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://ko.build/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "license-files/"
+        ],
+        "summary": "A simple, fast container image builder for Go applications"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "go-licenses save ./ --save_path=./license-files --ignore github.com/cyberphone/json-canonicalization/go/src/webpki.org/jsoncanonicalizer --ignore github.com/in-toto/attestation --ignore github.com/in-toto/in-toto-golang",
+          "go build -v -ldflags \"-w -s -X github.com/ko-build/ko/pkg/commands.Version=${{ version }}\" -o %LIBRARY_PREFIX%\\bin\\ko.exe ./",
+          "xcopy /s %RECIPE_DIR%\\license-files\\* %SRC_DIR%\\license-files || goto :error"
+        ],
+        "string": "h11686cb_0"
+      },
+      "context": {
+        "version": "0.18.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "benmoss"
+        ]
+      },
+      "package": {
+        "name": "ko",
+        "version": "0.18.1"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_win-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1006eb94b6260690ab3ec79cbd03342e09cb0f32cecdd1b8743fa216e2fe7b0e",
+          "url": "https://github.com/ko-build/ko/archive/refs/tags/v0.18.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "ko version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

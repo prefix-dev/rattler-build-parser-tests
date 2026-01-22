@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_k9s",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_k9s/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_k9s/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_k9s/work"
+      },
+      "hash": {
+        "hash": "3cc9849"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "k9s": {
+          "build_string": "h3cc9849_0",
+          "name": "k9s",
+          "version": "0.50.18"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:29.687388374Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://k9scli.io/",
+        "homepage": "https://k9scli.io/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/",
+          "xz-LICENSE-1/LICENSE",
+          "xz-LICENSE-2/COPYING",
+          "mathutil-LICENSE/LICENSE"
+        ],
+        "repository": "https://github.com/derailed/k9s",
+        "summary": "\ud83d\udc36 Kubernetes CLI To Manage Your Clusters In Style!"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save . --ignore github.com/derailed/popeye --ignore github.com/xi2/xz --ignore modernc.org/mathutil --ignore github.com/deitch/magic --save_path ../library_licenses",
+          "go build -v -o %LIBRARY_BIN%\\k9s.exe -ldflags=\"-X github.com/derailed/k9s/cmd.version=${{ version }}\""
+        ],
+        "string": "h3cc9849_0"
+      },
+      "context": {
+        "name": "k9s",
+        "version": "0.50.18"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw",
+          "ytausch"
+        ]
+      },
+      "package": {
+        "name": "k9s",
+        "version": "0.50.18"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "go-nocgo_win-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4a438b4bc480c05ba6f78a1573ee7e1dad7956ef3e30912ae22c744cea031f96",
+          "target_directory": "src",
+          "url": "https://github.com/derailed/k9s/archive/refs/tags/v0.50.18.tar.gz"
+        },
+        {
+          "sha256": "5c640056d513f276d56635af7a0bed81cb7eac02a31b6e56d40c416557a8d8ce",
+          "target_directory": "xz-LICENSE-1",
+          "url": "https://raw.githubusercontent.com/xi2/xz/refs/heads/master/LICENSE"
+        },
+        {
+          "sha256": "d9ff4f089509582e7b197e86f3d2d66948b89169f27c1f2349eb0d1ed4459309",
+          "target_directory": "xz-LICENSE-2",
+          "url": "https://raw.githubusercontent.com/tukaani-project/xz-embedded/refs/heads/master/COPYING"
+        },
+        {
+          "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
+          "target_directory": "xz-LICENSE-3",
+          "url": "https://raw.githubusercontent.com/tukaani-project/xz/refs/heads/master/COPYING"
+        },
+        {
+          "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+          "target_directory": "xz-LICENSE-4",
+          "url": "https://raw.githubusercontent.com/tukaani-project/xz/refs/heads/master/COPYING.0BSD"
+        },
+        {
+          "sha256": "bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5",
+          "target_directory": "mathutil-LICENSE",
+          "url": "https://gitlab.com/cznic/mathutil/-/raw/master/LICENSE"
+        },
+        {
+          "sha256": "2423c6eb9948e617a61f7a2d1cb463c69d60e599fbae5931551631d2a8730838",
+          "target_directory": "magic-LICENSE",
+          "url": "https://raw.githubusercontent.com/deitch/magic/refs/heads/main/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "k9s --help",
+            "k9s version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

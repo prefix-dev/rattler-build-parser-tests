@@ -1,0 +1,130 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_difit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_difit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_difit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_difit/work"
+      },
+      "hash": {
+        "hash": "c5b7237"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "difit": {
+          "build_string": "hc5b7237_0",
+          "name": "difit",
+          "version": "3.0.5"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:17.727090385Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nodejs": "24",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "difit is a CLI tool that lets you view and review local git diffs with a GitHub-style viewer.\nIn addition to clean visuals, comments can be copied as prompts for AI.\nThe local code review tool for the AI era!",
+        "documentation": "https://github.com/yoshiko-pg/difit",
+        "homepage": "https://github.com/yoshiko-pg/difit",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "third-party-licenses.txt"
+        ],
+        "repository": "https://github.com/yoshiko-pg/difit",
+        "summary": "A lightweight command-line tool that spins up a local web server to display Git commit diffs in a GitHub-like Files changed view"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "set -ex",
+          "pnpm install --ignore-scripts",
+          "pnpm build",
+          "npm pkg delete scripts.prepare",
+          "npm pack --ignore-scripts",
+          "npm install --global ${SRC_DIR}/${PKG_NAME}-${PKG_VERSION}.tgz --cpu=${{ 'arm64' if (arm64 or aarch64) else 'x64' }}",
+          "pnpm-licenses generate-disclaimer --prod --output-file=third-party-licenses.txt"
+        ],
+        "string": "hc5b7237_0"
+      },
+      "context": {
+        "name": "difit",
+        "version": "3.0.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "difit",
+        "version": "3.0.5"
+      },
+      "requirements": {
+        "build": [
+          "nodejs",
+          "pnpm",
+          "pnpm-licenses"
+        ],
+        "host": [
+          "nodejs"
+        ],
+        "run": [
+          "nodejs"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cb1587797c12473e75628ae59dc6ce0d433f4d4b9e5a68a269fcf44bba95d159",
+          "url": "https://github.com/yoshiko-pg/difit/archive/refs/tags/v3.0.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "difit --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

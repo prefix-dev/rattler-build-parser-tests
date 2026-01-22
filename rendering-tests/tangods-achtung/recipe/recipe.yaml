@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: tangods-achtung
+  version: "0.15.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/tangods_achtung-${{ version }}.tar.gz
+  sha256: 9d519696a9f623cea057c01582d186d2adaed580438ba04188c416b8cf01f076
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - Achtung = achtung.achtung:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=45
+    - wheel
+    - setuptools-scm >=6.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pytango
+    - pyparsing
+    - httpx
+
+tests:
+  - python:
+      imports:
+        - achtung
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+  - script:
+      - Achtung --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Achtung, a Tango device for managing alarms (Panic compatible)
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/MaxIV/dev-maxiv-achtung
+  repository: https://gitlab.com/MaxIV/dev-maxiv-achtung
+
+extra:
+  recipe-maintainers:
+    - beenje
+    - johanfforsberg

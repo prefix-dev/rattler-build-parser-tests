@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.14.3"
+  python_check_max: "3.14"
+  # build against the oldest available 4.0.x to avoid spurious `etc/jupyter/labconfig/page_config.json`
+  jupyterlab_host_version: "4.0"
+  # test against the latest supported version
+  jupyterlab_test_version: "4"
+
+package:
+  name: ipycanvas
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/i/ipycanvas/ipycanvas-${{ version }}.tar.gz
+  sha256: c6a53a22eebf4d611b168b8f4434145883f27a7575509bd99a4bfc48c5385a39
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatch
+    - hatch-build-scripts
+    - hatch-jupyter-builder >=0.8.1
+    - hatch-nodejs-version
+    - hatchling
+    - jupyterlab ${{ jupyterlab_host_version }}.*
+    - nodejs 24.*
+    - pip
+    - python ${{ python_min }}.*
+    - yarn
+  run:
+    - ipywidgets >=7.6.0,<9
+    - numpy
+    - pillow >=6.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: ipycanvas
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - package_contents:
+      files:
+        - share/jupyter/nbextensions/ipycanvas/extension.js
+        - share/jupyter/nbextensions/ipycanvas/index.js
+        - share/jupyter/labextensions/ipycanvas/package.json
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - jupyterlab ${{ jupyterlab_test_version }}.*
+    script:
+      - jupyter labextension list --debug
+      # can't test the npm version as it does not align with the pypi version
+      - jupyter labextension list --debug 2>&1 | python -c "import sys, re; assert re.search('ipycanvas.*enabled.*OK', sys.stdin.read())"
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE.txt
+    - ipycanvas/labextension/static/third-party-licenses.json
+  summary: Interactive widgets library exposing the browser's Canvas API
+  homepage: https://github.com/jupyter-widgets-contrib/ipycanvas
+  documentation: https://ipycanvas.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - martinRenou
+    - bollwyvl

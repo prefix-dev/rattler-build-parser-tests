@@ -1,0 +1,166 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbcsr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbcsr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbcsr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dbcsr/work"
+      },
+      "hash": {
+        "hash": "7e28d02",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dbcsr": {
+          "build_string": "py314h7e28d02_0",
+          "name": "dbcsr",
+          "version": "2.9.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:40:21.466348951Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "llvm_openmp": "19",
+        "openmpi": "5",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "DBCSR is a sparse matrix library designed to efficiently perform sparse matrix-matrix multiplication, among other operations. It is MPI and OpenMP parallel, and can exploit accelerators. DBCSR was developed as a part of CP2K, where it provides core functionality for linear scaling electronic structure theory. It is now released as a standalone library for integration in other projects..",
+        "documentation": "https://cp2k.github.io/dbcsr/develop/page/2-user-guide/index.html",
+        "homepage": "https://cp2k.github.io/dbcsr",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/cp2k/dbcsr",
+        "summary": "DBCSR is a sparse matrix library designed to efficiently perform sparse matrix-matrix multiplication."
+      },
+      "build": {
+        "number": 0,
+        "string": "py314h7e28d02_0"
+      },
+      "context": {
+        "name": "dbcsr",
+        "version": "2.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g"
+        ]
+      },
+      "package": {
+        "name": "dbcsr",
+        "version": "2.9.1"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64 19.*",
+          "clangxx_osx-64 19.*",
+          "gfortran_osx-64 14.*",
+          "cmake",
+          "make",
+          "llvm-openmp"
+        ],
+        "host": [
+          "llvm-openmp",
+          "python",
+          "libblas",
+          "liblapack",
+          "openmpi"
+        ],
+        "run": [
+          "python"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "dbcsr",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "dbcsr-shared.patch"
+          ],
+          "sha256": "fa5a4aeba0a07761511af2c26c779bd811b5ea0ef06a5d94535b6dd7b2e0ce59",
+          "url": "https://github.com/cp2k/dbcsr/releases/download/v2.9.1/dbcsr-2.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -e ${PREFIX}/include/dbcsr.h",
+            "test -e ${PREFIX}/include/dbcsr_api.mod",
+            "test -e ${PREFIX}/include/dbcsr_tensor.h",
+            "test -e ${PREFIX}/include/dbcsr_tensor_api.mod",
+            "test -e ${PREFIX}/lib/cmake/dbcsr/DBCSRConfig.cmake",
+            "test -e ${PREFIX}/lib/cmake/dbcsr/DBCSRConfigVersion.cmake",
+            "test -e ${PREFIX}/lib/cmake/dbcsr/DBCSRTargets-release.cmake",
+            "test -e ${PREFIX}/lib/cmake/dbcsr/DBCSRTargets.cmake",
+            "test -e ${PREFIX}/lib/libdbcsr${SHLIB_EXT}",
+            "test -e ${PREFIX}/lib/libdbcsr_c${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

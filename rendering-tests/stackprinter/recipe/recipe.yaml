@@ -1,0 +1,42 @@
+schema_version: 1
+
+context:
+  version: 0.2.12
+
+package:
+  name: stackprinter
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/stackprinter/stackprinter-${{ version }}.tar.gz
+  sha256: 271efc75ebdcc1554e58168ea7779f98066d54a325f57c7dc19f10fa998ef01e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - stackprinter
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: Debugging-friendly exceptions for Python
+  homepage: https://github.com/cknd/stackprinter
+
+extra:
+  recipe-maintainers:
+    - scopatz
+    - tetov

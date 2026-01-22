@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-segments",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-segments/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-segments/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-segments/work"
+      },
+      "hash": {
+        "hash": "d2acab1",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "igwn-segments": {
+          "build_string": "py310hd2acab1_0",
+          "name": "igwn-segments",
+          "version": "2.1.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:33.371597606Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "python_impl": "cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This module defines the segment and segmentlist objects, as well as the\ninfinity object used to define semi-infinite and infinite segments.",
+        "documentation": "https://igwn-segments.readthedocs.io/",
+        "homepage": "https://git.ligo.org/computing/software/igwn-segments/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://git.ligo.org/computing/software/igwn-segments.git",
+        "summary": "Representations of semi-open intervals"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py310hd2acab1_0"
+      },
+      "context": {
+        "name": "igwn-segments",
+        "version": "2.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "lpsinger",
+          "titodalcanton"
+        ]
+      },
+      "package": {
+        "name": "igwn-segments",
+        "version": "2.1.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=70.0.0",
+          "setuptools-scm >=8"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "672814d78f5de7582b5f39189cdc6016d7ffde95d2b8b8b8b82aa9b45e53f3dd",
+          "url": "https://pypi.org/packages/source/i/igwn-segments/igwn_segments-2.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest >=3.9.1",
+              "python-lal"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m pip show igwn-segments",
+            "python -m pytest test"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

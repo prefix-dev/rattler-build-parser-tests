@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: editline
+  version: 1.17.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/troglobit/${{ name }}/releases/download/${{ version }}/${{ name }}-${{ version }}.tar.xz
+  sha256: df223b3333a545fddbc67b49ded3d242c66fadf7a04beb3ada20957fcd1ffc0e
+  patches:
+    - if: target_platform == "osx-arm64"
+      then:
+        - configure-ac.patch
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+    - if: target_platform == "osx-arm64"
+      then:
+        - autoconf
+        - automake
+        - libtool
+  run_exports:
+    - ${{ pin_subpackage('editline', upper_bound='x') }}
+
+tests:
+  - package_contents:
+      lib:
+        - editline
+      include:
+        - editline.h
+      files:
+        - share/man/man3/editline.3
+        - lib/pkgconfig/libeditline.pc
+
+about:
+  license: Newsletr
+  license_file: LICENSE
+  summary: A small replacement for GNU readline() for UNIX
+  description: |
+    This is a line editing library for UNIX. It can be linked into
+    almost any program to provide command line editing and history.
+    It is call compatible with the FSF readline library, but is a
+    fraction of the size (and offers fewer features).
+  homepage: https://troglobit.com/projects/editline/
+  repository: http://github.com/troglobit/editline
+
+extra:
+  recipe-maintainers:
+    - scopatz

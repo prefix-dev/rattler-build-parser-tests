@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter_server_terminals",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter_server_terminals/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter_server_terminals/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter_server_terminals/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jupyter_server_terminals": {
+          "build_string": "pyhcf101f3_0",
+          "name": "jupyter_server_terminals",
+          "version": "0.5.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:28.228266827Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jupyter-server-terminals.readthedocs.io/",
+        "homepage": "https://pypi.org/project/jupyter-server-terminals",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/jupyter-server/jupyter_server_terminals",
+        "summary": "A Jupyter Server Extension Providing Terminals."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "0.5.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/jupyter_server"
+        ]
+      },
+      "package": {
+        "name": "jupyter_server_terminals",
+        "version": "0.5.4"
+      },
+      "requirements": {
+        "host": [
+          "hatchling >=1.5",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10",
+          "terminado >=0.8.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "bbda128ed41d0be9020349f9f1f2a4ab9952a73ed5f5ac9f1419794761fb87f5",
+          "url": "https://pypi.org/packages/source/j/jupyter-server-terminals/jupyter_server_terminals-0.5.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "jupyter_server >=2.0.0rc8",
+              "pip",
+              "pytest >=7.0",
+              "pytest-jupyter-server >=0.5.3",
+              "pytest-timeout",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "coverage run --source=jupyter_server_terminals --branch -m pytest -vv --color=yes --tb=long",
+            "coverage report --show-missing --skip-covered --fail-under=80"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

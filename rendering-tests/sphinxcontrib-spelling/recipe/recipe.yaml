@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: sphinxcontrib-spelling
+  version: "8.0.2"
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: afbc7b8e93721ab88f12bdd39d848b92017b3763b9ed6226b4b0e54b06664fea
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pyenchant >=3.1.1
+    - sphinx >=3.0.0
+    - requests >=2.32.3
+
+tests:
+  - python:
+      imports:
+        - sphinxcontrib.spelling
+      pip_check: true
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - python ${{ python_min }}
+        - pip
+        - pytest
+    script:
+      # Workaround for bug in hunspell that breaks pyenchant
+      # See: https://github.com/conda-forge/hunspell-feedstock/issues/12
+      - ln -s $CONDA_PREFIX/share/hunspell_dictionaries $CONDA_PREFIX/share/hunspell
+      - python -m pytest -vv
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: This package contains sphinxcontrb.spelling, a spelling checker for Sphinx-based documentation.
+  description: |
+    This package contains sphinxcontrb.spelling, a spelling checker
+    for Sphinx-based documentation. It uses PyEnchant to produce
+    a report showing misspelled words.
+  homepage: https://sphinxcontrib-spelling.readthedocs.io/en/latest/
+  repository: https://github.com/sphinx-contrib/spelling
+
+extra:
+  recipe-maintainers:
+    - blmaier
+    - cshaley
+    - sannykr

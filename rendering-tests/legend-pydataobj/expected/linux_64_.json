@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legend-pydataobj",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legend-pydataobj/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legend-pydataobj/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legend-pydataobj/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "legend-pydataobj": {
+          "build_string": "pyhcf101f3_0",
+          "name": "legend-pydataobj",
+          "version": "1.17.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:30.150720519Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package provides a Python implementation of the LEGEND Data Objects\n(LGDO) and I/O to HDF5, including Numba-accelerated custom compression\nalgorithms for particle detector signals.\nMore documentation is available in the\n[LEGEND data format specification](https://legend-exp.github.io/legend-data-format-specs).",
+        "documentation": "https://legend-pydataobj.readthedocs.io/",
+        "homepage": "https://github.com/legend-exp/legend-pydataobj",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/legend-exp/legend-pydataobj",
+        "summary": "LEGEND Python Data Objects"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "legend-pydataobj",
+        "python_min": "3.10",
+        "version": "1.17.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "gipert",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "legend-pydataobj",
+        "version": "1.17.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=77",
+          "setuptools-scm >=7"
+        ],
+        "run": [
+          "python >=3.10",
+          "awkward >=2",
+          "awkward-pandas",
+          "colorlog",
+          "h5py >=3.10",
+          "hdf5plugin",
+          "hist",
+          "numba !=0.53,!=0.54.*",
+          "numexpr",
+          "numpy >=1.21",
+          "pandas >=1.4.4",
+          "parse",
+          "pint >0.24",
+          "pint-pandas"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "12db92d3b042934c3195855f8b14bd5d484def5376a2a3b0bd95a0c6acdae72a",
+          "url": "https://pypi.org/packages/source/l/legend-pydataobj/legend_pydataobj-1.17.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "lgdo"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip list",
+            "lh5ls --help",
+            "lh5concat --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

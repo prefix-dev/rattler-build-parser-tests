@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: ax-platform
+  version: "1.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 6c55801bcd0ea420917ed1842c1d6e29191261216ae507c9b27d2ddb7104d536
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=34.4
+    - setuptools-scm
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - botorch >=0.16.1,<0.16.2dev9999
+    - jinja2
+    - pandas
+    - scipy
+    - scikit-learn
+    - ipywidgets
+    - plotly >=5.12.0
+    - pyre-extensions
+    - sympy
+    - markdown
+    # from pytorch[pymoo]
+    - pymoo
+
+tests:
+  - python:
+      imports:
+        - ax
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Adaptive Experimentation
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/facebook/Ax
+
+extra:
+  recipe-maintainers:
+    - rpanai
+    - thewchan

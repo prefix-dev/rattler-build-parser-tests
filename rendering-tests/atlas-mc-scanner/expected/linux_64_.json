@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_atlas-mc-scanner",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_atlas-mc-scanner/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_atlas-mc-scanner/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_atlas-mc-scanner/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "atlas-mc-scanner": {
+          "build_string": "pyhe01879c_0",
+          "name": "atlas-mc-scanner",
+          "version": "1.0.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:07.551087480Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gordonwatts/atlas-mc-scanner",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/gordonwatts/atlas-mc-scanner",
+        "summary": "ServiceX command line tools for inspecting ATLAS Monte Carlo datasets"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "atlas-mc-scanner = atlas_mc_scanner.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "atlas-mc-scanner",
+        "python_min": "3.10",
+        "version": "1.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "gordonwatts",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "atlas-mc-scanner",
+        "version": "1.0.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "typer >=0.9.0",
+          "func_adl_servicex_xaodr25",
+          "func-adl >=3.5.0",
+          "servicex 3.1.1.*",
+          "awkward",
+          "servicex-analysis-utils",
+          "tabulate",
+          "particle",
+          "jinja2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "42e19a8b5d45e20ce8cbc5719e9141e2ec3bce9f785bfab89501286714476225",
+          "url": "https://pypi.org/packages/source/a/atlas-mc-scanner/atlas_mc_scanner-1.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "atlas_mc_scanner"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip list",
+            "atlas-mc-scanner --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

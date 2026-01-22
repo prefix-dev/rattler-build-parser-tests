@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: probabilit
+  version: "0.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/probabilit-${{ version }}.tar.gz
+  sha256: b9dfa6f89b43bbc9d5117126b6f1f7a9c62a4c78fa4705e62e226d8efa4cec5c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=66.1
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy >=2
+    - scipy
+    - networkx
+    - seaborn
+    - pandas
+    - cvxpy
+    # not listed but needed
+    - cffi
+
+tests:
+  - python:
+      imports:
+        - probabilit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/equinor/probabilit
+  summary: A Python package for Monte Carlo sampling.
+  license: GPL-3.0-only
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - thewchan

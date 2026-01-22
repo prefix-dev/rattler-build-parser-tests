@@ -1,0 +1,39 @@
+context:
+  version: "17.1.0"
+
+package:
+  name: nyc
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/nyc/-/nyc-${{ version }}.tgz
+  sha256: 8b071905b271341dbbec2522970776e3d4c456d2586ba211f8c5ea10369c8b1f
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - nyc --help
+
+about:
+  license: ISC
+  license_file:
+    - LICENSE.txt
+    - third-party-licenses.txt
+  summary: the Istanbul command line interface
+  homepage: https://github.com/istanbuljs/nyc
+  repository: https://github.com/istanbuljs/nyc
+
+extra:
+  recipe-maintainers:
+    - danielnachun

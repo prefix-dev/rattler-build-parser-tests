@@ -1,0 +1,39 @@
+context:
+  version: "2.5.3"
+
+package:
+  name: ivy
+  version: ${{ version }}
+
+source:
+  url: https://dlcdn.apache.org//ant/ivy/${{ version }}/apache-ivy-${{ version }}-src.tar.gz
+  sha256: 293c93858b2327c53d474a19feb3beb0652705eef060a4db63e10b51495dea2e
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - ant
+    - maven
+    - openjdk =11
+    - sed
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - ivy -version
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: Agile dependency manager
+  homepage: https://ant.apache.org/ivy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,39 @@
+context:
+  version: "0.17.23"
+
+package:
+  name: svelte-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/svelte-language-server/-/svelte-language-server-${{ version }}.tgz
+  sha256: 431cc0ccb336e1bd6faea72708872aa152f22370b7e59287943b404bb901e50a
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - svelteserver --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: The Svelte Language Server
+  homepage: https://github.com/sveltejs/language-tools
+  repository: https://github.com/sveltejs/language-tools
+
+extra:
+  recipe-maintainers:
+    - danielnachun

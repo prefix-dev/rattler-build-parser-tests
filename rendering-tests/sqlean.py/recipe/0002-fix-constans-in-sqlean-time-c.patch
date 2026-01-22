@@ -1,0 +1,54 @@
+diff -ruN sqlean_py-3.50.4.5/sqlite/sqlean-time.c sqlean_py-3.50.4.5-patch/sqlite/sqlean-time.c
+--- sqlean_py-3.50.4.5/sqlite/sqlean-time.c	2025-10-25 09:54:50.000000000 +0200
++++ sqlean_py-3.50.4.5-patch/sqlite/sqlean-time.c	2025-12-03 18:26:34.992582680 +0100
+@@ -12,12 +12,21 @@
+ #include "time/timex.h"
+ 
+ // Common durations.
++#if defined(_MSC_VER)
++#define Nanosecond   ((Duration)1)
++#define Microsecond  ((Duration)1000)
++#define Millisecond  ((Duration)1000000)
++#define Second       ((Duration)1000000000)
++#define Minute       ((Duration)(60) * Second)
++#define Hour         ((Duration)(60) * Minute)
++#else
+ const Duration Nanosecond = 1;
+ const Duration Microsecond = 1000 * Nanosecond;
+ const Duration Millisecond = 1000 * Microsecond;
+ const Duration Second = 1000 * Millisecond;
+ const Duration Minute = 60 * Second;
+ const Duration Hour = 60 * Minute;
++#endif
+ 
+ #pragma region Conversion
+ 
+@@ -938,6 +947,20 @@
+ 
+ #pragma region Private
+ 
++#if defined(_MSC_VER)
++#define seconds_per_minute  ((int64_t)60)
++#define seconds_per_hour    ((int64_t)60 * seconds_per_minute)
++#define seconds_per_day     ((int64_t)24 * seconds_per_hour)
++#define seconds_per_week    ((int64_t)7 * seconds_per_day)
++#define days_per_400_years  ((int64_t)(365 * 400 + 97))
++#define days_per_100_years  ((int64_t)(365 * 100 + 24))
++#define days_per_4_years    ((int64_t)(365 * 4 + 1))
++#define absolute_zero_year   ((int64_t)-292277022399LL)
++#define absolute_to_internal ((int64_t)-9223371966579724800LL)
++#define internal_to_absolute ((int64_t)(-absolute_to_internal))
++#define unix_to_internal     ((int64_t)((1969 * 365 + 1969 / 4 - 1969 / 100 + 1969 / 400) * seconds_per_day))
++#define internal_to_unix     ((int64_t)(-unix_to_internal))
++#else
+ static const int64_t seconds_per_minute = 60;
+ static const int64_t seconds_per_hour = 60 * seconds_per_minute;
+ static const int64_t seconds_per_day = 24 * seconds_per_hour;
+@@ -959,6 +982,7 @@
+ static const int64_t unix_to_internal =
+     (1969 * 365 + 1969 / 4 - 1969 / 100 + 1969 / 400) * seconds_per_day;
+ static const int64_t internal_to_unix = -unix_to_internal;
++#endif
+ 
+ // days_before[m] counts the number of days in a non-leap year
+ // before month m begins. There is an entry for m=12, counting

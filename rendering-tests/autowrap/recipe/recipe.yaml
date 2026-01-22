@@ -1,0 +1,56 @@
+context:
+  name: autowrap
+  version: "0.27.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 7f746e006a92409dd2cba04e033dd415ffe759ae5620a93a12ac734068430831
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv
+  python:
+    entry_points:
+      - autowrap = autowrap.Main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=77.0.3
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - cython >=3.1
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - autowrap
+        - autowrap.data_files
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - autowrap --version
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Generates Python Extension modules from commented Cython CXD files
+  homepage: https://github.com/OpenMS/autowrap
+  repository: https://github.com/OpenMS/autowrap
+
+extra:
+  recipe-maintainers:
+    - aseyboldt
+    - synapticarbors
+    - jpfeuffer
+    - timosachsenberg

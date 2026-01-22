@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rtoml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rtoml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rtoml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rtoml/work"
+      },
+      "hash": {
+        "hash": "d8f68c5",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rtoml": {
+          "build_string": "py310hd8f68c5_1",
+          "name": "rtoml",
+          "version": "0.13.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:55.135820233Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/samuelcolvin/rtoml",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "A fast TOML library for python implemented in rust."
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py310hd8f68c5_1"
+      },
+      "context": {
+        "version": "0.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "rtoml",
+        "version": "0.13.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "maturin >=1,<2",
+          "pip",
+          "python"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "974522c887b47abc0bb62ee8ae9e44d3a0c2cdac9d60ba0ed01c5a40df0ea424",
+          "url": "https://pypi.org/packages/source/r/rtoml/rtoml-0.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rtoml"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "example.py",
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "dirty-equals",
+              "pytest",
+              "pytest-speed"
+            ]
+          },
+          "script": [
+            "coverage run --source rtoml --branch -m pytest -vv --tb=long -k \"not datetime_invalid\"",
+            "coverage report --show-missing --skip-covered --fail-under=100"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

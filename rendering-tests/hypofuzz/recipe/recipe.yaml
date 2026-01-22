@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  name: hypofuzz
+  version: "25.11.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hypofuzz-${{ version }}.tar.gz
+  sha256: 717a12481378e77c3fd7a44f2c03e17252591ed7e7e5fd2f714d33d7ad1cface
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - wheel
+    - sphinx
+    - furo
+    - myst-parser
+    - sphinxcontrib-bibtex
+    # nodejs required to build but not listed
+    - nodejs
+  run:
+    - python >=${{ python_min }}
+    - black >=23.3.0
+    - coverage >=5.2.1
+    - hypothesis >=6.140.2
+    - libcst >=1.0.0
+    - psutil >=3.0.0
+    - pytest >=7.0.0
+    - starlette
+    - trio
+    - hypercorn
+    # From hypothesis[cli]
+    - click >=7.0
+    - rich >=9.0.0
+    # From hypothesis[watchdog]
+    - watchdog >=4.0.0
+
+tests:
+  - python:
+      imports:
+        - hypofuzz
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - hypothesis fuzz --help
+
+about:
+  summary: Adaptive fuzzing for property-based tests
+  license: AGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://hypofuzz.com/
+  repository: https://github.com/Zac-HD/hypofuzz
+  documentation: https://hypofuzz.com/docs/
+
+extra:
+  recipe-maintainers:
+    - thewchan

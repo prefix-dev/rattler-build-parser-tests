@@ -1,0 +1,178 @@
+From 3ca10cce399865cb1f1b7576e90fb9fcf5c97a24 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sebastian=20P=C3=B6lsterl?= <sebp@k-d-w.org>
+Date: Sat, 19 Apr 2025 18:22:22 +0200
+Subject: [PATCH 2/2] Link against qdldl shared library
+
+Add OSQP_USE_BUNDLED_QDLDL option
+---
+ CMakeLists.txt                            | 25 ++++++------
+ algebra/_common/lin_sys/qdldl/qdldl.cmake | 46 +++++++++++++++--------
+ algebra/builtin/CMakeLists.txt            |  8 +++-
+ 3 files changed, 50 insertions(+), 29 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9ed43468..b118755c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -59,25 +59,23 @@ include(Utils)
+ option(OSQP_BUILD_SHARED_LIB "Build the shared library" ON)
+ option(OSQP_BUILD_STATIC_LIB "Build the static library" ON)
+ 
+-cmake_dependent_option( OSQP_BUILD_DEMO_EXE
++option( OSQP_BUILD_DEMO_EXE
+                         "Build the demo executable (requires the static library)"
+-                        ON    # Default to on
+-                        OSQP_BUILD_STATIC_LIB OFF ) # Force off if the static library isn't built
++                        ON)    # Default to on
+ 
+-cmake_dependent_option( OSQP_BUILD_UNITTESTS
++option( OSQP_BUILD_UNITTESTS
+                         "Build the unit testing suite"
+-                        OFF    # Default to off
+-                        OSQP_BUILD_STATIC_LIB OFF ) # Force off if the static library isn't built
++                        OFF)    # Default to off
+ 
+-cmake_dependent_option( OSQP_COVERAGE_CHECK
++option( OSQP_COVERAGE_CHECK
+                         "Check the code coverage of the unit tests"
+-                        OFF    # Default to off
+-                        OSQP_BUILD_UNITTESTS OFF ) # Force off if the unit tests aren't built
++                        OFF)    # Default to off
+ 
+ set(OSQP_ALGEBRA_BACKEND
+     "builtin"
+     CACHE STRING "The Algebra to use (builtin/mkl/cuda)")
+ 
++option(OSQP_USE_BUNDLED_QDLDL "Use the bundled QDLDL library" ON)
+ option(OSQP_ENABLE_PRINTING "Enable solver printing" ON)
+ option(OSQP_ENABLE_PROFILING "Enable solver profiling (timing)" ON)
+ option(OSQP_ENABLE_INTERRUPT "Enable user interrupt (e.g. Ctrl-C)" ON)
+@@ -408,9 +406,9 @@ if( OSQP_BUILD_STATIC_LIB )
+   # Link against the libraries for the algebras
+   target_link_libraries(osqpstatic PUBLIC ${osqplib_link_libs})
+ 
+-  if(OSQP_ALGEBRA_BUILTIN)
++  if(OSQP_ALGEBRA_BUILTIN AND OSQP_USE_BUNDLED_QDLDL)
+     # Transitive dependency on OBJECT library does not work. See https://gitlab.kitware.com/cmake/cmake/-/issues/18682
+-    target_sources(osqpstatic PRIVATE $<TARGET_OBJECTS:qdldlobject>)
++    target_sources(osqpstatic PRIVATE $<TARGET_OBJECTS:osqp::qdldl>)
+   endif()
+   target_include_directories(osqpstatic PRIVATE ${osqplib_includes})
+   target_include_directories(
+@@ -427,10 +425,11 @@ if(OSQP_BUILD_SHARED_LIB)
+   add_library(osqp SHARED
+               $<TARGET_OBJECTS:OSQPLIB>
+               "${CMAKE_CURRENT_SOURCE_DIR}/src/osqp_api.c")
+-  if(OSQP_ALGEBRA_BUILTIN)
++  if(OSQP_ALGEBRA_BUILTIN AND OSQP_USE_BUNDLED_QDLDL)
+     # Transitive dependency on OBJECT library does not work. See https://gitlab.kitware.com/cmake/cmake/-/issues/18682
+-    target_sources(osqp PRIVATE $<TARGET_OBJECTS:qdldlobject>)
++    target_sources(osqp PRIVATE $<TARGET_OBJECTS:osqp::qdldl>)
+   endif()
++
+   target_include_directories(osqp PRIVATE ${osqplib_includes})
+   target_include_directories(osqp PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/public;${CMAKE_CURRENT_BINARY_DIR}/include/public>"
+                                          "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/osqp>")
+diff --git a/algebra/_common/lin_sys/qdldl/qdldl.cmake b/algebra/_common/lin_sys/qdldl/qdldl.cmake
+index ac777bd0..4e62c55c 100644
+--- a/algebra/_common/lin_sys/qdldl/qdldl.cmake
++++ b/algebra/_common/lin_sys/qdldl/qdldl.cmake
+@@ -3,27 +3,34 @@ include(FetchContent)
+ message(STATUS "Fetching/configuring QDLDL solver")
+ list(APPEND CMAKE_MESSAGE_INDENT "  ")
+ 
+-FetchContent_Declare(
+-  qdldl
+-  GIT_REPOSITORY https://github.com/osqp/qdldl.git
+-  GIT_TAG v0.1.8
+-  )
++if(OSQP_USE_BUNDLED_QDLDL)
++     FetchContent_Declare(
++     qdldl
++     GIT_REPOSITORY https://github.com/osqp/qdldl.git
++     GIT_TAG v0.1.8
++     )
+ 
+-# Make QDLDL use the same types as OSQP
+-set(QDLDL_FLOAT ${OSQP_USE_FLOAT} CACHE BOOL "QDLDL Float type")
+-set(QDLDL_LONG ${OSQP_USE_LONG} CACHE BOOL "QDLDL Integer type")
++     # Make QDLDL use the same types as OSQP
++     set(QDLDL_FLOAT ${OSQP_USE_FLOAT} CACHE BOOL "QDLDL Float type")
++     set(QDLDL_LONG ${OSQP_USE_LONG} CACHE BOOL "QDLDL Integer type")
+ 
+-# We only want the object library, so turn off the other library products
+-set(QDLDL_BUILD_STATIC_LIB OFF CACHE BOOL "Build QDLDL static library")
+-set(QDLDL_BUILD_SHARED_LIB OFF CACHE BOOL "Build QDLDL shared library")
++     # We only want the object library, so turn off the other library products
++     set(QDLDL_BUILD_STATIC_LIB OFF CACHE BOOL "Build QDLDL static library")
++     set(QDLDL_BUILD_SHARED_LIB OFF CACHE BOOL "Build QDLDL shared library")
+ 
+-FetchContent_MakeAvailable(qdldl)
+-FetchContent_GetProperties(qdldl)
++     FetchContent_MakeAvailable(qdldl)
++     FetchContent_GetProperties(qdldl)
++
++     set_source_files_properties($<TARGET_OBJECTS:qdldlobject> PROPERTIES GENERATED 1)
++
++     # Create an alias for the object library so we have a consistent name
++     add_library(osqp::qdldl ALIAS qdldlobject)
++else()
++     find_package(qdldl REQUIRED)
++endif()
+ 
+ list(POP_BACK CMAKE_MESSAGE_INDENT)
+ 
+-set_source_files_properties($<TARGET_OBJECTS:qdldlobject> PROPERTIES GENERATED 1)
+-
+ file(
+     GLOB
+     AMD_SRC_FILES
+@@ -48,6 +55,7 @@ set( LIN_SYS_QDLDL_SRC_FILES
+      ${LIN_SYS_QDLDL_NON_EMBEDDED_SRC_FILES}
+      )
+ 
++if(OSQP_USE_BUNDLED_QDLDL)
+ set( LIN_SYS_QDLDL_INC_PATHS
+      ${qdldl_include}
+      ${OSQP_ALGEBRA_ROOT}/_common/
+@@ -56,3 +64,11 @@ set( LIN_SYS_QDLDL_INC_PATHS
+      ${qdldl_SOURCE_DIR}/include
+      ${qdldl_BINARY_DIR}/include
+      )
++else()
++set( LIN_SYS_QDLDL_INC_PATHS
++     ${qdldl_include}
++     ${OSQP_ALGEBRA_ROOT}/_common/
++     ${OSQP_ALGEBRA_ROOT}/_common/lin_sys/qdldl/
++     ${OSQP_ALGEBRA_ROOT}/_common/lin_sys/qdldl/amd/include
++     )
++endif()
+diff --git a/algebra/builtin/CMakeLists.txt b/algebra/builtin/CMakeLists.txt
+index e5428973..1445650d 100644
+--- a/algebra/builtin/CMakeLists.txt
++++ b/algebra/builtin/CMakeLists.txt
+@@ -18,7 +18,7 @@ target_sources(
+           matrix.c
+           ${NON_EMBEDDED_SRC_FILES}
+           ${LIN_SYS_QDLDL_EMBEDDED_SRC_FILES}
+-          $<TARGET_OBJECTS:qdldlobject> )
++          )
+ 
+ target_include_directories(
+   OSQPLIB
+@@ -26,6 +26,12 @@ target_include_directories(
+           ${CMAKE_CURRENT_SOURCE_DIR}
+           ${LIN_SYS_QDLDL_INC_PATHS} )
+ 
++if(OSQP_USE_BUNDLED_QDLDL)
++    target_sources(OSQPLIB PRIVATE $<TARGET_OBJECTS:osqp::qdldl>)
++else()
++    target_include_directories(OSQPLIB PUBLIC ${qdldl_INCLUDE_DIRS})
++    target_link_libraries(OSQPLIB qdldl::qdldl)
++endif()
+ 
+ # Setup the file copying for the code generation target
+ if( OSQP_CODEGEN )
+-- 
+2.50.1 (Apple Git-155)
+

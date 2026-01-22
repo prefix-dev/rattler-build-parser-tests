@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_markitdown-mcp-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_markitdown-mcp-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_markitdown-mcp-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_markitdown-mcp-server/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "markitdown-mcp-server": {
+          "build_string": "pyhe01879c_1",
+          "name": "markitdown-mcp-server",
+          "version": "0.1.11"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:34.123754342Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/KorigamiK/markitdown_mcp_server",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "MCP server for converting documents to markdown using MarkItDown"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "markitdown-mcp-server = markitdown_mcp_server:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "markitdown-mcp-server",
+        "python_min": "3.12",
+        "version": "0.1.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "markitdown-mcp-server",
+        "version": "0.1.11"
+      },
+      "requirements": {
+        "host": [
+          "python 3.12.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.12,<4.0",
+          "markitdown >=0.1.1",
+          "mcp >=1.9.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "52b58a3a968bda782faa57ff9cfab79e70837eebfb74051726b6ac39ada6b2c9",
+          "url": "https://pypi.org/packages/source/m/markitdown-mcp-server/markitdown_mcp_server-0.1.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "markitdown_mcp_server"
+            ],
+            "python_version": "3.12.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.12.*"
+            ]
+          },
+          "script": "markitdown-mcp-server --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

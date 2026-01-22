@@ -1,0 +1,40 @@
+context:
+  version: "6.4.1"
+
+package:
+  name: ava
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/ava/-/ava-${{ version }}.tgz
+  sha256: d46084ad68ed24180a59f2726fdbd75120c5ae6aacd0a13d22fc81cae91080e8
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - git
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - ava --help
+
+about:
+  license: MIT
+  license_file:
+    - license
+    - third-party-licenses.txt
+  summary: Node.js test runner that lets you develop with confidence
+  homepage: https://github.com/avajs/ava
+  repository: https://github.com/avajs/ava
+
+extra:
+  recipe-maintainers:
+    - danielnachun

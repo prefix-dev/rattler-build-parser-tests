@@ -1,0 +1,270 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vllm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vllm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vllm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vllm/work"
+      },
+      "hash": {
+        "hash": "d111487",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vllm": {
+          "build_string": "cpu_py313hd111487_0",
+          "name": "vllm",
+          "version": "0.10.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:47:16.097297670Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Easy, fast, and cheap LLM serving for everyone",
+        "documentation": "https://vllm.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/vllm-project/vllm",
+        "license": "Apache-2.0 AND BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "flash-attention/LICENSE",
+          "LICENSE_CUTLASS.txt"
+        ],
+        "summary": "A high-throughput and memory-efficient inference and serving engine for LLMs"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "vllm = vllm.entrypoints.cli.main:main"
+          ]
+        },
+        "script": [
+          "sed -i.bak 's/set(TORCH_SUPPORTED_VERSION_CUDA \"2.4.0\")/set(TORCH_SUPPORTED_VERSION_CUDA \"${{ pytorch_version }}\")/g' flash-attention/CMakeLists.txt",
+          "export VLLM_FLASH_ATTN_SRC_DIR=$SRC_DIR/flash-attention",
+          "python use_existing_torch.py",
+          "mkdir -p $SRC_DIR/third_party/NVTX/c",
+          "ln -s $PREFIX/include $SRC_DIR/third_party/NVTX/c/include",
+          "export VERBOSE=1",
+          "export VLLM_TARGET_DEVICE=${{ vllm_target_device }}",
+          "export CMAKE_BUILD_TYPE=Release",
+          "${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps"
+        ],
+        "string": "cpu_py313hd111487_0"
+      },
+      "context": {
+        "build_number": 0,
+        "cuda_build_string": "cuda_None",
+        "is_cross_compiling": true,
+        "pytorch_version": "2.8.0",
+        "string_prefix": "cpu_",
+        "use_cuda": false,
+        "version": "0.10.2",
+        "vllm_target_device": "cpu"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "maresb",
+          "shermansiu",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "vllm",
+        "version": "0.10.2"
+      },
+      "requirements": {
+        "build": [
+          "cmake >=3.26.1",
+          "git",
+          "ninja",
+          "zlib",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*",
+          "python",
+          "cross-python_osx-arm64",
+          "pytorch ==2.8.0"
+        ],
+        "host": [
+          "python",
+          "jinja2 >=3.1.6",
+          "packaging >=24.2",
+          "pip",
+          "pytorch ==2.8.0",
+          "regex",
+          "setuptools >=77.0.3,<80.0.0",
+          "setuptools-scm >=8",
+          "wheel"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cuda-nvrtc-dev",
+            "libcublas-dev"
+          ]
+        },
+        "run": [
+          "python",
+          "aiohttp",
+          "blake3",
+          "cachetools",
+          "cbor2",
+          "cloudpickle",
+          "compressed-tensors ==0.11.0",
+          "depyf ==0.19.0",
+          "diskcache ==5.6.3",
+          "einops",
+          "fastapi >=0.115.0",
+          "filelock >=3.16.1",
+          "gguf >=0.13.0",
+          "lark ==1.2.2",
+          "llguidance >=0.7.11,<0.8.0",
+          "lm-format-enforcer ==0.11.3",
+          "mistral-common >=1.8.2",
+          "msgspec",
+          "ninja",
+          "numba ==0.61.2",
+          "numpy",
+          "openai >=1.99.1",
+          "openai-harmony >=0.0.3",
+          "opencv >=4.11.0",
+          "outlines-core ==0.2.11",
+          "partial-json-parser",
+          "pillow",
+          "prometheus-fastapi-instrumentator >=7.0.0",
+          "prometheus_client >=0.18.0",
+          "protobuf",
+          "psutil",
+          "py-cpuinfo",
+          "pybase64",
+          "pydantic >=2.11.7",
+          "python-json-logger",
+          "pytorch ==2.8.0",
+          "pyyaml",
+          "pyzmq >=25.0.0",
+          "regex",
+          "requests >=2.26.0",
+          "scipy",
+          "sentencepiece",
+          "setproctitle",
+          "tiktoken >=0.6.0",
+          "tokenizers >=0.21.1",
+          "tqdm",
+          "transformers >=4.55.2",
+          "typing_extensions >=4.10",
+          "watchfiles",
+          "xgrammar ==0.1.23",
+          "six >=1.16.0",
+          "setuptools >=77.0.3,<80",
+          "packaging >=24.2",
+          "torchaudio",
+          "torchvision"
+        ],
+        "run_constraints": [
+          "datasets >=2.15"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Search-for-the-CUDA-package-in-CMakeLists.patch",
+            "patches/0002-Remove-ninja-pip-requirement.patch",
+            "patches/0004-Factor-in-the-cmake-args-when-building-e.g.-for-cros.patch",
+            "patches/0005-Configure-build-to-target-aarch64-even-though-CMake-.patch",
+            "patches/0006-Use-consistent-pytorch-version-across-builds.patch",
+            "patches/0007-pass-required-CUTLASS_NVCC_ARCHS-through-to-cutlass.patch"
+          ],
+          "sha256": "57608f44cf61f5d80fb182c98e06e524cb2925bb528258a7b247c8e43a52d13e",
+          "url": "https://pypi.org/packages/source/v/vllm/vllm-0.10.2.tar.gz"
+        },
+        {
+          "sha256": "43336897cb2f264bf607778705b6986f2559bcc36a9df5c78d340ca5b3885183",
+          "target_directory": "flash-attention",
+          "url": "https://github.com/vllm-project/flash-attention/archive/ee4d25bd84e0cbc7e0b9b9685085fd5db2dcb62a.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "vllm"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "script": "vllm --version"
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "huggingface_hub",
+              "pytest",
+              "tblib"
+            ]
+          },
+          "script": "pytest ./tests/core/test_scheduler.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

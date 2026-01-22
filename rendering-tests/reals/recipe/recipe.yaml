@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: reals
+  version: 0.0.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/reals-${{ version }}.tar.gz
+  sha256: a981642415a2ebb676a95abb34683af58105511d3d27b8445d462d5f878522f5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=42
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - reals
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A lightweight python3 library for arithmetic with real numbers.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/rubenvannieuwpoort/reals
+
+extra:
+  recipe-maintainers:
+    - thewchan

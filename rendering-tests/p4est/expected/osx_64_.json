@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_p4est",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_p4est/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_p4est/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_p4est/work"
+      },
+      "hash": {
+        "hash": "4b1ac0d"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "p4est": {
+          "build_string": "h4b1ac0d_1",
+          "name": "p4est",
+          "version": "2.8.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:40.027990554Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "`p4est` is a C library to manage a collection (a forest) of multiple\nconnected adaptive quadtrees or octrees in parallel.",
+        "homepage": "https://www.p4est.org/",
+        "license": "LGPL-2.0-only",
+        "license_family": "LGPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/cburstedde/p4est",
+        "summary": "The \"p4est\" forest-of-octrees library"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cmake -B build $CMAKE_ARGS -DBUILD_SHARED_LIBS=ON -DP4EST_USE_SYSTEM_SC=ON -DP4EST_BUILD_EXAMPLES=OFF -DP4EST_BUILD_TESTING=ON -DP4EST_HAVE_JSON=ON",
+          "cmake --build build --parallel",
+          "cmake --install build",
+          "cd build; ctest --output-on-failure"
+        ],
+        "string": "h4b1ac0d_1"
+      },
+      "context": {
+        "version": "2.8.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "p4est",
+        "version": "2.8.7"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make",
+          "pkgconfig"
+        ],
+        "host": [
+          "openmpi-mpicc",
+          "libsc",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "p4est",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0a1e912f3529999ca6d62fee335d51f24b5650b586e95a03ef39ebf73936d7f4",
+          "url": "https://github.com/cburstedde/p4est/releases/download/v2.8.7/p4est-2.8.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "lib": [
+              "p4est"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

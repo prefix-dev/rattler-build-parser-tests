@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blake3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blake3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blake3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_blake3/work"
+      },
+      "hash": {
+        "hash": "843e2db",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "blake3": {
+          "build_string": "py313h843e2db_1",
+          "name": "blake3",
+          "version": "1.0.8"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:35:23.584462872Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "BLAKE3 is a cryptographic hash function that claims to be much faster than MD5, SHA-1, SHA-2,\nSHA-3, and BLAKE2.\n\nThis conda package is the Python bindings for the Rust blake3 crate. If you are looking for the\nreference implementation of BLAKE3 as a command line tool, see the b3sum conda package instead.",
+        "homepage": "https://github.com/oconnor663/blake3-py",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Python bindings for the Rust blake3 crate"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "${{ PYTHON }} -m pip install . -vv",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+        ],
+        "string": "py313h843e2db_1"
+      },
+      "context": {
+        "name": "blake3",
+        "version": "1.0.8"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "shermansiu",
+          "maartenbreddels",
+          "oconnor663"
+        ]
+      },
+      "package": {
+        "name": "blake3",
+        "version": "1.0.8"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-64",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "maturin >=1.0,<2",
+          "pip",
+          "python",
+          "toml"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "513cc7f0f5a7c035812604c2c852a0c1468311345573de647e310aca4ab165ba",
+          "url": "https://pypi.org/packages/source/b/blake3/blake3-1.0.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "blake3"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

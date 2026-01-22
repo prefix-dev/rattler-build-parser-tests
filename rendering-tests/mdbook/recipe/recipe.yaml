@@ -1,0 +1,37 @@
+context:
+  version: "0.5.2"
+
+package:
+  name: mdbook
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rust-lang/mdbook/archive/v${{ version }}.tar.gz
+  sha256: 2c8615a17c5670f9aa6d8dbf77c343cf430f95f571f28a87bb7aaa8f29c1ac5b
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - mdbook --help
+
+about:
+  license: MPL-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Create book from markdown files. Like Gitbook but implemented in Rust
+  homepage: https://github.com/rust-lang/mdbook
+  repository: https://github.com/rust-lang/mdbook
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,62 @@
+context:
+  version: "0.12.39"
+  python_min: '3.10'
+
+package:
+  name: python-fasthtml
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/python-fasthtml/python_fasthtml-${{ version }}.tar.gz
+  sha256: ae324b34a1586698b052cad8e9ff9255bd6cb486b01b946e95b9b63f220a5532
+
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - fh_railway_link=fasthtml.cli:railway_link
+      - fh_railway_deploy=fasthtml.cli:railway_deploy
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - fastcore >=1.10.0
+    - python-dateutil
+    - starlette >0.33
+    - oauthlib
+    - itsdangerous
+    - httpx
+    - fastlite >=0.1.1
+    - python-multipart
+    - beautifulsoup4
+    - uvicorn >=0.30
+tests:
+  - python:
+      imports:
+        - fasthtml
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - fh_railway_link --help
+      - fh_railway_deploy --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+
+about:
+  summary: The fastest way to create an HTML app
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/AnswerDotAI/fasthtml
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

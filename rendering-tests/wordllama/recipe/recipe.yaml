@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: wordllama
+  version: 0.4.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dleemiller/WordLlama/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 3837b51d60dc511f91e0e918bc2bff190ea38051549d1c9772dac1a537f81943
+
+build:
+  number: 0
+  script:
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - setuptools
+    - setuptools_scm
+    - cython
+    - numpy >=2
+    - tomli >=1
+    - wheel
+  run:
+    - python
+    - numpy >=2
+    - safetensors
+    - tokenizers
+    - toml
+    - pydantic >=2
+    - requests
+
+tests:
+  - python:
+      imports:
+        - wordllama
+      pip_check: true
+
+about:
+  summary: Fast, lightweight NLP toolkit designed for tasks like fuzzy deduplication, similarity computation, ranking, clustering, and semantic text splitting.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/dleemiller/WordLlama
+
+extra:
+  recipe-maintainers:
+    - thewchan

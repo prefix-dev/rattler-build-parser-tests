@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: moka-py
+  version: "0.2.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/moka_py-${{ version }}.tar.gz
+  sha256: dcae69788e1692e2d2e2a08d06641d5af744c9d096d13d6aa2a1b93c838827a2
+
+build:
+  number: 1
+  skip: match(python, "<3.9")
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - if: unix
+      then: export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+    - if: win
+      then: set PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.7,<2.0
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - moka_py
+      pip_check: true
+
+about:
+  summary: A high performance caching library for Python written in Rust.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/deliro/moka-py
+
+extra:
+  recipe-maintainers:
+    - thewchan

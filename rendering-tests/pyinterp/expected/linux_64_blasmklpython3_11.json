@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinterp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinterp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinterp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyinterp/work"
+      },
+      "hash": {
+        "hash": "58f7663",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyinterp": {
+          "build_string": "mkl_py311h58f7663_2",
+          "name": "pyinterp",
+          "version": "2025.11.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:35:28.663307503Z",
+      "variant": {
+        "blas": "mkl",
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "mkl_devel": "2025",
+        "numpy": "2",
+        "python": "3.11",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Tools for interpolating geo-referenced data used in the field of\ngeosciences. There are other libraries that cover this problem, but written\nentirely in Python, the performance of these projects was not quite\nsufficient for our needs. That is why this project was created.",
+        "documentation": "https://cnes.github.io/pangeo-pyinterp/",
+        "homepage": "https://github.com/CNES/pangeo-pyinterp",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/CNES/pangeo-pyinterp",
+        "summary": "Python library for optimized geo-referenced interpolation"
+      },
+      "build": {
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-build-isolation -Cmkl=${{ \"yes\" if blas == \"mkl\" else \"no\" }} ${{ \"-Cgenerator=\\\"Visual Studio 17 2022\\\"\" if win else \"\" }}",
+        "string": "mkl_py311h58f7663_2",
+        "variant": {
+          "down_prioritize_variant": 1
+        }
+      },
+      "context": {
+        "build_number": 2,
+        "name": "pyinterp",
+        "sha256": "ead3eeb41dc9378918a3b42afb2b9bf64b48593f369c9b3afbbd14f369c88a58",
+        "version": "2025.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "fbriol"
+        ]
+      },
+      "package": {
+        "name": "pyinterp",
+        "version": "2025.11.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "clangxx_linux-64 19.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "dask",
+          "libboost-devel >=1.79.0",
+          "mkl-devel",
+          "numpy",
+          "pip",
+          "pytest",
+          "python",
+          "setuptools",
+          "xarray"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "xarray",
+            "numpy",
+            "libboost-devel"
+          ]
+        },
+        "run": [
+          "dask *",
+          "mkl *",
+          "python",
+          "xarray >=0.13"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ead3eeb41dc9378918a3b42afb2b9bf64b48593f369c9b3afbbd14f369c88a58",
+          "url": "https://github.com/CNES/pangeo-pyinterp/releases/download/2025.11.0/pyinterp-2025.11.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": {
+            "content": "import pathlib\nimport pytest\nimport pyinterp\ntest_dir = pathlib.Path(pyinterp.__file__).parent / 'tests'\npytest.main([\"-q\", str(test_dir), \"--measure-coverage\"])\n",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: refurb
+  version: "2.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/refurb-${{ version }}.tar.gz
+  sha256: 645472793b3af40cca121e37df45dd9b20b525c4df99429d9fd9f6b5c238b9ea
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - refurb = refurb.__main__:main
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - mypy >=1.10.0,!=1.11.0
+    - tomli >=2.0.1,<3.0.0
+
+tests:
+  - python:
+      imports:
+        - refurb
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - refurb --help
+
+about:
+  summary: A tool for refurbishing and modernizing Python codebases
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/dosisod/refurb
+
+extra:
+  recipe-maintainers:
+    - thewchan
+    - dosisod

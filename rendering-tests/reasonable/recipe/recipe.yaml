@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.2.6
+  maturin_min: "0.14"
+  maturin_max: "0.15"
+
+package:
+  name: reasonable
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/r/reasonable/reasonable-${{ version }}.tar.gz
+  sha256: 5d26aeb8b6c3f566aa2ef11c308b2208ec7669a30e9113728f243024c6276205
+
+build:
+  number: 3
+  skip: not (match(python, python_min ~ ".*") and is_abi3)
+  python:
+    version_independent: true
+  script:
+    file: build-reasonable
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+    - python
+    - if: not osx
+      then:
+        - clangdev
+        - llvmdev
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+        - python
+  host:
+    - pip
+    - python
+    - python-abi3
+    - maturin >=${{ maturin_min }},<${{ maturin_max }}
+  run:
+    - python
+  run_constraints:
+    - rdflib >=6.1
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+
+tests:
+  - python:
+      imports: reasonable
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+
+about:
+  summary: An OWL 2 RL reasoner with reasonable performance
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/gtfierro/reasonable
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

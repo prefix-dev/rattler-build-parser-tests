@@ -1,0 +1,64 @@
+context:
+  name: idiap-devtools
+  version: 2.1.0
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 292416311ff4afd86bf882a7544e381847fd125934cb04d629d463b639b47813
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - versioningit
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click >=8
+    - gitpython
+    - packaging
+    - python-dateutil
+    - python-gitlab
+    - pytz
+    - tomli
+    - tomlkit
+    - __unix
+
+tests:
+  - python:
+      imports:
+        - idiap_devtools
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - pip
+        - pytest
+        - git
+    script:
+      - pytest -sv tests
+
+about:
+  summary: This package contains a *pot-pourri* of various tools required to develop python packages at Idiap's GitLab infrastructure
+  license: BSD-3-Clause
+  license_file: LICENSES/BSD-3-Clause.txt
+  homepage: https://pypi.org/project/idiap-devtools/
+  repository: https://gitlab.idiap.ch/software/idiap-devtools
+  documentation: https://idiap-devtools.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - anjos

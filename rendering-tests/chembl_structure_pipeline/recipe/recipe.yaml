@@ -1,0 +1,41 @@
+context:
+  name: chembl_structure_pipeline
+  version: "1.2.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/chembl/ChEMBL_Structure_Pipeline/archive/${{ version }}.tar.gz
+  sha256: fbe9c527c89fdb92ab78423845f824a6f8da1338c1173786aeb6bdc4e2af5c7e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - rdkit >=2022.09.01
+
+tests:
+  - python:
+      imports:
+        - chembl_structure_pipeline
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: ChEMBL database structure pipelines
+  homepage: https://github.com/chembl/ChEMBL_Structure_Pipeline
+
+extra:
+  recipe-maintainers:
+    - hadim

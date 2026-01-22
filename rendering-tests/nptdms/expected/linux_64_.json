@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nptdms",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nptdms/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nptdms/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nptdms/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nptdms": {
+          "build_string": "pyhcf101f3_1",
+          "name": "nptdms",
+          "version": "1.10.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:37.525485235Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "npTDMS is a cross-platform Python package for reading and writing TDMS\nfiles as produced by LabVIEW, and is built on top of the numpy package.\nData read from a TDMS file is stored in numpy arrays, and numpy arrays are\nalso used when writing TDMS file.",
+        "documentation": "http://nptdms.readthedocs.io/",
+        "homepage": "https://github.com/adamreeve/npTDMS",
+        "license": "LGPL-3.0-only",
+        "license_file": [
+          "COPYING",
+          "COPYING.LESSER"
+        ],
+        "repository": "https://github.com/adamreeve/npTDMS",
+        "summary": "Cross-platform, NumPy based module for reading TDMS files produced by LabView."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "tdmsinfo = nptdms.tdmsinfo:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "name": "npTDMS",
+        "version": "1.10.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "carlodri",
+          "lstebel"
+        ]
+      },
+      "package": {
+        "name": "nptdms",
+        "version": "1.10.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3072f349fa70c24a8f5ce504a847992acacc1cf67e312375595d79bab9264cb4",
+          "url": "https://pypi.org/packages/source/n/npTDMS/nptdms-1.10.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "nptdms"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "tdmsinfo -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

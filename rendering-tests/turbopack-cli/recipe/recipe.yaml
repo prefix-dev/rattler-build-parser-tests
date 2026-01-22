@@ -1,0 +1,40 @@
+context:
+  version: "16.1.4"
+
+package:
+  name: turbopack-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/vercel/next.js/archive/v${{ version }}.tar.gz
+  sha256: 2aeabb4671984a6cca556acbf9dcf8c8de600e1e5a5b02130b3a01515d80422f
+
+build:
+  number: 0
+  skip: win or ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - openssl
+
+tests:
+  - script:
+      - turbopack-cli --help
+
+about:
+  license: MIT
+  license_file:
+    - license.md
+    - THIRDPARTY.yml
+  summary: CLI for turbopack
+  homepage: https://github.com/vercel/next.js
+  repository: https://github.com/vercel/next.js
+
+extra:
+  recipe-maintainers:
+    - danielnachun

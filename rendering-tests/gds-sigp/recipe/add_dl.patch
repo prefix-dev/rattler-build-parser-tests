@@ -1,0 +1,19 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -87,7 +87,7 @@ set_property(TARGET gds-sigp PROPERTY CXX_STANDARD 20)
+ if(WIN32)
+ 	SET(EXTRALIBS ws2_32)
+ else()
+-	SET(EXTRALIBS "")
++	SET(EXTRALIBS dl)
+ endif()
+ 
+ target_link_libraries(
+@@ -95,7 +95,6 @@ target_link_libraries(
+     ${FFTW3_LIBS}
+     ${FFTW3F_LIBS}
+     ${EXPAT_LIBS}
+-   # dl
+     ${PTHREAD}
+     ${Z_LIBS}
+     ${EXTRALIBS}

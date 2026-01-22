@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gwpy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gwpy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gwpy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gwpy/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gwpy": {
+          "build_string": "pyhcf101f3_0",
+          "name": "gwpy",
+          "version": "3.0.14"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:36:10.100893544Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "GWpy is a collaboration-driven Python package providing tools for\nstudying data from ground-based gravitational-wave detectors.\n\nGWpy provides a user-friendly, intuitive interface to the common\ntime-domain and frequency-domain data produced by the LIGO and Virgo\nobservatories and their analyses, with easy-to-follow tutorials at each\nstep.",
+        "documentation": "https://gwpy.github.io/docs/3.0.14/",
+        "homepage": "https://gwpy.github.io/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.com/gwpy/gwpy.git",
+        "summary": "A python package for gravitational-wave astrophysics"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "gwpy-plot = gwpy.cli.gwpy_plot:main"
+          ]
+        },
+        "script": "uv pip install --python ${{ PYTHON }} . --link-mode=copy --no-build-isolation --no-deps -v",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "gwpy",
+        "version": "3.0.14"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod"
+        ]
+      },
+      "package": {
+        "name": "gwpy",
+        "version": "3.0.14"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=61",
+          "setuptools-scm >=3.4.3",
+          "uv",
+          "wheel"
+        ],
+        "run": [
+          "astropy-base >=4.3.0",
+          "dateparser >=1.1.4",
+          "dqsegdb2",
+          "gwdatafind >=1.1.0",
+          "gwosc >=0.5.3",
+          "h5py >=3.0.0",
+          "igwn-segments >=2.0.0",
+          "ligotimegps >=1.2.1",
+          "matplotlib-base >=3.3.0",
+          "numpy >=1.19.5",
+          "packaging >=24.1",
+          "python >=3.10",
+          "python-dateutil",
+          "requests >=2.20.0",
+          "scipy >=1.6.0",
+          "tqdm >=4.52.0"
+        ],
+        "run_constraints": [
+          "python-ligo-lw <2.0.0a0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "bf25d19763c9128f515144349d3f70925a8334bbd22950c01d35bb954f323f52",
+          "url": "https://pypi.org/packages/source/g/gwpy/gwpy-3.0.14.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "beautifulsoup4",
+              "inspiral-range >=0.9.3",
+              "pip",
+              "pytest >=7.3.0",
+              "pytest-freezer",
+              "pytest-requires",
+              "python 3.10.*",
+              "python-framel >=8.40.1",
+              "python-lal",
+              "python-lalframe",
+              "python-ldas-tools-framecpp",
+              "python-ligo-lw >=1.7.0",
+              "requests-mock",
+              "uproot >=4.1.5"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m pip show gwpy",
+            "python -m pytest -ra --pyargs gwpy",
+            "python -m gwpy.time --help",
+            "gwpy-plot --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

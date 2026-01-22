@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: kickscore
+  version: 0.2.0
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 08740b714c7c1d0edc856f81995720ab6161b5beb4d62732782605f3ac1d1d57
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - uv-build >=0.7.19,<0.8.0
+  run:
+    - python >=${{ python_min }}
+    - numba
+    - numpy
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - kickscore
+        - kickscore.fitter
+        - kickscore.kernel
+        - kickscore.observation
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A dynamic skill rating system.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/lucasmaystre/kickscore
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

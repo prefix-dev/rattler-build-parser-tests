@@ -1,0 +1,51 @@
+From 80202d968001c587f4114844db0bd5fc8faed18f Mon Sep 17 00:00:00 2001
+From: Nils DEYBACH <68770774+ndeybach@users.noreply.github.com>
+Date: Sun, 11 Jan 2026 14:37:24 +0100
+Subject: [PATCH] fix: remove libm under windows and apple
+
+Concidering errors encountered in https://github.com/conda-forge/ffmpeg-feedstock/pull/359 , this extends the libm removal under windows / apple to libjxl_threads.
+
+To make it possible, adds JPEGXL_THREADS_PRIVATE_LIBS variable in jxl_threads.cmake and inject it in libjxl_threads.pc.in .
+
+Inspired by 3d0a160d34 - Remove libm dependency when building with MSVC (#4314) by  ayeteadoe <ayeteadoe@gmail.com>.
+
+However applied now to jxl_threads.cmake since it also errors out when using clang under conda-forge.
+---
+ lib/jxl_threads.cmake            | 8 ++++++++
+ lib/threads/libjxl_threads.pc.in | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/lib/jxl_threads.cmake b/lib/jxl_threads.cmake
+index 43552fc0..38504bb4 100644
+--- a/lib/jxl_threads.cmake
++++ b/lib/jxl_threads.cmake
+@@ -90,6 +90,14 @@ else()
+ endif()
+ 
+ set(JPEGXL_THREADS_LIBRARY_REQUIRES "")
++
++# MSVCRT bundles math functions so no explicit libm dependency is required
++if(NOT WIN32 AND NOT APPLE)
++  set(JPEGXL_THREADS_PRIVATE_LIBS "-lm")
++else()
++  set(JPEGXL_THREADS_PRIVATE_LIBS "")
++endif()
++
+ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/threads/libjxl_threads.pc.in"
+                "libjxl_threads.pc" @ONLY)
+ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libjxl_threads.pc"
+diff --git a/lib/threads/libjxl_threads.pc.in b/lib/threads/libjxl_threads.pc.in
+index dfbaa3ff..8e4979eb 100644
+--- a/lib/threads/libjxl_threads.pc.in
++++ b/lib/threads/libjxl_threads.pc.in
+@@ -8,6 +8,6 @@ Description: JPEG XL multi-thread runner using std::threads.
+ Version: @JPEGXL_LIBRARY_VERSION@
+ @JPEGXL_REQUIRES_TYPE@: @JPEGXL_THREADS_LIBRARY_REQUIRES@
+ Libs: -L${libdir} -ljxl_threads
+-Libs.private: -lm
++Libs.private: @JPEGXL_THREADS_PRIVATE_LIBS@
+ Cflags: -I${includedir}
+ Cflags.private: -DJXL_THREADS_STATIC_DEFINE
+-- 
+2.52.0
+

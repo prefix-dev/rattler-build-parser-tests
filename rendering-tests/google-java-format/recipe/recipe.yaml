@@ -1,0 +1,39 @@
+context:
+  version: "1.33.0"
+
+package:
+  name: google-java-format
+  version: ${{ version }}
+
+source:
+  url: https://github.com/google/google-java-format/archive/v${{ version }}.tar.gz
+  sha256: 83b26be8ba27faae56944bf18b81eee8d76174ec7ab42a4a6636336ccbc03503
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - maven
+    - openjdk
+  run:
+    - openjdk
+    - python
+
+tests:
+  - script:
+      - "google-java-format --help 2>&1 | grep -q \"google\\-java\\-format\""
+      - google-java-format-diff --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: Reformats Java source code to comply with Google Java Style
+  homepage: https://github.com/google/google-java-format
+
+extra:
+  recipe-maintainers:
+    - danielnachun

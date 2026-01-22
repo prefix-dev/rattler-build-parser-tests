@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.1.0
+
+package:
+  name: go-ccat
+  version: ${{ version }}
+
+source:
+  url: https://github.com/owenthereal/ccat/archive/v${{ version }}.tar.gz
+  sha256: b02d2c8d573f5d73595657c7854c9019d3bd2d9e6361b66ce811937ffd2bfbe1
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - ccat --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Like cat but displays content with syntax highlighting
+  homepage: https://github.com/owenthereal/ccat
+  repository: https://github.com/owenthereal/ccat
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,55 @@
+context:
+  version: "0.19.0"
+
+package:
+  name: cargo-deny
+  version: ${{ version }}
+
+source:
+  url: https://github.com/EmbarkStudios/cargo-deny/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 0d4d6972b9ab8ba939a7d26f5c5fd0227dc9d4e8579f6baec6f4831f50155a1d
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: unix
+        then:
+          - cargo auditable install --no-track --locked --root ${PREFIX} --path .
+          - cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml
+      - if: win
+        then:
+          - cargo auditable install --no-track --locked --root %PREFIX% --path .
+          - if errorlevel 1 exit 1
+          - cargo-bundle-licenses --format yaml --output %SRC_DIR%/THIRDPARTY.yml
+          - if errorlevel 1 exit 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script:
+      - cargo-deny --help
+
+about:
+  homepage: https://github.com/EmbarkStudios/cargo-deny
+  repository: https://github.com/EmbarkStudios/cargo-deny
+  documentation: https://github.com/EmbarkStudios/cargo-deny
+  summary: ❌ Cargo plugin for linting your dependencies 🦀
+  license: Apache-2.0 OR MIT
+  license_file:
+    - LICENSE-MIT
+    - LICENSE-APACHE
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - xhochy

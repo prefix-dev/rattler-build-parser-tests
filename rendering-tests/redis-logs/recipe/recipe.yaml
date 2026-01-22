@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: redis-logs
+  version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/redis-logs-${{ version }}.tar.gz
+  sha256: 415c4989917955bef5f9ce80c9787446faf895ee8ba431bc8513257731d54d46
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - redis-py
+
+tests:
+  - python:
+      imports:
+        - rlh
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Python log handler to forward logs to Redis database
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Iglesys347/redis-log-handler
+
+extra:
+  recipe-maintainers:
+    - beenje

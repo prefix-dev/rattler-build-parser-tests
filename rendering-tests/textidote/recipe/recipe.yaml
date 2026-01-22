@@ -1,0 +1,37 @@
+context:
+  version: "0.9"
+
+package:
+  name: textidote
+  version: ${{ version }}
+
+source:
+  url: https://github.com/sylvainhalle/textidote/archive/v${{ version }}.tar.gz
+  sha256: df4ec98e355dddb3cebe155868da63ae17f48778151d2d8b227d412aee768c9b
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - ant
+    - openjdk
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - textidote --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Spelling, grammar and style checking on LaTeX documents
+  homepage: https://sylvainhalle.github.io/textidote
+
+extra:
+  recipe-maintainers:
+    - danielnachun

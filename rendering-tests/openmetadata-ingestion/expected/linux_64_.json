@@ -1,0 +1,179 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmetadata-ingestion",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmetadata-ingestion/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmetadata-ingestion/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmetadata-ingestion/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openmetadata-ingestion": {
+          "build_string": "pyhcf101f3_0",
+          "name": "openmetadata-ingestion",
+          "version": "1.11.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:38.814906986Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://open-metadata.org/",
+        "license": "CC0-1.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/open-metadata/OpenMetadata",
+        "summary": "Ingestion Framework for OpenMetadata"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "metadata = metadata.cmd:metadata"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "openmetadata-ingestion",
+        "version": "1.11.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "openmetadata-ingestion",
+        "version": "1.11.5.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=70.3.0,<70.4.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "mysql-connector-python >=9.1",
+          "packaging",
+          "typing_inspect",
+          "cryptography >=42.0.0",
+          "requests >=2.23",
+          "chardet ==4.0.0",
+          "shapely",
+          "antlr4-python3-runtime ==4.9.2",
+          "python-dotenv >=0.19.0",
+          "cached-property ==1.5.2",
+          "snowflake-connector-python >=3.13.1,<4.0.0",
+          "sqlalchemy >=1.4.0,<2",
+          "pydantic-settings >=2.0,<3.0,>=2.7.0",
+          "mypy_extensions >=0.4.3",
+          "httpx >=0.28.0,<0.29.0",
+          "email-validator >=2.0",
+          "setuptools >=78.1.1,<78.2.0",
+          "boto3 >=1.20,<2.0",
+          "google-cloud-secret-manager ==2.24.0",
+          "memory_profiler",
+          "jsonpatch <2.0,>=1.24",
+          "jinja2 >=2.11.3",
+          "azure-identity >=1.12,<2.0",
+          "importlib-metadata >=4.13.0",
+          "google-crc32c",
+          "pydantic >=2.0,<3.0,>=2.7.0,<2.12",
+          "requests-aws4auth >=1.1,<2.0",
+          "jaraco.functools <4.2.0",
+          "collate-sqllineage >=2.0,<3.0",
+          "collate-sqlfluff",
+          "pyyaml >=6.0,<7.0",
+          "python-kubernetes >=21.0.0",
+          "python-dateutil >=2.8.1",
+          "collate-data-diff >=0.11.6",
+          "tabulate ==0.9.0",
+          "pymysql >=1.0,<2.0",
+          "azure-keyvault-secrets",
+          "cachetools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58d3d0bd0a6894ed0277a4cff121eb9f87adaf3629859c839fbb7f71b9e868a0",
+          "url": "https://pypi.org/packages/source/o/openmetadata-ingestion/openmetadata_ingestion-1.11.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "airflow_provider_openmetadata",
+              "metadata"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "metadata --help",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datalad-cds",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datalad-cds/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datalad-cds/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datalad-cds/work"
+      },
+      "hash": {
+        "hash": "eecf25b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "datalad-cds": {
+          "build_string": "pyheecf25b_0",
+          "name": "datalad-cds",
+          "version": "0.0.12"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:14.942169496Z",
+      "variant": {
+        "__linux": "__linux",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://matrss.github.io/datalad-cds",
+        "homepage": "https://github.com/matrss/datalad-cds",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/matrss/datalad-cds",
+        "summary": "DataLad extension for downloading from the Copernicus Climate Data Store"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "git-annex-remote-cds = datalad_cds.cds_remote:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install .",
+        "string": "pyheecf25b_0"
+      },
+      "context": {
+        "version": "0.0.12"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matrss"
+        ]
+      },
+      "package": {
+        "name": "datalad-cds",
+        "version": "0.0.12"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=43.0.0",
+          "pip"
+        ],
+        "run": [
+          "__linux",
+          "python >=3.10",
+          "datalad >=0.17.0",
+          "annexremote >=1.6.0",
+          "cdsapi >=0.5.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a57cbfb91242232b48eb4a61282edfe1c9667c8616fbc5009166abac26419bad",
+          "url": "https://pypi.org/packages/source/d/datalad-cds/datalad_cds-0.0.12.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "datalad_cds"
+            ],
+            "pip_check": false,
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": "git-annex-remote-cds < /dev/null | grep VERSION"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

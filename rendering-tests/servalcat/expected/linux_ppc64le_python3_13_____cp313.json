@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servalcat",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servalcat/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servalcat/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_servalcat/work"
+      },
+      "hash": {
+        "hash": "e85dbcf",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "servalcat": {
+          "build_string": "py313he85dbcf_3",
+          "name": "servalcat",
+          "version": "0.4.128"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:44:54.033560695Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Structure refinement and validation for crystallography and single particle analysis.\n\nServalcat implements pipelines that use Refmac5:\n  - `servalcat refine_spa`: cryo-EM SPA refinement pipeline\n  - `servalcat refine_cx`: small molecule crystallography\n\nand a Refmac5 controller\n  - `refmacat`: behaves as Refmac, but uses GEMMI for restraint generation instead of MAKECIF\nNow \u201cNo Refmac5\u201d refinement programs have been actively developed:\n  - `servalcat refine_geom`: geometry optimization\n  - `servalcat refine_spa_norefmac`: \"No Refmac\" version of refine\\_spa\n  - `servalcat refine_xtal_norefmac`: crystallographic refinement\n\nAlso, it has several utility commands: `servalcat util`.",
+        "documentation": "https://servalcat.readthedocs.io/en/latest",
+        "homepage": "https://pypi.org/project/servalcat",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/keitaroyam/servalcat",
+        "summary": "Structure refinement and validation for crystallography and single particle analysis"
+      },
+      "build": {
+        "number": 3,
+        "python": {
+          "entry_points": [
+            "servalcat = servalcat.__main__:main",
+            "refmacat = servalcat.refmac.refmac_wrapper:command_line"
+          ]
+        },
+        "script": "set -exo pipefail\nrm -rf eigen/  # Remove bundled eigen to use the conda package\n${PYTHON} -m pip install . \\\n  -vv \\\n  --no-deps \\\n  --no-build-isolation \\\n  --config-settings=\"cmake.args=-DPython_EXECUTABLE=${PYTHON}\"\ncp ${RECIPE_DIR}/post-link.sh ${PREFIX}/bin/.${PKG_NAME}-post-link.sh\nchmod +x ${PREFIX}/bin/.${PKG_NAME}-post-link.sh\n",
+        "string": "py313he85dbcf_3"
+      },
+      "context": {
+        "name": "servalcat",
+        "version": "0.4.128"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128",
+          "keitaroyam"
+        ]
+      },
+      "package": {
+        "name": "servalcat",
+        "version": "0.4.128"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake",
+          "make",
+          "python",
+          "cross-python_linux-ppc64le"
+        ],
+        "host": [
+          "eigen >=3.4.0",
+          "gemmi ==0.7.4",
+          "nanobind",
+          "pip",
+          "python 3.13.* *_cp313",
+          "scikit-build-core"
+        ],
+        "run": [
+          "numpy >=1.15",
+          "omegaconf ==2.3.0",
+          "packaging",
+          "pandas >=1.1.0",
+          "python 3.13.* *_cp313",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c489767ff7ffbb1a856b7341bdcdb6ccd246b92c2f296436933f2d291360b29a",
+          "url": "https://pypi.org/packages/source/s/servalcat/servalcat-0.4.128.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/test_for_ci.py",
+              "tests/biotin/biotin_talos.pdb"
+            ]
+          },
+          "script": "servalcat --version\nservalcat --help\nrefmacat --help\npython tests/test_for_ci.py\n"
+        },
+        {
+          "python": {
+            "imports": [
+              "servalcat"
+            ],
+            "python_version": "3.13.* *_cp313"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

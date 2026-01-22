@@ -1,0 +1,134 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_django-mcp-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_django-mcp-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_django-mcp-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_django-mcp-server/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "django-mcp-server": {
+          "build_string": "pyhcf101f3_0",
+          "name": "django-mcp-server",
+          "version": "0.5.7"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:17.000889787Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Django MCP Server is an implementation of the Model Context Protocol (MCP) extension for Django. \nThis module allows MCP Clients and AI agents to interact with any Django application seamlessly.",
+        "documentation": "https://github.com/omarbenhamid/django-mcp-server/blob/main/README.md",
+        "homepage": "hhttps://github.com/omarbenhamid/django-mcp-server",
+        "license": "MIT",
+        "license_file": [
+          "LICENCE.md"
+        ],
+        "repository": "https://github.com/omarbenhamid/django-mcp-server",
+        "summary": "Django MCP Server is a Django extensions to easily enable AI Agents to interact with Django Apps through the Model Context Protocol it works equally well on WSGI and ASGI"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "django-mcp-server",
+        "python_min": "3.10",
+        "version": "0.5.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "django-mcp-server",
+        "version": "0.5.7"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "poetry-core",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "mcp >=1.8.0",
+          "django >=4.0",
+          "djangorestframework >=3.15.0",
+          "inflection >=0.5.1,<0.6.0",
+          "uritemplate >=4.1.1,<5.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5077f8fabf5fb621b5ce490afd0db60f21e57b3a451ed14a9f44aef545ea4eee",
+          "url": "https://pypi.org/packages/source/d/django-mcp-server/django_mcp_server-0.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "python -c \"import django; from django.conf import settings; settings.configure(DEBUG=True,INSTALLED_APPS=['mcp_server']); django.setup(); import mcp_server;\""
+        },
+        {
+          "python": {
+            "imports": [
+              "django"
+            ],
+            "python_version": "3.10.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

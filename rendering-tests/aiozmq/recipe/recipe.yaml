@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: aiozmq
+  version: 1.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: dac9069d36a47da439fa852ed37caaed3887b5928cb781e06a6a82e43682c6bb
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - aiozmq-proxy = aiozmq.cli.proxy:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pyzmq !=17.1.2,>=13.1
+  run_constraints:
+    - msgpack >=0.5.0
+
+tests:
+  - python:
+      imports:
+        - aiozmq
+        - aiozmq.cli
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - msgpack-python
+        - python ${{ python_min }}.*
+    script:
+      - python -c "import aiozmq.rpc"
+      - aiozmq-proxy --help
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: ZeroMQ integration with asyncio.
+  homepage: http://aiozmq.readthedocs.org
+  repository: https://github.com/aio-libs/aiozmq
+  documentation: https://aiozmq.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - beenje

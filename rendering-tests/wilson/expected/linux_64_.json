@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wilson",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wilson/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wilson/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wilson/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "wilson": {
+          "build_string": "pyhe01879c_0",
+          "name": "wilson",
+          "version": "2.5.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:40:17.702657624Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://wilson-eft.github.io/",
+        "homepage": "https://github.com/wilson-eft/wilson",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/wilson-eft/wilson",
+        "summary": "Toolkit for effective field theories beyond the Standard Model"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "wcxf = wilson.wcxf.cli:wcxf_cli",
+            "wcxf2eos = wilson.wcxf.cli:eos",
+            "wcxf2dsixtools = wilson.wcxf.cli:wcxf2dsixtools",
+            "dsixtools2wcxf = wilson.wcxf.cli:dsixtools2wcxf",
+            "wcxf2smeftsim = wilson.wcxf.cli:smeftsim"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "wilson",
+        "python_min": "3.9",
+        "version": "2.5.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "DavidMStraub",
+          "peterstangl",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "wilson",
+        "version": "2.5.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.9",
+          "numpy >=1.16.5",
+          "scipy >=1.0",
+          "pandas",
+          "pylha >=0.2",
+          "pyyaml",
+          "ckmutil >=1.2.0",
+          "rundec >=0.5",
+          "voluptuous"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "deee9fc0d3dad5ad23b60a87ccc22049c5e1d36abdd2413b5e22029b5f1f3cbf",
+          "url": "https://pypi.org/packages/source/w/wilson/wilson-2.5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "wilson"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip list",
+            "wcxf --help",
+            "wcxf2eos --help",
+            "wcxf2dsixtools --help",
+            "dsixtools2wcxf --help",
+            "wcxf2smeftsim --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

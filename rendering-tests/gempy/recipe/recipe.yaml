@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  name: gempy
+  version: 2025.2.0
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/gempy-${{ version }}.tar.gz
+  sha256: ea2fdf3c8de745122373d23803276b548e899ea0673f0678c5280fb47c6a64b9
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools-scm
+  run:
+    - python >=${{ python_min }}
+    - gempy-engine 2025.2.*
+    - typing_extensions
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - gempy
+      pip_check: true
+  - requirements:
+      run:
+        - numpy
+        - pandas
+        - pooch
+        - pytest
+    files:
+      source:
+        - test/
+      recipe:
+        - gempy_viewer.py
+        - matplotlib.py
+    script:
+      - pytest test/test_core
+
+about:
+  license: EUPL-1.2
+  license_file: LICENSE
+  summary: Open-source, implicit 3D structural geological modeling in Python for uncertainty analysis
+  description: |
+    GemPy is an open-source, Python-based 3-D structural geological modeling software,
+    which allows the implicit (i.e. automatic) creation of complex geological models
+    from interface and orientation data. It also offers support for stochastic modeling
+    to adress parameter and model uncertainties
+  homepage: https://github.com/gempy-project/gempy
+  repository: https://github.com/gempy-project/gempy
+  documentation: https://docs.gempy.org/
+
+extra:
+  recipe-maintainers:
+    - sebhmg
+    - conda-forge/geoh5py
+    - Leguark
+    - AndrewAnnex

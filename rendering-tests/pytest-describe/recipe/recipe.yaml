@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.1.0"
+  python_check_max: "3.14"
+
+package:
+  name: pytest-describe
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pytest-describe/pytest_describe-${{ version }}.tar.gz
+  sha256: 096017a0efd7beab7114c8fb7ced3a0cfd3a6d8a37e89578ea3d7b190bec6871
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - uv-build >=0.9.4,<0.10.0
+  run:
+    - pytest >=6,<10
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: pytest_describe
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - test/
+    requirements:
+      run:
+        - coverage
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - coverage run --source=pytest_describe --branch -m pytest -vv --color=yes --tb=long
+      - coverage report --show-missing --skip-covered --fail-under=71
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Describe-style plugin for py.test
+  description: |
+    pytest-describe is a plugin for pytest that allows tests to be written in arbitrary
+    nested describe-blocks, similar to RSpec (Ruby) and Jasmine (JavaScript).
+  homepage: https://github.com/pytest-dev/pytest-describe
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

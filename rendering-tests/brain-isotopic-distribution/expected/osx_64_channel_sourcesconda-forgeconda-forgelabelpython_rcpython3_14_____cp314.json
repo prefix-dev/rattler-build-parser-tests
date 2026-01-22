@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_brain-isotopic-distribution",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_brain-isotopic-distribution/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_brain-isotopic-distribution/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_brain-isotopic-distribution/work"
+      },
+      "hash": {
+        "hash": "c1e591f",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "brain-isotopic-distribution": {
+          "build_string": "py314hc1e591f_1",
+          "name": "brain-isotopic-distribution",
+          "version": "1.5.19"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:45:08.282006340Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "http://mobiusklein.github.io/",
+        "homepage": "https://github.com/mobiusklein/brainpy",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mobiusklein/brainpy",
+        "summary": "Fast and efficient theoretical isotopic profile generation"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py314hc1e591f_1"
+      },
+      "context": {
+        "name": "brain-isotopic-distribution",
+        "version": "1.5.19"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bgruening",
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "brain-isotopic-distribution",
+        "version": "1.5.19"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*"
+        ],
+        "host": [
+          "python",
+          "setuptools",
+          "wheel",
+          "cython",
+          "pip"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cad44fcb1ddbd26787dafb65345558df5119a7928b6e773fbb9dd5fd4f3334de",
+          "url": "https://pypi.org/packages/source/b/brain-isotopic-distribution/brain_isotopic_distribution-1.5.19.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "brainpy"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

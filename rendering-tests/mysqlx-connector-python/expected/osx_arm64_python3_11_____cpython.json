@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysqlx-connector-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysqlx-connector-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysqlx-connector-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysqlx-connector-python/work"
+      },
+      "hash": {
+        "hash": "78aa932",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mysqlx-connector-python": {
+          "build_string": "py311h78aa932_0",
+          "name": "mysqlx-connector-python",
+          "version": "9.6.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:38.152303699Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libabseil": "20250512",
+        "libprotobuf": "6.31.1",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MySQL Connector/Python is a standardized database driver for Python\nplatforms and development.",
+        "documentation": "http://dev.mysql.com/doc/connector-python/en/index.html",
+        "homepage": "https://dev.mysql.com/doc/connector-python/en/",
+        "license": "GPL-2.0-or-later WITH Universal-FOSS-exception-1.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/mysql/mysql-connector-python/",
+        "summary": "Python driver for communicating with MySQL servers"
+      },
+      "build": {
+        "number": 0,
+        "string": "py311h78aa932_0"
+      },
+      "context": {
+        "name": "mysqlx-connector-python",
+        "version": "9.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "nehaljwani",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "mysqlx-connector-python",
+        "version": "9.6.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "pkg-config",
+          "libprotobuf"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "libprotobuf",
+          "libabseil",
+          "protobuf"
+        ],
+        "run": [
+          "python",
+          "protobuf"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Be-compatible-with-current-libprotobuf-pin.patch",
+            "patches/0002-Revert-Fix-MacOS-wheels-platform-tag.patch",
+            "patches/0003-Use-C-17.patch",
+            "patches/0004-Link-to-abseil_dll-on-Windows.patch",
+            "patches/0005-Don-t-ignore-user-provided-xtra-compile-link-args.patch",
+            "patches/0006-Fix-compatibility-with-newer-protobuf-and-abseil-lib.patch"
+          ],
+          "sha256": "8d1b2a52a8183bbfee20ac8be0e31a2420504a35f9223badd0756627b5226ecf",
+          "url": "https://github.com/mysql/mysql-connector-python/archive/9.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mysqlx",
+              "mysqlx.protobuf"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyscf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyscf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyscf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyscf/work"
+      },
+      "hash": {
+        "hash": "b9dc919",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyscf": {
+          "build_string": "py310hb9dc919_401",
+          "name": "pyscf",
+          "version": "2.11.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:35:17.362513867Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_freethreading": false,
+        "is_python_min": true,
+        "libblas": "3.9.* *netlib",
+        "libcint": "6.1",
+        "llvm_openmp": "19",
+        "microarch_level": 4,
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pyscf.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pyscf/pyscf",
+        "summary": "PySCF: Python-based Simulations of Chemistry Framework"
+      },
+      "build": {
+        "number": 401,
+        "script": [
+          "export CFLAGS=\"${CFLAGS} -march=x86-64-v4\"",
+          "export CXXFLAGS=\"${CXXFLAGS} -march=x86-64-v4\"",
+          "export CPPFLAGS=\"${CPPFLAGS} -march=x86-64-v4\"",
+          "export CMAKE_CONFIGURE_ARGS=\"${CMAKE_ARGS} -DBLAS_LIBRARIES=lapack;blas -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_SHARED_LIBS=ON -DBUILD_LIBCINT=OFF -DBUILD_LIBXC=OFF -DBUILD_XCFUN=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -LAH\"",
+          "export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py310hb9dc919_401"
+      },
+      "context": {
+        "build_num": 1,
+        "mlevel": 4,
+        "touch_is_freethreading": false,
+        "use_fast_math": false,
+        "version": "2.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "awvwgk",
+          "maxscheurer",
+          "BastianZim"
+        ]
+      },
+      "package": {
+        "name": "pyscf",
+        "version": "2.11.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake >=3.10",
+          "make",
+          "python",
+          "pip",
+          "sed",
+          "cross-python_osx-64",
+          "setuptools"
+        ],
+        "host": [
+          "libblas",
+          "libcint",
+          "libxc-c >=6,<8",
+          "llvm-openmp",
+          "make",
+          "pip",
+          "python",
+          "setuptools",
+          "xcfun ==2.1.1"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "h5py >=2.7",
+          "numpy >=1.13,!=1.16,!=1.17",
+          "python",
+          "scipy >=0.19,!=1.5.0,!=1.5",
+          "setuptools",
+          "_x86_64-microarch-level >=4"
+        ],
+        "run_constraints": [
+          "pyberny >=0.6.2",
+          "geometric >=0.9.7.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "314bb28890c36a151d4cae87b4077f0900f7d306880104b0fbbcbd0a8ae5b9ed",
+          "url": "https://github.com/pyscf/pyscf/archive/refs/tags/v2.11.0.tar.gz"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

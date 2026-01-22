@@ -1,0 +1,56 @@
+context:
+  name: keygen-py
+  version: "0.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/keygen_py-${{ version }}.tar.gz
+  sha256: c4e4546260736db6a73a82f926102498743c151c122e98823954d3a5e1c3087b
+
+build:
+  number: 1
+  skip: match(python, "<3.11") or match(python, ">3.14")
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - make
+    - perl
+    - cargo-bundle-licenses
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+    - maturin
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - keygen_sh
+      pip_check: true
+
+about:
+  summary: Unofficial Keygen SDK for Python. Integrate license activation and offline licensing. Wrapper around keygen-rs rust crate
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/terra-quantum-public/keygen-py
+
+extra:
+  recipe-maintainers:
+    - sbtq
+    - cedrictq

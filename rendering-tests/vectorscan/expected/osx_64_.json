@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vectorscan",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vectorscan/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vectorscan/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vectorscan/work"
+      },
+      "hash": {
+        "hash": "15c262b"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vectorscan": {
+          "build_string": "h15c262b_1",
+          "name": "vectorscan",
+          "version": "5.4.11"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:47:12.615480178Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "18",
+        "libboost_devel": "1.86",
+        "libsqlite": "3",
+        "pcre": "8",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A fork of Intel's Hyperscan, modified to run on more platforms. Currently\nARM NEON/ASIMD and Power VSX are 100% functional. ARM SVE2 support is in\nongoing with access to hardware now. More platforms will follow in the\nfuture. Further more, starting 5.4.12 there is now a SIMDe port, which can\nbe either used for platforms without official SIMD support, as SIMDe can\nemulate SIMD instructions, or as an alternative backend for existing\narchitectures, for reference and comparison purposes.",
+        "documentation": "http://intel.github.io/hyperscan/dev-reference/",
+        "homepage": "https://www.vectorcamp.gr/project/vectorscan/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "vectorscan/COPYING",
+          "vectorscan/LICENSE"
+        ],
+        "summary": "A portable fork of the high-performance regular expression matching library"
+      },
+      "build": {
+        "number": 1,
+        "script": "tar xvf pcre-${{ pcre_version }}.tar.gz\nmkdir build/\ncd build/\ncmake $CMAKE_ARGS -GNinja -DPCRE_SOURCE=$SRC_DIR/pcre-8.45 $SRC_DIR/vectorscan\ncmake --build . -- -j${CPU_COUNT}\ncmake --build . --target install\n",
+        "string": "h15c262b_1"
+      },
+      "context": {
+        "pcre_version": "8.45",
+        "version": "5.4.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "vectorscan",
+        "version": "5.4.11"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 18.*",
+          "clangxx_osx-64 18.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "tar",
+          "ragel"
+        ],
+        "host": [
+          "libboost-devel",
+          "libsqlite",
+          "pcre",
+          "libzlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-fix-the-pcre-versio-check-error-on-clang-16.patch"
+          ],
+          "sha256": "905f76ad1fa9e4ae0eb28232cac98afdb96c479666202c5a4c27871fb30a2711",
+          "target_directory": "vectorscan",
+          "url": "https://github.com/VectorCamp/vectorscan/archive/refs/tags/vectorscan/5.4.11.tar.gz"
+        },
+        {
+          "file_name": "pcre-8.45.tar.gz",
+          "sha256": "4e6ce03e0336e8b4a3d6c2b70b1c5e18590a5673a98186da90d4f33c23defc09",
+          "url": "https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz/download"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "hs/ch.h"
+            ],
+            "lib": [
+              "libchimera.a",
+              "libhs.a",
+              "libhs_runtime.a"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-help2man",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-help2man/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-help2man/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-help2man/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-help2man": {
+          "build_string": "pyhcf101f3_1",
+          "name": "python-help2man",
+          "version": "0.0.9"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:47.277756539Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Freed-Wu/help2man",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Freed-Wu/help2man",
+        "summary": "Convert --help and --version to man page."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "help2man = help2man.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "version": "0.0.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "python-help2man",
+        "version": "0.0.9"
+      },
+      "requirements": {
+        "host": [
+          "jinja2",
+          "pip",
+          "python 3.10.*",
+          "setuptools",
+          "setuptools-scm",
+          "shtab",
+          "tomli"
+        ],
+        "run": [
+          "python >=3.10",
+          "jinja2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "57fa18ed59ee94952a2341153eae34fc90020cb4ebb26ce8a7324334119cf81a",
+          "url": "https://pypi.org/packages/source/h/help2man/help2man-0.0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "help2man"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python =3.10"
+            ]
+          },
+          "script": "help2man --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

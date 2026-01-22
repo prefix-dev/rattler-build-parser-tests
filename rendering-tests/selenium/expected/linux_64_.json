@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "selenium": {
+          "build_string": "pyhcf101f3_0",
+          "name": "selenium",
+          "version": "4.40.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:41.046693026Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://www.selenium.dev/documentation/webdriver",
+        "homepage": "https://www.selenium.dev/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "NOTICE"
+        ],
+        "repository": "https://github.com/SeleniumHQ/selenium",
+        "summary": "Official Python bindings for Selenium WebDriver"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "echo \"recursive-include * *.js\" >> MANIFEST.in",
+          "echo \"recursive-include * *.json\" >> MANIFEST.in",
+          "${{ PYTHON }} -c \"from pathlib import Path; [(p / '__init__.py').touch() for p in Path('selenium').rglob('*') if p.is_dir()]\"",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "selenium_manager_version": "4.40.*",
+        "version": "4.40.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pmlandwehr",
+          "ocefpaf",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "selenium",
+        "version": "4.40.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "certifi >=2026.1.4",
+          "python >=3.10",
+          "selenium-manager 4.40.*",
+          "trio >=0.31.0,<1.0",
+          "trio-typing >=0.10.0",
+          "trio-websocket >=0.12.2,<1.0",
+          "types-certifi >=2021.10.8.3",
+          "types-urllib3 >=1.26.25.14",
+          "typing_extensions >=4.15.0,<5.0",
+          "urllib3 >=2.6.3,<4.0",
+          "websocket-client >=1.8.0,<2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-no-rust.patch"
+          ],
+          "sha256": "a88f5905d88ad0b84991c2386ea39e2bbde6d6c334be38df5842318ba98eaa8c",
+          "url": "https://pypi.org/packages/source/s/selenium/selenium-4.40.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "selenium",
+              "selenium.common",
+              "selenium.webdriver.common",
+              "selenium.webdriver.chrome",
+              "selenium.webdriver.chromium",
+              "selenium.webdriver.edge",
+              "selenium.webdriver.firefox",
+              "selenium.webdriver.remote",
+              "selenium.webdriver.support"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": {
+            "file": "run_test.py",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

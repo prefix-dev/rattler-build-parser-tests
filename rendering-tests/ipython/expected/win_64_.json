@@ -1,0 +1,206 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipython",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipython/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipython/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipython/work"
+      },
+      "hash": {
+        "hash": "e2676ad",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ipython": {
+          "build_string": "pyhe2676ad_0",
+          "name": "ipython",
+          "version": "9.9.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:27.061525467Z",
+      "variant": {
+        "__win": "__win",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "noarch_platform": "win",
+        "python_min": "3.11",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "IPython provides a rich architecture for interactive computing with\na powerful interactive shell, a kernel for Jupyter, high performance\ntools for parallel computing, and more.",
+        "documentation": "https://ipython.readthedocs.io/",
+        "homepage": "https://ipython.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ipython/ipython",
+        "summary": "IPython: Productive Interactive Computing"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ipython = IPython:start_ipython",
+            "ipython3 = IPython:start_ipython"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe2676ad_0"
+      },
+      "context": {
+        "pygments_modes": "ipython ipython3 ipythonconsole ipython3console",
+        "python_check_max": "3.14",
+        "version": "9.9.0"
+      },
+      "extra": {
+        "feedstock-name": "ipython",
+        "recipe-maintainers": [
+          "Carreau",
+          "jakirkham",
+          "fperez",
+          "ellisonbg",
+          "minrk",
+          "ocefpaf",
+          "pelson",
+          "takluyver",
+          "bollwyvl",
+          "blink1073",
+          "krassowski",
+          "trallard"
+        ]
+      },
+      "package": {
+        "name": "ipython",
+        "version": "9.9.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.11.*",
+          "setuptools >=77.0"
+        ],
+        "run": [
+          "__win",
+          "colorama >=0.4.4",
+          "decorator >=4.3.2",
+          "ipython_pygments_lexers >=1.0.0",
+          "jedi >=0.18.1",
+          "matplotlib-inline >=0.1.5",
+          "prompt-toolkit >=3.0.41,<3.1.0",
+          "pygments >=2.11.0",
+          "python >=3.11",
+          "stack_data >=0.6.0",
+          "traitlets >=5.13.0",
+          "typing_extensions >=4.6"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "48fbed1b2de5e2c7177eefa144aba7fcb82dac514f09b57e2ac9da34ddb54220",
+          "url": "https://pypi.org/packages/source/i/ipython/ipython-9.9.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "IPython"
+            ],
+            "python_version": [
+              "3.11.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*"
+            ]
+          },
+          "script": [
+            "ipython --version",
+            "ipython3 --version",
+            "ipython --help",
+            "pygmentize -L | python -c \"import sys; p = sys.stdin.read(); assert all(m in p for m in '${{ pygments_modes }}'.split())\""
+          ]
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ],
+            "source": [
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "mypy",
+              "types-decorator",
+              "coverage",
+              "black",
+              "curio",
+              "ipykernel >6.30",
+              "matplotlib-base >=3.9",
+              "nbformat",
+              "numpy >=1.27",
+              "packaging >=20.1.0",
+              "pandas >=2.1",
+              "pytest >=7.0.0",
+              "pytest-asyncio >=1.0.0",
+              "setuptools >=61.2",
+              "testpath >=0.2",
+              "trio >=0.1.0"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

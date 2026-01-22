@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-transfer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-transfer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-transfer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hf-transfer/work"
+      },
+      "hash": {
+        "hash": "74a3219",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hf-transfer": {
+          "build_string": "py313h74a3219_2",
+          "name": "hf-transfer",
+          "version": "0.1.9"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:29.729421725Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "openssl": "3",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/huggingface/hf_transfer",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/huggingface/hf_transfer",
+        "summary": "Speed up file transfers with the Hugging Face Hub."
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "export OPENSSL_DIR=\"$PREFIX\"",
+          "export OPENSSL_NO_VENDOR=1",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py313h74a3219_2"
+      },
+      "context": {
+        "name": "hf-transfer",
+        "version": "0.1.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zbowling",
+          "maresb"
+        ]
+      },
+      "package": {
+        "name": "hf-transfer",
+        "version": "0.1.9"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "maturin >=1.4,<2",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64",
+          "pkg-config",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "maturin >=1.4,<2",
+          "pip",
+          "openssl"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "001-cargo.patch"
+          ],
+          "sha256": "035572865dab29d17e783fbf1e84cf1cb24f3fcf8f1b17db1cfc7fdf139f02bf",
+          "url": "https://pypi.org/packages/source/h/hf-transfer/hf_transfer-0.1.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hf_transfer"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

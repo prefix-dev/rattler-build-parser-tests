@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: jsonnet
+  version: 0.21.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 7fe2865e6e1dc2b9791d880fea3eba7e72334b256d85f027da3ae1f56a55b1da
+
+build:
+  number: 2
+  skip: ppc64le
+  script: python -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - cmake
+    - make
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - _jsonnet
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Python bindings for Jsonnet - The data templating language
+  homepage: http://github.com/google/jsonnet
+
+extra:
+  recipe-maintainers:
+    - nelson-liu
+    - michamucha
+    - synapticarbors

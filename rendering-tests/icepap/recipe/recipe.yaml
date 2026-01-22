@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: icepap
+  version: 3.12.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/icepap-${{ version }}.tar.gz
+  sha256: 552e11ee9433a28ad114b6d6e23c75a635eb2f0d36ba40ca0f394c78aaeac024
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - icepapctl = icepap.cli.cli:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - beautifultable >=1
+    - click >=7
+    - numpy
+    - prompt_toolkit >=3
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - icepap
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+  - script:
+      - icepapctl --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  summary: Python IcePAP Extension
+  description: |
+    Python module to configure, control and monitor IcePAP based systems.
+    IcePAP is a motor control system developed at the ESRF and optimised
+    for high resolution position applications.
+  homepage: https://gitlab.com/icepap-organization/IcePAP
+  repository: https://gitlab.com/icepap-organization/IcePAP
+  documentation: https://alba-synchrotron.github.io/pyIcePAP-doc/
+
+extra:
+  recipe-maintainers:
+    - rhomspuron
+    - beenje

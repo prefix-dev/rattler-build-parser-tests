@@ -1,0 +1,171 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vsg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vsg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vsg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vsg/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vsg": {
+          "build_string": "pyhcf101f3_0",
+          "name": "vsg",
+          "version": "3.35.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:53:01.755197859Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Coding style enforcement for VHDL",
+        "documentation": "https://vhdl-style-guide.readthedocs.io/en/stable/",
+        "homepage": "https://github.com/jeremiah-c-leary/vhdl-style-guide",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/jeremiah-c-leary/vhdl-style-guide",
+        "summary": "Coding style enforcement for VHDL"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "vsg = vsg.__main__:main"
+          ]
+        },
+        "script": [
+          "echo ${{ version }} > VERSION",
+          "python -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "vsg",
+        "version": "3.35.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "blmaier"
+        ]
+      },
+      "package": {
+        "name": "vsg",
+        "version": "3.35.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "setuptools-git-versioning",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "pyyaml >=5.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-version-patch.patch"
+          ],
+          "sha256": "243814d768d14ffa76503d63f4aa60a1c7afd3a561cbda46c0954602fcdff390",
+          "url": "https://github.com/jeremiah-c-leary/vhdl-style-guide/archive/refs/tags/3.35.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "vsg"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "bin/",
+              "docs/",
+              "vsg/styles/*.yaml",
+              "vsg/rules/ranges/preamble_doc.rst",
+              "vsg/rules/block_comment/preamble_doc.rst",
+              "vsg/rules/length/preamble_doc.rst",
+              "vsg/rules/procedure/preamble_doc.rst",
+              "vsg/rules/procedure_call/preamble_doc.rst",
+              "vsg/rules/when/preamble_doc.rst",
+              "vsg/vhdlFile/indent/indent_config.yaml",
+              "tests/",
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "pytest",
+              "pytest-cov",
+              "pytest-html",
+              "pytest-xdist"
+            ]
+          },
+          "script": [
+            "vsg --help",
+            "python -c \"from importlib.metadata import version; assert(version('${{ name }}')=='${{ version }}')\"",
+            "pytest --no-cov"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

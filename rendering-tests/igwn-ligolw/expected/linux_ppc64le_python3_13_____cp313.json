@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-ligolw",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-ligolw/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-ligolw/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_igwn-ligolw/work"
+      },
+      "hash": {
+        "hash": "fec6cc7",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "igwn-ligolw": {
+          "build_string": "py313hfec6cc7_0",
+          "name": "igwn-ligolw",
+          "version": "2.1.1"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:29.173558844Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "python_impl": "cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The LIGO Light-Weight XML format is used extensively by compact object\ndetection pipeline and associated tool sets.\nThis package provides a Python I/O library for reading, writing, and\ninteracting with documents in this format.",
+        "documentation": "https://igwn-ligolw.readthedocs.io/",
+        "homepage": "https://git.ligo.org/computing/software/igwn-ligolw/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://git.ligo.org/computing/software/igwn-ligolw.git",
+        "summary": "Python LIGO Light-Weight XML I/O Library"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313hfec6cc7_0"
+      },
+      "context": {
+        "name": "igwn-ligolw",
+        "version": "2.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "lpsinger",
+          "titodalcanton"
+        ]
+      },
+      "package": {
+        "name": "igwn-ligolw",
+        "version": "2.1.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cross-python_linux-ppc64le",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=64",
+          "setuptools-scm >=8"
+        ],
+        "run": [
+          "igwn-segments",
+          "numpy",
+          "python",
+          "python-dateutil",
+          "pyyaml",
+          "tqdm"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4ca1860e79ec5e25d575ae4e27fa8035a269af6fcda9da33f090ceb85b34b64b",
+          "url": "https://pypi.org/packages/source/i/igwn-ligolw/igwn_ligolw-2.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "test"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "libxml2",
+              "make",
+              "matplotlib-base",
+              "pip",
+              "pytest-benchmark",
+              "pytest-doctestplus",
+              "python-lal",
+              "xz-tools"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m pip show igwn-ligolw",
+            "python -m pytest test",
+            "pytest --doctest-plus --pyargs igwn_ligolw",
+            "make -C test",
+            "igwn_ligolw_add --help",
+            "igwn_ligolw_cut --help",
+            "igwn_ligolw_no_ilwdchar --help",
+            "igwn_ligolw_print --help",
+            "igwn_ligolw_run_sqlite --help",
+            "igwn_ligolw_segments --help",
+            "igwn_ligolw_sqlite --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

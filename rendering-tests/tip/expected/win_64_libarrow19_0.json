@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tip",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tip/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tip/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tip/work"
+      },
+      "hash": {
+        "hash": "34044ef"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tip": {
+          "build_string": "h34044ef_0",
+          "name": "tip",
+          "version": "3.0.7"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:38:52.512392041Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "fmt": "12.0",
+        "libarrow": "19.0",
+        "spdlog": "1.16",
+        "target_platform": "win-64",
+        "vc": "14"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Parse IRIG 106 Chapter 10 and export parsed, raw data to Parquet.\nIn a second (translation) stage, convert raw data to Engineering Units\n(EU, ft, m/s, etc.) given an input file which conveys Interface Control Document\n(ICD) data.",
+        "homepage": "https://github.com/309thEDDGE/tip.git",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "licenses/"
+        ],
+        "repository": "https://github.com/309thEDDGE/tip.git",
+        "summary": "Fast IRIG 106 Chapter 10 CLI parser/translator"
+      },
+      "build": {
+        "number": 0,
+        "string": "h34044ef_0"
+      },
+      "context": {
+        "libarrow": 14,
+        "name": "tip",
+        "version": "3.0.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "IM-USAF",
+          "RR-USAF"
+        ]
+      },
+      "package": {
+        "name": "tip",
+        "version": "3.0.7"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "ninja 1.*",
+          "cmake 3.*",
+          "pkgconfig 1.*"
+        ],
+        "host": [
+          "libarrow",
+          "libparquet",
+          "spdlog",
+          "yaml-cpp",
+          "gmock",
+          "gtest",
+          "libtins",
+          "fmt"
+        ],
+        "run": [
+          "gmock",
+          "gtest"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9829d846272be2e6a19cde370915e8eaee5e8a7e91bcd74cf672dbe110f0b4d3",
+          "url": "https://github.com/309thEDDGE/tip/archive/refs/tags/v3.0.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "tests --gtest_brief=1 --gtest_filter=-ArgumentValidationTest.*NotUTF8",
+            "tip parse -h",
+            "tip translate 1553 -h",
+            "tip translate arinc429 -h",
+            "tip util vidextract -h",
+            "tip util pqcomp -h",
+            "tip util bincomp -h",
+            "tip util validyaml -h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

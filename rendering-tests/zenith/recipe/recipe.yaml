@@ -1,0 +1,39 @@
+context:
+  version: "0.14.3"
+
+package:
+  name: zenith
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bvaisvil/zenith/archive/${{ version }}.tar.gz
+  sha256: b092048d1a9ce7234584d928e4b103aaaa7e47589923cf4e48dfa8919b3f8d88
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - libclang
+
+tests:
+  - script:
+      - zenith --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: In terminal graphical metrics for your *nix system
+  homepage: https://github.com/bvaisvil/zenith
+  repository: https://github.com/bvaisvil/zenith
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aiida-fans",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aiida-fans/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aiida-fans/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aiida-fans/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aiida-fans": {
+          "build_string": "pyhcf101f3_0",
+          "name": "aiida-fans",
+          "version": "0.2.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:50:26.744932740Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a plugin for AiiDA that facilitates the use of FANS. FANS is an FFT-based homogenisation solver for microscale and multiphysics problems. It is an open-source project under active development at the Institute of Applied Mechanics, University of Stuttgart. This plugin aims to bring the full value of provenance tracking and database integration to the results produced by FANS.",
+        "documentation": "https://dataanalyticsengineering.github.io/AiiDA-FANS/",
+        "homepage": "https://github.com/DataAnalyticsEngineering/AiiDA-FANS",
+        "license": "LGPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "AiiDA plugin for FANS, an FFT-based homogenization solver."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": {
+          "content": "python -m pip install . -vv",
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION": "0.2.2"
+          }
+        },
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "aiida-fans",
+        "python_min": "3.11",
+        "version": "0.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ethan-shanahan",
+          "EMMAOpenSource",
+          "sanathkeshav",
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "aiida-fans",
+        "version": "0.2.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "setuptools >=64.0.0",
+          "setuptools-scm >=8.0.0"
+        ],
+        "run": [
+          "python >=3.11",
+          "aiida-core >=2.7.1",
+          "h5py >=3.9.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f4c8c27d850f9408882acefca5288eeaee0a6e6e76077754a39042afd3381407",
+          "url": "https://github.com/DataAnalyticsEngineering/AiiDa-FANS/archive/refs/tags/v0.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "aiida_fans"
+            ],
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*"
+            ]
+          },
+          "script": "verdi plugin list aiida.calculations fans"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

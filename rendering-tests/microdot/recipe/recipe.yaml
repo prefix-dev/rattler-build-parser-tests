@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: microdot
+  version: "2.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/microdot-${{ version }}.tar.gz
+  sha256: 08007ee58553d17c8adc6128b8230f151100a1357670bdedef1ab2ae14e54213
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - microdot
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: The impossibly small web framework for MicroPython
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/miguelgrinberg/microdot
+  documentation: https://microdot.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - thewchan

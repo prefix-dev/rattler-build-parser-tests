@@ -1,0 +1,130 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_witr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_witr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_witr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_witr/work"
+      },
+      "hash": {
+        "hash": "a2bf2a4"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "witr": {
+          "build_string": "ha2bf2a4_0",
+          "name": "witr",
+          "version": "0.2.6"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:53:02.998453520Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pkg.go.dev/github.com/pranshuparmar/witr",
+        "homepage": "https://github.com/pranshuparmar/witr",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/pranshuparmar/witr",
+        "summary": "Why is this running?"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save ./cmd/witr --save_path ../library_licenses",
+          "go build -v -o $PREFIX/bin/witr -ldflags=\"-s -w -X main.version=${{ version }}\" ./cmd/witr"
+        ],
+        "string": "ha2bf2a4_0"
+      },
+      "context": {
+        "name": "witr",
+        "version": "0.2.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pranshuparmar",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "witr",
+        "version": "0.2.6"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-ppc64le",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "76936ff75beb3dfc8842acf4a7b1dd45637b0be5b37daa4d2c0d7dce147bcf0c",
+          "target_directory": "src",
+          "url": "https://github.com/pranshuparmar/witr/archive/refs/tags/v0.2.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "witr --help",
+            "witr --version"
+          ]
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "witr"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

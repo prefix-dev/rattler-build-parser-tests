@@ -1,0 +1,102 @@
+# CUDA Core Compute Libraries (CCCL) includes thrust, cub, and libcudacxx. These are header-only libraries.
+# The cccl package ships CCCL headers in the environment's include/cccl directory for use in downstream recipes that require CCCL. It follows CCCL upstream versioning. Use this package to say, "I want a specific version of CCCL headers when building my package (which may be newer than the versions shipped in the latest CUDA Toolkit)."
+# The cuda-cccl_{{ target_platform }} package (e.g. cuda-cccl_linux-64) ships CCCL headers in 'targets/.../include/cccl' that can be used by nvcc, the CUDA compiler. It follows CUDA Toolkit versioning. This package should only be a dependency of the cuda-cudart / cuda-nvcc packages that require CCCL to function. It is target-specific to allow for cross-compilation, as a dependency of cuda-nvcc.
+# The cuda-cccl package is a metapackage that depends on cccl and cuda-cccl_{{ target_platform }} to ensure that versions are consistent. Use this package to say, "I want to build with the thrust headers that shipped with CUDA Toolkit X.Y" by adding dependencies on `cuda-cccl` and `cuda-version X.Y`.
+schema_version: 1
+
+context:
+  name: cccl
+  version: "3.1.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/NVIDIA/cccl/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: fe679225875b856dc31fbf63f26b8b447a02dae415c41d3815815f52aadf45a7
+
+build:
+  number: 0
+  skip:
+    - osx
+    - ppc64le
+    # cccl is header-only; it's enough to build it once (and ignore the run-exports)
+    - cuda_compiler_version != cuda_compiler_version_min
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ compiler("cuda") }}
+    - cmake
+    - ninja
+  host:
+    - libcurand-dev
+  ignore_run_exports:
+    from_package:
+      - ${{ stdlib("c") }}
+      - ${{ compiler("c") }}
+      - ${{ compiler("cxx") }}
+      - ${{ compiler("cuda") }}
+      - libcurand-dev
+
+tests:
+  - files:
+      recipe:
+        - test_cmake
+        - if: linux
+          then: verify-version.cmake
+    requirements:
+      run:
+        - ${{ stdlib("c") }}
+        - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
+        - ${{ compiler("cuda") }}
+        - cmake
+        - ninja
+    script:
+      # Check CMake and header directories
+      - if: linux
+        then:
+          - test -d $PREFIX/lib/cmake/cccl
+          - test -d $PREFIX/lib/cmake/thrust
+          - test -d $PREFIX/lib/cmake/cub
+          - test -d $PREFIX/lib/cmake/libcudacxx
+          - test -d $PREFIX/lib/cmake/cudax
+          - test -d $PREFIX/include/cccl/thrust
+          - test -d $PREFIX/include/cccl/cub
+          - test -d $PREFIX/include/cccl/cuda
+          - test -d $PREFIX/include/cccl/nv
+          - test -d $PREFIX/include/cccl/cuda/experimental
+          # Extract the CCCL version and compare to the declared version
+          - '[[ "$(cmake -DCCCL_VERSION_FILE="$PREFIX/lib/cmake/cccl/cccl-config-version.cmake" -P verify-version.cmake)" == "${{ version }}" ]] || exit 1'
+      - if: win
+        then:
+          - if not exist %LIBRARY_LIB%\cmake\cccl exit 1
+          - if not exist %LIBRARY_LIB%\cmake\thrust exit 1
+          - if not exist %LIBRARY_LIB%\cmake\cub exit 1
+          - if not exist %LIBRARY_LIB%\cmake\libcudacxx exit 1
+          - if not exist %LIBRARY_LIB%\cmake\cudax exit 1
+          - if not exist %LIBRARY_INC%\cccl\thrust exit 1
+          - if not exist %LIBRARY_INC%\cccl\cub exit 1
+          - if not exist %LIBRARY_INC%\cccl\cuda exit 1
+          - if not exist %LIBRARY_INC%\cccl\nv exit 1
+          - if not exist %LIBRARY_INC%\cccl\cuda\experimental exit 1
+      # Test CMake build
+      - pushd test_cmake
+      - cmake -G "Ninja" .
+      - cmake --build . --config Release
+      - popd
+
+about:
+  license_file: LICENSE
+  license: Apache-2.0 AND BSD-3-Clause AND BSD-2-Clause AND BSL-1.0 AND NCSA AND MIT AND LicenseRef-NVIDIA-Software-License
+  summary: CUDA Core Compute Libraries
+  homepage: https://github.com/NVIDIA/cccl
+  documentation: https://nvidia.github.io/cccl/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/cuda

@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_behave",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_behave/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_behave/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_behave/work"
+      },
+      "hash": {
+        "hash": "eecf25b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "behave": {
+          "build_string": "pyheecf25b_0",
+          "name": "behave",
+          "version": "1.3.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:37:19.579504765Z",
+      "variant": {
+        "__linux": "__linux",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Behavior-driven development (or BDD) is an agile software development\ntechnique that encourages collaboration between developers, QA and\nnon-technical or business participants in a software project.\n\nbehave uses tests written in a natural language style, backed up by Python\ncode.",
+        "documentation": "https://behave.readthedocs.io/",
+        "homepage": "https://github.com/behave/behave",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/behave/behave",
+        "summary": "behave is behaviour-driven development, Python style"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "behave = behave.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyheecf25b_0"
+      },
+      "context": {
+        "name": "behave",
+        "version": "1.3.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706",
+          "stuertz"
+        ]
+      },
+      "package": {
+        "name": "behave",
+        "version": "1.3.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "cucumber-tag-expressions >=4.1.0",
+          "cucumber-expressions >=17.1.0",
+          "parse >=1.18.0",
+          "parse_type >=0.6.0",
+          "six >=1.15.0",
+          "colorama >=0.3.7",
+          "tomli >=1.1.0",
+          "__linux"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2b8f4b64ed2ea756a5a2a73e23defc1c4631e9e724c499e46661778453ebaf51",
+          "url": "https://pypi.org/packages/source/b/behave/behave-1.3.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "behave",
+              "behave.compat",
+              "behave.formatter",
+              "behave.reporter"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": "behave --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

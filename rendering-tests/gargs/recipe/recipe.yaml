@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.3.9
+
+package:
+  name: gargs
+  version: ${{ version }}
+
+source:
+  url: https://github.com/brentp/gargs/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 635dbaa6def7438240032a6ea70ae0f2249868d50df17e16bfd564591e30692c
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gargs --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: better xargs in go
+  homepage: https://github.com/brentp/gargs
+  repository: https://github.com/brentp/gargs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

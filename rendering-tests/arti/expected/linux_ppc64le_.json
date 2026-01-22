@@ -1,0 +1,137 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arti",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arti/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arti/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arti/work"
+      },
+      "hash": {
+        "hash": "dcc230c"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "arti": {
+          "build_string": "hdcc230c_0",
+          "name": "arti",
+          "version": "1.8.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:07.105855367Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libsqlite": "3",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Arti is a project to produce an embeddable, production-quality implementation of the Tor anonymity protocols in the Rust programming language.",
+        "documentation": "https://docs.rs/arti",
+        "homepage": "https://tpo.pages.torproject.net/core/arti",
+        "license": "(MIT OR Apache-2.0) AND LGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "LGPL-3",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://gitlab.torproject.org/tpo/core/arti",
+        "summary": "An implementation of Tor, in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd crates/arti",
+          "export OPENSSL_DIR=\"$PREFIX\"",
+          "export CARGO_PROFILE_RELEASE_STRIP=symbols",
+          "export CARGO_PROFILE_RELEASE_LTO=fat",
+          "cargo install --locked --no-track --bins --root ${PREFIX} --path .",
+          "cargo-bundle-licenses --format yaml --output ../../THIRDPARTY.yml"
+        ],
+        "string": "hdcc230c_0"
+      },
+      "context": {
+        "name": "arti",
+        "version": "1.8.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "arti",
+        "version": "1.8.0"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-ppc64le",
+          "cargo-bundle-licenses",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "make"
+        ],
+        "host": [
+          "openssl",
+          "libsqlite"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "92ea0731bea19d91f2de9ea0f408bd578d11ea2dd270949ba0abc2d0aeaabb60",
+          "url": "https://gitlab.torproject.org/tpo/core/arti/-/archive/arti-v1.8.0/arti-arti-v1.8.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "arti --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

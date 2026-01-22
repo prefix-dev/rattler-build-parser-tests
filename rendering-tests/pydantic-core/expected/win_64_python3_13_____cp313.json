@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydantic-core/work"
+      },
+      "hash": {
+        "hash": "f30eb40",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pydantic-core": {
+          "build_string": "py313hf30eb40_1",
+          "name": "pydantic-core",
+          "version": "2.41.5"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:49.449370228Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pydantic/pydantic-core",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/pydantic/pydantic-core",
+        "summary": "Core validation logic for pydantic written in rust"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "set CARGO_PROFILE_RELEASE_STRIP=symbols",
+          "set CARGO_PROFILE_RELEASE_LTO=fat",
+          "python -m pip install . -vv",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+        ],
+        "string": "py313hf30eb40_1"
+      },
+      "context": {
+        "name": "pydantic-core",
+        "version": "2.41.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy",
+          "samuelcolvin",
+          "adriangb",
+          "dmontagu",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "pydantic-core",
+        "version": "2.41.5"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "maturin >=1,<2",
+          "vs2022_win-64",
+          "vs_win-64",
+          "rust_win-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "maturin >=1,<2",
+          "typing-extensions >=4.6.0,!=4.7.0"
+        ],
+        "run": [
+          "python",
+          "typing-extensions >=4.6.0,!=4.7.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "08daa51ea16ad373ffd5e7606252cc32f07bc72b28284b6bc9c6df804816476e",
+          "url": "https://files.pythonhosted.org/packages/71/70/23b021c950c2addd24ec408e9ab05d59b035b39d97cdc1130e1bce647bb6/pydantic_core-2.41.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pydantic_core"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "python -c \"from pydantic_core import PydanticUndefinedType\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

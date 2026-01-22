@@ -1,0 +1,145 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "6.6.0"
+  python_check_max: "3.13"
+
+recipe:
+  name: pypdf
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/p/pypdf/pypdf-${{ version }}.tar.gz
+    sha256: 4c887ef2ea38d86faded61141995a3c7d068c9d6ae8477be7ae5de8a8e16592f
+    target_directory: dist
+  - url: https://github.com/py-pdf/pypdf/archive/refs/tags/${{ version }}.tar.gz
+    sha256: 2cf2384e67d0577674bdb3216672b6f85845b4ee0bd4de4b39b215105be0bfff
+    target_directory: src
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: pypdf
+    build:
+      noarch: python
+      script:
+        - cd dist
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - flit-core >=3.11,<4
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - typing_extensions >=4.0
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pypdf-with-crypto
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+        - cryptography
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pypdf-with-image
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+        - pillow >=8.0.0
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: pypdf-with-full
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pypdf-with-crypto", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf-with-image", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: _pypdf-with-full-tests
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("pypdf-with-crypto", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf-with-full", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf-with-image", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("pypdf", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: pypdf
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          recipe:
+            - test_all.py
+          source:
+            - src/pyproject.toml
+            - src/tests/
+            - src/resources/
+        requirements:
+          run:
+            - fpdf
+            - pytest-cov
+            - pytest-socket
+            - pytest-timeout
+            - pyyaml
+            - types-pillow
+            - python ${{ python_min }}.*
+        script:
+          - python test_all.py
+
+about:
+  summary: A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files
+  license: BSD-3-Clause
+  license_file: dist/LICENSE
+  homepage: https://pypi.org/project/pypdf
+  repository: https://github.com/py-pdf/pypdf
+  documentation: https://pypdf.readthedocs.io
+
+extra:
+  feedstock-name: pypdf
+  recipe-maintainers:
+    - MartinThoma
+    - bollwyvl

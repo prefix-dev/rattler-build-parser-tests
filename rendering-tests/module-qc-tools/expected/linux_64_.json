@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_module-qc-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_module-qc-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_module-qc-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_module-qc-tools/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "module-qc-tools": {
+          "build_string": "pyhcf101f3_0",
+          "name": "module-qc-tools",
+          "version": "2.7.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:24.510421225Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://atlas-itk-pixel-mqt.docs.cern.ch/latest/",
+        "homepage": "https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-tools",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-tools",
+        "summary": "Module qc tools"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "module-qc-tools = module_qc_tools.cli:app",
+            "mqt = module_qc_tools.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "module-qc-tools",
+        "python_min": "3.10",
+        "version": "2.7.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kratsg",
+          "elisabettapianori",
+          "marijamarjanovic",
+          "lime86"
+        ]
+      },
+      "package": {
+        "name": "module-qc-tools",
+        "version": "2.7.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "hatchling >=0.7",
+          "hatch-vcs"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy",
+          "tabulate",
+          "pre-commit",
+          "check-jsonschema",
+          "module-qc-data-tools >=1.4.0",
+          "module-qc-database-tools >=2.9.0",
+          "requests",
+          "typer >=0.18.0",
+          "rich",
+          "packaging"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5b0c7ffb85b97f0847db347da7fa51059e9746d0938e18821bd027310a55e82f",
+          "url": "https://pypi.org/packages/source/m/module-qc-tools/module_qc_tools-2.7.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "module_qc_tools"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "mqt --help",
+            "mqt --version",
+            "module-qc-tools --help",
+            "module-qc-tools --version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

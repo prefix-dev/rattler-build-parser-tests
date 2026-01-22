@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: r38
+
+package:
+  name: lf
+  version: ${{ version }}
+
+source:
+  url: https://github.com/gokcehan/lf/archive/${{ version }}.tar.gz
+  sha256: 9e5b8baf0af6f131c3f2254ab0454fb4e0dc54ae3e97e23de5153134889b924e
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - lf --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Terminal file manager
+  homepage: https://godoc.org/github.com/gokcehan/lf
+  repository: https://github.com/gokcehan/lf
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: pferd
+  version: "3.8.3"
+  python_min: '3.11'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pferd-${{ version }}.tar.gz
+  sha256: 0f2c4e582a885b2a1a88b9a896cfd0932e8f25db60b252c0957a6ffdd2085763
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - pferd = PFERD.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - aiohttp >=3.8.1
+    - beautifulsoup4 >=4.10.0
+    - rich >=11.0.0
+    - keyring >=23.5.0
+    - certifi >=2021.10.8
+
+tests:
+  - python:
+      imports:
+        - PFERD
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - pferd --help
+
+about:
+  summary: Programm zum Flotten Einfachen Runterladen von Dateien
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pypi.org/project/pferd/
+  repository: https://github.com/Garmelon/PFERD
+
+extra:
+  recipe-maintainers:
+    - pavelzw

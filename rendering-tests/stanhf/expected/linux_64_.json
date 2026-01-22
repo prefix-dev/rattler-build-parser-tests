@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_stanhf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_stanhf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_stanhf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_stanhf/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "stanhf": {
+          "build_string": "pyhe01879c_1",
+          "name": "stanhf",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:50:27.342580967Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/xhep-lab/stanhf",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/xhep-lab/stanhf",
+        "summary": "stanhf"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "stanhf = stanhf.cli:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "stanhf",
+        "python_min": "3.8",
+        "version": "1.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "andrewfowlie"
+        ]
+      },
+      "package": {
+        "name": "stanhf",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.8.*",
+          "setuptools >=61.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.8",
+          "arviz",
+          "matplotlib-base",
+          "click",
+          "click-help-colors",
+          "cmdstanpy",
+          "numpy",
+          "pyhf"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1158976afdea6dbb25ff441d0ed8531fa29b8e1dda8d29f507f7fbdc9768771d",
+          "url": "https://pypi.org/packages/source/s/stanhf/stanhf-1.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "stanhf"
+            ],
+            "python_version": "3.8.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.8.*",
+              "pip"
+            ]
+          },
+          "script": "stanhf --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

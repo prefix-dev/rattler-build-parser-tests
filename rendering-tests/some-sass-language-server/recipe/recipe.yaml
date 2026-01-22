@@ -1,0 +1,35 @@
+context:
+  version: "2.3.6"
+
+package:
+  name: some-sass-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/some-sass-language-server/-/some-sass-language-server-${{ version }}.tgz
+  sha256: 1bb79cec928d758cc4b12dcb06258ad71ace7f6320a827bdc490bd0e3c4eaa39
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - some-sass-language-server --node-ipc
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Modern SCSS language server.
+  homepage: https://github.com/wkillerud/some-sass
+  repository: https://github.com/wkillerud/some-sass
+
+extra:
+  recipe-maintainers:
+    - danielnachun

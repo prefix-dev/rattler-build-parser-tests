@@ -1,0 +1,80 @@
+schema_version: 1
+
+context:
+  name: mamba-ssm
+  version: "2.2.6.post3"
+
+package:
+  name: ${{ name|lower }}
+  # Strip ".postX" from version number because these just indicate wheel rebuilds and
+  # are not relevant to conda builds
+  version: ${{ (version | split('.'))[:3] | join('.') }}
+
+source:
+  url: https://github.com/state-spaces/mamba/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: a15cb544d6e64e8c1097cef57c0a77b0c7dc464bf8326d85f9928c393ad77e00
+
+build:
+  number: 0
+  script:
+    env:
+      MAMBA_FORCE_BUILD: "TRUE"
+    content:
+      - if: build_platform != target_platform
+        then:
+          # remove build prefix headers that conflict wtih cross compilation
+          # https://github.com/conda-forge/torchvision-feedstock/pull/125#discussion_r2480080905
+          - rm -rf $BUILD_PREFIX/venv/lib/python3.*/site-packages/torch/include/torch/csrc/api/include/
+      - sed -i.bak 's@"ninja"@#"ninja"@g' setup.py
+      - sed -i.bak 's@"ninja"@#"ninja"@g' pyproject.toml
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip:
+    # mamba-ssm requires CUDA (or ROCm) GPU
+    - cuda_compiler_version == "None" or not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('cuda') }}
+    - ${{ stdlib('c') }}
+    - ninja
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pytorch
+  host:
+    - cuda-version ==${{ cuda_compiler_version }}
+    - packaging
+    - pip
+    - python
+    - pytorch * cuda*
+    - setuptools >=61.0.0
+    - triton
+    - wheel
+  run:
+    - causal-conv1d >=1.5.2
+    - einops
+    - packaging
+    - python
+    - pytorch * cuda*
+    - setuptools >=61.0.0
+    - transformers
+
+tests:
+  - python:
+      imports:
+        - mamba_ssm
+      pip_check: true
+
+about:
+  homepage: https://github.com/state-spaces/mamba
+  summary: Mamba state-space model
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - timkpaine
+    - weiji14

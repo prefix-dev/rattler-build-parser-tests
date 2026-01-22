@@ -1,0 +1,90 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.3.2"
+  maturin_min: "1.0"
+  maturin_max: "2.0"
+  python_check_max: "3.14"
+
+package:
+  name: nh3
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/n/nh3/nh3-${{ version }}.tar.gz
+  sha256: f394759a06df8b685a4ebfb1874fb67a9cbfd58c64fc5ed587a663c0e63ec376
+
+build:
+  number: 1
+  skip: is_abi3 and not is_python_min
+  python:
+    version_independent: ${{ is_abi3 }}
+  script:
+    file: build-nh3
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=${{ maturin_min }},<${{ maturin_max }}
+    - if: unix
+      then:
+        - ${{ compiler("c") }}
+  host:
+    - maturin >=${{ maturin_min }},<${{ maturin_max }}
+    - pip
+    - python
+    - if: is_abi3
+      then:
+        - python-abi3
+  run:
+    - python
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+
+tests:
+  - if: is_abi3
+    then:
+      python:
+        imports: nh3
+        pip_check: true
+        python_version:
+          - ${{ python_min }}.*
+          - ${{ python_check_max }}.*
+    else:
+      python:
+        imports: nh3
+        pip_check: true
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest-cov
+        - if: is_abi3
+          then:
+            - python ${{ python_min }}.*
+    script:
+      - coverage run --source=nh3 --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=83
+
+about:
+  summary: Python binding to Ammonia HTML sanitizer Rust crate
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://pypi.org/project/nh3
+  repository: https://github.com/messense/nh3
+  documentation: https://nh3.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

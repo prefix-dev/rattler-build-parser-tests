@@ -1,0 +1,83 @@
+context:
+  name: eigenpy
+  version: "3.12.0"
+  build_num: 0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/stack-of-tasks/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e6b7f17e1b7fb61e52447ceee8f47c3fc2c8f9cc4d19317e0467dc71babdb350
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+    - cmake
+    - ninja
+    - git
+    - if: win
+      then: clang # use clang-cl on windows
+  host:
+    - eigen
+    - libboost-python-devel
+      # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
+      # This has been fixed in Numpy 2.1.
+    - if: win and match(python, ">=3.10")
+      then: numpy >=2.1
+      # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
+      # We are forced to use Numpy 1 in this case.
+    - if: win and match(python, "<3.10")
+      then: numpy >=1.19,<2
+    - if: not win
+      then: numpy
+    - python
+    - scipy
+  run:
+    - eigen
+    - libboost-python-devel
+    - if: win and match(python, ">=3.10")
+      then: numpy >=2.1
+    - if: win and match(python, "<3.10")
+      then: ${{ pin_compatible('numpy') }}
+    - python
+    - scipy
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
+
+tests:
+  - script:
+      - pkg-config --modversion eigenpy
+    requirements:
+      run:
+        - pkg-config
+        - libboost-python-devel
+  - python:
+      imports:
+        - eigenpy
+
+about:
+  homepage: http://github.com/stack-of-tasks/eigenpy
+  license: BSD-2-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Bindings between Numpy and Eigen using Boost.Python
+  repository: https://github.com/stack-of-tasks/eigenpy
+
+extra:
+  recipe-maintainers:
+    - ManifoldFR
+    - jorisv
+    - jcarpent
+    - wolfv
+    - seanyen

@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: facadedevice
+  version: "1.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/facadedevice-${{ version }}.tar.gz
+  sha256: 8a5a5c06bc607338a80aadbca2d34045eaeef526c8bc38100a30460224849f62
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools-scm
+  run:
+    - python >=${{ python_min }}
+    - pytango >=9.2.1
+    - numpy >=1.8
+
+tests:
+  - python:
+      imports:
+        - facadedevice
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Provide a descriptive interface for reactive high-level Tango devices.
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/MaxIV/tango-facadedevice
+  repository: https://gitlab.com/MaxIV/tango-facadedevice
+  documentation: https://tango-facadedevice.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - beenje

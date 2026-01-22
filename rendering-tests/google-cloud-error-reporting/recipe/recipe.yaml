@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: google-cloud-error-reporting
+  version: 1.14.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: b0b5f3372de498d9b62daedbb6ab225957ef7d9bcc4f8eab130120434a95fe18
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    # since we can't yet support the grpcio constraint for python 3.14, constrain to not include it
+    - python >=${{ python_min }},<3.14
+    - google-api-core >=1.34.0,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,!=2.8.*,!=2.9.*,!=2.10.*
+    - google-api-core-grpc
+    # version of python < 3.14, since we don't yet have the version needed for 3.14
+    - grpcio >=1.33.2,<2.0.0
+    - google-auth >=2.14.1,<3.0.0,!=2.24.0,!=2.25.0
+    - google-cloud-logging >=1.14.0,<4.0.0
+    # most restrictive version so we can stay noarch: python
+    - proto-plus >=1.25.0,<2.0.0
+    - protobuf >=3.20.2,<7.0.0,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
+
+tests:
+  - python:
+      imports:
+        - google.cloud.client
+        - google.cloud.error_reporting
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Google Cloud Error Reporting API client library
+  license: Apache-2.0
+  license_file: LICENSE
+  description: |
+    The Stackdriver Error Reporting API counts, analyzes and aggregates the crashes in your running cloud services. A centralized error management interface displays the results with sorting and filtering capabilities. Opt-in to receive email and mobile alerts on new errors.
+    See the [quick start guide](https://googleapis.dev/python/clouderrorreporting/latest/index.html#quick-start).
+
+  homepage: https://github.com/googleapis/python-error-reporting
+  repository: https://github.com/googleapis/python-error-reporting
+  documentation: https://googleapis.dev/python/clouderrorreporting/latest/index.html
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - parthea

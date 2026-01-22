@@ -1,0 +1,338 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyoxigraph",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyoxigraph/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyoxigraph/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyoxigraph/work"
+      },
+      "hash": {
+        "hash": "7f2852c",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyoxigraph": {
+          "build_string": "py312h7f2852c_1",
+          "name": "pyoxigraph",
+          "version": "0.5.3.post1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:40.886590838Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.12.* *_cpython",
+        "rocksdb": "10.9",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pyoxigraph.readthedocs.io/",
+        "homepage": "https://oxigraph.org/",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "python/THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/oxigraph/oxigraph/tree/main/python",
+        "summary": "Python bindings of Oxigraph, a SPARQL database and RDF toolkit"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "file": "build-oxigraph"
+        },
+        "string": "py312h7f2852c_1"
+      },
+      "context": {
+        "build_number": 1,
+        "maturin_max": "2.0",
+        "maturin_min": "1.0",
+        "version": "0.5.3-post.1"
+      },
+      "extra": {
+        "feedstock-name": "oxigraph",
+        "recipe-maintainers": [
+          "Tpt",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "pyoxigraph",
+        "version": "0.5.3.post1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "clangdev",
+          "llvmdev",
+          "pkg-config"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "maturin >=1.0,<2.0",
+          "rocksdb",
+          "zstd"
+        ],
+        "run": [
+          "ca-certificates",
+          "python",
+          "rocksdb",
+          "zstd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "da33beb954903d07de21bcdbd8746298781b6f95570d9351c1bef5747c4a1f18",
+          "url": "https://github.com/oxigraph/oxigraph/releases/download/v0.5.3-post.1/oxigraph_v0.5.3-post.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyoxigraph"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test_licenses.py"
+            ],
+            "source": [
+              "python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "mypy",
+              "pytest"
+            ]
+          },
+          "script": [
+            "cd python/tests",
+            "pytest -vv --color=yes --tb=long",
+            "mypy -p pyoxigraph"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oxigraph-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oxigraph-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oxigraph-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oxigraph-server/work"
+      },
+      "hash": {
+        "hash": "e860dc5",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "oxigraph-server": {
+          "build_string": "he860dc5_1",
+          "name": "oxigraph-server",
+          "version": "0.5.3.post1"
+        },
+        "pyoxigraph": {
+          "build_string": "py312h7f2852c_1",
+          "name": "pyoxigraph",
+          "version": "0.5.3.post1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:41.042014490Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "openssl": "3.5",
+        "python": "3.12.* *_cpython",
+        "rocksdb": "10.9",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://oxigraph.org/",
+        "homepage": "https://oxigraph.org/",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "cli/THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/oxigraph/oxigraph",
+        "summary": "a SPARQL database and RDF toolkit"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "file": "build-oxigraph"
+        },
+        "string": "he860dc5_1"
+      },
+      "context": {
+        "build_number": 1,
+        "maturin_max": "2.0",
+        "maturin_min": "1.0",
+        "version": "0.5.3-post.1"
+      },
+      "extra": {
+        "feedstock-name": "oxigraph",
+        "recipe-maintainers": [
+          "Tpt",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "oxigraph-server",
+        "version": "0.5.3.post1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "cargo-bundle-licenses",
+          "clangdev",
+          "llvmdev",
+          "pkg-config"
+        ],
+        "host": [
+          "rocksdb",
+          "openssl",
+          "zstd"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python",
+            "python_abi"
+          ]
+        },
+        "run": [
+          "ca-certificates",
+          "openssl",
+          "rocksdb",
+          "zstd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "da33beb954903d07de21bcdbd8746298781b6f95570d9351c1bef5747c4a1f18",
+          "url": "https://github.com/oxigraph/oxigraph/releases/download/v0.5.3-post.1/oxigraph_v0.5.3-post.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "oxigraph --version",
+            "oxigraph --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

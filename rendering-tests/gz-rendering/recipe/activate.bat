@@ -1,0 +1,3 @@
+@echo off
+set OGRE_RESOURCE_PATH=%CONDA_PREFIX%\Library\bin
+set OGRE2_RESOURCE_PATH=%CONDA_PREFIX%\Library\bin\OGRE-Next

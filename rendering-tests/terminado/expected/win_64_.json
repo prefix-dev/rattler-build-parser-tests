@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_terminado",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_terminado/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_terminado/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_terminado/work"
+      },
+      "hash": {
+        "hash": "6dadd2b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "terminado": {
+          "build_string": "pyh6dadd2b_1",
+          "name": "terminado",
+          "version": "0.18.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:57.032879449Z",
+      "variant": {
+        "__win": "__win",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "noarch_platform": "win",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a Tornado websocket backend for the Xterm.js Javascript terminal emulator library.",
+        "documentation": "http://terminado.readthedocs.org/",
+        "homepage": "https://pypi.org/project/terminado",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/jupyter/terminado",
+        "summary": "Terminals served by tornado websockets"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyh6dadd2b_1"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "0.18.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "blink1073",
+          "bollwyvl",
+          "ocefpaf",
+          "pelson",
+          "takluyver"
+        ]
+      },
+      "package": {
+        "name": "terminado",
+        "version": "0.18.1"
+      },
+      "requirements": {
+        "host": [
+          "hatchling >=1.5",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "__win",
+          "pywinpty >=1.1.0",
+          "python >=3.10",
+          "tornado >=6.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "de09f2c4b85de4765f7714688fff57d3e75bad1f909b589fde880460c753fd2e",
+          "url": "https://pypi.org/packages/source/t/terminado/terminado-0.18.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "terminado"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "coverage",
+              "pytest >=7.0",
+              "pytest-timeout",
+              "python 3.10.*"
+            ]
+          },
+          "script": {
+            "file": "run_test.py",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

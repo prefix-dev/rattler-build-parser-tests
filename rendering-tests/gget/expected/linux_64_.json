@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gget",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gget/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gget/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gget/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gget": {
+          "build_string": "pyhcf101f3_0",
+          "name": "gget",
+          "version": "0.29.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:39:31.090643538Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pachterlab/gget",
+        "license": "Apache-2.0 AND GPL-3.0-only AND BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "gget/bins/Darwin/license.txt",
+          "gget/bins/alphafold/LICENSE",
+          "gget/bins/alphafold/NOTICE",
+          "gget/bins/Windows/license.txt",
+          "gget/bins/Linux/license.txt"
+        ],
+        "summary": "Efficient querying of genomic databases."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "gget = gget.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "gget",
+        "version": "0.29.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "gget",
+        "version": "0.29.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "numpy >=1.17.2",
+          "pandas >=1.0.0",
+          "requests >=2.22.0",
+          "ipython",
+          "matplotlib-base",
+          "mysql-connector-python >=8.0.32",
+          "beautifulsoup4 >=4.10.0",
+          "ipywidgets",
+          "tqdm",
+          "lxml"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy >=1.17.2",
+          "pandas >=1.0.0",
+          "requests >=2.22.0",
+          "ipython",
+          "matplotlib-base",
+          "mysql-connector-python >=8.0.32",
+          "beautifulsoup4 >=4.10.0",
+          "ipywidgets",
+          "tqdm",
+          "lxml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5e26301090d2f29ed4677ab95f87d3e07ad581a1d856767f1dbc14ce1e794003",
+          "url": "https://pypi.org/packages/source/g/gget/gget-0.29.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gget"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "gget ref --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

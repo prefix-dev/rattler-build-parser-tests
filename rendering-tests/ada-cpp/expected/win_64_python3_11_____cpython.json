@@ -1,0 +1,163 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ada-cpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ada-cpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ada-cpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ada-cpp/work"
+      },
+      "hash": {
+        "hash": "516a2b9",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ada-cpp": {
+          "build_string": "py311h516a2b9_2",
+          "name": "ada-cpp",
+          "version": "0.2.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:06.382980369Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "occt": "7.9.0",
+        "python": "3.11.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/Krande/adacpp",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A module with drop-in replacement functions for ada-py written in c++ to improve performance."
+      },
+      "build": {
+        "number": 2,
+        "string": "py311h516a2b9_2"
+      },
+      "context": {
+        "name": "ada-cpp",
+        "version": "0.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "ada-cpp",
+        "version": "0.2.1"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "occt",
+          "ifcopenshell",
+          "cgal-cpp",
+          "scikit-build-core",
+          "nanobind",
+          "cli11",
+          "tinygltf",
+          "gmsh",
+          "pip"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "gmsh",
+              "upper_bound": "x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "ada-cpp",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/fix_test_imports_check.patch"
+          ],
+          "sha256": "63e94273aeb79e1af058c2bc8f6d02a05134fae0b7e21800d975e2a51a164e26",
+          "url": "https://github.com/Krande/adacpp/archive/refs/tags/v0.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests",
+              "files"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest tests"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

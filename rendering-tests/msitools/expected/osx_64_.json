@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_msitools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_msitools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_msitools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_msitools/work"
+      },
+      "hash": {
+        "hash": "1d26631"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "msitools": {
+          "build_string": "h1d26631_0",
+          "name": "msitools",
+          "version": "0.106"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:44:13.244357251Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "glib": "2",
+        "libuuid": "2",
+        "libxml2_devel": "2.14",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://wiki.gnome.org/msitools/HowTo/CreateLibraryWxi",
+        "homepage": "https://wiki.gnome.org/msitools",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "copyright"
+        ],
+        "repository": "https://gitlab.gnome.org/GNOME/msitools",
+        "summary": "Simple, fast, extensible JSON encoder/decoder for Python"
+      },
+      "build": {
+        "number": 0,
+        "string": "h1d26631_0"
+      },
+      "context": {
+        "name": "msitools",
+        "version": "0.106"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "msitools",
+        "version": "0.106"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "bison",
+          "flex",
+          "cmake",
+          "pkg-config",
+          "meson",
+          "vala",
+          "gobject-introspection 1.82.*",
+          "perl *",
+          "gettext-tools",
+          "glib",
+          "gcab",
+          "libgsf",
+          "libxml2-devel"
+        ],
+        "host": [
+          "libgirepository 1.82.*",
+          "libgsf",
+          "libuuid",
+          "libxml2-devel",
+          "gcab",
+          "glib",
+          "libintl-devel",
+          "zlib"
+        ],
+        "run": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libgsf",
+              "upper_bound": "x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Look-for-vapi-files-in-prefix.patch"
+          ],
+          "sha256": "1ed34279cf8080f14f1b8f10e649474125492a089912e7ca70e59dfa2e5a659b",
+          "url": "http://ftp.gnome.org/pub/GNOME/sources/msitools/0.106/msitools-0.106.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/include/libmsi-1.0/libmsi.h",
+            "test -f $PREFIX/lib/libmsi-1.0${SHLIB_EXT}",
+            "msiextract --help",
+            "wixl --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

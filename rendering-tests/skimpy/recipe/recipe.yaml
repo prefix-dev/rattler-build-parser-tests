@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: skimpy
+  version: "0.0.20"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/skimpy-${{ version }}.tar.gz
+  sha256: 95891fbc1e206a8659813d3b772c0af7fefb0f0e9b0d78e5726cf4d03296829e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - skimpy=skimpy.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - click >=8.1.7
+    - ipykernel >=6.29.5
+    - numpy >=2.0.2
+    - pandas-stubs >=2.2.2.240807
+    - pandas >=2.2.3
+    - polars >=1.17.1
+    - pygments >=2.18.0
+    - rich >=13.9.4
+    - typeguard >=4.4.1
+    - pyarrow >=17.0.0
+    - pydoclint >=0.6.0
+    - python-duckdb >=1.2.2
+
+tests:
+  - python:
+      imports:
+        - skimpy
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - skimpy --help
+
+about:
+  summary: Light weight tool that provides summary statistics about variables in data frames within the console.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/aeturrell/skimpy
+  documentation: https://aeturrell.github.io/skimpy/
+
+extra:
+  recipe-maintainers:
+    - thewchan

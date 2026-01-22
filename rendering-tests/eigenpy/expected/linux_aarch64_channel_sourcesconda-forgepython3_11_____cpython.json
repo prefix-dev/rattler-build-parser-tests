@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigenpy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigenpy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigenpy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigenpy/work"
+      },
+      "hash": {
+        "hash": "72b2692",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "eigenpy": {
+          "build_string": "np2py311h72b2692_1",
+          "name": "eigenpy",
+          "version": "3.12.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:19.782828552Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_python_devel": "1.88",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://github.com/stack-of-tasks/eigenpy",
+        "license": "BSD-2-Clause",
+        "license_family": "BSD",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/stack-of-tasks/eigenpy",
+        "summary": "Bindings between Numpy and Eigen using Boost.Python"
+      },
+      "build": {
+        "number": 1,
+        "string": "np2py311h72b2692_1"
+      },
+      "context": {
+        "build_num": 0,
+        "name": "eigenpy",
+        "version": "3.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ManifoldFR",
+          "jorisv",
+          "jcarpent",
+          "wolfv",
+          "seanyen"
+        ]
+      },
+      "package": {
+        "name": "eigenpy",
+        "version": "3.12.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "cmake",
+          "ninja",
+          "git"
+        ],
+        "host": [
+          "eigen",
+          "libboost-python-devel",
+          "numpy",
+          "python",
+          "scipy"
+        ],
+        "run": [
+          "eigen",
+          "libboost-python-devel",
+          "python",
+          "scipy"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "eigenpy",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e6b7f17e1b7fb61e52447ceee8f47c3fc2c8f9cc4d19317e0467dc71babdb350",
+          "url": "https://github.com/stack-of-tasks/eigenpy/releases/download/v3.12.0/eigenpy-3.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config",
+              "libboost-python-devel"
+            ]
+          },
+          "script": "pkg-config --modversion eigenpy"
+        },
+        {
+          "python": {
+            "imports": [
+              "eigenpy"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

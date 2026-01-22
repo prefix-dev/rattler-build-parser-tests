@@ -1,0 +1,123 @@
+context:
+  version: "2.11.0"
+  touch_is_freethreading: ${{ is_freethreading }}
+  build_num: 1
+  mlevel: ${{ (microarch_level | int) if microarch_level else 0 }}
+  use_fast_math: ${{ linux and x86_64 and match(c_stdlib_version, ">=2.28") }}
+
+package:
+  name: "pyscf"
+  version: ${{ version }}
+
+source:
+  url: https://github.com/pyscf/pyscf/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 314bb28890c36a151d4cae87b4077f0900f7d306880104b0fbbcbd0a8ae5b9ed
+
+build:
+  number: ${{ ( (build_num | int) + 100 * (mlevel | int) + (1000 if use_fast_math else 0) ) }}
+  python:
+    version_independent: true
+  skip:
+    - win
+    - not is_python_min
+    - microarch_level > 1 and not (unix and x86_64)
+  script:
+    - if: use_fast_math
+      then:
+        # this contains "-ffast-math"
+        # libmvec's vector math was introduced in glibc 2.22,
+        - cp $SRC_DIR/pyscf/lib/cmake_user_inc_examples/cmake.user.inc-gnu $SRC_DIR/pyscf/lib/cmake.arch.inc
+        # need to link libm for -ffast-math
+        - echo "link_libraries(m)" >> $SRC_DIR/pyscf/lib/cmake.arch.inc
+    - if: (microarch_level == 4)
+      then:
+        # manually add the appropriate flags so we can cross compile for v4
+        - export CFLAGS="${CFLAGS} -march=x86-64-v4"
+        - export CXXFLAGS="${CXXFLAGS} -march=x86-64-v4"
+        - export CPPFLAGS="${CPPFLAGS} -march=x86-64-v4"
+    - export CMAKE_CONFIGURE_ARGS="${CMAKE_ARGS} -DBLAS_LIBRARIES=lapack;blas -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_SHARED_LIBS=ON -DBUILD_LIBCINT=OFF -DBUILD_LIBXC=OFF -DBUILD_XCFUN=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -LAH"
+    - export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake >=3.10
+    - make
+    - python
+    - pip
+    - sed
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+    - setuptools
+    # following the trick in graph-tool-feedstock
+    # to cross-compile for v4
+    - if: unix and x86_64 and ( microarch_level < 4)
+      then: x86_64-microarch-level ==${{ microarch_level }}
+  host:
+    - libblas
+    - libcint
+    - libxc-c >=6,<8
+    - if: linux
+      then: libgomp
+      else: llvm-openmp
+    - make
+    - pip
+    - python
+    - setuptools
+    - xcfun ==2.1.1
+  run:
+    - h5py >=2.7
+    - numpy >=1.13,!=1.16,!=1.17
+    - python
+    - scipy >=0.19,!=1.5.0,!=1.5
+    - setuptools
+    - if: unix and x86_64 and (microarch_level == 4)
+      then: _x86_64-microarch-level >=${{ microarch_level }}
+  run_constraints:
+    - pyberny >=0.6.2
+    - geometric >=0.9.7.2
+
+tests:
+  - if: (microarch_level != 4)
+    then:
+      - python:
+          imports:
+            - pyscf
+            - pyscf.dft
+            # Tests LIBXC and XCFUN
+          python_version: ["${{ python_min ~ '.*' }}", "3.11.*", "3.12.*", "3.13.*"]
+          pip_check: true
+  - if: (microarch_level != 4)
+    then:
+      - script:
+        - cp pyscf_conf.py .pyscf_conf.py
+        - pytest pyscf/lib pyscf/scf -s -c pytest.ini --no-cov # Previously this ran: # pytest pyscf/lib pyscf/scf -s -c setup.cfg --cov-report xml --cov-report term --cov-config .coveragerc --cov pyscf # Disabled due to python 3.12.1 memory leak. Should be resolved in python 3.12.2
+        requirements:
+          run:
+            - pip
+            - pytest
+            - pytest-cov
+        files:
+          source:
+            - .coveragerc
+            - pytest.ini
+            - pyscf
+          recipe:
+            - pyscf_conf.py
+
+about:
+  homepage: https://pyscf.org
+  summary: 'PySCF: Python-based Simulations of Chemistry Framework'
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/pyscf/pyscf
+
+extra:
+  recipe-maintainers:
+    - awvwgk
+    - maxscheurer
+    - BastianZim

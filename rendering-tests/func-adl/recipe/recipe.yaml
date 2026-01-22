@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: func-adl
+  version: "3.5.0"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/func_adl-${{ version }}.tar.gz
+  sha256: 6f7579b198351aa33f27b20ac723d3f28a3e05e99848be8ff73222f530611db1
+
+build:
+  # FIXME: https://github.com/iris-hep/func_adl/blob/b67b122de5000e6b3a2541d3ae9770faa7cb6086/setup.py#L55
+  number: 0
+  noarch: python
+  script: func_adl_version="${{ version }}" ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - make-it-sync
+
+tests:
+  - python:
+      imports:
+        - func_adl
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip list
+
+about:
+  summary: Functional Analysis Description Language Base Package
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/iris-hep/func_adl
+  repository: https://github.com/iris-hep/func_adl
+  documentation: https://gordonwatts.github.io/xaod_usage
+
+extra:
+  recipe-maintainers:
+    - gordonwatts
+    - matthewfeickert

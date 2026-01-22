@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_traefik",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_traefik/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_traefik/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_traefik/work"
+      },
+      "hash": {
+        "hash": "4ff9b62"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "traefik": {
+          "build_string": "h4ff9b62_0",
+          "name": "traefik",
+          "version": "3.6.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:59.131939995Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Traefik (pronounced traffic) is a modern HTTP reverse proxy and load balancer\nthat makes deploying microservices easy. Traefik integrates with your existing\ninfrastructure components (Docker, Swarm mode, Kubernetes, Consul, Etcd,\nRancher v2, Amazon ECS, ...) and configures itself automatically and dynamically.\nPointing Traefik at your orchestrator should be the only configuration step you need.",
+        "documentation": "https://doc.traefik.io/traefik",
+        "homepage": "https://traefik.io/",
+        "license": "MIT",
+        "license_file": [
+          "src/github.com/traefik/traefik/LICENSE.md",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/traefik/traefik",
+        "summary": "The Cloud Native Application Proxy"
+      },
+      "build": {
+        "number": 0,
+        "string": "h4ff9b62_0"
+      },
+      "context": {
+        "version": "3.6.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "sodre"
+        ]
+      },
+      "package": {
+        "name": "traefik",
+        "version": "3.6.7"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "go-licenses",
+          "nodejs 22.*",
+          "yarn 4.9.1.*",
+          "macosx_deployment_target_osx-64 10.13.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "59158f0a46a8cfeb4766e4633a686a19bfb18bcdc44bedcca141e7e20aaa1a02",
+          "target_directory": "src/github.com/traefik/traefik",
+          "url": "https://github.com/traefik/traefik/releases/download/v3.6.7/traefik-v3.6.7.src.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "traefik${{ target_goexe }} version",
+            "traefik${{ target_goexe }} version | grep -iE  \"Version:\\s+${{ version | replace(\".\", \"\\\\.\") }}$\"",
+            "traefik${{ target_goexe }} --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

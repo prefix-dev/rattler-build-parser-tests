@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_auditwheel-emscripten",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_auditwheel-emscripten/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_auditwheel-emscripten/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_auditwheel-emscripten/work"
+      },
+      "hash": {
+        "hash": "ac95a24",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "auditwheel-emscripten": {
+          "build_string": "pyhac95a24_0",
+          "name": "auditwheel-emscripten",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:07.690956470Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.12",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pypi.org/project/auditwheel-emscripten",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pyodide/auditwheel-emscripten",
+        "summary": "auditwheel-like tool for Pyodide"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhac95a24_0"
+      },
+      "context": {
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "agriyakhetarpal"
+        ]
+      },
+      "package": {
+        "name": "auditwheel-emscripten",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "host": [
+          "hatch-vcs",
+          "hatchling",
+          "pip",
+          "python 3.12.*"
+        ],
+        "run": [
+          "leb128",
+          "packaging",
+          "pyodide-cli",
+          "python >=3.12",
+          "typer-slim",
+          "wheel"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7265c26cd2638abafeba4b3c54d30511f6f777ce710df768b35aae9b38f92863",
+          "url": "https://pypi.org/packages/source/a/auditwheel-emscripten/auditwheel_emscripten-0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "auditwheel_emscripten"
+            ],
+            "python_version": [
+              "3.12.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.12.*"
+            ]
+          },
+          "script": "pyodide auditwheel --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

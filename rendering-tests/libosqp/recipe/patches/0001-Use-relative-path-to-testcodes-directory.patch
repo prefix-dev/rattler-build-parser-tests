@@ -1,0 +1,33 @@
+From 0fe4635e7973a46fe3f4233dd76744d0a3f668bf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Sebastian=20P=C3=B6lsterl?= <sebp@k-d-w.org>
+Date: Sat, 19 Apr 2025 18:21:31 +0200
+Subject: [PATCH 1/2] Use relative path to testcodes directory
+
+---
+ tests/CMakeLists.txt | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 2959f86f..1c8cbfcf 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -145,13 +145,10 @@ endif()
+ # ----------------------------------------------
+ # Create a folder to store the test codes
+ # ----------------------------------------------
+-file( MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/testcodes )
+-file( MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/testcodes/embedded1 )
+-file( MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/testcodes/embedded2 )
+ 
+-add_compile_definitions(CODEGEN_DIR="${CMAKE_CURRENT_BINARY_DIR}/testcodes/")
+-add_compile_definitions(CODEGEN1_DIR="${CMAKE_CURRENT_BINARY_DIR}/testcodes/embedded1/")
+-add_compile_definitions(CODEGEN2_DIR="${CMAKE_CURRENT_BINARY_DIR}/testcodes/embedded2/")
++add_compile_definitions(CODEGEN_DIR="./testcodes/")
++add_compile_definitions(CODEGEN1_DIR="./testcodes/embedded1/")
++add_compile_definitions(CODEGEN2_DIR="./testcodes/embedded2/")
+ 
+ option(OSQP_GENERATE_COVERAGE_REPORT "Generate an HTML coverage report")
+ mark_as_advanced(OSQP_GENERATE_COVERAGE_REPORT)
+-- 
+2.50.1 (Apple Git-155)
+

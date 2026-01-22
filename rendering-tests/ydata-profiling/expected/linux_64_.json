@@ -1,0 +1,169 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ydata-profiling",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ydata-profiling/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ydata-profiling/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ydata-profiling/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ydata-profiling": {
+          "build_string": "pyhcf101f3_0",
+          "name": "ydata-profiling",
+          "version": "4.18.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:41:02.389476672Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://ydata-profiling.ydata.ai/",
+        "homepage": "https://github.com/ydataai/ydata-profiling",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Generate profile report for pandas DataFrame"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ydata_profiling = ydata_profiling.controller.console:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "ydata-profiling",
+        "version": "4.18.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "ydata-profiling",
+        "version": "4.18.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools >=72.0.0,<80.0.0",
+          "setuptools-scm >=8.0.0,<9.0.0",
+          "wheel >=0.38.4,<1.0.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "scipy >=1.8,<1.17",
+          "pandas >1.5,<3.0,!=1.4.0",
+          "matplotlib-base >=3.5,<=3.10",
+          "pydantic >=2,<3",
+          "pyyaml >=6.0.3,<6.1",
+          "jinja2 >=3.1.6,<3.2",
+          "visions >=0.7.5,<0.8.2",
+          "numpy >=1.22,<2.4",
+          "minify-html >=0.15.0",
+          "filetype >=1.0.0",
+          "phik >=0.12.5,<0.13",
+          "requests >=2.32.0,<3",
+          "tqdm >=4.66.3,<5",
+          "seaborn >=0.10.1,<0.14",
+          "multimethod >=1.4,<2",
+          "statsmodels >=0.13.2,<1",
+          "typeguard >=4,<5",
+          "imagehash ==4.3.2",
+          "wordcloud >=1.9.4",
+          "dacite >=1.9,<2",
+          "numba >=0.60,<0.63"
+        ],
+        "run_constraints": [
+          "jupyter-client >=5.3.4",
+          "jupyter-core >=4.6.3",
+          "ipywidgets >=7.5.1",
+          "tangled-up-in-unicode ==0.2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6dc529893c84abecda2e6038564cabcd69a6b801a730e077b61b6d500a98f30c",
+          "url": "https://pypi.org/packages/source/y/ydata-profiling/ydata_profiling-4.18.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ydata_profiling"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "ydata_profiling --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

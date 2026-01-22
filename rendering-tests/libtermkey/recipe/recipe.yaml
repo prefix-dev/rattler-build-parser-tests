@@ -1,0 +1,51 @@
+context:
+  version: 0.22
+
+package:
+  name: libtermkey
+  version: ${{ version }}
+
+source:
+  url: https://www.leonerd.org.uk/code/libtermkey/libtermkey-${{ version }}.tar.gz
+  sha256: 6945bd3c4aaa83da83d80a045c5563da4edd7d0374c62c0d35aec09eb3014600
+
+build:
+  number: 3
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: win
+      then:
+        - cmake
+        - ninja
+    - if: unix
+      then:
+        - make
+        - pkg-config
+  host:
+    - if: unix
+      then:
+        - libtool
+        - ncurses
+    - unibilium
+  run_exports:
+    - ${{ pin_subpackage('libtermkey', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f ${PREFIX}/lib/libtermkey${SHLIB_EXT}
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Library for processing keyboard entry from the terminal
+  homepage: http://www.leonerd.org.uk/code/libtermkey/
+  repository: http://www.leonerd.org.uk/code/libtermkey/
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - danielnachun

@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 1.6.3
+
+package:
+  name: pylibmc
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pylibmc/pylibmc-${{ version }}.tar.gz
+  sha256: eefa46115537abad65fbe2e032acd1b3463d9bf9e335af4b0916df4e4d3206e0
+
+build:
+  number: 4
+  skip: win
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - libmemcached
+    - pip
+    - python
+    - setuptools
+    - zlib
+  run:
+    - libmemcached
+    - python
+
+tests:
+  - python:
+      imports:
+        - _pylibmc
+        - pylibmc
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Quick and small memcached client for Python
+  homepage: https://github.com/lericson/pylibmc
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

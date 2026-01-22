@@ -1,0 +1,39 @@
+context:
+  version: "6.0.0"
+
+package:
+  name: jasmine-npm
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/jasmine/-/jasmine-${{ version }}.tgz
+  sha256: 6f003aa237a874601333532446f22794d1d4d0a23a1819b07f2a56bdafbfdf82
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - jasmine help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: CLI for Jasmine, a simple JavaScript testing framework for browsers and Node
+  homepage: https://github.com/jasmine/jasmine-npm
+  repository: https://github.com/jasmine/jasmine-npm
+
+extra:
+  recipe-maintainers:
+    - danielnachun

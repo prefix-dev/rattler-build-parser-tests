@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: delayed-assert
+  version: 0.4.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/delayed_assert-${{ version }}.tar.gz
+  sha256: 3ec7e3ab65ca674c241ebe66510104b318b3688a520d02a9da08a1abfd127d36
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - delayed_assert
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Delayed/soft assertions for python
+  license: Unlicense
+  license_file: LICENSE
+  homepage: https://github.com/pr4bh4sh/python-delayed-assert
+
+extra:
+  recipe-maintainers:
+    - thewchan

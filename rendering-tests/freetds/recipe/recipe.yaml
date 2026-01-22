@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: freetds
+  version: "1.5.10"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://www.freetds.org/files/stable/freetds-${{ version }}.tar.gz
+  sha256: db1e8ea58b2465e70b79681f35086bcfd4ed4fad0efe23fcdf60cd3423742210
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - pkg-config
+    - if: unix
+      then:
+        - automake 1.17.*
+        - gettext-tools
+        - gnuconfig
+        - make
+        - libtool
+    - if: win
+      then:
+        - cmake
+        - ninja
+  host:
+    - openssl
+    - if: unix
+      then:
+        - unixodbc
+        - krb5
+    - if: not win
+      then: readline
+    - if: unix
+      then: libiconv
+    - if: win
+      then: perl
+  run:
+    - if: unix
+      then: krb5
+  run_exports:
+    - ${{ pin_subpackage('freetds') }}
+
+tests:
+  - script:
+      - tsql -C
+
+about:
+  license: LGPL-2.0-only
+  license_file: COPYING_LIB.txt
+  summary: "FreeTDS is a free implementation of Sybase's DB-Library, CT-Library, and ODBC libraries"
+  homepage: http://www.freetds.org/
+  repository: https://github.com/FreeTDS/freetds
+  documentation: http://www.freetds.org/docs.html
+
+extra:
+  recipe-maintainers:
+    - mariusvniekerk
+    - xhochy

@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyright",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyright/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyright/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyright/work"
+      },
+      "hash": {
+        "hash": "5fc27f1",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyright": {
+          "build_string": "py310h5fc27f1_0",
+          "name": "pyright",
+          "version": "1.1.408"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:52.344668846Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/RobertCraigie/pyright-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/RobertCraigie/pyright-python",
+        "summary": "Command line wrapper for pyright, a static type checker"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pyright = pyright.cli:entrypoint",
+            "pyright-python = pyright.cli:entrypoint",
+            "pyright-langserver = pyright.langserver:entrypoint",
+            "pyright-python-langserver = pyright.langserver:entrypoint"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py310h5fc27f1_0"
+      },
+      "context": {
+        "name": "pyright",
+        "version": "1.1.408"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "pyright",
+        "version": "1.1.408"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "nodeenv >=1.6.0",
+          "nodejs",
+          "python",
+          "typing_extensions >=4.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f28f2321f96852fa50b5829ea492f6adb0e6954568d1caa3f3af3a5f555eb684",
+          "url": "https://pypi.org/packages/source/p/pyright/pyright-1.1.408.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyright"
+            ]
+          }
+        },
+        {
+          "script": [
+            "pyright --help",
+            "pyright-python --help",
+            "pyright-langserver --node-ipc",
+            "pyright-python-langserver --node-ipc"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

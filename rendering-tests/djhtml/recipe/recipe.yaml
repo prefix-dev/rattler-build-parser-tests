@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  version: 3.0.10
+
+package:
+  name: djhtml
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/djhtml/djhtml-${{ version }}.tar.gz
+  sha256: dd4ebf778d3b7da7a6e6970f7e66740f08ed7485485491b9a80527f526c838d9
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - djtxt = djhtml.__main__:main
+      - djhtml = djhtml.__main__:main
+      - djcss = djhtml.__main__:main
+      - djjs = djhtml.__main__:main
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - djhtml
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - djtxt --help
+      - djhtml --help
+      - djcss --help
+      - djjs --help
+
+about:
+  summary: Django/Jinja template indenter
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/rtts/djhtml
+
+extra:
+  recipe-maintainers:
+    - danielnachun

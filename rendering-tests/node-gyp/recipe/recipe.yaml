@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: node-gyp
+  version: "12.1.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/${{ name }}/-/${{ name }}-${{ version }}.tgz
+  sha256: 492bca8e813411386e61e488f95b375262aa8f262e6e8b20d162e26bdf025f16
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - nodejs
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - node-gyp --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - ThirdPartyLicenses.txt
+  summary: Node.js native addon build tool
+  homepage: https://github.com/nodejs/node-gyp
+
+extra:
+  recipe-maintainers:
+    - xhochy

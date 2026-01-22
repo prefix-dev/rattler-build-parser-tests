@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: mysqlclient
+  version: 2.2.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 24ae22b59416d5fcce7e99c9d37548350b4565baac82f95e149cac6ce4163845
+
+build:
+  number: 4
+  script:
+    - if: unix
+      then:
+        - python -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - pkg-config
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pip
+    - setuptools
+    # provides mysql-libs via a run_export
+    - mysql-devel
+    - if: win
+      then: mariadb-connector-c ==3.4.3
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - MySQLdb
+        - MySQLdb.constants
+        - MySQLdb.cursors
+
+about:
+  license: GPL-2.0-or-later
+  license_file: LICENSE
+  summary: Python interface to MySQL
+  homepage: https://github.com/PyMySQL/mysqlclient-python
+  documentation: https://mysqlclient.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - InterferencePattern
+    - halldc
+    - synapticarbors

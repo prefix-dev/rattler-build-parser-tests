@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-expand",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-expand/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-expand/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-expand/work"
+      },
+      "hash": {
+        "hash": "b17b654"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cargo-expand": {
+          "build_string": "hb17b654_0",
+          "name": "cargo-expand",
+          "version": "1.0.119"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:41:38.625404726Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Print out the result of macro expansion and derive expansion applied to the current crate.",
+        "documentation": "https://docs.rs/crate/cargo-expand/latest",
+        "homepage": "https://github.com/dtolnay/cargo-expand",
+        "license": "MIT OR Apache-2.0",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/dtolnay/cargo-expand",
+        "summary": "Subcommand to show result of macro expansion"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "hb17b654_0"
+      },
+      "context": {
+        "name": "cargo-expand",
+        "version": "1.0.119"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "cargo-expand",
+        "version": "1.0.119"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c4b2c38dd157ce8eeb81ee1762b0a235ed23d2300fdb29a73c54313a927b0262",
+          "url": "https://github.com/dtolnay/cargo-expand/archive/refs/tags/1.0.119.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "cargo-expand --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

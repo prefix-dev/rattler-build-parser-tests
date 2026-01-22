@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: saa
+  version: 0.0.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/saa-${{ version }}.tar.gz
+  sha256: fd7e432ede573e6ebb04444124492470c46422997bba7cc8147e7338ac83eef1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pdm-backend
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - saa
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Converting time into natural language phrases
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/Proteusiq/saa
+
+extra:
+  recipe-maintainers:
+    - thewchan

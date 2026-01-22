@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-embedded-template",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-embedded-template/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-embedded-template/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-embedded-template/work"
+      },
+      "hash": {
+        "hash": "5fc27f1",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree-sitter-embedded-template": {
+          "build_string": "py310h5fc27f1_1",
+          "name": "tree-sitter-embedded-template",
+          "version": "0.25.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:50:54.930331689Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A tree-sitter parser for templating languages like ERB and EJS,\nin which scripting code can be embedded within text content using\nthe delimiters <% and %>",
+        "homepage": "https://github.com/tree-sitter/tree-sitter-embedded-template",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/tree-sitter/tree-sitter-embedded-template",
+        "summary": "A tree-sitter parser for templating languages like ERB and EJS."
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation -vv",
+        "string": "py310h5fc27f1_1"
+      },
+      "context": {
+        "name": "tree-sitter-embedded-template",
+        "version": "0.25.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "tree-sitter-embedded-template",
+        "version": "0.25.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cross-python_linux-ppc64le",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=42"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c45330d6c53b64c9dfbcb00e85ddb5b3f79e0f3457bc76ca764c57630ee4df54",
+          "url": "https://github.com/tree-sitter/tree-sitter-embedded-template/archive/refs/tags/v0.25.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter_embedded_template"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "bindings/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python",
+              "tree_sitter"
+            ]
+          },
+          "script": "python -m pytest bindings/python/tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

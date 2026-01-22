@@ -1,0 +1,215 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_webkit2gtk4.1",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_webkit2gtk4.1/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_webkit2gtk4.1/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_webkit2gtk4.1/work"
+      },
+      "hash": {
+        "hash": "78154aa",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "webkit2gtk4.1": {
+          "build_string": "pl5321h78154aa_1",
+          "name": "webkit2gtk4.1",
+          "version": "2.48.5"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:53:02.506619482Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.34",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "expat": "2",
+        "fontconfig": "2",
+        "glib": "2",
+        "gst_plugins_base": "1.26",
+        "gstreamer": "1.26",
+        "lcms2": "2",
+        "libavif": "1",
+        "liblzma_devel": "5",
+        "libpng": "1.6",
+        "libsecret": "0.21",
+        "libsoup": "3",
+        "perl": "5.32.1",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "WebKitGTK is a full-featured port of the WebKit rendering engine, \nsuitable for projects requiring any kind of web integration, from \nhybrid HTML/CSS applications to full-fledged web browsers.",
+        "homepage": "https://webkitgtk.org/",
+        "license": "LGPL-2.1-only AND BSD-2-Clause AND BSD-3-Clause AND ISC AND bzip2-1.0.6 AND NCSA AND MIT AND GPL-2.0-only AND MPL-1.1 AND SunPro AND Unicode-TOU AND Apache-2.0 AND GPL-3.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-only WITH Autoconf-exception-3.0 AND MPL-2.0 AND OFL-1.1 AND (AFL-2.0 OR GPL-2.0-or-later) AND BSD-Source-Code AND BSD-2-Clause-Views AND LGPL-2.1-or-later AND (NCSA OR MIT) AND Apache-2.0 WITH LLVM-exception AND ICU AND BSL-1.0",
+        "license_file": [
+          "Source/JavaScriptCore/COPYING.LIB",
+          "Source/ThirdParty/ANGLE/LICENSE",
+          "Source/ThirdParty/ANGLE/src/third_party/libXNVCtrl/LICENSE",
+          "Source/WebCore/LICENSE-APPLE",
+          "Source/WebCore/LICENSE-LGPL-2",
+          "Source/WebCore/LICENSE-LGPL-2.1",
+          "Source/WebInspectorUI/UserInterface/External/CodeMirror/LICENSE",
+          "Source/WebInspectorUI/UserInterface/External/Esprima/LICENSE",
+          "Source/WebInspectorUI/UserInterface/External/three.js/LICENSE",
+          "Source/WTF/icu/LICENSE",
+          "Source/WTF/wtf/dtoa/COPYING",
+          "Source/WTF/wtf/dtoa/LICENSE"
+        ],
+        "summary": "WebKitGTK for GTK 3 and libsoup 3"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "args=(\n  -DPORT=GTK\n  -DENABLE_DOCUMENTATION=OFF\n  -DENABLE_GAMEPAD=OFF\n  -DUSE_GTK4=OFF\n  -DUSE_LIBBACKTRACE=OFF \n  # libmesa package is built without screen rendering capabilities so we can't enable GBM\n  # https://github.com/conda-forge/mesalib-feedstock/blob/f0c17a763eda1e0ef13cd1aa81d597d50fde0d80/recipe/meta.yaml#L54\n  -DUSE_GBM=OFF\n  -DUSE_SYSTEM_SYSPROF_CAPTURE=NO \n)\n",
+          "cmake ${CMAKE_ARGS} -S . -B build -GNinja \"${args[@]}\"",
+          "cmake --build build",
+          "cmake --install build"
+        ],
+        "string": "pl5321h78154aa_1"
+      },
+      "context": {
+        "version": "2.48.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "haecker-felix",
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "webkit2gtk4.1",
+        "version": "2.48.5"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.34.*",
+          "pkg-config",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "bubblewrap",
+          "enchant",
+          "epoxy",
+          "expat",
+          "flite-dev",
+          "fontconfig",
+          "glib",
+          "gobject-introspection",
+          "gperf",
+          "gst-plugins-bad",
+          "gst-plugins-base",
+          "gst-plugins-good",
+          "gstreamer",
+          "gtk3",
+          "hyphen",
+          "lcms2",
+          "libavif",
+          "libdrm",
+          "libegl-devel",
+          "libgcrypt",
+          "libjxl",
+          "liblzma-devel",
+          "libpng",
+          "libseccomp",
+          "libsecret",
+          "libsoup",
+          "libsystemd",
+          "libtasn1",
+          "libxslt",
+          "perl",
+          "ruby",
+          "unifdef",
+          "wayland-protocols",
+          "woff2",
+          "xdg-dbus-proxy",
+          "xorg-xorgproto",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "exact": true,
+                "name": "webkit2gtk4.1"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "git": "https://github.com/WebKit/WebKit.git",
+          "rev": "refs/tags/webkitgtk-2.48.5"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "bin/WebKitWebDriver"
+            ],
+            "include": [
+              "webkitgtk-4.1/JavaScriptCore/JavaScript.h",
+              "webkitgtk-4.1/jsc/jsc.h",
+              "webkitgtk-4.1/webkit/WebKitVersion.h",
+              "webkitgtk-4.1/webkit2/webkit2.h",
+              "webkitgtk-4.1/webkitdom/webkitdom.h"
+            ],
+            "lib": [
+              "libjavascriptcoregtk-4.1",
+              "libwebkit2gtk-4.1"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

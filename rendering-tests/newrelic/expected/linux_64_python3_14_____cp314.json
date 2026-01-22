@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newrelic",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newrelic/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newrelic/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_newrelic/work"
+      },
+      "hash": {
+        "hash": "0f05182",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "newrelic": {
+          "build_string": "py314h0f05182_0",
+          "name": "newrelic",
+          "version": "11.2.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:21.118738231Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The newrelic package instruments your application for performance\nmonitoring and advanced performance analytics with New Relic.\n\nPinpoint and solve Python application performance issues down to the line\nof code. New Relic APM is the only tool you'll need to see everything in\nyour Python application, from the end user experience to server monitoring.\nTrace problems down to slow database queries, slow 3rd party APIs and web\nservices, caching layers, and more. Monitor your app in a production\nenvironment and make sure your app can stand a big spike in traffic by\nrunning scalability reports.",
+        "documentation": "https://docs.newrelic.com/docs/agents/python-agent",
+        "homepage": "https://github.com/newrelic/newrelic-python-agent",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRD_PARTY_NOTICES.md",
+          "newrelic/packages/wrapt/LICENSE",
+          "newrelic/packages/urllib3/LICENSE.txt"
+        ],
+        "summary": "New Relic Python Agent"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "newrelic-admin = newrelic.admin:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check",
+        "string": "py314h0f05182_0"
+      },
+      "context": {
+        "version": "11.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hmstepanek",
+          "lrafeei",
+          "umaannamalai",
+          "TimPansino",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "newrelic",
+        "version": "11.2.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=61.2",
+          "setuptools_scm >=3.2,<10"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6dd9f303904220700ba8b25af2f622cd23a4b5071cc53b4309e90bf3dcdb7221",
+          "url": "https://pypi.org/packages/source/n/newrelic/newrelic-11.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "newrelic"
+            ]
+          }
+        },
+        {
+          "script": "newrelic-admin help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

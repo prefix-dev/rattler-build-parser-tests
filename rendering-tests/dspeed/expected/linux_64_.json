@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dspeed",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dspeed/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dspeed/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dspeed/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dspeed": {
+          "build_string": "pyhcf101f3_0",
+          "name": "dspeed",
+          "version": "2.1.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:48:28.020769685Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "DSPeed (pronounced dee-ess-speed) is a python-based package that performs\nbulk, high-performance digital signal processing (DSP) of time-series data\nsuch as digitized waveforms.\nThis package is part of the pygama scientific computing suite.\n\nDSPeed enables the user to define an arbitrary chain of vectorized signal\nprocessing routines that can be applied in bulk to waveforms and other\ndata provided using the LH5-format.\nThese routines can include numpy ufuncs, custom functions accelerated with\nnumba, or other arbitrary functions.\nDSPeed will carefully manage file I/O to optimize memory usage and performance.\nProcessing chains are defined using highly portable JSON files that can be\napplied to data from multiple digitizers.",
+        "documentation": "https://dspeed.readthedocs.io/",
+        "homepage": "https://github.com/legend-exp/dspeed",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/legend-exp/dspeed",
+        "summary": "Fast Digital Signal Processing for particle detectors in Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "dspeed",
+        "python_min": "3.10",
+        "version": "2.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "gipert",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "dspeed",
+        "version": "2.1.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=42.0.0",
+          "setuptools-scm >=3.4"
+        ],
+        "run": [
+          "python >=3.10",
+          "pywavelets",
+          "colorlog",
+          "h5py >=3.2",
+          "iminuit",
+          "legend-pydataobj >=1.16.0",
+          "matplotlib-base",
+          "numba !=0.53,!=0.54.*",
+          "numpy >2",
+          "parse",
+          "pint",
+          "pyarrow",
+          "pyyaml",
+          "scipy",
+          "tqdm >=4.27",
+          "dbetto"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7c134e683f55d7957a5387baac4596fdd9a5fbac3fe8c28b478e8a3e4adfaa86",
+          "url": "https://pypi.org/packages/source/d/dspeed/dspeed-2.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "dspeed"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip list",
+            "dspeed --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

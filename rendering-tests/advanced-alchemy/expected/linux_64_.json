@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_advanced-alchemy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_advanced-alchemy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_advanced-alchemy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_advanced-alchemy/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "advanced-alchemy": {
+          "build_string": "pyhcf101f3_0",
+          "name": "advanced-alchemy",
+          "version": "1.8.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:47:57.450939432Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/litestar-org/advanced-alchemy",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Ready-to-go SQLAlchemy concoctions."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "alchemy = advanced_alchemy.__main__:run_cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "advanced-alchemy",
+        "version": "1.8.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "advanced-alchemy",
+        "version": "1.8.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "sqlalchemy >=2.0.20",
+          "alembic >=1.12.0",
+          "typing_extensions >=4.0.0",
+          "greenlet",
+          "eval-type-backport",
+          "exceptiongroup"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "858c60430558306fb0550e247f1afd473afd49a50b17e84f9cb1cdb7987d57ec",
+          "url": "https://pypi.org/packages/source/a/advanced-alchemy/advanced_alchemy-1.8.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "advanced_alchemy"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "rich-click"
+            ]
+          },
+          "script": "alchemy --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

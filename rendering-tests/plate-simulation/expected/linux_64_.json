@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plate-simulation",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plate-simulation/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plate-simulation/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_plate-simulation/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "plate-simulation": {
+          "build_string": "pyhcf101f3_0",
+          "name": "plate-simulation",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:50:58.068722501Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://mirageoscience-plate-simulation.readthedocs-hosted.com/",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/geoscience-analyst/python-integration/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MiraGeoscience/plate-simulation",
+        "summary": "Specialized mesh, model and simulation for a parameterization of\nthe halfspace + overburden and plate geological setting"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "plate-simulation",
+        "python_max": "3.12",
+        "python_min": "3.10",
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "plate-simulation",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "poetry-core >=1.0.0",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<3.12",
+          "geoapps-utils >=0.5.0,<0.6.dev",
+          "geoh5py >=0.11.0,<0.12.dev",
+          "octree-creation-app >=0.3.0,<0.4.dev",
+          "param-sweeps >=0.2.1,<0.3.dev",
+          "simpeg-drivers >=0.3.0,<0.4.dev",
+          "numpy >=1.26.0,<1.27.dev",
+          "pydantic >=2.5.2,<3.0.dev",
+          "rtree >=1.2.0,<1.3.dev",
+          "scipy >=1.14.0,<1.15.dev",
+          "threadpoolctl >=3.3.0,<3.4.dev",
+          "trimesh >=4.1.3,<4.2.dev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b8774784b5c3a7d9c6389558ce990a9c3e4a53121066667d40a85606d2fd7b93",
+          "url": "https://github.com/MiraGeoscience/plate-simulation/archive/v0.2.0.zip"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "plate_simulation",
+              "simpeg_drivers"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest --ignore=tests/version_test.py --ignore=tests/runtest"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

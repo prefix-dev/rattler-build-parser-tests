@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docstring-to-markdown",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docstring-to-markdown/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docstring-to-markdown/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_docstring-to-markdown/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "docstring-to-markdown": {
+          "build_string": "pyhe01879c_0",
+          "name": "docstring-to-markdown",
+          "version": "0.17"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:17.460804034Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pypi.org/project/docstring-to-markdown",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-lsp/docstring-to-markdown",
+        "summary": "On the fly conversion of Python docstrings to markdown"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "version": "0.17"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "docstring-to-markdown",
+        "version": "0.17"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.9",
+          "importlib-metadata >=3.6",
+          "typing_extensions >=4.6"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "df72a112294c7492487c9da2451cae0faeee06e86008245c188c5761c9590ca3",
+          "url": "https://pypi.org/packages/source/d/docstring-to-markdown/docstring_to_markdown-0.17.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "docstring_to_markdown"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov",
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "coverage run --source=docstring_to_markdown --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=99"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_symbolite",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_symbolite/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_symbolite/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_symbolite/work"
+      },
+      "hash": {
+        "hash": "c364b38",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "symbolite": {
+          "build_string": "pyhc364b38_0",
+          "name": "symbolite",
+          "version": "0.8.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:46:37.662272878Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "![Package](https://img.shields.io/pypi/v/symbolite?label=symbolite)\n![CodeStyle](https://img.shields.io/badge/code%20style-black-000000.svg)\n![License](https://img.shields.io/pypi/l/symbolite?label=license)\n![PyVersion](https://img.shields.io/pypi/pyversions/symbolite?label=python)\n[![CI](https://github.com/dyscolab/symbolite/actions/workflows/ci.yml/badge.svg)](https://github.com/dyscolab/symbolite/actions/workflows/ci.yml)\n[![Lint](https://github.com/dyscolab/symbolite/actions/workflows/lint.yml/badge.svg)](https://github.com/dyscolab/symbolite/actions/workflows/lint.yml)\n\n# symbolite: a minimalistic symbolic python package\n\n______________________________________________________________________\n\nSymbolite allows you to create symbolic mathematical\nexpressions. Just create a symbol (or more) and operate with them as you\nwill normally do in Python.\n\n```python\n>>> from symbolite import Symbol, substitute, translate\n>>> x = Symbol(\"x\")\n>>> y = Symbol(\"y\")\n>>> expr1 = x + 3 * y\n>>> print(expr1)\nx + 3 * y\n```\n\nAn expression is just an unnamed Symbol.\nYou can easily replace the symbols by the desired value.\n\n```python\n>>> expr2 = substitute(expr1, {x: 5, y: 2})\n>>> print(expr2)\n5 + 3 * 2\n```\n\nThe output is still a symbolic expression, which you can translate:\n\n```python\n>>> translate(expr2)\n11\n```\n\nNotice that we also got a warning (`No libsl provided, defaulting to Python standard library.`).\nThis is because translating an expression requires an actual library implementation,\nnamed usually as `libsl`. The default one just uses python's math module.\n\nYou can avoid this warning by explicitely providing an `libsl` implementation.\n\n```python\n>>> from symbolite.impl import libstd\n>>> translate(expr2, libstd)\n11\n```\n\nYou can also import it with the right name and it will be found\n\n```python\n>>> from symbolite.impl import libstd as libsl\n>>> translate(expr2)\n11\n```\n\nIn addition to the `Symbol` class, there is also a `Scalar` and `Vector` classes\nto represent integer, floats or complex numbers, and an array of those.\n\n```python\n>>> from symbolite import real, Vector\n>>> x = Scalar(\"x\")\n>>> y = Scalar(\"y\")\n>>> v = Vector(\"v\")\n>>> expr1 = x + 3 * y\n>>> print(expr1)\nx + 3 * y\n>>> print(2 * v)\n2 * v\n```\n\nMathematical functions that operate on scalars are available in the `scalar` module.\n\n```python\n>>> from symbolite import real\n>>> expr3 = 3. * scalar.cos(0.5)\n>>> print(expr3)\n3.0 * scalar.cos(0.5)\n```\n\nMathematical functions that operate on vectors are available in the `vector` module.\n\n```python\n>>> from symbolite import vector\n>>> expr4 = 3. * vector.sum((1, 2, 3))\n>>> print(expr4)\n3.0 * vector.sum((1, 2, 3))\n```\n\nNotice that functions are named according to the python math module.\nAgain, this is a symbolic expression until translated.\n\n```python\n>>> translate(expr3)\n2.6327476856711\n>>> translate(expr4)\n18.0\n```\n\nThree other implementations are provided:\n[NumPy](https://numpy.org/),\n[SymPy](https://www.sympy.org),\n[JAX](https://jax.readthedocs.io).\n\n```python\n>>> from symbolite.impl import libnumpy\n>>> translate(expr3, libsl=libnumpy)\nnp.float64(2.6327476856711183)\n>>> from symbolite.impl import libsympy\n>>> translate(expr3, libsl=libsympy)\n2.6327476856711\n```\n\n(notice that the way that the different libraries round and\ndisplay may vary)\n\nIn general, all symbols must be replaced by values in order\nto translate an expression. However, when using an implementation\nlike SymPy that contains a Scalar object you can still translate.\n\n```python\n>>> from symbolite.impl import libsympy as libsl\n>>> translate(3. * scalar.cos(x), libsl)\n3.0*cos(x)\n```\n\nwhich is actually a SymPy expression with a SymPy symbol (`x`).\n\nAnd by the way, checkout `vectorize` and `auto_vectorize` functions\nin the vector module.\n\nWe provide a simple way to call user defined functions.\n\n```python\n>>> from symbolite import UserFunction\n>>> def abs_times_two(x: float) -> float:\n...     return 2 * abs(x)\n>>> uf = UserFunction.from_function(abs_times_two)\n>>> uf\nUserFunction(name='abs_times_two', namespace='user')\n>>> translate(uf(-1))\n2\n```\n\nand you can register implementations for other backends:\n\n```python\n>>> def np_abs_times_two(x: float) -> float:\n...     return 2 * np.abs(x)\n>>> uf.register_impl(libnumpy, np_abs_times_two)\n>>> translate(uf(-1), libnumpy)\n2\n```\n\n### Installing:\n\n```bash\npip install -U symbolite\n```\n\n### FAQ\n\n**Q: Is symbolite a replacement for SymPy?**\n\n**A:** No\n\n**Q: Does it aim to be a replacement for SymPy in the future?**\n\n**A:** No",
+        "homepage": "https://github.com/dyscolab/symbolite",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A minimalistic symbolic package."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install .",
+        "string": "pyhc364b38_0"
+      },
+      "context": {
+        "version": "0.8.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "maurosilber",
+          "hgrecco"
+        ]
+      },
+      "package": {
+        "name": "symbolite",
+        "version": "0.8.0"
+      },
+      "requirements": {
+        "host": [
+          "python >=3.12",
+          "hatchling",
+          "hatch-vcs",
+          "pip"
+        ],
+        "run": [
+          "python >=3.12"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6baadaa9d5707baf54102f7d2076c307875b4f4ae2c760bbd38b555dafe98ef8",
+          "url": "https://pypi.org/packages/source/s/symbolite/symbolite-0.8.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "symbolite"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

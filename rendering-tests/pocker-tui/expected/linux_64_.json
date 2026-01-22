@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pocker-tui",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pocker-tui/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pocker-tui/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pocker-tui/work"
+      },
+      "hash": {
+        "hash": "8f84b5b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pocker-tui": {
+          "build_string": "pyh8f84b5b_0",
+          "name": "pocker-tui",
+          "version": "1.18.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:34:40.938343616Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Pocker is a TUI tool to help with docker related tasks. For example,\n  - View containers/images.\n  - Manage status of containers.\n  - See logs, attributes, environment variables and container statistics.\n  - Filter logs based on keywords.\n  - Start shell inside a container.\n  - Customize configuration, i.e keybinds and behaviour.\nThe tool is heavily based on docker-py and textual.",
+        "homepage": "https://github.com/pommee/Pocker",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "~ TUI tool for docker ~"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pocker = application.main:cli"
+          ]
+        },
+        "script": "python -m pip install . -vv",
+        "string": "pyh8f84b5b_0"
+      },
+      "context": {
+        "name": "pocker-tui",
+        "version": "1.18.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "pocker-tui",
+        "version": "1.18.4"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "poetry-core"
+        ],
+        "run": [
+          "python >=3.10",
+          "docker-py >=7.0.0,<8.0",
+          "textual >=1.0.0",
+          "pyyaml >=6.0.1",
+          "pydantic >=2.7.3",
+          "click >=8.1.7",
+          "colorama >=0.4.6",
+          "yaspin >=3.0.2",
+          "packaging >=24.1",
+          "textual-plotext >=1.0.0",
+          "pyte >=0.8.2",
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "remove_pipx.patch",
+            "fix_winpty.patch"
+          ],
+          "sha256": "d83b6bf81964ba721871cb9bb796dfa369f30de0d36e5f25ef5c5bfdfb26f8c4",
+          "url": "https://pypi.org/packages/source/p/pocker_tui/pocker_tui-1.18.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pocker --help",
+            "pocker update"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

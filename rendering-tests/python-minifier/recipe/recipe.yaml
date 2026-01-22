@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: python-minifier
+  version: "3.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python_minifier-${{ version }}.tar.gz
+  sha256: d39d4aa9655206870b89b41099a84725e1845319aa5a8bea6a1046b5644cd413
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - pyminify=python_minifier.__main__:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - python_minifier
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pyminify --help
+
+about:
+  summary: Transform Python source code into it's most compact representation
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/dflook/python-minifier
+
+extra:
+  recipe-maintainers:
+    - thewchan

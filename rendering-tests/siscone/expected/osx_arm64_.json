@@ -1,0 +1,209 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_siscone",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_siscone/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_siscone/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_siscone/work"
+      },
+      "hash": {
+        "hash": "e00fe34"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "siscone": {
+          "build_string": "he00fe34_2",
+          "name": "siscone",
+          "version": "3.1.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:54.913088910Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "SISCone was written by Gavin Salam and Gregory Soyez.\n\nA description of the algorithm is available in the publication\nJHEP 05 (2007) 086\n[[arXiv:0704.0292](https://arxiv.org/abs/0704.0292) (hep-ph)].\nDOI: [10.1088/1126-6708/2007/05/086](https://doi.org/10.1088/1126-6708/2007/05/086)",
+        "homepage": "https://gitlab.com/fastjet/siscone",
+        "license": "AGPL-1.0-only",
+        "license_family": "AGPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.com/fastjet/siscone",
+        "summary": "SISCone: the Seedless Infrared Safe Cone Jet Algorithm"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "cmake \"${CMAKE_ARGS}\" -DSISCONE_BUILD_EXAMPLES=OFF -DSISCONE_ENABLE_DEBUG=OFF -DCMAKE_INSTALL_PREFIX=\"${PREFIX}\" -S . -B build",
+          "cmake -LH build",
+          "cmake --build build --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build"
+        ],
+        "string": "he00fe34_2"
+      },
+      "context": {
+        "name": "siscone",
+        "version": "3.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "lgray",
+          "kratsg",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "siscone",
+        "version": "3.1.2"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "siscone",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-use-imported-getopt.patch"
+          ],
+          "sha256": "689696ca32682f39c0999a66117e673f71b41f41debb46111904f6acdcdb2e6b",
+          "url": "https://gitlab.com/fastjet/siscone/-/archive/siscone-3.1.2/siscone-siscone-3.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "etc/conda/test-files/siscone/0/examples/events/single-event.dat",
+              "lib/cmake/siscone/siscone*.cmake",
+              "etc/conda/test-files/siscone/0/examples/*.cpp"
+            ],
+            "include": [
+              "siscone/config.h",
+              "siscone/geom_2d.h",
+              "siscone/defines.h",
+              "siscone/circulator.h",
+              "siscone/area.h",
+              "siscone/ranlux.h",
+              "siscone/quadtree.h",
+              "siscone/protocones.h",
+              "siscone/momentum.h",
+              "siscone/hash.h",
+              "siscone/vicinity.h",
+              "siscone/split_merge.h",
+              "siscone/siscone.h",
+              "siscone/siscone_error.h",
+              "siscone/reference.h",
+              "siscone/spherical/geom_2d.h",
+              "siscone/spherical/vicinity.h",
+              "siscone/spherical/split_merge.h",
+              "siscone/spherical/siscone.h",
+              "siscone/spherical/protocones.h",
+              "siscone/spherical/momentum.h",
+              "siscone/spherical/hash.h"
+            ],
+            "lib": [
+              "siscone",
+              "siscone_spherical"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "examples/main.cpp",
+              "examples/options.cpp",
+              "examples/options.h",
+              "examples/area.cpp",
+              "examples/sample.cpp",
+              "examples/test.cpp",
+              "examples/times.cpp",
+              "examples/spherical.cpp",
+              "examples/events/single-event.dat"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "clangxx_osx-arm64 =19"
+            ]
+          },
+          "script": [
+            "cd examples/",
+            "$CXX main.cpp options.cpp -o main $CXXFLAGS $LDFLAGS -lsiscone",
+            "./main",
+            "$CXX area.cpp options.cpp -o area $CXXFLAGS $LDFLAGS -lsiscone",
+            "./area",
+            "$CXX sample.cpp -o sample $CXXFLAGS $LDFLAGS -lsiscone",
+            "./sample",
+            "$CXX test.cpp -o test $CXXFLAGS $LDFLAGS -lsiscone",
+            "./test",
+            "$CXX times.cpp -o times $CXXFLAGS $LDFLAGS -lsiscone",
+            "$CXX spherical.cpp -o spherical $CXXFLAGS $LDFLAGS -lsiscone -lsiscone_spherical",
+            "./spherical"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,39 @@
+context:
+  version: "2.16.3"
+
+package:
+  name: astro-ls
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@astrojs/language-server/-/language-server-${{ version }}.tgz
+  sha256: 339a48bbbb0166cd26bc9d35379725e989d51ed038e7ba4edbe3161a0a4a2ddc
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "astro-ls 2>&1 | grep -q \"Connection input stream is not set.\""
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Language server for Astro
+  homepage: https://github.com/withastro/language-tools
+  repository: https://github.com/withastro/language-tools
+
+extra:
+  recipe-maintainers:
+    - danielnachun

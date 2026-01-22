@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: mystmd
+  version: "1.7.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mystmd-${{ version }}.tar.gz
+  sha256: ae9a49a7c25aa9a79bc4ef921ffcf20a163f082e76592b296666ba6a6f9a4133
+
+build:
+  number: 0
+  noarch: python
+  script:
+    env:
+      MYSTMD_PACKAGE_VARIANT: conda-forge
+    content: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - myst = mystmd_py.main:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+    - hatch-nodejs-version
+    - hatch-deps-selector
+  run:
+    - python >=${{ python_min }}
+    - nodejs >=18
+
+tests:
+  - python:
+      imports:
+        - mystmd_py
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - nodejs >=18
+    script:
+      - myst --help
+
+about:
+  summary: Command line tools for MyST Markdown
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/jupyter-book/mystmd
+
+extra:
+  recipe-maintainers:
+    - bsipocz
+    - mfisher87
+    - agoose77
+    - fwkoch
+    - rowanc1

@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: harlequin-odbc
+  version: 0.4.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/harlequin_odbc-${{ version }}.tar.gz
+  sha256: 98356c5ebaacc23daff35e165d4490e1ea10dc591fa9cb0824f41272b39d13f0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - harlequin >=1.25,<3
+    - pyodbc >=5.0,<6
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - harlequin_odbc
+
+about:
+  summary: A Harlequin adapter for ODBC drivers.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tconbeer/harlequin-odbc
+
+extra:
+  recipe-maintainers:
+    - conda-forge/harlequin

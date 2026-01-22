@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_postal",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_postal/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_postal/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_postal/work"
+      },
+      "hash": {
+        "hash": "c1e591f",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "postal": {
+          "build_string": "py314hc1e591f_0",
+          "name": "postal",
+          "version": "1.1.10"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:45.721701991Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The official Python bindings to libpostal,\na fast statistical parser/normalizer for street\naddresses anywhere in the world.",
+        "homepage": "https://github.com/openvenues/pypostal",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/openvenues/pypostal",
+        "summary": "Python bindings to libpostal for fast international address parsing/normalization"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py314hc1e591f_0"
+      },
+      "context": {
+        "name": "postal",
+        "version": "1.1.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MichaelMarien"
+        ]
+      },
+      "package": {
+        "name": "postal",
+        "version": "1.1.10"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "python",
+          "cross-python_osx-64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "nose",
+          "six",
+          "libpostal >=1.1.3",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "libpostal >=1.1.3",
+          "six"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca0f9693d61261e058a03d141a4fa065d9bbe67bd86484521450f0a9d0f9e77b",
+          "url": "https://pypi.org/packages/source/p/postal/postal-1.1.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "postal",
+              "postal.expand",
+              "postal.parser",
+              "postal.near_dupe"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

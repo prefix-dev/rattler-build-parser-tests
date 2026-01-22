@@ -1,0 +1,74 @@
+# conda-verify warnings:
+#
+# [C2115] Found duplicate build requirements: ...
+# This warning lists two copies of 'vs2017_win-64' but meta.yaml does not
+# specify this requriement (it is comming automatially).
+#
+# [C2122] Found invalid license family "AGPL-3.0-or-later"
+# This is a valid SPDX license identifier; see
+# https://spdx.org/licenses/AGPL-3.0-or-later.html
+#
+schema_version: 1
+
+context:
+  name: cppad-mixed
+  version: "2026.0.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bradbell/cppad_mixed/archive/${{ version }}.tar.gz
+  sha256: f1a98bc2457ca3c31a7f8a51d0556170b40b1d4b8e79fda8eca7ea2194a0811b
+
+build:
+  # build number starts at zero for each new version
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+  host:
+    - pkg-config
+    - eigen
+    - cppad
+    - gsl
+    - libcholmod
+    - ipopt
+    - if: linux
+      then: libopenblas
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - script:
+      interpreter: python
+      file: run_test.py
+    requirements:
+      run:
+        - ${{ compiler('cxx') }}
+        - cmake
+        - make
+        - pkg-config
+        - eigen
+        - libcholmod
+    files:
+      source:
+        - example/user/no_random.cpp
+
+about:
+  license: AGPL-3.0-or-later
+  license_file: agpl-3.0.txt
+  summary: C++ Laplace Approximation of Mixed Effects Models
+  homepage: https://cppad-mixed.readthedocs.io/stable-2025
+  repository: https://github.com/bradbell/cppad_mixed
+  documentation: https://cppad-mixed.readthedocs.io/stable-2025/
+
+extra:
+  recipe-maintainers:
+    - bradbell

@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: "3.0.0"
+  python_min: 3.13
+
+package:
+  name: gen3dictionary
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/g/gen3dictionary/gen3dictionary-${{ version }}.tar.gz
+  sha256: 737a3f23445a81d9c7a566da0a8ca8c5d17c3fc0eed74b9819eff74836abc3e6
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pyyaml
+    - jsonschema
+    - dictionaryutils
+
+tests:
+  - python:
+      imports:
+        - gdcdictionary
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Gen3 Generic Data dictionary
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/uc-cdis/datadictionary
+
+extra:
+  recipe-maintainers:
+    - danielnachun

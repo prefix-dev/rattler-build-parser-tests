@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: printo
+  version: "0.0.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/printo-${{ version }}.tar.gz
+  sha256: cea2ad08084bb46ab75c811f2d4b34267bf5c6f18bf288ad9ec9291bb2139f8f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools ==68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - printo
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Print objects with data beautifully
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pomponchik/printo
+
+extra:
+  recipe-maintainers:
+    - thewchan

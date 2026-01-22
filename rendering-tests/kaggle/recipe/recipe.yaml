@@ -1,0 +1,78 @@
+schema_version: 1
+
+context:
+  name: kaggle
+  version: "1.8.3"
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 3335da5752ae2843c3aa0523b7a7ed91a8dd5505c19cb4031f9d57651c346106
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - kaggle = kaggle.cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - bleach
+    - kagglesdk >= 0.1.14,< 1.0
+    - python-slugify
+    - requests
+    - python-dateutil
+    - six >=1.10
+    - tqdm
+    - urllib3 >=1.15.1
+    - packaging
+    - protobuf
+    - black >=24.10.0
+    - mypy >=1.15.0
+    - types-requests
+    - types-tqdm
+
+tests:
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+      - if: unix
+        then:
+          - export KAGGLE_USERNAME=datadinosaur
+          - export KAGGLE_KEY=xxxxxxxxxxxxxx
+      - if: win
+        then:
+          - set KAGGLE_USERNAME=datadinosaur
+          - set KAGGLE_KEY=xxxxxxxxxxxxxx
+      - kaggle --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  summary: Kaggle API
+  description: |
+    Official API for https://www.kaggle.com, accessible using a command
+    line tool implemented in Python.
+  homepage: https://github.com/Kaggle/kaggle-api
+  repository: https://github.com/Kaggle/kaggle-api
+  documentation: https://github.com/Kaggle/kaggle-api
+
+extra:
+  recipe-maintainers:
+    - ngam
+    - CurtLH
+    - synapticarbors

@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipydatagrid",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipydatagrid/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipydatagrid/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ipydatagrid/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ipydatagrid": {
+          "build_string": "pyhcf101f3_2",
+          "name": "ipydatagrid",
+          "version": "1.4.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:45:47.493728714Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/bloomberg/ipydatagrid",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt",
+          "ipydatagrid/labextension/static/third-party-licenses.json"
+        ],
+        "summary": "Fast Datagrid widget for the Jupyter Notebook and JupyterLab"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "jupyterlab_host_version": "4.0",
+        "jupyterlab_test_version": "4",
+        "version": "1.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "ibdafna",
+          "kaiayoung",
+          "martinRenou"
+        ]
+      },
+      "package": {
+        "name": "ipydatagrid",
+        "version": "1.4.0"
+      },
+      "requirements": {
+        "host": [
+          "hatch-jupyter-builder >=0.8.1",
+          "hatchling",
+          "jupyterlab 4.0.*",
+          "pip",
+          "python 3.10.*",
+          "nodejs 24.*"
+        ],
+        "run": [
+          "bqplot >=0.11.6",
+          "ipywidgets >=7.6,<9",
+          "pandas >=1.3.5",
+          "py2vega >=0.5",
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "30cd9d2394d5dda1a30a1ad7343ecc249e4ad4aa8a515c8401cc3ee09329ee30",
+          "url": "https://github.com/bloomberg/ipydatagrid/archive/1.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ipydatagrid"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "jupyterlab 4.*",
+              "python 3.10.*"
+            ]
+          },
+          "script": "jupyter labextension list --debug 2>&1 | python -c \"import sys, re; v = sys.stdin.read(); p = 'ipydatagrid.*v${{ version | replace(\".\", \"\\\\.\") }}.*enabled.*OK'; assert re.search(p, v), f'{v} expected {p} ?'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

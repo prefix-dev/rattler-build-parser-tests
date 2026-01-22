@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: lbplatformutils
+  version: "4.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/lbplatformutils-${{ version }}.tar.gz
+  sha256: 517d67af3df7e75335fd56132bc401799c1fe2ea40b5406a925a0752b6f7ffc1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - lb-debug-platform = LbPlatformUtils.debug:main
+      - lb-describe-platform = LbPlatformUtils.describe:main
+      - lb-host-binary-tag = LbPlatformUtils.describe:host_binary_tag_script
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - LbPlatformUtils
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - lb-debug-platform --help
+      - lb-describe-platform --help
+      - lb-host-binary-tag --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: utilities from platform detection
+  homepage: https://gitlab.cern.ch/lhcb-core/LbPlatformUtils
+  repository: https://gitlab.cern.ch/lhcb-core/LbPlatformUtils
+  documentation: https://gitlab.cern.ch/lhcb-core/LbPlatformUtils
+
+extra:
+  recipe-maintainers:
+    - chrisburr

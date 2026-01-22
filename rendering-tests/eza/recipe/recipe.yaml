@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: eza
+  version: "0.23.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/eza-community/eza/archive/v${{ version }}.tar.gz
+  sha256: 9fbcad518b8a2095206ac385329ca62d216bf9fdc652dde2d082fcb37c309635
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - eza --help
+      - eza --icons --long --git --header
+
+about:
+  summary: A modern, maintained replacement for ls.
+  license: EUPL-1.2
+  license_file:
+    - LICENSE.txt
+    - THIRDPARTY.yml
+  description: |
+    eza is a modern, maintained replacement for the venerable
+    file-listing command-line program ls that ships with Unix
+    and Linux operating systems, giving it more features and
+    better defaults. It uses colours to distinguish file types
+    and metadata. It knows about symlinks, extended attributes, and Git.
+    And it’s small, fast, and just one single binary.
+  homepage: https://eza.rocks/
+  repository: https://github.com/eza-community/eza
+
+extra:
+  recipe-maintainers:
+    - synapticarbors
+    - dbast

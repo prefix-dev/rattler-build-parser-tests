@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: conflowgen
+  version: 3.0.1
+  description: A generator for synthetic container flows at maritime container terminals with a focus is on yard operations
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 2fafeae0784a43780292591b0cb78aa2b935b9d4bada7667cfe51b815acb9b79
+
+build:
+  number: 9
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python >=${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pandas >=1
+    - numpy
+    - peewee >=3
+    - enum_tools >=0.7
+    - matplotlib-base
+    - plotly
+    - python-kaleido >=1.0.0
+    - seaborn
+    - openpyxl
+
+tests:
+  - python:
+      imports:
+        - conflowgen
+  - files:
+      source:
+        - conflowgen/tests
+    requirements:
+      run:
+        - python >=${{ python_min }}
+        - pytest
+        - pip
+        - parameterized
+    script:
+      - pytest conflowgen
+      - pip check
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: ${{ description }}
+  description: ${{ description }}
+  homepage: https://github.com/1kastner/conflowgen
+  repository: https://github.com/1kastner/conflowgen
+  documentation: https://conflowgen.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - 1kastner

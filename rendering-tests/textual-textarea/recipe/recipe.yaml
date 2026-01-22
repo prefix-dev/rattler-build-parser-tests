@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: textual-textarea
+  version: 0.17.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/textual_textarea-${{ version }}.tar.gz
+  sha256: 84bb2bfe545db70071914802e808dc411c16c21e7744adbcfc381f1390dd2c6b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - tree-sitter-python ==0.25.0
+    - tree-sitter-sql ==0.3.7
+    - tree_sitter ==0.25.2
+    - python >=${{ python_min }}
+    - textual >=6.4.0,<7
+    - pyperclip >=1.9.0,<2
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - textual_textarea
+
+about:
+  summary: A text area (multi-line input) with syntax highlighting for Textual
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tconbeer/textual-textarea
+
+extra:
+  recipe-maintainers:
+    - xhochy

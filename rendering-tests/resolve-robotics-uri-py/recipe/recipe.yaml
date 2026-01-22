@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: resolve-robotics-uri-py
+  version: "0.4.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7010a9fdab10e059a61695dd565da9739d4d8aa92319bb24210e750c689e6663
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
+  python:
+    entry_points:
+      - resolve-robotics-uri-py = resolve_robotics_uri_py.resolve_robotics_uri_py:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - wheel
+    - setuptools >=45
+    - setuptools-scm >=6.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - resolve_robotics_uri_py
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+    script:
+      - resolve-robotics-uri-py --help
+
+about:
+  summary: Pure python package to solve ROS-style package:// and Gazebo-style model:// URIs in absolute paths.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/ami-iit/resolve-robotics-uri-py
+  repository: https://github.com/ami-iit/resolve-robotics-uri-py
+
+extra:
+  recipe-maintainers:
+    - traversaro

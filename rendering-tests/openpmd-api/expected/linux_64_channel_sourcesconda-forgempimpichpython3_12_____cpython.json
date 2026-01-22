@@ -1,0 +1,186 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openpmd-api",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openpmd-api/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openpmd-api/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openpmd-api/work"
+      },
+      "hash": {
+        "hash": "36a7c1e",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openpmd-api": {
+          "build_string": "mpi_mpich_py312h36a7c1e_5",
+          "name": "openpmd-api",
+          "version": "0.16.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:58.795019527Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "mpi": "mpich",
+        "mpich": "4",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "python_impl": "cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This library provides a common high-level API for openPMD writing and\nreading. It provides a common interface to I/O libraries and file formats\nsuch as HDF5, ADIOS2, and JSON.\nLanguage bindings are provided for C++17 (or newer) and Python 3.\nThis conda-forge package provides serial and MPI-parallel I/O. Windows\nsupport is limited to serial versions of HDF5, ADIOS2 and JSON.",
+        "documentation": "https://openpmd-api.readthedocs.io/",
+        "homepage": "https://www.openpmd.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING.LESSER"
+        ],
+        "repository": "https://github.com/openPMD/openPMD-api",
+        "summary": "C++ & Python API for writing & reading (.h5, .bp, .json, ...), serial & MPI parallel openPMD files."
+      },
+      "build": {
+        "number": 5,
+        "string": "mpi_mpich_py312h36a7c1e_5"
+      },
+      "context": {
+        "build": 5,
+        "mpi": "mpich",
+        "mpi_prefix": "mpi_mpich",
+        "name": "openpmd-api",
+        "version": "0.16.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ax3l",
+          "franzpoeschel"
+        ]
+      },
+      "package": {
+        "name": "openpmd-api",
+        "version": "0.16.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "make",
+          "sed",
+          "cmake",
+          "curl",
+          "pkg-config"
+        ],
+        "host": [
+          "mpich",
+          "python",
+          "pybind11",
+          "numpy",
+          "adios2 * mpi_mpich_*",
+          "hdf5 * mpi_mpich_*",
+          "nlohmann_json",
+          "toml11"
+        ],
+        "run": [
+          "mpich",
+          "mpi4py",
+          "python"
+        ],
+        "run_exports": {
+          "weak": [
+            "openpmd-api * mpi_mpich_*",
+            "openpmd-api ==0.16.1"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "1762.patch"
+          ],
+          "sha256": "a029a1779351949f41c1f36d0e75c698e59c5d284f080d5e4c2b8650779d2d58",
+          "url": "https://github.com/openPMD/openPMD-api/archive/0.16.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "openpmd_api"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "package_contents": {
+            "files": [
+              "lib/cmake/openPMD/openPMDConfig.cmake"
+            ],
+            "lib": [
+              "openPMD"
+            ]
+          }
+        },
+        {
+          "script": [
+            "python -c \"import openpmd_api; print(openpmd_api.__version__)\"",
+            "python -c \"import openpmd_api; print(openpmd_api.variants)\"",
+            "test -f ${PREFIX}/lib/cmake/openPMD/openPMDConfig.cmake",
+            "test -f ${PREFIX}/share/xeus-cling/tagfiles/openpmd-api-doxygen-web.tag.xml",
+            "test -f ${PREFIX}/etc/xeus-cling/tags.d/openpmd-api.json",
+            "test -f ${PREFIX}/share/xeus-cling/tagfiles/openpmd-api-doxygen-web.tag.xml",
+            "test -f ${PREFIX}/lib/libopenPMD.so"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

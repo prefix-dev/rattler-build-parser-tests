@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: yachalk
+  version: 0.1.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/yachalk-${{ version }}.tar.gz
+  sha256: bb9b52fda52f34679c9b13d4284a8603eacb9da9d6365b870e0a0c8c41ea9382
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - importlib-resources
+    - python >=${{ python_min }}
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - yachalk
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Terminal string styling done right
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/bluenote10/yachalk
+
+extra:
+  recipe-maintainers:
+    - thewchan

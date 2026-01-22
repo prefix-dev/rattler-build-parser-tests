@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: docify
+  version: 1.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/docify-${{ version }}.tar.gz
+  sha256: d9475055a330b4edc31be5854d78704a9c231dcf29b4c6e79421e4ce2adb90aa
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - docify = docify:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pdm-backend
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - libcst >=1.1.0
+    - tqdm >=4.66.4
+
+tests:
+  - python:
+      imports:
+        - docify
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
+      - docify --help
+
+about:
+  summary: A script to add docstrings to Python type stubs using reflection
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/AThePeanut4/docify
+
+extra:
+  recipe-maintainers:
+    - lucascolley

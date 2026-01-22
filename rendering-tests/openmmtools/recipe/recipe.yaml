@@ -1,0 +1,80 @@
+schema_version: 1
+
+context:
+  name: openmmtools
+  version: 0.26.0
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/choderalab/openmmtools/archive/${{ version }}.tar.gz
+  sha256: 206c419562153edcd50f2de44a5201c56996080232a47ce05dfc16827702f001
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+  python:
+    entry_points:
+      - test-openmm-platforms = openmmtools.scripts.test_openmm_platforms:main
+      - benchmark-alchemy = openmmtools.tests.test_alchemy:benchmark_alchemy_from_pdb
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - hdf5
+    - libnetcdf >=4.6.2
+    - mdtraj
+    - mpiplus
+    - netcdf4 >=1.5
+    - numba
+    - numpy >1.9
+    - openmm >=7.3.1
+    - pandas
+    - pdbfixer
+    - pymbar
+    - python >=${{ python_min }}
+    - pyyaml
+    - scipy  >=1.15.0
+    - setuptools
+
+tests:
+  - python:
+      imports:
+        - openmmtools
+      pip_check: false
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+        - requests
+        - coverage
+    script:
+      - pytest --pyargs openmmtools
+      - test-openmm-platforms --help
+      - benchmark-alchemy --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: A batteries-included toolkit for the GPU-accelerated OpenMM molecular simulation engine.
+  description: |
+    openmmtools is a Python library layer that sits on top of OpenMM to provide access
+    to a variety of useful tools for building full-featured molecular simulation packages.
+  homepage: https://github.com/choderalab/openmmtools
+  repository: https://github.com/choderalab/openmmtools
+  documentation: https://openmmtools.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - jaimergp
+    - jchodera
+    - mikemhenry
+    - ijpulidos

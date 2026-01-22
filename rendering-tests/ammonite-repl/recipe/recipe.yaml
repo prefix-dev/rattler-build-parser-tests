@@ -1,0 +1,44 @@
+context:
+  version: 3.0.2
+
+package:
+  name: ammonite-repl
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/com-lihaoyi/Ammonite
+    tag: ${{ version }}
+  - url: https://github.com/com-lihaoyi/Ammonite/archive/refs/tags/${{ version }}.tar.gz
+    sha256: 60399a2abb41cdcf7dbc10479daebf2df65bbc9e7947883f7071901e676a1eda
+    target_directory: archive
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - curl
+    - findutils
+    - git
+    - maven
+    - openjdk =17
+  run:
+    - openjdk =17
+
+tests:
+  - script:
+      - amm --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: Scala Scripting
+  homepage: https://github.com/com-lihaoyi/Ammonite
+  repository: https://github.com/com-lihaoyi/Ammonite
+
+extra:
+  recipe-maintainers:
+    - danielnachun

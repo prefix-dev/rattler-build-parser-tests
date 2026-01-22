@@ -1,0 +1,35 @@
+context:
+  version: "1.18.0"
+
+package:
+  name: create-qwik
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/create-qwik/-/create-qwik-${{ version }}.tgz
+  sha256: b5b3db23d9116fc112a895d89e1fccf42c8778754395fe79ce4aba37ba46d4ac
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - create-qwik --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Interactive CLI for create Qwik projects and adding features.
+  homepage: https://qwik.dev/
+  repository: https://github.com/QwikDev/qwik
+
+extra:
+  recipe-maintainers:
+    - danielnachun

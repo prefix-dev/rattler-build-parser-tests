@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: coldtype
+  version: 0.12.2
+  python_min: "3.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/coldtype-${{ version }}.tar.gz
+  sha256: 18dda768a2f0f44b5bd478d49f48d31fd61e36b97e109d8b27dcaf58969e873b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - coldtype = coldtype.renderer:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=61.0
+    - setuptools_scm >=8.0
+  run:
+    - python >=${{ python_min }}
+    - fontpens ==0.2.4
+    - easing-functions ==1.0.4
+    - b3denv >=0.0.12
+    - coldtype-fontgoggles ==1.8.4.7
+    - skia-pathops
+    - defcon >=0.12.0
+    - freetype-py
+    - uharfbuzz <0.47.0
+
+tests:
+  - python:
+      imports:
+        - coldtype
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - coldtype --help
+
+about:
+  summary: Functions for manual vectorized typesetting
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/goodhertz/coldtype
+
+extra:
+  recipe-maintainers:
+    - thewchan

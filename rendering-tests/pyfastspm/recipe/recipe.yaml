@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: pyfastspm
+  version: 1.0.5
+  python_min: 3.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e605ad960a6e5f1f19b26bc7e259c16a2cde1801b8214a451ae5f1fcdd1d8ff6
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools_scm
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+    - numpy
+    - scipy
+    - scikit-image
+    - matplotlib-base
+    - pillow
+    - tqdm
+    - h5py
+    - packaging
+    - ffmpeg
+
+tests:
+  - python:
+      imports:
+        - pyfastspm
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT AND Apache-2.0
+  license_file: LICENSE
+  summary: A python package for loading, processing and exporting scanning probe microscopy movies acquired with the FAST unit.
+  homepage: http://fastspm.gitlab.io/pyfastspm/
+  repository: https://gitlab.com/fastspm/pyfastspm/
+  documentation: http://fastspm.gitlab.io/pyfastspm/
+
+extra:
+  recipe-maintainers:
+    - carlodri
+    - mpanighel

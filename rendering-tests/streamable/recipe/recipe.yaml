@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: streamable
+  version: "1.6.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ebonnal/streamable/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 09ee05fc6331b0c07874bab896da1de123ac7f0d82bd4f4a69a628501623afd0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - streamable
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Stream-like manipulation of iterables
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: http://github.com/ebonnal/streamable
+
+extra:
+  recipe-maintainers:
+    - thewchan

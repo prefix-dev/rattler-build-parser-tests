@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.4.12
+
+package:
+  name: html5-parser
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/h/html5-parser/html5-parser-${{ version }}.tar.gz
+  sha256: 3d7f89841aa48b976311f43863178c34c141abcf1dd45b67a7339e61cffe5306
+  patches:
+    - 0000-no-build-test.diff
+
+build:
+  number: 4
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - pkg-config
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - libxml2-devel
+        - python
+  host:
+    - libxml2-devel
+    - pip
+    - python
+    - setuptools
+  run:
+    - chardet
+    - lxml >=3.8.0
+    - python
+
+tests:
+  - python:
+      imports: html5_parser
+      pip_check: true
+  - files:
+      source:
+        - test/
+    requirements:
+      run:
+        - beautifulsoup4
+        - coverage
+        - pytest <8
+    script:
+      file: run_test.py
+
+about:
+  summary: Fast C based HTML 5 parsing for python
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://html5-parser.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

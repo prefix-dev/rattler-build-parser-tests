@@ -1,0 +1,39 @@
+context:
+  version: "0.10.0"
+
+package:
+  name: ls-engines
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/ls-engines/-/ls-engines-${{ version }}.tgz
+  sha256: 03ed813f7a4bf8831b6b79ca143cdf81f1316636b88786c8ddf0b07f48277306
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - ls-engines --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: "Determine if your dependency graph's stated \"engines\" criteria is met."
+  homepage: https://github.com/ljharb/ls-engines
+  repository: https://github.com/ljharb/ls-engines
+
+extra:
+  recipe-maintainers:
+    - danielnachun

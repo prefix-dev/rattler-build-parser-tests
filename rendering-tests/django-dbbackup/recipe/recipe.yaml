@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-dbbackup
+  version: 5.1.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 792b646633e46622ee79536556a9e42d469758b8591dec06f99a9175c11f8e51
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - hatchling
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=4.2
+tests:
+  - python:
+      imports:
+        - dbbackup
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Management commands to help backup and restore a project database and media.
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  homepage: https://github.com/jazzband/django-dbbackup
+
+extra:
+  recipe-maintainers:
+    - rxm7706

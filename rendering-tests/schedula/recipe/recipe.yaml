@@ -1,0 +1,220 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.5.78"
+  python_check_max: "3.14"
+
+recipe:
+  name: schedula
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/s/schedula/schedula-${{ version }}.tar.gz
+    sha256: ecf15bf27ddd95af21fbe07aa4ed0a7557ca9f4450d4bfe495c7a25e12f08578
+    target_directory: dist
+  - url: https://github.com/vinci1it2000/schedula/archive/v${{ version }}.tar.gz
+    sha256: 9cb960a153f2ebafb6c45f9ff57e8b8ddcd7ca1a74ba56dbf8d77f7c108243f8
+    target_directory: src
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: schedula
+    build:
+      noarch: python
+      script:
+        - cd dist
+        - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+      python:
+        entry_points:
+          - schedula = schedula.cli:cli
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - which schedula || where schedula
+
+  - package:
+      name: schedula-with-io
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+        - dill !=0.2.7
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: schedula-with-web
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+        - flask
+        - regex
+        - requests
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+  - package:
+      name: schedula-with-parallel
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+        - multiprocess !=0.70.17
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+  - package:
+      name: schedula-with-plot
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula-with-web", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+        - python-graphviz >=0.17
+        - pygments
+        - jinja2
+        - docutils
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+  - package:
+      name: schedula-with-form
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula-with-web", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+        - asteval
+        - boto3
+        - click-log
+        - click
+        - fasteners
+        - flask-admin
+        - flask-babel
+        - flask-mail
+        - flask-principal
+        - flask-pymongo
+        - flask-sqlalchemy
+        - flask-wtf
+        - gunicorn
+        - itsdangerous
+        - jsonschema
+        - pymongo
+        - rst2txt
+        - sqlalchemy
+        - stripe
+        # from flask-security-too[common]
+        - flask-security-too
+        - argon2-cffi >=21.3.0
+        - bcrypt >=4.0.1
+        - bleach >=6.0.0
+        # TODO: build for conda-forge
+        # - flask-mailman >=0.3.0
+        # - sherlock
+        # - sqlalchemy-file
+    tests:
+      - python:
+          imports:
+            - schedula
+            - schedula.utils.form.server.items
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - schedula form --help
+  - package:
+      name: schedula-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("schedula-with-form", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula-with-io", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula-with-parallel", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula-with-plot", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula-with-web", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("schedula", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: schedula
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          recipe:
+            - run_test.py
+          source:
+            - src/examples/
+            - src/tests/test_dispatcher.py
+            - src/tests/test_import.py
+            - src/tests/utils/
+            - src/setup.cfg
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            - coverage
+            - cryptography
+            - ddt
+        script:
+          - python run_test.py
+
+about:
+  license: EUPL-1.1
+  license_file: src/LICENSE.txt
+  summary: |-
+    Produce a plan that dispatches calls based on a graph of functions, satisfying
+    data dependencies.
+  homepage: https://github.com/vinci1it2000/schedula
+  documentation: https://schedula.readthedocs.io
+
+extra:
+  feedstock-name: schedula
+  recipe-maintainers:
+    - bollwyvl

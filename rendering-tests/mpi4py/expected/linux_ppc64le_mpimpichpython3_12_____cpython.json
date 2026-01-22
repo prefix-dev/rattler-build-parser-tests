@@ -1,0 +1,217 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpi4py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpi4py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpi4py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpi4py/work"
+      },
+      "hash": {
+        "hash": "96df81f",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mpi4py": {
+          "build_string": "py312h96df81f_102",
+          "name": "mpi4py",
+          "version": "4.1.1"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:39:11.055626162Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "mpi": "mpich",
+        "mpich": "4",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MPI for Python provides bindings of the Message Passing Interface (MPI)\nstandard for the Python programming language, allowing any Python program\nto exploit multiple processors.",
+        "documentation": "https://mpi4py.readthedocs.org/",
+        "homepage": "https://mpi4py.github.io/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "repository": "https://github.com/mpi4py/mpi4py",
+        "summary": "Python bindings for MPI"
+      },
+      "build": {
+        "number": 102,
+        "script": [
+          "export MPI4PY_BUILD_MPIABI=1",
+          "${{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv"
+        ],
+        "string": "py312h96df81f_102"
+      },
+      "context": {
+        "build": 2,
+        "min_impi": "2021.10",
+        "min_mpich": "3.4",
+        "min_msmpi": "10.1.1",
+        "min_openmpi": "4.1",
+        "mpi": "mpich",
+        "version": "4.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dalcinl",
+          "minrk",
+          "msarahan",
+          "ocefpaf",
+          "davidbrochart",
+          "SylvainCorlay",
+          "leofang"
+        ]
+      },
+      "package": {
+        "name": "mpi4py",
+        "version": "4.1.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "python",
+          "cython",
+          "cross-python_linux-ppc64le"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "python-build",
+          "cython",
+          "mpich"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "mpich"
+          ]
+        },
+        "run": [
+          "python",
+          "mpich >=3.4"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mpi4py",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "impi202116-win.patch"
+          ],
+          "sha256": "eb2c8489bdbc47fdc6b26ca7576e927a11b070b6de196a443132766b3d0a2a22",
+          "url": "https://github.com/mpi4py/mpi4py/releases/download/4.1.1/mpi4py-4.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mpi4py",
+              "mpi4py.MPI",
+              "mpi4py.futures",
+              "mpi4py.util.dtlib",
+              "mpi4py.util.pkl5",
+              "mpi4py.util.pool",
+              "mpi4py.util.sync"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test_mpi4py.py"
+            ]
+          },
+          "script": [
+            "mpiexec -n 1 python -m mpi4py --version",
+            "mpiexec -n 1 python -m mpi4py --mpi-library",
+            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+            "mpiexec -n 2 python -m mpi4py.bench helloworld",
+            "mpiexec -n 2 python -m mpi4py.bench ringtest",
+            "python test_mpi4py.py"
+          ]
+        },
+        {
+          "files": {
+            "recipe": [
+              "test_mpi4py.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "mpich =3.4"
+            ]
+          },
+          "script": [
+            "mpiexec -n 1 python -m mpi4py --version",
+            "mpiexec -n 1 python -m mpi4py --mpi-library",
+            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+            "mpiexec -n 2 python -m mpi4py.bench helloworld",
+            "mpiexec -n 2 python -m mpi4py.bench ringtest",
+            "python test_mpi4py.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: pegasus-wms.api
+  version: 5.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pegasus_wms_api-${{ version }}.tar.gz
+  sha256: 7303a4a5e294951da79441b6dab9fee4688563d60136c8a0132140b946b647c0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - pegasus-wms.common >=5.1.0
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - Pegasus.api
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Pegasus Workflow Management System Python API
+  homepage: https://pegasus.isi.edu
+  repository: https://github.com/pegasus-isi/pegasus.git
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - mayani
+    - rynge

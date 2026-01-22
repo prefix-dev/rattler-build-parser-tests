@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_py-pixi-build-backend",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_py-pixi-build-backend/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_py-pixi-build-backend/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_py-pixi-build-backend/work"
+      },
+      "hash": {
+        "hash": "35738c5",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "py-pixi-build-backend": {
+          "build_string": "py310h35738c5_0",
+          "name": "py-pixi-build-backend",
+          "version": "0.4.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:44.709490770Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "openssl": "3.5",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package provides Python bindings for pixi-build-backends, enabling\nPython applications to use the pixi build system programmatically.",
+        "documentation": "https://prefix-dev.github.io/pixi-build-backends",
+        "homepage": "https://github.com/prefix-dev/pixi-build-backends",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/prefix-dev/pixi-build-backends",
+        "summary": "Python bindings for pixi-build-backends"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_base",
+        "string": "py310h35738c5_0"
+      },
+      "context": {
+        "name": "py-pixi-build-backend",
+        "python_name": "pixi_build_backend",
+        "version": "0.4.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "baszalmstra",
+          "tdejager",
+          "ruben-arts",
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "py-pixi-build-backend",
+        "version": "0.4.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "maturin >=1.2.2,<2",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "maturin >=1.2.2,<2",
+          "pip",
+          "openssl"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "pixi-build-api-version >=4,<5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "761de53e89d3f05d90a2d902cc00fb935a2302a710bc5097b819abe2c0ce99c6",
+          "url": "https://github.com/prefix-dev/pixi-build-backends/archive/refs/tags/py-pixi-build-backend-v0.4.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pixi_build_backend"
+            ],
+            "python_version": [
+              "3.10.*",
+              "*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": [
+            "export SP_DIR=$(python -c \"import site; print(site.getsitepackages()[0])\")",
+            "abi3audit $SP_DIR/pixi_build_backend/pixi_build_backend.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

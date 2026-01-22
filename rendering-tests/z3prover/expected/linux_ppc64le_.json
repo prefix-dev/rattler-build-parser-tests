@@ -1,0 +1,523 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libz3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libz3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libz3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libz3/work"
+      },
+      "hash": {
+        "hash": "9f0e0e5"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libz3": {
+          "build_string": "h9f0e0e5_3",
+          "name": "libz3",
+          "version": "4.15.4"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:53:03.828411770Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/Z3Prover/z3/wiki#background",
+        "homepage": "https://github.com/Z3Prover/z3",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/Z3Prover/z3",
+        "summary": "The Z3 Theorem Prover"
+      },
+      "build": {
+        "number": 3,
+        "script": "build_lib",
+        "string": "h9f0e0e5_3"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "4.15.4",
+        "version_with_py_micro": "4.15.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "libz3",
+        "version": "4.15.4"
+      },
+      "requirements": {
+        "build": [
+          "cross-python_linux-ppc64le",
+          "python *",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "ninja",
+          "libgomp"
+        ],
+        "host": [
+          "python *",
+          "libgomp"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python",
+            "python_abi"
+          ]
+        },
+        "run_constraints": [
+          "z3prover ==4.15.4"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libz3",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-BLD-Add-CMake-option-to-build-Python-bindings-withou.patch",
+            "patches/0002-avoid-custom-re-build-commands-and-data-files.patch"
+          ],
+          "sha256": "dae526252cb0585c8c863292ebec84cace4901a014b190a73f14087dd08d252b",
+          "url": "https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.15.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/libz3.so",
+              "lib/libz3.so.4.15.4*",
+              "bin/z3",
+              "include/z3_algebraic.h",
+              "include/z3_api.h",
+              "include/z3_ast_containers.h",
+              "include/z3_fixedpoint.h",
+              "include/z3_fpa.h",
+              "include/z3.h",
+              "include/z3++.h",
+              "include/z3_macros.h",
+              "include/z3_optimization.h",
+              "include/z3_polynomial.h",
+              "include/z3_rcf.h",
+              "include/z3_v1.h",
+              "include/z3_spacer.h",
+              "include/z3_version.h",
+              "lib/cmake/z3/Z3Targets.cmake",
+              "lib/cmake/z3/Z3Targets-release.cmake",
+              "lib/cmake/z3/Z3Config.cmake",
+              "lib/cmake/z3/Z3ConfigVersion.cmake",
+              "lib/pkgconfig/z3.pc"
+            ]
+          }
+        },
+        {
+          "script": "z3 --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3prover",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3prover/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3prover/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3prover/work"
+      },
+      "hash": {
+        "hash": "f68cdba"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libz3": {
+          "build_string": "h9f0e0e5_3",
+          "name": "libz3",
+          "version": "4.15.4"
+        },
+        "z3prover": {
+          "build_string": "hf68cdba_3",
+          "name": "z3prover",
+          "version": "4.15.4"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:53:03.999271688Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libz3": "4.15.4 h9f0e0e5_3",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/Z3Prover/z3/wiki#background",
+        "homepage": "https://github.com/Z3Prover/z3",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/Z3Prover/z3",
+        "summary": "The Z3 Theorem Prover"
+      },
+      "build": {
+        "number": 3,
+        "string": "hf68cdba_3"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "4.15.4",
+        "version_with_py_micro": "4.15.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "z3prover",
+        "version": "4.15.4"
+      },
+      "requirements": {
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libz3"
+            }
+          }
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libz3"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libz3",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-BLD-Add-CMake-option-to-build-Python-bindings-withou.patch",
+            "patches/0002-avoid-custom-re-build-commands-and-data-files.patch"
+          ],
+          "sha256": "dae526252cb0585c8c863292ebec84cace4901a014b190a73f14087dd08d252b",
+          "url": "https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.15.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "z3 --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3-solver",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3-solver/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3-solver/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_z3-solver/work"
+      },
+      "hash": {
+        "hash": "58d1a4e"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libz3": {
+          "build_string": "h9f0e0e5_3",
+          "name": "libz3",
+          "version": "4.15.4"
+        },
+        "z3-solver": {
+          "build_string": "h58d1a4e_3",
+          "name": "z3-solver",
+          "version": "4.15.4.0"
+        },
+        "z3prover": {
+          "build_string": "hf68cdba_3",
+          "name": "z3prover",
+          "version": "4.15.4"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:53:03.999587999Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "is_python_min": true,
+        "libz3": "4.15.4 h9f0e0e5_3",
+        "python_min": "3.10",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/Z3Prover/z3/wiki#background",
+        "homepage": "https://github.com/Z3Prover/z3",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/Z3Prover/z3",
+        "summary": "The Z3 Theorem Prover"
+      },
+      "build": {
+        "number": 3,
+        "script": {
+          "file": "build_py"
+        },
+        "string": "h58d1a4e_3"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "4.15.4",
+        "version_with_py_micro": "4.15.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "z3-solver",
+        "version": "4.15.4.0"
+      },
+      "requirements": {
+        "build": [
+          "cross-python_linux-ppc64le",
+          "python 3.10.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "ninja",
+          "libgomp"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libz3"
+            }
+          },
+          "python 3.10.*",
+          "setuptools",
+          "pip",
+          "libgomp"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libz3"
+            }
+          },
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-BLD-Add-CMake-option-to-build-Python-bindings-withou.patch",
+            "patches/0002-avoid-custom-re-build-commands-and-data-files.patch"
+          ],
+          "sha256": "dae526252cb0585c8c863292ebec84cace4901a014b190a73f14087dd08d252b",
+          "url": "https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.15.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "site_packages": [
+              "z3_solver-4.15.4.0.dist-info/METADATA"
+            ]
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "z3"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test_z3.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python !=3.10.*"
+            ]
+          },
+          "script": "pytest -vv --tb=long --color=yes"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

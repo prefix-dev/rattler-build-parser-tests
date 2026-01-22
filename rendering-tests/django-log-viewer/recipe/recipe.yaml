@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: django-log-viewer
+  version: "1.1.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 3b70837cc1877356831a5d4831d30426809ccd12a0705b7fb11512ee17f3b50a
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - django
+    - python >=${{ python_min }},<4.0
+
+tests:
+  - python:
+      imports:
+        - log_viewer
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Django log viewer
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/agusmakmun/django-log-viewer
+
+extra:
+  recipe-maintainers:
+    - rxm7706

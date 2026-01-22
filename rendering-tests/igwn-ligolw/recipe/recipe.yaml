@@ -1,0 +1,89 @@
+schema_version: 1
+
+context:
+  name: igwn-ligolw
+  version: 2.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/igwn_ligolw-${{ version }}.tar.gz
+  sha256: 4ca1860e79ec5e25d575ae4e27fa8035a269af6fcda9da33f090ceb85b34b64b
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip:
+    - win
+    - "python_impl != 'cpython'"
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    # extras for cross-compiling:
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+  host:
+    - pip
+    - python
+    - setuptools >=64
+    - setuptools-scm >=8
+  run:
+    - igwn-segments
+    - numpy
+    - python
+    - python-dateutil
+    - pyyaml
+    - tqdm
+
+tests:
+  - files:
+      source:
+        - test
+    requirements:
+      run:
+        - libxml2
+        - make
+        - matplotlib-base
+        - pip
+        - pytest-benchmark
+        - pytest-doctestplus
+        - python-lal
+        - xz-tools
+    script:
+      - python -m pip check
+      - python -m pip show igwn-ligolw
+      - python -m pytest test
+      - pytest --doctest-plus --pyargs igwn_ligolw
+      - make -C test
+      - igwn_ligolw_add --help
+      - igwn_ligolw_cut --help
+      - igwn_ligolw_no_ilwdchar --help
+      - igwn_ligolw_print --help
+      - igwn_ligolw_run_sqlite --help
+      - igwn_ligolw_segments --help
+      - igwn_ligolw_sqlite --help
+
+about:
+  summary: Python LIGO Light-Weight XML I/O Library
+  description: |
+    The LIGO Light-Weight XML format is used extensively by compact object
+    detection pipeline and associated tool sets.
+    This package provides a Python I/O library for reading, writing, and
+    interacting with documents in this format.
+  homepage: https://git.ligo.org/computing/software/igwn-ligolw/
+  repository: https://git.ligo.org/computing/software/igwn-ligolw.git
+  documentation: https://igwn-ligolw.readthedocs.io
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - lpsinger
+    - titodalcanton

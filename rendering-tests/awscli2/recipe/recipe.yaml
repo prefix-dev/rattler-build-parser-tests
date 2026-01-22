@@ -1,0 +1,149 @@
+schema_version: 1
+
+context:
+  name: awscli
+  version: "2.33.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+# v2 is not on PyPI https://github.com/aws/aws-cli/issues/6785
+source:
+  url: https://github.com/aws/aws-cli/archive/${{ version }}.tar.gz
+  sha256: 9090e98fb20a67aa580855f3f4ed48499fead06d7fdb5e2f8cd40495f8641779
+
+build:
+  number: 0
+  # Build uses pep517 with a custom backend
+  # console_scripts entrypoints aren't used, so this can't be noarch
+  script:
+    - ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+    - if: unix
+      then: mkdir -p $PREFIX/share/bash-completions/completions && echo complete -C aws_completer aws >$PREFIX/share/bash-completions/completions/aws
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        #- python >=3.9                           # [build_platform != target_platform]
+        - python
+        - cross-python_${{ target_platform }}
+        # The autocomplete index step is run on the build host
+        # keep these in sync with host and run copies
+        - colorama >=0.2.5,<0.4.7
+        - docutils >=0.10,<0.20
+        - ruamel.yaml >=0.15.0,<=0.17.21
+        - ruamel.yaml.clib >=0.2.0,<=0.2.12
+        - prompt-toolkit >=3.0.24,<3.0.52
+        - distro >=1.5.0,<1.9.0
+        - awscrt ==0.29.1
+        - python-dateutil >=2.1,<=2.9.0
+        - jmespath >=0.7.1,<1.1.0
+        - urllib3 >=1.25.4,<=2.6.3
+
+  host:
+    #- python >=3.9
+    - python
+    - flit-core ==3.9.0
+    - pip
+    # The build process generates the autocomplete index (scripts/gen-ac-index)
+    # which requires importing awscli modules, so we need to install all runtime
+    # dependencies too. YAML anchors don't support merging lists so we have to
+    # duplicate everything :-(
+    - colorama >=0.2.5,<0.4.7
+    - docutils >=0.10,<0.20
+    - ruamel.yaml >=0.15.0,<=0.17.21
+    - ruamel.yaml.clib >=0.2.0,<=0.2.12
+    - prompt-toolkit >=3.0.24,<3.0.52
+    - distro >=1.5.0,<1.9.0
+    - awscrt ==0.29.1
+    - python-dateutil >=2.1,<=2.9.0
+    - jmespath >=0.7.1,<1.1.0
+    - urllib3 >=1.25.4,<=2.6.3
+
+  run:
+    #- python >=3.9
+    - python
+    - colorama >=0.2.5,<0.4.7
+    - docutils >=0.10,<0.20
+    - ruamel.yaml >=0.15.0,<=0.17.21
+    - ruamel.yaml.clib >=0.2.0,<=0.2.12
+    - prompt-toolkit >=3.0.24,<3.0.52
+    - distro >=1.5.0,<1.9.0
+    - awscrt ==0.29.1
+    - python-dateutil >=2.1,<=2.9.0
+    - jmespath >=0.7.1,<1.1.0
+    - urllib3 >=1.25.4,<=2.6.3
+tests:
+  - python:
+      imports:
+        # find $CONDA_PREFIX/lib/python3.9/site-packages/awscli/ -type f -name __init__.py | sed -re 's%.+(awscli.*)/__init__.py%- \1%' -re s'%/%.%g' | sort
+        # Last updated version 2.11.15
+        - awscli
+        - awscli.autocomplete
+        - awscli.autocomplete.local
+        - awscli.autocomplete.serverside
+        - awscli.autocomplete.serverside.custom_completers
+        - awscli.autocomplete.serverside.custom_completers.ddb
+        - awscli.autocomplete.serverside.custom_completers.logs
+        - awscli.autoprompt
+        - awscli.bcdoc
+        - awscli.botocore
+        - awscli.botocore.crt
+        - awscli.botocore.docs
+        - awscli.botocore.docs.bcdoc
+        - awscli.botocore.retries
+        - awscli.botocore.vendored
+        - awscli.botocore.vendored.requests
+        - awscli.botocore.vendored.requests.packages
+        - awscli.botocore.vendored.requests.packages.urllib3
+        - awscli.customizations
+        - awscli.customizations.cloudformation
+        - awscli.customizations.cloudtrail
+        - awscli.customizations.codeartifact
+        - awscli.customizations.codedeploy
+        - awscli.customizations.configservice
+        - awscli.customizations.configure
+        - awscli.customizations.datapipeline
+        - awscli.customizations.dlm
+        - awscli.customizations.dynamodb
+        - awscli.customizations.ec2
+        - awscli.customizations.ec2instanceconnect
+        - awscli.customizations.ecs
+        - awscli.customizations.eks
+        - awscli.customizations.emr
+        - awscli.customizations.emrcontainers
+        - awscli.customizations.gamelift
+        - awscli.customizations.history
+        - awscli.customizations.lightsail
+        - awscli.customizations.logs
+        - awscli.customizations.s3
+        - awscli.customizations.s3.syncstrategy
+        - awscli.customizations.servicecatalog
+        - awscli.customizations.sso
+        - awscli.customizations.wizard
+        - awscli.customizations.wizard.ui
+        - awscli.s3transfer
+  - script:
+      - aws --version
+      - aws_completer
+      # Check autocomplete index exists:
+      - python -c "import awscli, os; assert os.stat(os.path.join(os.path.dirname(awscli.__file__), 'data', 'ac.index')).st_size > 1e6"
+      - if: unix
+        then: COMP_LINE="aws ec2 describe-inst" aws_completer
+
+about:
+  license_file: LICENSE.txt
+  license: Apache-2.0
+  summary: Universal Command Line Environment for AWS.
+  homepage: https://aws.amazon.com/cli/
+  repository: https://github.com/aws/aws-cli
+  documentation: https://aws.amazon.com/cli/
+
+extra:
+  # awscli=1 is maintained in awscli
+  feedstock-name: awscli2
+  recipe-maintainers:
+    - xhochy
+    - tkelman

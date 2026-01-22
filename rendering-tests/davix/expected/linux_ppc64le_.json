@@ -1,0 +1,184 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_davix",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_davix/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_davix/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_davix/work"
+      },
+      "hash": {
+        "hash": "d284217"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "davix": {
+          "build_string": "hd284217_1",
+          "name": "davix",
+          "version": "0.8.10"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:15.595228487Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "gsoap": "2.8.123",
+        "libuuid": "2",
+        "libxml2_devel": "2.14",
+        "openssl": "3.5",
+        "target_platform": "linux-ppc64le",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The davix project aims to make file management over HTTP-based protocols\nsimple. The focus is on high-performance remote I/O and data management of\nlarge collections of files. Currently, there is support for the WebDav,\nAmazon S3, Microsoft Azure, and HTTP protocols.",
+        "documentation": "https://dmc-docs.web.cern.ch/dmc-docs/versions/docs/davix-epel/html/",
+        "homepage": "https://dmc.web.cern.ch/projects/davix/home",
+        "license": "LGPL-2.1-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/cern-it-sdc-id/davix",
+        "summary": "High-performance data access client for HTTP-based protocols. (WebDAV / S3 / Microsoft Azure / HTTP)"
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "bin/davix-unit-test"
+          ],
+          "include": [
+            "**"
+          ]
+        },
+        "number": 1,
+        "string": "hd284217_1"
+      },
+      "context": {
+        "name": "davix",
+        "version": "0_8_10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr",
+          "egpbos",
+          "henryiii"
+        ]
+      },
+      "package": {
+        "name": "davix",
+        "version": "0.8.10"
+      },
+      "requirements": {
+        "build": [
+          "gnuconfig",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "ninja",
+          "git",
+          "python >=3.9",
+          "pkg-config",
+          "gsoap"
+        ],
+        "host": [
+          "gtest",
+          "gsoap",
+          "openssl",
+          "curl",
+          "libxml2-devel",
+          "libuuid",
+          "zlib"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libuuid"
+          ]
+        },
+        "run": [
+          "openssl",
+          "libcurl",
+          "libxml2-devel"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "davix",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-system-curl.patch",
+            "0002-Fix-lib-suffix.patch",
+            "0003-Get-rid-of-forced-C-11.patch",
+            "0004-gh-pr-141.patch",
+            "0005-Replace-CMake-variable-with-imported-target.patch"
+          ],
+          "sha256": "66aa9adadee6ff2bae14caba731597ba7a7cd158763d9d80a9cfe395afc17403",
+          "url": "https://github.com/cern-fts/davix/releases/download/R_0_8_10/davix-0.8.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "bash -c 'davix-ls --help && exit 3 || [ $? -eq 1 ]'",
+            "cat \"${PREFIX}/lib/pkgconfig/davix.pc\"",
+            "grep -q \"${PREFIX}\" \"${PREFIX}/lib/pkgconfig/davix.pc\"",
+            "bash -c 'grep -q \"lib64\" \"${PREFIX}/lib/pkgconfig/davix.pc\" && exit 3 || [ $? -eq 1 ]'"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

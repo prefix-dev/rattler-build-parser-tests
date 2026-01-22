@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: libdiscid
+  version: 0.6.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/metabrainz/libdiscid/archive/v${{ version }}.tar.gz
+  sha256: 1ecc4280b88d6a65c7fcde695f991ac28e3b54ce41d83ab3fffddfb3d5764a11
+  patches:
+    - if: win
+      then: 0001-Update-disc_win32.c.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - if: win
+      then: ninja
+    - if: not win
+      then: make
+    - cmake
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - if: win
+      then: m2-patch
+  run_exports:
+    - ${{ pin_subpackage('libdiscid', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: linux
+        then: test -f "${PREFIX}/lib/libdiscid.so.0"
+      - if: osx
+        then: test -f "${PREFIX}/lib/libdiscid.dylib"
+      - if: unix
+        then: test -f "${PREFIX}/include/discid/discid.h"
+      - if: win
+        then: if not exist %LIBRARY_LIB%\discid.lib exit 1
+      - if: win
+        then: if not exist %LIBRARY_INC%\discid\discid.h exit 1
+      - if: win
+        then: if not exist %LIBRARY_BIN%\discid.dll exit 1
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: COPYING
+  summary: A Library for creating MusicBrainz DiscIDs
+  description: |
+    `libdiscid` is a C library for creating MusicBrainz and freedb disc IDs from audio CDs. It reads a CD's table of contents (TOC) and generates an identifier which can be used to lookup the CD at MusicBrainz. Additionally, it provides a submission URL for adding the disc ID to the database and gathers ISRCs and the MCN (=UPC/EAN) from disc.
+
+
+  homepage: https://musicbrainz.org/doc/libdiscid
+  repository: https://github.com/metabrainz/libdiscid
+  documentation: https://musicbrainz.org/doc/libdiscid
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

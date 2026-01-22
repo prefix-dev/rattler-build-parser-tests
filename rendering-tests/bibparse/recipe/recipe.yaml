@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  version: 1.2.0
+
+package:
+  name: bibparse
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/b/bibparse/bibparse-${{ version }}.tar.gz
+  sha256: aaf891e6d523567bd8b2d3e12549b363492c34551bd4f10fc47620f041d034c9
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - bibparse
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Read and write BibTeX files
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: http://github.com/Legisign/bibparse
+
+extra:
+  recipe-maintainers:
+    - danielnachun

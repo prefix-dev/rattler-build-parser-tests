@@ -1,0 +1,24 @@
+From 3510890393fb1c1e702fa7cc2f05bbcb0e837f9e Mon Sep 17 00:00:00 2001
+From: Uwe Korn <uwelk@xhochy.com>
+Date: Mon, 22 May 2023 08:19:31 +0000
+Subject: [PATCH] Don't overwrite compilers
+
+---
+ GNUmakefile | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/GNUmakefile b/GNUmakefile
+index 99647d9..b62ff37 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -95,10 +95,6 @@ endif
+ 		CC=$(CC) \
+ 		go build -trimpath -ldflags "$(GO_LDFLAGS)" -tags "$(GO_TAGS)" -o $(GO_OUT)
+ 
+-ifneq (aarch64,$(THIS_ARCH))
+-pkg/linux_arm64/nomad: CC = aarch64-linux-gnu-gcc
+-endif
+-
+ ifeq (Darwin,$(THIS_OS))
+ pkg/linux_%/nomad: CGO_ENABLED = 0
+ endif

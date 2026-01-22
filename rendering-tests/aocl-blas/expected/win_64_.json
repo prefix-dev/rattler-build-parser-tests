@@ -1,0 +1,448 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-blas/work"
+      },
+      "hash": {
+        "hash": "1af9dfa"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aocl-blas": {
+          "build_string": "h1af9dfa_0",
+          "name": "aocl-blas",
+          "version": "5.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:05.367874983Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "fortran_compiler": "flang",
+        "fortran_compiler_version": "21",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "AOCL-BLAS is AMD's optimized version of BLAS targeted for AMD EPYC and Ryzen CPUs.",
+        "homepage": "https://www.amd.com/en/developer/aocl/dense.html",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/amd/blis",
+        "summary": "AMD's fork of BLIS optimized for AMD processors."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_aoclblas",
+        "string": "h1af9dfa_0"
+      },
+      "context": {
+        "version": "5.2"
+      },
+      "extra": {
+        "feedstock-name": "aocl-blas",
+        "recipe-maintainers": [
+          "chillenb"
+        ]
+      },
+      "package": {
+        "name": "aocl-blas",
+        "version": "5.2"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "llvm-openmp",
+          "ninja",
+          "cmake"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c553bd543eedc87920df9b82634ae4c02662145ed737f51fdf4c9bca5e588028",
+          "target_directory": "aoclblas",
+          "url": "https://github.com/amd/blis/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "patches": [
+            "fixlinkflags.patch"
+          ],
+          "sha256": "fb5fe5128f718050c9911443fcf7ed91b60538a40d57084ed0124bb91afabb9b",
+          "target_directory": "aocllapack",
+          "url": "https://github.com/amd/libflame/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "sha256": "db0d807170a6eb73fcccd720a65a3e3aa8a787ae656c46479f7d9b4e1f9ed08a",
+          "target_directory": "aoclutils",
+          "url": "https://github.com/amd/aocl-utils/archive/refs/tags/5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_INC%\\\\blis.h exit 1",
+            "if not exist %LIBRARY_BIN%\\\\AOCL-LibBlis-Win-MT-dll.dll exit 1",
+            "if not exist %LIBRARY_LIB%\\\\AOCL-LibBlis-Win-MT-dll.lib exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-utils",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-utils/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-utils/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-utils/work"
+      },
+      "hash": {
+        "hash": "5112557"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aocl-blas": {
+          "build_string": "h1af9dfa_0",
+          "name": "aocl-blas",
+          "version": "5.2"
+        },
+        "aocl-utils": {
+          "build_string": "h5112557_0",
+          "name": "aocl-utils",
+          "version": "5.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:05.413788853Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "AOCL-BLAS is AMD's optimized version of BLAS targeted for AMD EPYC and Ryzen CPUs.",
+        "homepage": "https://www.amd.com/en/developer/aocl/dense.html",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/amd/blis",
+        "summary": "AMD's fork of BLIS optimized for AMD processors."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_aoclutils",
+        "string": "h5112557_0"
+      },
+      "context": {
+        "version": "5.2"
+      },
+      "extra": {
+        "feedstock-name": "aocl-blas",
+        "recipe-maintainers": [
+          "chillenb"
+        ]
+      },
+      "package": {
+        "name": "aocl-utils",
+        "version": "5.2"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "ninja",
+          "cmake"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c553bd543eedc87920df9b82634ae4c02662145ed737f51fdf4c9bca5e588028",
+          "target_directory": "aoclblas",
+          "url": "https://github.com/amd/blis/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "patches": [
+            "fixlinkflags.patch"
+          ],
+          "sha256": "fb5fe5128f718050c9911443fcf7ed91b60538a40d57084ed0124bb91afabb9b",
+          "target_directory": "aocllapack",
+          "url": "https://github.com/amd/libflame/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "sha256": "db0d807170a6eb73fcccd720a65a3e3aa8a787ae656c46479f7d9b4e1f9ed08a",
+          "target_directory": "aoclutils",
+          "url": "https://github.com/amd/aocl-utils/archive/refs/tags/5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_INC%\\\\alci\\\\alci.h exit 1",
+            "if not exist %LIBRARY_BIN%\\\\libaoclutils.dll exit 1",
+            "if not exist %LIBRARY_LIB%\\\\libaoclutils.lib exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-lapack",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-lapack/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-lapack/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_aocl-lapack/work"
+      },
+      "hash": {
+        "hash": "8c41d27"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "aocl-blas": {
+          "build_string": "h1af9dfa_0",
+          "name": "aocl-blas",
+          "version": "5.2"
+        },
+        "aocl-lapack": {
+          "build_string": "h8c41d27_0",
+          "name": "aocl-lapack",
+          "version": "5.2"
+        },
+        "aocl-utils": {
+          "build_string": "h5112557_0",
+          "name": "aocl-utils",
+          "version": "5.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:05.414052435Z",
+      "variant": {
+        "aocl_blas": "5.2 h1af9dfa_0",
+        "aocl_utils": "5.2 h5112557_0",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "fortran_compiler": "flang",
+        "fortran_compiler_version": "21",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "AOCL-BLAS is AMD's optimized version of BLAS targeted for AMD EPYC and Ryzen CPUs.",
+        "homepage": "https://www.amd.com/en/developer/aocl/dense.html",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/amd/blis",
+        "summary": "AMD's fork of BLIS optimized for AMD processors."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_aocllapack",
+        "string": "h8c41d27_0"
+      },
+      "context": {
+        "version": "5.2"
+      },
+      "extra": {
+        "feedstock-name": "aocl-blas",
+        "recipe-maintainers": [
+          "chillenb"
+        ]
+      },
+      "package": {
+        "name": "aocl-lapack",
+        "version": "5.2"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "llvm-openmp",
+          "ninja",
+          "cmake"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "aocl-utils"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "aocl-blas"
+            }
+          }
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "aocl-utils"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "aocl-blas"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c553bd543eedc87920df9b82634ae4c02662145ed737f51fdf4c9bca5e588028",
+          "target_directory": "aoclblas",
+          "url": "https://github.com/amd/blis/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "patches": [
+            "fixlinkflags.patch"
+          ],
+          "sha256": "fb5fe5128f718050c9911443fcf7ed91b60538a40d57084ed0124bb91afabb9b",
+          "target_directory": "aocllapack",
+          "url": "https://github.com/amd/libflame/archive/refs/tags/5.2.tar.gz"
+        },
+        {
+          "sha256": "db0d807170a6eb73fcccd720a65a3e3aa8a787ae656c46479f7d9b4e1f9ed08a",
+          "target_directory": "aoclutils",
+          "url": "https://github.com/amd/aocl-utils/archive/refs/tags/5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_BIN%\\\\AOCL-LibFlame-Win-MT-dll.dll exit 1",
+            "if not exist %LIBRARY_LIB%\\\\AOCL-LibFlame-Win-MT-dll.lib exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

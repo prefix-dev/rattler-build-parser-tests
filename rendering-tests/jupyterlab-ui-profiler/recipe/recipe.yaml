@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.3.0"
+  # derived from `package.json#/dependencies/~@jupyterlab/application`
+  jupyterlab_min: "4.4.0"
+  jupyterlab_max: "5.0.0"
+  python_check_max: "3.14"
+  grep_py: |
+    python -c "import re, sys, pathlib; a = sys.argv[1:]; assert re.findall(a[0], pathlib.Path(a[1]).read_text()), a[0]"
+
+package:
+  name: jupyterlab-ui-profiler
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jupyterlab-ui-profiler/jupyterlab_ui_profiler-${{ version }}.tar.gz
+  sha256: 681268461d43bc8d30f981115d1da19db20ebfdbf1c8e0a3d5a87a199b72f4e6
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatch-jupyter-builder >=0.5
+    - hatch-nodejs-version
+    - hatchling >=1.4.0
+    - jupyterlab ${{ jupyterlab_min }}.*
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - jupyter_server >=1.6,<3
+  run_constraints:
+    - jupyterlab >=${{ jupyterlab_min }},<${{ jupyterlab_max }}
+
+tests:
+  - python:
+      imports: jupyterlab_ui_profiler
+      pip_check: true
+      python_version:
+        - ${{ python_check_max }}.*
+        - ${{ python_min }}.*
+  - requirements:
+      run:
+        - jupyterlab ${{ jupyterlab_min }}.*
+        - python ${{ python_min }}.*
+    script:
+      - jupyter labextension list
+      - jupyter server extension list
+      - jupyter labextension list 1>labextensions 2>&1
+      - jupyter server extension list 1>server_extensions 2>&1
+      - ${{ grep_py }} "@jupyterlab/ui-profiler.*v${{ version }}.*OK" labextensions
+      - ${{ grep_py }} "jupyterlab_ui_profiler.*${{ version }}.*OK" server_extensions
+
+about:
+  summary: JupyterLab extension for profiling UI performance
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - jupyterlab_ui_profiler/labextension/static/third-party-licenses.json
+  homepage: https://pypi.org/project/jupyterlab-ui-profiler
+  repository: https://github.com/jupyterlab/ui-profiler
+  documentation: https://ui-profiler.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

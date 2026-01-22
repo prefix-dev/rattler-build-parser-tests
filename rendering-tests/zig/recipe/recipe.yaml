@@ -1,0 +1,173 @@
+schema_version: 1
+
+context:
+  name: zig
+  version: 0.15.2
+  llvm_version: "20"
+  llvm_src_version: "20.1.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/ziglang/zig/archive/refs/tags/${{ version }}.tar.gz
+    sha256: ebe6eb7006f6bbb72e54bd25d0675f2794084909d63a95aa315f2dcf2af5fd99
+    patches:
+      - if: linux
+        then:
+          - patches/0001-linux-maxrss-build.zig.patch
+      - if: linux and (x86_64 or ppc64le)
+        then:
+          # Phase 0001: Architecture Support (add PowerPC64LE to CPU arch switches)
+          - patches/0001-ppc64le-arch-support-relocation.zig.patch
+          - patches/0001-ppc64le-arch-support-LdScript.zig.patch
+          - patches/0001-ppc64le-arch-support-Elf.zig.patch
+          - patches/0001-ppc64le-arch-support-Atom.zig.patch
+          - patches/0001-ppc64le-arch-support-LinkerDefined.zig.patch
+          - patches/0001-ppc64le-arch-support-ZigObject.zig.patch
+          - patches/0001-ppc64le-arch-support-synthetic_sections.zig.patch
+          - patches/0001-ppc64le-arch-support-eh_frame.zig.patch
+          - patches/0001-ppc64le-arch-support-Thunk.zig.patch
+          - patches/0001-ppc64le-arch-support-st-other-Object.zig.patch
+          - patches/0001-ppc64le-arch-support-st-other-SharedObject.zig.patch
+          # Phase 0002: Build Configuration (LLVM backend, library paths)
+          - patches/0002-ppc64le-build-config-build.zig.patch
+          # Phase 0003: Linker Redirection (comprehensive GCC linker with full flag translation)
+          - patches/0003-ppc64le-linker-redirect-link.zig.patch
+          - patches/0003-ppc64le-ldscript-output-format.patch
+          - patches/0003-ppc64le-gcc-linker-comprehensive-Lld.zig.patch
+      - if: not unix
+        then:
+          - patches/0001-win-maxrss-search-prefix-build.zig.patch
+          - patches/0001-win-correct-LLVM_LIBRARIES-CMakeLists.txt.patch
+          - patches/0001-win-remove-ucrt-Lld.zig.patch
+          - patches/0002-win-MD-libzigcpp-CMakeLists.txt.patch
+    target_directory: zig-source
+  - if: ppc64le
+    then:
+      - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${{ llvm_src_version }}.tar.gz
+        sha256: a6cbad9b2243b17e87795817cfff2107d113543a12486586f8a055a2bb044963
+        target_directory: lld-source
+
+build:
+  number: 6
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then: /usr/lib/libSystem.B.dylib
+      - if: not unix
+        then: "*/VERSION.dll"
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake >=3.5
+    - ninja
+    - perl 5.32.*
+    - zig ==0.15.2 *_3  # Pin to _3: _2 is broken (SIGILL crash)
+    - if: ppc64le
+      then:
+        # Needed to cross-compile ppc64le LLD with mcmodel=medium to prevent unsupported relocation
+        - llvmdev ${{ llvm_version }}.*
+    - if: (build_platform != target_platform) and osx
+      then:
+        - libxml2-devel
+    - if: unix
+      then:
+        - bash
+        - file
+      else:
+        - m2-bash
+  host:
+    - clangdev ${{ llvm_version }}.*
+    - libclang-cpp ${{ llvm_version }}.*
+    - libxml2-devel
+    - llvm ${{ llvm_version }}.*
+    - llvmdev ${{ llvm_version }}.*
+    - lld ${{ llvm_version }}.*
+    - zlib
+    - zstd
+    - if: aarch64 or ppc64le
+      then:
+        - ${{ compiler('cxx') }}
+    - if: osx
+      then:
+        - libcxx ${{ llvm_version }}.*
+  run:
+    - if: not unix
+      then:
+        - libxml2
+    - if: ppc64le
+      then:
+        # We redirect linking to gcc/ld.bfd
+        - binutils_impl_${{ target_platform }} >=2.45,<2.46
+        - gcc_impl_${{ target_platform }} ==14.3
+  ignore_run_exports:
+    by_name:
+      - if: win
+        then:
+          - ucrt
+          - vc14_runtime
+    from_package:
+      - libxml2-devel
+      - if: osx and arm64
+        then:
+          - libclang-cpp
+          - llvm
+
+tests:
+  # Package contents verification
+  - package_contents:
+      bin:
+        - zig
+      files:
+        - lib/zig/c.zig
+        - lib/zig/compiler_rt.zig
+        - lib/zig/zig.h
+        - if: not (osx and arm64)
+          then:
+            - lib/zig/compiler/**
+            - lib/zig/compiler_rt/**
+            - lib/zig/docs/**
+            - lib/zig/include/**
+            - lib/zig/init/**
+            - lib/zig/libc/**
+            - lib/zig/libcxx/**
+            - lib/zig/libcxxabi/**
+            - lib/zig/libunwind/**
+            - lib/zig/std/**
+
+  # Functional tests
+  - files:
+      source:
+        - zig-source/test
+
+    script:
+      - zig version
+      - zig zen
+      - zig init
+      - zig test zig-source/test/behavior.zig
+
+about:
+  homepage: https://ziglang.org/
+  license: MIT
+  license_file: zig-source/LICENSE
+  summary: Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.
+  description: |
+    Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.
+    Robust: Behavior is correct even for edge cases such as out of memory.
+    Optimal: Write programs the best way they can behave and perform.
+    Reusable: The same code works in many environments which have different constraints.
+    Maintainable: Precisely communicate intent to the compiler and other programmers.
+      The language imposes a low overhead to reading code and is resilient to changing requirements and environments.
+  documentation: https://ziglang.org/documentation/${{ version }}/
+  repository: https://github.com/ziglang/zig
+
+extra:
+  recipe-maintainers:
+    - MementoRC
+    - xmnlab
+    - tdejager

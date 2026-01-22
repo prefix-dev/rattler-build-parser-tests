@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 4.1.0
+
+package:
+  name: devpi-common
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/devpi-common/devpi-common-${{ version }}.tar.gz
+  sha256: 58d7f761e3fe7fdfe449c4a6a9e2350d4ddfbeb66cb0f6d208025142943030d3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-changelog-shortener
+    - wheel
+  run:
+    - lazy
+    - packaging-legacy
+    - python >=${{ python_min }}
+    - requests >=2.3.0
+
+tests:
+  - python:
+      imports:
+        - devpi_common
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Devpi utilities jointly used by devpi-server and devpi-client
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/devpi/devpi
+  repository: https://github.com/devpi/devpi/tree/main/common
+  documentation: http://doc.devpi.net/
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: embetter
+  version: 0.8.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/embetter-${{ version }}.tar.gz
+  sha256: 9b316f6c162975d570ae9465969f302f0e735973069473971c857053bf32ce1e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - scikit-learn >=1.0.0
+    - pandas >=1.0.0
+    - diskcache >=5.6.1
+    - skops >=0.8.0
+    - model2vec
+
+tests:
+  - python:
+      imports:
+        - embetter
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Scikit-learn compatible embeddings for computer vision and text
+  license: MIT
+  license_file: LICENCE
+  homepage: https://koaning.github.io/embetter/
+  repository: https://github.com/koaning/embetter
+
+extra:
+  recipe-maintainers:
+    - thewchan

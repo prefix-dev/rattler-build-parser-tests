@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: molsimplify
+  version: 1.8.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/hjkgrp/molSimplify/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 8d80ba0b01bf7beb57a242616e6fba2607444f201743d735e3e14ca8191168ec
+  patches:
+    - pyproject.patch
+
+build:
+  number: 1
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python
+    - pip
+    - pytest-runner
+    - setuptools
+  run:
+    - python
+    - openbabel
+    - numpy
+    - scikit-learn
+    - pandas
+    - keras
+    - scipy
+    - pyyaml
+    - tensorflow
+    - hyperopt
+    - pre-commit
+    - importlib-resources
+
+tests:
+  - python:
+      imports:
+        - molSimplify
+      pip_check: true
+
+about:
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  summary: A toolkit for automating discovery in inorganic chemistry
+  description: |
+    molSimplify is an open source toolkit for the automated,
+    first-principles screening and discovery of new inorganic molecules
+    and intermolecular complexes.
+  homepage: https://molsimplify.mit.edu
+  repository: https://github.com/hjkgrp/molSimplify
+  documentation: https://molsimplify.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - jan-janssen

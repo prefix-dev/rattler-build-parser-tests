@@ -1,0 +1,142 @@
+context:
+  version: "4.2.2"
+
+recipe:
+  name: human-dynamics-estimation-split
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/robotology/human-dynamics-estimation/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 1e3336689492f1ade1c8224745be9c861687218d6c9e03dc81a0bf0f6ad4e59d
+
+build:
+  number: 3
+
+outputs:
+  - package:
+      name: libhuman-dynamics-estimation
+    build:
+      script:
+        - if: unix
+          then: build_cxx.sh
+        - if: win
+          then: bld_cxx.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+        - multisheller
+        - if: build_platform != target_platform
+          then:
+            - libyarp
+      host:
+        - ycm-cmake-modules
+        - libyarp
+        - libicub-main
+        - idyntree
+        - libosqp
+        - osqp-eigen
+        - librobometry
+        - libmatio-cpp
+        - eigen
+      run_exports:
+        - ${{ pin_subpackage('libhuman-dynamics-estimation', upper_bound='x.x.x') }}
+    tests:
+      - script:
+          - if: unix
+            then: test -f ${PREFIX}/lib/libHumanStateMsg${SHLIB_EXT}
+          - if: win
+            then:
+              - if not exist %LIBRARY_LIB%\\HumanStateMsg.lib exit 1
+              - if not exist %LIBRARY_BIN%\\HumanStateMsg.dll exit 1
+          - cmake-package-check IWear --targets IWear::IWear
+          - cmake-package-check WearableData --targets WearableData::WearableData
+          - cmake-package-check WearableActuators --targets WearableActuators::WearableActuators
+          - cmake-package-check HumanDynamicsEstimation --targets HumanDynamicsEstimation::HumanStateMsg
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+
+  - package:
+      name: human-dynamics-estimation-python
+    build:
+      script:
+        - if: unix
+          then: build_py.sh
+        - if: win
+          then: bld_py.bat
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - pkg-config
+        - ninja
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - python
+      host:
+        - ${{ pin_subpackage('libhuman-dynamics-estimation', exact=True) }}
+        - python
+        - libyarp
+        - pybind11
+        - pybind11-abi
+      run:
+        - ${{ pin_subpackage('libhuman-dynamics-estimation', exact=True) }}
+        - python
+    tests:
+      - python:
+          imports:
+            - wearables
+            - hde
+
+  - package:
+      name: human-dynamics-estimation
+    requirements:
+      run_exports:
+        - ${{ pin_subpackage('libhuman-dynamics-estimation', upper_bound='x.x.x') }}
+      run:
+        - ${{ pin_subpackage('libhuman-dynamics-estimation', exact=True) }}
+        - ${{ pin_subpackage('human-dynamics-estimation-python', upper_bound='x.x.x') }}
+    tests:
+      - script:
+          - if: unix
+            then: test -f ${PREFIX}/lib/libHumanStateMsg${SHLIB_EXT}
+          - if: win
+            then:
+              - if not exist %LIBRARY_LIB%\\HumanStateMsg.lib exit 1
+              - if not exist %LIBRARY_BIN%\\HumanStateMsg.dll exit 1
+          - cmake-package-check IWear --targets IWear::IWear
+          - cmake-package-check WearableData --targets WearableData::WearableData
+          - cmake-package-check WearableActuators --targets WearableActuators::WearableActuators
+          - cmake-package-check HumanDynamicsEstimation --targets HumanDynamicsEstimation::HumanStateMsg
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+            - cmake
+      - python:
+          imports:
+            - wearables
+            - hde
+
+about:
+  homepage: https://github.com/robotology/human-dynamics-estimation
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Software repository for estimating human dynamics.
+
+extra:
+  feedstock-name: human-dynamics-estimation
+  recipe-maintainers:
+    - traversaro

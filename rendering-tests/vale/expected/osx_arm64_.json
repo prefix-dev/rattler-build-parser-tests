@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/work"
+      },
+      "hash": {
+        "hash": "d12625e"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vale": {
+          "build_string": "hd12625e_0",
+          "name": "vale",
+          "version": "3.13.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:53:01.504731996Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "12.3",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "12.3",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://vale.sh/docs",
+        "homepage": "https://vale.sh/",
+        "license": "MIT",
+        "license_file": [
+          "src/github.com/errata-ai/vale/LICENSE",
+          "license-files/"
+        ],
+        "repository": "https://github.com/errata-ai/vale",
+        "summary": "A syntax-aware linter for prose built with speed and extensibility in mind."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-vale"
+        },
+        "string": "hd12625e_0"
+      },
+      "context": {
+        "go_min": "1.25.3",
+        "version": "3.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "vale",
+        "version": "3.13.0"
+      },
+      "requirements": {
+        "build": [
+          "go-cgo_osx-arm64",
+          "go-licenses",
+          "go >=1.25.3",
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 12.3.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-use-conda-prefix.patch"
+          ],
+          "sha256": "a6811e19c0ca8fc453da98238c2ffc7c5d5d1e77346d72d24fd47c09302fd7c0",
+          "target_directory": "src/github.com/errata-ai/vale",
+          "url": "https://github.com/errata-ai/vale/archive/refs/tags/v3.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "vale --version",
+            "vale --help",
+            "vale --version | grep -iE \"${{ version | replace(\".\", \"\\\\.\") }}\"",
+            "vale ls-dirs",
+            "mkdir -p \"${CONDA_PREFIX}/share/vale/styles\"",
+            "vale ls-dirs | grep \"${CONDA_PREFIX}/share\"",
+            "mkdir -p \"${CONDA_PREFIX}/etc/vale\"",
+            "touch \"${CONDA_PREFIX}/etc/vale/.vale.ini\"",
+            "vale ls-dirs | grep \"${CONDA_PREFIX}/etc\"",
+            "vale ls-dirs"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

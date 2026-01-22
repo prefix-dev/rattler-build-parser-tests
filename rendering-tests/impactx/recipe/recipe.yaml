@@ -1,0 +1,165 @@
+schema_version: 1
+
+context:
+  name: impactx
+  version: "26.01"
+  build: 0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/BLAST-ImpactX/impactx/archive/${{ version }}.tar.gz
+  sha256: 7ac503208daaed8b7deb81792d77cd6c462978316a41a20d07ac7f765e0ce8e1
+
+build:
+  skip: python_impl == "pypy"
+  # prioritize DP builds if unspecified
+  number: ${{ build | int + 100 if impactx_precision == "dp" else build }}
+  string: nompi_${{ impactx_precision }}_h${{ hash }}_${{ build | int + 100 if impactx_precision == "dp" else build }}
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pybind11
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: unix
+      then: make
+    - if: win
+      then:
+        - clang
+        - lld
+        - llvm-openmp
+        - ninja
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp
+    - cmake
+    - pkg-config
+
+  host:
+    - amrex ==${{ version }}[build=nompi_${{ impactx_precision }}_*]
+    - fftw
+    - if: win
+      then:
+        # https://github.com/conda-forge/scipy-feedstock/issues/257#issuecomment-1792217861
+        - libblas * [build=*blis]
+    - numpy
+    - openpmd-api * [build=nompi_*]
+    - pip
+    - pyamrex ==${{ version }}[build=nompi_${{ impactx_precision }}_*]
+    - pybind11
+    - pybind11-abi
+    - python
+    - setuptools
+    - vir-simd
+    - wheel
+  run:
+    - if: win
+      then:
+        # https://github.com/conda-forge/scipy-feedstock/issues/257#issuecomment-1792217861
+        - libblas * [build=*blis]
+    # see requirements.txt
+    - pals-schema >=0.2.0,<0.3.0
+    - pyamrex ==${{ version }}[build=nompi_${{ impactx_precision }}_*]
+    - python
+    - scipy
+    - quantiphy
+    # see src/python/impactx/dashboard/requirements.txt
+    - pandas
+    - plotly
+    - trame
+    - trame-matplotlib
+    - trame-plotly
+    - trame-router
+    - trame-vuetify
+    - trame-xterm
+
+  run_exports:
+    # strict runtime dependency on build-time DP/SP variant
+    - ${{ name }} * ${{ impactx_precision }}_*
+    # releases are not (yet) compatible
+    - impactx ==${{ version }}
+
+tests:
+  - python:
+      imports:
+        - impactx
+      pip_check: false
+  - package_contents:
+      files:
+        - if: unix and impactx_precision == "dp"
+          then:
+            - bin/impactx.NOMPI.OMP.DP.OPMD
+        - if: unix and impactx_precision == "sp"
+          then:
+            - bin/impactx.NOMPI.OMP.SP.OPMD
+        - if: win and impactx_precision == "dp"
+          then:
+            - Library/bin/impactx.NOMPI.OMP.DP.OPMD.exe
+        - if: win and impactx_precision == "sp"
+          then:
+            - Library/bin/impactx.NOMPI.OMP.SP.OPMD.exe
+
+  - script:
+      - echo "Testing..."
+      - if: unix and (build_platform == target_platform)
+        then: ./test.sh
+      - if: win
+        then: call test.bat
+    requirements:
+      run:
+        - python
+        - pytest
+        - pytest-benchmark
+        - selenium
+        # ctest, see examples/requirements.txt
+        # TODO: PyNAFF
+        - if: build_platform == target_platform
+          then:
+            - matplotlib
+            - if: win
+              then:
+            # https://github.com/conda-forge/scipy-feedstock/issues/257#issuecomment-1792217861
+                - libblas * [build=*blis]
+    files:
+      recipe:
+        - if: unix
+          then: test.sh
+        - if: win
+          then: test.bat
+      source:
+        - examples/fodo/input_fodo.in
+        - examples/fodo/run_fodo.py
+        - tests/python/
+        - examples/chicane/input_chicane_csr.in
+        - examples/expanding_beam/input_expanding_fft_2D.in
+
+about:
+  license: BSD-3-Clause-LBNL
+  license_file: LICENSE.txt
+  summary: ImpactX enables high-performance modeling of beam dynamics in particle accelerators with collective effects.
+  description: |
+    ImpactX enables high-performance modeling of beam dynamics in particle accelerators with collective effects.
+
+    This is the next generation of the IMPACT-Z code. ImpactX runs on modern
+    GPUs or CPUs alike, provides user-friendly interfaces suitable for AI/ML
+    workflows, has many benchmarks to ensure its correctness, and an extensive
+    documentation.
+  homepage: https://impactx.readthedocs.io
+  repository: https://github.com/BLAST-ImpactX/impactx
+  documentation: https://impactx.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - ax3l
+    - cemitch99
+    - EZoni
+    - RemiLehe

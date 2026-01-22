@@ -1,0 +1,206 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openusd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openusd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openusd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openusd/work"
+      },
+      "hash": {
+        "hash": "3816c9a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openusd": {
+          "build_string": "py313h3816c9a_2",
+          "name": "openusd",
+          "version": "25.11"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:39.859424677Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_devel": "1.88",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64",
+        "tbb_devel": "2022"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/PixarAnimationStudios/OpenUSD",
+        "license": "LicenseRef-Tomorrow-Open-Source-Technology-License-1.0 AND Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-3-Clause AND JSON AND BSL-1.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Library to read and write Universal Scene Description (USD) files."
+      },
+      "build": {
+        "number": 2,
+        "string": "py313h3816c9a_2"
+      },
+      "context": {
+        "name": "openusd",
+        "version": "25.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "openusd",
+        "version": "25.11"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja",
+          "cmake",
+          "cross-python_linux-aarch64",
+          "python",
+          "pyside6"
+        ],
+        "host": [
+          "libgl-devel",
+          "libglx-devel",
+          "xorg-libxrandr",
+          "glfw",
+          "tbb-devel",
+          "libboost-devel",
+          "libopensubdiv",
+          "python",
+          "jinja2",
+          "pyside6",
+          "pyopengl"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "tbb-devel",
+              "upper_bound": "x.x"
+            }
+          },
+          "pyside6",
+          "pyopengl"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "openusd",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "link_python_to_executables.patch",
+            "add_pxr_install_dll_in_bin.patch",
+            "3759.patch",
+            "remove_hardcoded_prefix.patch"
+          ],
+          "sha256": "c37c633b5037a4552f61574670ecca8836229b78326bd62622f3422671188667",
+          "url": "https://github.com/PixarAnimationStudios/OpenUSD/archive/refs/tags/v25.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "pxr/pxr.h"
+            ],
+            "lib": [
+              "usd_usd"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "openusd_plugins_sanity_check.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14",
+              "pip"
+            ]
+          },
+          "script": [
+            "cmake-package-check pxr",
+            "python openusd_plugins_sanity_check.py 40",
+            "usdInitSchema --help",
+            "usdview --help",
+            "test $(pip list | grep usd-core | tr -s \" \" | grep ${PKG_VERSION//\\.0/.} | wc -l) -eq 1"
+          ]
+        },
+        {
+          "python": {
+            "imports": [
+              "pxr",
+              "pxr.Usd",
+              "pxr.UsdGeom"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

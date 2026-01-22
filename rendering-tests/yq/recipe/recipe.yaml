@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: yq
+  version: 3.4.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: ba586a1a6f30cf705b2f92206712df2281cd320280210e7b7b80adcb8f256e3b
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - yq=yq:cli
+      - xq=yq:xq_cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools_scm
+  run:
+    - tomlkit >=0.11.6
+    - argcomplete >=1.8.1
+    - jq
+    - python >=${{ python_min }}
+    - pyyaml >=5.3.1
+    - setuptools
+    - toml >=0.10.0
+    - xmltodict >=0.11.0
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - yq
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - yq --help
+      - xq --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Command-line YAML/XML processor - jq wrapper for YAML/XML documents
+  homepage: https://github.com/kislyuk/yq
+  repository: https://github.com/kislyuk/yq
+  documentation: https://yq.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - sodre
+    - xhochy

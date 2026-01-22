@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: pyiron_dataclasses
+  version: "0.0.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyiron_dataclasses-${{ version }}.tar.gz
+  sha256: d2043d2de0c50b12261682e55f9a234f97764de9435c9d46fb7a21fad10b1493
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - numpy
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }},<3.14
+    - numpy >=1.23.5,<=2.4.0
+    - pint >=0.18,<=0.25.2
+
+tests:
+  - python:
+      imports:
+        - pyiron_dataclasses
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Dataclasses for the pyiron workflow framework
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/pyiron/pyiron_dataclasses
+
+extra:
+  recipe-maintainers:
+    - jan-janssen

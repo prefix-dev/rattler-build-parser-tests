@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: djc-core-html-parser
+  version: "1.0.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/djc_core_html_parser-${{ version }}.tar.gz
+  sha256: 735c556440d029739d82b6f69a4c152a2a352c9355166dd5778cc42e664d715f
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }}  -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin >=1,<2
+
+    - ${{ compiler("c") }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - pip
+    - maturin >=1,<2
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - djc_core_html_parser
+      pip_check: true
+
+about:
+  summary: HTML parser used by django-components written in Rust.
+  homepage: https://github.com/django-components/djc-core-html-parser
+  description: |
+    HTML parser used by django-components written in Rust.
+  repository: https://github.com/django-components/djc-core-html-parser
+  documentation: https://github.com/django-components/djc-core-html-parser/blob/main/README.md
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - rxm7706

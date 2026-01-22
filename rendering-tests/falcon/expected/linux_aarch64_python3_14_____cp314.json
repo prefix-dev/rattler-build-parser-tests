@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_falcon",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_falcon/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_falcon/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_falcon/work"
+      },
+      "hash": {
+        "hash": "2e8dab5",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "falcon": {
+          "build_string": "py314h2e8dab5_0",
+          "name": "falcon",
+          "version": "4.2.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:44:46.848899961Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Falcon is a high-performance Python framework for building cloud APIs. It\nencourages the REST architectural style, and tries to do as little as\npossible while remaining highly effective.",
+        "documentation": "http://falcon.readthedocs.io/en/stable/",
+        "homepage": "http://falconframework.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/falconry/falcon/",
+        "summary": "An unladen web framework for building APIs and app backends."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "falcon-bench = falcon.cmd.bench:main",
+            "falcon-print-routes = falcon.cmd.inspect_app:route_main",
+            "falcon-inspect-app = falcon.cmd.inspect_app:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv",
+        "string": "py314h2e8dab5_0"
+      },
+      "context": {
+        "name": "falcon",
+        "version": "4.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "daf",
+          "synapticarbors",
+          "carlodri"
+        ]
+      },
+      "package": {
+        "name": "falcon",
+        "version": "4.2.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "cython >=3.0.8",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cython >=3.0.8",
+          "setuptools >=61"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c13e86e49696d6655411fe09473c34997e49ff45e8cdf7576297b0ca71ceac3d",
+          "url": "https://pypi.org/packages/source/f/falcon/falcon-4.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "falcon",
+              "falcon.cmd",
+              "falcon.media",
+              "falcon.routing",
+              "falcon.testing",
+              "falcon.util",
+              "falcon.asgi"
+            ]
+          }
+        },
+        {
+          "script": [
+            "falcon-bench -h",
+            "falcon-inspect-app -h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: HepMC3
+  version: 3.3.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://hepmc.web.cern.ch/hepmc/releases/${{ name }}-${{ version }}.tar.gz
+  sha256: 08240160b0f28dc3293aa4d61ce65e2d67cd597acf6faca439f2e46625f7e793
+  target_directory: source
+
+build:
+  number: 3
+  skip: win
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - make
+  host:
+    - python
+    - zlib
+    - bzip2
+    - zstd
+  run:
+    - python
+
+tests:
+  - files:
+      source:
+        - source/test
+    requirements:
+      run:
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('fortran') }}
+    script:
+      - HepMC3-config --prefix
+      - HepMC3-config --cxxflags
+      - HepMC3-config --ldflags
+      - HepMC3-config --libdir
+      - cd source/test
+      - "${CXX} -std=c++11 testMass.cc -o testMass $(HepMC3-config --cxxflags --ldflags) -Wl,-rpath,\"$(HepMC3-config --libdir)\""
+      - ./testMass
+
+about:
+  license: GPL-3.0-or-later
+  license_file: source/COPYING
+  summary: HepMC3 is a new rewrite of HepMC event record.
+  description: |
+    HepMC3 is a new rewrite of HepMC event record. It uses shared pointers
+    for in-memory navigation and the POD concept for the persistency.
+  homepage: https://hepmc.web.cern.ch/hepmc/
+  repository: https://gitlab.cern.ch/hepmc/HepMC3
+
+extra:
+  recipe-maintainers:
+    - henryiii
+    - chrisburr
+    - gartung
+    - matthewfeickert
+    - kratsg
+    - lgray
+    - meiyasan
+    - scarlehoff

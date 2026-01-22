@@ -1,0 +1,165 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmmtools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmmtools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmmtools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openmmtools/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openmmtools": {
+          "build_string": "pyhcf101f3_1",
+          "name": "openmmtools",
+          "version": "0.26.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:38.845473332Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "openmmtools is a Python library layer that sits on top of OpenMM to provide access\nto a variety of useful tools for building full-featured molecular simulation packages.",
+        "documentation": "https://openmmtools.readthedocs.io/",
+        "homepage": "https://github.com/choderalab/openmmtools",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/choderalab/openmmtools",
+        "summary": "A batteries-included toolkit for the GPU-accelerated OpenMM molecular simulation engine."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "test-openmm-platforms = openmmtools.scripts.test_openmm_platforms:main",
+            "benchmark-alchemy = openmmtools.tests.test_alchemy:benchmark_alchemy_from_pdb"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "name": "openmmtools",
+        "python_min": "3.11",
+        "version": "0.26.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jaimergp",
+          "jchodera",
+          "mikemhenry",
+          "ijpulidos"
+        ]
+      },
+      "package": {
+        "name": "openmmtools",
+        "version": "0.26.0"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.11.*",
+          "setuptools"
+        ],
+        "run": [
+          "hdf5",
+          "libnetcdf >=4.6.2",
+          "mdtraj",
+          "mpiplus",
+          "netcdf4 >=1.5",
+          "numba",
+          "numpy >1.9",
+          "openmm >=7.3.1",
+          "pandas",
+          "pdbfixer",
+          "pymbar",
+          "python >=3.11",
+          "pyyaml",
+          "scipy >=1.15.0",
+          "setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "206c419562153edcd50f2de44a5201c56996080232a47ce05dfc16827702f001",
+          "url": "https://github.com/choderalab/openmmtools/archive/0.26.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "openmmtools"
+            ],
+            "pip_check": false,
+            "python_version": "3.11.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pytest",
+              "requests",
+              "coverage"
+            ]
+          },
+          "script": [
+            "pytest --pyargs openmmtools",
+            "test-openmm-platforms --help",
+            "benchmark-alchemy --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: 0.19.1
+
+package:
+  name: gitlint-core
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/g/gitlint-core/gitlint_core-${{ version }}.tar.gz
+  sha256: 7bf977b03ff581624a9e03f65ebb8502cc12dfaa3e92d23e8b2b54bbdaa29992
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - gitlint = gitlint.cli:cli
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - arrow
+    - click
+    - sh
+
+tests:
+  - python:
+      imports:
+        - gitlint
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+      - gitlint --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Git commit message linter written in python, checks your commit messages for style.
+  homepage: https://github.com/jorisroovers/gitlint
+  repository: https://github.com/jorisroovers/gitlint/tree/main/gitlint-core
+
+extra:
+  recipe-maintainers:
+    - danielnachun

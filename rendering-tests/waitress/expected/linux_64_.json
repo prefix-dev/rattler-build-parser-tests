@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_waitress",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_waitress/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_waitress/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_waitress/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "waitress": {
+          "build_string": "pyhcf101f3_2",
+          "name": "waitress",
+          "version": "3.0.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:53:02.199804503Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Waitress is meant to be a production-quality pure-Python WSGI server with\nvery acceptable performance. It has no dependencies except ones which live\nin the Python standard library. It runs on CPython on Unix and Windows under\nPython 2.7+ and Python 3.3+. It is also known to run on PyPy 1.6.0+ on UNIX.\nIt supports HTTP/1.0 and HTTP/1.1.",
+        "documentation": "http://docs.pylonsproject.org/projects/waitress/en/latest/",
+        "homepage": "https://github.com/Pylons/waitress",
+        "license": "ZPL-2.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/Pylons/waitress",
+        "summary": "Production-quality pure-Python WSGI server"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "waitress-serve = waitress.runner:run"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "name": "waitress",
+        "version": "3.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "carlodri",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "waitress",
+        "version": "3.0.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "682aaaf2af0c44ada4abfb70ded36393f0e307f4ab9456a215ce0020baefc31f",
+          "url": "https://pypi.org/packages/source/w/waitress/waitress-3.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "waitress"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "waitress-serve --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

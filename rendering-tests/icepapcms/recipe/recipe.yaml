@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: icepapcms
+  version: "3.10.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/icepapcms-${{ version }}.tar.gz
+  sha256: 9bbf6543273da13494cae9c2c1e475a7758d1ae6d032e214218e6e576aa0d4af
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - icepapcms = icepapcms.__main__:main
+      - ipapconsole = icepapcms.gui.ipapconsole:main
+      - icepapsnapshot = icepapcms.lib.snapshot:main
+
+requirements:
+  host:
+    - setuptools
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - configobj
+    - icepap >=3.7.0
+    - ipy >=0.62
+    - ldap3
+    - pyqt >=5.12.3
+    - python >=${{ python_min }}
+    - pyyaml
+    - storm >=0.23
+    # for pkg_resources
+    - setuptools <81
+
+tests:
+  - python:
+      imports:
+        - icepapcms
+        - icepapcms.gui
+        - icepapcms.gui.icepapcms
+        - icepapcms.gui.ipapconsole
+        - icepapcms.lib
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+  - script:
+      - icepapcms --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Icepap Configuration Management System and Test Tool
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/icepap-organization/IcepapCMS
+
+extra:
+  recipe-maintainers:
+    - beenje
+    - perhedmax
+    - rhomspuron

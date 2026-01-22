@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: paracelsus
+  version: "0.15.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/paracelsus-${{ version }}.tar.gz
+  sha256: b850b56417eef7b5e301b09ba7d44655f3c76de8681699b93ef6ae410afeb278
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - paracelsus = paracelsus.cli:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=67.0
+    - setuptools-scm >=7.1
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pydot >=3.0,<5.0
+    - packaging
+    - sqlalchemy
+    - typer
+    - toml
+
+tests:
+  - python:
+      imports:
+        - paracelsus
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}
+    script:
+      - paracelsus --help
+
+about:
+  summary: Visualize SQLAlchemy Databases using Mermaid or Dot Diagrams.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tedivm/paracelsus
+
+extra:
+  recipe-maintainers:
+    - thewchan

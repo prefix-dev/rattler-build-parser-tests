@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvorbis",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvorbis/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvorbis/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libvorbis/work"
+      },
+      "hash": {
+        "hash": "c0fcfcc"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libvorbis": {
+          "build_string": "hc0fcfcc_2",
+          "name": "libvorbis",
+          "version": "1.3.7"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:44:58.904331742Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Lossy audio codec with a fixed point decoder.",
+        "documentation": "https://wiki.xiph.org/",
+        "homepage": "https://www.xiph.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "Vorbis audio format"
+      },
+      "build": {
+        "number": 2,
+        "string": "hc0fcfcc_2"
+      },
+      "context": {
+        "name": "vorbis",
+        "sha256": "270c76933d0934e42c5ee0a54a36280e2d87af1de3cc3e584806357e237afd13",
+        "version": "1.3.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dschreij",
+          "carlodri",
+          "martinRenou"
+        ]
+      },
+      "package": {
+        "name": "libvorbis",
+        "version": "1.3.7"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cmake <4",
+          "ninja"
+        ],
+        "host": [
+          "libogg"
+        ],
+        "run": [
+          "libogg"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libvorbis",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "export_legacy_so_symlinks.patch"
+          ],
+          "sha256": "270c76933d0934e42c5ee0a54a36280e2d87af1de3cc3e584806357e237afd13",
+          "url": "https://github.com/xiph/vorbis/archive/v1.3.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/pkgconfig/vorbis.pc",
+              "lib/pkgconfig/vorbisenc.pc",
+              "lib/pkgconfig/vorbisfile.pc"
+            ],
+            "include": [
+              "vorbis/codec.h",
+              "vorbis/vorbisenc.h",
+              "vorbis/vorbisfile.h"
+            ],
+            "lib": [
+              "vorbis",
+              "vorbisenc",
+              "vorbisfile"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

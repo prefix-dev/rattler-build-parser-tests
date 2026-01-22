@@ -1,0 +1,125 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bomctl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bomctl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bomctl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bomctl/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bomctl": {
+          "build_string": "hfc2019e_0",
+          "name": "bomctl",
+          "version": "0.4.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:10.100327364Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "bomctl is format-agnostic Software Bill of Materials (SBOM) tooling, which is intended to bridge the gap between SBOM generation and SBOM analysis tools. It focuses on supporting more complex SBOM operations on multiple SBOM files that represent systems by being opinionated on only supporting the NTIA minimum fields or other fields supported by protobom.",
+        "documentation": "https://github.com/bomctl/bomctl",
+        "homepage": "https://github.com/bomctl/bomctl",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "library_licenses/",
+          "LICENSE.mathutil"
+        ],
+        "repository": "https://github.com/bomctl/bomctl",
+        "summary": "Format agnostic SBOM tooling"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src",
+          "go-licenses save --ignore modernc.org/mathutil . --save_path ../library_licenses",
+          "go build -v -o $PREFIX/bin/bomctl -ldflags=\"-s -w\""
+        ],
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "name": "bomctl",
+        "version": "0.4.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "bomctl",
+        "version": "0.4.3"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-64",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8d361a0813de9aa65a366a1f8333004b2fa476981481c0c90e00ccaf74a01c58",
+          "target_directory": "src",
+          "url": "https://github.com/bomctl/bomctl/archive/refs/tags/v0.4.3.tar.gz"
+        },
+        {
+          "file_name": "LICENSE.mathutil",
+          "sha256": "bfa9bf72a72ca009fd62a8f84fca3dca67e51d93af96352723646599898b6cf5",
+          "url": "https://gitlab.com/cznic/mathutil/-/raw/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "bomctl --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

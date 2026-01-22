@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_catch2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_catch2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_catch2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_catch2/work"
+      },
+      "hash": {
+        "hash": "dc560ac"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "catch2": {
+          "build_string": "hdc560ac_1",
+          "name": "catch2",
+          "version": "3.12.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:38:32.953886492Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Catch2 is mainly a unit testing framework for C++,\nbut it also provides basic micro-benchmarking features, and simple BDD macros.\n\nCatch2's main advantage is that using it is both simple and natural.\nTest names do not have to be valid identifiers,\nassertions look like normal C++ boolean expressions,\nand sections provide a nice and local way to share set-up and tear-down code in tests.",
+        "documentation": "https://github.com/catchorg/Catch2/blob/v3.12.0/docs/Readme.md",
+        "homepage": "https://github.com/catchorg/Catch2",
+        "license": "BSL-1.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/catchorg/Catch2",
+        "summary": "A modern, C++-native, test framework for unit-tests, TDD and BDD\n- using C++14, C++17 and later (C++11 support is in v2.x branch, and C++03 on the Catch1.x branch)"
+      },
+      "build": {
+        "number": 1,
+        "string": "hdc560ac_1"
+      },
+      "context": {
+        "name": "Catch2",
+        "version": "3.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128",
+          "mjscosta",
+          "tdegeus"
+        ]
+      },
+      "package": {
+        "name": "catch2",
+        "version": "3.12.0"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "catch2",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e077079f214afc99fee940d91c14cf1a8c1d378212226bb9f50efff75fe07b23",
+          "url": "https://github.com/catchorg/Catch2/archive/v3.12.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gxx_linux-aarch64 =14",
+              "cmake",
+              "ninja"
+            ]
+          },
+          "script": "run_test.sh"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

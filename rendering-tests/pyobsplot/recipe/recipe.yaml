@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  python_min: '3.10'
+  name: pyobsplot
+  version: "0.5.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyobsplot-${{ version }}.tar.gz
+  sha256: 752ef55bc949ecfe32a4d20b9bfb95185bb7abe49b257f370fa0f3a922c6b486
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - anywidget >=0.9.18
+    - pandas >=2.0.0
+    - polars >=1.4.1
+    - requests
+    - pyarrow >=20.0.0
+
+tests:
+  - python:
+      imports:
+        - pyobsplot
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Observable Plot in Jupyter notebooks and Quarto documents
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/juba/pyobsplot
+  documentation: https://juba.github.io/pyobsplot
+
+extra:
+  recipe-maintainers:
+    - thewchan

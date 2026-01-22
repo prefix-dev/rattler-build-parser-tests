@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: python-arango
+  version: "8.2.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 876bcbec6fe9b89edb43174223cfde9c79fcb8f2a5ecf160ffa0a11e40af0ff3
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - urllib3 >=1.26.0
+    - requests
+    - requests-toolbelt
+    - pyjwt
+    - packaging >=23.1
+
+tests:
+  - python:
+      imports:
+        - arango
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python Driver for ArangoDB
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/ArangoDB-Community/python-arango
+  repository: https://github.com/ArangoDB-Community/python-arango
+  documentation: https://python-driver-for-arangodb.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - carlodri
+    - aMahanna
+    - xylar

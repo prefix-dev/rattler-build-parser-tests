@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: fpsim2
+  version: 0.7.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fpsim2-${{ version }}.tar.gz
+  sha256: d8da3fd37c707db459edeab72c9c70fe3986aeefd463352da0cbcef780341d53
+
+build:
+  number: 3
+  skip: match(python, "<3.10")
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - fpsim2-create-db = FPSim2.scripts.create_fpsim2_fp_db:main
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - pybind11 >=2.2
+    - numpy
+    - setuptools >=61.0.0
+    - pip
+  run:
+    - python
+    - rdkit >=2022.3.3
+    - pytables >=3.10
+    - sqlalchemy >=1.4.47
+    - scipy
+    - tqdm
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - FPSim2
+      pip_check: true
+  - script:
+      - fpsim2-create-db --help
+
+about:
+  summary: Simple package for fast molecular similarity searching
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/chembl/FPSim2
+
+extra:
+  recipe-maintainers:
+    - hadim
+    - eloyfelix

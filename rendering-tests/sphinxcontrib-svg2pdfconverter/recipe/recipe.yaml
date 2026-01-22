@@ -1,0 +1,122 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.0.0"
+  python_check_max: "3.14"
+
+recipe:
+  name: sphinxcontrib-svg2pdfconverter
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sphinxcontrib-svg2pdfconverter/sphinxcontrib_svg2pdfconverter-${{ version }}.tar.gz
+  sha256: ab9c8f1080391e231812d20abf2657a69ee35574563b1014414f953964a95fa3
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: sphinxcontrib-svg2pdfconverter
+    build:
+      noarch: python
+      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools >=61.0.0
+      run:
+        - python >=${{ python_min }}
+        - sphinx >=1.6.3
+    tests:
+      - python:
+          imports:
+            - sphinxcontrib.cairosvgconverter
+            - sphinxcontrib.inkscapeconverter
+            - sphinxcontrib.rsvgconverter
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+
+  - package:
+      name: sphinxcontrib-svg2pdfconverter-with-cairosvg
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("sphinxcontrib-svg2pdfconverter", upper_bound="x.x.x") }}
+        - cairosvg >=1.0
+    tests:
+      - python:
+          imports: sphinxcontrib.cairosvgconverter
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Sphinx SVG to PDF converter extension (with all [cairosvg])
+
+
+  - package:
+      name: sphinxcontrib-svg2pdfconverter-with-rsvg
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("sphinxcontrib-svg2pdfconverter", upper_bound="x.x.x") }}
+        - librsvg
+    tests:
+      - python:
+          imports: sphinxcontrib.rsvgconverter
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+    about:
+      summary: Sphinx SVG to PDF converter extension (with all [rsvg])
+
+  - package:
+      name: sphinxcontrib-svg2pdfconverter-with-all
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("sphinxcontrib-svg2pdfconverter-with-rsvg", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("sphinxcontrib-svg2pdfconverter-with-cairosvg", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: sphinxcontrib
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - files:
+          recipe:
+            - converter_test.py
+        requirements:
+          run:
+            - coverage
+            - pytest
+            - pytest-console-scripts
+            - tectonic
+            - if: win
+              then:
+                - inkscape
+        script:
+          - python converter_test.py
+    about:
+      summary: Sphinx SVG to PDF converter extension (with all [extras])
+
+about:
+  summary: Sphinx SVG to PDF converter extension
+  license: BSD-2-Clause
+  license_file: LICENSE.txt
+  homepage: https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

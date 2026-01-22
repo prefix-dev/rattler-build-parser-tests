@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: dbf
+  version: 0.99.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 2169c05252c0efbe897f346f0683326ec25854beab1d0c6430df6e903a57b315
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - aenum
+
+tests:
+  - python:
+      imports:
+        - dbf
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: dbf/LICENSE
+  summary: Pure python package for reading/writing dBase, FoxPro, and Visual FoxPro .dbf files (including memos)
+  description: |
+    Dbf is a pure Python package for reading/writing dBase, FoxPro, and
+    Visual FoxPro .dbf files. Currently supports dBase III, Clipper, FoxPro,
+    and Visual FoxPro tables. Text is returned as unicode, and codepage settings
+    in tables are honored.
+  homepage: https://pypi.python.org/pypi/dbf
+  repository: https://github.com/ethanfurman/dbf
+  documentation: http://pythonhosted.org/dbf/
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

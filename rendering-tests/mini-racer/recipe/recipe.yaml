@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: mini-racer
+  version: "0.14.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bpcreech/PyMiniRacer/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 51028ec0bb267abc4537bcb90dc5b236273cefde0566ca368bec09e362c4a477
+  patches:
+    - if: osx
+      then: 0001-Update-v8_build.py.patch
+build:
+  number: 4
+  skip: ppc64le #see issue 18
+  script:
+    - if: target_platform == "osx-arm64"
+      then:
+        - just build-dll "--target-cpu=arm64"
+    - if: target_platform == "linux-aarch64"
+      then:
+        - just build-dll "--target-cpu=arm64"
+    - if: build_platform == target_platform
+      then:
+        - just build-dll
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  dynamic_linking:
+    binary_relocation: ${{ false if osx else true }}
+
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - rust
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler("cxx") }}
+    - if: not win
+      then: pkg-config
+    - just
+    - uv
+
+  host:
+    - python
+    - pip
+    - httplib2 =0.22.0
+    - packaging >=25.0
+    - six
+    - setuptools =80.9.0
+    - types-setuptools >=80.9.0
+    - wheel
+    - just
+    - rust
+    - babel
+    - mypy
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - py_mini_racer
+        - py_mini_racer._mini_racer
+      pip_check: true
+  - script:
+      -  if: not match(python, "=3.13")
+         then: python -c "from py_mini_racer import MiniRacer; ctx = MiniRacer(); print(ctx.eval('1+1'))"
+
+about:
+  summary: Minimal, modern embedded V8 for Python.
+  license: ISC
+  license_file:
+    - LICENSE
+    - library_licenses/
+  homepage: https://github.com/bpcreech/PyMiniRacer
+  repository: https://github.com/bpcreech/PyMiniRacer
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: python-statemachine
+  version: 2.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python_statemachine-${{ version }}.tar.gz
+  sha256: ae88cd22e47930b92b983a2176e61d811e571b69897be2568ec812c2885fb93a
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - statemachine
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Python Finite State Machines made easy.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/fgmacedo/python-statemachine
+  repository: https://github.com/fgmacedo/python-statemachine
+  documentation: https://python-statemachine.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - beenje

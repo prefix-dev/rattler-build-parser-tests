@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_less",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_less/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_less/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_less/work"
+      },
+      "hash": {
+        "hash": "37d2b27"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "less": {
+          "build_string": "h37d2b27_1",
+          "name": "less",
+          "version": "685"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:41:13.977799841Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "ncurses": "6",
+        "pcre2": "10.47",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Less is a pager. A pager is a program that displays text files. Other pagers\ncommonly in use are more and pg. Pagers are often used in command-line\nenvironments like the Unix shell and the MS-DOS command prompt to display\nfiles.",
+        "documentation": "https://www.greenwoodsoftware.com/less/faq.html",
+        "homepage": "https://www.greenwoodsoftware.com/less",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE",
+          "COPYING"
+        ],
+        "repository": "https://github.com/gwsw/less",
+        "summary": "A terminal based program for viewing text files"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "make -f Makefile.aut distfiles",
+          "sh configure --prefix=${PREFIX} --with-regex=pcre2",
+          "make",
+          "make install"
+        ],
+        "string": "h37d2b27_1"
+      },
+      "context": {
+        "version": "685"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "tetov"
+        ]
+      },
+      "package": {
+        "name": "less",
+        "version": "685"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "autoconf",
+          "make",
+          "groff"
+        ],
+        "host": [
+          "ncurses",
+          "pcre2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "dfade04bc449608218e7ac032d3c1a54054158a4a6b1eff7f1a18f8f0f67ce72",
+          "url": "https://github.com/gwsw/less/archive/refs/tags/v685-rel.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "less --version",
+            "lesskey --version",
+            "${{ \"lessecho --version\" if unix }}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

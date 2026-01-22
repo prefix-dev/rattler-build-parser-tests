@@ -1,0 +1,42 @@
+context:
+  version: "1.5.7"
+
+package:
+  name: fend
+  version: ${{ version }}
+
+source:
+  url: https://github.com/printfn/fend/archive/v${{ version }}.tar.gz
+  sha256: 864059155044a94d4b9d2e37c763f8c58b19afa5db3f8f9ed1064bdcc4732f4e
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pandoc
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - fend --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+  summary: Arbitrary-precision unit-aware calculator
+  homepage: https://printfn.github.io/fend
+  repository: https://github.com/printfn/fend
+
+extra:
+  recipe-maintainers:
+    - danielnachun

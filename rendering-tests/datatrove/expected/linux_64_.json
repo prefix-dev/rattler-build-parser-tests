@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datatrove",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datatrove/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datatrove/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datatrove/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "datatrove": {
+          "build_string": "pyhcf101f3_0",
+          "name": "datatrove",
+          "version": "0.8.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:36.625652998Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/huggingface/datatrove",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "HuggingFace library to process and filter large amounts of webdata"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "check_dataset = datatrove.tools.check_dataset:main",
+            "merge_stats = datatrove.tools.merge_stats:main",
+            "launch_pickled_pipeline = datatrove.tools.launch_pickled_pipeline:main",
+            "failed_logs = datatrove.tools.failed_logs:main",
+            "inspect_data = datatrove.tools.inspect_data:main",
+            "jobs_status = datatrove.tools.jobs_status:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "datatrove",
+        "python_min": "3.10",
+        "version": "0.8.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "hadim"
+        ]
+      },
+      "package": {
+        "name": "datatrove",
+        "version": "0.8.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "dill >=0.3.0",
+          "fsspec >=2023.12.2",
+          "huggingface_hub >=0.17.0",
+          "humanize",
+          "loguru >=0.7.0",
+          "multiprocess",
+          "numpy >=2.0.0",
+          "tqdm",
+          "tokenizers",
+          "regex",
+          "rich"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "cli.patch"
+          ],
+          "sha256": "7aff3ed59bce1a88173eebe3171c47918e25ae969d6fa7259edf8749e13efff3",
+          "url": "https://pypi.org/packages/source/d/datatrove/datatrove-0.8.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "datatrove"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "check_dataset --help",
+            "merge_stats --help",
+            "launch_pickled_pipeline --help",
+            "failed_logs --help",
+            "inspect_data --help",
+            "jobs_status --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,390 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm-base",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm-base/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm-base/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm-base/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pybamm-base": {
+          "build_string": "pyhe01879c_3",
+          "name": "pybamm-base",
+          "version": "24.11.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.309091764Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pybamm.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Python Battery Mathematical Modelling"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 3,
+        "script": "python -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_3"
+      },
+      "context": {
+        "name": "pybamm",
+        "python_max": "3.13",
+        "python_min": "3.9",
+        "version": "24.11.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "valentinsulzer",
+          "Saransh-cpp",
+          "agriyakhetarpal",
+          "priyanshuone6",
+          "tlestang"
+        ]
+      },
+      "package": {
+        "name": "pybamm-base",
+        "version": "24.11.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools >=64"
+        ],
+        "run": [
+          "python >=3.9,<3.13",
+          "anytree >=2.8.0",
+          "casadi >=3.6.7",
+          "posthog >=3.6.5",
+          "numpy >=1.23.5,<2.0.0",
+          "pandas >=1.5.0",
+          "pooch >=1.8.1",
+          "scipy >=1.11.4",
+          "sympy >=1.12",
+          "typing-extensions >=4.10.0",
+          "xarray >=2022.6.0",
+          "pyyaml",
+          "platformdirs"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5ce20c13d61c4dc9f142381a38f38d60e778c167d2683003688cefa754ba9e12",
+          "url": "https://pypi.org/packages/source/p/pybamm/pybamm-24.11.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pybamm",
+              "pybamm.discretisations",
+              "pybamm.experiment",
+              "pybamm.experiment.step",
+              "pybamm.expression_tree",
+              "pybamm.expression_tree.operations",
+              "pybamm.expression_tree.printing",
+              "pybamm.geometry",
+              "pybamm.meshes",
+              "pybamm.models",
+              "pybamm.models.full_battery_models",
+              "pybamm.models.full_battery_models.equivalent_circuit",
+              "pybamm.models.full_battery_models.lead_acid",
+              "pybamm.models.full_battery_models.lithium_ion",
+              "pybamm.models.submodels",
+              "pybamm.models.submodels.active_material",
+              "pybamm.models.submodels.convection",
+              "pybamm.models.submodels.convection.through_cell",
+              "pybamm.models.submodels.convection.transverse",
+              "pybamm.models.submodels.current_collector",
+              "pybamm.models.submodels.electrode",
+              "pybamm.models.submodels.electrode.ohm",
+              "pybamm.models.submodels.electrolyte_conductivity",
+              "pybamm.models.submodels.electrolyte_conductivity.surface_potential_form",
+              "pybamm.models.submodels.electrolyte_diffusion",
+              "pybamm.models.submodels.equivalent_circuit_elements",
+              "pybamm.models.submodels.external_circuit",
+              "pybamm.models.submodels.interface",
+              "pybamm.models.submodels.interface.interface_utilisation",
+              "pybamm.models.submodels.interface.kinetics",
+              "pybamm.models.submodels.interface.kinetics.inverse_kinetics",
+              "pybamm.models.submodels.interface.lithium_plating",
+              "pybamm.models.submodels.interface.open_circuit_potential",
+              "pybamm.models.submodels.interface.sei",
+              "pybamm.models.submodels.oxygen_diffusion",
+              "pybamm.models.submodels.particle",
+              "pybamm.models.submodels.particle_mechanics",
+              "pybamm.models.submodels.porosity",
+              "pybamm.models.submodels.thermal",
+              "pybamm.models.submodels.thermal.pouch_cell",
+              "pybamm.models.submodels.transport_efficiency",
+              "pybamm.parameters",
+              "pybamm.plotting",
+              "pybamm.solvers",
+              "pybamm.solvers.c_solvers",
+              "pybamm.spatial_methods"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pybamm/work"
+      },
+      "hash": {
+        "hash": "5ca5416",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pybamm": {
+          "build_string": "pyh5ca5416_3",
+          "name": "pybamm",
+          "version": "24.11.2"
+        },
+        "pybamm-base": {
+          "build_string": "pyhe01879c_3",
+          "name": "pybamm-base",
+          "version": "24.11.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.401526494Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pybamm_base": "24.11.2 pyhe01879c_3",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pybamm.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Python Battery Mathematical Modelling"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 3,
+        "string": "pyh5ca5416_3"
+      },
+      "context": {
+        "name": "pybamm",
+        "python_max": "3.13",
+        "python_min": "3.9",
+        "version": "24.11.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "valentinsulzer",
+          "Saransh-cpp",
+          "agriyakhetarpal",
+          "priyanshuone6",
+          "tlestang"
+        ]
+      },
+      "package": {
+        "name": "pybamm",
+        "version": "24.11.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools >=64"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pybamm-base"
+            }
+          },
+          "bpx",
+          "tqdm",
+          "imageio >=2.3.0",
+          "matplotlib-base >=3.6.0",
+          "pybtex >=0.24.0",
+          "jax ==0.4.27",
+          "jaxlib ==0.4.27",
+          "scikit-fem >=8.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5ce20c13d61c4dc9f142381a38f38d60e778c167d2683003688cefa754ba9e12",
+          "url": "https://pypi.org/packages/source/p/pybamm/pybamm-24.11.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pybamm",
+              "pybamm.discretisations",
+              "pybamm.experiment",
+              "pybamm.experiment.step",
+              "pybamm.expression_tree",
+              "pybamm.expression_tree.operations",
+              "pybamm.expression_tree.printing",
+              "pybamm.geometry",
+              "pybamm.meshes",
+              "pybamm.models",
+              "pybamm.models.full_battery_models",
+              "pybamm.models.full_battery_models.equivalent_circuit",
+              "pybamm.models.full_battery_models.lead_acid",
+              "pybamm.models.full_battery_models.lithium_ion",
+              "pybamm.models.submodels",
+              "pybamm.models.submodels.active_material",
+              "pybamm.models.submodels.convection",
+              "pybamm.models.submodels.convection.through_cell",
+              "pybamm.models.submodels.convection.transverse",
+              "pybamm.models.submodels.current_collector",
+              "pybamm.models.submodels.electrode",
+              "pybamm.models.submodels.electrode.ohm",
+              "pybamm.models.submodels.electrolyte_conductivity",
+              "pybamm.models.submodels.electrolyte_conductivity.surface_potential_form",
+              "pybamm.models.submodels.electrolyte_diffusion",
+              "pybamm.models.submodels.equivalent_circuit_elements",
+              "pybamm.models.submodels.external_circuit",
+              "pybamm.models.submodels.interface",
+              "pybamm.models.submodels.interface.interface_utilisation",
+              "pybamm.models.submodels.interface.kinetics",
+              "pybamm.models.submodels.interface.kinetics.inverse_kinetics",
+              "pybamm.models.submodels.interface.lithium_plating",
+              "pybamm.models.submodels.interface.open_circuit_potential",
+              "pybamm.models.submodels.interface.sei",
+              "pybamm.models.submodels.oxygen_diffusion",
+              "pybamm.models.submodels.particle",
+              "pybamm.models.submodels.particle_mechanics",
+              "pybamm.models.submodels.porosity",
+              "pybamm.models.submodels.thermal",
+              "pybamm.models.submodels.thermal.pouch_cell",
+              "pybamm.models.submodels.transport_efficiency",
+              "pybamm.parameters",
+              "pybamm.plotting",
+              "pybamm.solvers",
+              "pybamm.solvers.c_solvers",
+              "pybamm.spatial_methods"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*",
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

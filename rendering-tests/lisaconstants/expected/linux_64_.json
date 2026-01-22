@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lisaconstants",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lisaconstants/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lisaconstants/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lisaconstants/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lisaconstants": {
+          "build_string": "pyhe01879c_0",
+          "name": "lisaconstants",
+          "version": "2.0.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:31.358224790Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LISA Constants is a Python package providing values sanctioned by the LISA Consortium for physical constants and mission parameters. LISA Constants is intended to be consistently used by other pieces of software related to the simulation of the instrument, of gravitational wave signals, and others.",
+        "documentation": "https://lisa-sgs.io.esa.int/commons/lisa-constants",
+        "homepage": "https://gitlab.esa.int/lisa-sgs/commons/lisa-constants",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://gitlab.esa.int/lisa-sgs/commons/lisa-constants",
+        "summary": "Provides physical constants and LISA mission parameters sanctioned by the LISA Consortium"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": {
+          "content": "${{ PYTHON }} -m pip install --use-pep517 .",
+          "env": {
+            "SETUPTOOLS_SCM_PRETEND_VERSION_FOR_LISACONSTANTS": "2.0.2"
+          }
+        },
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "lisaconstants",
+        "python_min": "3.11",
+        "version": "2.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "j2bbayle",
+          "mpigou"
+        ]
+      },
+      "package": {
+        "name": "lisaconstants",
+        "version": "2.0.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "setuptools",
+          "setuptools_scm",
+          "poetry-core",
+          "poetry-dynamic-versioning"
+        ],
+        "run": [
+          "python >=3.11",
+          "numpy",
+          "jinja2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8b37c261810d09af964fd4cf1d2012c3b93994a811d90fd0a2d47e00a3c02400",
+          "url": "https://files.pythonhosted.org/packages/source/l/lisaconstants/lisaconstants-2.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "lisaconstants"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/test_cheader.py",
+              "tests/test_constants.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.11",
+              "pip",
+              "pytest"
+            ]
+          },
+          "script": [
+            "python -m pytest tests/test_cheader.py",
+            "python -m pytest tests/test_constants.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

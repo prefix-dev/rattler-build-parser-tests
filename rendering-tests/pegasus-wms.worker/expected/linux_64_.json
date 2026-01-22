@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pegasus-wms.worker",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pegasus-wms.worker/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pegasus-wms.worker/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pegasus-wms.worker/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pegasus-wms.worker": {
+          "build_string": "pyhcf101f3_0",
+          "name": "pegasus-wms.worker",
+          "version": "5.1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.699802052Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pegasus.isi.edu/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/pegasus-isi/pegasus.git",
+        "summary": "Pegasus Workflow Management System Python API"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "pegasus-wms.worker",
+        "version": "5.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "mayani",
+          "rynge"
+        ]
+      },
+      "package": {
+        "name": "pegasus-wms.worker",
+        "version": "5.1.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools <69",
+          "wheel"
+        ],
+        "run": [
+          "boto3 >1.12",
+          "globus-sdk >=3.23.0,<4.0.0a0",
+          "python >=3.10",
+          "six >=1.9.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b33382c28b5d5eb58950d4e37acfffb2780eaf521e1749f54c5c6c351d74dd6c",
+          "url": "https://pypi.org/packages/source/p/pegasus-wms.worker/pegasus_wms_worker-5.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "Pegasus.tools.worker_utils"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "python -m pip check",
+            "python -m Pegasus.cli.pegasus-globus-online-init --help",
+            "python -m Pegasus.cli.pegasus-globus-online --help",
+            "python -m Pegasus.cli.pegasus-integrity --help",
+            "python -m Pegasus.cli.pegasus-transfer --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

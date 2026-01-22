@@ -1,0 +1,40 @@
+context:
+  version: "20.1.1"
+
+package:
+  name: relay
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/relay/archive/v${{ version }}.tar.gz
+  sha256: fc65f36c27d9ac22fb682e14ab9de1f60eac02f2b7439c7f04c75539d284377a
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - relay --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Relay is a JavaScript framework for building data-driven React applications.
+  homepage: https://github.com/facebook/relay
+  repository: https://github.com/facebook/relay
+
+extra:
+  recipe-maintainers:
+    - danielnachun

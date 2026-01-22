@@ -1,0 +1,90 @@
+schema_version: 1
+
+context:
+  name: gsd
+  version: "4.2.0"
+  minimum_python: "3.11"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/glotzerlab/${{ name }}/releases/download/v${{ version }}/gsd-${{ version }}.tar.gz
+  sha256: 4c6b02976dfae2e61e59ebb11fd069181297979bd750f3f1253b5ad5c8915960
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+  python:
+    version_independent: true
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - python      ${{ minimum_python }}.*
+        - python-abi3 ${{ minimum_python }}.*
+        - cross-python_${{ target_platform }}
+        - cython >=3.1
+        - numpy >=2
+
+  host:
+    - cython >=3.1
+    - python      ${{ minimum_python }}.*
+    - python-abi3 ${{ minimum_python }}.*
+    - numpy >=2
+    - pip
+    - setuptools >=77
+
+  run:
+    - python
+
+tests:
+  # Test with both minimum and current python versions
+  - script:
+      - cd /
+      - pytest --pyargs gsd -v -ra --ignore-glob="*largefile*"
+    requirements:
+      run:
+        - pytest
+        - python ${{ minimum_python ~ '.*' }}
+
+  - script:
+      - cd /
+      - pytest --pyargs gsd -v -ra --ignore-glob="*largefile*"
+    requirements:
+      run:
+        - pytest
+  # SP_DIR is not set in tests. It is not clear how to actually run abi3audit here.
+  # - script:
+  #     - abi3audit --strict --verbose --assume-minimum-abi3 ${{ minimum_python }} ${SP_DIR}/gsd/fl.abi3.so
+  #   requirements:
+  #     run:
+  #       - abi3audit
+
+about:
+  homepage: https://github.com/glotzerlab/${{ name }}
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: General simulation data
+
+  description: |
+    GSD (General Simulation Data) is a file format specification
+    and a library to read and write it. The package also contains a python module
+    that reads and writes hoomd schema gsd files with an easy to use syntax.
+
+  documentation: https://gsd.readthedocs.io
+  repository: https://github.com/glotzerlab/{{ name }}
+
+extra:
+  recipe-maintainers:
+    - joaander
+    - tcmoore3
+    - SchoeniPhlippsn
+    - DomFijan
+    - janbridley
+    - tfteague
+    - sumitavaumich

@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  version: 1.0.1
+
+package:
+  name: caerus
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/c/caerus/caerus-${{ version }}.tar.gz
+  sha256: 193843e50977930569e4070f7d28b1f550df20699b2e048762348d03f0a29f43
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base
+    - numpy
+    - pandas
+    - requests
+    - tqdm
+    - datazets
+
+tests:
+  - python:
+      imports:
+        - caerus
+      python_version: ${{ python_min }}.*
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Compute the local-minima with the corresponding local-maxima within the given time-frame.
+  homepage: https://github.com/erdogant/caerus
+  repository: https://github.com/erdogant/caerus
+  documentation: https://erdogant.github.io/caerus/pages/html/index.html
+
+extra:
+  recipe-maintainers:
+    - carlodri
+    - raybellwaves

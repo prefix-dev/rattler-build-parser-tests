@@ -1,0 +1,47 @@
+context:
+  name: wl-clipboard-rs
+  version: "0.9.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/YaLTeR/wl-clipboard-rs/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 09566b20a9bab12e2709f828f908a0756a55625f567a51917388ec8b69547c77
+
+build:
+  number: 0
+  skip: not linux
+  script:
+    - cargo auditable install --locked --no-track --bins --root $PREFIX --path ./wl-clipboard-rs-tools
+    - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - package_contents:
+      files:
+        - bin/wl-paste
+        - bin/wl-copy
+        - bin/wl-clip
+
+about:
+  homepage: https://github.com/YaLTeR/wl-clipboard-rs
+  summary: Terminal utilities for accessing the Wayland clipboard.
+  license: MIT OR Apache-2.0
+  license_file:
+    - LICENSE-MIT
+    - LICENSE-APACHE
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - haecker-felix
+    - Hofer-Julian

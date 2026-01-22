@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.56.4
+
+package:
+  name: protolint
+  version: ${{ version }}
+
+source:
+  url: https://github.com/yoheimuta/protolint/archive/v${{ version }}.tar.gz
+  sha256: c513f7fbd712b2079c2b646252eab7d75d714337c369a5b77a8dfda133d5b27d
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - protolint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A pluggable linter and fixer to enforce Protocol Buffer style and conventions.
+  homepage: https://github.com/yoheimuta/protolint
+  repository: https://github.com/yoheimuta/protolint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,53 @@
+context:
+  name: catkin_tools
+  version: "0.9.5"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/catkin/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 5096136de611462e656947e4ced82ba3538b5c9c11a80461ece05828518d260f
+
+build:
+  number: 0
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+  noarch: python
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - catkin_pkg >=0.3.0
+    - make
+    - pyyaml
+    - psutil
+    - osrf_pycommon >0.1.1
+    - coreutils
+
+tests:
+  - script:
+      - catkin --help
+      - catkin init --help
+      - catkin build --help
+      - catkin list --help
+      - catkin env --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  homepage: https://catkin-tools.readthedocs.io/
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: This Python package provides command line tools for working with the catkin meta-buildsystem and catkin workspaces.
+  repository: https://github.com/catkin/catkin_tools
+
+extra:
+  recipe-maintainers:
+    - wolfv
+    - Tobias-Fischer

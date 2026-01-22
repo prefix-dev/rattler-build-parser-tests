@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: collectfasta
+  version: "3.3.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jasongi/collectfasta/archive/${{ version }}.tar.gz
+  sha256: 7e5a5e76a274c19f7d5e118726dc5e251b7da57ab3e0a64e32f8e229efa6199c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - django >=4.2,<5.1
+    - django-storages >=1.6
+    - typing-extensions
+
+tests:
+  - python:
+      imports:
+        - collectfasta
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: A fasta collectstatic command.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/jasongi/collectfasta/
+
+extra:
+  recipe-maintainers:
+    - rxm7706

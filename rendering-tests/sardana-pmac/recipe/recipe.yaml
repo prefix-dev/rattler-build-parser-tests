@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: sardana-pmac
+  version: "0.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sardana_pmac-${{ version }}.tar.gz
+  sha256: 251fa2baaccb395b7411a334ca19c823fc0b02334da6644c9ad771c25754acd5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - sardana-core
+
+tests:
+  - python:
+      imports:
+        - sardana_pmac
+      python_version: ["${{ python_min }}.*", "3.*"]
+      pip_check: true
+
+about:
+  summary: Pmac Sardana plugins (controllers, macros, tools)
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: http://github.com/ALBA-Synchrotron/sardana-pmac
+
+extra:
+  recipe-maintainers:
+    - rhomspuron
+    - ovallcorba

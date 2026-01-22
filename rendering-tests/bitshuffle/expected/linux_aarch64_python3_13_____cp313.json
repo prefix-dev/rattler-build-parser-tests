@@ -1,0 +1,175 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bitshuffle",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bitshuffle/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bitshuffle/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bitshuffle/work"
+      },
+      "hash": {
+        "hash": "b50ffab",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bitshuffle": {
+          "build_string": "np2py313hb50ffab_9",
+          "name": "bitshuffle",
+          "version": "0.5.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:10.201141502Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "hdf5": "1.14.6",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Bitshuffle is an algorithm that rearranges typed, binary data for improving compression,\nas well as a python/C package that implements this algorithm within the Numpy framework.",
+        "documentation": "https://github.com/kiyo-masui/bitshuffle",
+        "homepage": "https://github.com/kiyo-masui/bitshuffle",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/kiyo-masui/bitshuffle",
+        "summary": "Filter for improving compression of typed binary data."
+      },
+      "build": {
+        "number": 9,
+        "string": "np2py313hb50ffab_9"
+      },
+      "context": {
+        "name": "bitshuffle",
+        "version": "0.5.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ndevenish",
+          "xmnlab",
+          "anthchirp"
+        ]
+      },
+      "package": {
+        "name": "bitshuffle",
+        "version": "0.5.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "cython",
+          "numpy",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*"
+        ],
+        "host": [
+          "cython >=0.19",
+          "h5py",
+          "hdf5",
+          "lz4",
+          "numpy",
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "h5py",
+          "hdf5",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patch/0001-Do-not-override-conda-forge-compilation-flags.patch",
+            "patch/0002-Remove-runtime-setuptools-requirement.patch",
+            "patch/0003-Remove-runtime-cython-dependency.patch"
+          ],
+          "sha256": "b6d9369cab661c1253892e4755021fe6c3a29eee93a1764f0bb161015c4b7649",
+          "url": "https://github.com/kiyo-masui/bitshuffle/archive/0.5.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "bitshuffle"
+            ]
+          }
+        },
+        {
+          "package_contents": {
+            "files": [
+              "lib/bitshuffle.a"
+            ],
+            "include": [
+              "bitshuffle.h",
+              "bitshuffle_core.h"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "pytest tests"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

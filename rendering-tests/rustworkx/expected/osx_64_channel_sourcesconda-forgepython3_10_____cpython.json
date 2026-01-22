@@ -1,0 +1,177 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rustworkx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rustworkx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rustworkx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rustworkx/work"
+      },
+      "hash": {
+        "hash": "57402fa",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rustworkx": {
+          "build_string": "py310h57402fa_3",
+          "name": "rustworkx",
+          "version": "0.17.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:51.375461906Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://www.rustworkx.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/Qiskit/rustworkx",
+        "summary": "A python graph library implemented in Rust"
+      },
+      "build": {
+        "number": 3,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py310h57402fa_3"
+      },
+      "context": {
+        "name": "rustworkx",
+        "python_name": "rustworkx",
+        "version": "0.17.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "IvanIsCoding",
+          "BastianZim",
+          "wshanks"
+        ]
+      },
+      "package": {
+        "name": "rustworkx",
+        "version": "0.17.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "rust_osx-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "pip",
+          "setuptools >=77.0.0",
+          "setuptools-rust >=1.9"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "numpy >=1.16.0,<3",
+          "python"
+        ],
+        "run_constraints": [
+          "matplotlib >=3.0",
+          "matplotlib-base >=3.0",
+          "pillow >=5.4"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "dc248da9cc364b81ac67f5d67b626ee3f03a1f6299f7a9b4d0a0501548715365",
+          "url": "https://github.com/Qiskit/rustworkx/archive/refs/tags/0.17.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rustworkx",
+              "rustworkx.visualization"
+            ],
+            "python_version": [
+              "3.10.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/*"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

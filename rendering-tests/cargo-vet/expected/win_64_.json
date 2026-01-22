@@ -1,0 +1,128 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-vet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-vet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-vet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cargo-vet/work"
+      },
+      "hash": {
+        "hash": "18a1a76"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cargo-vet": {
+          "build_string": "h18a1a76_0",
+          "name": "cargo-vet",
+          "version": "0.10.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:46:06.715819378Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://mozilla.github.io/cargo-vet/",
+        "homepage": "https://github.com/mozilla/cargo-vet",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/mozilla/cargo-vet",
+        "summary": "The cargo vet subcommand is a tool to help projects ensure that third-party Rust dependencies have been audited by a trusted entity."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo auditable install --no-track --locked --root %PREFIX% --path .",
+            "if errorlevel 1 exit 1",
+            "cargo-bundle-licenses --format yaml --output %SRC_DIR%/THIRDPARTY.yml",
+            "if errorlevel 1 exit 1"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "h18a1a76_0"
+      },
+      "context": {
+        "version": "0.10.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "cargo-vet",
+        "version": "0.10.2"
+      },
+      "requirements": {
+        "build": [
+          "rust_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "cargo-auditable",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c4f33e2a57018022fe1d7833e8e4fa6542813046ab38e0967990bb183f07f603",
+          "url": "https://github.com/mozilla/cargo-vet/archive/refs/tags/v0.10.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "cargo-vet --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

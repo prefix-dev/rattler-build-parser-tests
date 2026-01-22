@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba-press",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba-press/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba-press/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba-press/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mamba-press": {
+          "build_string": "pyhcf101f3_0",
+          "name": "mamba-press",
+          "version": "0.0.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:33.195049766Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The project takes one or more Conda packages to press into a single wheel\nwith all its dependencies.",
+        "documentation": "https://github.com/mamba-org/mamba-press",
+        "homepage": "https://github.com/mamba-org/mamba-press",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba-press",
+        "summary": "Press Conda packages into wheels"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "mamba-press = mamba_press.__main__:main"
+          ]
+        },
+        "script": "pip install --no-deps --no-build-isolation -vv .",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "mamba-press",
+        "python_min": "3.12",
+        "version": "0.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv",
+          "JohanMabille"
+        ]
+      },
+      "package": {
+        "name": "mamba-press",
+        "version": "0.0.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.12.*",
+          "pip",
+          "uv-build >=0.8.15"
+        ],
+        "run": [
+          "python >=3.12",
+          "libmambapy >=2.3.2",
+          "py-lief >=0.16.6",
+          "wheel",
+          "auditwheel",
+          "cattrs",
+          "pyyaml"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "66cc5bfb3a023911fdbabfe9812f38aadcb3aa872a6ad6ca4b478b9254c309af",
+          "url": "https://github.com/mamba-org/mamba-press/archive/refs/tags/v0.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mamba_press",
+              "mamba_press.recipe"
+            ],
+            "python_version": "3.12.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.12.*"
+            ]
+          },
+          "script": "mamba-press --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

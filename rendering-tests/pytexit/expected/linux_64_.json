@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytexit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytexit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytexit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pytexit/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pytexit": {
+          "build_string": "pyhcf101f3_2",
+          "name": "pytexit",
+          "version": "0.4.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:46.778097732Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/erwanp/pytexit",
+        "license": "CECILL-2.1",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Convert a Python expression to a LaTeX formula"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "name": "pytexit",
+        "version": "0.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande"
+        ]
+      },
+      "package": {
+        "name": "pytexit",
+        "version": "0.4.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "six"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3fa9f5010ee212bef1b0cb0e2b8383473b7f76144a343e97140fb751e463e7dd",
+          "url": "https://github.com/erwanp/pytexit/archive/0.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "pytexit/test"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest",
+              "pytest-cov",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "cd pytexit/test",
+            "pytest ."
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

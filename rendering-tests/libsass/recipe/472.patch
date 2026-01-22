@@ -1,0 +1,42 @@
+From 362f2dd1d2f009e4b92dd83316c67da011282deb Mon Sep 17 00:00:00 2001
+From: Anthony Sottile <asottile@umich.edu>
+Date: Sat, 26 Oct 2024 17:46:25 -0400
+Subject: [PATCH 1/2] remove msvc hack
+
+does not apply on latest setuptools
+---
+ setup.py | 21 +--------------------
+ 1 file changed, 1 insertion(+), 20 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index b78fa05f..d877c2af 100644
+--- a/setup.py
++++ b/setup.py
+@@ -96,26 +96,7 @@ def customize_compiler(compiler):
+                 elif filename.endswith('.h'):
+                     headers.append(filename)
+ 
+-    if sys.platform == 'win32':
+-        from distutils.msvc9compiler import get_build_version
+-        vscomntools_env = 'VS{}{}COMNTOOLS'.format(
+-            int(get_build_version()),
+-            int(get_build_version() * 10) % 10,
+-        )
+-        try:
+-            os.environ[vscomntools_env] = os.environ['VS140COMNTOOLS']
+-        except KeyError:
+-            distutils.log.warn(
+-                'You probably need Visual Studio 2015 (14.0) '
+-                'or higher',
+-            )
+-        from distutils import msvccompiler, msvc9compiler
+-        if msvccompiler.get_build_version() < 14.0:
+-            msvccompiler.get_build_version = lambda: 14.0
+-        if get_build_version() < 14.0:
+-            msvc9compiler.get_build_version = lambda: 14.0
+-            msvc9compiler.VERSION = 14.0
+-    elif platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD'}:
++    if platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD'}:
+         # Dirty workaround to avoid link error...
+         # Python distutils doesn't provide any way
+         # to configure different flags for each cc and c++.

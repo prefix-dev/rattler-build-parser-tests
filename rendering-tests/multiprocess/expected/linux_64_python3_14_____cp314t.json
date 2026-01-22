@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_multiprocess",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_multiprocess/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_multiprocess/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_multiprocess/work"
+      },
+      "hash": {
+        "hash": "3f2afee",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "multiprocess": {
+          "build_string": "py314h3f2afee_0",
+          "name": "multiprocess",
+          "version": "0.70.19"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:43.333960811Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314t",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://multiprocess.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/uqfoundation/multiprocess",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "better multiprocessing and multithreading in python"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "rm setup.cfg",
+          "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+        ],
+        "string": "py314h3f2afee_0"
+      },
+      "context": {
+        "version": "0.70.19"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jschueller",
+          "synapticarbors",
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "multiprocess",
+        "version": "0.70.19"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=42",
+          "dill >=0.4.1",
+          "packaging"
+        ],
+        "run": [
+          "python",
+          "dill >=0.4.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-add-packaging.patch",
+            "0002-unpin-py313.patch"
+          ],
+          "sha256": "952021e0e6c55a4a9fe4cd787895b86e239a40e76802a789d6305398d3975897",
+          "url": "https://pypi.org/packages/source/m/multiprocess/multiprocess-0.70.19.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "multiprocess",
+              "multiprocess.dummy"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

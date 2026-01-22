@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: types-docker
+  version: "7.1.0.20260109"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/types_docker-${{ version }}.tar.gz
+  sha256: b36ef355ec9ba8bf29bcc4e32cc61dd9138ce4d8352c599c8fbc65f1a3e87b57
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - types-paramiko
+    - types-requests
+    - urllib3 >=2
+
+tests:
+  - python:
+      imports:  # dummy import to get pip_check running
+        - os
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - package_contents:
+      site_packages:
+        - docker-stubs/__init__.pyi
+
+about:
+  summary: Typing stubs for docker
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/python/typeshed/tree/main/stubs/docker
+
+extra:
+  recipe-maintainers:
+    - StevenSchaererQC

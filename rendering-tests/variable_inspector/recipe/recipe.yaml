@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: variable_inspector
+  version: "1.1.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/variable_inspector-${{ version }}.tar.gz
+  sha256: ed8c0754342a81ef605dce1597dd48959b4e393f1fb9b6ca9f3c8f66c9ce1cc8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.5.0
+    - jupyterlab >=4.0.0,<5
+    - hatch-nodejs-version >=0.3.2
+    - pip
+    # Hidden in tool.hatch.build.hooks.jupyter-builder.dependencies
+    - hatch-jupyter-builder >=0.5
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - variable_inspector
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/mljar/variable-inspector
+  summary: Variable inspector for jupyter lab.
+  license: AGPL-3.0-only
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - thewchan

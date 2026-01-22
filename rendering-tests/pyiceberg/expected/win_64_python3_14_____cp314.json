@@ -1,0 +1,186 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyiceberg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyiceberg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyiceberg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyiceberg/work"
+      },
+      "hash": {
+        "hash": "6b8fd0b",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyiceberg": {
+          "build_string": "np2py314h6b8fd0b_1",
+          "name": "pyiceberg",
+          "version": "0.10.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:53.235949695Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "\"Iceberg is a high-performance format for huge analytic tables.\nIceberg brings the reliability and simplicity of SQL tables to big data, while making it possible for engines like \nSpark, Trino, Flink, Presto, Hive and Impala to safely work with the same tables, at the same time.\"",
+        "documentation": "https://iceberg.apache.org/docs/nightly/",
+        "homepage": "https://iceberg.apache.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "NOTICE"
+        ],
+        "repository": "https://github.com/apache/iceberg",
+        "summary": "Apache Iceberg is an open table format for huge analytic datasets"
+      },
+      "build": {
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "pyiceberg = pyiceberg.cli.console:run"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "np2py314h6b8fd0b_1"
+      },
+      "context": {
+        "name": "pyiceberg",
+        "version": "0.10.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "pyiceberg",
+        "version": "0.10.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "cython >=3.0.0",
+          "numpy",
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64"
+        ],
+        "host": [
+          "python",
+          "poetry-core >=1.0.0",
+          "wheel",
+          "cython >=3.0.0",
+          "numpy",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "mmh3 >=4.0.0,<6.0.0",
+          "requests >=2.20.0,<3.0.0",
+          "click >=7.1.1,<9.0.0",
+          "rich >=10.11.0,<15.0.0",
+          "strictyaml >=1.7.0,<2.0.0",
+          "pydantic >=2.0,<3.0,!=2.4.0,!=2.4.1",
+          "sortedcontainers 2.4.0.*",
+          "fsspec >=2023.1.0",
+          "pyparsing >=3.1.0,<4.0.0",
+          "zstandard >=0.13.0,<1.0.0",
+          "tenacity >=8.2.3,<10.0.0",
+          "pyroaring >=1.0.0,<2.0.0",
+          "cachetools >=5.5.0,<7.0.0"
+        ],
+        "run_constraints": [
+          "pyarrow >=17.0.0",
+          "pandas >=1.0.0,<3.0.0",
+          "python-duckdb >=0.5.0,<2.0.0",
+          "ray >=2.10.0,<3.0.0",
+          "python-snappy >=0.6.0,<1.0.0",
+          "thrift >=0.13.0,<1.0.0",
+          "mypy-boto3-glue >=1.28.18",
+          "boto3 >=1.24.59",
+          "s3fs >=2023.1.0",
+          "adlfs >=2023.1.0",
+          "gcsfs >=2023.1.0",
+          "psycopg2-binary >=2.9.6",
+          "sqlalchemy >=2.0.18,<3.0.0",
+          "getdaft >=0.2.12",
+          "polars >=1.21.0,<2.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2525afa5e7e5fc4e72b291f8e1cc219e982d2bda5ff17e62cd05b8d91c4139f5",
+          "url": "https://pypi.org/packages/source/p/pyiceberg/pyiceberg-0.10.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fb303",
+              "hive_metastore",
+              "pyiceberg",
+              "pyiceberg.avro.decoder_fast"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pyiceberg --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

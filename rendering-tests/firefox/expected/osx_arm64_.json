@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/work"
+      },
+      "hash": {
+        "hash": "6385e73"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "firefox": {
+          "build_string": "h6385e73_0",
+          "name": "firefox",
+          "version": "147.0.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:20.330062940Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://www.mozilla.org/en-US/firefox/releases",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Firefox web browser"
+      },
+      "build": {
+        "dynamic_linking": {
+          "binary_relocation": [
+            "bin/firefox"
+          ]
+        },
+        "number": 0,
+        "script": {
+          "file": "copy-firefox"
+        },
+        "string": "h6385e73_0"
+      },
+      "context": {
+        "version": "147.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "birdsarah",
+          "ocefpaf",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "firefox",
+        "version": "147.0.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "file_name": "firefox.pkg",
+          "sha256": "ecd8ef0919762a1009051c02bc89dad5fed13eabf58cdbaecec37b8adb73191b",
+          "url": "https://ftp.mozilla.org/pub/firefox/releases/147.0.1/mac/en-US/Firefox%20147.0.1.pkg"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test_selenium.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "geckodriver",
+              "pytest",
+              "python <3.14",
+              "selenium >=4"
+            ]
+          },
+          "script": "pytest -svvv --pythonwarnings=error --tb=long --color=yes"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,45 @@
+context:
+  name: prometheus-async
+  version: 25.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/prometheus_async-${{ version }}.tar.gz
+  sha256: 968e29b5255af57bc8146ade132e7aa0a21fe2b4d95ffefc7c732e9c3fbbb1dd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - prometheus_client >=0.8.0
+    - typing_extensions >=3.10.0
+    - wrapt
+
+tests:
+   - python:
+       imports:
+       - prometheus_async
+       pip_check: true
+       python_version: ${{ python_min }}.*
+
+about:
+  summary: Async helpers for prometheus_client.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://prometheus-async.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - zbowling

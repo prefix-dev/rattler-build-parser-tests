@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch-cython",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch-cython/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch-cython/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch-cython/work"
+      },
+      "hash": {
+        "hash": "215345e",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hatch-cython": {
+          "build_string": "pyh215345e_1",
+          "name": "hatch-cython",
+          "version": "0.6.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:24.402654511Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/joshua-auchincloss/hatch-cython/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/joshua-auchincloss/hatch-cython/",
+        "summary": "Cython build hooks for hatch"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation -vv .",
+        "string": "pyh215345e_1"
+      },
+      "context": {
+        "name": "hatch-cython",
+        "version": "0.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "hatch-cython",
+        "version": "0.6.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.10",
+          "cython",
+          "hatchling",
+          "setuptools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0873bad8bdab486c2678b84560cf2eca98388f4b740d903589df3d7001cd02e4",
+          "url": "https://github.com/joshua-auchincloss/hatch-cython/archive/refs/tags/v0.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/",
+              "test_libraries/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gcc_linux-64 =14",
+              "gxx_linux-64 =14",
+              "sysroot_linux-64 =2.17",
+              "llvm-openmp",
+              "python 3.10.*",
+              "pytest",
+              "toml",
+              "numpy"
+            ]
+          },
+          "script": [
+            "ln -s $CXX_FOR_BUILD $PREFIX/bin/c++",
+            "c++ --version",
+            "pytest tests/ -v"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

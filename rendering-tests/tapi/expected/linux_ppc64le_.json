@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tapi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tapi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tapi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tapi/work"
+      },
+      "hash": {
+        "hash": "d8a7b1b"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tapi": {
+          "build_string": "hd8a7b1b_0",
+          "name": "tapi",
+          "version": "1600.0.11.8"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:56.571737221Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://opensource.apple.com/source/tapi/tapi-1600.0.11.8/Readme.md",
+        "homepage": "https://opensource.apple.com/source/tapi",
+        "license": "NCSA",
+        "license_file": [
+          "LICENSE.APPLE-LIBTAPI.txt",
+          "LICENSE.LLVM.txt"
+        ],
+        "repository": "https://github.com/ributzka/tapi",
+        "summary": "TAPI is a Text-based Application Programming Interface"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "GIT_COMMIT": "aed9334283e3e290bba622ee980bde2322e4d516"
+          }
+        },
+        "string": "hd8a7b1b_0"
+      },
+      "context": {
+        "commit": "aed9334283e3e290bba622ee980bde2322e4d516",
+        "version": "1600.0.11.8"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "tapi",
+        "version": "1600.0.11.8"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gcc_linux-ppc64le 14.*",
+          "ncurses",
+          "cmake",
+          "ninja"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/cmake-fix.patch",
+            "patches/gcc-14-arm.patch",
+            "patches/cmake-darwin-linker.patch"
+          ],
+          "sha256": "f244f7b3d8de3277204dece255b531f976bee80dad3247e9f36b30052b91c959",
+          "url": "https://github.com/tpoechtrager/apple-libtapi/archive/aed9334283e3e290bba622ee980bde2322e4d516.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/lib/libtapi${SHLIB_EXT}",
+            "test -f $PREFIX/include/tapi/tapi.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

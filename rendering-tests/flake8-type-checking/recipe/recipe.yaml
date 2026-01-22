@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: flake8-type-checking
+  version: 3.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: f908b40c838e682eca3c6a7cd199fd7afbcc2ced8a517124cec7fb28dd6c0d58
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
+  run:
+    - classify-imports
+    - flake8
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - flake8_type_checking
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - flake8
+        - python ${{ python_min }}.*
+    script:
+      - flake8 --version | grep flake8-type-checking
+
+about:
+  summary: A flake8 plugin for managing type-checking imports & forward references
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/snok/flake8-type-checking
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,94 @@
+schema_version: 1
+
+context:
+  name: python-mumps
+  version: "0.0.6"
+  mpi: ${{ mpi or "nompi" }}
+  build_number: 0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python_mumps-${{ version }}.tar.gz
+  sha256: 58c33104f77c448e127e9e6da316f71dfb1a17719ecf022634669d513306b1fa
+  patches:
+    - if: win
+      then: patches/0001-meson-windows-fallback.patch
+
+build:
+  number: ${{ build_number + (100 if mpi == "nompi" else 0) }}
+  string: ${{ "nompi" if mpi == "nompi" else "mpi_" + mpi }}_h${{ hash }}
+  skip: match(python, "<3.12") or python_impl == 'pypy'
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+    - if: build_platform != target_platform and mpi == "openmpi"
+      then: openmpi
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - if: unix
+      then:
+        - ninja
+        - pkg-config
+  host:
+    - python
+    - cython
+    - meson
+    - meson-python
+    - numpy
+    - if: mpi == "nompi"
+      then: mumps-seq
+      else: mumps-mpi
+    - setuptools-scm
+    - pip
+    - python-build
+  run:
+    - python
+    - scipy >=1.13
+    - if: mpi == "nompi"
+      then: mumps-seq
+      else: mumps-mpi
+
+tests:
+  - python:
+      imports:
+        - mumps
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+  - if: win or mpi == "nompi"
+    then:
+      requirements:
+        run:
+          - pytest
+      script:
+        - python -P -m pytest -v --import-mode=importlib --pyargs mumps -m "not mpi"
+  - if: not win and mpi != "nompi"
+    then:
+      requirements:
+        run:
+          - pytest
+          - mpi4py
+          - pytest-mpi
+      script:
+        - mpirun -n 2 python -P -m pytest -v -rs --import-mode=importlib --pyargs mumps -m mpi --with-mpi
+
+about:
+  summary: Bindings and Python interface for the MUMPS sparse solver
+  license: BSD-2-Clause
+  license_file: LICENSE
+  homepage: https://gitlab.kwant-project.org/kwant/python-mumps
+
+extra:
+  recipe-maintainers:
+    - akhmerov

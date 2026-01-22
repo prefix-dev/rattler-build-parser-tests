@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: json-strong-typing
+  version: "0.4.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/json_strong_typing-${{ version }}.tar.gz
+  sha256: 88d4d22e33609f2a3fd24ccd2967f3ba73cc733d1f5925cdef269cf332ed1c8b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=51
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - jsonschema >=4.23
+    - typing_extensions >=4.12
+
+tests:
+  - python:
+      imports:
+        - strong_typing
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Type-safe data interchange for Python data classes
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/hunyadi/strong_typing
+
+extra:
+  recipe-maintainers:
+    - rxm7706

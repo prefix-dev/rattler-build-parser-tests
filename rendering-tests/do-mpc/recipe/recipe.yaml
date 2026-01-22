@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: do-mpc
+  version: "5.1.1"
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/do_mpc-${{ version }}.tar.gz
+  sha256: 612c2b0e7e718173906219e1078bc581bddc951128cdc53359a24aed2d3062a7
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - casadi >=3.6.0
+    - numpy
+    - matplotlib-base
+    - scipy
+    - pandas
+    - pytorch >2.0.0
+    - onnx >=1.13.0
+    - ipykernel
+    - asyncua
+    - packaging
+
+tests:
+  - python:
+      imports:
+        - do_mpc
+      pip_check: true
+      python_version: ["${{ python_min }}.*", "3.13.*"]
+
+about:
+  summary: Model predictive control python toolbox
+  description: |
+    do-mpc is a comprehensive open-source toolbox for
+    robust model predictive control (MPC) and moving horizon estimation (MHE)
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://www.do-mpc.com
+  repository: https://github.com/do-mpc/do-mpc
+  documentation: https://www.do-mpc.com
+
+extra:
+  recipe-maintainers:
+    - beenje

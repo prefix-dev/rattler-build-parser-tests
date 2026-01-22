@@ -1,0 +1,89 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+schema_version: 1
+
+context:
+  name: "ligo_hires_gps_time"
+  version: "0.7.0"
+
+package:
+  name: "${{ name }}"
+  version: "${{ version }}"
+
+source:
+  url: https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time/-/archive/${{ version }}/${{ version }}.tar.gz
+  sha256: 46dec9a5861f276ab6bbc2b3ad882677e3ac0f813582b852fbbb8c8f917b6558
+
+build:
+  number: 0
+
+  script:
+    env:
+      JEMALLOC_SYS_WITH_LG_PAGE: ${{ '16' if (aarch64 or ppc64le) else '' }}
+      PYTHONIOENCODING: utf-8
+    content:
+      - "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+      - "${{ PYTHON }} -m pip install -v --use-pep517 --no-deps --no-build-isolation ./ligo_hires_gps_time"
+
+requirements:
+  build:
+    - python
+    - cargo-bundle-licenses
+    - "${{ compiler('rust') }}"
+    - if: not win
+      then:
+        - "${{ compiler('c') }}" 
+        - "${{ stdlib('c') }}"
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - maturin
+
+  host:
+    - python
+    - pip
+    - maturin
+
+  run:
+    - python
+    - cffi
+
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+
+tests:
+  - script:
+     - python -m pytest
+    requirements:
+      run:
+        - pytest
+        - gpstime
+    files:
+      source:
+        - test_pip.py
+        - test_thump.py
+  - python:
+     imports:
+        - ligo_hires_gps_time
+     pip_check: true
+          # source_files:
+          #  - test_pip.py
+          #  - test_thump.py
+          #  - script:
+          #     - pip check
+
+about:
+  summary: A high-resolution time library with instants taken from the GPS epoch.
+  homepage: https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time
+  repository: https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time.git
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file:
+    - COPYING
+    - COPYING-GPL-3
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - evonreis

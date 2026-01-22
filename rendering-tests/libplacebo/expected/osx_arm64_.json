@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libplacebo",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libplacebo/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libplacebo/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libplacebo/work"
+      },
+      "hash": {
+        "hash": "13277af"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libplacebo": {
+          "build_string": "h13277af_1",
+          "name": "libplacebo",
+          "version": "7.351.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:51:46.779163343Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "lcms2": "2",
+        "target_platform": "osx-arm64",
+        "xxhash": "0.8.3"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Libplacebo is, in a nutshell, the core rendering algorithms and ideas of\nmpv rewritten as an independent library. It provides robust and efficient\nGPU rendering for a variety of multimedia applications.",
+        "homepage": "https://code.videolan.org/videolan/libplacebo",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Core rendering algorithms and ideas from mpv as an independent library"
+      },
+      "build": {
+        "number": 1,
+        "string": "h13277af_1"
+      },
+      "context": {
+        "name": "libplacebo",
+        "version": "7.351.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer"
+        ]
+      },
+      "package": {
+        "name": "libplacebo",
+        "version": "7.351.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "meson",
+          "jinja2",
+          "python <3.13"
+        ],
+        "host": [
+          "fast_float",
+          "lcms2",
+          "markupsafe",
+          "libvulkan-headers",
+          "libvulkan-loader",
+          "shaderc",
+          "xxhash"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "xxhash"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libplacebo",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4efe1c8d4da3c61295eb5fdfa50e6037409d8425eb3c15dd86788679c4ce59ee",
+          "url": "https://code.videolan.org/videolan/libplacebo/-/archive/v7.351.0/libplacebo-v7.351.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "lib": [
+              "libplacebo"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": "if pkg-config --exists libplacebo; then echo \"Libplacebo found\"; else echo \"Libplacebo not found\"; exit 1; fi"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,47 @@
+context:
+  version: "3.2"
+
+package:
+  name: git-hound
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tillson/git-hound/archive/v${{ version }}.tar.gz
+  sha256: be883cd265a2cc049c9ed8c7bbf29dccf89789173b19b237618d9c9613ee9127
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-cgo') }}
+    - go-licenses
+    - pkg-config
+    - if: unix
+      then:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+    - if: win
+      then:
+        - ${{ compiler('m2w64_c') }}
+        - ${{ stdlib('m2w64_c') }}
+        - m2-base
+  host:
+    - pcre
+
+tests:
+  - script:
+      - git-hound --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Git plugin that prevents sensitive data from being committed.
+  homepage: https://github.com/tillson/git-hound
+  repository: https://github.com/tillson/git-hound
+
+extra:
+  recipe-maintainers:
+    - danielnachun

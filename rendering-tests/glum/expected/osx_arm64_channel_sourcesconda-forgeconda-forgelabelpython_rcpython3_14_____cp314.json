@@ -1,0 +1,167 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_glum",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_glum/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_glum/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_glum/work"
+      },
+      "hash": {
+        "hash": "c420330",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "glum": {
+          "build_string": "np2py314hc420330_2",
+          "name": "glum",
+          "version": "3.1.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:21.999119788Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "llvm_openmp": "19",
+        "numpy": "2",
+        "python": "3.14.* *_cp314",
+        "python_impl": "cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "glum is a fast and feature-complete GLM estimator. It supports built-in\ncross-validation, exploiting regularization path, L1 and L2 regularization\nwith Tikhonov penalties, sample weights, offsets, linear inequality constraints,\nand more!",
+        "documentation": "https://glum.readthedocs.io/",
+        "homepage": "https://github.com/quantco/glum",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/quantco/glum",
+        "summary": "High performance Python GLMs with all the features!"
+      },
+      "build": {
+        "number": 2,
+        "script": {
+          "content": "python -m pip install . -vv",
+          "env": {
+            "GLM_ARCHITECTURE": "default"
+          }
+        },
+        "string": "np2py314hc420330_2"
+      },
+      "context": {
+        "name": "glum",
+        "version": "3.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MatthiasSchmidtblaicherQC",
+          "MarcAntoineSchmidtQC",
+          "xhochy",
+          "stanmart",
+          "janjagusch",
+          "jtilly"
+        ]
+      },
+      "package": {
+        "name": "glum",
+        "version": "3.1.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "cython",
+          "numpy",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "llvm-openmp"
+        ],
+        "host": [
+          "python",
+          "cython",
+          "llvm-openmp",
+          "numpy",
+          "pip",
+          "scikit-learn >=0.23",
+          "setuptools",
+          "setuptools-scm"
+        ],
+        "run": [
+          "python",
+          "formulaic >=0.6",
+          "joblib",
+          "numexpr",
+          "packaging",
+          "pandas",
+          "scikit-learn >=0.23",
+          "scipy",
+          "tabmat >=4.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e6a416e4737d0133c1cfb1ce47057a3761349c3ac79663192ec6b4f26821a612",
+          "url": "https://pypi.org/packages/source/g/glum/glum-3.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "glum"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

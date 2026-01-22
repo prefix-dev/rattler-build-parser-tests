@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-video",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-video/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-video/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-video/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scikit-video": {
+          "build_string": "pyhcf101f3_2",
+          "name": "scikit-video",
+          "version": "1.1.11"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:45:32.617298545Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "scikit-video is a Python module for video processing\nbuilt on top of scipy, numpy, and ffmpeg/libav",
+        "documentation": "http://www.scikit-video.org/",
+        "homepage": "https://github.com/scikit-video/scikit-video",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/scikit-video/scikit-video",
+        "summary": "Video Processing in Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "name": "scikit-video",
+        "version": "1.1.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "carlodri"
+        ]
+      },
+      "package": {
+        "name": "scikit-video",
+        "version": "1.1.11"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "numpy >=1.9.2",
+          "scipy >=0.16.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy >=1.9.2",
+          "scipy >=0.16.0",
+          "pillow >=3.1",
+          "scikit-learn >=0.18"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5061d2aeae1892b73a97c89a82942b3e8eebf2fe23e59c60e06ede5f8a24ed1e",
+          "url": "https://pypi.org/packages/source/s/scikit-video/scikit-video-1.1.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "skvideo",
+              "skvideo.io",
+              "skvideo.motion",
+              "skvideo.measure",
+              "skvideo.datasets",
+              "skvideo.utils"
+            ],
+            "python_version": "3.10.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

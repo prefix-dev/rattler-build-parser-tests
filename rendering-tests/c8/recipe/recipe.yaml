@@ -1,0 +1,39 @@
+context:
+  version: "10.1.3"
+
+package:
+  name: c8
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/c8/-/c8-${{ version }}.tgz
+  sha256: 10c89c97b636ccd9b35780eba71938748789829d53a3c50da66decc308043105
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - c8 --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.txt
+    - third-party-licenses.txt
+  summary: "output coverage reports using Node.js' built in coverage"
+  homepage: https://github.com/bcoe/c8
+  repository: https://github.com/bcoe/c8
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: rerankers
+  version: 0.10.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/rerankers-${{ version }}.tar.gz
+  sha256: b8e8b363abc4e9757151956949c27b197993c0a774437287a932f855afc17a73
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - rerankers
+        - rerankers.models
+        - rerankers.integrations
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A unified API for various document re-ranking models.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/answerdotai/rerankers
+
+extra:
+  recipe-maintainers:
+    - thewchan

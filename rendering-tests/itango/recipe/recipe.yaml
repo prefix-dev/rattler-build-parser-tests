@@ -1,0 +1,71 @@
+schema_version: 1
+
+context:
+  name: itango
+  version: 0.3.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 1409cff2814f2945d2848c3c2777e5ed8ae5f45c6f16380abafcb9b5f3fed9d8
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - itango = itango:run
+      - itango3 = itango:run
+      - itango-qt = itango:run_qt
+      - itango3-qt = itango:run_qt
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=77.0.3
+    - setuptools-scm
+  run:
+    - python >=${{ python_min }}
+    - pytango >=9.3.0
+    - ipython >=8.5,<10.0
+    - packaging
+
+tests:
+  - python:
+      imports:
+        - itango
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest
+        - gevent
+        - tango-test
+    script:
+      - itango --help
+      - itango3 --help
+      - pytest -v tests
+
+about:
+  license: LGPL-3.0-or-later
+  license_file: LICENSE
+  summary: An interactive Tango client
+  description: |
+    ITango is a PyTango CLI based on IPython.
+    It is designed to be used as an IPython profile.
+  homepage: https://gitlab.com/tango-controls/itango
+  repository: https://gitlab.com/tango-controls/itango
+  documentation: https://itango.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - beenje
+    - ajoubertza

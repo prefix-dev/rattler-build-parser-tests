@@ -1,0 +1,125 @@
+# pins are usually updated on minor bumps:
+# basix is currently co-versioned with ffcx
+schema_version: 1
+
+context:
+  name: fenics-ffcx-ufcx
+  version: "0.10.1"
+  major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
+  ufl_version: "2025.2"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/fenics/ffcx/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: fenics-ufcx
+    build:
+      noarch: generic
+      script: build-ufcx
+    requirements:
+      build:
+        - cmake
+        - if: not win
+          then: make
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+      host: []
+      run:
+        - if: not win
+          then: __unix
+          else: __win
+      ignore_run_exports:
+        from_package:
+          - ${{ compiler("c") }}
+          - ${{ stdlib("c") }}
+    tests:
+      - package_contents:
+          include:
+            - ufcx.h
+      - script:
+          # rattler-build bug: executes .sh on Windows with .bat
+          # for noarch: generic package
+          file: test-ufcx${{ '.bat' if win else '' }}
+        files:
+          recipe:
+            - test-ufcx/
+        requirements:
+          run:
+            - pkg-config
+            - cmake
+            - make
+            - ${{ compiler("cxx") }}
+  - package:
+      name: fenics-ffcx
+    build:
+      noarch: python
+      python:
+        entry_points:
+          - ffcx = ffcx:__main__.main
+      script:
+        file: build-ffcx-py
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - pip
+        - setuptools >=62
+        - wheel
+      run:
+        - python >=${{ python_min }}
+        - setuptools >=77.0.3
+        - numpy >=1.21
+        - cffi
+        - fenics-basix ${{ major_minor }}.*
+        - fenics-ufl ${{ ufl_version }}.*
+    tests:
+      - python:
+          imports:
+            - ffcx
+          python_version:
+            - ${{ python_min }}.*
+            - "3.13.*"
+      - files:
+          source:
+            - test
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+            - numba
+            - pytest
+            - sympy
+            - pygraphviz
+            - ${{ compiler("c") }}
+        script:
+          - pytest -v -k "not bilinear" test
+
+about:
+  summary: The FEniCSx Form Compiler
+  description: |
+    FFCx is a new version of the FEniCS Form Compiler.
+    It is being actively developed and is compatible with DOLFINx.
+
+    FFCx is a compiler for finite element variational forms.
+    From a high-level description of the form in the Unified Form Language (UFL),
+    it generates efficient low-level C code that can be used to assemble the corresponding discrete operator (tensor).
+    In particular, a bilinear form may be assembled into a matrix and a linear form may be assembled into a vector.
+    FFCx may be used either from the command line (by invoking the ffcx command) or as a Python module (import ffcx).
+  license: LGPL-3.0-or-later
+  license_file: COPYING.LESSER
+  homepage: https://fenicsproject.org
+  repository: https://github.com/fenics/ffcx
+  documentation: https://docs.fenicsproject.org/ffcx/v${{ version }}/
+
+extra:
+  feedstock-name: fenics-ffcx
+  recipe-maintainers:
+    - minrk

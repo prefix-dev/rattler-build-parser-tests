@@ -1,0 +1,49 @@
+context:
+  name: hyfetch
+  upstream: hykilpikonna
+  version: "2.0.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/${{ upstream }}/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 8de8908334470f24dfae5693bd9660360ec8c1074b270f36eac659530e0b35ba
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - cargo auditable install --no-track --locked --bins --root ${{ PREFIX }} --path ./crates/hyfetch
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script: hyfetch --help
+
+about:
+  homepage: https://github.com/${{ upstream }}/${{ name }}
+  repository: https://github.com/${{ upstream }}/${{ name }}
+  summary: Command-line tool that presents system info with LGBTQ+ pride flags
+  description: >
+    HyFetch is a command line script to display information about your Linux system, such as amount of installed packages, OS and kernel version, active GTK theme, CPU info, and used/available memory, with customizable pride flag coloration to the OS logo.
+
+    Hyfetch also has the ability to integrate with other system info tools, such as fastfetch, to use them to gather info that is then displayed through hyfetch.
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - EtaoinWu

@@ -1,0 +1,432 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop-static",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop-static/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop-static/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop-static/work"
+      },
+      "hash": {
+        "hash": "de13d6f"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "oneloop-static": {
+          "build_string": "hde13d6f_5",
+          "name": "oneloop-static",
+          "version": "3.7.2"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:38.781938475Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "OneLOop is a program to evaluate the one-loop scalar 1-point, 2-point,\n3-point and 4-point functions, for all kinematical configurations relevant\nfor collider-physics, and for any non-positive imaginary parts of the\ninternal squared masses. It deals with all UV and IR divergences within\ndimensional regularization. Furthermore, it provides routines to evaluate\nthese functions using straightforward numerical integration.\n\nOneLOop is authored by Andreas van Hameren.",
+        "documentation": "https://helac-phegas.web.cern.ch/OneLOop.html",
+        "homepage": "https://bitbucket.org/hameren/oneloop/",
+        "license": "GPL-3.0-only",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://bitbucket.org/hameren/oneloop/",
+        "summary": "OneLOop: A library of one-loop scalar functions"
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "sed -i \"s|FC = gfortran|FC = $FC|g\" Config",
+          "sed -i \"s|FFLAGS = -O|FFLAGS = $FFLAGS|g\" Config",
+          "echo -e \"\\n# Config file\"",
+          "cat Config",
+          "python create.py",
+          "mkdir -p $PREFIX/include/oneloop",
+          "mv *.mod $PREFIX/include/oneloop/",
+          "mv libavh_olo.a $PREFIX/lib/",
+          "./clean.sh"
+        ],
+        "string": "hde13d6f_5"
+      },
+      "context": {
+        "name": "oneloop",
+        "version": "3.7.2"
+      },
+      "extra": {
+        "feedstock-name": "oneloop",
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "oneloop-static",
+        "version": "3.7.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-ppc64le 2.17.*",
+          "gfortran_linux-ppc64le 14.*",
+          "sed",
+          "python >=3.6"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fa36c0716ab0526cb98693094b7efa2219434bed9f59429f123b654a33309848",
+          "url": "https://bitbucket.org/hameren/oneloop/get/v3.7.2.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/libavh_olo.a",
+              "etc/conda/test-files/oneloop-static/*"
+            ],
+            "include": [
+              "oneloop/avh_olo_version.mod",
+              "oneloop/avh_olo_units.mod",
+              "oneloop/avh_olo_dp_kinds.mod",
+              "oneloop/avh_olo_dp_arrays.mod",
+              "oneloop/avh_olo_dp_prec.mod",
+              "oneloop/avh_olo_dp_print.mod",
+              "oneloop/avh_olo_dp_auxfun.mod",
+              "oneloop/avh_olo_dp_olog.mod",
+              "oneloop/avh_olo_dp_dilog.mod",
+              "oneloop/avh_olo_dp_bnlog.mod",
+              "oneloop/avh_olo_dp_qmplx.mod",
+              "oneloop/avh_olo_dp_bub.mod",
+              "oneloop/avh_olo_dp_tri.mod",
+              "oneloop/avh_olo_dp_box.mod",
+              "oneloop/avh_olo_dp_boxc.mod",
+              "oneloop/avh_olo_qp_kinds.mod",
+              "oneloop/avh_olo_qp_arrays.mod",
+              "oneloop/avh_olo_qp_prec.mod",
+              "oneloop/avh_olo_qp_print.mod",
+              "oneloop/avh_olo_qp_auxfun.mod",
+              "oneloop/avh_olo_qp_olog.mod",
+              "oneloop/avh_olo_qp_dilog.mod",
+              "oneloop/avh_olo_qp_bnlog.mod",
+              "oneloop/avh_olo_qp_qmplx.mod",
+              "oneloop/avh_olo_qp_bub.mod",
+              "oneloop/avh_olo_qp_tri.mod",
+              "oneloop/avh_olo_qp_box.mod",
+              "oneloop/avh_olo_qp_boxc.mod",
+              "oneloop/avh_olo_qp.mod",
+              "oneloop/avh_olo_dp.mod",
+              "oneloop/avh_olo.mod"
+            ],
+            "lib": {
+              "not_exists": [
+                "avh_olo"
+              ]
+            },
+            "strict": true
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/",
+              "example/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gfortran_linux-ppc64le =14",
+              "python"
+            ]
+          },
+          "script": [
+            "cd example",
+            "export WITHLT=no",
+            "export LTVSNge26=yes",
+            "export WITHCOLI=no",
+            "../src/avh_pc_exe.py \"case\" \"LT\" \"${WITHLT}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"LTVSNge26\" \"${WITHLT}${LTVSNge26}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"COLI\" \"${WITHCOLI}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"LT\" \"${WITHLT}\" example16.f",
+            "../src/avh_pc_exe.py \"case\" \"LTVSNge26\" \"${WITHLT}${LTVSNge26}\" example16.f",
+            "../src/avh_pc_exe.py \"case\" \"COLI\" \"${WITHCOLI}\" example16.f",
+            "unset WITHLT",
+            "unset LTVSNge26",
+            "unset WITHCOLI",
+            "$FC $FFLAGS example.f -o example -I$PREFIX/include/oneloop $LDFLAGS -lavh_olo",
+            "./example < input",
+            "$FC $FFLAGS example16.f -o example16 -I$PREFIX/include/oneloop $LDFLAGS -lavh_olo",
+            "./example16 < input"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_oneloop/work"
+      },
+      "hash": {
+        "hash": "de13d6f"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "oneloop": {
+          "build_string": "hde13d6f_5",
+          "name": "oneloop",
+          "version": "3.7.2"
+        },
+        "oneloop-static": {
+          "build_string": "hde13d6f_5",
+          "name": "oneloop-static",
+          "version": "3.7.2"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:38.999302625Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "OneLOop is a program to evaluate the one-loop scalar 1-point, 2-point,\n3-point and 4-point functions, for all kinematical configurations relevant\nfor collider-physics, and for any non-positive imaginary parts of the\ninternal squared masses. It deals with all UV and IR divergences within\ndimensional regularization. Furthermore, it provides routines to evaluate\nthese functions using straightforward numerical integration.\n\nOneLOop is authored by Andreas van Hameren.",
+        "documentation": "https://helac-phegas.web.cern.ch/OneLOop.html",
+        "homepage": "https://bitbucket.org/hameren/oneloop/",
+        "license": "GPL-3.0-only",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://bitbucket.org/hameren/oneloop/",
+        "summary": "OneLOop: A library of one-loop scalar functions"
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "sed -i \"s|FC = gfortran|FC = $FC|g\" Config",
+          "sed -i \"s|FFLAGS = -O|FFLAGS = $FFLAGS|g\" Config",
+          "echo -e \"\\n# Config file\"",
+          "cat Config",
+          "python create.py dynamic",
+          "mkdir -p $PREFIX/include/oneloop",
+          "mv *.mod $PREFIX/include/oneloop/",
+          "mv libavh_olo${SHLIB_EXT} $PREFIX/lib/",
+          "./clean.sh"
+        ],
+        "string": "hde13d6f_5"
+      },
+      "context": {
+        "name": "oneloop",
+        "version": "3.7.2"
+      },
+      "extra": {
+        "feedstock-name": "oneloop",
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "oneloop",
+        "version": "3.7.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-ppc64le 2.17.*",
+          "gfortran_linux-ppc64le 14.*",
+          "sed",
+          "python >=3.6"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "oneloop",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fa36c0716ab0526cb98693094b7efa2219434bed9f59429f123b654a33309848",
+          "url": "https://bitbucket.org/hameren/oneloop/get/v3.7.2.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "etc/conda/test-files/oneloop/*"
+            ],
+            "include": [
+              "oneloop/avh_olo_version.mod",
+              "oneloop/avh_olo_units.mod",
+              "oneloop/avh_olo_dp_kinds.mod",
+              "oneloop/avh_olo_dp_arrays.mod",
+              "oneloop/avh_olo_dp_prec.mod",
+              "oneloop/avh_olo_dp_print.mod",
+              "oneloop/avh_olo_dp_auxfun.mod",
+              "oneloop/avh_olo_dp_olog.mod",
+              "oneloop/avh_olo_dp_dilog.mod",
+              "oneloop/avh_olo_dp_bnlog.mod",
+              "oneloop/avh_olo_dp_qmplx.mod",
+              "oneloop/avh_olo_dp_bub.mod",
+              "oneloop/avh_olo_dp_tri.mod",
+              "oneloop/avh_olo_dp_box.mod",
+              "oneloop/avh_olo_dp_boxc.mod",
+              "oneloop/avh_olo_qp_kinds.mod",
+              "oneloop/avh_olo_qp_arrays.mod",
+              "oneloop/avh_olo_qp_prec.mod",
+              "oneloop/avh_olo_qp_print.mod",
+              "oneloop/avh_olo_qp_auxfun.mod",
+              "oneloop/avh_olo_qp_olog.mod",
+              "oneloop/avh_olo_qp_dilog.mod",
+              "oneloop/avh_olo_qp_bnlog.mod",
+              "oneloop/avh_olo_qp_qmplx.mod",
+              "oneloop/avh_olo_qp_bub.mod",
+              "oneloop/avh_olo_qp_tri.mod",
+              "oneloop/avh_olo_qp_box.mod",
+              "oneloop/avh_olo_qp_boxc.mod",
+              "oneloop/avh_olo_qp.mod",
+              "oneloop/avh_olo_dp.mod",
+              "oneloop/avh_olo.mod"
+            ],
+            "lib": {
+              "exists": [
+                "avh_olo"
+              ],
+              "not_exists": [
+                "libavh_olo.a"
+              ]
+            },
+            "strict": true
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/",
+              "example/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "gfortran_linux-ppc64le =14",
+              "python"
+            ]
+          },
+          "script": [
+            "cd example",
+            "export WITHLT=no",
+            "export LTVSNge26=yes",
+            "export WITHCOLI=no",
+            "../src/avh_pc_exe.py \"case\" \"LT\" \"${WITHLT}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"LTVSNge26\" \"${WITHLT}${LTVSNge26}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"COLI\" \"${WITHCOLI}\" example.f",
+            "../src/avh_pc_exe.py \"case\" \"LT\" \"${WITHLT}\" example16.f",
+            "../src/avh_pc_exe.py \"case\" \"LTVSNge26\" \"${WITHLT}${LTVSNge26}\" example16.f",
+            "../src/avh_pc_exe.py \"case\" \"COLI\" \"${WITHCOLI}\" example16.f",
+            "unset WITHLT",
+            "unset LTVSNge26",
+            "unset WITHCOLI",
+            "$FC $FFLAGS example.f -o example -I$PREFIX/include/oneloop $LDFLAGS -lavh_olo",
+            "./example < input",
+            "$FC $FFLAGS example16.f -o example16 -I$PREFIX/include/oneloop $LDFLAGS -lavh_olo",
+            "./example16 < input"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

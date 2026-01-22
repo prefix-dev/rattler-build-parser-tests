@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gen3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gen3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gen3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gen3/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gen3": {
+          "build_string": "pyhcf101f3_1",
+          "name": "gen3",
+          "version": "4.27.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:20.834904856Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gen3.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "NOTICE"
+        ],
+        "summary": "Gen3 CLI and Python SDK"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "gen3 = gen3.cli.__main__:main"
+          ]
+        },
+        "script": [
+          "sed -i '/pypfb/d' pyproject.toml",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "version": "4.27.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "gen3",
+        "version": "4.27.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "poetry >=1.4.1",
+          "poetry-core",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "requests",
+          "indexclient >=2.3.0,<3.0.0",
+          "drsclient >=0.3.0",
+          "aiohttp",
+          "backoff",
+          "cdislogging >=1.1.0,<2.0.0",
+          "click",
+          "fhirclient",
+          "jsonschema",
+          "dataclasses-json <=0.5.9",
+          "pypfb >=0.5.30",
+          "tqdm >=4.61.2,<5.0.0",
+          "humanfriendly",
+          "python-dateutil",
+          "aiofiles >=0.8.0,<0.9.0",
+          "pandas >=1.4.2",
+          "urllib3 >2.0.0",
+          "httpx",
+          "xmltodict >=0.13.0,<0.14.0",
+          "pyyaml >=6.0.1",
+          "gen3users"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f7f20888448b48731f99ac2b7b778c88e7f389a1b4de5b4f8ca3278c25ff56b0",
+          "url": "https://pypi.org/packages/source/g/gen3/gen3-4.27.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gen3"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python =3.10"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

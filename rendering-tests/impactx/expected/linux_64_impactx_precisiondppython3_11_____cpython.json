@@ -1,0 +1,209 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_impactx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_impactx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_impactx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_impactx/work"
+      },
+      "hash": {
+        "hash": "1f9a8fb",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "impactx": {
+          "build_string": "nompi_dp_h1f9a8fb_100",
+          "name": "impactx",
+          "version": "26.01"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:37:37.538851588Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fftw": "3",
+        "impactx_precision": "dp",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.11.* *_cpython",
+        "python_impl": "cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "ImpactX enables high-performance modeling of beam dynamics in particle accelerators with collective effects.\n\nThis is the next generation of the IMPACT-Z code. ImpactX runs on modern\nGPUs or CPUs alike, provides user-friendly interfaces suitable for AI/ML\nworkflows, has many benchmarks to ensure its correctness, and an extensive\ndocumentation.",
+        "documentation": "https://impactx.readthedocs.io/",
+        "homepage": "https://impactx.readthedocs.io/",
+        "license": "BSD-3-Clause-LBNL",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/BLAST-ImpactX/impactx",
+        "summary": "ImpactX enables high-performance modeling of beam dynamics in particle accelerators with collective effects."
+      },
+      "build": {
+        "number": 100,
+        "string": "nompi_dp_h1f9a8fb_100"
+      },
+      "context": {
+        "build": 0,
+        "name": "impactx",
+        "version": "26.01"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ax3l",
+          "cemitch99",
+          "EZoni",
+          "RemiLehe"
+        ]
+      },
+      "package": {
+        "name": "impactx",
+        "version": "26.01"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "make",
+          "libgomp",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "amrex ==26.1 nompi_dp_*",
+          "fftw",
+          "numpy",
+          "openpmd-api * nompi_*",
+          "pip",
+          "pyamrex ==26.1 nompi_dp_*",
+          "pybind11",
+          "pybind11-abi",
+          "python",
+          "setuptools",
+          "vir-simd",
+          "wheel"
+        ],
+        "run": [
+          "pals-schema >=0.2.0,<0.3.0",
+          "pyamrex ==26.1 nompi_dp_*",
+          "python",
+          "scipy",
+          "quantiphy",
+          "pandas",
+          "plotly",
+          "trame",
+          "trame-matplotlib",
+          "trame-plotly",
+          "trame-router",
+          "trame-vuetify",
+          "trame-xterm"
+        ],
+        "run_exports": {
+          "weak": [
+            "impactx * dp_*",
+            "impactx ==26.1"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7ac503208daaed8b7deb81792d77cd6c462978316a41a20d07ac7f765e0ce8e1",
+          "url": "https://github.com/BLAST-ImpactX/impactx/archive/26.01.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "impactx"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "package_contents": {
+            "files": [
+              "bin/impactx.NOMPI.OMP.DP.OPMD"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test.sh"
+            ],
+            "source": [
+              "examples/fodo/input_fodo.in",
+              "examples/fodo/run_fodo.py",
+              "tests/python/",
+              "examples/chicane/input_chicane_csr.in",
+              "examples/expanding_beam/input_expanding_fft_2D.in"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python",
+              "pytest",
+              "pytest-benchmark",
+              "selenium",
+              "matplotlib"
+            ]
+          },
+          "script": [
+            "echo \"Testing...\"",
+            "./test.sh"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,159 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mini-racer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mini-racer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mini-racer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mini-racer/work"
+      },
+      "hash": {
+        "hash": "78ddcbb",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mini-racer": {
+          "build_string": "py313h78ddcbb_4",
+          "name": "mini-racer",
+          "version": "0.14.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:35.382577157Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/bpcreech/PyMiniRacer",
+        "license": "ISC",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/bpcreech/PyMiniRacer",
+        "summary": "Minimal, modern embedded V8 for Python."
+      },
+      "build": {
+        "dynamic_linking": {
+          "binary_relocation": false
+        },
+        "number": 4,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h78ddcbb_4"
+      },
+      "context": {
+        "name": "mini-racer",
+        "version": "0.14.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "HeavyTony2"
+        ]
+      },
+      "package": {
+        "name": "mini-racer",
+        "version": "0.14.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-64",
+          "rust",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "pkg-config",
+          "just",
+          "uv"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "httplib2 0.22.0.*",
+          "packaging >=25.0",
+          "six",
+          "setuptools 80.9.0.*",
+          "types-setuptools >=80.9.0",
+          "wheel",
+          "just",
+          "rust",
+          "babel",
+          "mypy"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Update-v8_build.py.patch"
+          ],
+          "sha256": "51028ec0bb267abc4537bcb90dc5b236273cefde0566ca368bec09e362c4a477",
+          "url": "https://github.com/bpcreech/PyMiniRacer/archive/refs/tags/v0.14.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "py_mini_racer",
+              "py_mini_racer._mini_racer"
+            ]
+          }
+        },
+        {
+          "package_contents": {}
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

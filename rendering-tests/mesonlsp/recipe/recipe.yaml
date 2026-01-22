@@ -1,0 +1,52 @@
+context:
+  version: 4.3.7
+
+package:
+  name: mesonlsp
+  version: ${{ version }}
+
+source:
+  url: https://github.com/JCWasmx86/mesonlsp/archive/v${{ version }}.tar.gz
+  sha256: b84b2d4060a1aa0e09161f1a30e55f1a4d007609813e284ed4b0f4f969d406fa
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - git
+    - meson
+    - ninja
+    - pkg-config
+    - if: unix
+      then: sed
+  host:
+    - libarchive
+    - libcurl
+    - if: osx
+      then: fmt
+    - lsprotocol
+    - nlohmann_json
+    - pkgconf
+    - pygls
+    - libuuid
+    - zlib
+
+tests:
+  - script:
+      - mesonlsp --help
+
+about:
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: An unofficial, unendorsed language server for meson written in C++
+  homepage: https://github.com/JCWasmx86/mesonlsp
+  repository: https://github.com/JCWasmx86/mesonlsp
+
+extra:
+  recipe-maintainers:
+    - danielnachun

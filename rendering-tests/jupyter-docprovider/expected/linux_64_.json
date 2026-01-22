@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter-docprovider",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter-docprovider/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter-docprovider/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jupyter-docprovider/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jupyter-docprovider": {
+          "build_string": "pyhcf101f3_0",
+          "name": "jupyter-docprovider",
+          "version": "2.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:52.589285306Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://jupyterlab-realtime-collaboration.readthedocs.io/",
+        "homepage": "https://github.com/jupyterlab/jupyter-collaboration",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "jupyter_docprovider/labextension/static/third-party-licenses.json"
+        ],
+        "summary": "JupyterLab/Jupyter Notebook 7+ extension integrating collaborative shared models."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "jupyterlab_max": "5",
+        "jupyterlab_min": "4.5.0",
+        "python_check_max": "3.14",
+        "version": "2.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/jupyter-collaboration",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "jupyter-docprovider",
+        "version": "2.2.0"
+      },
+      "requirements": {
+        "host": [
+          "jupyterlab >=4.5.0,<5",
+          "hatch-jupyter-builder >=0.5",
+          "hatchling >=1.4.0",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "python >=3.10"
+        ],
+        "run_constraints": [
+          "jupyterlab >=4.5.0,<5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "519c0f84126c6fba9620e5189bef6df067d7d789d126debd73301aa4b88dfd0c",
+          "url": "https://pypi.org/packages/source/j/jupyter-docprovider/jupyter_docprovider-2.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jupyter_docprovider"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "jupyterlab",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "jupyter labextension list",
+            "jupyter labextension list --debug 2>&1 | python -c \"import re, sys; v = sys.stdin.read(); assert re.search(r'docprovider-extension.*OK', v)\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

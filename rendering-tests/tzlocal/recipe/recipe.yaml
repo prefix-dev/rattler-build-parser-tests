@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  version: 5.3.1
+
+package:
+  name: tzlocal
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/tzlocal/tzlocal-${{ version }}.tar.gz
+  sha256: cceffc7edecefea1f595541dbd6e990cb1ea3d19bf01b2809f362a03dd7921fd
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=64
+  run:
+    - python >=${{ python_min }}
+    - if: win
+      then: 
+      - python-tzdata
+      - __win
+      else:
+      - __unix
+
+tests:
+  - python:
+      imports:
+        - tzlocal
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: tzinfo object for the local timezone
+  homepage: https://github.com/regebro/tzlocal
+  repository: https://github.com/regebro/tzlocal
+
+extra:
+  recipe-maintainers:
+    - ericdill
+    - licode
+    - tacaswell
+    - synapticarbors

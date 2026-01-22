@@ -1,0 +1,319 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici_core",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici_core/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici_core/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici_core/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "voici_core": {
+          "build_string": "pyhcf101f3_0",
+          "name": "voici_core",
+          "version": "0.10.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:42:16.516215699Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Voici is a tool for generating static dashboards from Jupyter Notebooks.\nIt can be used as a drop-in replacement for Voil\u00e0 and it has the same\ncommands and supports most of Voil\u00e0's configuration options.\n\nUnlike Voil\u00e0, which renders interactive dashboards using server-side execution,\nVoici uses WebAssembly (Wasm) kernels to render notebooks in the browser,\nmaking the resulting dashboard entirely self-contained and distributable.",
+        "homepage": "https://github.com/voila-dashboards/voici",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "voici_core/LICENSE",
+          "voici_core/voici_core/static/build/third-party-licenses.json"
+        ],
+        "repository": "https://github.com/voila-dashboards/voici",
+        "summary": "Voici turns Jupyter notebooks into static web applications"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "voici = voici_core.app:main"
+          ]
+        },
+        "script": [
+          "cd voici_core",
+          "python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "0.10.0"
+      },
+      "extra": {
+        "feedstock-name": "voici",
+        "recipe-maintainers": [
+          "bollwyvl",
+          "jtpio",
+          "martinRenou",
+          "trungleduc"
+        ]
+      },
+      "package": {
+        "name": "voici_core",
+        "version": "0.10.0"
+      },
+      "requirements": {
+        "host": [
+          "hatch-jupyter-builder >=0.5.3",
+          "hatchling >=1.8.1",
+          "nodejs >=24,<25",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "jupyterlite-core >=0.7.0,<0.8.0",
+          "python >=3.10",
+          "voila >=0.5.5,<0.6"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fc3ddc58df7eccd56982cdb5b3ea4cb18126035a49c23d67adf338ef3fcd9440",
+          "target_directory": "voici_core",
+          "url": "https://pypi.org/packages/source/v/voici-core/voici_core-0.10.0.tar.gz"
+        },
+        {
+          "sha256": "3dca8a91dfdc157a433930b122e19fea5d77861d09358ad42af879ddbae9f972",
+          "target_directory": "voici",
+          "url": "https://pypi.org/packages/source/v/voici/voici-0.10.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "voici_core"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "voici --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_voici/work"
+      },
+      "hash": {
+        "hash": "f320dc4",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "voici": {
+          "build_string": "pyhf320dc4_0",
+          "name": "voici",
+          "version": "0.10.0"
+        },
+        "voici_core": {
+          "build_string": "pyhcf101f3_0",
+          "name": "voici_core",
+          "version": "0.10.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:42:16.574248694Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch",
+        "voici_core": "0.10.0 pyhcf101f3_0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Voici is a tool for generating static dashboards from Jupyter Notebooks.\nIt can be used as a drop-in replacement for Voil\u00e0 and it has the same\ncommands and supports most of Voil\u00e0's configuration options.\n\nUnlike Voil\u00e0, which renders interactive dashboards using server-side execution,\nVoici uses WebAssembly (Wasm) kernels to render notebooks in the browser,\nmaking the resulting dashboard entirely self-contained and distributable.",
+        "homepage": "https://github.com/voila-dashboards/voici",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "voici/LICENSE"
+        ],
+        "repository": "https://github.com/voila-dashboards/voici",
+        "summary": "Voici turns Jupyter notebooks into static web applications"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "cd voici",
+          "python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index"
+        ],
+        "string": "pyhf320dc4_0"
+      },
+      "context": {
+        "python_check_max": "3.14",
+        "version": "0.10.0"
+      },
+      "extra": {
+        "feedstock-name": "voici",
+        "recipe-maintainers": [
+          "bollwyvl",
+          "jtpio",
+          "martinRenou",
+          "trungleduc"
+        ]
+      },
+      "package": {
+        "name": "voici",
+        "version": "0.10.0"
+      },
+      "requirements": {
+        "host": [
+          "hatch-jupyter-builder >=0.5.3",
+          "hatchling >=1.8.1",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "voici_core"
+            }
+          },
+          "jupyterlite-xeus >=4.3.6",
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fc3ddc58df7eccd56982cdb5b3ea4cb18126035a49c23d67adf338ef3fcd9440",
+          "target_directory": "voici_core",
+          "url": "https://pypi.org/packages/source/v/voici-core/voici_core-0.10.0.tar.gz"
+        },
+        {
+          "sha256": "3dca8a91dfdc157a433930b122e19fea5d77861d09358ad42af879ddbae9f972",
+          "target_directory": "voici",
+          "url": "https://pypi.org/packages/source/v/voici/voici-0.10.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "voici",
+              "jupyterlite_xeus"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "voici --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

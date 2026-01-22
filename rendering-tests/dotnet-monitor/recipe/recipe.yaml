@@ -1,0 +1,39 @@
+context:
+  version: "10.0.0"
+
+package:
+  name: dotnet-monitor
+  version: ${{ version }}
+
+source:
+  url: https://github.com/dotnet/dotnet-monitor/archive/v${{ version }}.tar.gz
+  sha256: f0598e3ae3d3a7662bf47ec3ed9ded8d1fc155c7c5c8f6a750c3541e784c99d3
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - jq
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - dotnet-monitor --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.TXT
+    - license-files/
+  summary: A tool that allows you to gather diagnostic data from running applications using HTTP endpoints
+  homepage: https://github.com/dotnet/dotnet-monitor
+  repository: https://github.com/dotnet/dotnet-monitor
+
+extra:
+  recipe-maintainers:
+    - danielnachun

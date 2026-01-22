@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_open62541",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_open62541/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_open62541/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_open62541/work"
+      },
+      "hash": {
+        "hash": "2a109cb"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "open62541": {
+          "build_string": "h2a109cb_0",
+          "name": "open62541",
+          "version": "1.4.14"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:48:59.591604197Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "openssl": "3.5",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/open62541/open62541",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Open source implementation of OPC UA (OPC Unified Architecture) also known as IEC 62541."
+      },
+      "build": {
+        "number": 0,
+        "string": "h2a109cb_0"
+      },
+      "context": {
+        "name": "open62541",
+        "version": "1.4.14"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "open62541",
+        "version": "1.4.14"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "ninja",
+          "cmake",
+          "python *"
+        ],
+        "host": [
+          "openssl"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "open62541",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0a0a8830e4e5f720e901579f826c788fdbc3d49f44a9515ab15a06e877b59416",
+          "url": "https://github.com/open62541/open62541/archive/v1.4.14.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "vs2022_win-64",
+              "vs2022_win-64"
+            ]
+          },
+          "script": [
+            "if not exist %PREFIX%\\\\Library\\\\include\\\\open62541\\\\server.h exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\lib\\\\open62541.lib exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\bin\\\\open62541.dll exit 1",
+            "if not exist %PREFIX%\\\\Library\\\\lib\\\\cmake\\\\open62541\\\\open62541Config.cmake exit 1",
+            "cmake-package-check open62541"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

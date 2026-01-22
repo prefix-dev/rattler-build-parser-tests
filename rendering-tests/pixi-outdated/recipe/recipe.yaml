@@ -1,0 +1,40 @@
+context:
+  name: pixi-outdated
+  version: "0.2.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/benmoss/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 697381313b635d598082ef4a5312633d92fcc464871bba7756e15c5fc6b35e0b
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - pixi-outdated --version
+
+about:
+  homepage: https://github.com/benmoss/pixi-outdated
+  summary: A CLI tool to check for outdated dependencies in pixi projects.
+  description: |
+    A CLI tool to check for outdated dependencies in pixi projects.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  repository: https://github.com/benmoss/pixi-outdated
+
+extra:
+  recipe-maintainers:
+    - benmoss

@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sam3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sam3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sam3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sam3/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sam3": {
+          "build_string": "pyhcf101f3_0",
+          "name": "sam3",
+          "version": "0.1.0.20251211"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:51:27.095089200Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "SAM 3 is a unified foundation model for promptable segmentation in images and videos.\nIt can detect, segment, and track objects using text or visual prompts such as points,\nboxes, and masks.",
+        "documentation": "https://ai.meta.com/sam3/",
+        "homepage": "https://github.com/facebookresearch/sam3",
+        "license": "LicenseRef-SAM",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/facebookresearch/sam3",
+        "summary": "SAM 3: Segment Anything with Concepts"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "python -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "git_hash": "b26a5f330e05d321afb39d01d3d4881f258f65ff",
+        "git_hash_date": "20251211",
+        "name": "sam3",
+        "python_min": "3.10",
+        "version": "0.1.0.20251211"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "giswqs",
+          "claydugo"
+        ]
+      },
+      "package": {
+        "name": "sam3",
+        "version": "0.1.0.20251211"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "setuptools",
+          "wheel",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "timm >=1.0.17",
+          "numpy >=1.26",
+          "tqdm",
+          "ftfy >=6.1.1",
+          "regex",
+          "iopath >=0.1.10",
+          "typing_extensions",
+          "huggingface_hub",
+          "einops",
+          "pytorch",
+          "einops >=0.8.0",
+          "pycocotools",
+          "psutil",
+          "av"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "use_pyav_instead_of_decord.patch",
+            "0001-Avoid-importing-triton-since-it-doesn-t-seem-used.patch",
+            "loosen_dependencies.patch"
+          ],
+          "sha256": "3ca3b1df87415961ac42167ad71edccd0ab4f920df1246454d5e6f67170ebd25",
+          "url": "https://github.com/facebookresearch/sam3/archive/b26a5f330e05d321afb39d01d3d4881f258f65ff.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sam3"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": "test -f $PREFIX/lib/python*/site-packages/sam3/assets/bpe_simple_vocab_16e6.txt.gz"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

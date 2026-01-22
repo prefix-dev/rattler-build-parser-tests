@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: brain-isotopic-distribution
+  version: "1.5.19"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/brain_isotopic_distribution-${{ version }}.tar.gz
+  sha256: cad44fcb1ddbd26787dafb65345558df5119a7928b6e773fbb9dd5fd4f3334de
+
+build:
+  number: 1
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
+
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - setuptools
+    - wheel
+    - cython
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - brainpy
+      pip_check: true
+  - requirements:
+      run:
+        - pytest
+    files:
+      source:
+        - tests/
+    script:
+      - pytest tests/
+
+about:
+  summary: Fast and efficient theoretical isotopic profile generation
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/mobiusklein/brainpy
+  repository: https://github.com/mobiusklein/brainpy
+  documentation: http://mobiusklein.github.io
+
+extra:
+  recipe-maintainers:
+    - bgruening
+    - hadim

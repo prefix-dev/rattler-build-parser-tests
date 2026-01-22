@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-vxi11",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-vxi11/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-vxi11/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-vxi11/work"
+      },
+      "hash": {
+        "hash": "8f84b5b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-vxi11": {
+          "build_string": "pyh8f84b5b_3",
+          "name": "python-vxi11",
+          "version": "0.9"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:48.257906126Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This Python package supports the VXI-11 Ethernet instrument\ncontrol protocol for controlling VXI11 and LXI compatible instruments.",
+        "documentation": "http://alexforencich.com/wiki/en/python-vxi11/start",
+        "homepage": "http://alexforencich.com/wiki/en/python-vxi11/start",
+        "license": "MIT",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/python-ivi/python-vxi11",
+        "summary": "Python VXI-11 driver for controlling instruments over Ethernet"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 3,
+        "python": {
+          "entry_points": [
+            "vxi11-cli = vxi11.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyh8f84b5b_3"
+      },
+      "context": {
+        "name": "python-vxi11",
+        "version": "0.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje"
+        ]
+      },
+      "package": {
+        "name": "python-vxi11",
+        "version": "0.9"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "standard-xdrlib",
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "01fbd8d5be09352c6be46ae474a47d4fe44be2989f7e977c578c55733b076dff",
+          "url": "https://pypi.org/packages/source/p/python-vxi11/python-vxi11-0.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "vxi11"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "vxi11-cli --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

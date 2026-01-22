@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: mktestdocs
+  version: 0.2.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mktestdocs-${{ version }}.tar.gz
+  sha256: 7935d4e665b34b690cdf14749abb842723652485f67af12dce51099bcb98e105
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - wheel
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - mktestdocs
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - tests
+    requirements:
+      run:
+        - pytest >=4.0.2
+        - python ${{ python_min }}.*
+    script:
+      - "pytest -vvv --capture=tee-sys -k \"not test_class and not test_big_files_good and not test_big_file_independant and not test_files_unmarked_language_default and not test_files_unmarked_language_bash and not test_override_executor and not test_readme\" tests"
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Run pytest against markdown files/docstrings.
+  homepage: https://github.com/koaning/mktestdocs
+
+extra:
+  recipe-maintainers:
+    - thewchan

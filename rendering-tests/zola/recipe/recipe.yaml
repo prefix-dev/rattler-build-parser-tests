@@ -1,0 +1,42 @@
+context:
+  version: "0.22.0"
+
+package:
+  name: zola
+  version: ${{ version }}
+
+source:
+  url: https://github.com/getzola/zola/archive/v${{ version }}.tar.gz
+  sha256: 75274ca54c97da2f24645568e2c7024f6661ce002e8f7e09d6cd30bae7b73b0a
+
+build:
+  number: 0
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - oniguruma
+    - openssl
+
+tests:
+  - script:
+      - zola --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: A fast static site generator in a single binary with everything built-in.
+  homepage: https://github.com/getzola/zola
+  repository: https://github.com/getzola/zola
+
+extra:
+  recipe-maintainers:
+    - danielnachun

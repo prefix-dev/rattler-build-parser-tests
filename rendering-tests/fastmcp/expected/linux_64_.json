@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastmcp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastmcp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastmcp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastmcp/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastmcp": {
+          "build_string": "pyhcf101f3_0",
+          "name": "fastmcp",
+          "version": "2.14.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:19.336745556Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jlowin/fastmcp",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "The fast, Pythonic way to build MCP servers."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "fastmcp = fastmcp.cli:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "fastmcp",
+        "python_min": "3.10",
+        "version": "2.14.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706",
+          "dbast"
+        ]
+      },
+      "package": {
+        "name": "fastmcp",
+        "version": "2.14.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "uv-dynamic-versioning >=0.7.0",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4",
+          "python-dotenv >=1.1.0",
+          "exceptiongroup >=1.2.2",
+          "httpx >=0.28.1",
+          "mcp >=1.24",
+          "openapi-pydantic >=0.5.1",
+          "platformdirs >=4.0.0",
+          "pydocket >=0.15.5",
+          "rich >=13.9.4",
+          "cyclopts >=4.0.0",
+          "authlib >=1.6.5",
+          "pydantic >=2.11.7",
+          "pyperclip >=1.9.0",
+          "py-key-value-aio >=0.3.0,<0.4.0",
+          "uvicorn >=0.35",
+          "websockets >=15.0.1",
+          "jsonschema-path >=0.3.4",
+          "diskcache >=5.6.0",
+          "pathvalidate >=3.3.1",
+          "cachetools >=6.0.0",
+          "keyring >=25.6.0"
+        ],
+        "run_constraints": [
+          "openai >=1.102.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "abc9113d5fcf79dfb4c060a1e1c55fccb0d4bce4a2e3eab15ca352341eec8dd6",
+          "url": "https://pypi.org/packages/source/f/fastmcp/fastmcp-2.14.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastmcp"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "fastmcp --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_vale/work"
+      },
+      "hash": {
+        "hash": "b9790ae"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "vale": {
+          "build_string": "hb9790ae_0",
+          "name": "vale",
+          "version": "3.13.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:01.725386905Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "m2w64_c_compiler": "gcc",
+        "m2w64_c_compiler_version": "14",
+        "m2w64_c_stdlib": "m2w64-sysroot",
+        "m2w64_c_stdlib_version": "12",
+        "m2w64_cxx_compiler": "gxx",
+        "m2w64_cxx_compiler_version": "14",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://vale.sh/docs",
+        "homepage": "https://vale.sh/",
+        "license": "MIT",
+        "license_file": [
+          "src/github.com/errata-ai/vale/LICENSE",
+          "license-files/"
+        ],
+        "repository": "https://github.com/errata-ai/vale",
+        "summary": "A syntax-aware linter for prose built with speed and extensibility in mind."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-vale"
+        },
+        "string": "hb9790ae_0"
+      },
+      "context": {
+        "go_min": "1.25.3",
+        "version": "3.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "vale",
+        "version": "3.13.0"
+      },
+      "requirements": {
+        "build": [
+          "go-cgo_win-64",
+          "go-licenses",
+          "go >=1.25.3",
+          "gcc_win-64 14.*",
+          "gxx_win-64 14.*",
+          "m2w64-sysroot_win-64 12.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-use-conda-prefix.patch"
+          ],
+          "sha256": "a6811e19c0ca8fc453da98238c2ffc7c5d5d1e77346d72d24fd47c09302fd7c0",
+          "target_directory": "src/github.com/errata-ai/vale",
+          "url": "https://github.com/errata-ai/vale/archive/refs/tags/v3.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "vale --version",
+            "vale --help",
+            "vale --version | findstr \"${{ version | replace(\".\", \"\\\\.\") }}\"",
+            "vale ls-dirs",
+            "md \"%CONDA_PREFIX%\\share\\vale\\styles\"",
+            "md \"%CONDA_PREFIX%\\etc\\vale\"",
+            "echo \"TODO\" >> \"%CONDA_PREFIX%\\etc\\vale\\.vale.ini\"",
+            "vale ls-dirs"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

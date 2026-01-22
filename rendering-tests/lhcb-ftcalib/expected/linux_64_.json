@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lhcb-ftcalib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lhcb-ftcalib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lhcb-ftcalib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lhcb-ftcalib/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lhcb-ftcalib": {
+          "build_string": "pyhcf101f3_0",
+          "name": "lhcb-ftcalib",
+          "version": "1.5.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:30.238371277Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://ftcalib-documentation.docs.cern.ch/",
+        "homepage": "https://gitlab.cern.ch/lhcb-ft/lhcb_ftcalib",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Library for calibrating flavour tagging algorithms at LHCb"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ftcalib = lhcb_ftcalib.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "lhcb-ftcalib",
+        "python_min": "3.10",
+        "version": "1.5.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "VukanJ",
+          "conda-forge/LbEnv"
+        ]
+      },
+      "package": {
+        "name": "lhcb-ftcalib",
+        "version": "1.5.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "iminuit >2.3.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "numpy >1.21",
+          "pandas >2.2.1",
+          "iminuit >2.3.0",
+          "scipy",
+          "matplotlib-base >=3.3.0",
+          "numba <=0.61.2",
+          "uproot >=5.3.0,!=5.6.7,!=5.6.8"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d0076a73fddd1c61706064d34db3f15e00ae33d06f978fa3cf2186f9d04fe9d4",
+          "url": "https://pypi.org/packages/source/l/lhcb-ftcalib/lhcb_ftcalib-1.5.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "python >=3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip install sweights",
+            "python -c \"import lhcb_ftcalib\"",
+            "pip check",
+            "ftcalib --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

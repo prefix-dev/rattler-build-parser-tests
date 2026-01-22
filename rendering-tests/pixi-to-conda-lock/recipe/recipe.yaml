@@ -1,0 +1,51 @@
+context:
+  name: pixi-to-conda-lock
+  version: "0.4.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pixi_to_conda_lock-${{ version }}.tar.gz
+  sha256: a54174591fa8bfb764e955ba9addd22e6e99120198c48f4b44c31c12d17d4738
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pixi-to-conda-lock = pixi_to_conda_lock:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - wheel
+    - versioningit
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pyyaml
+    - py-rattler
+
+tests:
+  - python:
+      imports:
+        - pixi_to_conda_lock
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - pixi-to-conda-lock --help
+
+about:
+  summary: pixi-to-conda-lock converts a pixi.lock file to a conda-lock.yml file.
+  license: Apache-2.0
+  license_file: LICENSE
+  repository: https://github.com/basnijholt/pixi-to-conda-lock
+  homepage: https://github.com/basnijholt/pixi-to-conda-lock
+
+extra:
+  recipe-maintainers:
+    - MridulS

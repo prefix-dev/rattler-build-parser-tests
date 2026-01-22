@@ -1,0 +1,44 @@
+context:
+  name: slackbot
+  version: 1.0.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: d413c5bd410a1f899e3953bbd2cb1aae0e963d732d011c8da9cbaefdd4e041b1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - requests >=2.4.0
+    - websocket-client >=0.22.0,<=1.6
+    - slacker >=0.9.50
+    - six >=1.10.0
+
+tests:
+  - python:
+      imports:
+        - slackbot
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: A simple chat bot for Slack
+  homepage: https://github.com/lins05/slackbot
+
+extra:
+  recipe-maintainers:
+    - hadim

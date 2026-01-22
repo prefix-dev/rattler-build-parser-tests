@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: pychooch
+  version: 5.0.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mxcube/pychooch/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 3dfb79095f44d7215427df5fc084551e6cf8928d8e844fc2accbd255b8b3c735
+
+build:
+  number: 4
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - make
+  host:
+    - python
+    - pip
+    - setuptools
+    - gsl
+    - libblas
+    - plplot
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - PyChooch
+      pip_check: true
+  - files:
+      source:
+        - test_pychooch.py
+        - CHOOCH_TEST.raw
+    script:
+      - python test_pychooch.py CHOOCH_TEST.raw
+
+about:
+  summary: Python binding to chooch, a program for calculating anomalous scattering factors from X-ray fluorescence spectra
+  license: GPL-2.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/mxcube/pychooch
+  repository: https://github.com/mxcube/pychooch
+
+extra:
+  recipe-maintainers:
+    - beenje

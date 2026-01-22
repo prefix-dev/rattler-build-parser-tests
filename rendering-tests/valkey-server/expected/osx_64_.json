@@ -1,0 +1,125 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_valkey-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_valkey-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_valkey-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_valkey-server/work"
+      },
+      "hash": {
+        "hash": "fb6f7f4"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "valkey-server": {
+          "build_string": "hfb6f7f4_0",
+          "name": "valkey-server",
+          "version": "9.0.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.833374803Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Valkey is a high-performance data structure server that primarily serves\nkey/value workloads. It supports a wide range of native structures and an\nextensible plugin system for adding new data structures and access patterns.",
+        "homepage": "https://valkey.io/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/valkey-io/valkey",
+        "summary": "A flexible distributed key-value datastore that supports both caching and beyond caching workloads."
+      },
+      "build": {
+        "number": 0,
+        "script": "make install -j${CPU_COUNT}",
+        "string": "hfb6f7f4_0"
+      },
+      "context": {
+        "version": "9.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "valkey-server",
+        "version": "9.0.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "make",
+          "pkg-config"
+        ],
+        "run_constraints": [
+          "redis-server <0.a0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9cfbc5f32a2a6058ee0f8c532b9c4d24167cc49d719f091dd75f1bb8353a1fc5",
+          "url": "https://github.com/valkey-io/valkey/archive/refs/tags/9.0.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "valkey-cli --version",
+            "valkey-server --version",
+            "redis-cli --version",
+            "redis-server --version"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

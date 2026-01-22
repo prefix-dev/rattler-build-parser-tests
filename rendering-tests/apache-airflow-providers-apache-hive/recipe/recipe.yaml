@@ -1,0 +1,59 @@
+context:
+  name: apache-airflow-providers-apache-hive
+  version: "9.2.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/apache_airflow_providers_apache_hive-${{ version }}.tar.gz
+  sha256: 3b7e628f08b8ca1f9cb7882195a8ffacf6475b34e8881a4ce1c49ab21ae36175
+
+build:
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - flit-core ==3.12.0
+  run:
+    - python >=${{ python_min }}
+    - apache-airflow >=2.11.0
+    - apache-airflow-providers-common-compat >=1.12.0
+    - apache-airflow-providers-common-sql >=1.26.0
+    - hmsclient >=0.1.0
+    # more restrictive for python >=3.13
+    - pandas >=2.2.3
+    - pyhive >=0.7.0
+
+    # pyhive[hive_pure_sasl]
+    - pure-sasl >=0.6.2
+    - thrift >=0.10.0
+    - thrift_sasl >=0.1.0
+
+    - jmespath >=0.7.0
+
+tests:
+  - python:
+      imports:
+      - airflow.providers.apache.hive
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/apache/airflow/
+  summary: Provider package apache-airflow-providers-apache-hive for Apache Airflow
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  documentation: https://airflow.apache.org/docs/apache-airflow-providers-apache-hive/stable/index.html
+  repository: https://github.com/apache/airflow/
+
+extra:
+  recipe-maintainers:
+    - xylar

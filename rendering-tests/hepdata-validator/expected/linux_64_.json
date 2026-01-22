@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepdata-validator",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepdata-validator/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepdata-validator/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepdata-validator/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hepdata-validator": {
+          "build_string": "pyhe01879c_1",
+          "name": "hepdata-validator",
+          "version": "0.3.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:24.925422842Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/hepdata/hepdata-validator",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "JSON schema and validation code for HEPData submissions"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "hepdata-validate = hepdata_validator.cli:validate"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_1"
+      },
+      "context": {
+        "name": "hepdata-validator",
+        "python_min": "3.6",
+        "version": "0.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "GraemeWatt",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "hepdata-validator",
+        "version": "0.3.6"
+      },
+      "requirements": {
+        "host": [
+          "python 3.6.*",
+          "setuptools",
+          "pytest",
+          "pip"
+        ],
+        "run": [
+          "python >=3.6",
+          "click",
+          "jsonschema",
+          "packaging",
+          "pyyaml >=5.4.1",
+          "requests"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e57b97f83509c81d579ccbbd4cdd515043ba32aa1d8543bf31a36a19dcf08fbb",
+          "url": "https://pypi.org/packages/source/h/hepdata-validator/hepdata_validator-0.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hepdata_validator"
+            ],
+            "python_version": "3.6.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.6.*",
+              "pip"
+            ]
+          },
+          "script": "hepdata-validate --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

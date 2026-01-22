@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: removestar
+  version: 1.5.2
+  python_min: 3.7
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 282d6dcb908a12b6dbf9c1050a04256f160e2de2c8bdea78a443dd547486fe3b
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - removestar = removestar.__main__:main
+
+requirements:
+  host:
+    - python 3.7.*
+    - pip
+    - hatchling
+    - hatch-vcs
+  run:
+    - python >=${{ python_min }}
+    - pyflakes
+
+tests:
+  - python:
+      imports:
+        - removestar
+      pip_check: false
+      python_version: ${{ python_min }}.*
+  - script:
+      - removestar --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: |
+    removestar is a tool to automatically replace 'import *' in Python files with explicit imports.
+  description: |
+    removestar is a tool to automatically replace 'import *' in Python files with explicit imports.
+  homepage: https://asmeurer.com/removestar
+  repository: https://github.com/asmeurer/removestar
+  documentation: https://asmeurer.com/removestar
+
+extra:
+  recipe-maintainers:
+    - asmeurer
+    - Saransh-cpp

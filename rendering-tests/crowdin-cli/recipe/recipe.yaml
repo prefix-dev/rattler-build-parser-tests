@@ -1,0 +1,38 @@
+context:
+  version: "4.13.0"
+
+package:
+  name: crowdin-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/crowdin/crowdin-cli/archive/${{ version }}.tar.gz
+  sha256: f24405b47a329b06c1ddc95173577ff06b27988e1e776cb3f74e8067b97a4b62
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - openjdk =21
+    - sed
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - crowdin-cli --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - build/reports/dependency-license/
+  summary: A command-line client for the Crowdin API
+  homepage: https://github.com/crowdin/crowdin-cli
+  repository: https://github.com/crowdin/crowdin-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

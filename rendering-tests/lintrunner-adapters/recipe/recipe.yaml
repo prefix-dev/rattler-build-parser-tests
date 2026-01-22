@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.13.0"
+  python_check_max: "3.14"
+
+package:
+  name: lintrunner-adapters
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/l/lintrunner-adapters/lintrunner_adapters-${{ version }}.tar.gz
+  sha256: cd5a240398a778cab6f69ebf79e4fd41beb8a47559e1fae5986c75932e5f3b12
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - lintrunner_adapters = lintrunner_adapters.__main__:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+  run:
+    - click >=8.1.3
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: lintrunner_adapters
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - lintrunner_adapters --help
+      - coverage run --source=lintrunner_adapters --branch -m pytest -vv --tb=long --color=yes --pyargs lintrunner_adapters
+      - coverage report --show-missing --skip-covered --fail-under=39
+
+about:
+  summary: Adapters and tools for lintrunner
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pypi.org/project/lintrunner-adapters
+  repository: https://github.com/justinchuby/lintrunner-adapters
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

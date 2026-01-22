@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: array-api-strict
+  version: "2.4.1"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/array_api_strict-${{ version }}.tar.gz
+  sha256: 6c77dca1cb8c9627084ab687e9b27207b91fca3553f2072bf2d6074f0a1c3b4c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools <=75
+    - setuptools_scm >8
+  run:
+    - python >=${{ python_min }}
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - array_api_strict
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: A strict, minimal implementation of the Python array API standard.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://data-apis.org/array-api-strict/
+
+extra:
+  recipe-maintainers:
+    - lucascolley
+    - asmeurer
+    - rgommers

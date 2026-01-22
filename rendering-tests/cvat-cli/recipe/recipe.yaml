@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: cvat-cli
+  version: "2.55.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cvat_cli-${{ version }}.tar.gz
+  sha256: de447a2566aa37870ef5141a55793d9e87b6412878338f181f82d02bfb01f578
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - cvat-cli=cvat_cli.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - cvat-sdk ==${{ version }}
+
+tests:
+  - python:
+      imports:
+        - cvat_cli
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}
+    script:
+      - pip check
+      - cvat-cli --help
+
+about:
+  summary: Command-line client for CVAT
+  license: MIT
+  license_file: LICENSE
+  homepage: https://www.cvat.ai/
+  repository: https://github.com/cvat-ai/cvat
+  documentation: https://docs.cvat.ai/docs/api_sdk/cli/
+
+extra:
+  recipe-maintainers:
+    - achimgaedke

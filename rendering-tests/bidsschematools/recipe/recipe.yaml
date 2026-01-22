@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: bidsschematools
+  version: "1.1.5"
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 813d6dd7fec988a65ce0aeca65c0fcb270788451184796e6b2a049df73ab0798
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - bst = bidsschematools.__main__:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - pdm-backend
+    - acres
+    - pyyaml
+  run:
+    - python >=${{ python_min }}
+    - click
+    - pyyaml
+    - acres
+
+tests:
+  - python:
+      imports:
+        - bidsschematools
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - pyproject.toml
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+        - jq
+    script:
+      - bst --help
+      - bst export | jq '[.bids_version, .schema_version]'
+      - pip install "bidsschematools[tests]"
+      - python -m pytest -vv --pyargs bidsschematools
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Python tools for working with the BIDS schema
+  homepage: https://github.com/bids-standard/bids-specification
+  repository: https://github.com/bids-standard/bids-specification
+
+extra:
+  recipe-maintainers:
+    - yarikoptic
+    - TheChymera
+    - effigies

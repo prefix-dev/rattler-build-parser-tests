@@ -1,0 +1,37 @@
+context:
+  version: "0.6.8"
+
+package:
+  name: code-minimap
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wfxr/code-minimap/archive/v${{ version }}.tar.gz
+  sha256: c68d4387bd0b86684a1b7c643d6281b79e018da318657254f2502ad032d52355
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - code-minimap --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: High performance code minimap generator
+  homepage: https://github.com/wfxr/code-minimap
+  repository: https://github.com/wfxr/code-minimap
+
+extra:
+  recipe-maintainers:
+    - danielnachun

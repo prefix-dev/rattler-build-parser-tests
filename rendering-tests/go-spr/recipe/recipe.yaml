@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  version: "0.16.0"
+
+package:
+  name: go-spr
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ejoffe/spr/archive/v${{ version }}.tar.gz
+  sha256: 33704260884855b76402a53b0b5c9131600f0909d6f4161aa8b10470673e7c32
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+  run:
+    - git
+
+tests:
+  - script:
+      - if: linux
+        then: spr 2>&1 | grep -q "No GitHub OAuth token found!"
+      - if: osx or win
+        then: 'spr 2>&1 | grep -q "git error: fatal: not a git repository"'
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files_amend/
+    - license-files_reword/
+    - license-files_spr/
+  summary: Stacked Pull Requests on GitHub
+  homepage: https://github.com/ejoffe/spr
+  repository: https://github.com/ejoffe/spr
+
+extra:
+  recipe-maintainers:
+    - danielnachun

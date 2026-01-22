@@ -1,0 +1,39 @@
+context:
+  version: "0.3.17"
+
+package:
+  name: publint
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/publint/-/publint-${{ version }}.tgz
+  sha256: 326e14eee4ad2a603bd997bf691ca30333fa538b85c3f909dec553284815f455
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - publint --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Lint packaging errors
+  homepage: https://publint.dev/
+  repository: https://github.com/bluwy/publint
+
+extra:
+  recipe-maintainers:
+    - danielnachun

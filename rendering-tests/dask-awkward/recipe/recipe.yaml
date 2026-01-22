@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: dask-awkward
+  version: "2025.9.0"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/dask_awkward/dask_awkward-${{ version }}.tar.gz
+  sha256: 46712213abc0546bfd1941c4137ded185ade669a96ec6d0b6a2061219e802269
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=1.8.0
+    - hatch-vcs
+    - toml
+  run:
+    - python >=${{ python_min }}
+    - awkward >=2.5.1
+    - dask >=2023.04.0,<2025.4.0
+    - cachetools
+    - typing_extensions >=4.8.0
+
+tests:
+  - python:
+      imports:
+        - dask_awkward
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Connecting awkward-array and Dask.
+  description: |
+    dask-awkward provides a native Dask collection representing
+    partitioned awkward arrays.
+  homepage: https://dask-awkward.readthedocs.io/
+  repository: https://github.com/dask-contrib/dask-awkward/
+  documentation: https://dask-awkward.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/scikit-hep
+    - jpivarski
+    - lgray
+    - agoose77
+    - douglasdavis
+    - pfackeldey
+    - martindurant

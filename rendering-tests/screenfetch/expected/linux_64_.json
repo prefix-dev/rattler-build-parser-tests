@@ -1,0 +1,117 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_screenfetch",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_screenfetch/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_screenfetch/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_screenfetch/work"
+      },
+      "hash": {
+        "hash": "c364b38"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "screenfetch": {
+          "build_string": "hc364b38_1",
+          "name": "screenfetch",
+          "version": "3.9.9"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:34:39.813893588Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "screenFetch is a shell script that generates ASCII art with terminal, shell, and OS info.",
+        "documentation": "https://github.com/3.9.9/screenFetch/blob/v3.9.9/README.mkdn",
+        "homepage": "https://github.com/KittyKatt/screenFetch",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/KittyKatt/screenFetch",
+        "summary": "Generate ASCII art with terminal, shell, and OS info"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 1,
+        "script": "set -exo pipefail\ninstall -D -m 755 screenfetch-dev ${{ PREFIX }}/bin/screenfetch\ninstall -D -m 644 screenfetch.1 ${{ PREFIX }}/share/man/man1/screenfetch.1\n",
+        "string": "hc364b38_1"
+      },
+      "context": {
+        "author": "KittyKatt",
+        "name": "screenFetch",
+        "version": "3.9.9"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "screenfetch",
+        "version": "3.9.9"
+      },
+      "requirements": {
+        "build": [
+          "coreutils"
+        ],
+        "run": [
+          "bash"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "65ba578442a5b65c963417e18a78023a30c2c13a524e6e548809256798b9fb84",
+          "url": "https://github.com/KittyKatt/screenFetch/archive/refs/tags/v3.9.9.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "${{ name|lower }} -V"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

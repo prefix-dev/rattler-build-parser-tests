@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_memray",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_memray/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_memray/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_memray/work"
+      },
+      "hash": {
+        "hash": "a9ecdfb",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "memray": {
+          "build_string": "py312ha9ecdfb_3",
+          "name": "memray",
+          "version": "1.19.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:40:51.031728675Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "elfutils": "0.194",
+        "libunwind": "1.8",
+        "lz4_c": "1.10",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Memray is a memory profiler for Python. It can track memory allocations in\nPython code, in native extension modules, and in the Python interpreter\nitself. It can generate several different types of reports to help you\nanalyze the captured memory usage data. While commonly used as a CLI tool,\nit can also be used as a library to perform more fine-grained profiling\ntasks.",
+        "documentation": "https://bloomberg.github.io/memray/",
+        "homepage": "https://github.com/bloomberg/memray",
+        "license": "Apache-2.0 AND BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "src/vendor/libbacktrace/LICENSE"
+        ],
+        "repository": "https://github.com/bloomberg/memray",
+        "summary": "Memray is a memory profiler for Python"
+      },
+      "build": {
+        "number": 3,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "py312ha9ecdfb_3"
+      },
+      "context": {
+        "name": "memray",
+        "version": "1.19.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matthiasdiener"
+        ]
+      },
+      "package": {
+        "name": "memray",
+        "version": "1.19.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "make",
+          "pkgconfig"
+        ],
+        "host": [
+          "elfutils",
+          "libunwind",
+          "python",
+          "pip",
+          "setuptools",
+          "pkgconfig",
+          "cython",
+          "lz4-c"
+        ],
+        "run": [
+          "python",
+          "rich >=11.2.0",
+          "jinja2",
+          "textual >=0.34.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7fcf306eae2c00144920b01913f42fa7f235af7a80fa3226ab124672a5cb1d8f",
+          "url": "https://pypi.org/packages/source/m/memray/memray-1.19.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "memray"
+            ]
+          }
+        },
+        {
+          "script": "memray -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

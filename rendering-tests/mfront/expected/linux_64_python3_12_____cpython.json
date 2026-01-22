@@ -1,0 +1,179 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mfront",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mfront/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mfront/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mfront/work"
+      },
+      "hash": {
+        "hash": "2f36340",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mfront": {
+          "build_string": "np2py312h2f36340_0",
+          "name": "mfront",
+          "version": "5.0.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:35.895260223Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libboost_python_devel": "1.88",
+        "numpy": "2",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MFront is a code generator which translates a set of closely related domain specific languages into plain C++ on top of the TFEL library. Those languages cover three kinds of material knowledge:\nmaterial properties (for instance the Young modulus, the thermal conductivity, etc.)\nmechanical behaviours. Numerical performances of generated mechanical behaviours were given a particular attention. Various benchmarks show that MFront implementations are competitive with native implementations available in the Cast3M, Code-Aster, Abaqus Standard and Cyrano3 solvers.\nsimple point-wise models, such as material swelling used in fuel performance codes.",
+        "documentation": "https://thelfer.github.io/tfel/web/index.html",
+        "homepage": "https://github.com/thelfer/tfel",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "tfel-TFEL-5.0.2/LICENCE-GNU-GPL"
+        ],
+        "repository": "https://thelfer.github.io/tfel/web/contributing.html",
+        "summary": "MFront, a code generation tool dedicated to material knowledge"
+      },
+      "build": {
+        "number": 0,
+        "prefix_detection": {
+          "ignore_binary_files": true
+        },
+        "string": "np2py312h2f36340_0"
+      },
+      "context": {
+        "name": "mfront",
+        "sha256": "2d2c91d28b0164121d848b3e0b916947290eb7a93aba2d26954d6d04ccb2d3b7",
+        "version": "5.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Krande",
+          "ldallolio"
+        ]
+      },
+      "package": {
+        "name": "mfront",
+        "version": "5.0.2"
+      },
+      "requirements": {
+        "build": [
+          "gfortran_linux-64 14.*",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake <4",
+          "make"
+        ],
+        "host": [
+          "libboost-python-devel",
+          "numpy",
+          "python",
+          "zlib"
+        ],
+        "run": [
+          "python"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mfront",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "file_name": "tfel-TFEL-5.0.2.tar.gz",
+          "sha256": "2d2c91d28b0164121d848b3e0b916947290eb7a93aba2d26954d6d04ccb2d3b7",
+          "url": "https://github.com/thelfer/tfel/archive/refs/tags/TFEL-5.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tfel",
+              "tfel.math",
+              "tfel.material"
+            ]
+          }
+        },
+        {
+          "script": [
+            "tfel-config --version",
+            "tfel-doc --version",
+            "tfel-check --version",
+            "mtest --version",
+            "mfront --list-stress-criteria",
+            "mfront-doc --version",
+            "mfront-query --version",
+            "mfm --version",
+            "test -f $PREFIX/lib/libTFELConfig.so",
+            "test -f $PREFIX/lib/libTFELUnicodeSupport.so",
+            "test -f $PREFIX/lib/libTFELGlossary.so",
+            "test -f $PREFIX/lib/libTFELException.so",
+            "test -f $PREFIX/lib/libTFELUtilities.so"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

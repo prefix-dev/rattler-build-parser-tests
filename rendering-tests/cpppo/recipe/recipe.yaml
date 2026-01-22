@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: cpppo
+  version: 5.2.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cpppo-${{ version }}.tar.gz
+  sha256: 4b2b86a61e15fce9df865a023dcf839f57d4a7ba2da6ea33dbf300f5ddf7fea2
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - enip_server = cpppo.server.enip.main:main
+      - enip_client = cpppo.server.enip.client:main
+      - enip_get_attribute = cpppo.server.enip.get_attribute:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - greenery >=2.0,<3.0
+
+tests:
+  - python:
+      imports:
+        - cpppo
+        - cpppo.server
+        - cpppo.server.enip
+      pip_check: false
+      python_version: ["${{ python_min }}.*", "3.13.*"]
+  - script:
+      - enip_server --help
+      - enip_client --help
+      - enip_get_attribute --help
+
+about:
+  summary: Cpppo is a Communication Protocol Python Parser and Originator
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - COPYING
+  homepage: https://github.com/pjkundert/cpppo
+
+extra:
+  recipe-maintainers:
+    - beenje

@@ -1,0 +1,51 @@
+context:
+  name: torch_memory_saver
+  version: 0.0.8
+  cuda_build_string: cuda_${{ cuda_compiler_version | version_to_buildstring }}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/torch_memory_saver-${{ version }}.tar.gz
+  sha256: 7d318e6e209b27d883e34d5efa4aaf7f31adf9974a71abd76a9508f8b543af01
+
+build:
+  skip:
+    - cuda_compiler_version == "None"
+    - not linux
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  string: ${{ cuda_build_string }}py${{ python | version_to_buildstring }}h${{ hash }}_${{ build_number }}
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cuda') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - make
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+    - pytorch * [build=cuda*]
+
+tests:
+  - python:
+      imports:
+        - torch_memory_saver
+      pip_check: true
+
+about:
+  homepage: https://github.com/fzyzcjy/torch_memory_saver
+  summary: A PyTorch library that allows tensor memory to be temporarily released and resumed later.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - shermansiu

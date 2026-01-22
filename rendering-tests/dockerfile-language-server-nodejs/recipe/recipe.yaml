@@ -1,0 +1,39 @@
+context:
+  version: "0.15.0"
+
+package:
+  name: dockerfile-language-server-nodejs
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/dockerfile-language-server-nodejs/-/dockerfile-language-server-nodejs-${{ version }}.tgz
+  sha256: 32ee93b98f43d8d60273019b7ed12a263593ba3a2308442ca7449d49676f480d
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "docker-langserver 2>&1 | grep -q \"Connection input stream is not set.\""
+
+about:
+  license: MIT
+  license_file:
+    - License.txt
+    - third-party-licenses.txt
+  summary: A language server for Dockerfiles powered by Node.js, TypeScript, and VSCode technologies
+  homepage: https://github.com/rcjsuen/dockerfile-language-server-nodejs
+  repository: https://github.com/rcjsuen/dockerfile-language-server-nodejs
+
+extra:
+  recipe-maintainers:
+    - danielnachun

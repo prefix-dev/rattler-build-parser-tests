@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nh3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nh3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nh3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nh3/work"
+      },
+      "hash": {
+        "hash": "788c537",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nh3": {
+          "build_string": "py314h788c537_1",
+          "name": "nh3",
+          "version": "0.3.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:34:46.126175933Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": false,
+        "is_python_min": false,
+        "python": "3.14.* *_cp314t",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://nh3.readthedocs.io/",
+        "homepage": "https://pypi.org/project/nh3",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/messense/nh3",
+        "summary": "Python binding to Ammonia HTML sanitizer Rust crate"
+      },
+      "build": {
+        "number": 1,
+        "script": {
+          "file": "build-nh3"
+        },
+        "string": "py314h788c537_1"
+      },
+      "context": {
+        "maturin_max": "2.0",
+        "maturin_min": "1.0",
+        "python_check_max": "3.14",
+        "version": "0.3.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "nh3",
+        "version": "0.3.2"
+      },
+      "requirements": {
+        "build": [
+          "rust_win-64",
+          "vs_win-64",
+          "cargo-bundle-licenses",
+          "python",
+          "cross-python_win-64",
+          "maturin >=1.0,<2.0"
+        ],
+        "host": [
+          "maturin >=1.0,<2.0",
+          "pip",
+          "python"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cross-python_win-64"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f394759a06df8b685a4ebfb1874fb67a9cbfd58c64fc5ed587a663c0e63ec376",
+          "url": "https://pypi.org/packages/source/n/nh3/nh3-0.3.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "nh3"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest-cov"
+            ]
+          },
+          "script": [
+            "coverage run --source=nh3 --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=83"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

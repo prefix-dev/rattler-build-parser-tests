@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: python-libdiscid
+  version: 2.0.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python-libdiscid-${{ version }}.tar.gz
+  sha256: f681053ebd7406dc7e11cf702afaa5a2d595a0db2de5a026c8c3fa5539eb5750
+
+build:
+  number: 8
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - if: build_platform != target_platform
+      then: cython
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - cython >=0.15
+    - python
+    - setuptools >=43
+    # - pkgconfig Is only an optional dependancy and happens to make the build fail
+    - pip
+    - libdiscid
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - libdiscid
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Python bindings for libdiscid
+  license: MIT
+  license_file: LICENSE
+  description: python-libdiscid implements Python >= 3.6 bindings for libdiscid using Cython.
+  homepage: https://github.com/sebastinas/python-libdiscid
+  documentation: https://pythonhosted.org/python-libdiscid/
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

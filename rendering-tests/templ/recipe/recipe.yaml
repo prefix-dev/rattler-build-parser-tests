@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "0.3.977"
+
+package:
+  name: templ
+  version: ${{ version }}
+
+source:
+  url: https://github.com/a-h/templ/archive/v${{ version }}.tar.gz
+  sha256: fbad3c9e2b6d9b551b1831de30b450d0735f4a9c0773f4f92fb1a16d1243af46
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - templ --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A golang formatter that fixes long lines
+  homepage: https://github.com/a-h/templ
+  repository: https://github.com/a-h/templ
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,48 @@
+context:
+  version: "0.16.1"
+
+package:
+  name: alacritty
+  version: ${{ version }}
+
+source:
+  url: https://github.com/alacritty/alacritty/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: b7240df4a52c004470977237a276185fc97395d59319480d67cad3c4347f395e
+
+build:
+  number: 3
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+    - pkg-config
+  host:
+    - if: linux
+      then:
+        - fontconfig
+        - expat
+        - libxcb
+        - libxkbcommon
+
+tests:
+  - script:
+      - alacritty --version
+
+about:
+  homepage: https://alacritty.org/
+  repository: https://github.com/alacritty/alacritty
+  documentation: https://alacritty.org/
+  license: Apache-2.0 OR MIT
+  license_file:
+    - LICENSE-MIT
+    - LICENSE-APACHE
+    - THIRDPARTY.yml
+  description: "A cross-platform, OpenGL terminal emulator."
+  summary: "A cross-platform, OpenGL terminal emulator."
+
+extra:
+  recipe-maintainers:
+    - VasanthakumarV

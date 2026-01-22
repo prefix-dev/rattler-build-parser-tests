@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_adaptive-scheduler",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_adaptive-scheduler/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_adaptive-scheduler/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_adaptive-scheduler/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "adaptive-scheduler": {
+          "build_string": "pyhcf101f3_0",
+          "name": "adaptive-scheduler",
+          "version": "2.16.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:48:30.197563412Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The Adaptive scheduler solves the following problem, you need to run a few 100\nlearners and can use >1k cores. `ipyparallel` and `dask.distributed` provide\nvery powerful engines for interactive sessions. However, when you want to\nconnect to >1k cores it starts to struggle. Besides that, on a shared cluster\nthere is often the problem of starting an interactive session with ample space\navailable. Our approach is to schedule a different job for each `\nadaptive.Learner`. The creation and running of these jobs are managed by `\nadaptive-scheduler`. This means that your calculation will definitely run, even\nthough the cluster might be fully occupied at the moment. Because of this\napproach, there is almost no limit to how many cores you want to use. You can\neither use 10 nodes for 1 job (`learner`) or 1 core for 1 job (`learner`) while\nscheduling hundreds of jobs. Everything is written such that the computation is\nmaximally local. This means that is one of the jobs crashes, there is no\nproblem and it will automatically schedule a new one and continue the\ncalculation where it left off (because of Adaptive's periodic saving\nfunctionality). Even if the central \"job manager\" dies, the jobs will continue\nto run (although no new jobs will be scheduled.)",
+        "documentation": "http://adaptive-scheduler.readthedocs.io/",
+        "homepage": "http://github.com/basnijholt/adaptive-scheduler",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/basnijholt/adaptive-scheduler",
+        "summary": "An asynchronous scheduler for Adaptive"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "adaptive-scheduler",
+        "python_min": "3.10",
+        "version": "2.16.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "basnijholt",
+          "jbweston"
+        ]
+      },
+      "package": {
+        "name": "adaptive-scheduler",
+        "version": "2.16.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "versioningit"
+        ],
+        "run": [
+          "python >=3.10",
+          "adaptive >=0.14.1",
+          "cloudpickle",
+          "dill",
+          "ipyparallel",
+          "ipywidgets",
+          "itables",
+          "loky",
+          "numpy",
+          "pandas",
+          "psutil",
+          "pyzmq",
+          "rich",
+          "structlog",
+          "toolz",
+          "tqdm",
+          "versioningit"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "56c55ac074fcc8f8df6113b669ac3c75cc12603b68ea31c3dcd0b0fd7226d5f5",
+          "url": "https://pypi.org/packages/source/a/adaptive-scheduler/adaptive_scheduler-2.16.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "adaptive_scheduler"
+            ],
+            "pip_check": false,
+            "python_version": "3.10.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

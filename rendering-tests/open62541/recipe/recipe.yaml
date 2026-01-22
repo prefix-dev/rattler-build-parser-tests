@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: open62541
+  version: "1.4.14"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/open62541/open62541/archive/v${{ version }}.tar.gz
+    sha256: 0a0a8830e4e5f720e901579f826c788fdbc3d49f44a9515ab15a06e877b59416
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ninja
+    - cmake
+    - python *
+  host:
+    - openssl
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
+
+tests:
+  - requirements:
+      run:
+        - cmake-package-check
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+    script:
+      - if: not win
+        then:
+          - test -f ${PREFIX}/include/open62541/server.h
+          - test -f ${PREFIX}/lib/libopen62541$SHLIB_EXT
+          - test -f ${PREFIX}/lib/cmake/open62541/open62541Config.cmake
+        else:
+          - if not exist %PREFIX%\\Library\\include\\open62541\\server.h exit 1
+          - if not exist %PREFIX%\\Library\\lib\\open62541.lib exit 1
+          - if not exist %PREFIX%\\Library\\bin\\open62541.dll exit 1
+          - if not exist %PREFIX%\\Library\\lib\\cmake\\open62541\\open62541Config.cmake exit 1
+      - cmake-package-check open62541
+
+about:
+  license: MPL-2.0
+  license_file: LICENSE
+  summary: Open source implementation of OPC UA (OPC Unified Architecture) also known as IEC 62541.
+  homepage: https://github.com/open62541/open62541
+
+extra:
+  recipe-maintainers:
+    - traversaro

@@ -1,0 +1,336 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec/work"
+      },
+      "hash": {
+        "hash": "a5967dc",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchcodec": {
+          "build_string": "cuda129_py310_ha5967dc_3",
+          "name": "torchcodec",
+          "version": "0.8.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:53:06.190559834Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "ffmpeg": "8",
+        "libtorch": "2.9",
+        "magma": "2.9",
+        "nccl": "2",
+        "python": "3.10.* *_cpython",
+        "pytorch": "2.9",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pytorch/torchcodec",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "TorchCodec is a Python library for decoding videos into PyTorch tensors, on CPU and CUDA GPU."
+      },
+      "build": {
+        "number": 3,
+        "script": {
+          "file": "build"
+        },
+        "string": "cuda129_py310_ha5967dc_3"
+      },
+      "context": {
+        "build_number": 3,
+        "string_prefix": "cpu_",
+        "torch_proc_type": "cuda129",
+        "version": "0.8.1"
+      },
+      "extra": {
+        "feedstock-name": "torchcodec",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "torchcodec",
+        "version": "0.8.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "pytorch",
+          "cuda-driver-dev",
+          "cuda-cudart-dev",
+          "cuda-nvrtc-dev",
+          "cuda-nvtx-dev",
+          "cuda-nvml-dev",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcufft-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev",
+          "gxx_linux-aarch64 14.*",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cuda-nvcc_linux-aarch64 12.9.*",
+          "cmake",
+          "pkgconf",
+          "ninja"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "ffmpeg",
+          "ffmpeg * lgpl_*",
+          "libtorch",
+          "libtorch * cuda129*",
+          "pytorch",
+          "pytorch * cuda129*",
+          "pybind11",
+          "cuda-version ==12.9",
+          "cuda-driver-dev",
+          "nccl",
+          "cuda-cudart-dev",
+          "cuda-nvrtc-dev",
+          "cuda-nvtx-dev",
+          "cuda-nvml-dev",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcufft-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev",
+          "magma",
+          "nvtx-c",
+          "libnpp-dev"
+        ],
+        "run": [
+          "python",
+          "pytorch * cuda129*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "use_strict_threshold_only_for_linux_x86_64.patch",
+            "increase_test_against_cli_mp3_tol.patch",
+            "1016.patch"
+          ],
+          "sha256": "86e2d8919fecf8f7c171057a120acce721d059f1625f45cdd6cf88b0035cbd52",
+          "url": "https://github.com/pytorch/torchcodec/archive/refs/tags/v0.8.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "torchcodec"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchcodec-tests/work"
+      },
+      "hash": {
+        "hash": "1339d3e",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchcodec": {
+          "build_string": "cuda129_py310_ha5967dc_3",
+          "name": "torchcodec",
+          "version": "0.8.1"
+        },
+        "torchcodec-tests": {
+          "build_string": "cuda129_py310_h1339d3e_3",
+          "name": "torchcodec-tests",
+          "version": "0.8.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:53:06.291937398Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler_version": "12.9",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64",
+        "torchcodec": "0.8.1 cuda129_py310_ha5967dc_3"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pytorch/torchcodec",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "TorchCodec is a Python library for decoding videos into PyTorch tensors, on CPU and CUDA GPU."
+      },
+      "build": {
+        "number": 3,
+        "script": "python $RECIPE_DIR/remove_symlinks_from_test_on_windows.py",
+        "string": "cuda129_py310_h1339d3e_3"
+      },
+      "context": {
+        "build_number": 3,
+        "string_prefix": "cpu_",
+        "torch_proc_type": "cuda129",
+        "version": "0.8.1"
+      },
+      "extra": {
+        "feedstock-name": "torchcodec",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "torchcodec-tests",
+        "version": "0.8.1"
+      },
+      "requirements": {
+        "build": [
+          "python"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "torchcodec"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "use_strict_threshold_only_for_linux_x86_64.patch",
+            "increase_test_against_cli_mp3_tol.patch",
+            "1016.patch"
+          ],
+          "sha256": "86e2d8919fecf8f7c171057a120acce721d059f1625f45cdd6cf88b0035cbd52",
+          "url": "https://github.com/pytorch/torchcodec/archive/refs/tags/v0.8.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "numpy",
+              "pillow",
+              "torchvision"
+            ]
+          },
+          "script": "pytest test"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

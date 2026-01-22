@@ -1,0 +1,69 @@
+schema_version: 1
+
+context:
+  version: 1.0.21
+
+package:
+  name: libsodium
+  version: ${{ version }}
+
+source:
+  url: https://download.libsodium.org/libsodium/releases/libsodium-${{ version }}.tar.gz
+  sha256: 9e4285c7a419e82dedb0be63a72eea357d6943bc3e28e6735bf600dd4883feaf
+  patches:
+    # FIXME: arm patch applied upstream, remove after 1.0.22
+    - 6702f69bef6044163acc7715e6ac7e430890ce78.patch
+
+build:
+  number: 0
+  script: build
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - if: unix
+      then:
+        - libtool
+        - make
+  run_exports:
+    - ${{ pin_subpackage("libsodium", upper_bound="x.x.x") }}
+
+tests:
+  - package_contents:
+      lib:
+        - if: unix
+          then: sodium
+        - if: win
+          then: libsodium
+      include:
+        - sodium.h
+        - sodium/version.h
+      files:
+        not_exists: 
+          - if: unix
+            then:
+              - lib/libsodium.a
+          - if: win
+            then:
+              - Library/lib/libsodium_static.lib
+
+
+about:
+  license: ISC
+  license_file: LICENSE
+  summary: A modern and easy-to-use crypto library
+  description: |
+    Sodium is a new, easy-to-use software library for encryption, decryption,
+    signatures, password hashing and more. It is a portable, cross-compilable,
+    installable, packageable fork of NaCl, with a compatible API, and an
+    extended API to improve usability even further. Its goal is to provide all
+    of the core operations needed to build higher-level cryptographic tools.
+  homepage: https://libsodium.org
+  repository: https://github.com/jedisct1/libsodium
+  documentation: https://download.libsodium.org/doc
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - minrk

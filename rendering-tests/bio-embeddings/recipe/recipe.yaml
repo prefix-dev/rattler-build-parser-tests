@@ -1,0 +1,70 @@
+context:
+  name: bio-embeddings
+  version: 0.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bio_embeddings-${{ version }}.tar.gz
+  sha256: a82d27d895d971bb30339071440f9c5e75d31cf9f4a8a600d17efe7bea0e8615
+
+build:
+  number: 11
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - bio_embeddings = bio_embeddings.utilities.cli:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry >=1.1.0
+  run:
+    - python >=${{ python_min }}
+    - appdirs >=1.4.4
+    - atomicwrites >=1.4.0
+    - biopython >=1.79
+    - gensim >=3.8.2
+    - h5py >=3.2.1
+    - humanize >=3.2.0
+    - importlib-metadata >=4.6.1
+    - lock >=2018.3.25
+    - matplotlib-base >=3.2.1
+    - numpy >=1.18.3
+    - pandas >=1.2.0
+    - plotly >=5.1.0
+    - python-slugify >=5.0.2
+    - ruamel.yaml >=0.17.10,<0.18
+    - scikit-learn >=0.24.0
+    - scipy >=1.4.1
+    - pytorch >=1.8.0
+    - tqdm >=4.45.0
+    - umap-learn >=0.5.1
+
+tests:
+  - python:
+      imports:
+        - bio_embeddings
+      python_version: ${{ python_min }}.*
+      # too many pip check issues
+      pip_check: false
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - bio_embeddings --help
+
+about:
+  summary: A pipeline for protein embedding generation and visualization
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://pypi.org/project/bio-embeddings/
+  repository: https://github.com/sacdallago/bio_embeddings
+
+extra:
+  recipe-maintainers:
+    - hadim

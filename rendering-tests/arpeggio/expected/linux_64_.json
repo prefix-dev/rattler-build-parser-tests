@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arpeggio",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arpeggio/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arpeggio/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arpeggio/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "arpeggio": {
+          "build_string": "pyhcf101f3_0",
+          "name": "arpeggio",
+          "version": "2.0.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:07.051195084Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://textx.github.io/Arpeggio",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/textX/Arpeggio",
+        "summary": "Parser interpreter based on PEG grammars written in Python"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "Arpeggio",
+        "version": "2.0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "raivivek",
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "arpeggio",
+        "version": "2.0.3"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "pytest-runner",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9e85ad35cfc6c938676817c7ae9a1000a7c72a34c71db0c687136c460d12b85e",
+          "url": "https://pypi.org/packages/source/A/Arpeggio/Arpeggio-2.0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "arpeggio"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "perf-tests"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "memory_profiler",
+              "psutil",
+              "pytest",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "cd perf-tests",
+            "python test_speed.py",
+            "python test_memory_nomemoization.py",
+            "python test_memory_memoization.py"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

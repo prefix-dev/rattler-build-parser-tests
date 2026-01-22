@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "0.21.0"
+
+package:
+  name: yamlfmt
+  version: ${{ version }}
+
+source:
+  url: https://github.com/google/yamlfmt/archive/v${{ version }}.tar.gz
+  sha256: 9ec915d70e527a94171eaaf6b785d1423222b5b82e7633f80dcc6b66e6a655aa
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - yamlfmt --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: An extensible command line tool or library to format yaml files
+  homepage: https://github.com/google/yamlfmt
+  repository: https://github.com/google/yamlfmt
+
+extra:
+  recipe-maintainers:
+    - danielnachun

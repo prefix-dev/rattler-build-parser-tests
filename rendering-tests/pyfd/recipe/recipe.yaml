@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  name: pyfd
+  version: 4.5.10
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: http://software.igwn.org/lscsoft/source/${{ name }}-${{ version }}.tar.gz
+  sha256: e625d1ffdd135ed24fd9340c0659b4aff70003c9a021136b7b62373a23cb0783
+  patches:
+    - 0001-Use-IS_WRITABLE-unary-test.patch
+
+build:
+  number: 1
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cmake >=3.12.0
+    - make
+    - pkg-config
+  host:
+    - ctypesgen >=1.0.2
+    - fd >=8.43.7
+    - python
+  run:
+    - python
+  run_exports:
+    - ${{ pin_subpackage("pyfd", upper_bound="x") }}
+
+tests:
+  - python:
+      imports:
+        - PyFd
+
+about:
+  summary: Python binding for the Fd Library
+  homepage: https://git.ligo.org/virgo/virgoapp/PyFd
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - erinelizabethseder-virgo
+    - fcarbogn

@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: fandango
+  version: "16.0.5"
+  python_min: 3.10
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fandango-${{ version }}.tar.gz
+  sha256: 88064c6aa63acd4d8e23b62db711efc38468633e1bbefbe85f926cc1c2daa6b0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - fandango = fandango.scripts.fandango_cli:main
+      - tango2csv = fandango.scripts.tango2csv:main
+      - tango2json = fandango.scripts.tango2json:main
+      - tango_host = fandango.scripts.tango_host:main
+      - tango_monitor = fandango.scripts.tango_monitor:main
+      - tango_servers = fandango.scripts.tango_servers:main
+      - CopyCatDS = fandango.interface.CopyCatDS:main
+      - DynamicDS = fandango.device.DynamicDS:main
+      - FolderDS = fandango.device.FolderDS:main
+      - WorkerDS = fandango.device.WorkerDS:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - fandango
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - fandango --help
+
+about:
+  summary: Simplify the configuration of big Tango control systems
+  license: LGPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://gitlab.com/tango-controls/fandango
+  documentation: https://pythonhosted.org/fandango/
+
+extra:
+  recipe-maintainers:
+    - sergirubio
+    - ovallcorba

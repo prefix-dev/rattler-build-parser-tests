@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_harbor",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_harbor/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_harbor/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_harbor/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "harbor": {
+          "build_string": "pyhe01879c_0",
+          "name": "harbor",
+          "version": "0.3.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:41:52.695283907Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "* Simplify the conversion of docking results and experimental data into an easily comparable format\n* Evaluate the performance of a docking method with standardized metrics\n* Visualize the performance of a docking method with standardized plots\n* Perform cheminformatics analysis on the docked compounds",
+        "documentation": "https://harbor.readthedocs.io/en/latest/",
+        "homepage": "https://github.com/choderalab/harbor",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/choderalab/harbor",
+        "summary": "A home for docking evaluation and assessment"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} python -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "harbor",
+        "python_min": "3.10",
+        "version": "0.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "apayne97",
+          "mikemhenry"
+        ]
+      },
+      "package": {
+        "name": "harbor",
+        "version": "0.3.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=64.0",
+          "setuptools-scm >=8"
+        ],
+        "run": [
+          "bokeh",
+          "ca-certificates",
+          "certifi",
+          "ipykernel",
+          "jupyter",
+          "mols2grid",
+          "openff-toolkit",
+          "openssl",
+          "pandas",
+          "pebble",
+          "plip",
+          "plotly",
+          "pyarrow",
+          "pydantic",
+          "python >=3.10",
+          "pytorch",
+          "rdkit",
+          "scikit-learn",
+          "seaborn"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "71e3d0b324d3132a8aa8adaed585a4d8367a048c925e8b905ba00735a4d4be8c",
+          "url": "https://github.com/choderalab/harbor/archive/refs/tags/v0.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "harbor"
+            ],
+            "pip_check": false,
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "python -c \"import ${{ name }}; print(${{ name }}.__version__)\"",
+            "python -c \"import ${{ name }}; assert(${{ name }}.__version__ == '${{ version }}')\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

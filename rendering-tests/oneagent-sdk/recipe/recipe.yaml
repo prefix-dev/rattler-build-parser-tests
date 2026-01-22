@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: oneagent-sdk
+  version: "1.5.2.20260107.153442"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 6442ac5c1ec395f0e897516f8a25a012d85744d8f33bd9f7e2db9eac411b9179
+
+build:
+  number: 0
+  skip: not linux
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+    - oneagent-sdk-for-c
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - oneagent
+        - oneagent._impl
+      pip_check: true
+  - package_contents:
+      site_packages:
+        - oneagent/_impl/native/libonesdk_shared.so
+
+about:
+  summary: Dynatrace OneAgent SDK for Python
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/Dynatrace/OneAgent-SDK-for-Python
+
+extra:
+  recipe-maintainers:
+    - janjagusch

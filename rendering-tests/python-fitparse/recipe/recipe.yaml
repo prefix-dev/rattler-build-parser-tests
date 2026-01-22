@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  version: 1.2.0
+
+package:
+  name: python-fitparse
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/f/fitparse/fitparse-${{ version }}.tar.gz
+  sha256: 2d691022452dea6dabad13cc6e017ca467fe8a3a895cd3ac67a50a7bb716b4a9
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - fitparse
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python library to parse ANT/Garmin .FIT files
+  license: MIT
+  license_file: LICENSE
+  homepage: https://www.github.com/dtcooper/python-fitparse
+  documentation: https://pythonhosted.org/fitparse/
+
+extra:
+  recipe-maintainers:
+    - glemaitre
+    - JaRoSchm

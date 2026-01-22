@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: ormsgpack
+  version: "1.12.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ormsgpack-${{ version }}.tar.gz
+  sha256: a3877fde1e4f27a39f92681a0aab6385af3a41d0c25375d33590ae20410ea2ac
+
+build:
+  number: 0
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - maturin >=1.0,<2.0
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - ormsgpack
+      pip_check: true
+
+about:
+  summary: Fast, correct Python msgpack library supporting dataclasses, datetimes, and numpy
+  license: MIT AND Apache-2.0
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  homepage: https://github.com/aviramha/ormsgpack
+
+extra:
+  recipe-maintainers:
+    - thewchan

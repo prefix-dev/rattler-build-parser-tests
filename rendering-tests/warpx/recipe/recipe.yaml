@@ -1,0 +1,137 @@
+schema_version: 1
+
+context:
+  name: warpx
+  version: "26.01"
+  build: 0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/BLAST-WarpX/warpx/archive/${{ version }}.tar.gz
+  sha256: c3b34a93e350e068c07e3107784885562cfa5c93ce3fd65fed002e5a6353d63d
+
+build:
+  skip: python_impl == "pypy"
+  number: ${{ build }}
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pybind11
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - if: unix
+      then: make
+    - if: win
+      then:
+        - clang
+        - lld
+        - llvm-openmp
+        - ninja
+    - if: linux
+      then: libgomp
+    - if: osx
+      then: llvm-openmp
+    - cmake
+    - pkg-config
+
+  host:
+    - amrex ==${{ version }}[build=nompi_dp_*]
+    - blaspp
+    - libboost-headers
+    - lapackpp
+    - numpy
+    - openpmd-api * [build=nompi_*]
+    - pip
+    - pyamrex ==${{ version }}[build=nompi_dp_*]
+    - pybind11
+    - pybind11-abi
+    - python
+    - setuptools
+    - vir-simd
+    - wheel
+    - fftw
+    - if: osx
+      then: zlib
+    - if: win
+      then:
+# ninja: error: 'D:/bld/warpx_1615224319242/_h_env/Library/lib/lapack.lib', needed by 'lib/warpx.rz.NOMPI.OMP.DP.OPMD.FFT.QED.dll', missing and no known rule to make it
+        - liblapack
+        - liblapacke
+# ninja: error: 'D:/bld/warpx_1635938394765/_h_env/Library/lib/blas.lib', needed by 'lib/warpx.rz.NOMPI.OMP.DP.OPMD.FFT.QED.dll', missing and no known rule to make it
+        - libblas
+        - libcblas
+  run:
+    - periodictable
+    - picmistandard ==0.34.0
+    - pyamrex ==${{ version }}[build=nompi_dp_*]
+    - python
+    - scipy
+
+  run_exports:
+    # releases are not (yet) compatible
+    - warpx ==${{ version }}
+
+tests:
+  - python:
+      imports:
+        - pywarpx
+      pip_check: false
+  - package_contents:
+      files:
+        - if: unix
+          then:
+            - bin/warpx.1d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+            - bin/warpx.rcylinder.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+            - bin/warpx.rsphere.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+            - bin/warpx.2d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+            - bin/warpx.rz.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+            - bin/warpx.3d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED
+        - if: win
+          then:
+            - Library/bin/warpx.1d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+            - Library/bin/warpx.rcylinder.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+            - Library/bin/warpx.rsphere.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+            - Library/bin/warpx.2d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+            - Library/bin/warpx.rz.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+            - Library/bin/warpx.3d.NOMPI.OMP.DP.PDP.OPMD.FFT.EB.QED.exe
+  - script:
+      - echo "Testing..."
+      - if: unix and (build_platform == target_platform)
+        then: ./test.sh
+      - if: win
+        then: call test.bat
+    files:
+      recipe:
+        - if: unix
+          then: test.sh
+        - if: win
+          then: test.bat
+      source:
+        - Examples/Physics_applications/laser_acceleration/inputs_*
+        - Examples/Tests/langmuir/inputs_*
+
+about:
+  license: BSD-3-Clause-LBNL
+  license_file: LICENSE.txt
+  summary: WarpX is an advanced electromagnetic & electrostatic Particle-In-Cell code.
+  description: |
+    WarpX is an advanced electromagnetic & electrostatic Particle-In-Cell code.
+    It supports many features including: Perfectly-Matched Layers (PML),
+    Boosted-frame simulations, particle collisions, and mesh refinement.
+  homepage: https://blast-warpx.github.io
+  repository: https://github.com/BLAST-WarpX/warpx
+  documentation: https://warpx.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - ax3l
+    - EZoni
+    - RemiLehe

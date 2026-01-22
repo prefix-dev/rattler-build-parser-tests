@@ -1,0 +1,134 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_firefox/work"
+      },
+      "hash": {
+        "hash": "5112557"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "firefox": {
+          "build_string": "h5112557_0",
+          "name": "firefox",
+          "version": "147.0.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:20.486694387Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://www.mozilla.org/en-US/firefox/releases",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Firefox web browser"
+      },
+      "build": {
+        "dynamic_linking": {
+          "binary_relocation": [
+            "bin/firefox"
+          ]
+        },
+        "number": 0,
+        "script": {
+          "file": "copy-firefox"
+        },
+        "string": "h5112557_0"
+      },
+      "context": {
+        "version": "147.0.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "birdsarah",
+          "ocefpaf",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "firefox",
+        "version": "147.0.1"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "file_name": "firefox.msi",
+          "sha256": "b9353e5d76c7ab7537ab0ec72534a6a28473bfc160ff38091a4d3e815d0157ae",
+          "url": "https://ftp.mozilla.org/pub/firefox/releases/147.0.1/win64/en-US/Firefox%20Setup%20147.0.1.msi"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test_selenium.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "geckodriver",
+              "pytest",
+              "python <3.14",
+              "selenium >=4"
+            ]
+          },
+          "script": "pytest -svvv --pythonwarnings=error --tb=long --color=yes"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: textual
+  version: "7.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/textual-${{ version }}.tar.gz
+  sha256: 3169e8ba5518a979b0771e60be380ab1a6c344f30a2126e360e6f38d009a3de4
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core >=1.2.0
+    - pip
+  run:
+    - pygments >=2.19.2,<3.0.0
+    - typing_extensions >=4.4.0,<5.0.0
+    - platformdirs >=3.6.0,<5
+    - python >=${{ python_min }},<4.0.0
+    - markdown-it-py >=2.1.0
+    - mdit-py-plugins
+    - rich >=14.2.0
+  run_constraints:
+    - tree_sitter >=0.25.0
+    - tree_sitter_languages =1.10.2
+
+tests:
+  - python:
+      imports:
+        - textual
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Modern Text User Interface framework
+  homepage: https://github.com/Textualize/textual
+  repository: https://github.com/Textualize/textual
+  documentation: https://textual.textualize.io
+
+extra:
+  recipe-maintainers:
+    - davidbrochart
+    - carlodri
+    - xhochy

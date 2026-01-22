@@ -1,0 +1,358 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv/work"
+      },
+      "hash": {
+        "hash": "8883371"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsolv": {
+          "build_string": "h8883371_0",
+          "name": "libsolv",
+          "version": "0.7.35"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:33.155543681Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libsolv, a free package dependency solver using a satisfiability algorithm.",
+        "homepage": "https://github.com/openSUSE/libsolv",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.BSD"
+        ],
+        "repository": "https://github.com/openSUSE/libsolv",
+        "summary": "Library for solving packages and reading repositories"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_libsolv",
+        "string": "h8883371_0"
+      },
+      "context": {
+        "version": "0.7.35"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv",
+          "pavelzw",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "davidbrochart",
+          "adriendelsalle"
+        ]
+      },
+      "package": {
+        "name": "libsolv",
+        "version": "0.7.35"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "ninja",
+          "cmake <4.0"
+        ],
+        "host": [
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libsolv",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "win_export_and_static_build.patch",
+            "conda_variant_priorization.patch",
+            "no_error_subdir_mismatch.patch"
+          ],
+          "sha256": "e6ef552846f908beb3bbf6ca718b6dd431bd8a281086d82af9a6d2a3ba919be5",
+          "url": "https://github.com/openSUSE/libsolv/archive/0.7.35.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "dumpsolv"
+            ],
+            "files": {
+              "not_exists": [
+                "Library/lib/solv_static.lib",
+                "Library/lib/solvext_static.lib"
+              ]
+            },
+            "include": [
+              "solv/repo.h"
+            ],
+            "lib": [
+              "solv",
+              "solvext"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-64",
+              "vs2022_win-64",
+              "ninja",
+              "cmake <4.0"
+            ]
+          },
+          "script": [
+            "dumpsolv.exe -h",
+            "cmake -G Ninja -S test/ -B build/ -D LIB_NAME=\"solv\" %CMAKE_ARGS%",
+            "cmake --build build/",
+            "cmake --build build --target test"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv-static",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv-static/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv-static/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsolv-static/work"
+      },
+      "hash": {
+        "hash": "2d7e10e"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsolv": {
+          "build_string": "h8883371_0",
+          "name": "libsolv",
+          "version": "0.7.35"
+        },
+        "libsolv-static": {
+          "build_string": "h2d7e10e_0",
+          "name": "libsolv-static",
+          "version": "0.7.35"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:33.224226271Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "libsolv": "0.7.35 h8883371_0",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libsolv, a free package dependency solver using a satisfiability algorithm.",
+        "homepage": "https://github.com/openSUSE/libsolv",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.BSD"
+        ],
+        "repository": "https://github.com/openSUSE/libsolv",
+        "summary": "Library for solving packages and reading repositories"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_libsolv",
+        "string": "h2d7e10e_0"
+      },
+      "context": {
+        "version": "0.7.35"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv",
+          "pavelzw",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "davidbrochart",
+          "adriendelsalle"
+        ]
+      },
+      "package": {
+        "name": "libsolv-static",
+        "version": "0.7.35"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64",
+          "ninja",
+          "cmake <4.0"
+        ],
+        "host": [
+          "zlib",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libsolv"
+            }
+          }
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libsolv"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "win_export_and_static_build.patch",
+            "conda_variant_priorization.patch",
+            "no_error_subdir_mismatch.patch"
+          ],
+          "sha256": "e6ef552846f908beb3bbf6ca718b6dd431bd8a281086d82af9a6d2a3ba919be5",
+          "url": "https://github.com/openSUSE/libsolv/archive/0.7.35.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "not_exists": [
+                "Library/lib/solv.lib",
+                "Library/lib/solvext.lib"
+              ]
+            },
+            "lib": [
+              "solv_static.lib",
+              "solvext_static.lib"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-64",
+              "vs2022_win-64",
+              "ninja",
+              "cmake <4.0"
+            ]
+          },
+          "script": [
+            "cmake -G Ninja -S test/ -B build/ -D LIB_NAME=\"solv_static\" %CMAKE_ARGS%",
+            "cmake --build build/",
+            "cmake --build build --target test"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: wassima
+  version: "2.0.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/wassima-${{ version }}.tar.gz
+  sha256: 45bbceb4032e642100b9eef3e2f83115ec5cbbc02c68355e5b2320986ba224ee
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.6.0,<2
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - wassima
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Access your OS root certificates with the atmost ease
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/jawah/wassima
+
+extra:
+  recipe-maintainers:
+    - thewchan

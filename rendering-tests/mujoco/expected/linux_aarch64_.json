@@ -1,0 +1,1608 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmujoco",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmujoco/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmujoco/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmujoco/work"
+      },
+      "hash": {
+        "hash": "2b9416c"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.785686569Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "qhull": "2020.2",
+        "target_platform": "linux-aarch64",
+        "tinyxml2": "11.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_cxx.sh",
+        "string": "h2b9416c_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "libmujoco",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "make",
+          "ninja"
+        ],
+        "host": [
+          "eigen",
+          "qhull",
+          "tinyxml2",
+          "libccd-double",
+          "libabseil",
+          "lodepng"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libabseil"
+          ]
+        },
+        "run_constraints": [
+          "mujoco-cxx <0"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmujoco",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "mujoco/mujoco.h"
+            ],
+            "lib": [
+              "mujoco"
+            ]
+          }
+        },
+        {
+          "script": [
+            "test -f ${PREFIX}/bin/mujoco_plugin/libactuator${SHLIB_EXT}",
+            "test -f ${PREFIX}/bin/mujoco_plugin/libelasticity${SHLIB_EXT}",
+            "test -f ${PREFIX}/bin/mujoco_plugin/libsensor${SHLIB_EXT}",
+            "test -f ${PREFIX}/bin/mujoco_plugin/libsdf_plugin${SHLIB_EXT}"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/work"
+      },
+      "hash": {
+        "hash": "b1aaa9e",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py310hb1aaa9e_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.880872367Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "np2py310hb1aaa9e_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-python",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "make",
+          "bash",
+          "cmake",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "absl-py"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "eigen",
+          "libabseil",
+          "lodepng",
+          "python",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "pybind11",
+          "pybind11-abi",
+          "numpy",
+          "absl-py",
+          "glfw",
+          "pyglfw",
+          "pyopengl",
+          "libgl-devel"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "python",
+          "numpy",
+          "absl-py",
+          "pyglfw",
+          "pyopengl",
+          "etils",
+          "fsspec",
+          "importlib_resources",
+          "typing_extensions",
+          "zipp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mujoco"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "pip",
+              "mesalib"
+            ]
+          },
+          "script": "# test_delete and test_load_xml disabled due to https://github.com/google-deepmind/mujoco/pull/2160\n# EGL driver in centos7 has some problems when running on Azure, so we use osmesa for now on Linux\nexport MUJOCO_GL=osmesa\npytest --pyargs mujoco -v -k \"not (test_delete or test_load_xml)\"\npip check\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-simulate",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-simulate/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-simulate/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-simulate/work"
+      },
+      "hash": {
+        "hash": "45f3a1c"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py310hb1aaa9e_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.881231869Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_simulate.sh",
+        "string": "h45f3a1c_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-simulate",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja"
+        ],
+        "host": [
+          "libgl-devel",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "glfw"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libmujoco",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "mujoco-simulate"
+            ]
+          }
+        },
+        {
+          "script": "test ! -f \"$PREFIX/bin/simulate\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-samples",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-samples/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-samples/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-samples/work"
+      },
+      "hash": {
+        "hash": "45f3a1c"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py310hb1aaa9e_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-samples": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-samples",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.881523770Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_samples.sh",
+        "string": "h45f3a1c_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-samples",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja"
+        ],
+        "host": [
+          "libgl-devel",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "glfw"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libmujoco",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "mujoco-testspeed"
+            ]
+          }
+        },
+        {
+          "script": "test ! -f \"$PREFIX/bin/testspeed\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/work"
+      },
+      "hash": {
+        "hash": "13d8142",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco": {
+          "build_string": "h1e9ef8d_0",
+          "name": "mujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py311h13d8142_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-samples": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-samples",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.882094912Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "np2py311h13d8142_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-python",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "make",
+          "bash",
+          "cmake",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "absl-py"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "eigen",
+          "libabseil",
+          "lodepng",
+          "python",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "pybind11",
+          "pybind11-abi",
+          "numpy",
+          "absl-py",
+          "glfw",
+          "pyglfw",
+          "pyopengl",
+          "libgl-devel"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "python",
+          "numpy",
+          "absl-py",
+          "pyglfw",
+          "pyopengl",
+          "etils",
+          "fsspec",
+          "importlib_resources",
+          "typing_extensions",
+          "zipp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mujoco"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "pip",
+              "mesalib"
+            ]
+          },
+          "script": "# test_delete and test_load_xml disabled due to https://github.com/google-deepmind/mujoco/pull/2160\n# EGL driver in centos7 has some problems when running on Azure, so we use osmesa for now on Linux\nexport MUJOCO_GL=osmesa\npytest --pyargs mujoco -v -k \"not (test_delete or test_load_xml)\"\npip check\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/work"
+      },
+      "hash": {
+        "hash": "f4b7564",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco": {
+          "build_string": "h1e9ef8d_0",
+          "name": "mujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py312hf4b7564_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-samples": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-samples",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.882381593Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "np2py312hf4b7564_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-python",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "make",
+          "bash",
+          "cmake",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "absl-py"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "eigen",
+          "libabseil",
+          "lodepng",
+          "python",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "pybind11",
+          "pybind11-abi",
+          "numpy",
+          "absl-py",
+          "glfw",
+          "pyglfw",
+          "pyopengl",
+          "libgl-devel"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "python",
+          "numpy",
+          "absl-py",
+          "pyglfw",
+          "pyopengl",
+          "etils",
+          "fsspec",
+          "importlib_resources",
+          "typing_extensions",
+          "zipp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mujoco"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "pip",
+              "mesalib"
+            ]
+          },
+          "script": "# test_delete and test_load_xml disabled due to https://github.com/google-deepmind/mujoco/pull/2160\n# EGL driver in centos7 has some problems when running on Azure, so we use osmesa for now on Linux\nexport MUJOCO_GL=osmesa\npytest --pyargs mujoco -v -k \"not (test_delete or test_load_xml)\"\npip check\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco-python/work"
+      },
+      "hash": {
+        "hash": "b7e2d68",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco": {
+          "build_string": "h1e9ef8d_0",
+          "name": "mujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py313hb7e2d68_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-samples": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-samples",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.882671824Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "numpy": "2",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "np2py313hb7e2d68_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco-python",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "make",
+          "bash",
+          "cmake",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "absl-py"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "eigen",
+          "libabseil",
+          "lodepng",
+          "python",
+          "pip",
+          "setuptools",
+          "python-build",
+          "virtualenv",
+          "pybind11",
+          "pybind11-abi",
+          "numpy",
+          "absl-py",
+          "glfw",
+          "pyglfw",
+          "pyopengl",
+          "libgl-devel"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          "python",
+          "numpy",
+          "absl-py",
+          "pyglfw",
+          "pyopengl",
+          "etils",
+          "fsspec",
+          "importlib_resources",
+          "typing_extensions",
+          "zipp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mujoco"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "pip",
+              "mesalib"
+            ]
+          },
+          "script": "# test_delete and test_load_xml disabled due to https://github.com/google-deepmind/mujoco/pull/2160\n# EGL driver in centos7 has some problems when running on Azure, so we use osmesa for now on Linux\nexport MUJOCO_GL=osmesa\npytest --pyargs mujoco -v -k \"not (test_delete or test_load_xml)\"\npip check\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mujoco/work"
+      },
+      "hash": {
+        "hash": "1e9ef8d"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmujoco": {
+          "build_string": "h2b9416c_0",
+          "name": "libmujoco",
+          "version": "3.3.6"
+        },
+        "mujoco": {
+          "build_string": "h1e9ef8d_0",
+          "name": "mujoco",
+          "version": "3.3.6"
+        },
+        "mujoco-python": {
+          "build_string": "np2py310hb1aaa9e_0",
+          "name": "mujoco-python",
+          "version": "3.3.6"
+        },
+        "mujoco-samples": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-samples",
+          "version": "3.3.6"
+        },
+        "mujoco-simulate": {
+          "build_string": "h45f3a1c_0",
+          "name": "mujoco-simulate",
+          "version": "3.3.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:37.881813291Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libmujoco": "3.3.6 h2b9416c_0",
+        "mujoco_samples": "3.3.6 h45f3a1c_0",
+        "mujoco_simulate": "3.3.6 h45f3a1c_0",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/deepmind/mujoco",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "build_cxx/_deps/tinyobjloader-src/LICENSE",
+          "build_cxx/_deps/sdflib-src/LICENSE"
+        ],
+        "summary": "Multi-Joint dynamics with Contact (MuJoCo): physics engine, CLI tools, GUI, Python bindings, and MJX."
+      },
+      "build": {
+        "number": 0,
+        "string": "h1e9ef8d_0"
+      },
+      "context": {
+        "version": "3.3.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "oursland",
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "mujoco",
+        "version": "3.3.6"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmujoco"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "mujoco-samples"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "mujoco-simulate"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "mujoco-python",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-python_remove_avx.patch",
+            "patches/0002-cxx_devendor.patch",
+            "patches/0003-python_devendor.patch",
+            "patches/0004-ccd_vec3_origin_link_problem.patch",
+            "patches/0005-disable_copy_cxx_files_in_python_package.patch",
+            "patches/0006-do_not_install_via_pip.patch",
+            "patches/0008-workaround_cmake_19072.patch",
+            "patches/0009-619bis.patch",
+            "patches/0010-simulate_unvendor_lodepng.patch",
+            "patches/0011-Disable-isolation-and-dependency-check-in-python-bui.patch",
+            "patches/0012-Add-MUJOCO_SAMPLE_COMMAND_PREFIX-to-add-prefix-to-OU.patch",
+            "patches/0013-Add-optional-prefix-for-simulate-command.patch",
+            "patches/0014-always-install-mujoco-samples-and-simulate.patch",
+            "patches/0015-CMake-use-CMAKE_REQUIRED_LINK_OPTIONS-instead-of-CMA.patch",
+            "patches/0016-Add-MSYS-as-a-Windows-platform.patch"
+          ],
+          "sha256": "1592c33d37a090d1c301a774dc1a020b5a822717a14415fd0c9ac37d6a80ee6b",
+          "url": "https://github.com/deepmind/mujoco/archive/refs/tags/3.3.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mujoco"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

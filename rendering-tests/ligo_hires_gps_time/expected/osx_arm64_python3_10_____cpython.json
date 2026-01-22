@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ligo_hires_gps_time",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ligo_hires_gps_time/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ligo_hires_gps_time/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ligo_hires_gps_time/work"
+      },
+      "hash": {
+        "hash": "8a25247",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ligo_hires_gps_time": {
+          "build_string": "py310h8a25247_0",
+          "name": "ligo_hires_gps_time",
+          "version": "0.7.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:37:28.519052189Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time",
+        "license": "GPL-3.0-or-later",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING",
+          "COPYING-GPL-3",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time.git",
+        "summary": "A high-resolution time library with instants taken from the GPS epoch."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "${{ PYTHON }} -m pip install -v --use-pep517 --no-deps --no-build-isolation ./ligo_hires_gps_time"
+          ],
+          "env": {
+            "PYTHONIOENCODING": "utf-8"
+          }
+        },
+        "string": "py310h8a25247_0"
+      },
+      "context": {
+        "name": "ligo_hires_gps_time",
+        "version": "0.7.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "evonreis"
+        ]
+      },
+      "package": {
+        "name": "ligo_hires_gps_time",
+        "version": "0.7.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cargo-bundle-licenses",
+          "rust_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cross-python_osx-arm64",
+          "maturin"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cross-python_osx-arm64"
+          ]
+        },
+        "run": [
+          "python",
+          "cffi"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "46dec9a5861f276ab6bbc2b3ad882677e3ac0f813582b852fbbb8c8f917b6558",
+          "url": "https://git.ligo.org/cds/software/cr_tools/ligo_hires_gps_time/-/archive/0.7.0/0.7.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "test_pip.py",
+              "test_thump.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "gpstime"
+            ]
+          },
+          "script": "python -m pytest"
+        },
+        {
+          "python": {
+            "imports": [
+              "ligo_hires_gps_time"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

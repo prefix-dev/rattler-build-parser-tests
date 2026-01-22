@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-tdigest",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-tdigest/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-tdigest/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_polars-tdigest/work"
+      },
+      "hash": {
+        "hash": "c144855"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "polars-tdigest": {
+          "build_string": "hc144855_1",
+          "name": "polars-tdigest",
+          "version": "0.1.10"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:42.820149196Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_abi3": true,
+        "is_python_min": true,
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This Polars plugin is a wrapper around the T-Digest Rust implementation.\nIt not only provides means to compute an estimated qunatile, but exposes\nthe tdigest creation and merging functionality so it can be used to\nestimate quantiles in a distributed environment.",
+        "homepage": "https://github.com/appian/polars-tdigest",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/appian/polars-tdigest",
+        "summary": "A Polars plugin that wraps the T-Digest Rust implementation"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml"
+        ],
+        "string": "hc144855_1"
+      },
+      "context": {
+        "name": "polars-tdigest",
+        "version": "0.1.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "polars-tdigest",
+        "version": "0.1.10"
+      },
+      "requirements": {
+        "build": [
+          "rust_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cargo-bundle-licenses",
+          "maturin >=1.0,<2.0",
+          "cross-python_win-64",
+          "python"
+        ],
+        "host": [
+          "python-abi3",
+          "python 3.10.*",
+          "maturin >=1.0,<2.0",
+          "pip"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "polars >=0.20.6"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b8f19c5c7496873ae5bd7a58e444f513117bd4733ba435755f9da9888a7edb18",
+          "url": "https://pypi.org/packages/source/p/polars-tdigest/polars_tdigest-0.1.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "polars_tdigest"
+            ],
+            "python_version": [
+              "3.10.*",
+              "*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "abi3audit"
+            ]
+          },
+          "script": "abi3audit %PREFIX%/Lib/site-packages/polars_tdigest/polars_tdigest.pyd -s -v --assume-minimum-abi3 ${{ python_min }}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

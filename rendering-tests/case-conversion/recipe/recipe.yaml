@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: case-conversion
+  version: 3.0.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/case_conversion-${{ version }}.tar.gz
+  sha256: 2e5098c5e20d67282a5999531e7797c412daafcf646169e42066e30cba37a097
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=1.27.0
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - case_conversion
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Convert between different types of cases (unicode supported)
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://github.com/AlejandroFrias/case-conversion
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: cx_Freeze
+  version: "8.5.3"
+  sha256: 772e41ada72467365342d521f42f124663db51882f6ba495bf88dec399dc6511
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name|lower }}-${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 2
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - cxfreeze = cx_Freeze.cli:main
+      - cxfreeze-quickstart = cx_Freeze.setupwriter:main
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - python
+    - pip
+    - setuptools >=78.1.1,<81
+  run:
+    - python
+    - freeze-core >=0.4.1
+    - packaging >=24.0
+    - setuptools >=78.1.1,<81
+    - if: match(python, "<3.11")
+      then:
+        - tomli >=2.0.1
+    - if: linux
+      then:
+        - filelock >=3.15.3
+        - patchelf >=0.14,<0.18
+    - if: osx
+      then:
+        - dmgbuild >=1.6.1
+    - if: win
+      then:
+        - py-lief >=0.15.1
+    - if: win and match(python, "==3.13")
+      then:
+        - python-msilib >=0.4.3
+
+tests:
+  - python:
+      imports:
+        - cx_Freeze
+      pip_check: false
+  - files:
+      source:
+        - pyproject.toml
+        - samples
+        - tests
+    requirements:
+      run:
+        - coverage >=7.10.3
+        - pytest >=9.0.2
+        - pytest-mock
+        - pytest-timeout
+        - pytest-xdist
+    script:
+      - cxfreeze --version
+      - if: not (osx and x86_64)
+        then: coverage run || true
+
+about:
+  license: PSF-2.0
+  license_file: LICENSE.md
+  summary: Create standalone executables from Python scripts, with the same performance and is cross-platform.
+  homepage: https://marcelotduarte.github.io/cx_Freeze
+
+extra:
+  recipe-maintainers:
+    - marcelotduarte
+    - jschueller

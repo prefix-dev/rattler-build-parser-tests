@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minimalkv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minimalkv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minimalkv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_minimalkv/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "minimalkv": {
+          "build_string": "pyhe01879c_0",
+          "name": "minimalkv",
+          "version": "1.11.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:46:54.628366910Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/data-engineering-collective/minimalkv",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A key-value storage for binary data, support many backends."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "minimalkv",
+        "version": "1.11.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jtilly",
+          "fjetter",
+          "mlondschien",
+          "siboehm",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "minimalkv",
+        "version": "1.11.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools_scm"
+        ],
+        "run": [
+          "python >=3.9",
+          "uritools"
+        ],
+        "run_constraints": [
+          "gcsfs >=2022.10.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b710496ef0de373eaf084c6d511fff0b4a50099e85fe52dc4e2745fe885d6861",
+          "url": "https://pypi.org/packages/source/m/minimalkv/minimalkv-1.11.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "minimalkv"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "python -c 'from minimalkv import get_store; get_store(\"fs\", path=\".\")'",
+            "python -c 'from minimalkv import get_store; get_store(\"hfs\", path=\".\")'"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

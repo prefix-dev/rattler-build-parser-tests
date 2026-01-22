@@ -1,0 +1,126 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_helix",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_helix/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_helix/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_helix/work"
+      },
+      "hash": {
+        "hash": "9d9e14d"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "helix": {
+          "build_string": "h9d9e14d_1",
+          "name": "helix",
+          "version": "25.07.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:25.232075412Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.89.0",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/helix-editor/helix",
+        "license": "MPL-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "A post-modern modal text editor"
+      },
+      "build": {
+        "number": 1,
+        "string": "h9d9e14d_1"
+      },
+      "context": {
+        "name": "helix",
+        "version": "25.07.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "joaander",
+          "jonashaag",
+          "baszalmstra"
+        ]
+      },
+      "package": {
+        "name": "helix",
+        "version": "25.07.1"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-64 1.89.0.*",
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "headerpad.patch"
+          ],
+          "sha256": "2d0cf264ac77f8c25386a636e2b3a09a23dec555568cc9a5b2927f84322f544e",
+          "url": "https://github.com/helix-editor/helix/releases/download/25.07.1/helix-25.07.1-source.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "hx --health",
+            "hx --health | grep -qv \"Runtime directory does not exist\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,41 @@
+--- a/src/Makefile	2025-07-07 02:19:14
++++ b/src/Makefile	2026-01-05 15:23:45
+@@ -11,6 +11,9 @@
+ LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+ LIBS= -lm $(SYSLIBS) $(MYLIBS)
+ 
++# Sets the default path for lua modules
++INSTALL_TOP=/usr/local
++
+ AR= ar rcu
+ RANLIB= ranlib
+ RM= rm -f
+@@ -20,13 +23,13 @@
+ SYSLDFLAGS=
+ SYSLIBS=
+ 
+-MYCFLAGS=
++MYCFLAGS= -DLUA_USER_DEFAULT_PATH='"$(INSTALL_TOP)/"'
+ MYLDFLAGS=
+ MYLIBS=
+ MYOBJS=
+ 
+ # Special flags for compiler modules; -Os reduces code size.
+-CMCFLAGS= 
++CMCFLAGS=
+ 
+ # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
+ 
+@@ -121,10 +124,10 @@
+ 	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_IOS"
+ 
+ Linux linux:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX" SYSLIBS="-Wl,-E -ldl"
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_LINUX -DLUA_USE_READLINE" SYSLIBS="-Wl,-E -ldl -lreadline -lhistory -lncursesw"
+ 
+ Darwin macos macosx:
+-	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_MACOSX -DLUA_USE_READLINE" SYSLIBS="-lreadline"
++	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_MACOSX -DLUA_USE_READLINE -fno-common" SYSLIBS="-lreadline"
+ 
+ mingw:
+ 	$(MAKE) "LUA_A=lua55.dll" "LUA_T=lua.exe" \

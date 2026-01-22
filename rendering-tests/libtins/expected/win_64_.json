@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtins",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtins/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtins/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtins/work"
+      },
+      "hash": {
+        "hash": "edf34c0"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtins": {
+          "build_string": "hedf34c0_1",
+          "name": "libtins",
+          "version": "4.5"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:46:15.249909585Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2019",
+        "libpcap": "1.10",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Its main purpose is to provide the C++ developer an easy,\nefficient, platform and endianess-independent way to create tools\nwhich need to send, receive and manipulate specially crafted\npackets.",
+        "homepage": "https://github.com/mfontanini/libtins",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "libtins is a high-level, multiplatform C++ network packet sniffing and crafting library"
+      },
+      "build": {
+        "number": 1,
+        "string": "hedf34c0_1"
+      },
+      "context": {
+        "name": "libtins",
+        "version": "4.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "costrouc",
+          "tylerpotts",
+          "wolfv",
+          "wep21"
+        ]
+      },
+      "package": {
+        "name": "libtins",
+        "version": "4.5"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "vs2019_win-64",
+          "vs_win-64",
+          "ninja"
+        ],
+        "host": [
+          "libpcap"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libtins",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-fix-cmake-minimum-required-version.patch"
+          ],
+          "sha256": "6ff5fe1ada10daef8538743dccb9c9b3e19d05d028ffdc24838e62ff3fc55841",
+          "url": "https://github.com/mfontanini/libtins/archive/refs/tags/v4.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "tins/tins.h"
+            ],
+            "lib": [
+              "tins"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

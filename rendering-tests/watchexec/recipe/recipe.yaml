@@ -1,0 +1,38 @@
+context:
+  version: "2.3.2"
+
+package:
+  name: watchexec
+  version: ${{ version }}
+
+source:
+  url: https://github.com/watchexec/watchexec/archive/v${{ version }}.tar.gz
+  sha256: 52201822ab00bfaf6757f953f667870b3aada52f887813e94b4f322f239ff8fb
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - watchexec --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Execute commands when watched files change
+  homepage: https://github.com/watchexec/watchexec
+  repository: https://github.com/watchexec/watchexec
+
+extra:
+  recipe-maintainers:
+    - danielnachun

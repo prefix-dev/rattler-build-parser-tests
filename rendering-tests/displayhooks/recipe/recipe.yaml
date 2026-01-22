@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: displayhooks
+  version: 0.0.5
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/displayhooks-${{ version }}.tar.gz
+  sha256: 9baf782a46d70bc9cffef4149a2de730babd7a52185ca7bf30027be748d54897
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools ==68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - displayhooks
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Extend the capabilities of the standard displayhook in Python
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pomponchik/displayhooks
+
+extra:
+  recipe-maintainers:
+    - thewchan

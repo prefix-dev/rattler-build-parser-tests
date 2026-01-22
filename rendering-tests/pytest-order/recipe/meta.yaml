@@ -1,0 +1,47 @@
+{% set name = "pytest-order" %}
+{% set version = "1.3.0" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 51608fec3d3ee9c0adaea94daa124a5c4c1d2bb99b00269f098f414307f23dde
+
+build:
+  number: 1
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python {{ python_min }}
+    - pytest >=5.0
+    - setuptools
+  run:
+    - python >={{ python_min }}
+    - pytest >=5.0
+
+test:
+  imports:
+    - pytest_order
+  commands:
+    - pip check
+  requires:
+    - pip
+    - python {{ python_min }}
+
+about:
+  home: https://github.com/pytest-dev/pytest-order
+  doc_url: https://pytest-order.readthedocs.io/
+  summary: pytest plugin that allows to customize the test execution order
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - hadim
+    - mrbean-bremen

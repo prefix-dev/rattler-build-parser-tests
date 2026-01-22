@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlb",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlb/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlb/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_openlb/work"
+      },
+      "hash": {
+        "hash": "01d7d0f"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "openlb": {
+          "build_string": "h01d7d0f_1",
+          "name": "openlb",
+          "version": "1.7r0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:39.360150646Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://www.openlb.net/user-guide/",
+        "homepage": "https://www.openlb.net/",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "An implementation of lattice Boltzmann methods that is general enough to address\na vast range of transport problems, e.g. in computational fluid dynamics"
+      },
+      "build": {
+        "number": 1,
+        "string": "h01d7d0f_1"
+      },
+      "context": {
+        "name": "openlb",
+        "version": "1.7r0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martin-g"
+        ]
+      },
+      "package": {
+        "name": "openlb",
+        "version": "1.7r0"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "sysroot_linux-aarch64 2.17.*",
+          "gcc_linux-aarch64 13.*",
+          "gxx_linux-aarch64 13.*",
+          "libgomp"
+        ],
+        "host": [
+          "zlib",
+          "tinyxml"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "openlb",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "openlb-makefile.patch"
+          ],
+          "sha256": "a71a3d458680598340e391e108ffa8cfbdc8c8e5900b1f72a6191c878fbff06c",
+          "url": "https://zenodo.org/records/10684609/files/olb-1.7r0.tgz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -f ${PREFIX}/lib/libolbcore${SHLIB_EXT}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

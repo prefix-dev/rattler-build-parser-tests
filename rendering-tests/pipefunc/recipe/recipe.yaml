@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/73cd2eed94c576213c5f25ab57adf6d8c83e792a/schema.json
+schema_version: 1
+
+context:
+  name: "pipefunc"
+  version: "0.90.2"
+  python_min: "3.11"
+
+recipe:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pipefunc-${{ version }}.tar.gz
+  sha256: c312e02cd562c4aad4d9ab54598221d607d5612297a370321f2776e1606a06e4
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: ${{ name }}
+      version: ${{ version }}
+    build:
+      noarch: python
+      script: ${{ PYTHON }} -m pip install . -vv
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - hatchling
+        - wheel
+        - versioningit
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - networkx
+        - psutil
+        - cloudpickle
+        - numpy
+    tests:
+      - python:
+          python_version: ${{ python_min }}.*
+          imports:
+            - pipefunc
+
+  - package:
+      name: ${{ name }}-extras
+      version: ${{ version }}
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage(name, exact=True) }}
+        - adaptive
+        - graphviz
+        - graphviz-anywidget >=0.7.0
+        - griffe
+        - ipywidgets
+        - matplotlib-base
+        - pandas
+        - psutil
+        - pydantic
+        - rich
+        - rich-argparse
+        - xarray
+        - zarr >=3
+        - bokeh
+    tests:
+      - python:
+          python_version: ${{ python_min }}.*
+          imports:
+            - pipefunc
+
+about:
+  homepage: https://github.com/pipefunc/pipefunc
+  summary: A Python library for defining, managing, and executing function pipelines.
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - basnijholt

@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: arviz
+  version: 0.23.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 2a91f4c84a85ef6b41d62fa337aa059a6c83ba10db4603e359a95981eb69c10d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=60.0.0
+  run:
+    - python >=${{ python_min }}
+    - setuptools >=60.0.0
+    - matplotlib-base >=3.8
+    - numpy >=1.26.0
+    - scipy >=1.11.0
+    - packaging
+    - pandas >=2.1.0
+    - xarray >=2023.7.0
+    - h5netcdf >=1.0.2
+    - typing_extensions >=4.1.0
+    - xarray-einstats >=0.3
+    - h5py
+tests:
+  - python:
+      imports:
+        - arviz
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Exploratory analysis of Bayesian models with Python
+  description: |
+    ArviZ (pronounced "AR-vees") is a Python package for exploratory analysis
+    of Bayesian models. Includes functions for posterior analysis, model
+    checking, comparison and diagnostics.
+
+  homepage: https://github.com/arviz-devs/arviz
+  repository: https://github.com/arviz-devs/arviz
+  documentation: https://python.arviz.org
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - ericmjl
+    - canyon289
+    - aloctavodia
+    - ColCarroll
+    - ahartikainen
+    - OriolAbril

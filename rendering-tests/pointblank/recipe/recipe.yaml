@@ -1,0 +1,54 @@
+context:
+  name: pointblank
+  version: "0.19.0"
+  python_min: '3.10'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pointblank/pointblank-${{ version }}.tar.gz
+  sha256: 9d581bc877808159213ea5d5284dc43dda491f4b5c7ab0ea0cbc1dc246a39ae7
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - setuptools_scm >=6.2
+  run:
+    - python >=${{ python_min }}
+    - importlib-metadata
+    - commonmark >=0.9.1
+    - great_tables >=0.20.0
+    - narwhals >=2.0.1
+    - typing_extensions >=3.10.0.0
+    - requests >=2.31.0
+    - click >=8.0.0
+    - rich >=13.0.0
+    - pyyaml >=6.0.0
+
+tests:
+  - python:
+      imports:
+        - pointblank
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Find out if your data is what you think it is.
+  homepage: https://posit-dev.github.io/pointblank/
+  repository: https://github.com/posit-dev/pointblank
+
+extra:
+  recipe-maintainers:
+    - rich-iannone
+    - timkpaine

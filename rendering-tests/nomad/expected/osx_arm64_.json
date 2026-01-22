@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nomad",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nomad/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nomad/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nomad/work"
+      },
+      "hash": {
+        "hash": "21e288a"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nomad": {
+          "build_string": "h21e288a_0",
+          "name": "nomad",
+          "version": "1.11.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:48:52.596376982Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://developer.hashicorp.com/nomad/docs",
+        "homepage": "https://nomadproject.io/",
+        "license": "BUSL-1.1",
+        "license_file": [
+          "LICENSE",
+          "LICENSE-cronexpr",
+          "LICENSE-gospin",
+          "LICENSE-jmespath",
+          "license-files/"
+        ],
+        "repository": "https://github.com/hashicorp/nomad",
+        "summary": "Nomad is an easy-to-use, flexible, and performant workload orchestrator that can deploy a mix of microservice, batch, containerized, and non-containerized applications."
+      },
+      "build": {
+        "number": 0,
+        "string": "h21e288a_0"
+      },
+      "context": {
+        "name": "nomad",
+        "version": "1.11.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jonashaag",
+          "xhochy",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "nomad",
+        "version": "1.11.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "go-cgo_osx-arm64",
+          "make",
+          "nodejs 20.*",
+          "pnpm",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Don-t-overwrite-compilers.patch"
+          ],
+          "sha256": "4ee3a7984e8c6c6a85a87bd8eb917d90d16f829600d4ba16fed394233b88251e",
+          "url": "https://github.com/hashicorp/nomad/archive/refs/tags/v1.11.1.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-cronexpr",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "url": "https://raw.githubusercontent.com/hashicorp/cronexpr/a5b9ff11e6c27ab08e1dfd6ad1fe99179f441d0a/APLv2"
+        },
+        {
+          "file_name": "LICENSE-gospin",
+          "sha256": "e4855d38fa4a5c43945b62f0731836851d055bc200f42631f0854e75fdefe77c",
+          "url": "https://raw.githubusercontent.com/tj/go-spin/721f604c567004b82bb196abe227ab60360184ba/LICENSE"
+        },
+        {
+          "file_name": "LICENSE-jmespath",
+          "sha256": "e4855d38fa4a5c43945b62f0731836851d055bc200f42631f0854e75fdefe77c",
+          "url": "https://raw.githubusercontent.com/jmespath/go-jmespath/b89213a6ec69212a244ef0d07d893bef7f2d9091/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "nomad -h"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

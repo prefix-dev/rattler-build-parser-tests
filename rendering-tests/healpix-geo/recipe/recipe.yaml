@@ -1,0 +1,64 @@
+context:
+  name: healpix-geo
+  version: "0.0.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/eopf-dggs/healpix-geo/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: e7abafa947a0db74d3f2aff5c4cad159f61229c12d45480934aa892eaf9001b7
+
+build:
+  skip:
+    - match(python, "<3.10")
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - python -m pip install . -vv --no-build-isolation --no-deps
+  number: 0
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=1.7.0,<2.0
+    - cargo-bundle-licenses
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+  host:
+    - python
+    - maturin >=1.7.0,<2.0
+    - pip
+  run:
+    - python
+    - numpy
+
+tests:
+  - python:
+      imports:
+        - healpix_geo
+        - healpix_geo.nested
+        - healpix_geo.ring
+        - healpix_geo.slices
+      pip_check: true
+
+about:
+  homepage: https://github.com/eopf-dggs/healpix-geo
+  summary: 'healpix for the geo-sciences'
+  description: |
+    healpix-geo uses the cdshealpix, moc, and geodesy crates to provide
+    specialized algorithms for the geosciences.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: https://healpix-geo.readthedocs.io/
+  repository: https://github.com/eopf-dggs/healpix-geo
+
+extra:
+  recipe-maintainers:
+    - keewis

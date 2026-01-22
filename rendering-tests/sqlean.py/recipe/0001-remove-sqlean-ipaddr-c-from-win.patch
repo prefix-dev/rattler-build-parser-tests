@@ -1,0 +1,13 @@
+diff -ruN sqlean_py-3.50.4.5/setup.py sqlean_py-3.50.4.5-patch/setup.py
+--- sqlean_py-3.50.4.5/setup.py	2025-10-25 09:54:50.000000000 +0200
++++ sqlean_py-3.50.4.5-patch/setup.py	2025-12-03 17:56:25.437353150 +0100
+@@ -129,7 +129,8 @@
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-define.c"))
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-fileio.c"))
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-fuzzy.c"))
+-        ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-ipaddr.c"))
++        if sys.platform != "win32":
++            ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-ipaddr.c"))
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-regexp.c"))
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-stats.c"))
+         ext.sources.append(os.path.join(self.amalgamation_root, "sqlean-text.c"))

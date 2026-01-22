@@ -1,0 +1,50 @@
+context:
+  name: pyathena
+  version: "3.25.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pyathena-${{ version }}.tar.gz
+  sha256: 60e735613454671353f88a9adaf647f10c1dc10da674919a0d5993392b05b7ab
+
+build:
+  noarch: python
+  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - boto3 >=1.26.4
+    - botocore >=1.29.4
+    - tenacity >=4.1.0
+    - fsspec
+    - python-dateutil
+
+tests:
+  - python:
+      imports:
+        - pyathena
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/laughingman7743/PyAthena/
+  license: MIT
+  license_file: LICENSE
+  summary: Python DB API 2.0 (PEP 249) compliant client for Amazon Athena
+  repository: https://github.com/laughingman7743/PyAthena/
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - JorgeGarciaIrazabal
+    - mariusvniekerk

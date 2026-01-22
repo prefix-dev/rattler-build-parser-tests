@@ -1,0 +1,39 @@
+context:
+  version: "3.2.2"
+
+package:
+  name: vue-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@vue/language-server/-/language-server-${{ version }}.tgz
+  sha256: f73d115539d4eabf7b466f2183cc69a18f381b7f4b76564b0695c825e2182808
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "vue-language-server 2>&1 | grep -q 'Connection input stream is not set.'"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: High-performance Vue language tooling based-on Volar.js
+  homepage: https://github.com/vuejs/language-tools
+  repository: https://github.com/vuejs/language-tools
+
+extra:
+  recipe-maintainers:
+    - danielnachun

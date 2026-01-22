@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  version: 0.11.4
+
+package:
+  name: sinkhorn-transformer
+  version: ${{ version }}
+
+source:
+  url: https://github.com/lucidrains/sinkhorn-transformer/archive/${{ version }}.tar.gz
+  sha256: 2342bd71d3ba85b9828b526a203774473ba8567eca241589250b2af10e0ec847
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - axial-positional-embedding >=0.1.0
+    - local-attention
+    - product-key-memory
+    - pytorch
+
+tests:
+  - python:
+      imports:
+        - sinkhorn_transformer
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Sinkhorn Transformer - Practical implementation of Sparse Sinkhorn Attention
+  homepage: https://github.com/lucidrains/sinkhorn-transformer
+
+extra:
+  recipe-maintainers:
+    - danielnachun

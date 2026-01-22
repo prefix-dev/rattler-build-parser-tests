@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_b4",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_b4/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_b4/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_b4/work"
+      },
+      "hash": {
+        "hash": "8f84b5b",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "b4": {
+          "build_string": "pyh8f84b5b_0",
+          "name": "b4",
+          "version": "0.14.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:38:19.400705889Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This is a helper utility to work with patches made available via a\npublic-inbox archive like lore.kernel.org. It is written to make it easier\nto participate in a patch-based workflows, like those used in the Linux\nkernel development.",
+        "documentation": "https://b4.docs.kernel.org/",
+        "homepage": "https://git.kernel.org/pub/scm/utils/b4/b4.git/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "A tool to work with public-inbox and patch archives"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "b4 = b4.command:cmd"
+          ]
+        },
+        "script": [
+          "python -m pip install . -vv --no-deps --no-build-isolation",
+          "mkdir -p \"$PREFIX/share/bash-completion/completions/\" \"$PREFIX/share/zsh/site-functions/\"",
+          "./misc/tc-generate.sh bash >\"$PREFIX/share/bash-completion/completions/b4\"",
+          "./misc/tc-generate.sh zsh >\"$PREFIX/share/zsh/site-functions/_b4\""
+        ],
+        "string": "pyh8f84b5b_0"
+      },
+      "context": {
+        "version": "0.14.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "blmaier"
+        ]
+      },
+      "package": {
+        "name": "b4",
+        "version": "0.14.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "coreutils",
+          "setuptools",
+          "wheel",
+          "pip",
+          "shtab",
+          "requests >=2.24,<3.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "requests >=2.24,<3.0",
+          "git-filter-repo >=2.30,<3.0",
+          "dkimpy >=1.0,<2.0",
+          "patatt >=0.6,<2.0",
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fb04e3160d4cce63514df764182a18f873dcb87192b88d69ab5d0938feb99e0d",
+          "url": "https://mirrors.edge.kernel.org/pub/software/devel/b4/b4-0.14.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "b4"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/**"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "b4 --help",
+            "pytest"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: graphistry
+  version: "0.50.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/graphistry-${{ version }}.tar.gz
+  sha256: ba2d71f74bd9798a36e46ac2281afc12caa8415c9317c8cd2f563077d4c8da42
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - packaging >=20.1
+    - palettable >=3.0
+    - pandas
+    - pyarrow >=0.15.0
+    - requests
+    - setuptools
+    - squarify
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - graphistry
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A visual graph analytics library.
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  homepage: https://github.com/graphistry/pygraphistry
+  documentation: https://pythonhosted.org/graphistry/
+
+extra:
+  recipe-maintainers:
+    - thewchan

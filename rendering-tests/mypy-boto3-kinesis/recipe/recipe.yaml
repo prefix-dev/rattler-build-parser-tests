@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: mypy-boto3-kinesis
+  version: "1.42.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mypy_boto3_kinesis-${{ version }}.tar.gz
+  sha256: 31e01b74aa9c312e73f2c3238ca7e7c34d0363b51d68431fea9575b73650525a
+
+build:
+  number: 0
+  noarch: python
+  script:
+    env:
+      PYTHONUTF8: 1
+    content: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - boto3
+    - python >=${{ python_min }}
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - mypy_boto3_kinesis
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Type annotations for boto3 Kinesis ${{ version }} service generated with mypy-boto3-builder
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/youtype/mypy_boto3_builder
+  repository: https://github.com/youtype/mypy_boto3_builder
+
+extra:
+  recipe-maintainers:
+    - StevenSchaererQC
+    - janjagusch

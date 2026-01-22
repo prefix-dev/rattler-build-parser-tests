@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.17.0
+
+package:
+  name: gomodifytags
+  version: ${{ version }}
+
+source:
+  url: https://github.com/fatih/gomodifytags/archive/v${{ version }}.tar.gz
+  sha256: a490786d80c962dc946b8f9804ffec596c1087dbf91b122b9b5903c03b6da6b9
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gomodifytags --help
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Go tool to modify struct field tags
+  homepage: https://github.com/fatih/gomodifytags
+  repository: https://github.com/fatih/gomodifytags
+
+extra:
+  recipe-maintainers:
+    - danielnachun

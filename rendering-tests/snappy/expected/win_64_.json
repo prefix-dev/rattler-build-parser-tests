@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_snappy/work"
+      },
+      "hash": {
+        "hash": "7fa0ca8"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "snappy": {
+          "build_string": "h7fa0ca8_1",
+          "name": "snappy",
+          "version": "1.2.2"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:55.454924511Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "lz4_c": "1.10",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/google/snappy",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/google/snappy",
+        "summary": "A fast compressor/decompressor"
+      },
+      "build": {
+        "number": 1,
+        "string": "h7fa0ca8_1"
+      },
+      "context": {
+        "version": "1.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "groutr",
+          "jakirkham",
+          "wesm",
+          "xhochy",
+          "djsutherland"
+        ]
+      },
+      "package": {
+        "name": "snappy",
+        "version": "1.2.2"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "make",
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64"
+        ],
+        "host": [
+          "msinttypes",
+          "gtest 1.13.*",
+          "gmock",
+          "lz4-c"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "lz4-c"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "snappy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-change-static-lib-output-name-on-windows.patch",
+            "patches/0002-Unbundle-gtest.patch",
+            "patches/0003-Disable-BMI2.patch",
+            "patches/0004-cmake-add-option-to-enable-disable-RTTI.patch",
+            "patches/0005-Omit-Werror-during-compilation.patch"
+          ],
+          "sha256": "90f74bc1fbf78a6c56b3c4a082a05103b3a56bb17bca1a27e052ea11723292dc",
+          "url": "https://github.com/google/snappy/archive/1.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "if not exist %LIBRARY_INC%\\snappy.h exit 1",
+            "if not exist %LIBRARY_INC%\\snappy-stubs-public.h exit 1",
+            "if not exist %LIBRARY_LIB%\\snappy.lib exit 1",
+            "if not exist %LIBRARY_BIN%\\snappy.dll exit 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

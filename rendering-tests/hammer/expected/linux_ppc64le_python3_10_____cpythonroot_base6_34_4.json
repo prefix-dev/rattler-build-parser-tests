@@ -1,0 +1,176 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hammer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hammer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hammer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hammer/work"
+      },
+      "hash": {
+        "hash": "132b0fb",
+        "prefix": "np20py310"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hammer": {
+          "build_string": "np20py310h132b0fb_2",
+          "name": "hammer",
+          "version": "1.4.1"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:41:19.337339579Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "libboost_devel": "1.86",
+        "numpy": "2.0",
+        "python": "3.10.* *_cpython",
+        "root_base": "6.34.4",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A C++ software library, designed to provide fast and efficient reweighting\nof large Monte Carlo datasets containing semileptonic b-Hadron decays to\nany desired New Physics, or to any description of the hadronic matrix\nelements. See the HAMMER website for more information.",
+        "documentation": "https://hammer.physics.lbl.gov/HammerManual.pdf",
+        "homepage": "https://hammer.physics.lbl.gov/",
+        "license": "GPL-3.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.com/mpapucci/Hammer",
+        "summary": "Helicity Amplitude Module for Matrix Element Reweighting"
+      },
+      "build": {
+        "number": 2,
+        "string": "np20py310h132b0fb_2"
+      },
+      "context": {
+        "name": "hammer",
+        "version": "1.4.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "hammer",
+        "version": "1.4.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 13.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 13.*",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "python",
+          "root_base",
+          "libboost-devel",
+          "hepmc2",
+          "yaml-cpp",
+          "numpy",
+          "matplotlib-base",
+          "cython <3",
+          "cymove",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "yaml-cpp",
+          "hepmc2",
+          "matplotlib-base"
+        ],
+        "run_constraints": [
+          "run_constrained"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Fix-support-for-newer-GCC.patch"
+          ],
+          "sha256": "b95e192727aa95ac736a269e84457adbdde3e85db15082da4129f4ed4c018c45",
+          "url": "https://gitlab.com/mpapucci/Hammer/-/archive/v1.4.1/Hammer-v1.4.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hammer"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "script": [
+            "cd $CONDA_PREFIX/share/Hammer/examples",
+            "./demo01",
+            "./demo01card",
+            "./demo01root",
+            "./demo02",
+            "./demo02root",
+            "./demo03",
+            "./demo03root",
+            "./demo04",
+            "./demo04root",
+            "./demo04root2",
+            "./demo05",
+            "./demo07",
+            "./demo08",
+            "./demo09",
+            "./demo10"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

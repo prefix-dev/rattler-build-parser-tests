@@ -1,0 +1,132 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gds-sigp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gds-sigp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gds-sigp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gds-sigp/work"
+      },
+      "hash": {
+        "hash": "be94b4a"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gds-sigp": {
+          "build_string": "hbe94b4a_0",
+          "name": "gds-sigp",
+          "version": "2.0.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:44:36.717699605Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "expat": "2",
+        "fftw": "3",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://git.ligo.org/cds/software/gds_sigp",
+        "license": "GPL-3.0-or-later",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING",
+          "COPYING-GPL-3"
+        ],
+        "repository": "https://git.ligo.org/cds/software/gds_sigp.git",
+        "summary": "Library for advinced LIGO signal processing"
+      },
+      "build": {
+        "number": 0,
+        "string": "hbe94b4a_0"
+      },
+      "context": {
+        "name": "gds-sigp",
+        "version": "2.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "evonreis"
+        ]
+      },
+      "package": {
+        "name": "gds-sigp",
+        "version": "2.0.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake"
+        ],
+        "host": [
+          "fftw",
+          "expat",
+          "libexpat",
+          "zlib",
+          "pthreads-win32"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "add_includes.patch",
+            "add_dl.patch"
+          ],
+          "sha256": "70267968a130dc9bebdda7c5ec89931a860227684471b7ceee6f1e7d10c46ba0",
+          "url": "https://git.ligo.org/cds/software/gds-sigp/-/archive/2.0.0/2.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "IF NOT EXIST %PREFIX%\\\\Library\\\\bin\\\\gds-sigp%SHLIB_EXT% EXIT /B 1",
+            "IF NOT EXIST %PREFIX%\\\\Library\\\\include\\\\gds-sigp\\\\gdssigproc.h EXIT /B 1"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

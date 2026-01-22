@@ -1,0 +1,38 @@
+context:
+  version: "3.5.0"
+
+package:
+  name: shadowenv
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Shopify/shadowenv/archive/${{ version }}.tar.gz
+  sha256: f8a080de1b9f048db99e33ee91e4077f456a21dab02a10f2844da6fc6296e529
+
+build:
+  number: 0
+  skip: win or ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - shadowenv --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Reversible directory-local environment variable manipulations
+  homepage: https://github.com/Shopify/shadowenv
+  repository: https://github.com/Shopify/shadowenv
+
+extra:
+  recipe-maintainers:
+    - danielnachun

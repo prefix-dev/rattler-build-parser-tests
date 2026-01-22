@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  version: "4.2.1"
+
+package:
+  name: ms-gsl
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/microsoft/GSL/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: d959f1cb8bbb9c94f033ae5db60eaf5f416be1baa744493c32585adca066fe1f
+
+build:
+  number: 0
+  script:
+    - if: win
+      then: |
+        cmake -GNinja %CMAKE_ARGS% -D GSL_INSTALL=ON -D GSL_TEST=OFF %SRC_DIR%
+      else: |
+        cmake -GNinja $CMAKE_ARGS -D GSL_INSTALL=ON $SRC_DIR
+    - cmake --build . --config Release
+    - cmake --install . --config Release
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+  host:
+    - cmake
+
+tests:
+  - package_contents:
+      include:
+        - gsl/gsl
+      files:
+        - ${{ "Library/" if win }}share/cmake/Microsoft.GSL/Microsoft.GSLConfig.cmake
+        - ${{ "Library/" if win }}share/cmake/Microsoft.GSL/Microsoft.GSLConfigVersion.cmake
+  - script:
+      - mkdir build_test
+      - cd build_test
+      - cmake ../test -GNinja -DCMAKE_BUILD_TYPE=Release
+      - cmake --build . --config Release
+      - ctest --output-on-failure
+      - if: unix
+        then: ./program
+        else: program.exe
+    files:
+      recipe:
+        - test/
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ compiler("cxx") }}
+
+about:
+  homepage: https://github.com/microsoft/GSL
+  summary: Microsoft's implementation of the Guidelines Support Library
+  description: |
+    The Guidelines Support Library (GSL) contains functions and types that are suggested
+    for use by the C++ Core Guidelines maintained by the Standard C++ Foundation. This
+    repo contains Microsoft's implementation of GSL.
+
+    The entire implementation is provided inline in the headers. The implementation
+    generally assumes a platform that implements C++14 support.
+  license: MIT
+  license_file: LICENSE
+  documentation: https://github.com/microsoft/GSL
+  repository: https://github.com/microsoft/GSL
+
+extra:
+  recipe-maintainers:
+    - apmorton
+    - phreed

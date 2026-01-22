@@ -1,0 +1,178 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_maturin",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_maturin/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_maturin/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_maturin/work"
+      },
+      "hash": {
+        "hash": "1562f80",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "maturin": {
+          "build_string": "py310h1562f80_0",
+          "name": "maturin",
+          "version": "1.11.5"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:50:28.156956007Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "is_python_min": true,
+        "openssl": "3.5",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.87",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/PyO3/maturin",
+        "license": "MIT",
+        "license_family": "MIT",
+        "license_file": [
+          "license-mit",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/PyO3/maturin",
+        "summary": "Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages"
+      },
+      "build": {
+        "dynamic_linking": {
+          "missing_dso_allowlist": [
+            "/usr/lib/libresolv.9.dylib"
+          ]
+        },
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "${{ \"export OPENSSL_DIR=$PREFIX\" if unix }}",
+            "${{ PYTHON }} -m pip install -v --use-pep517 --no-build-isolation ."
+          ],
+          "env": {
+            "CARGO_NET_GIT_FETCH_WITH_CLI": "true",
+            "MATURIN_SETUP_ARGS": "--no-default-features --features=full,native-tls,password-storage",
+            "OPENSSL_NO_VENDOR": "1"
+          }
+        },
+        "string": "py310h1562f80_0"
+      },
+      "context": {
+        "name": "maturin",
+        "version": "1.11.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "messense",
+          "apcamargo",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "maturin",
+        "version": "1.11.5"
+      },
+      "requirements": {
+        "build": [
+          "cargo-bundle-licenses",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "rust_osx-arm64 1.87.*",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "setuptools-rust >=1.4.0",
+          "wheel",
+          "tomli >=1.1.0",
+          "openssl",
+          "pkg-config"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_osx-arm64",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "tomli >=1.1.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7579cf47640fb9595a19fe83a742cbf63203f0343055c349c1cab39045a30c29",
+          "url": "https://pypi.org/packages/source/m/maturin/maturin-1.11.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "maturin"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": "maturin --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

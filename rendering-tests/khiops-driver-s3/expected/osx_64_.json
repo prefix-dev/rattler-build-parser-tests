@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_khiops-driver-s3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_khiops-driver-s3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_khiops-driver-s3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_khiops-driver-s3/work"
+      },
+      "hash": {
+        "hash": "68c83d0"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "khiops-driver-s3": {
+          "build_string": "h68c83d0_2",
+          "name": "khiops-driver-s3",
+          "version": "0.0.15"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:29.107250623Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "aws_sdk_cpp": "1.11.606",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "11.2",
+        "libboost_devel": "1.86",
+        "libboost_headers": "1.86",
+        "spdlog": "1.15",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The S3 driver plugin extends Khiops to enable processing of data files located on AWS S3 compatible storage",
+        "homepage": "https://khiops.org/",
+        "license": "BSD-3-Clause-Clear",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Khiops driver to access files on AWS S3 storage"
+      },
+      "build": {
+        "number": 2,
+        "string": "h68c83d0_2"
+      },
+      "context": {
+        "version": "0.0.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "popescu-v",
+          "sgouache"
+        ]
+      },
+      "package": {
+        "name": "khiops-driver-s3",
+        "version": "0.0.15"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "aws-sdk-cpp",
+          "zlib",
+          "libboost-devel",
+          "libboost-headers",
+          "fmt",
+          "spdlog"
+        ],
+        "run": [
+          "aws-crt-cpp"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a34eb599c52e8156a4b56f60310970f9cb8122e2d864d36c7f437ac9f72fa7be",
+          "url": "https://github.com/KhiopsML/khiopsdriver-s3/archive/refs/tags/0.0.15.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -f $PREFIX/lib/libkhiopsdriver_file_s3${SHLIB_EXT}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

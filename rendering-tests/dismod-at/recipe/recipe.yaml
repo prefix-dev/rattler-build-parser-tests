@@ -1,0 +1,94 @@
+schema_version: 1
+
+context:
+  name: dismod-at
+  version: "2026.0.1"
+  cppad_mixed_minimum: "2026.0.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  #
+  url: https://github.com/bradbell/dismod_at/archive/${{ version }}.tar.gz
+  sha256: e157312ede3beefbd24b2544c677a73d34b10a05246fac1111e1de039cf7e35a
+  #
+  patches:
+    # patches for this version.
+    - ${{ version }}.patch
+
+build:
+  # First build number for each version is 0
+  number: 5
+  skip: not is_python_min
+  #
+  # rattler-build does not handle python install scripts properly.
+  python:
+    version_independent: true
+    # rattler-build does properly not handle [project.scripts] in
+    # pyproject.toml on windows unless they are also listed as entry_points.
+    entry_points:
+      - dismod-at = dismod_at:main
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - pkg-config
+    - cppad-mixed >=${{ cppad_mixed_minimum }}
+    - sqlite
+    - eigen
+    - numpy
+    - matplotlib-base
+    - scipy
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - matplotlib-base
+    - scipy
+  run_exports:
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - python:
+      imports: dismod_at
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.14.*
+  - script:
+      interpreter: python
+      file: run_test.py
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - numpy
+        - matplotlib
+        - scipy
+        - sqlite
+    files:
+      source:
+        # see test_file at top of run_test.py
+        - example/get_started/get_started_db.py
+        - example/get_started/fit_command.py
+        - test/user/db2csv.py
+
+about:
+  license: AGPL-3.0-or-later
+  license_file: agpl-3.0.txt
+  summary: Estimating disease rates as functions of age and time.
+  homepage: https://dismod-at.readthedocs.io/stable-2025
+  repository: https://github.com/bradbell/dismod_at
+  documentation: https://dismod-at.readthedocs.io/stable-2025/
+
+extra:
+  recipe-maintainers:
+    - bradbell

@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: mysqlx-connector-python
+  version: "9.6.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mysql/mysql-connector-python/archive/${{ version }}.tar.gz
+  sha256: 8d1b2a52a8183bbfee20ac8be0e31a2420504a35f9223badd0756627b5226ecf
+  patches:
+    - patches/0001-Be-compatible-with-current-libprotobuf-pin.patch
+    - patches/0002-Revert-Fix-MacOS-wheels-platform-tag.patch
+    - patches/0003-Use-C-17.patch
+    - patches/0004-Link-to-abseil_dll-on-Windows.patch
+    - patches/0005-Don-t-ignore-user-provided-xtra-compile-link-args.patch
+    - patches/0006-Fix-compatibility-with-newer-protobuf-and-abseil-lib.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - pkg-config
+    - libprotobuf
+  host:
+    - python
+    - pip
+    - setuptools
+    - libprotobuf
+    - libabseil
+    - protobuf
+  run:
+    - python
+    - protobuf
+
+tests:
+  - python:
+      imports:
+        - mysqlx
+        - mysqlx.protobuf
+
+about:
+  license: GPL-2.0-or-later WITH Universal-FOSS-exception-1.0
+  license_file: LICENSE.txt
+  summary: Python driver for communicating with MySQL servers
+  description: |
+    MySQL Connector/Python is a standardized database driver for Python
+    platforms and development.
+  homepage: https://dev.mysql.com/doc/connector-python/en/
+  repository: https://github.com/mysql/mysql-connector-python/
+  documentation: http://dev.mysql.com/doc/connector-python/en/index.html
+
+extra:
+  recipe-maintainers:
+    - nehaljwani
+    - xhochy

@@ -1,0 +1,39 @@
+schema_version: 1
+
+context:
+  version: "1.10.3"
+
+package:
+  name: dyff
+  version: ${{ version }}
+
+source:
+  url: https://github.com/homeport/dyff/archive/v${{ version }}.tar.gz
+  sha256: 07ab1b365f876f92121ef5aa010de26f13a5bf495d29ee886d8781051dce3ea9
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - dyff version
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A diff tool for YAML files, and sometimes JSON
+  homepage: https://github.com/homeport/dyff
+  repository: https://github.com/homeport/dyff
+  documentation: https://github.com/homeport/dyff
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - asford

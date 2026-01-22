@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ragel",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ragel/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ragel/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ragel/work"
+      },
+      "hash": {
+        "hash": "3e4d06c"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ragel": {
+          "build_string": "h3e4d06c_1003",
+          "name": "ragel",
+          "version": "6.10"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:48:34.986504597Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Ragel provides a very flexible interface to the host language that attempts\nto place minimal restrictions on how the generated code is integrated into\nthe application. The generated code has no dependencies.",
+        "homepage": "https://www.colm.net/open-source/ragel/",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "Ragel State Machine Compiler"
+      },
+      "build": {
+        "number": 1003,
+        "script": {
+          "content": "build.sh",
+          "interpreter": "bash"
+        },
+        "string": "h3e4d06c_1003"
+      },
+      "context": {
+        "version": "6.10"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rmax"
+        ]
+      },
+      "package": {
+        "name": "ragel",
+        "version": "6.10"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 13.*",
+          "gxx_linux-64 13.*",
+          "make",
+          "autoconf",
+          "automake",
+          "libtool"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Fix-undeclared-setiosflags-function.patch"
+          ],
+          "sha256": "5f156edb65d20b856d638dd9ee2dfb43285914d9aa2b6ec779dac0270cd56c3f",
+          "url": "https://www.colm.net/files/ragel/ragel-6.10.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "gcc_linux-64 =13"
+            ]
+          },
+          "script": {
+            "content": "run_test.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

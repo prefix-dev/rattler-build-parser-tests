@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsvg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsvg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsvg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsvg/work"
+      },
+      "hash": {
+        "hash": "082987b"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsvg": {
+          "build_string": "h082987b_1",
+          "name": "libsvg",
+          "version": "0.1.4"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:32.066618696Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libjpeg_turbo": "3",
+        "libpng": "1.6",
+        "libxml2_devel": "2.14",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://cairographics.org/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "SVG rendering library using Cairo"
+      },
+      "build": {
+        "number": 1,
+        "string": "h082987b_1"
+      },
+      "context": {
+        "version": "0.1.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "libsvg",
+        "version": "0.1.4"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "autoconf",
+          "automake",
+          "libtool",
+          "make",
+          "pkg-config",
+          "sed"
+        ],
+        "host": [
+          "libjpeg-turbo",
+          "libtool",
+          "libpng",
+          "libxml2-devel",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-use-newer-autotools.patch",
+            "0002-Fix-undefined-symbol-png_set_gray_1_2_4_to_8.patch"
+          ],
+          "sha256": "4c3bf9292e676a72b12338691be64d0f38cd7f2ea5e8b67fbbf45f1ed404bc8f",
+          "url": "https://cairographics.org/snapshots/libsvg-0.1.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -f ${PREFIX}/lib/libsvg${SHLIB_EXT}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

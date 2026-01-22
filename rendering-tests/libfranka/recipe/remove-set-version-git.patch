@@ -1,0 +1,15 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -221,8 +221,10 @@
+ endif()
+
+ ## Packaging
+-include(SetVersionFromGit)
+-set_version_from_git(PACKAGE_VERSION PACKAGE_TAG)
++## Packaging
++# Remove git tag due to conda-forge downloads the release tar file directly
++#include(SetVersionFromGit)
++#set_version_from_git(PACKAGE_VERSION PACKAGE_TAG)
+
+ # Get architecture
+ execute_process(COMMAND dpkg --print-architecture OUTPUT_VARIABLE PACKAGE_ARCH OUTPUT_STRIP_TRAILING_WHITESPACE)

@@ -1,0 +1,170 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tectonic",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tectonic/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tectonic/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tectonic/work"
+      },
+      "hash": {
+        "hash": "9c1a3b4"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tectonic": {
+          "build_string": "h9c1a3b4_5",
+          "name": "tectonic",
+          "version": "0.15.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:57.378520050Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "expat": "2",
+        "fontconfig": "2",
+        "freetype": "2",
+        "glib": "2",
+        "icu": "78",
+        "libpng": "1.6",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://tectonic-typesetting.github.io/book/latest/",
+        "homepage": "https://tectonic-typesetting.github.io/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/tectonic-typesetting/tectonic/",
+        "summary": "A modernized, complete, standalone TeX/LaTeX engine."
+      },
+      "build": {
+        "number": 5,
+        "string": "h9c1a3b4_5"
+      },
+      "context": {
+        "name": "tectonic",
+        "sha256": "3c13de312c4fe39ff905ad17e64a15a3a59d33ab65dacb0a8b9482c57e6bc6aa",
+        "version": "0.15.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pkgw",
+          "anjos"
+        ]
+      },
+      "package": {
+        "name": "tectonic",
+        "version": "0.15.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "rust_linux-aarch64",
+          "cargo-bundle-licenses",
+          "pkg-config",
+          "glib",
+          "harfbuzz"
+        ],
+        "host": [
+          "expat",
+          "fontconfig",
+          "freetype",
+          "glib",
+          "graphite2",
+          "harfbuzz",
+          "icu",
+          "libpng",
+          "openssl",
+          "zlib"
+        ],
+        "run": [
+          "fontconfig",
+          "freetype",
+          "graphite2",
+          "harfbuzz",
+          "icu",
+          "libpng",
+          "openssl",
+          "zlib"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "pr-1202-fix-use-cxx-17.patch",
+            "fix-autoref.patch"
+          ],
+          "sha256": "3c13de312c4fe39ff905ad17e64a15a3a59d33ab65dacb0a8b9482c57e6bc6aa",
+          "url": "https://github.com/tectonic-typesetting/tectonic/archive/refs/tags/tectonic@0.15.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "example.tex"
+            ]
+          },
+          "script": [
+            "tectonic --help",
+            "tectonic example.tex"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

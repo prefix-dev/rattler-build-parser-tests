@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libssh",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libssh/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libssh/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libssh/work"
+      },
+      "hash": {
+        "hash": "767bccf"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libssh": {
+          "build_string": "h767bccf_0",
+          "name": "libssh",
+          "version": "0.11.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:31.397174635Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "krb5": "1.21",
+        "openssl": "3",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libssh is a multiplatform C library implementing the SSHv2 protocol\non client and server side. With libssh, you can remotely execute\nprograms, transfer files, use a secure and transparent tunnel,\nmanage public keys and much more ...",
+        "documentation": "https://www.libssh.org/documentation/",
+        "homepage": "https://libssh.org/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "libssh - The SSH library"
+      },
+      "build": {
+        "number": 0,
+        "string": "h767bccf_0"
+      },
+      "context": {
+        "name": "libssh",
+        "version": "0.11.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "matthiasdiener"
+        ]
+      },
+      "package": {
+        "name": "libssh",
+        "version": "0.11.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "openssl",
+          "zlib",
+          "krb5"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libssh",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7d8a1361bb094ec3f511964e78a5a4dba689b5986e112afabe4f4d0d6c6125c3",
+          "url": "https://www.libssh.org/files/0.11/libssh-0.11.3.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/include/libssh/libssh.h",
+            "test -f $PREFIX/lib/pkgconfig/libssh.pc",
+            "test -f $PREFIX/lib/libssh$SHLIB_EXT"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

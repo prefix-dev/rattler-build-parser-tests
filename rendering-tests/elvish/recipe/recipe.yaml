@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.21.0
+
+package:
+  name: elvish
+  version: ${{ version }}
+
+source:
+  url: https://github.com/elves/elvish/archive/v${{ version }}.tar.gz
+  sha256: 3a4b93c3c99fe2f9847de35d64be24e2d4b9c12d429cd9831b4571993a66bb7a
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - elvish --help
+
+about:
+  license: BSD-2-Clause
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Friendly and expressive shell
+  homepage: https://github.com/elves/elvish
+  repository: https://github.com/elves/elvish
+
+extra:
+  recipe-maintainers:
+    - danielnachun

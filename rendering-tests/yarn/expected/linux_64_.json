@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarn",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarn/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarn/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarn/work"
+      },
+      "hash": {
+        "hash": "b645390"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "yarn": {
+          "build_string": "hb645390_0",
+          "name": "yarn",
+          "version": "4.12.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:53:03.637947633Z",
+      "variant": {
+        "__unix": "__unix",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "noarch_platform": "unix",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Yarn is a package manager for your code. It allows you to use and share\ncode with other developers from around the world. Yarn does this\nquickly, securely, and reliably so you don't ever have to worry.",
+        "documentation": "https://yarnpkg.com/getting-started",
+        "homepage": "https://yarnpkg.com/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "repository": "https://github.com/yarnpkg/berry",
+        "summary": "Fast, reliable, and secure dependency management."
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": [
+          "mkdir -p \"${{ PREFIX }}/bin\"",
+          "chmod 755 bin/*",
+          "cp bin/* \"${{ PREFIX }}/bin\"",
+          "ls -lathr \"${{ PREFIX }}/bin\""
+        ],
+        "string": "hb645390_0"
+      },
+      "context": {
+        "nodejs_min": "18.12.1",
+        "version": "4.12.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dfroger",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "yarn",
+        "version": "4.12.0"
+      },
+      "requirements": {
+        "run": [
+          "__unix",
+          "nodejs >=18.12.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c60829c8dbf2263e6c6be34c15ebb2830f67a267de4b7d646f4043680fe47a66",
+          "url": "https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-4.12.0.tgz"
+        },
+        {
+          "sha256": "238d933f5c226cc197bd1dae2ad0c468e157b4cba8ed844f81549ba6db777dc4",
+          "url": "https://raw.githubusercontent.com/yarnpkg/berry/%40yarnpkg/cli/4.12.0/LICENSE.md"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "nodejs 18.12.1.*",
+              "pytest"
+            ]
+          },
+          "script": {
+            "file": "run_test.py",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

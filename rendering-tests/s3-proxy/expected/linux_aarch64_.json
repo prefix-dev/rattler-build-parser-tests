@@ -1,0 +1,126 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3-proxy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3-proxy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3-proxy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_s3-proxy/work"
+      },
+      "hash": {
+        "hash": "b5cd7dd"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "s3-proxy": {
+          "build_string": "hb5cd7dd_0",
+          "name": "s3-proxy",
+          "version": "4.19.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:52.103742534Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/oxyno-zeta/s3-proxy",
+        "license": "Apache-2.0",
+        "license_file": [
+          "src/LICENSE",
+          "LICENSE-go-chi-httptracer",
+          "LICENSE-go-jmespath",
+          "library_licenses/**/*"
+        ],
+        "summary": "S3 Reverse Proxy with GET, PUT and DELETE methods and authentication (OpenID Connect and Basic Auth)"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src/cmd/s3-proxy",
+          "go build -o $PREFIX/bin/s3-proxy",
+          "go-licenses save . --ignore github.com/go-chi/httptracer --ignore github.com/jmespath/go-jmespath --save_path ../../../library_licenses"
+        ],
+        "string": "hb5cd7dd_0"
+      },
+      "context": {
+        "name": "s3-proxy",
+        "version": "4.19.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "s3-proxy",
+        "version": "4.19.0"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_linux-aarch64",
+          "sysroot_linux-aarch64 2.17.*",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca28c9b94d2ccc92f22ebf65b8da9ad0f0131f0fe9a4d09745075c01aae7fab5",
+          "target_directory": "src",
+          "url": "https://github.com/oxyno-zeta/s3-proxy/archive/refs/tags/v4.19.0.tar.gz"
+        },
+        {
+          "file_name": "LICENSE-go-jmespath",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "url": "https://raw.githubusercontent.com/jmespath/go-jmespath/refs/heads/master/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "script": "s3-proxy --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

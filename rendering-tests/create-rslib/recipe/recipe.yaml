@@ -1,0 +1,40 @@
+context:
+  version: "0.19.3"
+
+package:
+  name: create-rslib
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/create-rslib/-/create-rslib-${{ version }}.tgz
+  sha256: 031bb57cb6cf05d63d914f595c503bdc0b06825ce15bdc319d0a0c8fedc714bc
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - create-rslib --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Create a new Rslib project
+  homepage: https://lib.rsbuild.dev/
+  repository: https://github.com/web-infra-dev/rslib
+
+extra:
+  recipe-maintainers:
+    - danielnachun

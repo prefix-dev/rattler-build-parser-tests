@@ -1,0 +1,163 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tight-inclusion",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tight-inclusion/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tight-inclusion/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tight-inclusion/work"
+      },
+      "hash": {
+        "hash": "fdb3395"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tight-inclusion": {
+          "build_string": "hfdb3395_2",
+          "name": "tight-inclusion",
+          "version": "1.0.6"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:58.517273055Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "spdlog": "1.17",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://continuous-collision-detection.github.io/tight_inclusion/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Continuous-Collision-Detection/Tight-Inclusion",
+        "summary": "A conservative continuous collision detection (CCD) method with support for minimum separation."
+      },
+      "build": {
+        "number": 2,
+        "string": "hfdb3395_2"
+      },
+      "context": {
+        "version": "1.0.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "olivier-roussel",
+          "bakpaul"
+        ]
+      },
+      "package": {
+        "name": "tight-inclusion",
+        "version": "1.0.6"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "eigen",
+          "spdlog"
+        ],
+        "run": [
+          "eigen",
+          "spdlog"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "tight-inclusion",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Export-target-install-header-in-right-dir-still-need.patch",
+            "patches/0002-Export-symbols-on-windows.patch",
+            "patches/0003-patch-for-conda-forge-package.patch",
+            "patches/0004-add-cmake-config-file-homogenize-project-name.patch",
+            "patches/0005-fix-installation-of-configured-config.hpp-file.patch"
+          ],
+          "sha256": "ed44caa4b253371637beeadefb064333174bb79ef7a0fb7ae09a40206e2e8b5f",
+          "url": "https://github.com/Continuous-Collision-Detection/Tight-Inclusion/archive/refs/tags/v1.0.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "tight_inclusion/config.hpp",
+              "tight_inclusion/ccd.hpp"
+            ],
+            "lib": [
+              "tight_inclusion"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14"
+            ]
+          },
+          "script": "cmake-package-check tight_inclusion"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

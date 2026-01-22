@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  version: 1.4.3
+
+package:
+  name: pypcd4
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pypcd4/pypcd4-${{ version }}.tar.gz
+  sha256: dae09e3ef475a8b30ef8888e9feaf82f479759c421cb56c6533a006981b48c27
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.21.0
+    - python-neo-lzf >=0.3.5
+    - pydantic >=1.10.8,<3.0.0
+
+tests:
+  - python:
+      imports:
+        - pypcd4
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Read and write PCL .pcd files in python
+  license: BSD-3-Clause
+  license_file:
+    - COPYRIGHT.txt
+    - LICENSE.txt
+  homepage: https://github.com/MapIV/pypcd4
+
+extra:
+  recipe-maintainers:
+    - tetov

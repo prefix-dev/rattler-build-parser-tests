@@ -1,0 +1,48 @@
+From eeae56c48a0b5b0125edfa3b81570eb5d5fc5b01 Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Sat, 8 Nov 2025 17:13:09 +0100
+Subject: [PATCH] Support external placo.pyi
+
+---
+ CMakeLists.txt | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8635233d..261054a6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -161,15 +161,18 @@ target_compile_definitions(placo PUBLIC -DBOOST_DISABLE_PRAGMA_MESSAGE)
+ target_link_libraries(placo ${Boost_LIBRARIES} ${PYTHON_LIBRARIES} libplaco eigenpy::eigenpy)
+ target_include_directories(placo PRIVATE ${PYTHON_INCLUDE_DIRS})
+ 
+-add_custom_command(
+-    TARGET placo POST_BUILD
+-    COMMAND doxystub
+-        --module placo
+-        --doxygen_directory "${CMAKE_CURRENT_SOURCE_DIR}"
+-        --output "${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo.pyi"
+-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}"
+-    COMMENT "Generating stubs..."
+-)
++if(NOT DEFINED PLACO_PY_TO_INSTALL)
++  add_custom_command(
++      TARGET placo POST_BUILD
++      COMMAND doxystub
++          --module placo
++          --doxygen_directory "${CMAKE_CURRENT_SOURCE_DIR}"
++          --output "${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo.pyi"
++      WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}"
++      COMMENT "Generating stubs..."
++  )
++  set(PLACO_PY_TO_INSTALL "${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo.pyi")
++endif()
+ 
+ ADD_CUSTOM_TARGET(placo_utils_files ALL
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+@@ -187,5 +190,5 @@ endif()
+ 
+ install(TARGETS libplaco DESTINATION lib)
+ install(TARGETS placo DESTINATION ${PYTHON_SITELIB})
+-install(FILES ${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo.pyi DESTINATION ${PYTHON_SITELIB})
++install(FILES ${PLACO_PY_TO_INSTALL} DESTINATION ${PYTHON_SITELIB})
+ install(DIRECTORY ${CMAKE_BINARY_DIR}/${PYTHON_SITELIB}/placo_utils DESTINATION ${PYTHON_SITELIB})

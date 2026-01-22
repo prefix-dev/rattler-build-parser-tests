@@ -1,0 +1,71 @@
+context:
+  name: dataframely
+  version: 2.6.0
+  python_min: 3.10.*
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 43c7eadf12b4a62e69ca85132f37360314619918e9892f25ea80b9674b267807
+
+build:
+  number: 0
+  skip: not (match(python, python_min) and is_abi3)
+  python:
+    version_independent: true
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - crossenv
+        - maturin >=1.7,<2
+    - ${{ compiler('rust') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+  host:
+    - python
+    - python-abi3
+    - pip
+    - maturin >=1.7,<2
+  run:
+    - python
+    - numpy
+    - polars >=1.35
+    - fsspec >=2025.9
+    - typing_extensions
+  ignore_run_exports:
+    from_package:
+      - cross-python_${{ target_platform }}
+  run_constraints:
+    - pydantic >=2
+    - sqlalchemy >=2
+    - s3fs >=2025.9
+
+tests:
+  - python:
+      python_version: ${{ python_min }}
+      imports:
+        - dataframely
+      pip_check: true
+
+about:
+  homepage: https://github.com/Quantco/dataframely
+  summary: A declarative, polars-native data frame validation library.
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: https://dataframely.readthedocs.io/
+  repository: https://github.com/Quantco/dataframely
+
+extra:
+  recipe-maintainers:
+    - borchero
+    - delsner
+    - AndreasAlbertQC

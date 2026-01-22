@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: uproot
+  version: "5.6.9"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/uproot-${{ version }}.tar.gz
+  sha256: 0f019088f0f6f0d6e9e6cbc7ec158515d26f0dfed029f32e8b8faf041a507d3d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.10.0
+    - hatch-vcs
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - awkward >=2.4.6
+    - cramjam >=2.5.0
+    - python-xxhash
+    - numpy
+    - fsspec !=2025.7.0
+    - packaging
+    - typing_extensions >=4.1.0  # python < 3.11
+
+tests:
+  - python:
+      imports:
+        - uproot
+        - uproot.behaviors
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: ROOT I/O in pure Python and NumPy.
+  description: |
+    uproot (originally μproot, for "micro-Python ROOT") is a reader and a writer
+    of the ROOT file format using only Python and Numpy. Unlike the standard C++
+    ROOT implementation, uproot is only an I/O library, primarily intended to
+    stream data into machine learning libraries in Python. Unlike PyROOT and
+    root_numpy, uproot does not depend on C++ ROOT. Instead, it uses Numpy calls
+    to rapidly cast data blocks in the ROOT file as Numpy arrays.
+  homepage: https://github.com/scikit-hep/uproot5
+  repository: https://github.com/scikit-hep/uproot5
+  documentation: https://uproot.readthedocs.io/en/stable/
+
+extra:
+  recipe-maintainers:
+    - lgray
+    - chrisburr
+    - jpivarski
+    - henryiii
+    - agoose77
+    - ioanaif
+    - conda-forge/scikit-hep

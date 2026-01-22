@@ -1,0 +1,85 @@
+schema_version: 1
+
+context:
+  name: Frv
+  version: "4.41.2"
+  framel_version: 8.46.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://git.ligo.org/virgo/virgoapp/${{ name }}/-/archive/${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: e1f0ea63f947f8851a1060975ebbfc98bf7d3e1b71c2850b1e7176499dc7fc48
+  patches:
+    # remove whitespace from pkg-config requirements in cmake
+    - pkg-config-requirements.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - if: win
+      then:
+        - ${{ compiler('m2w64_c') }}
+        - ${{ stdlib('m2w64_c') }}
+        - ninja
+      else:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - make
+    - cmake
+    - pkg-config
+  host:
+    - fftw
+    - libframel >=${{ framel_version }}
+  run:
+    - fftw
+    - libframel >=${{ framel_version }}
+  run_exports:
+    - ${{ pin_subpackage("frv", upper_bound="x") }}
+  ignore_run_exports:
+    by_name:
+      - if: win
+        then: m2w64-gcc-libs
+
+tests:
+  - requirements:
+      run:
+        - pkg-config
+    script:
+      - if: win
+        then:
+          - if not exist %LIBRARY_INC%\\frv\\Frv.h exit 1
+        else:
+          - test -f ${PREFIX}/include/frv/Frv.h
+      - pkg-config --print-errors --exact-version "${{ version }}" frv
+
+about:
+  summary: The Frame Vector Library (Frv)
+  description: |
+    Frv is a utility library dedicated to vector manipulation.
+    The vectors used in this package are the Frame Library vectors (FrVect)
+    described in the frame specification.
+    The only part frame library part used in this library is the vector
+    definition from the FrameL.h.
+
+    This library is intended to simplify the access of date for the various
+    vectors.
+    It provides most of the basic tools to do vector algebra and basic signal
+    processing.
+
+    This code is written in C. It is thread safe and could be easily used in C
+    or C++ software.
+  homepage: https://git.ligo.org/virgo/virgoApp/${{ name }}/
+  repository: https://git.ligo.org/virgo/virgoApp/${{ name }}
+  license: LGPL-2.1-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - erinelizabethseder-virgo
+    - fcarbogn

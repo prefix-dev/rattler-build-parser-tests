@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: python-vxi11
+  version: 0.9
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python-vxi11-${{ version }}.tar.gz
+  sha256: 01fbd8d5be09352c6be46ae474a47d4fe44be2989f7e977c578c55733b076dff
+
+build:
+  number: 3
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - vxi11-cli = vxi11.cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - standard-xdrlib
+    - __unix
+
+tests:
+  - python:
+      imports:
+        - vxi11
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+      pip_check: true
+  - script:
+      - vxi11-cli --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Python VXI-11 driver for controlling instruments over Ethernet
+  description: |
+    This Python package supports the VXI-11 Ethernet instrument
+    control protocol for controlling VXI11 and LXI compatible instruments.
+  license: MIT
+  license_file: COPYING
+  homepage: http://alexforencich.com/wiki/en/python-vxi11/start
+  repository: https://github.com/python-ivi/python-vxi11
+  documentation: http://alexforencich.com/wiki/en/python-vxi11/start
+
+extra:
+  recipe-maintainers:
+    - beenje

@@ -1,0 +1,42 @@
+context:
+  version: 0.82.0
+
+package:
+  name: fsautocomplete
+  version: ${{ version }}
+
+source:
+  - git: https://github.com/fsharp/fsautocomplete
+    tag: v${{ version }}
+    target_directory: git
+  - url: https://github.com/ionide/FsAutoComplete/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: f1cca05be6c983a611dc2e23251f646520028610a9509d352e5e2c0dc5d63b77
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - sed
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - fsautocomplete --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE.md
+    - git/license-files/
+  summary: F# language server using Language Server Protocol
+  homepage: https://github.com/fsharp/fsautocomplete
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,134 @@
+context:
+  name: servalcat
+  version: "0.4.128"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: c489767ff7ffbb1a856b7341bdcdb6ccd246b92c2f296436933f2d291360b29a
+
+build:
+  number: 3
+  python:
+    # NOTE!
+    # On Windows, installing via pip hardcodes the Python path used during build time into executables (*.exe)
+    # so we need to use conda's `entry_points`
+    entry_points:
+      - servalcat = servalcat.__main__:main
+      - refmacat = servalcat.refmac.refmac_wrapper:command_line
+  
+  script:
+    - if: unix
+      then: |
+        set -exo pipefail
+        rm -rf eigen/  # Remove bundled eigen to use the conda package
+        ${PYTHON} -m pip install . \
+          -vv \
+          --no-deps \
+          --no-build-isolation \
+          --config-settings="cmake.args=-DPython_EXECUTABLE=${PYTHON}"
+        cp ${RECIPE_DIR}/post-link.sh ${PREFIX}/bin/.${PKG_NAME}-post-link.sh
+        chmod +x ${PREFIX}/bin/.${PKG_NAME}-post-link.sh
+
+    - if: win
+      then: |
+        @echo on
+        rmdir /s /q eigen
+        if errorlevel 1 exit 1
+        %PYTHON% -m pip install . ^
+          -vv ^
+          --no-deps ^
+          --no-build-isolation ^
+          --config-settings="cmake.args=-DPython_EXECUTABLE=%PYTHON%"
+        if errorlevel 1 exit 1
+        copy %RECIPE_DIR%\post-link.bat %PREFIX%\Scripts\.%PKG_NAME%-post-link.bat
+        if errorlevel 1 exit 1
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - eigen >=3.4.0
+    - gemmi ==0.7.4
+    - nanobind
+    - pip
+    - python ${{ python }}
+    - scikit-build-core
+  run:
+    - numpy >=1.15
+    - omegaconf ==2.3.0
+    - packaging
+    - pandas >=1.1.0
+    - python ${{ python }}
+    - scipy
+  run_exports: []  # No shared libraries to worry about
+
+tests:
+  - script:
+      - if: unix
+        then: |
+          servalcat --version
+          servalcat --help
+          refmacat --help
+          python tests/test_for_ci.py
+      - if: win
+        then: |
+          servalcat --version
+          if errorlevel 1 exit 1
+          servalcat --help
+          if errorlevel 1 exit 1
+          refmacat --help
+          if errorlevel 1 exit 1
+          python tests/test_for_ci.py
+          if errorlevel 1 exit 1
+
+    files:
+      source:
+        - tests/test_for_ci.py
+        - tests/biotin/biotin_talos.pdb
+
+  - python:
+      pip_check: true
+      imports:
+        - servalcat
+      python_version: ${{ python }}
+
+about:
+  homepage: "https://pypi.org/project/servalcat"
+  summary: "Structure refinement and validation for crystallography and single particle analysis"
+  description: |
+    Structure refinement and validation for crystallography and single particle analysis.
+
+    Servalcat implements pipelines that use Refmac5:
+      - `servalcat refine_spa`: cryo-EM SPA refinement pipeline
+      - `servalcat refine_cx`: small molecule crystallography
+
+    and a Refmac5 controller
+      - `refmacat`: behaves as Refmac, but uses GEMMI for restraint generation instead of MAKECIF
+    Now “No Refmac5” refinement programs have been actively developed:
+      - `servalcat refine_geom`: geometry optimization
+      - `servalcat refine_spa_norefmac`: "No Refmac" version of refine\_spa
+      - `servalcat refine_xtal_norefmac`: crystallographic refinement
+
+    Also, it has several utility commands: `servalcat util`.
+  license: MPL-2.0
+  license_file: LICENSE
+  repository: https://github.com/keitaroyam/servalcat
+  documentation: https://servalcat.readthedocs.io/en/latest
+
+extra:
+  recipe-maintainers:
+    - eunos-1128
+    - keitaroyam

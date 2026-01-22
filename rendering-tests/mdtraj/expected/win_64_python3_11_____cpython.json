@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mdtraj",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mdtraj/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mdtraj/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mdtraj/work"
+      },
+      "hash": {
+        "hash": "188b86b",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mdtraj": {
+          "build_string": "np2py311h188b86b_0",
+          "name": "mdtraj",
+          "version": "1.11.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:46:42.903775114Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "target_platform": "win-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MDTraj is a python library that allows users to manipulate molecular dynamics\n(MD) trajectories and perform a variety of analyses, including fast RMSD,\nsolvent accessible surface area, hydrogen bonding, etc. A highlight of MDTraj\nis the wide variety of molecular dynamics trajectory file formats which are\nsupported, including RCSB pdb, GROMACS xtc, tng, and trr, CHARMM / NAMD dcd, AMBER\nbinpos, AMBER NetCDF, AMBER mdcrd, TINKER arc and MDTraj HDF5.",
+        "documentation": "http://mdtraj.org/",
+        "homepage": "https://github.com/mdtraj/mdtraj",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mdtraj/mdtraj",
+        "summary": "A modern, open library for the analysis of molecular dynamics trajectories"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "mdconvert = mdtraj.scripts.mdconvert:entry_point",
+            "mdinspect = mdtraj.scripts.mdinspect:entry_point"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps -vv",
+        "string": "np2py311h188b86b_0"
+      },
+      "context": {
+        "name": "mdtraj",
+        "version": "1.11.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "marscher",
+          "mattwthompson",
+          "sroet",
+          "jeremyleung521"
+        ]
+      },
+      "package": {
+        "name": "mdtraj",
+        "version": "1.11.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "cython 3.*",
+          "numpy",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "versioneer"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "versioneer",
+          "cython 3.*",
+          "numpy",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "setuptools",
+          "packaging",
+          "numpy >=1.25.0",
+          "scipy",
+          "pandas",
+          "pyparsing",
+          "pytables",
+          "snappy",
+          "zlib"
+        ],
+        "run_constraints": [
+          "gsd !=3.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "70f3dbd9e492198be258a8a1a9c9c08f2482e9d05909f3a708892f4d3af238cf",
+          "url": "https://pypi.org/packages/source/m/mdtraj/mdtraj-1.11.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mdtraj"
+            ]
+          }
+        },
+        {
+          "script": [
+            "mdconvert -h",
+            "mdinspect -h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

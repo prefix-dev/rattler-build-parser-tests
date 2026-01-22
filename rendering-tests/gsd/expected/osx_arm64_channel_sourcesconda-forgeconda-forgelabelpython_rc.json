@@ -1,0 +1,170 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gsd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gsd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gsd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gsd/work"
+      },
+      "hash": {
+        "hash": "8bf9b95"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gsd": {
+          "build_string": "h8bf9b95_0",
+          "name": "gsd",
+          "version": "4.2.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:24.658798435Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "GSD (General Simulation Data) is a file format specification\nand a library to read and write it. The package also contains a python module\nthat reads and writes hoomd schema gsd files with an easy to use syntax.",
+        "documentation": "https://gsd.readthedocs.io/",
+        "homepage": "https://github.com/glotzerlab/gsd",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/glotzerlab/%7B%7B%20name%20%7D%7D",
+        "summary": "General simulation data"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps",
+        "string": "h8bf9b95_0"
+      },
+      "context": {
+        "minimum_python": "3.11",
+        "name": "gsd",
+        "version": "4.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "joaander",
+          "tcmoore3",
+          "SchoeniPhlippsn",
+          "DomFijan",
+          "janbridley",
+          "tfteague",
+          "sumitavaumich"
+        ]
+      },
+      "package": {
+        "name": "gsd",
+        "version": "4.2.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "python 3.11.*",
+          "python-abi3 3.11.*",
+          "cross-python_osx-arm64",
+          "cython >=3.1",
+          "numpy >=2"
+        ],
+        "host": [
+          "cython >=3.1",
+          "python 3.11.*",
+          "python-abi3 3.11.*",
+          "numpy >=2",
+          "pip",
+          "setuptools >=77"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4c6b02976dfae2e61e59ebb11fd069181297979bd750f3f1253b5ad5c8915960",
+          "url": "https://github.com/glotzerlab/gsd/releases/download/v4.2.0/gsd-4.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pytest",
+              "python 3.11.*"
+            ]
+          },
+          "script": [
+            "cd /",
+            "pytest --pyargs gsd -v -ra --ignore-glob=\"*largefile*\""
+          ]
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": [
+            "cd /",
+            "pytest --pyargs gsd -v -ra --ignore-glob=\"*largefile*\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

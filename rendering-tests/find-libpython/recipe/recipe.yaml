@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: find-libpython
+  version: 0.5.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/find_libpython-${{ version }}.tar.gz
+  sha256: 4e4e0ffcad3bfaf2af9461b359329b8736e3f721dc375da7c167aff383e56be1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - find_libpython = find_libpython:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.2
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - find_libpython
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}
+    script:
+      - find_libpython --help
+
+about:
+  summary: Finds the libpython associated with your environment, wherever it may be hiding
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/ktbarrett/find_libpython
+
+extra:
+  recipe-maintainers:
+    - thewchan

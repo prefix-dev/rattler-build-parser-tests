@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "4.12.0"
+  # technically 18.12.0, but not available for testing
+  nodejs_min: 18.12.1
+
+package:
+  name: yarn
+  version: ${{ version }}
+
+source:
+  - url: https://registry.npmjs.org/@yarnpkg/cli-dist/-/cli-dist-${{ version }}.tgz
+    sha256: c60829c8dbf2263e6c6be34c15ebb2830f67a267de4b7d646f4043680fe47a66
+  - url: https://raw.githubusercontent.com/yarnpkg/berry/%40yarnpkg/cli/${{ version }}/LICENSE.md
+    sha256: 238d933f5c226cc197bd1dae2ad0c468e157b4cba8ed844f81549ba6db777dc4
+
+build:
+  number: 0
+  noarch: generic
+  script:
+    - if: win
+      then:
+        - xcopy /s /y bin\* "${{ PREFIX }}\Library\bin\"  || exit 1
+        - dir "${{ PREFIX }}\Library\bin\yarn.cmd"        || exit 1
+      else:
+        - mkdir -p "${{ PREFIX }}/bin"
+        - chmod 755 bin/*
+        - cp bin/* "${{ PREFIX }}/bin"
+        - ls -lathr "${{ PREFIX }}/bin"
+
+requirements:
+  run:
+    - __${{ noarch_platform }}
+    - nodejs >=${{ nodejs_min }}
+
+tests:
+  - requirements:
+      run:
+        - nodejs ${{ nodejs_min }}.*
+        - pytest
+    script:
+      interpreter: python
+      file: run_test.py
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE.md
+  summary: Fast, reliable, and secure dependency management.
+  homepage: https://yarnpkg.com
+  repository: https://github.com/yarnpkg/berry
+  documentation: https://yarnpkg.com/getting-started
+  description: |
+    Yarn is a package manager for your code. It allows you to use and share
+    code with other developers from around the world. Yarn does this
+    quickly, securely, and reliably so you don't ever have to worry.
+
+extra:
+  recipe-maintainers:
+    - dfroger
+    - bollwyvl

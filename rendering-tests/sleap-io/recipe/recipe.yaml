@@ -1,0 +1,62 @@
+context:
+  name: sleap-io
+  version: "0.5.5"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/sleap_io-${{ version }}.tar.gz
+  sha256: b698d99d3fcb6fb549dd791f2ed3dee93fae9cf1a2d343ed762a73818e8b0fa1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python >=3.8
+    - setuptools
+    - pip
+  run:
+    - python >=3.8
+    - ffmpeg
+    - imageio
+    - imageio-ffmpeg >=0.5.0
+    - tifffile
+    - attrs
+    - pandas
+    - simplejson
+    - h5py >=3.8.0
+    - hdmf
+    - numpy
+    - opencv
+    - pynwb
+    - ndx-pose >=0.2.1
+    - tqdm
+    - pyyaml
+
+tests:
+  - python:
+      imports:
+        - sleap_io
+  - requirements:
+      run:
+        - pip
+        - if: linux
+          then: libopencv *=headless*
+    script:
+      - pip check
+
+about:
+  summary: Standalone utilities for working with pose data from SLEAP and other tools.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/talmolab/sleap-io
+  documentation: https://io.sleap.ai
+
+extra:
+  recipe-maintainers:
+    - talmo

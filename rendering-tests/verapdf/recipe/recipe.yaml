@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  version: "1.29.202"
+  openjdk_min: "9"
+
+package:
+  name: verapdf
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/veraPDF/veraPDF-apps/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 490e51007527312e4de7934c0312e9a01ad65c202ff080a77ddcdbf27257d24a
+  - url: https://pdfa.org/wp-content/uploads/2021/04/Matterhorn-Protocol-1-1.pdf
+    sha256: b8bf0b00fd789ef8d8548d2eeb7e83194db394d9f1be741f2d0ef1d62bff50c6
+
+build:
+  number: 0
+  script:
+    - python ${{ RECIPE_DIR }}/builder.py
+
+requirements:
+  build:
+    - maven
+    - python >=3.9
+    - openjdk ${{ openjdk_min }}.*
+  run:
+    - openjdk >=${{ openjdk_min }}
+
+tests:
+  - files:
+      source:
+        - Matterhorn-Protocol-1-1.pdf
+      recipe:
+        - run_test.py
+    requirements:
+      run:
+        - pytest
+        - openjdk ${{ openjdk_min }}.*
+    script:
+      - python run_test.py
+  - files:
+      source:
+        - Matterhorn-Protocol-1-1.pdf
+      recipe:
+        - run_test.py
+    requirements:
+      run:
+        - pytest
+    script:
+      - python run_test.py
+
+about:
+  license: GPL-3.0-or-later OR MPL-2.0
+  license_file:
+    - LICENSE.GPL
+    - LICENSE.MPL
+  summary: Command line and GUI industry supported PDF/A and PDF/UA Validation
+  homepage: https://github.com/veraPDF/veraPDF-apps
+  documentation: https://docs.verapdf.org
+
+extra:
+  recipe-maintainers:
+    - bollwyvl

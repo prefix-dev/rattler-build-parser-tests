@@ -1,0 +1,232 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc4py",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc4py/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc4py/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc4py/work"
+      },
+      "hash": {
+        "hash": "19d656c",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "petsc4py": {
+          "build_string": "np2py310h19d656c_0",
+          "name": "petsc4py",
+          "version": "3.24.3"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:36:45.834761598Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "device": "cuda13",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "is_abi3": true,
+        "mpi": "openmpi",
+        "numpy": "2",
+        "openmpi": "5",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "scalar": "real",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://petsc.org/release/petsc4py/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "summary": "Python bindings for PETSc"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "${{ PYTHON }} conf/cythonize.py",
+            "${{ PYTHON }} -m pip -v install --no-deps ."
+          ],
+          "env": {
+            "PETSC4PY_BUILD_PYSABI": "cp310",
+            "PETSC_DIR": "$PREFIX"
+          }
+        },
+        "string": "np2py310h19d656c_0"
+      },
+      "context": {
+        "abi3_tag": "cp310",
+        "build": 0,
+        "build_abi3": true,
+        "name": "petsc4py",
+        "python_min": "3.10",
+        "version": "3.24.3",
+        "version_xy": "3.24"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dalcinl",
+          "minrk",
+          "davidbrochart",
+          "SylvainCorlay",
+          "stefanozampini"
+        ]
+      },
+      "package": {
+        "name": "petsc4py",
+        "version": "3.24.3"
+      },
+      "requirements": {
+        "build": [
+          "gfortran_linux-64 14.*",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "cython",
+          "pip",
+          "setuptools",
+          "numpy",
+          "openmpi",
+          "petsc 3.24.* cuda13_real_*"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "python"
+          ]
+        },
+        "run": [
+          "python"
+        ],
+        "run_constraints": [
+          "mpi4py >=3.0.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "62ed68d87fb3485b0b2fb2e9158b88dc56e64cce6bdc511d7f4630741218e868",
+          "url": "https://pypi.org/packages/source/p/petsc4py/petsc4py-3.24.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "petsc4py",
+              "petsc4py.PETSc"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_mat_schur.py"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.13.*",
+              "abi3audit"
+            ]
+          },
+          "script": "abi3audit $PREFIX/lib/python3.13/site-packages/petsc4py/lib/*.so -s -v --assume-minimum-abi3 3.11"
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_mat_schur.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/test_mat_schur.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.13.*"
+            ]
+          },
+          "script": {
+            "env": {
+              "CONDA_BUILD": "1"
+            },
+            "file": "run_test"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

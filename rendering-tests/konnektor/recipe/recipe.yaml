@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: konnektor
+  version: "0.2.1"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/OpenFreeEnergy/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: b5ff2d56e2712f2e480dd6e3f8360dc9d332a2eae217b09d442dbda88961b3b3
+
+build:
+  number: 0
+  noarch: python
+  script: SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }} ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - setuptools_scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - gufe >=1,<2
+    - numpy
+    - rdkit
+    - networkx
+    - scikit-mol >=0.5.5  # https://github.com/EBjerrum/scikit-mol/pull/68
+    - scikit-learn
+    - tqdm
+    - ipycytoscape
+
+tests:
+  - python:
+      imports:
+        - konnektor
+      python_version: ${{ python_min }}.*
+      pip_check: false
+  - requirements:
+      run:
+        - pytest
+        - python ${{ python_min }}.*
+    script:
+      - python -c "import ${{ name }}; print(${{ name }}.__version__)"
+      - pytest --pyargs konnektor
+
+about:
+  summary: Konnektor is a package for calculating networks.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/OpenFreeEnergy/konnektor
+
+extra:
+  recipe-maintainers:
+    - atravitz
+    - mikemhenry
+    - IAlibay
+    - RiesBen

@@ -1,0 +1,64 @@
+schema_version: 1
+
+context:
+  name: distfit
+  version: "1.8.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/distfit-${{ version }}.tar.gz
+  sha256: 94ab1611e5113edf4f0daffeb3faed780e6159045da44eca3ad40dee3491b1b2
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base >=3.5.2
+    - numpy
+    - pandas
+    - statsmodels
+    - scipy
+    - pypickle >=1.1.4
+    - colourmap >=1.1.10
+    - packaging
+    - joblib
+
+tests:
+  - python:
+      imports:
+        - distfit
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Probability density function fitting and hypothesis testing.
+  license: MIT
+  license_file: LICENSE
+  description: |
+    Distfit is a python package for probability density fitting across
+    89 univariate distributions to non-censored data by residual sum of
+    squares (RSS), and hypothesis testing. Probability density fitting
+    is the fitting of a probability distribution to a series of data
+    concerning the repeated measurement of a variable phenomenon.
+    Distfit scores each of the 89 different distributions for the fit
+    with the empirical distribution and return the best scoring
+    distribution.
+
+
+  homepage: https://github.com/erdogant/distfit
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: html-text
+  version: 0.7.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/html_text-${{ version }}.tar.gz
+  sha256: 87fd194310a9f54be32c7b18a70180dfa72a6b4d01cca35ac813c4d2b2b2ed8b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - hatchling >=1.27.0
+  run:
+    - python >=${{ python_min }}
+    - lxml
+    - lxml-html-clean
+
+tests:
+  - python:
+      imports:
+        - html_text
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Extract text from HTML
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/zytedata/html-text
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,40 @@
+context:
+  version: "0.19.3"
+
+package:
+  name: rslib
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@rslib/core/-/core-${{ version }}.tgz
+  sha256: 7b70dceae536fffc1bc6a76d21f0af501ce14da92a5916de228bf48e8a451b93
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - rslib --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: The Rsbuild-based library development tool.
+  homepage: https://lib.rsbuild.dev
+  repository: https://github.com/web-infra-dev/rslib
+
+extra:
+  recipe-maintainers:
+    - danielnachun

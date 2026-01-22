@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cset",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cset/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cset/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cset/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cset": {
+          "build_string": "pyhcf101f3_0",
+          "name": "cset",
+          "version": "25.12.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:13.552680031Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://metoffice.github.io/CSET",
+        "homepage": "https://metoffice.github.io/CSET",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE"
+        ],
+        "repository": "https://github.com/MetOffice/CSET",
+        "summary": "Convective Scale Evaluation Tool for evaluation and investigation of regional models."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "cset = CSET:main"
+          ]
+        },
+        "script": "python -m pip install . --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_min": "3.12",
+        "version": "25.12.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jfrost-mo"
+        ]
+      },
+      "package": {
+        "name": "cset",
+        "version": "25.12.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.12.*",
+          "setuptools >=64.0",
+          "setuptools_scm >=8",
+          "pip >=24.0"
+        ],
+        "run": [
+          "python >=3.12,<3.14",
+          "numpy",
+          "iris >=3.14.1",
+          "ruamel.yaml >=0.17",
+          "pygraphviz >=1.11",
+          "mo_pack >=0.3",
+          "isodate >=0.6",
+          "markdown-it-py >=3.0",
+          "nc-time-axis",
+          "iris-grib",
+          "scipy",
+          "scikit-image"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c511c62a88720964467be7be0e66aad3e67632cf1f0fa87d6e75d9c8bbc0b373",
+          "url": "https://files.pythonhosted.org/packages/source/c/cset/cset-25.12.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "CSET"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip",
+              "python 3.12.*"
+            ]
+          },
+          "script": "cset --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

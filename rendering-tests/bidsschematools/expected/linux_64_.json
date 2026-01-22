@@ -1,0 +1,156 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bidsschematools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bidsschematools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bidsschematools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_bidsschematools/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "bidsschematools": {
+          "build_string": "pyhcf101f3_0",
+          "name": "bidsschematools",
+          "version": "1.1.5"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:09.485821684Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/bids-standard/bids-specification",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/bids-standard/bids-specification",
+        "summary": "Python tools for working with the BIDS schema"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "bst = bidsschematools.__main__:cli"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "bidsschematools",
+        "python_min": "3.10",
+        "version": "1.1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "yarikoptic",
+          "TheChymera",
+          "effigies"
+        ]
+      },
+      "package": {
+        "name": "bidsschematools",
+        "version": "1.1.5"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "pdm-backend",
+          "acres",
+          "pyyaml"
+        ],
+        "run": [
+          "python >=3.10",
+          "click",
+          "pyyaml",
+          "acres"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "813d6dd7fec988a65ce0aeca65c0fcb270788451184796e6b2a049df73ab0798",
+          "url": "https://pypi.org/packages/source/b/bidsschematools/bidsschematools-1.1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "bidsschematools"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "pyproject.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "jq"
+            ]
+          },
+          "script": [
+            "bst --help",
+            "bst export | jq '[.bids_version, .schema_version]'",
+            "pip install \"bidsschematools[tests]\"",
+            "python -m pytest -vv --pyargs bidsschematools"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

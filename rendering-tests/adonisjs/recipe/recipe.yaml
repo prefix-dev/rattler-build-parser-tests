@@ -1,0 +1,41 @@
+context:
+  name: adonisjs
+  version: "6.19.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@adonisjs/core/-/core-${{ version }}.tgz
+  sha256: 8e6ca901d0038a1162c07897bc23ae2bac28fd25c2200e6e138b973599b63d98
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - adonis-kit --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: AdonisJS is a TypeScript-first web framework for building web apps and API servers.
+  homepage: https://github.com/adonisjs/core
+  repository: https://github.com/adonisjs/core
+
+extra:
+  recipe-maintainers:
+    - danielnachun

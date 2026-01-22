@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: raiutils
+  version: 0.4.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/raiutils-${{ version }}.tar.gz
+  sha256: d210a4d5a059e48388d341ee02cb87f3c92bbf1f0bcbcecf04fd93a599d2dca4
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - numpy
+    - pandas
+    - python >=${{ python_min }}
+    - requests
+    - scikit-learn
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - raiutils
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Common basic utilities used across various RAI tools
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/microsoft/responsible-ai-widgets
+
+extra:
+  recipe-maintainers:
+    - janjagusch
+    - bgalvao

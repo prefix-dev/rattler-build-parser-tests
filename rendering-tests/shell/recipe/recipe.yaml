@@ -1,0 +1,42 @@
+context:
+  version: "0.2.0"
+
+package:
+  name: shell
+  version: ${{ version }}
+
+source:
+  url: https://github.com/prefix-dev/shell/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: d0847b6a805163f5a571c14ca576f27f770c41340a9f343e1235bab1677ebce3
+
+build:
+  number: 0
+  script: |
+    set -ex
+    cd crates/shell
+    cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    cargo install --no-track --locked --bins --root ${{ PREFIX }} --path .
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - shell --help
+
+about:
+  homepage: https://github.com/prefix-dev/shell
+  license: MIT
+  license_file:
+    - THIRDPARTY.yml
+    - LICENSE.txt
+  summary: The ultimate cross-platform, bash-like shell
+
+extra:
+  recipe-maintainers:
+    - prsabahrami
+    - wolfv

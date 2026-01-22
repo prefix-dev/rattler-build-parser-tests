@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sos/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sos": {
+          "build_string": "pyhcf101f3_2",
+          "name": "sos",
+          "version": "0.25.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:54.106898071Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://vatlab.github.io/sos-docs/",
+        "homepage": "https://github.com/vatlab/SoS",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Script of Scripts (SoS): an interactive, cross-platform, and cross-language workflow system for reproducible data analysis"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "python": {
+          "entry_points": [
+            "sos = sos.__main__:main",
+            "sos-runner = sos.__main__:sosrunner"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv",
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "version": "0.25.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "BoPeng",
+          "gaow",
+          "jdblischak"
+        ]
+      },
+      "package": {
+        "name": "sos",
+        "version": "0.25.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "fasteners",
+          "jinja2",
+          "nbformat",
+          "networkx",
+          "pexpect",
+          "ptyprocess",
+          "psutil",
+          "pydot",
+          "pydotplus",
+          "pygments",
+          "python >=3.10",
+          "python-xxhash",
+          "pyyaml",
+          "pyzmq",
+          "setuptools",
+          "tqdm"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5f5bedbf516567ed81e6f6cc4ca5130e404df708e5f2ba2430ab843c8fd1c10e",
+          "url": "https://pypi.org/packages/source/s/sos/sos-0.25.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sos",
+              "sos.docker",
+              "sos.singularity"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python =3.10"
+            ]
+          },
+          "script": [
+            "sos --help",
+            "sos-runner --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

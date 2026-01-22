@@ -1,0 +1,73 @@
+diff --git a/meson.build b/meson.build
+--- a/meson.build
++++ b/meson.build
+@@ -1,51 +1,68 @@
+ project(
+     'python-mumps',
+     'cython', 'c',
+     license: 'BSD-2-Clause',
+     license_files: 'LICENSE',
+     meson_version: '>= 1.1.0',
+     default_options: [
+         'buildtype=release',
+         'c_std=c99',
+     ],
+-    version: run_command('python3', '-m', 'setuptools_scm', check: true).stdout().strip(),
++    version: run_command('python', '-m', 'setuptools_scm', check: true).stdout().strip(),
+ )
+ 
+ py = import('python').find_installation(pure: false)
+ cc = meson.get_compiler('c')
+ tempita = files('tempita.py')
+ fs = import('fs')
+ 
+ # Declare NumPy via meson's dependency() (no explicit method), and add
+ # the NPY_NO_DEPRECATED_API compile flag.
+ numpy_nodepr_api = ['-DNPY_NO_DEPRECATED_API=NPY_1_9_API_VERSION']
+ np_dep_base = dependency('numpy')
+ np_dep = declare_dependency(dependencies: [np_dep_base], compile_args: numpy_nodepr_api)
+ 
+ # Declare MUMPS dependencies using meson's dependency() resolution.
+ # Fail early if a named dependency is not available.
+ mumps_names = get_option('mumps_names')
+ mumps_deps = []
++win_libs = []
+ foreach mumps_name : mumps_names
+     # 1) Try the package as given
+     pkg = dependency(mumps_name, required: false)
+     if pkg.found()
+         mumps_deps += pkg
+         continue
+     endif
+ 
+     # 2) If it ends with '_seq', try without that suffix (MPI variant)
+     if mumps_name.endswith('_seq')
+         short = mumps_name.substring(0, -4)
+         pkg2 = dependency(short, required: false)
+         if pkg2.found()
+             mumps_deps += pkg2
+             continue
+         endif
+     endif
+ 
++    # Windows fallback when pkg-config isn't available.
++    if host_machine.system() == 'windows'
++        lib_name = mumps_name
++        if mumps_name.endswith('_seq')
++            lib_name = mumps_name.substring(0, -4)
++        endif
++        win_libs += cc.find_library(lib_name, required: true)
++        continue
++    endif
++
+     # Neither found -> error
+     error('MUMPS dependency not found: ' + mumps_name + '. Also tried short name if applicable.')
+ endforeach
+ 
++if host_machine.system() == 'windows' and win_libs.length() > 0
++    mumps_common = cc.find_library('mumps_common', required: true)
++    pord = cc.find_library('pord', required: true)
++    mumps_deps += win_libs + [mumps_common, pord]
++endif
++
+ subdir('src/mumps')

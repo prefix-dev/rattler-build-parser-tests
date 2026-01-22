@@ -1,0 +1,58 @@
+schema_version: 1
+
+context:
+  name: mt2
+  version: "1.3.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mt2-${{ version }}.tar.gz
+  sha256: 5f9933f6ab2afa60bd24122622df5226dbf479bdde1ac1c57da6ba5e3937d204
+
+build:
+  number: 1
+  skip: match(python, "<3.9")
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - numpy
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+  host:
+    - python
+    - numpy
+    - setuptools >=61.0
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - mt2
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+
+about:
+  summary: Stransverse mass computation as a numpy ufunc.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tpgillam/mt2
+
+extra:
+  recipe-maintainers:
+    - conda-forge/hepmc3
+    - kratsg
+    - lgray

@@ -1,0 +1,123 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parquet-stream-writer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parquet-stream-writer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parquet-stream-writer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_parquet-stream-writer/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "parquet-stream-writer": {
+          "build_string": "pyhcf101f3_0",
+          "name": "parquet-stream-writer",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:40.347026007Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "`parquet-stream-writer` provides a memory-efficient way to write streaming\ndata to Parquet. It buffers incoming records and writes them incrementally\nto disk. When a configurable size threshold is reached, it starts a new\nParquet shard, avoiding the need to load the entire dataset into memory.\nThis makes this library suitable for datasets that are too large to fit in\nthe available memory or for continuously generated data.",
+        "homepage": "https://github.com/apcamargo/parquet-stream-writer",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Write streaming data to Parquet files with automatic sharding."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "apcamargo"
+        ]
+      },
+      "package": {
+        "name": "parquet-stream-writer",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "uv-build >=0.9,<0.10",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10",
+          "pyarrow >=21.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2b74fc464c41722498e5ce8481f8cd6bddd1607db7d39b87760a6e50740760cc",
+          "url": "https://pypi.org/packages/source/p/parquet-stream-writer/parquet_stream_writer-0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "parquet_stream_writer"
+            ],
+            "python_version": "3.10.*"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

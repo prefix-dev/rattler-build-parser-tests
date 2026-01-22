@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: lxml-html-clean
+  version: 0.4.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/lxml_html_clean-${{ version }}.tar.gz
+  sha256: c9df91925b00f836c807beab127aac82575110eacff54d0a75187914f1bd9d8c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - lxml
+
+tests:
+  - python:
+      imports:
+        - lxml_html_clean
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: HTML cleaner from lxml project
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  homepage: https://github.com/fedora-python/lxml_html_clean/
+  documentation: https://lxml-html-clean.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

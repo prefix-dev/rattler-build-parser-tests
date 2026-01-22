@@ -1,0 +1,168 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_createrepo_c",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_createrepo_c/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_createrepo_c/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_createrepo_c/work"
+      },
+      "hash": {
+        "hash": "bb3999d",
+        "prefix": "py39"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "createrepo_c": {
+          "build_string": "py39hbb3999d_1",
+          "name": "createrepo_c",
+          "version": "1.2.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:13.444340806Z",
+      "variant": {
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "glib": "2",
+        "libcurl": "8",
+        "libxml2": "2.13",
+        "openssl": "3",
+        "python": "3.9.* *_cpython",
+        "sqlite": "3",
+        "target_platform": "linux-64",
+        "xz": "5",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Createrepo_c is a C implementation of the classical [Createrepo](http://createrepo.baseurl.org/)\ntool and simultaneously a C library for manipulation with a repodata.\nCreaterepo_c provides Python bindings too, so could be easily used instead\nof [yum library](http://yum.baseurl.org/) for certain kinds of\nmanipulations with repodata.",
+        "documentation": "https://github.com/rpm-software-management/createrepo_c/wiki",
+        "homepage": "http://rpm-software-management.github.io/createrepo_c/",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/rpm-software-management/createrepo_c",
+        "summary": "C implementation of createrepo"
+      },
+      "build": {
+        "number": 1,
+        "string": "py39hbb3999d_1"
+      },
+      "context": {
+        "name": "createrepo_c",
+        "version": "1.2.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "createrepo_c",
+        "version": "1.2.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "make",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "python",
+          "zchunk",
+          "libcurl",
+          "openssl",
+          "xz",
+          "libmagic",
+          "sqlite",
+          "libxml2",
+          "glib",
+          "bzip2",
+          "rpm-tools",
+          "drpm",
+          "zlib",
+          "libmodulemd",
+          "nose",
+          "doxygen"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "rpm-tools",
+              "upper_bound": "x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libmodulemd",
+              "upper_bound": "x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "438.patch",
+            "0001-Fix-includes.patch"
+          ],
+          "sha256": "5252911bb5ab0732922e298348a94f0e348e0891935ff0876042ac1bd8c5eeed",
+          "url": "https://github.com/rpm-software-management/createrepo_c/archive/1.2.1/createrepo_c-1.2.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "createrepo_c --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

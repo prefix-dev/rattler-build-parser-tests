@@ -1,0 +1,177 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nbdime",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nbdime/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nbdime/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nbdime/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nbdime": {
+          "build_string": "pyhcf101f3_0",
+          "name": "nbdime",
+          "version": "4.0.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:35:36.046724620Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://nbdime.readthedocs.io/",
+        "homepage": "https://pypi.org/project/nbdime",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.md",
+          "nbdime/labextension/static/third-party-licenses.json"
+        ],
+        "repository": "https://github.com/jupyter/nbdime",
+        "summary": "Diff and merge of Jupyter Notebooks"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "git-nbdiffdriver = nbdime.vcs.git.diffdriver:main",
+            "git-nbdifftool = nbdime.vcs.git.difftool:main",
+            "git-nbmergedriver = nbdime.vcs.git.mergedriver:main",
+            "git-nbmergetool = nbdime.vcs.git.mergetool:main",
+            "hg-nbdiff = nbdime.vcs.hg.diff:main",
+            "hg-nbdiffweb = nbdime.vcs.hg.diffweb:main",
+            "hg-nbmerge = nbdime.vcs.hg.merge:main",
+            "hg-nbmergeweb = nbdime.vcs.hg.mergeweb:main",
+            "nbdiff = nbdime.nbdiffapp:main",
+            "nbdiff-web = nbdime.webapp.nbdiffweb:main",
+            "nbdime = nbdime.__main__:main_dispatch",
+            "nbmerge = nbdime.nbmergeapp:main",
+            "nbmerge-web = nbdime.webapp.nbmergeweb:main",
+            "nbshow = nbdime.nbshowapp:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "jupyterlab_max": "5",
+        "jupyterlab_min": "4.0.0",
+        "python_check_max": "3.14",
+        "version": "4.0.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kain88-de",
+          "minrk",
+          "ocefpaf",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "nbdime",
+        "version": "4.0.3"
+      },
+      "requirements": {
+        "host": [
+          "hatch-jupyter-builder >=0.5",
+          "hatchling >=1.5.0",
+          "jupyterlab >=4.0.0,<5",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "colorama",
+          "gitpython !=2.1.4,!=2.1.5,!=2.1.6",
+          "jinja2 >=2.9",
+          "jupyter_server",
+          "jupyter-server-mathjax >=0.2.2",
+          "nbformat",
+          "pygments",
+          "python >=3.10",
+          "requests",
+          "tornado"
+        ],
+        "run_constraints": [
+          "jupyterlab >=4.0.0,<5"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "62ab50a758282523c4501144b9f314221dbbaed0403c12fd70f6a4fcc532ec24",
+          "url": "https://pypi.org/packages/source/n/nbdime/nbdime-4.0.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "nbdime"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.14.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "jupyterlab",
+              "python 3.10.*"
+            ]
+          },
+          "script": {
+            "file": "run_test.py",
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

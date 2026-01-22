@@ -1,0 +1,95 @@
+schema_version: 1
+
+context:
+  name: gstlal-calibration
+  version: 1.5.11
+  # dependencies
+  gstlal_version: 1.10.0
+  gstlal_ugly_version: 1.10.0
+  lal_version: 7.2.4
+  lalmetaio_version: 3.0.2
+  ligo_segments_version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/lscsoft/source/${{ name }}-${{ version }}.tar.gz
+  sha256: 3517f11506920031ba6c6c0e0756918a461dae38e2b055701d6fea21c50ceb15
+  patches:
+    # patch fix for https://git.ligo.org/Calibration/gstlal-calibration/-/issues/18
+    - link-fftw.patch
+    # patch fix for https://git.ligo.org/Calibration/gstlal-calibration/-/issues/26
+    - link-gsl.patch
+
+build:
+  number: 1
+  skip:
+    - win
+    # gstlal not built for Python 3.13
+    - match(python, ">=3.13")
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+  host:
+    - fftw
+    - gsl
+    - gst-plugins-base
+    - gstreamer
+    - gstlal >=${{ gstlal_version }}
+    - libglib
+    - liblal >=${{ lal_version }}
+    - python
+    - zlib
+  run:
+    - fftw
+    - gsl
+    - gst-plugins-base
+    - gstreamer
+    - gstlal >=${{ gstlal_version }}
+    - gstlal-ugly >=${{ gstlal_ugly_version }}
+    - kafka-python-ng
+    - libglib
+    - liblal >=${{ lal_version }}
+    - ligo-scald
+    - ligo-segments >=${{ ligo_segments_version }}
+    - matplotlib-base
+    - numpy
+    - python
+    - python-lal
+    - scipy
+  ignore_run_exports:
+    by_name:
+      - libzlib
+
+tests:
+  - python:
+      imports:
+        - gstlalcalibration.calibhandler
+        - gstlalcalibration.calibration_parts
+  - script:
+      - gst-inspect-1.0 cmath
+      - gst-inspect-1.0 gstlalcalibration
+      - gst-inspect-1.0 splitcounter
+      - gstlal_calibration_aggregator --help
+      - gstlal_compute_strain --help
+
+about:
+  summary: GStreamer for GW data analysis (calibration parts)
+  description: |
+    This package contains the plugins and shared libraries required to
+    run the gstlal calibration software.
+  homepage: https://git.ligo.org/calibration/gstlal-calibration
+  repository: https://git.ligo.org/calibration/gstlal-calibration
+  license: GPL-2.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - nothisisolivia

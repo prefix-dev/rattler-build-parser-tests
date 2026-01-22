@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  version: 4.27.5
+
+package:
+  name: gen3
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/g/gen3/gen3-${{ version }}.tar.gz
+  sha256: f7f20888448b48731f99ac2b7b778c88e7f389a1b4de5b4f8ca3278c25ff56b0
+
+build:
+  number: 1
+  noarch: python
+  script: 
+    - sed -i '/pypfb/d' pyproject.toml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - gen3 = gen3.cli.__main__:main
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry >=1.4.1
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - indexclient >=2.3.0,<3.0.0
+    - drsclient >=0.3.0
+    - aiohttp
+    - backoff
+    - cdislogging >=1.1.0,<2.0.0
+    - click
+    - fhirclient
+    - jsonschema
+    - dataclasses-json <=0.5.9
+    - pypfb >=0.5.30
+    - tqdm >=4.61.2,<5.0.0
+    - humanfriendly
+    - python-dateutil
+    - aiofiles >=0.8.0,<0.9.0
+    - pandas >=1.4.2
+    - urllib3 >2.0.0
+    - httpx
+    - xmltodict >=0.13.0,<0.14.0
+    - pyyaml >=6.0.1
+    - gen3users
+
+tests:
+  - python:
+      imports:
+        - gen3
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Gen3 CLI and Python SDK
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - NOTICE
+  homepage: https://gen3.org/
+
+extra:
+  recipe-maintainers:
+    - danielnachun

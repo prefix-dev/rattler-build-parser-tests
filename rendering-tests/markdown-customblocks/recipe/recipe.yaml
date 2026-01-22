@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: markdown-customblocks
+  version: 1.5.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 830cc1e11dc662aae21589e336c52da7db07878df3e250f21d5d221fa68e5f2b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=75
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - markdown
+    - yamlns >=0.11
+    - beautifulsoup4
+    - decorator
+    - geocoder
+    - pytest
+    - pytest-cov <4
+    - responses
+    - python-magic
+    - pillow
+
+tests:
+  - python:
+      imports:
+        - customblocks
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python Markdown extension to add custom parametrizable and nestable blocks
+  license: AGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/vokimon/markdown-customblocks
+
+extra:
+  recipe-maintainers:
+    - thewchan

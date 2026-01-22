@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.3.0
+
+package:
+  name: jsonpp
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jmhodges/jsonpp/archive/${{ version }}.tar.gz
+  sha256: dde8ea9b270a79cd2b2f40824f89abc5270bd360122d87ab04b4361c0015d941
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - jsonpp --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Command-line JSON pretty-printer
+  homepage: https://github.com/jmhodges/jsonpp
+  repository: https://github.com/jmhodges/jsonpp
+
+extra:
+  recipe-maintainers:
+    - danielnachun

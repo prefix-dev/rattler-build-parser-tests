@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "146.0.7648.0.0"
+  chromedriver_version: ${{ (version | split("."))[0:4] | join(".") }}
+
+package:
+  name: python-chromedriver-binary
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/danielkaiser/python-chromedriver-binary/archive/v${{ version }}.tar.gz
+    sha256: 4dbbdfcad681655f94d429190945d23e8c8717810f93c8900bc292b5ad348803
+  - if: noarch_platform == "linux"
+    then:
+      url: https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${{ chromedriver_version }}/linux64/chromedriver-linux64.zip
+      sha256: f833e52ada9715984ed756c5d1419a72ee111b5fc00070ecc017d1c5d3c6dd99
+  - if: noarch_platform == "osx"
+    then:
+      url: https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${{ chromedriver_version }}/mac-x64/chromedriver-mac-x64.zip
+      sha256: 271d9c0d3862c0c5a3b0d4cff7dce87c64eaba49abf548dd448a7ce0cc91a529
+  - if: noarch_platform == "win"
+    then:
+      url: https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${{ chromedriver_version }}/win32/chromedriver-win32.zip
+      sha256: f5f0489ad30fbf66ba262978c5a46535a26ebd3f4b904c94ad405c9c5e6f142c
+
+build:
+  number: 0
+  noarch: python
+  dynamic_linking:
+    binary_relocation: ${{ false if noarch_platform == "osx" else true }}
+  python:
+    entry_points:
+      - chromedriver-path = chromedriver_binary.utils:print_chromedriver_path
+  script:
+    - if: noarch_platform != "win"
+      then:
+        - chmod +x chromedriver
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - __${{ noarch_platform }}
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: chromedriver_binary
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.13.*
+  - files:
+      recipe:
+        - run_test.py
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - python run_test.py
+
+about:
+  homepage: https://github.com/danielkaiser/python-chromedriver-binary
+  license: MIT
+  license_file:
+    - LICENSE
+    - LICENSE.chromedriver
+    - THIRD_PARTY_NOTICES.chromedriver
+  summary: Downloads and installs the chromedriver binary version
+  description: |
+    Downloads and installs the chromedriver binary for automated
+    testing of webapps. The installer supports Linux, MacOS and Windows
+    operating systems.
+
+extra:
+  recipe-maintainers:
+    - williamjamir
+    - bollwyvl

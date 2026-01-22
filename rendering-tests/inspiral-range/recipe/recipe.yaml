@@ -1,0 +1,88 @@
+schema_version: 1
+
+context:
+  name: inspiral_range
+  version: 0.9.3
+
+package:
+  name: ${{ name|lower|replace('_', '-') }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 5b0ec4789ce227e8a73a2fee9470a78a4e0800836cb3dc46ae2d76f445555c88
+  patches:
+    # remove astropy from install_requires, it's optional on Unix
+    - if: unix
+      then: no-astropy.patch
+
+build:
+  noarch: python
+  number: 1
+  python:
+    entry_points:
+      - inspiral-range = inspiral_range.__main__:main
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+  run:
+    - if: unix
+      then:
+        - __unix
+        - python-lal
+        - python-lalsimulation
+    - if: win
+      then:
+        - __win
+        - astropy-base
+    - gpstime
+    - numpy
+    - python >=${{ python_min }}
+    - pyyaml
+    - scipy >=1.8.0
+
+tests:
+  - files:
+      source:
+        - inspiral_range/test
+    requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      # Check metadata
+      - python -m pip check inspiral-range
+      - python -m pip show inspiral-range
+      # Run unit tests (not on windows)
+      - if: not win
+        then: python -m inspiral_range.test -dt
+      # Check command-line tool
+      - inspiral-range --asd inspiral_range/test/O2.txt
+      - inspiral-range --asd inspiral_range/test/O3.txt m1=30 m2=30
+
+about:
+  summary: GW detector inspiral range calculation tools
+  description: |
+    The inspiral_range package provides tools for calculating various binary
+    inspiral range measures useful as figures of merit for gravitational wave
+    detectors characterised by a strain noise spectral density.
+
+    It includes a command-line tool for calculating various inspiral ranges
+    from a supplied file of detector noise spectral density (either ASD or
+    PSD).
+  homepage: https://git.ligo.org/gwinc/inspiral_range
+  repository: https://git.ligo.org/gwinc/inspiral_range
+  license: GPL-3.0-or-later
+  license_file:
+    - COPYING
+    - COPYING-GPL-3
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - jrollins

@@ -1,0 +1,44 @@
+context:
+  version: "0.8.5"
+
+package:
+  name: sheldon
+  version: ${{ version }}
+
+source:
+  url: https://github.com/rossmacarthur/sheldon/archive/${{ version }}.tar.gz
+  sha256: a32e181667ec8bf235f0c50f2671d3c0d78fbdd7502a61e2f88c7deacb534b20
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - curl
+    - libcurl
+    - openssl
+    - zlib
+
+tests:
+  - script:
+      - sheldon --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Fast, configurable, shell plugin manager
+  homepage: https://sheldon.cli.rs
+  repository: https://github.com/rossmacarthur/sheldon
+
+extra:
+  recipe-maintainers:
+    - danielnachun

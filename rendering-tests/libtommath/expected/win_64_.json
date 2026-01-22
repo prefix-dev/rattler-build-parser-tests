@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtommath",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtommath/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtommath/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libtommath/work"
+      },
+      "hash": {
+        "hash": "6a83c73"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtommath": {
+          "build_string": "h6a83c73_1",
+          "name": "libtommath",
+          "version": "1.3.0"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:32.658194855Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LibTomMath is a free open source portable number theoretic multiple-precision\ninteger library written entirely in C. It's designed to provide a simple to work\nwith API that provides fairly efficient routines that build out of the box without\nconfiguration. The library builds with GCC 2.95 and up as well as Visual C++ v6.00\nand supports both static and dynamic linking.",
+        "documentation": "https://github.com/libtom/libtommath/releases/download/v1.3.0/bn-1.3.0.pdf",
+        "homepage": "https://www.libtom.net/LibTomMath/",
+        "license": "Unlicense",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/libtom/libtommath",
+        "summary": "A free open source portable number theoretic multiple-precision integer library"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "mkdir build",
+          "cd build",
+          "cmake -G Ninja -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..",
+          "ninja",
+          "ninja install"
+        ],
+        "string": "h6a83c73_1"
+      },
+      "context": {
+        "version": "1.3.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "zelosleone"
+        ]
+      },
+      "package": {
+        "name": "libtommath",
+        "version": "1.3.0"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs_win-64",
+          "cmake",
+          "ninja"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libtommath",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6d099e93ff00fa9b18346f4bcd97dcc48c3e91286f7e16c4ac5515a7171c3149",
+          "url": "https://github.com/libtom/libtommath/archive/v1.3.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Library/bin/tommath.dll",
+              "Library/lib/cmake/libtommath/libtommath-*.cmake",
+              "Library/lib/pkgconfig/libtommath.pc"
+            ],
+            "include": [
+              "tommath.h"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

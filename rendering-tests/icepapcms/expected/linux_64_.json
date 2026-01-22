@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_icepapcms",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_icepapcms/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_icepapcms/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_icepapcms/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "icepapcms": {
+          "build_string": "pyhcf101f3_0",
+          "name": "icepapcms",
+          "version": "3.10.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:25.719056559Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.com/icepap-organization/IcepapCMS",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "Icepap Configuration Management System and Test Tool"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "icepapcms = icepapcms.__main__:main",
+            "ipapconsole = icepapcms.gui.ipapconsole:main",
+            "icepapsnapshot = icepapcms.lib.snapshot:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "icepapcms",
+        "version": "3.10.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "beenje",
+          "perhedmax",
+          "rhomspuron"
+        ]
+      },
+      "package": {
+        "name": "icepapcms",
+        "version": "3.10.2"
+      },
+      "requirements": {
+        "host": [
+          "setuptools",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "configobj",
+          "icepap >=3.7.0",
+          "ipy >=0.62",
+          "ldap3",
+          "pyqt >=5.12.3",
+          "python >=3.10",
+          "pyyaml",
+          "storm >=0.23",
+          "setuptools <81"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "9bbf6543273da13494cae9c2c1e475a7758d1ae6d032e214218e6e576aa0d4af",
+          "url": "https://pypi.org/packages/source/i/icepapcms/icepapcms-3.10.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "icepapcms",
+              "icepapcms.gui",
+              "icepapcms.gui.icepapcms",
+              "icepapcms.gui.ipapconsole",
+              "icepapcms.lib"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "icepapcms --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

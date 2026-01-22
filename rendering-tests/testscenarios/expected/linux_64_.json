@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_testscenarios",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_testscenarios/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_testscenarios/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_testscenarios/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "testscenarios": {
+          "build_string": "pyhe01879c_0",
+          "name": "testscenarios",
+          "version": "0.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:56.810137433Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "testscenarios provides clean dependency injection for python unittest\nstyle tests. This can be used for interface testing (testing many\nimplementations via a single test suite) or for classic dependency\ninjection (provide tests with dependencies externally to the test code\nitself, allowing easy testing in different situations).",
+        "homepage": "https://github.com/testing-cabal/testscenarios",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "BSD"
+        ],
+        "repository": "https://github.com/testing-cabal/testscenarios",
+        "summary": "Testscenarios, a pyunit extension for dependency injection"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "python -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "testscenarios",
+        "version": "0.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "testscenarios",
+        "version": "0.5.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.9.*",
+          "pbr >=0.11",
+          "pip",
+          "setuptools"
+        ],
+        "run": [
+          "pbr >=0.11",
+          "python >=3.9",
+          "testtools"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "remove-fix-tests.patch"
+          ],
+          "sha256": "c257cb6b90ea7e6f8fef3158121d430543412c9a87df30b5dde6ec8b9b57a2b6",
+          "url": "https://pypi.org/packages/source/t/testscenarios/testscenarios-0.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "testscenarios",
+              "testscenarios.scenarios",
+              "testscenarios.testcase",
+              "testscenarios.tests"
+            ],
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "README",
+              "doc/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python >=3.9"
+            ]
+          },
+          "script": [
+            "mkdir -p ${PREFIX}/__hack__",
+            "cp -r doc/ README ${PREFIX}/__hack__",
+            "python -m testtools.run testscenarios.test_suite"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

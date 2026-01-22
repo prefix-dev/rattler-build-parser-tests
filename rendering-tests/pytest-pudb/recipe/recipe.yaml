@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: pytest-pudb
+  version: 0.7.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytest-pudb-${{ version }}.tar.gz
+  sha256: 0ea87316d39c82163d340c28a168e08a163b8d3f484e60a53c9fd5eefe432c63
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pytest >=2.0
+    - pudb
+
+tests:
+  - python:
+      imports:
+        - pytest_pudb
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Pytest PuDB debugger integration
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/wronglink/pytest-pudb
+
+extra:
+  recipe-maintainers:
+    - janjagusch

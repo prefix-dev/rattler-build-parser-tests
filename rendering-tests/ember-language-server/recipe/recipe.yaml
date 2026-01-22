@@ -1,0 +1,40 @@
+context:
+  version: "2.30.9"
+
+package:
+  name: ember-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@ember-tooling/ember-language-server/-/ember-language-server-${{ version }}.tgz
+  sha256: 736e5175ec6a38ab590f2e4c17546d1f3ab85c03c82032e56a8634a67080a75e
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - ember-language-server --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE.md
+    - third-party-licenses.txt
+  summary: Language Server Protocol implementation for Ember.js projects
+  homepage: https://github.com/ember-tooling/ember-language-server
+  repository: https://github.com/ember-tooling/ember-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

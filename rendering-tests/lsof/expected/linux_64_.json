@@ -1,0 +1,123 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lsof",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lsof/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lsof/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_lsof/work"
+      },
+      "hash": {
+        "hash": "8c9361a",
+        "prefix": "pl5321"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "lsof": {
+          "build_string": "pl5321h8c9361a_0",
+          "name": "lsof",
+          "version": "4.99.5"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:33.308143987Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "perl": "5.32.1",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The free, open-source, Unix administrative tool lsof (for LiSt Open Files)\ndisplays information about files open to Unix processes.",
+        "documentation": "https://lsof.readthedocs.io/",
+        "homepage": "http://people.freebsd.org/~abe/",
+        "license": "lsof",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "LiSt Open Files"
+      },
+      "build": {
+        "number": 0,
+        "string": "pl5321h8c9361a_0"
+      },
+      "context": {
+        "version": "4.99.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "keuv-grvl"
+        ]
+      },
+      "package": {
+        "name": "lsof",
+        "version": "4.99.5"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "make",
+          "perl",
+          "sed"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3c591556c665196e0aada5982ff43c75e248187bad78bb1368d8fb9c1c527e6e",
+          "url": "https://github.com/lsof-org/lsof/archive/4.99.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "lsof -v 2>&1 | grep -qF '${{ version }}'",
+            "lsof ."
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uv/work"
+      },
+      "hash": {
+        "hash": "3bd95fe"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uv": {
+          "build_string": "h3bd95fe_0",
+          "name": "uv",
+          "version": "0.9.26"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:53:02.140505459Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.89",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.astral.sh/uv",
+        "homepage": "https://github.com/astral-sh/uv",
+        "license": "Apache-2.0 OR MIT",
+        "license_file": [
+          "LICENSE-APACHE",
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "An extremely fast Python package installer and resolver, written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "CBC_RUST_VERSION": "1.89"
+          },
+          "file": "build-uv"
+        },
+        "string": "h3bd95fe_0"
+      },
+      "context": {
+        "version": "0.9.26"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "charliermarsh",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "uv",
+        "version": "0.9.26"
+      },
+      "requirements": {
+        "build": [
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "rust_win-64 1.89.*",
+          "vs_win-64",
+          "cargo-bundle-licenses",
+          "cmake",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-no-link-static-vc-runtime.patch",
+            "0001-no-writeln-space-colon.patch"
+          ],
+          "sha256": "aa32a947f57865af538e69a4f9b36c06f1bf95538e0510812ad1515f176f0b3f",
+          "url": "https://github.com/astral-sh/uv/releases/download/0.9.26/source.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "m2-grep"
+            ]
+          },
+          "script": [
+            "uv --version",
+            "uv --help",
+            "uv --version | grep -iE \"${{ version | replace('.', '\\\\.') }}\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

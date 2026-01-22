@@ -1,0 +1,49 @@
+context:
+  version: 1.51.0
+
+package:
+  name: luv
+  version: ${{ version }}
+
+source:
+  url: https://github.com/luvit/luv/archive/${{ version }}-1.tar.gz
+  sha256: d4a11178ae8e16ba5886799ea91905dd9b0b479c75aebd67866d37373e41526f
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - lua-compat-5.3-c
+    - if: unix
+      then: make
+    - if: win
+      then: ninja
+  host:
+    - libuv
+    - luajit-openresty
+  run:
+    - if: win
+      then: luajit-openresty
+  run_exports:
+    - ${{ pin_subpackage('luv', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/lib/libluv${SHLIB_EXT}
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  summary: Bare libuv bindings for lua
+  homepage: https://github.com/luvit/luv
+  repository: https://github.com/luvit/luv
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - danielnachun

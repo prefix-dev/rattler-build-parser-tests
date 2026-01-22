@@ -1,0 +1,81 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "6.1.0"
+
+package:
+  name: wasmer
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wasmerio/wasmer/archive/v${{ version }}.tar.gz
+  sha256: 7bccb5b86724ea35ca9373fb81092080a615c1baa6129a8eeee9ed3e3f74b9b1
+
+build:
+  number: 2
+  script:
+    file: build-wasmer
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ compiler("rust") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - if: linux
+      then:
+        - pkg-config
+  host:
+    - libffi
+    - openssl
+    - zlib
+    - if: linux
+      then:
+        - libxkbcommon
+        - libxml2-devel
+        - llvm-tools
+        - llvmdev
+        - zstd
+  run:
+    - if: linux
+      then:
+        - zstd
+
+tests:
+  - files:
+      recipe:
+        - run_test.py
+      source:
+        - tests/wasi-wast/wasi/snapshot1/hello.wasm
+    requirements:
+      run:
+        - pytest
+        - if: win
+          then:
+            - m2-grep
+    script:
+      - wasmer --version
+      - wasmer --version | grep -ie "${{ version | replace(".", "\\.") }}"
+      - wasmer --help
+      - python run_test.py
+
+about:
+  license: MIT
+  summary: Universal WebAssembly runtime
+  description: |
+    Wasmer is a standalone JIT WebAssembly runtime, aiming to be fully
+    compatible with WASI and Emscripten.
+  license_file:
+    - LICENSE
+    - docs/ATTRIBUTIONS.md
+    - THIRDPARTY.yml
+  homepage: https://wasmer.io
+  repository: https://github.com/wasmerio/wasmer
+  documentation: https://docs.wasmer.io
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
+    - wolfv

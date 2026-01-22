@@ -1,0 +1,125 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_doxx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_doxx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_doxx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_doxx/work"
+      },
+      "hash": {
+        "hash": "5520b98"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "doxx": {
+          "build_string": "h5520b98_0",
+          "name": "doxx",
+          "version": "0.1.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:18.030069399Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libxcb": "1",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A fast, terminal-native document viewer for Word files. View, search, and export .docx documents without leaving your command line.",
+        "homepage": "https://bgreenwell.github.io/doxx",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/bgreenwell/doxx",
+        "summary": "Expose the contents of .docx files without leaving your terminal. Fast, safe, and smart \u2014 no Office required!"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo install --locked --root ${PREFIX} --path . --no-track",
+          "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml"
+        ],
+        "string": "h5520b98_0"
+      },
+      "context": {
+        "name": "doxx",
+        "version": "0.1.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "doxx",
+        "version": "0.1.2"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-64",
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "cargo-bundle-licenses",
+          "libxcb"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3627e65f39e437d954e1d4f02c30911fef1c5c99388bf6098564e1e89722e80d",
+          "url": "https://github.com/bgreenwell/doxx/archive/refs/tags/v0.1.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "doxx --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,161 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpfun90",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpfun90/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpfun90/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mpfun90/work"
+      },
+      "hash": {
+        "hash": "31435e1"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mpfun90": {
+          "build_string": "h31435e1_1",
+          "name": "mpfun90",
+          "version": "2024.12.06"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:47:27.154594371Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "13",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MPFUN90 is software developed by David H. Bailey.\nIt is based on the work described in\nDavid H. Bailey, \"_A Fortran 90-based multiprecision system_,\"\nACM Transactions on Mathematical Software (TOMS), 21 (1995) 379\nDOI: [10.1145/212066.212075](https://doi.org/10.1145/212066.212075)",
+        "documentation": "https://www.davidhbailey.com/dhbsoftware/",
+        "homepage": "https://github.com/APN-Pucky/mpfun90",
+        "license": "LicenseRef-DHB",
+        "license_family": "OTHER",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/APN-Pucky/mpfun90",
+        "summary": "MPFUN90: A multiple precision floating point computation package"
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "make dynamic FC=\"$FC\" FFLAGS=\"$FFLAGS\"",
+          "mv libmpfun90${SHLIB_EXT} $PREFIX/lib/",
+          "mkdir -p $PREFIX/include/mpfun90",
+          "mv *.mod $PREFIX/include/mpfun90/",
+          "make clean"
+        ],
+        "string": "h31435e1_1"
+      },
+      "context": {
+        "name": "mpfun90",
+        "version": "2024-12-06"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "mpfun90",
+        "version": "2024.12.06"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 13.*",
+          "gfortran_linux-ppc64le 13.*",
+          "make"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "mpfun90",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6a2e8f772f0c4a6f1af5f81b5b303e7ad91bab02c3f78da81e553c38585907c4",
+          "url": "https://github.com/APN-Pucky/mpfun90/archive/2024-12-06.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/lib/libmpfun90${SHLIB_EXT}",
+            "test -f $PREFIX/include/mpfun90/mpfuna.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunb.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunc.mod",
+            "test -f $PREFIX/include/mpfun90/mpfund.mod",
+            "test -f $PREFIX/include/mpfun90/mpfune.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunf.mod",
+            "test -f $PREFIX/include/mpfun90/mpfung.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunh.mod",
+            "test -f $PREFIX/include/mpfun90/mpfuni.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunj.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpdefmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpintmod.mod",
+            "test -f $PREFIX/include/mpfun90/mprealmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpcmpmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpgenmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpfunsubmod.mod",
+            "test -f $PREFIX/include/mpfun90/mpmodule.mod",
+            "test -f $PREFIX/include/mpfun90/mpmodulem.mod",
+            "test -f $PREFIX/include/mpfun90/mpmodulex.mod"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

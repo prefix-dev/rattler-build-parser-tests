@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pixi/work"
+      },
+      "hash": {
+        "hash": "1d7f6d8"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pixi": {
+          "build_string": "h1d7f6d8_0",
+          "name": "pixi",
+          "version": "0.63.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:42.726680698Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "pixi is a cross-platform, multi-language package manager and workflow tool build on the shoulders of the conda ecosystem.\n\npixi provides all developers the exceptional experience that is usually found with package managers like cargo or yarn but for any language.\n\n# Highlights\n\n- Support for multiple languages like Python, C++ and R using Conda packages\n- All OS's: Linux, Windows, macOS (including Apple Silicon)\n- A lockfile is always included and always up-to-date.\n- A clean and simple Cargo-like command-line interface.\n- Install tools per-project or system-wide.\n- Completely written in Rust and build on top of the rattler library.",
+        "homepage": "https://github.com/prefix-dev/pixi",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "pixi is a cross-platform, multi-language package manager and workflow tool build on the shoulders of the conda ecosystem."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": "$env.OPENSSL_DIR = $env.PREFIX\nif $nu.os-info.name == \"linux\" {\n  # This flag is needed for tree-sitter on linux\n  $env.CFLAGS = $\"($env.CFLAGS) -D_BSD_SOURCE\"\n}\ncargo install --locked --root $env.PREFIX --no-track --path crates/pixi\ncargo-bundle-licenses --format yaml --output $\"($env.SRC_DIR)/THIRDPARTY.yml\"\n",
+          "env": {
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols",
+            "JEMALLOC_SYS_WITH_LG_PAGE": "16"
+          },
+          "interpreter": "nu"
+        },
+        "string": "h1d7f6d8_0"
+      },
+      "context": {
+        "name": "pixi",
+        "version": "0.63.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "wolfv",
+          "baszalmstra",
+          "tdejager",
+          "ruben-arts",
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "pixi",
+        "version": "0.63.1"
+      },
+      "requirements": {
+        "build": [
+          "nushell",
+          "rust_linux-aarch64",
+          "cargo-bundle-licenses",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "pkg-config",
+          "cmake",
+          "cargo-auditable",
+          "make"
+        ],
+        "host": [
+          "openssl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "350bba330edf8192bc768f29a8509c2ce72933a13490f2e0944c23477445e0a1",
+          "url": "https://github.com/prefix-dev/pixi/archive/refs/tags/v0.63.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "pixi --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

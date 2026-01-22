@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.27"
+
+recipe:
+  name: fossil-split
+  version: ${{ version }}
+
+source:
+  url: https://fossil-scm.org/home/tarball/version-${{ version }}/fossil-src-${{ version }}.tar.gz
+  sha256: 0405a96ba4d286b46fb5c3217d6c13391a2c637da90c51a927ee0c31c58f9064
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: fossil
+    build:
+      script:
+        file: build-fossil
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ compiler("cxx") }}
+        - ${{ stdlib("c") }}
+        - if: unix
+          then:
+            - ccache
+            - emsdk
+            - make
+            - python >=3.10
+          else:
+            - cmake
+            - perl
+      host:
+        - openssl
+        - tk
+        - zlib
+        - if: unix
+          then:
+            - sqlite
+    tests:
+      - script: fossil --help
+
+  - package:
+      name: fossil-pikchr
+    build:
+      script:
+        file: build-pikchr
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+      run_constraints:
+        - ${{ pin_subpackage("fossil", upper_bound="x.x.x") }}
+    tests:
+      - files:
+          recipe:
+            - test.pikchr
+        script:
+          - pikchr --svg-only test.pikchr
+    about:
+      license: 0BSD
+      license_file: LICENSE-0BSD
+      summary: Pikchr (pronounced "picture") is a PIC-like markup language for diagrams in technical documentation.
+      homepage: https://pikchr.org
+
+about:
+  license: BSD-2-Clause
+  license_file:
+    - COPYRIGHT-BSD2.txt
+  summary: >
+    Fossil is a simple, high-reliability, distributed software configuration management system with these advanced features:
+  homepage: https://fossil-scm.org
+  repository: https://fossil-scm.org/index.html/dir?ci=tip
+  documentation: https://fossil-scm.org/index.html/doc/trunk/www/permutedindex.html
+
+extra:
+  feedstock-name: fossil
+  recipe-maintainers:
+    - bollwyvl

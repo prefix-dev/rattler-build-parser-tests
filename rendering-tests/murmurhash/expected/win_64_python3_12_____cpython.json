@@ -1,0 +1,148 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_murmurhash/work"
+      },
+      "hash": {
+        "hash": "9e3ea30",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "murmurhash": {
+          "build_string": "py312h9e3ea30_1",
+          "name": "murmurhash",
+          "version": "1.0.15"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:52:42.714196558Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.12.* *_cpython",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/explosion/murmurhash/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Cython bindings for MurmurHash2"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv",
+        "string": "py312h9e3ea30_1"
+      },
+      "context": {
+        "name": "murmurhash",
+        "version": "1.0.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rmax",
+          "conda-forge/spacy",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "murmurhash",
+        "version": "1.0.15"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "cython",
+          "vs2022_win-64",
+          "vs_win-64",
+          "vs2022_win-64"
+        ],
+        "host": [
+          "cython",
+          "python",
+          "pip",
+          "setuptools",
+          "wheel"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58e2b27b7847f9e2a6edf10b47a8c8dd70a4705f45dccb7bf76aeadacf56ba01",
+          "url": "https://pypi.org/packages/source/m/murmurhash/murmurhash-1.0.15.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "murmurhash",
+              "murmurhash.mrmr"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "run_test.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "python run_test.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

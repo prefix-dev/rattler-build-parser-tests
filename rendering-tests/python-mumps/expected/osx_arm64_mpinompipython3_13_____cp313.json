@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-mumps",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-mumps/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-mumps/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_python-mumps/work"
+      },
+      "hash": {
+        "hash": "0ca16d7",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "python-mumps": {
+          "build_string": "nompi_h0ca16d7",
+          "name": "python-mumps",
+          "version": "0.0.6"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:41:33.569943251Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "mpi": "nompi",
+        "mumps_seq": "5.8.1",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "python_impl": "cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://gitlab.kwant-project.org/kwant/python-mumps",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Bindings and Python interface for the MUMPS sparse solver"
+      },
+      "build": {
+        "number": 100,
+        "string": "nompi_h0ca16d7"
+      },
+      "context": {
+        "build_number": 0,
+        "mpi": "nompi",
+        "name": "python-mumps",
+        "version": "0.0.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "akhmerov"
+        ]
+      },
+      "package": {
+        "name": "python-mumps",
+        "version": "0.0.6"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "cython",
+          "numpy",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "python",
+          "cython",
+          "meson",
+          "meson-python",
+          "numpy",
+          "mumps-seq",
+          "setuptools-scm",
+          "pip",
+          "python-build"
+        ],
+        "run": [
+          "python",
+          "scipy >=1.13",
+          "mumps-seq"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58c33104f77c448e127e9e6da316f71dfb1a17719ecf022634669d513306b1fa",
+          "url": "https://pypi.org/packages/source/p/python-mumps/python_mumps-0.0.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mumps"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": "python -P -m pytest -v --import-mode=importlib --pyargs mumps -m \"not mpi\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

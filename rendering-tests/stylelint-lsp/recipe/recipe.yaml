@@ -1,0 +1,39 @@
+context:
+  version: "2.0.1"
+
+package:
+  name: stylelint-lsp
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/stylelint-lsp/-/stylelint-lsp-${{ version }}.tgz
+  sha256: 29de1ea9e4e36e4b93d27a647ff9edb60625ebdb8f5f927f425857d72e726946
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "stylelint-lsp 2>&1 | grep -q 'Connection input stream is not set.'"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A stylelint Language Server
+  homepage: https://github.com/bmatcuk/stylelint-lsp
+  repository: https://github.com/bmatcuk/stylelint-lsp
+
+extra:
+  recipe-maintainers:
+    - danielnachun

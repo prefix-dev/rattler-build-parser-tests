@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: hishel
+  version: "1.1.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hishel-${{ version }}.tar.gz
+  sha256: bcd15ad282bd530e97a676b2d16a58e5034750e8a6955e77babfea69fc5b4ad8
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - hatch-fancy-pypi-readme
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - msgpack-python >=1.1.2
+    - typing_extensions >=4.14.1
+tests:
+  - python:
+      imports:
+        - hishel
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Persistent cache implementation for httpx and httpcore
+  homepage: https://github.com/karpetrosyan/hishel
+  repository: https://github.com/karpetrosyan/hishel
+  documentation: https://hishel.com
+
+extra:
+  recipe-maintainers:
+    - karpetrosyan
+    - parkerhancock
+    - xhochy

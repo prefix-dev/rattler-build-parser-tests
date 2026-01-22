@@ -1,0 +1,74 @@
+schema_version: 1
+
+context:
+  name: sagemaker-code-editor
+  version: "1.8.0b6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - if: linux and x86_64
+    then:
+      url: https://github.com/aws/sagemaker-code-editor/releases/download/v${{ version }}/code-editor${{ version }}.tar.gz
+      sha256: 7b9c9da2e89e4940bae646fd02d7c859343acff9224b93a600fabc1ce91b7aca
+      target_directory: sagemaker-code-editor
+
+build:
+  skip:
+    - win
+    - osx and x86_64
+  number: 1
+  dynamic_linking:
+    binary_relocation: false
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+  host:
+    - nodejs 20.*
+  run:
+    - nodejs 20.*
+
+tests:
+  - script:
+    - set -x  
+    - echo "Check CLI installed..."
+    - ls -l ${PREFIX}/bin
+    - test -f ${PREFIX}/bin/sagemaker-code-editor
+
+    - echo "Check main script exist s..."
+    - ls -l ${PREFIX}/share/sagemaker-code-editor/out
+    - test -f ${PREFIX}/share/sagemaker-code-editor/out/server-main.js
+
+    - echo "Check node present..."
+    - node --version
+
+    - echo "Check ripgrep binaries..."
+    - $CONDA_PREFIX/share/sagemaker-code-editor/node_modules/@vscode/ripgrep/bin/rg --version
+
+    - echo "Check sagemaker-code-editor binaries..."
+    - sagemaker-code-editor --help
+
+about:
+  license: MIT
+  license_family: MIT
+  license_file:
+    - LICENSE
+    - LICENSE.vscode.txt
+    - LICENSE-THIRD-PARTY
+    - ThirdPartyNotices.vscode.txt
+  summary: Code Editor based on Code-OSS, Visual Studio Code Open Source
+  homepage: https://aws.amazon.com/sagemaker/
+  repository: https://github.com/aws/sagemaker-code-editor/
+
+extra:
+  recipe-maintainers:
+    - sgganjo
+    - joshuatowner
+    - edwardps
+    - NewtonDer
+    - aws-prayags
+    - arkaprava08

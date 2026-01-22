@@ -1,0 +1,45 @@
+--- a/meson.build
++++ b/meson.build
+@@ -10,9 +10,41 @@ project('raysect', 'cython',
+ meson.add_dist_script('dev/build/add_version_file_to_dist.sh')
+
+ py = import('python').find_installation(pure: false)
+-numpy = dependency('numpy', method: 'config-tool')
+ fs = import('fs')
+
++# NumPy dependency
++incdir_numpy = meson.get_external_property('numpy-include-dir', 'not-given')
++if incdir_numpy == 'not-given'
++  incdir_numpy = run_command(py,
++    [
++      '-c',
++      '''import os
++import numpy as np
++try:
++  incdir = os.path.relpath(np.get_include())
++except Exception:
++  incdir = np.get_include()
++print(incdir)
++  '''
++    ],
++    check: true
++  ).stdout().strip()
++
++  # We do need an absolute path to feed to `cc.find_library` below
++  _incdir_numpy_abs = run_command(py,
++    ['-c', 'import os; os.chdir(".."); import numpy; print(numpy.get_include())'],
++    check: true
++  ).stdout().strip()
++else
++  _incdir_numpy_abs = incdir_numpy
++endif
++inc_np = include_directories(incdir_numpy)
++# Don't use the deprecated NumPy C API. Define this to a fixed version instead of
++# NPY_API_VERSION in order not to break compilation for released versions
++# when NumPy introduces a new deprecation.
++numpy_nodepr_api = ['-DNPY_NO_DEPRECATED_API=NPY_1_9_API_VERSION']
++numpy = declare_dependency(include_directories: inc_np, compile_args: numpy_nodepr_api)
++
+ # disabling explicit noexcept until pycharm fixes their cython 3 support (causes a large number of build warnings)
+ cython_args = ['--annotate', '-X legacy_implicit_noexcept=True']
+ cython_dependencies = [numpy]

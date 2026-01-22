@@ -1,0 +1,123 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carapace",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carapace/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carapace/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_carapace/work"
+      },
+      "hash": {
+        "hash": "4ff9b62"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "carapace": {
+          "build_string": "h4ff9b62_0",
+          "name": "carapace",
+          "version": "1.5.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:10.426771927Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "go_compiler": "go-nocgo",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Carapace-bin provides argument completion for multiple CLI commands ([full list](https://carapace-sh.github.io/carapace-bin/completers.html)),\nand works across multiple POSIX and non-POSIX shells.",
+        "documentation": "https://pixi.carapace.sh/",
+        "homepage": "https://carapace.sh/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "library_licenses/"
+        ],
+        "repository": "https://github.com/carapace-sh/carapace-bin",
+        "summary": "A multi-shell completion binary"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd cmd/carapace",
+          "go generate ./...",
+          "go build -v -ldflags \"-w -s -X main.version=${{ version }}\" -o $PREFIX/bin/carapace .",
+          "go-licenses save . --save_path $SRC_DIR/library_licenses"
+        ],
+        "string": "h4ff9b62_0"
+      },
+      "context": {
+        "name": "carapace",
+        "version": "1.5.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Hofer-Julian"
+        ]
+      },
+      "package": {
+        "name": "carapace",
+        "version": "1.5.7"
+      },
+      "requirements": {
+        "build": [
+          "go-nocgo_osx-64",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "go-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "288f5629d9d842366089c75c388566b62bd452e5d2652384daeb419b134ec354",
+          "url": "https://github.com/carapace-sh/carapace-bin/archive/refs/tags/v1.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "carapace --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

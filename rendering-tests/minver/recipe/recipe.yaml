@@ -1,0 +1,38 @@
+context:
+  version: "7.0.0"
+
+package:
+  name: minver
+  version: ${{ version }}
+
+source:
+  url: https://github.com/adamralph/minver/archive/${{ version }}.tar.gz
+  sha256: 960166a500ea8967196d763691daa6dcc97b6115feb59008e2bc760a0c3caadf
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - minver --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Minimalistic versioning using Git tags.
+  homepage: https://github.com/adamralph/minver
+  repository: https://github.com/adamralph/minver
+
+extra:
+  recipe-maintainers:
+    - danielnachun

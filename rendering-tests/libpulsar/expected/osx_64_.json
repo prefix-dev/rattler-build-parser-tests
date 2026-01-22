@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpulsar",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpulsar/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpulsar/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpulsar/work"
+      },
+      "hash": {
+        "hash": "698ff94"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libpulsar": {
+          "build_string": "h698ff94_0",
+          "name": "libpulsar",
+          "version": "4.0.0"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:31.090334285Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libboost_headers": "1.88",
+        "libcurl": "8",
+        "libprotobuf": "6.31.1",
+        "openssl": "3.5",
+        "snappy": "1.2",
+        "target_platform": "osx-64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://pulsar.apache.org/docs/3.0.x/client-libraries",
+        "homepage": "https://github.com/apache/pulsar-client-cpp",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/apache/pulsar-client-cpp",
+        "summary": "Apache Pulsar C++ client library"
+      },
+      "build": {
+        "number": 0,
+        "string": "h698ff94_0"
+      },
+      "context": {
+        "name": "libpulsar",
+        "version": "4.0.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "libpulsar",
+        "version": "4.0.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 11.0.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "ninja",
+          "sed",
+          "libprotobuf"
+        ],
+        "host": [
+          "gmock",
+          "gtest",
+          "libboost-headers",
+          "libcurl",
+          "libprotobuf",
+          "openssl",
+          "snappy",
+          "zlib",
+          "zstd"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "gtest"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libpulsar",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Remove-Werror.patch",
+            "0002-Link-to-abseil-on-Windows.patch",
+            "0003-Build-with-newer-abseil.patch"
+          ],
+          "sha256": "4bcb09558d1ced113a2c7e08c60b48ce3f0e9df1eaffac300697117bb1cadbe5",
+          "url": "https://github.com/apache/pulsar-client-cpp/archive/refs/tags/v4.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "test -f $PREFIX/lib/libpulsar${SHLIB_EXT}"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

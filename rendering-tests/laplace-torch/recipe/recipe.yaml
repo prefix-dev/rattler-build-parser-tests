@@ -1,0 +1,56 @@
+context:
+  name: laplace-torch
+  version: "0.2.2.2"
+  python_min: "3.9"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7898a24b7d143bc8f23b69817767277b8d9e260682a62b4d172a58deeed6dd87
+
+build:
+  number: 0
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pdm
+    - pdm-backend
+  run:
+    - asdfghjkl
+    - backpack-for-pytorch
+    - curvlinops-for-pytorch
+    - python >=${{ python_min }}
+    - pytorch
+    - torchvision
+    - torchmetrics
+    - numpy
+    - tqdm
+    - opt_einsum
+    - asdfghjkl ==0.1a4
+    - torchaudio
+
+tests:
+  - python:
+      imports:
+        - laplace
+        - laplace.curvature
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: laplace - Laplace approximations for deep learning
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/AlexImmer/Laplace
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer

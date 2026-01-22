@@ -1,0 +1,42 @@
+context:
+  name: bio-embeddings-esm
+  version: 0.2.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bio_embeddings-esm-${{ version }}.tar.gz
+  sha256: 6cf7e402ded610a207c47cef40f599c55f07f79377c5458e74c1052bae8335d6
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pytorch >=1.5
+    - torchvision
+
+tests:
+  - python:
+      imports:
+        - esm
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Pre-trained evolutionary scale models for proteins, from Facebook AI Research.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/facebookresearch/esm
+
+extra:
+  recipe-maintainers:
+    - hadim

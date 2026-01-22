@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: mermaid-py
+  version: "0.8.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mermaid_py-${{ version }}.tar.gz
+  sha256: 32464353308ffffcb4e91f7f0536e3a7be17a6ecedc394e48dcfb97152ca7ba4
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - requests >=2.31.0,<3.0.0
+
+tests:
+  - python:
+      imports:
+        - mermaid
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A simple interface for the the famous lib mermaid-js to create diagrams.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://mermaidpy.vercel.app
+  repository: https://github.com/ouhammmourachid/mermaid-py
+
+extra:
+  recipe-maintainers:
+    - thewchan

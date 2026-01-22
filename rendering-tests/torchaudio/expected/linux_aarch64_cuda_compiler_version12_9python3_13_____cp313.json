@@ -1,0 +1,233 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/work"
+      },
+      "hash": {
+        "hash": "96ceab1",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchaudio": {
+          "build_string": "cuda129_py313h96ceab1_0",
+          "name": "torchaudio",
+          "version": "2.9.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:37:00.438844914Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "liblzma_devel": "5",
+        "python": "3.13.* *_cp313",
+        "pytorch": "2.9",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pytorch/audio",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/LICENSES_BUNDLED.txt"
+        ],
+        "summary": "Data manipulation and transformation for audio signal processing, powered by PyTorch"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "BUILD_VERSION": "2.9.1",
+            "cuda_compiler_version": "12.9"
+          },
+          "file": "build"
+        },
+        "string": "cuda129_py313h96ceab1_0",
+        "variant": {
+          "down_prioritize_variant": 1,
+          "use_keys": [
+            "cuda"
+          ]
+        }
+      },
+      "context": {
+        "build_number": 0,
+        "cuda_build_string": "cuda129_",
+        "string_prefix": "cuda129_",
+        "version": "2.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "torchaudio",
+        "version": "2.9.1"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "pytorch",
+          "cuda-driver-dev",
+          "cuda-cudart-dev",
+          "cuda-nvrtc-dev",
+          "cuda-nvtx-dev",
+          "cuda-nvml-dev",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcufft-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev",
+          "gxx_linux-aarch64 14.*",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "ninja",
+          "ccache",
+          "git",
+          "cuda-nvcc_linux-aarch64 12.9.*",
+          "cuda-version ==12.9"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "pytorch",
+          "pytorch * cuda*",
+          "bzip2",
+          "kaldi",
+          "pybind11",
+          "torchcodec",
+          "liblzma-devel",
+          "zlib",
+          "cuda-version ==12.9",
+          "cuda-driver-dev",
+          "cuda-cudart-dev",
+          "cuda-nvrtc-dev",
+          "cuda-nvtx-dev",
+          "cuda-nvml-dev",
+          "cuda-profiler-api",
+          "libcublas-dev",
+          "libcufft-dev",
+          "libcurand-dev",
+          "libcusolver-dev",
+          "libcusparse-dev"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "cuda-nvrtc-dev",
+            "cuda-nvtx-dev",
+            "libcublas-dev",
+            "libcufft-dev",
+            "libcurand-dev",
+            "libcusolver-dev",
+            "libcusparse-dev"
+          ]
+        },
+        "run": [
+          "python",
+          "numpy",
+          "kaldi",
+          "torchcodec",
+          "pytorch * cuda*"
+        ],
+        "run_constraints": [
+          "llvmlite >=0.44"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-point-to-correct-prefix.patch",
+            "patches/0002-use-conda-cuda.patch",
+            "patches/0003-Apply-CMAKE_ARGS-if-set.patch",
+            "patches/0004-replace-FLT_MAX-for-compatibility-with-newer-cudatoo.patch",
+            "patches/0005-Fix-torchscript-related-test-failures.-4069.patch"
+          ],
+          "sha256": "590492c90552959b3df6f601eb733135064bf2d9e53c516adcf6845a4e545662",
+          "url": "https://github.com/pytorch/audio/archive/refs/tags/v2.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "torchaudio",
+              "torchaudio.compliance",
+              "torchaudio.datasets",
+              "torchaudio.functional",
+              "torchaudio.models",
+              "torchaudio.pipelines",
+              "torchaudio.utils",
+              "torchaudio.transforms"
+            ]
+          }
+        },
+        {
+          "package_contents": {
+            "site_packages": [
+              "torchaudio-2.9.1.dist-info/METADATA"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

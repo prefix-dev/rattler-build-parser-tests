@@ -1,0 +1,182 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gstlal-calibration",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gstlal-calibration/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gstlal-calibration/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gstlal-calibration/work"
+      },
+      "hash": {
+        "hash": "29c3a7a",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gstlal-calibration": {
+          "build_string": "py312h29c3a7a_1",
+          "name": "gstlal-calibration",
+          "version": "1.5.11"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:38:40.998626473Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fftw": "3",
+        "gsl": "2.7",
+        "gst_plugins_base": "1.26",
+        "gstreamer": "1.26",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-ppc64le",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This package contains the plugins and shared libraries required to\nrun the gstlal calibration software.",
+        "homepage": "https://git.ligo.org/calibration/gstlal-calibration",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://git.ligo.org/calibration/gstlal-calibration",
+        "summary": "GStreamer for GW data analysis (calibration parts)"
+      },
+      "build": {
+        "number": 1,
+        "string": "py312h29c3a7a_1"
+      },
+      "context": {
+        "gstlal_ugly_version": "1.10.0",
+        "gstlal_version": "1.10.0",
+        "lal_version": "7.2.4",
+        "lalmetaio_version": "3.0.2",
+        "ligo_segments_version": "1.2.0",
+        "name": "gstlal-calibration",
+        "version": "1.5.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "nothisisolivia"
+        ]
+      },
+      "package": {
+        "name": "gstlal-calibration",
+        "version": "1.5.11"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "fftw",
+          "gsl",
+          "gst-plugins-base",
+          "gstreamer",
+          "gstlal >=1.10.0",
+          "libglib",
+          "liblal >=7.2.4",
+          "python",
+          "zlib"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "libzlib"
+          ]
+        },
+        "run": [
+          "fftw",
+          "gsl",
+          "gst-plugins-base",
+          "gstreamer",
+          "gstlal >=1.10.0",
+          "gstlal-ugly >=1.10.0",
+          "kafka-python-ng",
+          "libglib",
+          "liblal >=7.2.4",
+          "ligo-scald",
+          "ligo-segments >=1.2.0",
+          "matplotlib-base",
+          "numpy",
+          "python",
+          "python-lal",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "link-fftw.patch",
+            "link-gsl.patch"
+          ],
+          "sha256": "3517f11506920031ba6c6c0e0756918a461dae38e2b055701d6fea21c50ceb15",
+          "url": "https://software.igwn.org/lscsoft/source/gstlal-calibration-1.5.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gstlalcalibration.calibhandler",
+              "gstlalcalibration.calibration_parts"
+            ]
+          }
+        },
+        {
+          "script": [
+            "gst-inspect-1.0 cmath",
+            "gst-inspect-1.0 gstlalcalibration",
+            "gst-inspect-1.0 splitcounter",
+            "gstlal_calibration_aggregator --help",
+            "gstlal_compute_strain --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

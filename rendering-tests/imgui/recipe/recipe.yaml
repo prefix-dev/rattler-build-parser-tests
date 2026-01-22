@@ -1,0 +1,62 @@
+context:
+  name: imgui
+  version: "1.92.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/ocornut/${{ name }}/archive/v${{ version }}.tar.gz
+    sha256: 9212ee7c4718b1466a5d99e64bce3ef1965704afea4ba651f8d978d0791b7c7c
+  - path: CMakeLists.txt
+  - path: imgui-config.cmake.in
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+  host:
+    - if: linux
+      then: libgl-devel
+    - glfw
+    - sdl2
+    - libvulkan-loader
+    - libvulkan-headers
+  run_exports:
+    - ${{ pin_subpackage('imgui', upper_bound='x.x.x') }}
+
+tests:
+  - package_contents:
+      lib:
+        - imgui
+  - files:
+      recipe:
+        - test/
+    requirements:
+      run:
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - libvulkan-loader
+        - libvulkan-headers
+    script: run_test
+
+about:
+  summary: ImGui is a bloat-free graphical user interface library for C++. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline-enabled application.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/ocornut/imgui
+
+extra:
+  recipe-maintainers:
+    - Tobias-Fischer
+    - traversaro

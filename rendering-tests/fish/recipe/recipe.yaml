@@ -1,0 +1,71 @@
+context:
+  version: "4.3.3"
+
+package:
+  name: fish
+  version: ${{ version }}
+
+source:
+  url: https://github.com/fish-shell/fish-shell/releases/download/${{ version }}/fish-${{ version }}.tar.xz
+  sha256: eba0e7d325c1d46046bb9d29434e7e0dabf7f584eb156845005d688e10b86e57
+  target_directory: src
+  patches:
+    - patches/0001-tests-test_driver.py-use-CC-for-compilation.patch
+
+build:
+  number: 0
+  script: build.sh
+  prefix_detection:
+    ignore_binary_files: true
+  skip:
+    - win or ppc64le
+
+requirements:
+  build:
+    - cmake
+    - make
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - gettext
+  host:
+    - ncurses
+    - pcre2
+    # For fish_run_tests
+    - if: target_platform == "linux-64"
+      then:
+        - procps-ng
+  run: []
+
+tests:
+  - script:
+      - fish -v
+      - fish_indent -v
+  - script:
+      - python ./src/tests/test_driver.py $CONDA_PREFIX/bin ./src/tests/pexpects/abbrs.py
+    requirements:
+      run:
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - pexpect
+    files:
+      source:
+        - src/tests/
+
+about:
+  homepage: https://fishshell.com
+  license: GPL-2.0-only
+  license_file:
+    - THIRDPARTY.yml
+    - src/COPYING
+  summary: User-friendly command-line shell for UNIX-like operating systems
+  description: |
+    Fish is a smart and user-friendly command line shell for macOS, Linux, and the rest of the family.
+  repository: https://github.com/fish-shell/fish-shell
+
+extra:
+  recipe-maintainers:
+    - anjos
+    - chrisburr
+    - mdraw

@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: extcolors
+  version: 1.0.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/extcolors-${{ version }}.tar.gz
+  sha256: 14e81457f98555ba36c07a5dde677d1d555e8f4b75633a4fad42df30a27c4f27
+
+build:
+  number: 3
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - extcolors=extcolors.command:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - pillow >=8.0.0
+    - convcolors >=1.0.0
+
+tests:
+  - python:
+      imports:
+        - extcolors
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - extcolors --help
+
+about:
+  summary: Extract colors from an image. Colors are grouped based on visual similarities using the CIE76 formula.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/CairX/extract-colors-py
+
+extra:
+  recipe-maintainers:
+    - carlodri

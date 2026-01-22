@@ -1,0 +1,95 @@
+schema_version: 1
+
+context:
+  name: hist
+  version: "2.9.2"
+  python_min: "3.9"
+
+recipe:
+  name: ${{ name|lower }}-suite
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hist-${{ version }}.tar.gz
+  sha256: 67bf80e15bb1ab99f89ccf6588efa357d16826d691043b726165c78334a9067b
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: hist-base
+
+    build:
+      # c.f. https://github.com/conda/grayskull/issues/582#issuecomment-2482370940
+      # FIXME: For unknown reasons, use of '{{ PYTHON }} -m pip' fails here
+      noarch: python
+      script: python -m pip install . -vv
+      python:
+        entry_points:
+          - hist=hist.classichist:main
+
+    requirements:
+      host:
+        - pip
+        - python ${{ python_min }}.*
+        - hatchling
+        - hatch-vcs
+      run:
+        - boost-histogram >=1.5,<1.7
+        - histoprint >=2.2
+        - numpy >=1.19.3
+        - python >=${{ python_min }}
+        # Actually only required for [py<311] but require for all Python versions so this can be noarch: python
+        - typing-extensions >=4
+
+    tests:
+      - python:
+          imports:
+            - hist
+            - hist.axis
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: hist
+
+    build:
+      noarch: python
+
+    requirements:
+      # Satisfy linter but not used
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - ${{ pin_subpackage('hist-base', exact=True) }}
+        # The plot requirements
+        - matplotlib-base >=3.3.3
+        - mplhep >=0.3.17
+        # The fit plot requirements
+        - scipy >=1.5.4
+        - iminuit >=2.0
+        # Satisfy linter but not used
+        - python >=${{ python_min }}
+
+    tests:
+      - python:
+          imports:
+            - hist
+            - hist.axis
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+about:
+  summary: Hist classes and utilities
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/scikit-hep/hist
+  repository: https://github.com/scikit-hep/hist
+  documentation: https://hist.readthedocs.io/
+
+extra:
+  feedstock-name: hist
+  recipe-maintainers:
+    - conda-forge/scikit-hep
+    - LovelyBuggies

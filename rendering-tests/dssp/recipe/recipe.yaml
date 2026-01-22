@@ -1,0 +1,86 @@
+context:
+  name: DSSP
+  version: "4.5.7"
+  sha256: 4b2c399e34338e67b4ee4c44569fa7464da1f4a5b5cc4b7fd41148e294ddb4f5
+  build_number: 2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/PDB-REDO/${{ name|lower }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+    - pkg-config
+  host:
+    - libboost-devel
+    - libboost-python-devel
+    - bzip2
+    - eigen
+    - if: linux and ppc64le  # libboost-devel 1.86.0 for linux-ppc64le does not include any build for icu>=76
+      then: icu >=75.0,<76.0a0
+      else: icu
+    # Refer to https://github.com/conda-forge/dssp-feedstock/issues/31 for this commentout
+    # libcifpp is fetched and statically linked during building.
+    # - bioconda::libcifpp
+    - libmcfp
+    - pcre2
+    - python ${{ python }}
+    - zlib
+  run:
+    - python ${{ python }}
+  run_exports:
+    - ${{ pin_subpackage(name|lower, upper_bound="x.x") }}
+
+tests:
+  - script:
+      - mkdssp --version
+      - mkdssp --help
+
+  - script:
+      - if: unix
+        then: run_test.sh
+      - if: win
+        then: run_test.bat
+    files:
+      source:
+        - test/1cbs.cif.gz
+
+  - python:
+      imports:
+        - mkdssp
+      pip_check: true
+
+about:
+  homepage: https://pdb-redo.eu/dssp
+  repository: https://github.com/PDB-REDO/dssp
+  documentation: https://github.com/PDB-REDO/dssp/blob/trunk/doc/mkdssp.md
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: "Application to assign secondary structure to proteins"
+  description: |
+    DSSP (Define Secondary Structure of Proteins) is a program that assigns
+    secondary structure to proteins based on their 3D structure.
+
+    It is widely used in structural biology and bioinformatics for analyzing protein
+    structures.
+
+extra:
+  recipe-maintainers:
+    - eunos-1128
+    - padix-key

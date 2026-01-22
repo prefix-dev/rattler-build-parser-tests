@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydistcheck",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydistcheck/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydistcheck/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pydistcheck/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pydistcheck": {
+          "build_string": "pyhcf101f3_1",
+          "name": "pydistcheck",
+          "version": "0.11.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:44.547003738Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jameslamb/pydistcheck",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Inspect Python package distributions and raise warnings on common problems."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 1,
+        "python": {
+          "entry_points": [
+            "pydistcheck = pydistcheck.cli:check"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_1"
+      },
+      "context": {
+        "version": "0.11.3"
+      },
+      "extra": {
+        "feedstock-name": "pydistcheck",
+        "recipe-maintainers": [
+          "jameslamb"
+        ]
+      },
+      "package": {
+        "name": "pydistcheck",
+        "version": "0.11.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "hatchling >=1.28.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "click >=8.0",
+          "tomli >=1.1.1",
+          "zstandard >=0.22.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7b95d2559a7875c4a91752d881c7b771892fbc45ba624d84d1b2c99c28c0eb63",
+          "url": "https://pypi.org/packages/source/p/pydistcheck/pydistcheck-0.11.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pydistcheck"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "pydistcheck --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

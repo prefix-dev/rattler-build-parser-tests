@@ -1,0 +1,353 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd/work"
+      },
+      "hash": {
+        "hash": "de9a962"
+      },
+      "host_platform": {
+        "platform": "win-arm64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zstd": {
+          "build_string": "hde9a962_6",
+          "name": "zstd",
+          "version": "1.5.7"
+        }
+      },
+      "target_platform": "win-arm64",
+      "timestamp": "2026-01-22T16:53:05.040633013Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-arm64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Zstandard is a real-time compression algorithm, providing high compression\nratios. It offers a very wide range of compression / speed trade-off, while\nbeing backed by a very fast decoder. It also offers a special mode for\nsmall data, called dictionary compression, and can create dictionaries from\nany sample set. Zstandard library is provided as open source software using\na BSD license.",
+        "documentation": "https://facebook.github.io/zstd/zstd_manual.html",
+        "homepage": "http://www.zstd.net/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/facebook/zstd",
+        "summary": "Zstandard - Fast real-time compression algorithm"
+      },
+      "build": {
+        "number": 6,
+        "script": {
+          "file": "install.bat",
+          "interpreter": "cmd"
+        },
+        "string": "hde9a962_6"
+      },
+      "context": {
+        "version": "1.5.7"
+      },
+      "extra": {
+        "feedstock-name": "zstd",
+        "recipe-maintainers": [
+          "JohanMabille",
+          "rmax",
+          "msarahan",
+          "xhochy",
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "zstd",
+        "version": "1.5.7"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-arm64",
+          "vs2022_win-arm64",
+          "vs2022_win-arm64",
+          "ninja",
+          "cmake-no-system"
+        ],
+        "host": [
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "zstd",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+          "url": "https://github.com/facebook/zstd/archive/v1.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [
+                "Library/lib/pkgconfig/libzstd.pc"
+              ],
+              "not_exists": [
+                "Library/lib/zstd_static.lib",
+                "Library/lib/libzstd_static.lib"
+              ]
+            },
+            "include": [
+              "zstd.h"
+            ],
+            "lib": [
+              "zstd",
+              "libzstd"
+            ]
+          }
+        },
+        {
+          "script": "zstd -be -i5"
+        },
+        {
+          "files": {
+            "recipe": [
+              "cf_test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-arm64",
+              "cmake",
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "set \"PKG_CONFIG_PATH=%LIBRARY_LIB%\\pkgconfig\"",
+            "pkg-config --cflags libzstd",
+            "cd cf_test",
+            "cmake %CMAKE_ARGS% ."
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd-static",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd-static/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd-static/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_zstd-static/work"
+      },
+      "hash": {
+        "hash": "0ab8f77"
+      },
+      "host_platform": {
+        "platform": "win-arm64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "zstd": {
+          "build_string": "hde9a962_6",
+          "name": "zstd",
+          "version": "1.5.7"
+        },
+        "zstd-static": {
+          "build_string": "h0ab8f77_6",
+          "name": "zstd-static",
+          "version": "1.5.7"
+        }
+      },
+      "target_platform": "win-arm64",
+      "timestamp": "2026-01-22T16:53:05.193625999Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "win-arm64",
+        "zstd": "1.5.7 hde9a962_6"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Zstandard is a real-time compression algorithm, providing high compression\nratios. It offers a very wide range of compression / speed trade-off, while\nbeing backed by a very fast decoder. It also offers a special mode for\nsmall data, called dictionary compression, and can create dictionaries from\nany sample set. Zstandard library is provided as open source software using\na BSD license.",
+        "documentation": "https://facebook.github.io/zstd/zstd_manual.html",
+        "homepage": "http://www.zstd.net/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/facebook/zstd",
+        "summary": "Zstandard - Fast real-time compression algorithm"
+      },
+      "build": {
+        "number": 6,
+        "script": {
+          "file": "install.bat",
+          "interpreter": "cmd"
+        },
+        "string": "h0ab8f77_6"
+      },
+      "context": {
+        "version": "1.5.7"
+      },
+      "extra": {
+        "feedstock-name": "zstd",
+        "recipe-maintainers": [
+          "JohanMabille",
+          "rmax",
+          "msarahan",
+          "xhochy",
+          "hmaarrfk"
+        ]
+      },
+      "package": {
+        "name": "zstd-static",
+        "version": "1.5.7"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-arm64",
+          "vs2022_win-arm64",
+          "vs2022_win-arm64",
+          "ninja",
+          "cmake-no-system"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "zstd"
+            }
+          }
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "zstd"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+          "url": "https://github.com/facebook/zstd/archive/v1.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "Library/lib/zstd_static.lib"
+            ]
+          }
+        },
+        {
+          "script": "zstd -be -i5"
+        },
+        {
+          "files": {
+            "recipe": [
+              "cf_test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "vs2022_win-arm64",
+              "vs_win-arm64",
+              "cmake",
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "set \"PKG_CONFIG_PATH=%LIBRARY_LIB%\\pkgconfig\"",
+            "pkg-config --cflags libzstd",
+            "cd cf_test",
+            "cmake %CMAKE_ARGS% ."
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

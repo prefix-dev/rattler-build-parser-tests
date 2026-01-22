@@ -1,0 +1,40 @@
+context:
+  version: "11.0.16"
+
+package:
+  name: nestjs-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@nestjs/cli/-/cli-${{ version }}.tgz
+  sha256: bdf563a61950b6c477dfafa98740efc7545d57a40e1c1e5f7fa4824b8ff0911b
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - nest --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Nest - modern, fast, powerful node.js web framework (@cli)
+  homepage: https://github.com/nestjs/nest-cli
+  repository: https://github.com/nestjs/nest-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

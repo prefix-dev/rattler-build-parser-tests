@@ -1,0 +1,180 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge/label/rust_dev",
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sasktran2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sasktran2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sasktran2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sasktran2/work"
+      },
+      "hash": {
+        "hash": "e15a649",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sasktran2": {
+          "build_string": "py310he15a649_0",
+          "name": "sasktran2",
+          "version": "2025.11.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:41:15.433637906Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge/label/rust_dev,conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "is_abi3": true,
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "python": "3.10.* *_cpython",
+        "python_min": "3.10",
+        "rust_compiler": "rust",
+        "spdlog": "1.16",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://sasktran2.readthedocs.io/",
+        "homepage": "https://github.com/usask-arg/sasktran2",
+        "license": "MIT",
+        "license_file": [
+          "license.md",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "The SASKTRAN radiative transfer model Version 2"
+      },
+      "build": {
+        "number": 0,
+        "string": "py310he15a649_0"
+      },
+      "context": {
+        "python_min": "3.10",
+        "version": "2025.11.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dannyzed"
+        ]
+      },
+      "package": {
+        "name": "sasktran2",
+        "version": "2025.11.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "crossenv",
+          "maturin >=1.3.2,<2",
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "rust_linux-aarch64",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "cargo-bundle-licenses",
+          "make",
+          "libgomp"
+        ],
+        "host": [
+          "python",
+          "python-abi3",
+          "pip",
+          "maturin >=1.3.2,<2",
+          "eigen",
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke",
+          "libtmglib",
+          "zlib",
+          "spdlog"
+        ],
+        "ignore_run_exports": {
+          "by_name": [
+            "python"
+          ],
+          "from_package": [
+            "cross-python_linux-aarch64",
+            "python"
+          ]
+        },
+        "run": [
+          "python",
+          "numpy",
+          "appdirs",
+          "pyyaml",
+          "xarray",
+          "netcdf4",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "18e208f8388c2af91f6fc73b8942ab0cbd62e46792a667c313cd30160643c102",
+          "url": "https://pypi.org/packages/source/s/sasktran2/sasktran2-2025.11.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sasktran2"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "script": "python -c \"from sasktran2 import *\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

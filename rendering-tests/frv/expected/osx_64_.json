@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_frv",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_frv/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_frv/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_frv/work"
+      },
+      "hash": {
+        "hash": "74594bb"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "frv": {
+          "build_string": "h74594bb_0",
+          "name": "frv",
+          "version": "4.41.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:36:33.569540530Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fftw": "3",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Frv is a utility library dedicated to vector manipulation.\nThe vectors used in this package are the Frame Library vectors (FrVect)\ndescribed in the frame specification.\nThe only part frame library part used in this library is the vector\ndefinition from the FrameL.h.\n\nThis library is intended to simplify the access of date for the various\nvectors.\nIt provides most of the basic tools to do vector algebra and basic signal\nprocessing.\n\nThis code is written in C. It is thread safe and could be easily used in C\nor C++ software.",
+        "homepage": "https://git.ligo.org/virgo/virgoApp/Frv/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://git.ligo.org/virgo/virgoApp/Frv",
+        "summary": "The Frame Vector Library (Frv)"
+      },
+      "build": {
+        "number": 0,
+        "string": "h74594bb_0"
+      },
+      "context": {
+        "framel_version": "8.46.1",
+        "name": "Frv",
+        "version": "4.41.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "duncanmmacleod",
+          "erinelizabethseder-virgo",
+          "fcarbogn"
+        ]
+      },
+      "package": {
+        "name": "frv",
+        "version": "4.41.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "make",
+          "cmake",
+          "pkg-config"
+        ],
+        "host": [
+          "fftw",
+          "libframel >=8.46.1"
+        ],
+        "run": [
+          "fftw",
+          "libframel >=8.46.1"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "frv",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "pkg-config-requirements.patch"
+          ],
+          "sha256": "e1f0ea63f947f8851a1060975ebbfc98bf7d3e1b71c2850b1e7176499dc7fc48",
+          "url": "https://git.ligo.org/virgo/virgoapp/Frv/-/archive/4.41.2/Frv-4.41.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "test -f ${PREFIX}/include/frv/Frv.h",
+            "pkg-config --print-errors --exact-version \"${{ version }}\" frv"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

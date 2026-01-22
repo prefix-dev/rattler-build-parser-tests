@@ -1,0 +1,125 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium-manager",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium-manager/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium-manager/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_selenium-manager/work"
+      },
+      "hash": {
+        "hash": "cfc39dd"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "selenium-manager": {
+          "build_string": "hcfc39dd_0",
+          "name": "selenium-manager",
+          "version": "4.40.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:53.448894119Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/SeleniumHQ/selenium",
+        "license": "Apache-2.0",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE",
+          "NOTICE"
+        ],
+        "summary": "Selenium Manager is a standalone tool that automatically manages the browser\ninfrastructure required by Selenium (i.e., browsers and drivers)."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build-selenium-manager"
+        },
+        "string": "hcfc39dd_0"
+      },
+      "context": {
+        "version": "4.40.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/selenium",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "selenium-manager",
+        "version": "4.40.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "rust_osx-arm64",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "58b4ed9bb4ee32af993e8e72fc29bf74ee5f3b67979d63b391b83b054d959f5e",
+          "url": "https://github.com/SeleniumHQ/selenium/archive/refs/tags/selenium-4.40.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "selenium-manager --version",
+            "selenium-manager --help",
+            "ls \"${SE_MANAGER_PATH}\" || dir \"%SE_MANAGER_PATH%\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

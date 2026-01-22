@@ -1,0 +1,139 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-backend",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-backend/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-backend/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-backend/work"
+      },
+      "hash": {
+        "hash": "38c81b3",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cppyy-backend": {
+          "build_string": "py313h38c81b3_0",
+          "name": "cppyy-backend",
+          "version": "1.15.3"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:16.478936558Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "C/C++ wrapper around Cling, the LLVM-based interactive C++ interpreter, for\nuse by cppyy, providing stable C and C++ Reflection APIs.",
+        "documentation": "http://cppyy.readthedocs.io/",
+        "homepage": "https://pypi.org/project/cppyy-backend/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/wlav/cppyy-backend",
+        "summary": "Automatic Python-C++ bindings"
+      },
+      "build": {
+        "number": 0,
+        "script": "pip install -v .",
+        "string": "py313h38c81b3_0"
+      },
+      "context": {
+        "version": "1.15.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "saraedum",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "cppyy-backend",
+        "version": "1.15.3"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "cppyy-cling ==6.32.8"
+        ],
+        "run": [
+          "python",
+          "cppyy-cling ==6.32.8"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-do-not-use-build-system-compiler-flags-when-cross-co.patch"
+          ],
+          "sha256": "4578216c16667f858a3f05bb30baa12d3d8cb8ee365bddd904e25fc2d3488d65",
+          "url": "https://pypi.org/packages/source/c/cppyy-backend/cppyy-backend-1.15.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cppyy_backend"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

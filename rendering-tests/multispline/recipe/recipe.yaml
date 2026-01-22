@@ -1,0 +1,101 @@
+schema_version: 1
+
+context:
+  name: multispline
+  version: 0.8.5
+  build: 5
+  microarch_level: ${{ 1 if microarch_level is undefined else microarch_level }}
+  build_with_microarch: ${{ build + (microarch_level * 100) | int }}
+  microarch_option: ${{ ("-Ccmake.define.MULTISPLINE_MARCH=x86-64-v" ~ microarch_level 
+                    if (microarch_level | int) > 1
+                    else "-Ccmake.define.MULTISPLINE_MARCH=x86-64")
+                        if (unix and x86_64) 
+                        else ""}}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/znasipak/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 74d099b2ce3875eeff8831efda1535fdfa677dfb9c0ec5cd62231cda1bd9781b
+
+build:
+  number: ${{ build_with_microarch }}
+  skip: match(python, "<3.9")
+  script:
+    - if: unix
+      then: export CMAKE_GENERATOR=Ninja
+    - >-
+      ${{ PYTHON }} -m pip install . -vv
+      -Ccmake.verbose=true
+      -Clogging.level=DEBUG
+      ${{ microarch_option }}
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - scikit-build-core
+        - cython
+        - numpy
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ninja
+    - cmake
+    - make
+    - if: unix and x86_64 and microarch_level < 4
+      then: x86_64-microarch-level ${{ microarch_level }}.*
+  host:
+    - python
+    - pip
+    - scikit-build-core
+    - cython
+    - numpy
+  run:
+    - python
+    - numpy
+    - if: unix and x86_64 and microarch_level == 4
+      then: _x86_64-microarch-level >=${{ microarch_level }}
+
+tests:
+  - if: microarch_level < 4
+    then:
+      - python:
+          imports:
+            - splinecy
+            - multispline.spline
+          pip_check: true
+      - files:
+          source:
+            - multispline/tests/test_cubic.py
+            - multispline/tests/test_bicubic.py
+            - multispline/tests/test_tricubic.py
+        requirements:
+          run:
+            - pip
+        script:
+          - python -c "import importlib.metadata; assert importlib.metadata.version('multispline') == '${{ version }}'"
+          - python -m unittest multispline/tests/test_cubic.py
+          - python -m unittest multispline/tests/test_bicubic.py
+          - python -m unittest multispline/tests/test_tricubic.py
+
+
+about:
+  summary: A Python package for generating cubic splines in multiple dimensions
+  description: |
+    A Python package for generating cubic splines in one, two, or three (hence, multiple)
+    dimensions. The package supports a number of boundary conditions, but is restricted
+    to interpolating data that is spaced on a uniform grid.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/znasipak/multispline
+  repository: https://github.com/znasipak/multispline
+
+extra:
+  recipe-maintainers:
+    - mpigou
+    - znasipak

@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: svgsynoptic2
+  version: 4.3.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/svgsynoptic2-${{ version }}.tar.gz
+  sha256: 1cbbfa969f3780ccab41dbc14f4b95baf2c3d948b685358c4cbdbc4e00804fd8
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+  run:
+    - pyqtwebengine
+    - pytango >=9.2.1
+    - python >=${{ python_min }}
+    - taurus >=4.5
+
+tests:
+  - python:
+      imports:
+        - svgsynoptic2
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+
+about:
+  summary: Widget for displaying a SVG synoptic.
+  description: |
+    svgsynoptic2 is a library for creating control system synoptics using SVG.
+    The library is developed with the TANGO control system in mind,
+    and has a Qt widget implementation based on Taurus.
+    It should however be possible to adapt it to other systems as well.
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/MaxIV/lib-maxiv-svgsynoptic
+  repository: https://gitlab.com/MaxIV/lib-maxiv-svgsynoptic
+
+extra:
+  recipe-maintainers:
+    - beenje

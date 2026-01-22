@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_asyncpg/work"
+      },
+      "hash": {
+        "hash": "ee3c976",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "asyncpg": {
+          "build_string": "py312hee3c976_1",
+          "name": "asyncpg",
+          "version": "0.31.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:08.994182839Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "asyncpg is a database interface library designed specifically for\nPostgreSQL and Python/asyncio. asyncpg is an efficient, clean\nimplementation of PostgreSQL server binary protocol for use with Python's\nasyncio framework.",
+        "documentation": "https://magicstack.github.io/asyncpg",
+        "homepage": "https://github.com/MagicStack/asyncpg",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/MagicStack/asyncpg",
+        "summary": "A fast PostgreSQL Database Client Library for Python/asyncio."
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "rm asyncpg/pgproto/pgproto.c asyncpg/protocol/protocol.c",
+          "${{ PYTHON }} -m pip install . --no-deps -vv"
+        ],
+        "string": "py312hee3c976_1"
+      },
+      "context": {
+        "name": "asyncpg",
+        "version": "0.31.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "nehaljwani",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "asyncpg",
+        "version": "0.31.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "cython",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*"
+        ],
+        "host": [
+          "python",
+          "cython",
+          "setuptools",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "async-timeout >=4.0.3"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c989386c83940bfbd787180f2b1519415e2d3d6277a70d9d0f0145ac73500735",
+          "url": "https://pypi.org/packages/source/a/asyncpg/asyncpg-0.31.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "asyncpg"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

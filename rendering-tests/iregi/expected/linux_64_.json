@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iregi-static",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iregi-static/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iregi-static/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_iregi-static/work"
+      },
+      "hash": {
+        "hash": "9e9b530"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "iregi-static": {
+          "build_string": "h9e9b530_4",
+          "name": "iregi-static",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:27.463786494Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "IREGI is a package for one-loop tensor Integral REduction with General\npropagator Indices.\n\nThe algorithm was proposed by G. Duplancic, B. Nizic\n(DOI: [10.1140/epjc/s2004-01723-7](https://doi.org/10.1140/epjc/s2004-01723-7)).\n\nThis implementation for MADLOOP5 in MadGraph5_aMC@NLO was originally\nauthored by Hua-Sheng Shao.",
+        "homepage": "https://github.com/mg5amcnlo/mg5amcnlo/tree/3.x/vendor/IREGI/src",
+        "license": "LicenseRef-NCSA",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mg5amcnlo/mg5amcnlo/tree/3.x/vendor/IREGI/src",
+        "summary": "IREGI: one-loop tensor Integral REduction with General propagator Indices"
+      },
+      "build": {
+        "number": 4,
+        "script": [
+          "cd vendor/IREGI/src/",
+          "rm -rf oneloop",
+          "rm -rf qcdloop",
+          "rm makefile",
+          "rm makefile_oneloop",
+          "rm makefile_qcdloop",
+          "make -f makefile_ML5_lib FC=$FC FFLAGS=\"$FFLAGS -std=legacy -Wall -ffixed-line-length-none -I$PREFIX/include/oneloop\"",
+          "mv libiregi.a $PREFIX/lib/",
+          "mkdir -p $PREFIX/include/iregi",
+          "mv *.mod $PREFIX/include/iregi/"
+        ],
+        "string": "h9e9b530_4"
+      },
+      "context": {
+        "name": "iregi",
+        "version": "1.1.0"
+      },
+      "extra": {
+        "feedstock-name": "iregi",
+        "recipe-maintainers": [
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "iregi-static",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gfortran_linux-64 14.*",
+          "make",
+          "libtool"
+        ],
+        "host": [
+          "oneloop-static"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "makefile_ML5_lib.patch",
+            "use-avh_olo.patch"
+          ],
+          "sha256": "ca3e027f078438318bd4143a102aebc2d51358f537b5d52bbc574fe49a6a901e",
+          "url": "https://github.com/hep-packaging-coordination/mg5amcnlo-release-mirror/releases/download/3.5.7/MG5_aMC_v3.5.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/libiregi.a"
+            ],
+            "include": [
+              "iregi/binary_tree.mod",
+              "iregi/cmatrix_base.mod",
+              "iregi/cpave_reduce.mod",
+              "iregi/csi_reduce.mod",
+              "iregi/cti_reduce.mod",
+              "iregi/funlib.mod",
+              "iregi/global.mod",
+              "iregi/gti_reduce.mod",
+              "iregi/kinematics.mod",
+              "iregi/linear_algebra.mod",
+              "iregi/matrices.mod",
+              "iregi/matrix_base.mod",
+              "iregi/mis_warp.mod",
+              "iregi/pave_reduce.mod",
+              "iregi/si_reduce.mod",
+              "iregi/special_fun.mod",
+              "iregi/ti_reduce.mod"
+            ],
+            "strict": true
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

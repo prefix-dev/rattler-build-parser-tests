@@ -1,0 +1,219 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qe",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qe/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qe/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_qe/work"
+      },
+      "hash": {
+        "hash": "19104ac"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "qe": {
+          "build_string": "h19104ac_2",
+          "name": "qe",
+          "version": "7.5"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:48.810916319Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "fftw": "3",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "liblapack": "3.9.* *netlib",
+        "liblapacke": "3.9.* *netlib",
+        "openmpi": "5",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "QUANTUM ESPRESSO is an integrated suite of Open-Source computer\ncodes for electronic-structure calculations and materials modeling\nat the nanoscale. It is based on density-functional theory, plane\nwaves, and pseudopotentials.",
+        "documentation": "http://www.quantum-espresso.org/Doc/user_guide/",
+        "homepage": "http://www.quantum-espresso.org/",
+        "license": "GPL-2.0-only",
+        "license_file": [
+          "License"
+        ],
+        "repository": "https://github.com/QEF/q-e",
+        "summary": "QUANTUM ESPRESSO (opEn-Source Package for Research in Electronic Structure, Simulation, and Optimization)"
+      },
+      "build": {
+        "number": 2,
+        "script": {
+          "content": "build.sh",
+          "interpreter": "bash"
+        },
+        "string": "h19104ac_2"
+      },
+      "context": {
+        "mpi": "openmpi",
+        "mpi_prefix": "mpi_openmpi",
+        "name": "qe",
+        "version": "7.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "certik",
+          "wolfv",
+          "ltalirz",
+          "unkcpz"
+        ]
+      },
+      "package": {
+        "name": "qe",
+        "version": "7.5"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gfortran_linux-64 14.*",
+          "openmpi-mpifort",
+          "cmake >=3.18.0",
+          "make",
+          "m4",
+          "pkg-config",
+          "wget",
+          "libgomp"
+        ],
+        "host": [
+          "libblas",
+          "libcblas",
+          "liblapack",
+          "liblapacke",
+          "hdf5 * *mpi_openmpi_*",
+          "openmpi",
+          "scalapack",
+          "elpa * *mpi_openmpi_*",
+          "fftw",
+          "fox"
+        ],
+        "run": [
+          "fftw",
+          "openmpi",
+          "scalapack",
+          "elpa"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7e1f7a9a21b63192f5135218bee20a5321b66582e4756536681b76e9c59b3cc8",
+          "url": "https://github.com/QEF/q-e/archive/qe-7.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "alpha2f.x",
+              "average.x",
+              "bands.x",
+              "cell2ibrav.x",
+              "cppp.x",
+              "cp.x",
+              "dos.x",
+              "dvscf_q2r.x",
+              "dynmat.x",
+              "epa.x",
+              "epsilon.x",
+              "ev.x",
+              "fermi_proj.x",
+              "fermi_velocity.x",
+              "fqha.x",
+              "fs.x",
+              "ibrav2cell.x",
+              "initial_state.x",
+              "kpoints.x",
+              "lambda.x",
+              "ld1.x",
+              "manycp.x",
+              "matdyn.x",
+              "molecularpdos.x",
+              "neb.x",
+              "open_grid.x",
+              "path_interpolation.x",
+              "pawplot.x",
+              "phcg.x",
+              "ph.x",
+              "plan_avg.x",
+              "plotband.x",
+              "plotproj.x",
+              "plotrho.x",
+              "pmw.x",
+              "postahc.x",
+              "ppacf.x",
+              "pp.x",
+              "projwfc.x",
+              "pw2bgw.x",
+              "pw2critic.x",
+              "pw2gw.x",
+              "pw2wannier90.x",
+              "pwcond.x",
+              "pwi2xsf.x",
+              "pw.x",
+              "q2qstar.x",
+              "q2r.x",
+              "scan_ibrav.x",
+              "sumpdos.x",
+              "upfconv.x",
+              "virtual_v2.x",
+              "wannier_ham.x",
+              "wannier_plot.x",
+              "wfck2r.x",
+              "wfdd.x"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

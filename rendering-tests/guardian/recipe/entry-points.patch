@@ -1,0 +1,65 @@
+diff --git a/bin/guardctrl b/bin/guardctrl
+deleted file mode 100755
+index 2514015..0000000
+--- a/bin/guardctrl
++++ /dev/null
+@@ -1,2 +0,0 @@
+-#!/bin/sh
+-exec python3 -u -m guardctrl "$@"
+diff --git a/bin/guardian b/bin/guardian
+deleted file mode 100755
+index ff80123..0000000
+--- a/bin/guardian
++++ /dev/null
+@@ -1,3 +0,0 @@
+-#!/bin/sh
+-# FIXME: should we add other command line options?  -B, -s?
+-exec python3 -u -m guardian "$@"
+diff --git a/bin/guardmedm b/bin/guardmedm
+deleted file mode 100755
+index 931612a..0000000
+--- a/bin/guardmedm
++++ /dev/null
+@@ -1,2 +0,0 @@
+-#!/bin/sh
+-exec python3 -m guardian.medm "$@"
+diff --git a/bin/guardutil b/bin/guardutil
+deleted file mode 100755
+index f5f1a17..0000000
+--- a/bin/guardutil
++++ /dev/null
+@@ -1,2 +0,0 @@
+-#!/bin/sh
+-exec python3 -u -m guardian.guardutil "$@"
+diff --git a/setup.py b/setup.py
+index fe37548..2f6ff68 100644
+--- a/setup.py
++++ b/setup.py
+@@ -52,19 +52,15 @@ setup(
+     ],
+     # https://chriswarrick.com/blog/2014/09/15/python-apps-the-right-way-entry_points-and-scripts/
+     # should we have a 'gui_scripts' as well?
+-    # entry_points={
+-    #     'console_scripts': [
+-    #         'guardian = guardian.__main__:main',
+-    #         'guardmedm = guardian.medm.__main__:main',
+-    #         'guardutil = guardian.guardutil:main',
+-    #         'guardctrl = guardctrl.__main__:main',
+-    #     ],
+-    # },
++    entry_points={
++        'console_scripts': [
++            'guardian = guardian.__main__:main',
++            'guardmedm = guardian.medm.__main__:main',
++            'guardutil = guardian.guardutil:main',
++            'guardctrl = guardctrl.__main__:main',
++        ],
++    },
+     scripts = [
+-        'bin/guardian',
+-        'bin/guardmedm',
+-        'bin/guardutil',
+-        'bin/guardctrl',
+         'bin/guardlog',
+         ],
+ 

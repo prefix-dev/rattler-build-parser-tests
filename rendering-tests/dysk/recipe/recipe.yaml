@@ -1,0 +1,54 @@
+context:
+  version: "3.6.0"
+
+package:
+  name: dysk
+  version: ${{ version }}
+
+source:
+  # v${{ version }}b can be removed for versions post 3.6.0
+  url:
+   - https://github.com/Canop/dysk/archive/refs/tags/v${{ version }}.tar.gz
+   - https://github.com/Canop/dysk/archive/refs/tags/v${{ version }}b.tar.gz
+  sha256: 59125412523853348218ff57eb1f58f31158e88dc172949d1007b4adbc7a4e61
+
+build:
+  number: 1
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: unix
+        then: cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path .
+        else: cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path .
+      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - package_contents:
+      strict: true
+      bin:
+       - dysk
+  - script: dysk --help
+
+about:
+  homepage: https://dystroy.org/dysk
+  summary: A utility listing your filesystems
+  license: MIT
+  license_file:
+    - LICENSE
+  documentation: https://dystroy.org/dysk
+  repository: https://github.com/Canop/dysk
+
+extra:
+  recipe-maintainers:
+    - Canop
+    - matthewfeickert

@@ -1,0 +1,35 @@
+context:
+  name: shs-cxi-drivers
+  version: "13.0.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/HewlettPackard/shs-cxi-driver/archive/refs/tags/release/shs-${{ version }}.tar.gz
+  sha256: 9274644ac45036afd438feffd6b44429fdb4f818a685ba6a8aa576e5c9029b3f
+
+build:
+  number: 0
+  noarch: generic
+  script: build.sh
+
+tests:
+  - script:
+      - test -f $PREFIX/include/linux/cxi/cxi.h
+      - test -f $PREFIX/include/uapi/misc/cxi.h
+
+about:
+  homepage: https://github.com/HewlettPackard/shs-cxi-driver
+  repository: https://github.com/HewlettPackard/shs-cxi-driver
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  summary: 'Headers for CXI drivers'
+  description: |
+    Provides UAPI headers for CXI (Cassini eXtended Interface) drivers.
+    Licensed under GPL-2.0-or-later as per COPYING file and cray-cxi-driver.spec.
+
+extra:
+  recipe-maintainers:
+    - j34ni

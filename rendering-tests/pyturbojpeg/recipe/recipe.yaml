@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: PyTurboJPEG
+  version: 1.8.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: b7d9625bbb2121b923228fc70d0c2b010b386687501f5b50acec4501222e152b
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - libjpeg-turbo
+
+tests:
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - requests
+    script:
+      interpreter: python
+      file: run_test.py
+
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: A Python wrapper of libjpeg-turbo for decoding and encoding JPEG image.
+  homepage: https://github.com/lilohuang/PyTurboJPEG/
+  repository: https://github.com/lilohuang/PyTurboJPEG/
+  documentation: https://github.com/lilohuang/PyTurboJPEG/
+
+extra:
+  recipe-maintainers:
+    - carlodri

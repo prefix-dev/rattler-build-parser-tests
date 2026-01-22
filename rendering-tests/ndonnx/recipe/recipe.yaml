@@ -1,0 +1,46 @@
+context:
+  version: "0.17.1"
+
+package:
+  name: ndonnx
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/n/ndonnx/ndonnx-${{ version }}.tar.gz
+    sha256: a60dd523dbe4f8d1d4b8f7230f01fd38f3f73c8b02428d938cb0562787daa924
+
+build:
+  script: ${{ PYTHON }} -m pip install .
+  noarch: python
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - onnx
+    - spox >=0.10
+    - typing-extensions
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - ndonnx
+      pip_check: true
+
+about:
+  homepage: https://github.com/quantco/ndonnx
+  summary: ONNX backed array library compliant with Array API standard.
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - adityagoel4512
+    - cbourjau

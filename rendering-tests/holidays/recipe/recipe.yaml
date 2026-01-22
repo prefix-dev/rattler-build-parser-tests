@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: holidays
+  version: "0.89"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 9e7a08d9a704382be0ce70d148087aae95da51c0e77d73b4f8f1a17bdc3729bf
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - python-dateutil >=2.9.0.post0,<3
+tests:
+  - python:
+      imports:
+        - holidays
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Generate and work with holidays in Python
+  description: |
+    A fast, efficient Python library for generating country, province and state
+    specific sets of holidays on the fly. It aims to make determining whether a
+    specific date is a holiday as fast and flexible as possible.
+  homepage: https://github.com/vacanza/python-holidays/
+  repository: https://github.com/vacanza/python-holidays/
+  documentation: https://python-holidays.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - bletham
+    - rpanai
+    - synapticarbors

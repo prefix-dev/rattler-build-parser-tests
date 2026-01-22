@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: django-removals
+  version: "1.1.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django_removals-${{ version }}.tar.gz
+  sha256: c452cabe5b2353f019c5b2731d24f3e1b308a5234f08124112dd5f66e623db24
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - django >=4.2
+
+tests:
+  - python:
+      imports:
+        - django_removals
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Tool for finding removed features in your Django project
+  license: MIT
+  license_file: LICENSE.md
+  homepage: https://github.com/ambient-innovation/django-removals/
+
+extra:
+  recipe-maintainers:
+    - thewchan

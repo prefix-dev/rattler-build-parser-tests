@@ -1,0 +1,43 @@
+schema_version: 1
+
+context:
+  name: boost_mp11
+  version: 1.90.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/boostorg/mp11/archive/refs/tags/boost-${{ version }}.tar.gz
+  sha256: ca52bde753586dcba29739cfd55abb473bf80c934c6d49a2b58023ed4e48adf6
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+  run_constraints:
+    - boost-cpp <0a0
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/include/boost/mp11.hpp
+      - if: win
+        then: if not exist %LIBRARY_INC%\\boost\\mp11.hpp exit 1
+
+about:
+  summary: C++11 metaprogramming library
+  license: BSL-1.0
+  license_file: LICENSE_1_0.txt
+  homepage: https://github.com/boostorg/mp11
+
+extra:
+  recipe-maintainers:
+    - xhochy

@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "0.16.0"
+
+package:
+  name: fq
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wader/fq/archive/v${{ version }}.tar.gz
+  sha256: c0bfc8caa6ecb0ca558a803d704316b1cdde18fda96e77836c0d95c2bcdb2ee6
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - fq --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: jq for binary formats
+  homepage: https://github.com/wader/fq
+  repository: https://github.com/wader/fq
+
+extra:
+  recipe-maintainers:
+    - danielnachun

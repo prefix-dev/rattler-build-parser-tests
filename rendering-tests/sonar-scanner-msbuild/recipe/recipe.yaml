@@ -1,0 +1,39 @@
+context:
+  version: "11.0.0.126294"
+
+package:
+  name: sonar-scanner-msbuild
+  version: ${{ version }}
+
+source:
+  url: https://github.com/SonarSource/sonar-scanner-msbuild/archive/${{ version }}.tar.gz
+  sha256: 18f174731ae535372713a102f5b416f026eeb187aba653d1f16e610cbc4b3c31
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - dotnet
+    - nuget-license
+    - sed
+  run:
+    - dotnet
+
+tests:
+  - script:
+      - "sonar-scanner-msbuild 2>&1 | grep -q \"SonarScanner for .NET\""
+
+about:
+  license: GPL-3.0-or-later
+  license_file:
+    - LICENSE.txt
+    - license-files/
+  summary: SonarScanner for .NET
+  homepage: https://github.com/SonarSource/sonar-scanner-msbuild
+  repository: https://github.com/SonarSource/sonar-scanner-msbuild
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,40 @@
+context:
+  version: "3.1.2"
+
+package:
+  name: eleventy
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@11ty/eleventy/-/eleventy-${{ version }}.tgz
+  sha256: d2c9d4399fc628076392b21237d97cd9574e96accca830c38f678efb1c0ba829
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - eleventy --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: A simpler site generator. Transforms a directory of templates (of varying types) into HTML.
+  homepage: https://github.com/11ty/eleventy
+  repository: https://github.com/11ty/eleventy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

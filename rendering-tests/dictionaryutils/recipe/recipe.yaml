@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  version: 3.4.11
+
+package:
+  name: dictionaryutils
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/dictionaryutils/dictionaryutils-${{ version }}.tar.gz
+  sha256: a63ae34b4c0130cd94e4ca685cbb18155c225f9bface32ed1d503393d0dd39cf
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python =${{ python_min }}
+    - poetry
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pyyaml
+    - jsonschema >=2.5,<4
+    - cdislogging
+    - requests
+
+tests:
+  - python:
+      imports:
+        - dictionaryutils
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Python wrapper and metaschema for datadictionary.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/uc-cdis/dictionaryutils
+
+extra:
+  recipe-maintainers:
+    - danielnachun

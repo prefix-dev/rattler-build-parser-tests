@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: fickling
+  version: "0.1.7"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fickling-${{ version }}.tar.gz
+  sha256: 03d11db2fbb86eb40bdc12a3c4e7cac1dbb16e1207893511d7df0d91ae000899
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - fickling = fickling.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - stdlib-list ~=0.11.1
+    # not listed in dependencies but needed to past import
+    - typing_extensions
+
+tests:
+  - python:
+      imports:
+        - fickling
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}
+    script:
+      - fickling --help
+
+about:
+  summary: A static analyzer and interpreter for Python pickle data
+  license: LGPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/trailofbits/fickling
+
+extra:
+  recipe-maintainers:
+    - thewchan

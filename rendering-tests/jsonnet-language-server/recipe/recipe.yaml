@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.16.0
+
+package:
+  name: jsonnet-language-server
+  version: ${{ version }}
+
+source:
+  url: https://github.com/grafana/jsonnet-language-server/archive/v${{ version }}.tar.gz
+  sha256: 616fdfc5a5c9447762c1c1bb1522053d923d0415a68937ec48385eca5d49c2fa
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - jsonnet-language-server --help
+
+about:
+  license: AGPL-3.0-or-later
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: A Language Server Protocol (LSP) server for Jsonnet
+  homepage: https://github.com/grafana/jsonnet-language-server
+  repository: https://github.com/grafana/jsonnet-language-server
+
+extra:
+  recipe-maintainers:
+    - danielnachun

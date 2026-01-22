@@ -1,0 +1,39 @@
+context:
+  version: "2.8.3"
+
+package:
+  name: css-variables-language-server
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/css-variables-language-server/-/css-variables-language-server-${{ version }}.tgz
+  sha256: fdec86041fb4673241dba88371d1bab81c2f444f1ffa4fb67e8088d619c0b55e
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "css-variables-language-server 2>&1 | grep -q 'Connection input stream is not set.'"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Language server for CSS variables
+  homepage: https://github.com/vunguyentuan/vscode-css-variables
+  repository: https://github.com/vunguyentuan/vscode-css-variables
+
+extra:
+  recipe-maintainers:
+    - danielnachun

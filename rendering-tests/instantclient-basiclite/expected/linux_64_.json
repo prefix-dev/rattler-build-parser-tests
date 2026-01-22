@@ -1,0 +1,118 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_instantclient-basiclite",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_instantclient-basiclite/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_instantclient-basiclite/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_instantclient-basiclite/work"
+      },
+      "hash": {
+        "hash": "fc2019e"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "instantclient-basiclite": {
+          "build_string": "hfc2019e_0",
+          "name": "instantclient-basiclite",
+          "version": "23.9.0.25.07"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:26.480040282Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Oracle Instant Client Basic Lite is a compact version of Oracle Instant Client\nthat provides the basic functionality needed to connect to Oracle Database.\nIt is significantly smaller than the full Basic package and contains only \nthe essential libraries required for basic database connectivity.\n\nThis package includes:\n- Oracle Call Interface (OCI) libraries\n- Oracle C++ Call Interface (OCCI) libraries  \n- JDBC Thin driver\n- Basic connectivity tools (adrci, genezi, uidrvci)\n\nNote: This package only supports Linux platforms (x86_64 and ARM64).",
+        "documentation": "https://docs.oracle.com/en/database/oracle/oracle-database/23/",
+        "homepage": "https://www.oracle.com/database/technologies/instant-client.html",
+        "license": "LicenseRef-Oracle-Free-Distribution",
+        "license_file": [
+          "instantclient_*/BASIC_LITE_LICENSE"
+        ],
+        "repository": "https://www.oracle.com/database/technologies/instant-client/downloads.html",
+        "summary": "Oracle Instant Client Basic Lite - lightweight Oracle database client"
+      },
+      "build": {
+        "number": 0,
+        "script": "# Create opt directory and copy instantclient\nmkdir -p $PREFIX/opt\ncp -r instantclient_* $PREFIX/opt/\n\n# Create symlinks to shared libraries in standard lib directory\nmkdir -p $PREFIX/lib\nfor lib in $PREFIX/opt/instantclient_23_9/*.so*; do\n  if [ -f \"$lib\" ] && [ ! -L \"$lib\" ]; then\n    ln -sf ../opt/instantclient_23_9/$(basename \"$lib\") $PREFIX/lib/$(basename \"$lib\")\n  fi\ndone\n\n# Set up ORACLE_HOME environment variable\nmkdir -p $PREFIX/etc/conda/activate.d\nmkdir -p $PREFIX/etc/conda/deactivate.d\n\n# Bash/sh activation\ncat > $PREFIX/etc/conda/activate.d/instantclient.sh << 'EOF'\nexport ORACLE_HOME=$CONDA_PREFIX/opt/instantclient_23_9\nEOF\n\n# Fish activation\ncat > $PREFIX/etc/conda/activate.d/instantclient.fish << 'EOF'\nset -gx ORACLE_HOME $CONDA_PREFIX/opt/instantclient_23_9\nEOF\n\n# Csh activation\ncat > $PREFIX/etc/conda/activate.d/instantclient.csh << 'EOF'\nsetenv ORACLE_HOME $CONDA_PREFIX/opt/instantclient_23_9\nEOF\n\n# Bash/sh deactivation\ncat > $PREFIX/etc/conda/deactivate.d/instantclient.sh << 'EOF'\nunset ORACLE_HOME\nEOF\n\n# Fish deactivation\ncat > $PREFIX/etc/conda/deactivate.d/instantclient.fish << 'EOF'\nset -e ORACLE_HOME\nEOF\n\n# Csh deactivation\ncat > $PREFIX/etc/conda/deactivate.d/instantclient.csh << 'EOF'\nunsetenv ORACLE_HOME\nEOF\n",
+        "string": "hfc2019e_0"
+      },
+      "context": {
+        "name": "instantclient-basiclite",
+        "version": "23.9.0.25.07"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "instantclient-basiclite",
+        "version": "23.9.0.25.07"
+      },
+      "requirements": {},
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "664a88e52f04ca787184a78b90ce09d34b1af919830be6973688219550e079b3",
+          "url": "https://download.oracle.com/otn_software/linux/instantclient/2390000/instantclient-basiclite-linux.x64-23.9.0.25.07.zip"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "opt/instantclient_23_9/adrci",
+              "opt/instantclient_23_9/ojdbc11.jar"
+            ],
+            "lib": [
+              "libclntsh.so.23.1",
+              "libocci.so.23.1",
+              "libnnz.so"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

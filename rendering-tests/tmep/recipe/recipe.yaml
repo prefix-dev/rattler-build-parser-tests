@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: tmep
+  version: 3.0.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 8e9343d14b5e215a37f6e9bfdfe233c1fd2d586cd49b6006d9762974d83c70a0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - tmep-doc=tmep.doc:print_doc
+
+requirements:
+  host:
+    - pip
+    - poetry-core
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - unidecode >=1,<2
+
+tests:
+  - python:
+      imports:
+        - tmep
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}
+    script:
+      - tmep-doc --introduction-rst
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Template and Macros Expansion for Path names.
+  description: |
+    This module implements a string formatter based on the standard PEP 292 string.Template class extended with function calls. Variables, as with string.Template, are indicated with $ and functions are delimited with %.
+    This module assumes that everything is Unicode: the template and the substitution values. Bytestrings are not supported. Also, the templates always behave like the safe_substitute method in the standard library: unknown symbols are left intact.
+  homepage: https://github.com/Josef-Friedrich/tmep
+  repository: https://github.com/Josef-Friedrich/tmep
+  documentation: https://tmep.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

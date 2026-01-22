@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  version: 0.1.16
+
+package:
+  name: setuptools-gettext
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/setuptools-gettext/setuptools_gettext-${{ version }}.tar.gz
+  sha256: aeae31fbf701e1a45e7e245867a07701e33ebe463994f105f496e832f6393f91
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python =${{ python_min }}
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - setuptools
+    - tomli
+
+tests:
+  - python:
+      imports:
+        - setuptools_gettext
+  - requirements:
+      run:
+        - pip
+        - python =${{ python_min }}
+    script:
+      - pip check
+
+about:
+  summary: Setuptools gettext extension plugin
+  license: GPL-2.0-or-later
+  license_file: COPYING
+  homepage: https://github.com/breezy-team/setuptools-gettext
+
+extra:
+  recipe-maintainers:
+    - danielnachun

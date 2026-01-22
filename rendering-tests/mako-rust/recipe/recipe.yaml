@@ -1,0 +1,39 @@
+context:
+  version: "0.11.13"
+
+package:
+  name: mako-rust
+  version: ${{ version }}
+
+source:
+  url: https://github.com/umijs/mako/archive/${{ version }}.tar.gz
+  sha256: 41bc3529f0edd70b53151ec599a32ddc9a19db69a7dfb8c4b24d6177135d3ead
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - mako --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: An extremely fast, production-grade web bundler based on Rust.
+  homepage: https://github.com/umijs/mako
+  repository: https://github.com/umijs/mako
+
+extra:
+  recipe-maintainers:
+    - danielnachun

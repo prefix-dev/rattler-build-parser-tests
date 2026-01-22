@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kaggle",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kaggle/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kaggle/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_kaggle/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "kaggle": {
+          "build_string": "pyhcf101f3_0",
+          "name": "kaggle",
+          "version": "1.8.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:28.622898369Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Official API for https://www.kaggle.com, accessible using a command\nline tool implemented in Python.",
+        "documentation": "https://github.com/Kaggle/kaggle-api",
+        "homepage": "https://github.com/Kaggle/kaggle-api",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/Kaggle/kaggle-api",
+        "summary": "Kaggle API"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "kaggle = kaggle.cli:main"
+          ]
+        },
+        "script": "python -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "kaggle",
+        "python_min": "3.11",
+        "version": "1.8.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ngam",
+          "CurtLH",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "kaggle",
+        "version": "1.8.3"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.11",
+          "bleach",
+          "kagglesdk >=0.1.14,<1.0",
+          "python-slugify",
+          "requests",
+          "python-dateutil",
+          "six >=1.10",
+          "tqdm",
+          "urllib3 >=1.15.1",
+          "packaging",
+          "protobuf",
+          "black >=24.10.0",
+          "mypy >=1.15.0",
+          "types-requests",
+          "types-tqdm"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "3335da5752ae2843c3aa0523b7a7ed91a8dd5505c19cb4031f9d57651c346106",
+          "url": "https://pypi.org/packages/source/k/kaggle/kaggle-1.8.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "export KAGGLE_USERNAME=datadinosaur",
+            "export KAGGLE_KEY=xxxxxxxxxxxxxx",
+            "kaggle --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hatch/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hatch": {
+          "build_string": "pyhcf101f3_0",
+          "name": "hatch",
+          "version": "1.16.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:48:29.585363229Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://hatch.pypa.io/latest/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://github.com/pypa/hatch",
+        "summary": "Modern, extensible Python project management"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "hatch = hatch.cli:main"
+          ]
+        },
+        "script": "sed -i '/\"uv/d' ./pyproject.toml && python -m pip install . -v",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "hatch",
+        "version": "1.16.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ofek",
+          "henryiii"
+        ]
+      },
+      "package": {
+        "name": "hatch",
+        "version": "1.16.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "hatchling >=1.21.0",
+          "hatch-vcs >=0.4.0"
+        ],
+        "run": [
+          "click >=8.0.6",
+          "hatchling >=1.27.0",
+          "httpx >=0.22.0",
+          "hyperlink >=21.0.0",
+          "keyring >=23.5.0",
+          "packaging >=24.2",
+          "pexpect >=4.8,<5",
+          "platformdirs >=2.5.0",
+          "pyproject_hooks",
+          "python >=3.10",
+          "rich >=11.2.0",
+          "shellingham >=1.4.0",
+          "tomli-w >=1.0",
+          "tomlkit >=0.11.1",
+          "userpath >=1.7,<2",
+          "uv >=0.5.23",
+          "virtualenv >=20.26.6",
+          "backports.zstd >=1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f288938da85b4b90e47d94788e19e9976dcd6fd53b48343ea251a2a37256a980",
+          "url": "https://pypi.org/packages/source/h/hatch/hatch-1.16.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hatch"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests",
+              "pyproject.toml",
+              "hatch.toml"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "flit-core",
+              "pip",
+              "pytest",
+              "pytest-mock",
+              "pytest-xdist",
+              "python 3.10.*",
+              "pyfakefs",
+              "git",
+              "rust"
+            ]
+          },
+          "script": [
+            "hatch --help",
+            "pip check",
+            "pytest --ignore tests/backend -ra -k \"not test_already_installed_update_flag and not test_already_installed_update_prompt and not test_installation and not test_all and not test_pypirc\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

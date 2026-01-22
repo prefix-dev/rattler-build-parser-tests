@@ -1,0 +1,65 @@
+context:
+  name: libfranka
+  version: "0.20.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/frankarobotics/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+    sha256: c81560dc6edad8866db3fe5ae0ec7438b107b89ac62e159429a929b2b8f9c4ed
+    patches: remove-set-version-git.patch
+
+  # Exact commit hash was obtained from the submodule inside the target libfranka version
+  - url: https://github.com/frankarobotics/libfranka-common/archive/d96c221a32c343384cbe2f77c61116ed58b84231.tar.gz
+    sha256: 75f26fc8794e4ae149086b59dda9de9d61cba845c375a51d13dd886ba7a9c104
+    target_directory: common
+
+
+
+build:
+  skip:
+    - win
+    - osx
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - make
+    - ninja
+  host:
+    - eigen
+    - poco
+    - pinocchio
+    - fmt
+  run_exports:
+    - ${{ pin_subpackage('libfranka', upper_bound='x.x.x') }}
+
+tests:
+  - package_contents:
+      lib:
+        - franka
+
+about:
+  homepage: https://github.com/frankarobotics/libfranka
+  summary: 'C++ client library to control Franka robots in real-time'
+  description: |
+    libfranka is a C++ library that provides low-level control of Franka
+    Robotics research robots. The generated API documentation offers
+    an overview of its capabilities, while the Franka Control Interface (FCI)
+    documentation provides more information on setting up the robot
+    and utilizing its features and functionalities.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - common/LICENSE
+  documentation: https://frankarobotics.github.io/docs/libfranka.html
+  repository: https://github.com/frankarobotics/libfranka
+
+extra:
+  recipe-maintainers:
+    - nmarticorena

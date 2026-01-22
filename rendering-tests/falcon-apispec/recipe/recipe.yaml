@@ -1,0 +1,45 @@
+context:
+  name: falcon-apispec
+  version: 0.4.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 3be2d7a544852fb6ec78bcdd27f28cb62418337ab85ab23685632f7946f667e5
+
+build:
+  number: 1
+  noarch: python
+  script: python -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - apispec >=1.0
+    - falcon
+    - pyyaml >=3.10
+
+tests:
+  - python:
+      imports:
+        - falcon_apispec
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: apispec plugin that generates OpenAPI specification (aka Swagger) for Falcon web applications
+  homepage: https://github.com/alysivji/falcon-apispec
+  repository: https://github.com/alysivji/falcon-apispec
+
+extra:
+  recipe-maintainers:
+    - synapticarbors

@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legacy-cgi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legacy-cgi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legacy-cgi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_legacy-cgi/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "legacy-cgi": {
+          "build_string": "pyhcf101f3_0",
+          "name": "legacy-cgi",
+          "version": "2.6.4"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:29.994164427Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jackrosenthal/legacy-cgi",
+        "license": "PSF-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Fork of the standard library cgi and cgitb modules, being deprecated in PEP-594"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": [
+          "${{ PYTHON }} ${{ (RECIPE_DIR ~ \"/patch_noop.py\") if is_noop else \"-v\" }}",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "expect_files": "site-packages/cgi*.py",
+        "is_noop": 1,
+        "python_check_max": "3.12",
+        "python_max": "3.13",
+        "removed_in_python": "3.13",
+        "version": "2.6.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "legacy-cgi",
+        "version": "2.6.4"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "pip",
+          "python 3.10.*",
+          "tomli",
+          "tomli-w"
+        ],
+        "run": [
+          "python >=3.10,<3.13"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "abb9dfc7835772f7c9317977c63253fd22a7484b5c9bbcdca60a29dcce97c577",
+          "url": "https://pypi.org/packages/source/l/legacy-cgi/legacy_cgi-2.6.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "not_exists": [
+                "site-packages/cgi*.py"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "cgi",
+              "cgitb"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.12.*"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,75 @@
+schema_version: 1
+
+context:
+  name: libpulsar
+  version: "4.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/apache/pulsar-client-cpp/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 4bcb09558d1ced113a2c7e08c60b48ce3f0e9df1eaffac300697117bb1cadbe5
+  patches:
+    - 0001-Remove-Werror.patch
+    - 0002-Link-to-abseil-on-Windows.patch
+    - 0003-Build-with-newer-abseil.patch
+
+build:
+  # pulsar doesn't give any ABI guarantees
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+    - if: not win
+      then: sed
+      else: m2-sed
+    - if: build_platform != target_platform
+      then: libprotobuf
+  host:
+    - if: win
+      then: dlfcn-win32
+    - gmock
+    - gtest
+    - libboost-headers
+    # windows build needs to find CMake metadata
+    - if: win
+      then: libboost-devel
+    - libcurl
+    - libprotobuf
+    - openssl
+    - snappy
+    - zlib
+    - zstd
+  run_exports:
+    - ${{ pin_subpackage('libpulsar', upper_bound='x.x.x') }}
+  ignore_run_exports:
+    by_name:
+      - if: win
+        then: libboost
+      - gtest
+
+tests:
+  - script:
+      - if: not win
+        then: test -f $PREFIX/lib/libpulsar${SHLIB_EXT}
+        else:
+          - if not exist %LIBRARY_PREFIX%/bin/pulsar.dll exit 1
+          - if not exist %LIBRARY_PREFIX%/lib/pulsar.lib exit 1
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Apache Pulsar C++ client library
+  homepage: https://github.com/apache/pulsar-client-cpp
+  repository: https://github.com/apache/pulsar-client-cpp
+  documentation: https://pulsar.apache.org/docs/3.0.x/client-libraries
+
+extra:
+  recipe-maintainers:
+    - xhochy

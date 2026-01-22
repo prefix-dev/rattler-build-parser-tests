@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: emptylog
+  version: "0.0.11"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/emptylog-${{ version }}.tar.gz
+  sha256: c6b1d50f44ff79deaef6f8b6f9c49362d3eae7f86ece205beec7c794b4605040
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools ==68.0.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - printo >=0.0.8
+
+tests:
+  - python:
+      imports:
+        - emptylog
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Mimicking the logger protocol
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/pomponchik/emptylog
+
+extra:
+  recipe-maintainers:
+    - thewchan

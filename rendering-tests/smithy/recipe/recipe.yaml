@@ -1,0 +1,39 @@
+context:
+  version: "1.66.0"
+
+package:
+  name: smithy
+  version: ${{ version }}
+
+source:
+  url: https://github.com/smithy-lang/smithy/archive/${{ version }}.tar.gz
+  sha256: c719aeae761ed04ce3d610aee4c7f7856823eba01ff3e74fd0c95832401e4355
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - findutils
+    - openjdk =21
+    - sed
+  run:
+    - openjdk
+
+tests:
+  - script:
+      - smithy --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - build/reports/dependency-license/
+  summary: Smithy is a protocol-agnostic interface definition language and set of tools for generating clients, servers, and documentation for any programming language.
+  homepage: https://github.com/smithy-lang/smithy
+  repository: https://github.com/smithy-lang/smithy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

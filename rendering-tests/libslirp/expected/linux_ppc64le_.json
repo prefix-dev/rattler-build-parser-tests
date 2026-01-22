@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libslirp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libslirp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libslirp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libslirp/work"
+      },
+      "hash": {
+        "hash": "cc8c3a6"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libslirp": {
+          "build_string": "hcc8c3a6_2",
+          "name": "libslirp",
+          "version": "4.4.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:52:31.071747606Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "glib": "2",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libslirp is a user-mode networking library used by virtual machines, containers or various tools.",
+        "documentation": "https://gitlab.freedesktop.org/slirp/libslirp",
+        "homepage": "https://gitlab.freedesktop.org/slirp/libslirp",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "COPYRIGHT"
+        ],
+        "repository": "https://gitlab.freedesktop.org/slirp/libslirp",
+        "summary": "A general purpose TCP-IP emulator used by virtual machine hypervisors to provide virtual networking services."
+      },
+      "build": {
+        "number": 2,
+        "string": "hcc8c3a6_2"
+      },
+      "context": {
+        "version": "4.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "danielnachun",
+          "mbargull",
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "libslirp",
+        "version": "4.4.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "meson >=0.50",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "glib",
+          "libglib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libslirp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e903fc14c26030b51711bd7f098697c2393f237199e3681c2e22ea013c3635a7",
+          "url": "https://gitlab.freedesktop.org/slirp/libslirp/uploads/a30aeca3c6ad23f176065d0ee832957b/libslirp-4.4.0.tar.xz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/slirp/libslirp.h",
+            "test -f ${PREFIX}/lib/libslirp${SHLIB_EXT}",
+            "test -f ${PREFIX}/lib/pkgconfig/slirp.pc"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

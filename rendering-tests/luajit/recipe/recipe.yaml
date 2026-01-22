@@ -1,0 +1,57 @@
+context:
+  name: luajit
+  commit: eec7a8016c3381b949b5d84583800d05897fa960
+  # Acquired by running `git show -s --format=%ct` in the repository checked out at `commit`.
+  timestamp: 1744318430
+  version: "2.1.${{ timestamp }}"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/LuaJIT/LuaJIT/archive/${{ commit }}.zip
+  sha256: db1ad06ee1f6fd776ed6638b4fb08636c50e4341b6381b08ea7f492dd45d321f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - if: unix
+      then: make
+  run_exports: 
+    - ${{ pin_subpackage(name) }}
+  run_constraints: 
+    # Luajit should not be installed together with lua 5.1
+    - lua <5.1|>=5.2
+
+tests:
+  - package_contents:
+      bin: 
+        - luajit
+      include: 
+        - luajit-2.1/lua.h
+        - luajit-2.1/luajit.h
+      lib: 
+        - if: win
+          then: lua51
+          else: luajit
+  - script:
+      - luajit -v
+      - luajit -e "print(package.path)"
+
+about:
+  homepage: http://luajit.org/
+  license: MIT
+  license_file: COPYRIGHT
+  summary: Just-In-Time Compiler (JIT) for the Lua programming language.
+  repository: https://github.com/LuaJIT/LuaJIT
+
+extra:
+  recipe-maintainers:
+    - brisk022
+    - marcelotrevisani
+    - baszalmstra

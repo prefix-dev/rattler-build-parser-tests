@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgit2",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgit2/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgit2/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libgit2/work"
+      },
+      "hash": {
+        "hash": "b7b1a1a"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libgit2": {
+          "build_string": "hb7b1a1a_0",
+          "name": "libgit2",
+          "version": "1.9.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:30.747842239Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libiconv": "1",
+        "libssh2": "1",
+        "openssl": "3.5",
+        "pcre2": "10.47",
+        "target_platform": "osx-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "libgit2 is a portable, pure C implementation of the Git core methods\nprovided as a re-entrant linkable library with a solid API, allowing\nyou to write native speed custom Git applications in any language\nwhich supports C bindings.",
+        "homepage": "https://libgit2.github.com/",
+        "license": "GPL-2.0-only WITH GCC-exception-2.0",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "libgit2 is a portable, pure C implementation of the Git core methods provided as a re-entrant linkable library with a solid API, allowing you to write native speed custom Git applications in any language which supports C bindings."
+      },
+      "build": {
+        "number": 0,
+        "string": "hb7b1a1a_0"
+      },
+      "context": {
+        "name": "libgit2",
+        "version": "1.9.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "shadowwalkersb",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "libgit2",
+        "version": "1.9.2"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*"
+        ],
+        "host": [
+          "openssl",
+          "libiconv",
+          "pcre2",
+          "curl",
+          "libssh2",
+          "zlib"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgit2",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Use-Requires.internal-instead-of-Requires.private.patch"
+          ],
+          "sha256": "6f097c82fc06ece4f40539fb17e9d41baf1a5a2fc26b1b8562d21b89bc355fe6",
+          "url": "https://github.com/libgit2/libgit2/archive/v1.9.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "pkg-config"
+            ]
+          },
+          "script": [
+            "test -f $PREFIX/include/git2.h",
+            "test -f $PREFIX/lib/libgit2${SHLIB_EXT}",
+            "pkg-config --cflags --libs libgit2"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

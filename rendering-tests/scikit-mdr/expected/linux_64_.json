@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-mdr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-mdr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-mdr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_scikit-mdr/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "scikit-mdr": {
+          "build_string": "pyhe01879c_0",
+          "name": "scikit-mdr",
+          "version": "0.4.6"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:52.079518467Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "MDR is an effective feature construction algorithm that is capable of\nmodeling higher-order interactions and capturing complex patterns in data\nsets.\n\nMDR currently only works with categorical features and supports both binary\nclassification and regression problems. We are working on expanding the\nalgorithm to cover more problem types and provide more convenience features.",
+        "homepage": "https://github.com/EpistasisLab/scikit-mdr",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/EpistasisLab/scikit-mdr",
+        "summary": "A sklearn-compatible Python implementation of Multifactor Dimensionality\nReduction (MDR) for feature construction."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "version": "0.4.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl",
+          "lacava",
+          "rhiever",
+          "weixuanfu",
+          "jay-m-dev"
+        ]
+      },
+      "package": {
+        "name": "scikit-mdr",
+        "version": "0.4.6"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools"
+        ],
+        "run": [
+          "matplotlib-base",
+          "numpy",
+          "python >=3.9",
+          "scikit-learn",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4790c5dadf87061381aee360b8cc96021f33a6c9348ba827eb7e9c4f3d6ddc3e",
+          "url": "https://pypi.org/packages/source/s/scikit-mdr/scikit_mdr-0.4.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "mdr"
+            ],
+            "python_version": [
+              "3.9.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests.py"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "numpy",
+              "pytest-cov",
+              "python 3.9.*"
+            ]
+          },
+          "script": [
+            "coverage run --source=mdr --branch -m pytest -vv --tb=long --color=yes tests.py",
+            "coverage report --show-missing --skip-covered --fail-under=61"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

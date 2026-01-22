@@ -1,0 +1,164 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepmc3",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepmc3/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepmc3/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hepmc3/work"
+      },
+      "hash": {
+        "hash": "98c8dbb",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hepmc3": {
+          "build_string": "py312h98c8dbb_3",
+          "name": "hepmc3",
+          "version": "3.3.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T17:38:43.347532364Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "bzip2": "1",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "fortran_compiler": "gfortran",
+        "fortran_compiler_version": "14",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "HepMC3 is a new rewrite of HepMC event record. It uses shared pointers\nfor in-memory navigation and the POD concept for the persistency.",
+        "homepage": "https://hepmc.web.cern.ch/hepmc/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "source/COPYING"
+        ],
+        "repository": "https://gitlab.cern.ch/hepmc/HepMC3",
+        "summary": "HepMC3 is a new rewrite of HepMC event record."
+      },
+      "build": {
+        "number": 3,
+        "string": "py312h98c8dbb_3"
+      },
+      "context": {
+        "name": "HepMC3",
+        "version": "3.3.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "henryiii",
+          "chrisburr",
+          "gartung",
+          "matthewfeickert",
+          "kratsg",
+          "lgray",
+          "meiyasan",
+          "scarlehoff"
+        ]
+      },
+      "package": {
+        "name": "hepmc3",
+        "version": "3.3.1"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "cmake",
+          "python",
+          "cross-python_linux-aarch64",
+          "make"
+        ],
+        "host": [
+          "python",
+          "zlib",
+          "bzip2",
+          "zstd"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "08240160b0f28dc3293aa4d61ce65e2d67cd597acf6faca439f2e46625f7e793",
+          "target_directory": "source",
+          "url": "https://hepmc.web.cern.ch/hepmc/releases/HepMC3-3.3.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "source/test"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "sysroot_linux-aarch64 2.17.*",
+              "gxx_linux-aarch64 14.*",
+              "gfortran_linux-aarch64 14.*"
+            ]
+          },
+          "script": [
+            "HepMC3-config --prefix",
+            "HepMC3-config --cxxflags",
+            "HepMC3-config --ldflags",
+            "HepMC3-config --libdir",
+            "cd source/test",
+            "${CXX} -std=c++11 testMass.cc -o testMass $(HepMC3-config --cxxflags --ldflags) -Wl,-rpath,\"$(HepMC3-config --libdir)\"",
+            "./testMass"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

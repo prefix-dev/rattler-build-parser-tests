@@ -1,0 +1,515 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root_base",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root_base/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root_base/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root_base/work"
+      },
+      "hash": {
+        "hash": "66e2f4b",
+        "prefix": "np2py314"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "root_base": {
+          "build_string": "np2py314h66e2f4b_3",
+          "name": "root_base",
+          "version": "6.36.06"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:47:07.012194423Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "cfitsio": "4.6.3",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "davix": "0.8",
+        "fftw": "3",
+        "freetype": "2",
+        "gdk_pixbuf": "2",
+        "giflib": "5.2",
+        "glew": "2.3",
+        "glib": "2",
+        "graphviz": "14",
+        "gsl": "2.7",
+        "libblas": "3.9.* *netlib",
+        "libcblas": "3.9.* *netlib",
+        "liblzma_devel": "5",
+        "libpng": "1.6",
+        "librsvg": "2",
+        "libtiff": "4.7",
+        "libxml2_devel": "2.14",
+        "lz4_c": "1.10",
+        "numpy": "2",
+        "openssl": "3.5",
+        "pcre": "8",
+        "python": "3.14.* *_cp314",
+        "sqlite": "3",
+        "target_platform": "linux-ppc64le",
+        "tbb": "2022",
+        "tbb_devel": "2022",
+        "xrootd": "5",
+        "xxhash": "0.8.3",
+        "zeromq": "4.3.5",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "While the feature set of the ROOT framework is vast and not everything can be supported in the conda distribution,\nthis package aims at enabling most of the features of ROOT. Here are a few things to try:\n\n* `root`: you can start up a session and see the splash screen; Control-D to exit.\n* `python` followed by `import ROOT` to access all ROOT functionalities via the Python bindings.\n* `root --notebook` will start a notebook server with a ROOT kernel choice.\n* `rootbrowse` will open a TBrowser session so you can look through files.\n* `root -b -q -l $ROOTSYS/tutorials/analysis/dataframe/df013_InspectAnalysis.C` will run a DataFrame example with an animated plot.\n* `root -b -q -l -n -e \"std::cout << TROOT::GetTutorialDir() << std::endl;\"` will print the tutorial dir.\n\nSee the post [here](https://iscinumpy.gitlab.io/post/root-conda/) for more information about using this Conda package.\n\nThe ROOT package will prepare the required compilers. Everything in Conda is symlinked into\n`$CONDA_PREFIX` if you build things by hand; tools like CMake should find it automatically.\n\nThere is also a `root_base` package, with minimal dependecies, that libraries should depend on this to avoid\nhaving a runtime dependency on the `compilers` package. In most cases users should use the `root` package directly,\nsince it adds more features (taking care of their dependencies) to facilitate usage of the ROOT Python bindings.",
+        "documentation": "https://root.cern/documentation",
+        "homepage": "https://root.cern/",
+        "license": "LGPL-2.1-only",
+        "license_file": [
+          "root-source/LICENSE"
+        ],
+        "repository": "https://github.com/root-project/root/",
+        "summary": "ROOT is a unified software package for the storage, processing, and analysis of scientific data: from its\nacquisition to the final visualization in form of highly customizable, publication-ready plots. It is reliable,\nperformant and well supported, easy to use and obtain, and strives to maximize the quantity and impact of scientific\nresults obtained per unit cost, both of human effort and computing resources. ROOT is performance critical software\nwritten in C++ and enables rapid prototyping powered by a unique C++ compliant interpreter called Cling. Cling also\nenables performant C++ type introspection which is a building block of automatic interoperability with Python.\nThanks to its dynamic Python bindings, leveraging the cppyy technology, ROOT offers efficient, on-demand C++/Python\ninteroperability in a uniform cross-language execution environment."
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "LICENSE",
+            "README/**"
+          ],
+          "include": [
+            "**"
+          ]
+        },
+        "number": 3,
+        "prefix_detection": {
+          "ignore": [
+            "lib/*.pcm"
+          ]
+        },
+        "script": {
+          "env": {
+            "ROOT_CXX_STANDARD": "20",
+            "clang_patches_version": "root_63606",
+            "clang_version": "18.1.8"
+          },
+          "file": "build_root.sh",
+          "interpreter": "bash"
+        },
+        "string": "np2py314h66e2f4b_3"
+      },
+      "context": {
+        "build_number": 3,
+        "builtin_clang": false,
+        "clang_patches_version": "root_63606",
+        "clang_version": "18.1.8",
+        "name": "root",
+        "root_cxx_standard": 20,
+        "run_gtests": false,
+        "tag_name": "6-36-06",
+        "unsupported_numba_pyversion": "3.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "vepadulano",
+          "chrisburr",
+          "henryiii",
+          "duncanmmacleod"
+        ]
+      },
+      "package": {
+        "name": "root_base",
+        "version": "6.36.06"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "autoconf",
+          "cmake",
+          "git",
+          "pkg-config",
+          "sed",
+          "make",
+          "ninja",
+          "zeromq",
+          "gnuconfig",
+          "cross-python_linux-ppc64le",
+          "python",
+          "numpy",
+          "xxhash",
+          "zlib",
+          "zstd",
+          "freetype",
+          "liblzma-devel",
+          "llvm 18.1.8.* root_63606*",
+          "llvm-openmp 18.1.8.*",
+          "llvmdev 18.1.8.* root_63606*",
+          "clangdev 18.1.8.* root_63606*"
+        ],
+        "host": [
+          "libblas",
+          "libcblas",
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "libglu",
+          "libgl-devel",
+          "xorg-xorgproto",
+          "xorg-libx11",
+          "xorg-libxau",
+          "xorg-libxcursor",
+          "xorg-libxext",
+          "xorg-libxfixes",
+          "xorg-libxft",
+          "xorg-libxpm",
+          "sysroot_linux-ppc64le 2.17.*",
+          "cfitsio",
+          "davix",
+          "fftw",
+          "freetype",
+          "ftgl",
+          "gdk-pixbuf",
+          "giflib",
+          "glew",
+          "glib",
+          "gl2ps",
+          "graphviz",
+          "gsl",
+          "gtest",
+          "libpng",
+          "librsvg",
+          "libtiff",
+          "libxml2-devel",
+          "lz4-c",
+          "nlohmann_json",
+          "openssl",
+          "pcre",
+          "pythia8",
+          "sqlite",
+          "tbb",
+          "tbb-devel",
+          "vector-classes",
+          "vdt",
+          "python",
+          "numpy",
+          "xrootd",
+          "liblzma-devel",
+          "xxhash",
+          "zlib",
+          "zstd",
+          "cppzmq",
+          "zeromq",
+          "zeromq * drafts_*",
+          "llvm 18.1.8.* root_63606*",
+          "llvm-openmp 18.1.8.*",
+          "llvmdev 18.1.8.* root_63606*",
+          "clangdev 18.1.8.* root_63606*"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "gcc_linux-ppc64le 14.*",
+          "gxx_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "xxhash",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "nlohmann_json",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "cffi",
+          "graphviz",
+          "xorg-xorgproto",
+          "xorg-libx11",
+          "xorg-libxext",
+          "xorg-libxpm",
+          "xorg-libxft",
+          "libglu"
+        ],
+        "run_constraints": [
+          "numba >=0.52",
+          "cling ==9999",
+          "root5 ==9999",
+          "afterimage ==9999"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "root_base",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-disable-cling-sysroot-at-runtime.patch",
+            "patches/0002-Hint-to-external-LLVM-and-Clang-on-Conda.patch",
+            "patches/0003-Set-LLVM_REQUIRES_EH-for-Cling.patch",
+            "patches/0004-asimage-cross-compilation-fix.patch",
+            "patches/0005-Detect-which-ar-binary-should-be-used-to-build-libAf.patch",
+            "patches/0006-HACK-Support-overriding-triplet-used-by-cling.patch",
+            "patches/0007-Disable-hsimple.root-generation-if-cross-compiling.patch"
+          ],
+          "sha256": "27e158e8dc388d424696365109b7f62fd0a98b7dbb1a46a300a7c4b82e8417e1",
+          "target_directory": "root-source",
+          "url": "https://github.com/root-project/root/archive/refs/tags/v6-36-06.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.cpp"
+            ]
+          },
+          "script": [
+            "root -l -b -q -x",
+            "root -l -b -q -x test.cpp",
+            "root -b -l -q -x -e '2+3; 0'",
+            "root -b -l -q -x -e 'gSystem->LoadAllLibraries(); 0'",
+            "root -b -l -q -x -e 'gStyle->SetCanvasPreferGL(kTRUE); TCanvas c; if (!c.UseGL()) { throw std::runtime_error(\"OpenGL does not appear to be working\"); }'",
+            "root -b -l -q -x \"${PREFIX}/tutorials/analysis/tree/run_h1analysis.C\"",
+            "root -l -b -q -x test.cpp++"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_root/work"
+      },
+      "hash": {
+        "hash": "ade88cf",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "root": {
+          "build_string": "py314hade88cf_3",
+          "name": "root",
+          "version": "6.36.06"
+        },
+        "root_base": {
+          "build_string": "np2py314h66e2f4b_3",
+          "name": "root_base",
+          "version": "6.36.06"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:47:07.071625401Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "root_base": "6.36.06 np2py314h66e2f4b_3",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "While the feature set of the ROOT framework is vast and not everything can be supported in the conda distribution,\nthis package aims at enabling most of the features of ROOT. Here are a few things to try:\n\n* `root`: you can start up a session and see the splash screen; Control-D to exit.\n* `python` followed by `import ROOT` to access all ROOT functionalities via the Python bindings.\n* `root --notebook` will start a notebook server with a ROOT kernel choice.\n* `rootbrowse` will open a TBrowser session so you can look through files.\n* `root -b -q -l $ROOTSYS/tutorials/analysis/dataframe/df013_InspectAnalysis.C` will run a DataFrame example with an animated plot.\n* `root -b -q -l -n -e \"std::cout << TROOT::GetTutorialDir() << std::endl;\"` will print the tutorial dir.\n\nSee the post [here](https://iscinumpy.gitlab.io/post/root-conda/) for more information about using this Conda package.\n\nThe ROOT package will prepare the required compilers. Everything in Conda is symlinked into\n`$CONDA_PREFIX` if you build things by hand; tools like CMake should find it automatically.\n\nThere is also a `root_base` package, with minimal dependecies, that libraries should depend on this to avoid\nhaving a runtime dependency on the `compilers` package. In most cases users should use the `root` package directly,\nsince it adds more features (taking care of their dependencies) to facilitate usage of the ROOT Python bindings.",
+        "documentation": "https://root.cern/documentation",
+        "homepage": "https://root.cern/",
+        "license": "LGPL-2.1-only",
+        "license_file": [
+          "root-source/LICENSE"
+        ],
+        "repository": "https://github.com/root-project/root/",
+        "summary": "ROOT is a unified software package for the storage, processing, and analysis of scientific data: from its\nacquisition to the final visualization in form of highly customizable, publication-ready plots. It is reliable,\nperformant and well supported, easy to use and obtain, and strives to maximize the quantity and impact of scientific\nresults obtained per unit cost, both of human effort and computing resources. ROOT is performance critical software\nwritten in C++ and enables rapid prototyping powered by a unique C++ compliant interpreter called Cling. Cling also\nenables performant C++ type introspection which is a building block of automatic interoperability with Python.\nThanks to its dynamic Python bindings, leveraging the cppyy technology, ROOT offers efficient, on-demand C++/Python\ninteroperability in a uniform cross-language execution environment."
+      },
+      "build": {
+        "number": 3,
+        "string": "py314hade88cf_3"
+      },
+      "context": {
+        "build_number": 3,
+        "builtin_clang": false,
+        "clang_patches_version": "root_63606",
+        "clang_version": "18.1.8",
+        "name": "root",
+        "root_cxx_standard": 20,
+        "run_gtests": false,
+        "tag_name": "6-36-06",
+        "unsupported_numba_pyversion": "3.15"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "vepadulano",
+          "chrisburr",
+          "henryiii",
+          "duncanmmacleod"
+        ]
+      },
+      "package": {
+        "name": "root",
+        "version": "6.36.06"
+      },
+      "requirements": {
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "root_base"
+            }
+          },
+          "python"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "root_base"
+            }
+          },
+          "python",
+          "compilers",
+          "metakernel",
+          "ipython",
+          "notebook",
+          "numba"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-disable-cling-sysroot-at-runtime.patch",
+            "patches/0002-Hint-to-external-LLVM-and-Clang-on-Conda.patch",
+            "patches/0003-Set-LLVM_REQUIRES_EH-for-Cling.patch",
+            "patches/0004-asimage-cross-compilation-fix.patch",
+            "patches/0005-Detect-which-ar-binary-should-be-used-to-build-libAf.patch",
+            "patches/0006-HACK-Support-overriding-triplet-used-by-cling.patch",
+            "patches/0007-Disable-hsimple.root-generation-if-cross-compiling.patch"
+          ],
+          "sha256": "27e158e8dc388d424696365109b7f62fd0a98b7dbb1a46a300a7c4b82e8417e1",
+          "target_directory": "root-source",
+          "url": "https://github.com/root-project/root/archive/refs/tags/v6-36-06.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ROOT",
+              "JupyROOT"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test.cpp",
+              "test_pyroot.py",
+              "test_roofit_multiprocess.py"
+            ]
+          },
+          "script": [
+            "python test_pyroot.py",
+            "python test_roofit_multiprocess.py",
+            "python ${PREFIX}/tutorials/analysis/dataframe/df038_NumbaDeclare.py",
+            "root -l -b -q -x test.cpp",
+            "root -b -l -q -x -e 'gSystem->LoadAllLibraries(); 0'",
+            "root -b -l -q -x \"${PREFIX}/tutorials/analysis/tree/run_h1analysis.C\"",
+            "root -l -b -q -x test.cpp++",
+            "jupyter-kernelspec list | grep ' root '"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

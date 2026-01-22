@@ -1,0 +1,32 @@
+From 79aded41a4e2fc1b60241bbe20ebccb8f7d3c161 Mon Sep 17 00:00:00 2001
+From: Nils DEYBACH <68770774+ndeybach@users.noreply.github.com>
+Date: Fri, 9 Jan 2026 17:01:33 +0100
+Subject: [PATCH] fix: libm exclude for WIN32 and macOS
+
+Inspired by 3d0a160d34 - Remove libm dependency when building with MSVC (#4314) by  ayeteadoe <ayeteadoe@gmail.com>.
+
+However applied now to jxl_cms.cmake since it also errors out when using clang under conda-forge.
+---
+ lib/jxl_cms.cmake | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/lib/jxl_cms.cmake b/lib/jxl_cms.cmake
+index 62d5b651..450b3fcd 100644
+--- a/lib/jxl_cms.cmake
++++ b/lib/jxl_cms.cmake
+@@ -62,9 +62,12 @@ install(TARGETS jxl_cms
+ 
+ if (BUILD_SHARED_LIBS)
+   set(JPEGXL_REQUIRES_TYPE "Requires.private")
+-  set(JPEGXL_CMS_PRIVATE_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
+ else()
+   set(JPEGXL_REQUIRES_TYPE "Requires")
++endif()
++
++# MSVCRT bundles math functions so no explicit libm dependency is required
++if(NOT WIN32 AND NOT APPLE)
+   set(JPEGXL_CMS_PRIVATE_LIBS "-lm ${PKGCONFIG_CXX_LIB}")
+ endif()
+ 
+-- 
+2.52.0

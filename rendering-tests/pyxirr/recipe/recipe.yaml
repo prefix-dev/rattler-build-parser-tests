@@ -1,0 +1,50 @@
+schema_version: 1
+
+context:
+  name: pyxirr
+  version: 0.10.8
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Anexen/${{ name }}/archive/refs/tags/v${{ version }}.zip
+  sha256: 3470ff6cecd4b100770e220a94b63d9769748c228ca7f3d0fbd44d0b1c8699e6
+
+build:
+  number: 0
+  script: 
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
+    - cargo-bundle-licenses
+  host:
+    - maturin >=1,<2
+    - pip
+    - python
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - pyxirr
+      pip_check: true
+
+about:
+  summary: Rust-powered collection of financial functions for Python.
+  license: Unlicense
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/Anexen/pyxirr
+
+extra:
+  recipe-maintainers:
+    - thewchan

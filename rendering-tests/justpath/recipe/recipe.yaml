@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: justpath
+  version: 0.0.18
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/justpath-${{ version }}.tar.gz
+  sha256: ce506820d2eb1929c74d067f81fe501011d0a317a5a15283a13d8d7f9cf9bc08
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pathit = justpath.show:typer_app
+      - justpath = justpath.show:typer_app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - typer >=0.18.0,<0.19.0
+    - colorama >=0.4.6,<0.5.0
+    - types-colorama >=0.4.15,<0.5.0
+
+tests:
+  - python:
+      imports:
+        - justpath
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pathit --help
+      - justpath --help
+
+about:
+  summary: Explore PATH environment variable on Windows and Linux.
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/epogrebnyak/justpath
+
+extra:
+  recipe-maintainers:
+    - thewchan

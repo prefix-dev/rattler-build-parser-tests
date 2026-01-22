@@ -1,0 +1,135 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigen",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigen/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigen/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_eigen/work"
+      },
+      "hash": {
+        "hash": "171cf75"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "eigen": {
+          "build_string": "h171cf75_1",
+          "name": "eigen",
+          "version": "3.4.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:35.099486777Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://eigen.tuxfamily.org/",
+        "license": "MPL-2.0",
+        "license_file": [
+          "COPYING.MPL2"
+        ],
+        "summary": "C++ template library for linear algebra"
+      },
+      "build": {
+        "number": 1,
+        "script": "build.sh",
+        "string": "h171cf75_1"
+      },
+      "context": {
+        "version": "3.4.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "traversaro",
+          "jakirkham",
+          "patricksnape",
+          "jschueller",
+          "seanyen"
+        ]
+      },
+      "package": {
+        "name": "eigen",
+        "version": "3.4.0"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "ninja"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72",
+          "url": "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.cc"
+            ]
+          },
+          "requirements": {
+            "build": [
+              "gxx_linux-64 =14"
+            ]
+          },
+          "script": [
+            "${CXX} -I${PREFIX}/include -o test test.cc",
+            "./test"
+          ]
+        },
+        {
+          "script": "test -d ${PREFIX}/include/eigen3"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

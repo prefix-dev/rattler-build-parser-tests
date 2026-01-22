@@ -1,0 +1,133 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cuda_histogram",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cuda_histogram/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cuda_histogram/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cuda_histogram/work"
+      },
+      "hash": {
+        "hash": "7fddb1b",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cuda_histogram": {
+          "build_string": "py313h7fddb1b_1",
+          "name": "cuda_histogram",
+          "version": "0.1.1"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:14.183695999Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://cuda-histogram.readthedocs.io/",
+        "homepage": "https://github.com/scikit-hep/cuda-histogram",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Histogramming tools on CUDA"
+      },
+      "build": {
+        "number": 1,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "py313h7fddb1b_1"
+      },
+      "context": {
+        "name": "cuda_histogram",
+        "version": "0.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/scikit-hep",
+          "Saransh-cpp"
+        ]
+      },
+      "package": {
+        "name": "cuda_histogram",
+        "version": "0.1.1"
+      },
+      "requirements": {
+        "host": [
+          "python",
+          "hatchling",
+          "hatch-vcs",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "awkward >=2.6.3",
+          "cupy >=13.1.0",
+          "numpy >=1.22.0",
+          "scipy >=1.1.0",
+          "hist >=2",
+          "boost-histogram"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "cupy.patch"
+          ],
+          "sha256": "3089502c63f7fc1e26a81ca7f5a307ad14c01101f35b91b92dc2a56ef4a4bf38",
+          "url": "https://pypi.org/packages/source/c/cuda_histogram/cuda_histogram-0.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cuda_histogram",
+              "cuda_histogram.axis"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

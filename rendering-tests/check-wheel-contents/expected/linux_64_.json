@@ -1,0 +1,157 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_check-wheel-contents",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_check-wheel-contents/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_check-wheel-contents/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_check-wheel-contents/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "check-wheel-contents": {
+          "build_string": "pyhcf101f3_0",
+          "name": "check-wheel-contents",
+          "version": "0.6.3"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:41:45.214224843Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/jwodder/check-wheel-contents",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Check your wheels have the right contents"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "check-wheel-contents = check_wheel_contents.__main__:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.6.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "check-wheel-contents",
+        "version": "0.6.3"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "attrs >=18.1",
+          "click >=8.2,<9.0,!=8.2.2",
+          "packaging",
+          "pydantic >=2.0,<3.0",
+          "python >=3.10",
+          "tomli >=1.2,<3.0",
+          "wheel-filename >=1.1,<2.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "10e6939e2fe4e6ce1edf2ff6ec6157808677e80782e78021ae139dd88473a442",
+          "url": "https://pypi.org/packages/source/c/check-wheel-contents/check_wheel_contents-0.6.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "check_wheel_contents"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pip",
+              "pytest-cov",
+              "pytest-mock",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "pip check",
+            "check-wheel-contents --version",
+            "check-wheel-contents --help",
+            "check-wheel-contents --version | python -c \"import sys; v = sys.stdin.read().strip(); print(v); assert v.endswith('${{ version }}');\"",
+            "pytest -vv --color=yes --tb=long --cov=check_wheel_contents --cov-report=term-missing:skip-covered --no-cov-on-fail -k \"not from_local_tree\" --cov-fail-under=99"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

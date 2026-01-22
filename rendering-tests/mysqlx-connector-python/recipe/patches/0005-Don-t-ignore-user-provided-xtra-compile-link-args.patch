@@ -1,0 +1,27 @@
+From b8949b49f689754b4c3f429c4b5e3abf7295f48c Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Thu, 8 Aug 2024 22:05:18 +0100
+Subject: [PATCH 5/6] Don't ignore user provided xtra compile & link args
+
+---
+ mysqlx-connector-python/cpydist/__init__.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/mysqlx-connector-python/cpydist/__init__.py b/mysqlx-connector-python/cpydist/__init__.py
+index e20494f..c0ce77e 100644
+--- a/mysqlx-connector-python/cpydist/__init__.py
++++ b/mysqlx-connector-python/cpydist/__init__.py
+@@ -382,6 +382,13 @@ class BuildExt(build_ext, BaseCommand):
+             ext.libraries.append("libprotobuf" if os.name == "nt" else "protobuf")
+             ext.libraries.extend(ABSL_LIBS)
+ 
++            # Add extra compile args
++            if self.extra_compile_args:
++                ext.extra_compile_args.extend(self.extra_compile_args.split())
++            # Add extra link args
++            if self.extra_link_args:
++                ext.extra_link_args.extend(self.extra_link_args.split())
++
+             # Add required standard needed for libprotobuf >=4.25.3
+             if os.name != "nt":
+                 ext.extra_compile_args.append("-std=c++17")

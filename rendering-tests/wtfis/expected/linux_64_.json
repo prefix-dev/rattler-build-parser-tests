@@ -1,0 +1,152 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wtfis",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wtfis/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wtfis/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_wtfis/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "wtfis": {
+          "build_string": "pyhcf101f3_0",
+          "name": "wtfis",
+          "version": "0.14.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:53:03.115579339Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pirxthepilot/wtfis",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Passive host and domain name lookup tool for non-robots"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "wtfis = wtfis.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "wtfis",
+        "version": "0.14.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pirxthepilot",
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "wtfis",
+        "version": "0.14.0"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "pydantic ~=2.12.5",
+          "python >=3.10",
+          "python-dotenv >=1.1.0,<2",
+          "requests >=2.32.3,<3",
+          "rich >=14.0.0,<15",
+          "shodan >=1.31.0,<2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "71ce501972dace781316f2b1cedcc3a5783a46a4f9b87acba355eb33d86528b6",
+          "url": "https://pypi.org/packages/source/w/wtfis/wtfis-0.14.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "wtfis"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "freezegun",
+              "pytest",
+              "python 3.10.*"
+            ]
+          },
+          "script": [
+            "export VT_API_KEY=foo",
+            "wtfis --help",
+            "pytest -vvv --capture=tee-sys tests"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

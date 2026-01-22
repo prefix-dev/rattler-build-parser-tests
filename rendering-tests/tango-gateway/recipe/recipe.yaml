@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: tango-gateway
+  version: 1.2.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/tango_gateway-${{ version }}.tar.gz
+  sha256: a95de03b58469cd63d7ff0dc2db7fcd0dd5bc6ffd0f035cb90cd56d66a46142b
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - tango-gateway = tangogateway:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+  run:
+    - aiozmq
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - tangogateway
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - script:
+      - tango-gateway --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+  - script:
+      - tango-gateway --help
+
+about:
+  summary: A Tango gateway server
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/MaxIV/tango-gateway
+
+extra:
+  recipe-maintainers:
+    - initfve
+    - beenje

@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: 0.22.0
+
+package:
+  name: lychee
+  version: ${{ version }}
+
+source:
+  url: https://github.com/lycheeverse/lychee/archive/refs/tags/lychee-v${{ version }}.tar.gz
+  sha256: ea1e0574f76c0541b014eab3fc32bf0bdda845a0e917175a5013f7920bea67e1
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - lychee --version
+      - lychee --help
+
+about:
+  license: Apache-2.0 OR MIT
+  license_file:
+    - LICENSE-APACHE
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Fast, async, resource-friendly link checker
+  description: |
+    Finds broken URLs and mail addresses inside Markdown, HTML,
+    reStructuredText, websites and more!
+
+
+  homepage: https://lychee.cli.rs
+  repository: https://github.com/lycheeverse/lychee
+  documentation: https://lychee.cli.rs/introduction
+
+extra:
+  recipe-maintainers:
+    - danielnachun
+    - egpbos

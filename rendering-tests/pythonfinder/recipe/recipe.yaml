@@ -1,0 +1,50 @@
+context:
+  name: pythonfinder
+  version: "3.0.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pythonfinder-${{ version }}.tar.gz
+  sha256: 711d8c465b90ac4d0eb5b5aa3e559b71ad5d012f79be7fb0a404cc981b3c684e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pyfinder = pythonfinder.cli:cli
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - packaging >=22.0
+    - click
+
+tests:
+  - python:
+      imports:
+        - pythonfinder
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - pyfinder --help
+
+about:
+  summary: A cross-platform python discovery tool to help locate python on any system.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/sarugaku/pythonfinder
+
+extra:
+  recipe-maintainers:
+    - hadim

@@ -1,0 +1,35 @@
+context:
+  version: "2026.02"
+
+package:
+  name: gen3-client
+  version: ${{ version }}
+
+source:
+  url: https://github.com/uc-cdis/cdis-data-client/archive/${{ version }}.tar.gz
+  sha256: 21f725aaa1335eaa8d92f914cb2e5c7176f31067106f4269b6fdd84ce57644e3
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - gen3-client --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Data access client for Gen3 data commons
+  homepage: https://github.com/uc-cdis/cdis-data-client
+  repository: https://github.com/uc-cdis/cdis-data-client
+
+extra:
+  recipe-maintainers:
+    - danielnachun

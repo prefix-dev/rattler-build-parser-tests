@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppcheck/work"
+      },
+      "hash": {
+        "hash": "a45d25d",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cppcheck": {
+          "build_string": "py313ha45d25d_1",
+          "name": "cppcheck",
+          "version": "2.18.3"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:35:20.678996692Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "pcre": "8",
+        "python": "3.13.* *_cp313",
+        "target_platform": "win-64",
+        "tinyxml2": "11.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Cppcheck is a static analysis tool for C/C++ code. Unlike C/C++ compilers and many other\nanalysis tools it does not detect syntax errors in the code.\nCppcheck primarily detects the types of bugs that the compilers normally do not detect.\nThe goal is to detect only real errors in the code (i.e. have zero false\npositives).",
+        "homepage": "http://cppcheck.sourceforge.net/",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/danmar/cppcheck",
+        "summary": "A static analysis tool for C/C++ code."
+      },
+      "build": {
+        "number": 1,
+        "string": "py313ha45d25d_1"
+      },
+      "context": {
+        "name": "cppcheck",
+        "version": "2.18.3"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "timsnyder",
+          "tovrstra",
+          "seanyen",
+          "wolfv"
+        ]
+      },
+      "package": {
+        "name": "cppcheck",
+        "version": "2.18.3"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_win-64",
+          "vs2022_win-64",
+          "vs2022_win-64",
+          "vs_win-64",
+          "ninja",
+          "cmake"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools >=45",
+          "setuptools-scm >=3.4",
+          "pcre",
+          "tinyxml2"
+        ],
+        "run": [
+          "pygments",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "e37c94e190cdddc65682649b02b72939761585bddd8ada595f922e190a26a2be",
+          "url": "https://github.com/danmar/cppcheck/archive/2.18.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "cppcheck --version",
+            "echo ';' > test.h; cppcheck --check-config test.h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

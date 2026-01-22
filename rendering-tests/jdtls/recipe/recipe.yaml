@@ -1,0 +1,38 @@
+context:
+  version: "1.55.1"
+
+package:
+  name: jdtls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/eclipse/eclipse.jdt.ls/archive/v${{ version }}.tar.gz
+  sha256: 4355c24e8d45cfd3aa374b902c50335985d71038935649d72e37150ae6158884
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - findutils
+    - openjdk
+  run:
+    - openjdk
+    - python
+
+tests:
+  - script:
+      - jdtls --help
+
+about:
+  license: EPL-2.0
+  license_file:
+    - LICENSE
+    - target/generated-resources/licenses/
+  summary: Java language specific implementation of the Language Server Protocol
+  homepage: https://github.com/eclipse/eclipse.jdt.ls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

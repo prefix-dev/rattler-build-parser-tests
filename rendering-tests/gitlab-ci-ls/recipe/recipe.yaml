@@ -1,0 +1,41 @@
+context:
+  version: "1.2.5"
+
+package:
+  name: gitlab-ci-ls
+  version: ${{ version }}
+
+source:
+  url: https://github.com/alesbrelih/gitlab-ci-ls/archive/${{ version }}.tar.gz
+  sha256: 8870284b7af4c7be3106d3c8f9fb23b9677530ad33e1673bab72d261a664e4a1
+
+build:
+  number: 0
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - pkg-config
+  host:
+    - openssl
+
+tests:
+  - script:
+      - gitlab-ci-ls --help
+
+about:
+  license: MIT
+  license_file:
+    - vscode-extension/LICENSE.txt
+    - THIRDPARTY.yml
+  summary: Language server for GitLab CI
+  homepage: https://github.com/alesbrelih/gitlab-ci-ls
+  repository: https://github.com/alesbrelih/gitlab-ci-ls
+
+extra:
+  recipe-maintainers:
+    - danielnachun

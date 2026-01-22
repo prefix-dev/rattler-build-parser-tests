@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: tip
+  version: 3.0.7
+  libarrow: 14
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/309thEDDGE/tip/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 9829d846272be2e6a19cde370915e8eaee5e8a7e91bcd74cf672dbe110f0b4d3 
+
+build:
+  number: 0
+  skip: win and vc<14 or osx
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - ninja 1.*
+    - cmake 3.*
+    - pkgconfig 1.*
+  host:
+    - libarrow
+    - libparquet
+    - spdlog
+    - yaml-cpp
+    - gmock
+    - gtest
+    - libtins
+    - fmt
+  run:
+    - gmock
+    - gtest
+
+tests:
+  - script:
+      # Filter six tests which output non-UTF8 chars which causes a rattler-build error
+      - tests --gtest_brief=1 --gtest_filter=-ArgumentValidationTest.*NotUTF8
+      - tip parse -h
+      - tip translate 1553 -h
+      - tip translate arinc429 -h
+      - tip util vidextract -h
+      - tip util pqcomp -h
+      - tip util bincomp -h
+      - tip util validyaml -h
+
+about:
+  summary: Fast IRIG 106 Chapter 10 CLI parser/translator
+  description: |
+    Parse IRIG 106 Chapter 10 and export parsed, raw data to Parquet.
+    In a second (translation) stage, convert raw data to Engineering Units
+    (EU, ft, m/s, etc.) given an input file which conveys Interface Control Document
+    (ICD) data.
+  license: GPL-3.0-or-later
+  license_file: licenses/
+  homepage: https://github.com/309thEDDGE/tip.git
+  repository: https://github.com/309thEDDGE/tip.git
+
+extra:
+  recipe-maintainers:
+    - IM-USAF
+    - RR-USAF

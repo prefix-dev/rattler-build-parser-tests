@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.87.0"
+
+package:
+  name: jfrog-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jfrog/jfrog-cli/archive/v${{ version }}.tar.gz
+  sha256: 56c7a2b12d4f4f506962c10ba5f0e437875d2fb7f873d0a41272d7d7a5180827
+
+build:
+  number: 0
+  dynamic_linking:
+    binary_relocation: false
+  script:
+    file: build-jfrog-cli
+
+requirements:
+  build:
+    - ${{ compiler("go-nocgo") }}
+    - go-licenses
+
+tests:
+  - script:
+      - jf --version
+      - jf --help
+
+about:
+  summary: JFrog CLI is a client that provides a simple interface that automates access to the JFrog products.
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - library_licenses/
+  homepage: https://jfrog.com/getcli/
+  repository: https://github.com/jfrog/jfrog-cli
+  documentation: https://docs.jfrog-applications.jfrog.io/jfrog-applications/jfrog-cli
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch

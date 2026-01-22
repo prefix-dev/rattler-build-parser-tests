@@ -1,0 +1,174 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_viskores",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_viskores/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_viskores/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_viskores/work"
+      },
+      "hash": {
+        "hash": "d6b4012"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "viskores": {
+          "build_string": "cuda13.0_hd6b4012_",
+          "name": "viskores",
+          "version": "1.1.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:53:04.307684343Z",
+      "variant": {
+        "__cuda": "__cuda",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.28",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "13.0",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "glew": "2.3",
+        "hdf5": "1.14.6",
+        "target_platform": "linux-64",
+        "zfp": "1.0"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Viskores is a toolkit of scientific visualization algorithms for emerging\nprocessor architectures. Viskores supports the fine-grained concurrency for\ndata analysis and visualization algorithms required to drive extreme scale\ncomputing by providing abstract models for data and execution that can be\napplied to a variety of algorithms across many different processor\narchitectures.",
+        "documentation": "https://viskores.readthedocs.io/",
+        "homepage": "https://github.com/Viskores/viskores",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt",
+          "viskores/thirdparty/diy/viskoresdiy/LICENSE.txt",
+          "viskores/thirdparty/lcl/viskoreslcl/LICENSE.md",
+          "viskores/thirdparty/lodepng/viskoreslodepng/LICENSE"
+        ],
+        "repository": "https://github.com/Viskores/viskores",
+        "summary": "Visualization ToolKit for Many-cores (viskores)"
+      },
+      "build": {
+        "number": 3,
+        "script": [
+          "cmake -GNinja -S $SRC_DIR -B build -DCMAKE_INSTALL_PREFIX=$PREFIX -DViskores_ENABLE_OPENMP=ON ${{ common_flags }} ${{ cuda_flags }}",
+          "cmake --build build ${{ parallel_build_flag }}",
+          "cmake --install build",
+          "Viskores_DIR=$PREFIX cmake -GNinja -S $SRC_DIR/examples/smoke_test/ -B smoke_test_build",
+          "cmake --build smoke_test_build",
+          "./smoke_test_build/smoke_test"
+        ],
+        "string": "cuda13.0_hd6b4012_",
+        "variant": {
+          "down_prioritize_variant": 0,
+          "use_keys": [
+            "cuda_compiler_version"
+          ]
+        }
+      },
+      "context": {
+        "common_flags": "-DCMAKE_BUILD_TYPE=Release -DViskores_ENABLE_HDF5_IO=ON -DViskores_USE_DEFAULT_TYPES_FOR_VTK=ON",
+        "cuda_flags": " -DViskores_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES='75;75-virtual' ",
+        "parallel_build_flag": "-j3",
+        "soversion": "1.1",
+        "version": "1.1.0",
+        "viskores_modules": "cont\nfilter_clean_grid\nfilter_connected_components\nfilter_contour\nfilter_core\nfilter_density_estimate\nfilter_entity_extraction\nfilter_field_conversion\nfilter_field_transform\nfilter_flow\nfilter_geometry_refinement\nfilter_image_processing\nfilter_mesh_info\nfilter_multi_block\nfilter_resampling\nfilter_scalar_topology\nfilter_vector_analysis\nfilter_zfp\nio\nrendering\nsource\nworklet"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "vicentebolea"
+        ]
+      },
+      "package": {
+        "name": "viskores",
+        "version": "1.1.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.28.*",
+          "cuda-nvcc_linux-64 13.0.*",
+          "cmake >=3.23",
+          "gnuconfig",
+          "libgomp",
+          "ninja",
+          "pkg-config"
+        ],
+        "host": [
+          "glew",
+          "hdf5",
+          "mesalib",
+          "zfp",
+          "cuda-version 13.0.*",
+          "libgomp"
+        ],
+        "run": [
+          "__cuda"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "viskores",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "24eb77decff0370789594a8064060d64b51ba0b9ae9d78c882daada4d8f19a20",
+          "url": "https://github.com/Viskores/viskores/archive/refs/tags/v1.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": []
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

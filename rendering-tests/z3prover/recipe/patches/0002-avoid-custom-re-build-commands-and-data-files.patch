@@ -1,0 +1,27 @@
+From c41c1aea003f144ad505eadc5e47264b484d48dc Mon Sep 17 00:00:00 2001
+From: Nicholas Bollweg <nick.bollweg@gmail.com>
+Date: Tue, 13 Jan 2026 21:15:53 -0600
+Subject: [PATCH 2/2] avoid custom re-build commands and data files
+
+Making `cmdclass` (and therefore the built `data_files`) work properly would require more
+extensive patching above in `build`. Instead, we assume:
+- `cmake`/`ninja` will have already have been run in `build_py.*`, populating all `lib` and
+   `include` files
+- `libz3` (already installed in the host environment) provides `bin/z3`
+
+see https://github.com/conda-forge/z3prover-feedstock/pull/16
+---
+ src/api/python/setup.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/api/python/setup.py b/src/api/python/setup.py
+index 39ae7df72..69081b5c8 100644
+--- a/src/api/python/setup.py
++++ b/src/api/python/setup.py
+@@ -347,6 +347,4 @@ setup(
+     package_data={
+         'z3': [os.path.join('lib', '*'), os.path.join('include', '*.h'), os.path.join('include', 'c++', '*.h')]
+     },
+-    data_files=[('bin',[os.path.join('bin',EXECUTABLE_FILE)])],
+-    cmdclass={'build': build, 'develop': develop, 'sdist': sdist, 'bdist_wheel': bdist_wheel},
+ )

@@ -1,0 +1,39 @@
+context:
+  version: "2.16.50"
+
+package:
+  name: refinedev-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@refinedev/cli/-/cli-${{ version }}.tgz
+  sha256: 485c8418a0225e566549a1311e7ad336126be75d4c952819a8e0f9e45bf046bd
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - refine --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: refine is a React-based framework for building internal tools, rapidly.
+  homepage: https://refine.dev
+  repository: https://github.com/refinedev/refine
+
+extra:
+  recipe-maintainers:
+    - danielnachun

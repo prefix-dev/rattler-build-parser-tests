@@ -1,0 +1,146 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_excel-mcp-server",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_excel-mcp-server/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_excel-mcp-server/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_excel-mcp-server/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "excel-mcp-server": {
+          "build_string": "pyhe01879c_0",
+          "name": "excel-mcp-server",
+          "version": "0.1.7"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:44:58.284695592Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://excelmcpserver.com/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/haris-musa/excel-mcp-server",
+        "summary": "Excel MCP Server for manipulating Excel files"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "excel-mcp-server = excel_mcp.__main__:app"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install .",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "excel-mcp-server",
+        "python_min": "3.10",
+        "version": "0.1.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "rxm7706"
+        ]
+      },
+      "package": {
+        "name": "excel-mcp-server",
+        "version": "0.1.7"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "hatchling",
+          "pip"
+        ],
+        "run": [
+          "python >=3.10,<4.0",
+          "mcp >=1.10.1",
+          "fastmcp >=2.0.0,<3.0.0",
+          "openpyxl >=3.1.5",
+          "typer >=0.16.0",
+          "python-dotenv >=1.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/fix-package-location.patch"
+          ],
+          "sha256": "b18e46ec72e3221d38303fb4dfc1e6f4aaf695b1f3dab505907e8a7f9cbddae7",
+          "url": "https://pypi.org/packages/source/e/excel-mcp-server/excel_mcp_server-0.1.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "excel_mcp"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": "excel-mcp-server --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

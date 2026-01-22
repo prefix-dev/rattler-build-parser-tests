@@ -1,0 +1,172 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_librerun-sdk",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_librerun-sdk/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_librerun-sdk/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_librerun-sdk/work"
+      },
+      "hash": {
+        "hash": "bf73bf9"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "librerun-sdk": {
+          "build_string": "hbf73bf9_0",
+          "name": "librerun-sdk",
+          "version": "0.28.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:44:04.443854130Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libarrow": "22.0",
+        "rust_compiler": "rust",
+        "rust_compiler_version": "1.88.0",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The `librerun-sdk` package provides the C++ API for Rerun, while `rerun-sdk` provides the Python API.",
+        "documentation": "https://www.rerun.io/docs",
+        "homepage": "https://www.rerun.io/",
+        "license": "MIT OR Apache-2.0",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE-MIT",
+          "LICENSE-APACHE"
+        ],
+        "repository": "https://github.com/rerun-io/rerun",
+        "summary": "Rerun is an SDK for logging computer vision and robotics data paired with a visualizer for exploring that data over time."
+      },
+      "build": {
+        "number": 0,
+        "script": "bash \"${RECIPE_DIR}/build.sh\"",
+        "string": "hbf73bf9_0"
+      },
+      "context": {
+        "name": "librerun-sdk",
+        "version": "0.28.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jeongseok-meta",
+          "traversaro",
+          "jleibs"
+        ]
+      },
+      "package": {
+        "name": "librerun-sdk",
+        "version": "0.28.2"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "cmake >=3.29",
+          "pkg-config",
+          "ninja",
+          "cargo-bundle-licenses",
+          "rust_linux-64 1.88.0.*"
+        ],
+        "host": [
+          "libarrow"
+        ],
+        "run_constraints": [
+          "rerun-sdk 0.28.2.*"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "librerun-sdk",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2219adb75e7c608a2969cfbe866106ad6c23cd72c26a38116cfa4318842beae8",
+          "url": "https://github.com/rerun-io/rerun/archive/refs/tags/0.28.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "run_test.bat",
+              "run_test.sh"
+            ],
+            "source": [
+              "examples/cpp"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-64 =14",
+              "gxx_linux-64 =14",
+              "cmake",
+              "ninja"
+            ]
+          },
+          "script": [
+            "test -f \"${PREFIX}/include/rerun.hpp\"",
+            "test -f \"${PREFIX}/lib/librerun_sdk${SHLIB_EXT}\"",
+            "cmake-package-check rerun_sdk --targets rerun_sdk",
+            "bash \"run_test.sh\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

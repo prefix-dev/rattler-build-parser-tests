@@ -1,0 +1,58 @@
+context:
+  version: "0.8.0"
+  build_number: 0
+
+package:
+  name: "xeus-lua"
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jupyter-xeus/xeus-lua/archive/${{ version }}.tar.gz
+  sha256: f5ac9fd25ceb68d62fa8327125af271ca49b37d9539f55e7e2f5938d2d32a75c
+
+build:
+  number: ${{ build_number }}
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - if: unix
+      then:
+        - make
+  host:
+    - if: linux
+      then:
+        - openlibm
+    - lua >=5.2.0,<6
+    - xeus-zmq >=3.0.0,<4
+    - nlohmann_json
+    - xwidgets >=0.29.2,<0.30
+    - xcanvas >=0.6.1,<0.7
+
+tests:
+  - package_contents:
+      files:
+        exists:
+          - ${{ "Library/" if win }}bin/xlua${{ ".exe" if win }}
+          - ${{ "Library/" if win }}share/jupyter/kernels/xlua/kernel.json
+          - ${{ "Library/" if win }}include/xeus-lua/xinterpreter.hpp
+          - ${{ "Library/" if win }}lib/cmake/xeus-lua/xeus-luaConfig.cmake
+          - ${{ "Library/" if win }}lib/cmake/xeus-lua/xeus-luaConfigVersion.cmake
+
+about:
+  homepage: https://github.com/jupyter-xeus/xeus-lua
+  repository: https://github.com/jupyter-xeus/xeus-lua
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Lua kernel for Jupyter based on xeus
+  description: Jupyter kernel for the Lua programming language
+  documentation: https://xeus-lua.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - JohanMabille
+    - DerThorsten
+    - SylvainCorlay

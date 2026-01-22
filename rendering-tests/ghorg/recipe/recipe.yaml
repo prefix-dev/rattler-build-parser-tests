@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "1.11.7"
+
+package:
+  name: ghorg
+  version: ${{ version }}
+
+source:
+  url: https://github.com/gabrie30/ghorg/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: e558fb63bda6a6af3951cf79778905c440cab093f33612d33184f24ad5ea7cda
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo' ) }}
+    - go-licenses
+
+tests:
+  - script:
+      - ghorg --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Quickly clone an entire org's or user's repositories into one directory
+  homepage: https://github.com/gabrie30/ghorg
+  repository: https://github.com/gabrie30/ghorg
+
+extra:
+  recipe-maintainers:
+    - danielnachun

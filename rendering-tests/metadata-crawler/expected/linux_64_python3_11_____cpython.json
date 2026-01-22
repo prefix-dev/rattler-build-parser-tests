@@ -1,0 +1,190 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_metadata-crawler",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_metadata-crawler/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_metadata-crawler/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_metadata-crawler/work"
+      },
+      "hash": {
+        "hash": "1baac5b",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "metadata-crawler": {
+          "build_string": "py311h1baac5b_0",
+          "name": "metadata-crawler",
+          "version": "2511.2.2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:35:06.552170039Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Harvest, normalise, and index climate / earth-system metadata from POSIX,\nS3/MinIO, and OpenStack Swift using configurable DRS dialects (CMIP6, CMIP5,\nCORDEX, \u2026). Output to a temporary catalogue (JSONLines) and then index into\nsystems such as Solr or MongoDB. Configuration is TOML with inheritance,\ntemplating, and computed rules.",
+        "homepage": "https://github.com/freva-org/metadata-crawler",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "Crawl, extract and push climate metadata for indexing."
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "metadata-crawler = metadata_crawler.cli:cli",
+            "mdc = metadata_crawler.cli:cli"
+          ]
+        },
+        "script": {
+          "content": [
+            "python -m pip install . -vv --no-deps --no-build-isolation",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "fat",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "py311h1baac5b_0"
+      },
+      "context": {
+        "name": "metadata-crawler",
+        "python_min": "3.11",
+        "version": "2511.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "antarcticrainforest",
+          "mo-dkrz"
+        ]
+      },
+      "package": {
+        "name": "metadata-crawler",
+        "version": "2511.2.2"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin >=1.10,<2.0"
+        ],
+        "run": [
+          "python",
+          "aiohttp",
+          "appdirs",
+          "ciso8601",
+          "fsspec",
+          "diskcache",
+          "s3fs",
+          "jinja2",
+          "intake",
+          "intake-xarray",
+          "intake-esm",
+          "pandas",
+          "python-dateutil",
+          "numpy",
+          "orjson",
+          "pyarrow",
+          "h5netcdf",
+          "pydantic",
+          "rich",
+          "rich-argparse",
+          "rtoml",
+          "tomlkit",
+          "typing_extensions",
+          "zarr",
+          "xarray",
+          "httpx",
+          "uvloop",
+          "motor"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "68d24afee1342549e3c4b80db695ada85f56000d58ab4365e464299890ea4c4a",
+          "url": "https://pypi.org/packages/source/m/metadata-crawler/metadata_crawler-2511.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "metadata_crawler"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python",
+              "pip"
+            ]
+          },
+          "script": [
+            "pip check",
+            "metadata-crawler --help",
+            "mdc --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

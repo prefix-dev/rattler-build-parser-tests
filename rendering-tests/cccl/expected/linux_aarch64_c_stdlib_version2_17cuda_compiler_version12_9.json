@@ -1,0 +1,167 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cccl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cccl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cccl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cccl/work"
+      },
+      "hash": {
+        "hash": "9248bf7"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cccl": {
+          "build_string": "h9248bf7_0",
+          "name": "cccl",
+          "version": "3.1.4"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:11.098559811Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "12.9",
+        "cuda_compiler_version_min": "12.9",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://nvidia.github.io/cccl/",
+        "homepage": "https://github.com/NVIDIA/cccl",
+        "license": "Apache-2.0 AND BSD-3-Clause AND BSD-2-Clause AND BSL-1.0 AND NCSA AND MIT AND LicenseRef-NVIDIA-Software-License",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "CUDA Core Compute Libraries"
+      },
+      "build": {
+        "number": 0,
+        "string": "h9248bf7_0"
+      },
+      "context": {
+        "name": "cccl",
+        "version": "3.1.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/cuda"
+        ]
+      },
+      "package": {
+        "name": "cccl",
+        "version": "3.1.4"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-aarch64 2.17.*",
+          "gcc_linux-aarch64 14.*",
+          "gxx_linux-aarch64 14.*",
+          "cuda-nvcc_linux-aarch64 12.9.*",
+          "cmake",
+          "ninja"
+        ],
+        "host": [
+          "libcurand-dev"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "sysroot_linux-aarch64",
+            "gcc_linux-aarch64",
+            "gxx_linux-aarch64",
+            "cuda-nvcc_linux-aarch64",
+            "libcurand-dev"
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "fe679225875b856dc31fbf63f26b8b447a02dae415c41d3815815f52aadf45a7",
+          "url": "https://github.com/NVIDIA/cccl/archive/refs/tags/v3.1.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test_cmake",
+              "verify-version.cmake"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "sysroot_linux-aarch64 =2.17",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14",
+              "cuda-nvcc_linux-aarch64 =12.9",
+              "cmake",
+              "ninja"
+            ]
+          },
+          "script": [
+            "test -d $PREFIX/lib/cmake/cccl",
+            "test -d $PREFIX/lib/cmake/thrust",
+            "test -d $PREFIX/lib/cmake/cub",
+            "test -d $PREFIX/lib/cmake/libcudacxx",
+            "test -d $PREFIX/lib/cmake/cudax",
+            "test -d $PREFIX/include/cccl/thrust",
+            "test -d $PREFIX/include/cccl/cub",
+            "test -d $PREFIX/include/cccl/cuda",
+            "test -d $PREFIX/include/cccl/nv",
+            "test -d $PREFIX/include/cccl/cuda/experimental",
+            "[[ \"$(cmake -DCCCL_VERSION_FILE=\"$PREFIX/lib/cmake/cccl/cccl-config-version.cmake\" -P verify-version.cmake)\" == \"${{ version }}\" ]] || exit 1",
+            "pushd test_cmake",
+            "cmake -G \"Ninja\" .",
+            "cmake --build . --config Release",
+            "popd"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coreos-installer",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coreos-installer/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coreos-installer/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_coreos-installer/work"
+      },
+      "hash": {
+        "hash": "ba8cb30"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "coreos-installer": {
+          "build_string": "hba8cb30_0",
+          "name": "coreos-installer",
+          "version": "0.25.0"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:51:04.493069357Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "openssl": "3.5",
+        "rust_compiler": "rust",
+        "target_platform": "linux-64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "coreos-installer is a program to assist with installing Fedora CoreOS (FCOS)\nand Red Hat Enterprise Linux CoreOS (RHCOS). It can:\n- Install the operating system to a target disk, optionally customizing it\n  with an Ignition config or first-boot kernel parameters\n- Download and verify an operating system image for various cloud,\n  virtualization, or bare metal platforms\n- List Fedora CoreOS images available for download\n- Embed an Ignition config in a live ISO image to customize the running system\n- Wrap an Ignition config in an initrd image for PXE boot customization",
+        "documentation": "https://coreos.github.io/coreos-installer/",
+        "homepage": "https://github.com/coreos/coreos-installer",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/coreos/coreos-installer",
+        "summary": "Installer for CoreOS disk images"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo auditable install --features rdcore --locked --no-track --bins --root ${{ PREFIX }} --path .",
+            "cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml"
+          ],
+          "env": {
+            "OPENSSL_DIR": "${PREFIX}",
+            "OPENSSL_STATIC": "0",
+            "ZSTD_SYS_USE_PKG_CONFIG": "0"
+          }
+        },
+        "string": "hba8cb30_0"
+      },
+      "context": {
+        "name": "coreos-installer",
+        "version": "0.25.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "phreed"
+        ]
+      },
+      "package": {
+        "name": "coreos-installer",
+        "version": "0.25.0"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gcc_linux-64 14.*",
+          "gxx_linux-64 14.*",
+          "rust_linux-64",
+          "cargo-bundle-licenses",
+          "cargo-auditable",
+          "cmake",
+          "make",
+          "pkg-config"
+        ],
+        "host": [
+          "openssl",
+          "zlib",
+          "zstd"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4a62a06c4eb3ec443bb30f135338e034da206793881425fe43f0343ec90649f2",
+          "url": "https://github.com/coreos/coreos-installer/archive/refs/tags/v0.25.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "bin": [
+              "coreos-installer",
+              "rdcore"
+            ],
+            "strict": true
+          }
+        },
+        {
+          "script": [
+            "coreos-installer --version",
+            "rdcore --help"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

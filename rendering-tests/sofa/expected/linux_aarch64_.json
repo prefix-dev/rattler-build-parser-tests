@@ -1,0 +1,550 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsofa",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsofa/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsofa/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libsofa/work"
+      },
+      "hash": {
+        "hash": "31ec21f"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsofa": {
+          "build_string": "h31ec21f_4",
+          "name": "libsofa",
+          "version": "25.06.00"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:35:55.154381365Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_headers": "1.88",
+        "target_platform": "linux-aarch64",
+        "tinyxml2": "11.0",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Runtime librairies for SOFA, a real-time multi-physics simulator with an emphasis on medical simulation and robotics.",
+        "documentation": "https://sofa-framework.github.io/doc/",
+        "homepage": "https://www.sofa-framework.org/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE-LGPL.md",
+          "extlibs/difflib/LICENSE.MIT",
+          "extlibs/stb/LICENSE.MIT"
+        ],
+        "repository": "https://github.com/sofa-framework/sofa",
+        "summary": "Runtime librairies for the SOFA framework"
+      },
+      "build": {
+        "files": [
+          "lib/libSofa*",
+          "plugins/**/lib",
+          "etc/conda/*"
+        ],
+        "number": 4,
+        "script": "scripts/build-lib",
+        "string": "h31ec21f_4"
+      },
+      "context": {
+        "name": "sofa",
+        "version": "25.06.00"
+      },
+      "extra": {
+        "feedstock_name": "sofa",
+        "recipe-maintainers": [
+          "bakpaul",
+          "olivier-roussel",
+          "hugtalbot"
+        ]
+      },
+      "package": {
+        "name": "libsofa",
+        "version": "25.06.00"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "libboost-headers",
+          "zlib",
+          "tinyxml2",
+          "eigen",
+          "cxxopts",
+          "gtest",
+          "nlohmann_json"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libsofa",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-GUI-Fix-compilation-with-clang-and-boost-1.89-5664.patch",
+            "patches/0002-Framework-Fix-compilation-with-clang20-5665.patch",
+            "patches/0003-use-find-or-fetch-mechanism-for-nlohmann-json.patch"
+          ],
+          "sha256": "a3a9345d71c3c62c26a0abddf18f7cbbd481bba5f095c92c0956f33530b50e69",
+          "url": "https://github.com/sofa-framework/sofa/archive/refs/tags/v25.06.00.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "lib": [
+              "Sofa.Core*"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-devel",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-devel/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-devel/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-devel/work"
+      },
+      "hash": {
+        "hash": "a010539"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsofa": {
+          "build_string": "h31ec21f_4",
+          "name": "libsofa",
+          "version": "25.06.00"
+        },
+        "sofa-devel": {
+          "build_string": "ha010539_4",
+          "name": "sofa-devel",
+          "version": "25.06.00"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:35:55.212444017Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_headers": "1.88",
+        "libsofa": "25.06.00 h31ec21f_4",
+        "target_platform": "linux-aarch64",
+        "tinyxml2": "11.0",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Development librairies for SOFA, a real-time multi-physics simulator with an emphasis on medical simulation and robotics.",
+        "documentation": "https://sofa-framework.github.io/doc/",
+        "homepage": "https://www.sofa-framework.org/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE-LGPL.md",
+          "extlibs/difflib/LICENSE.MIT",
+          "extlibs/stb/LICENSE.MIT"
+        ],
+        "repository": "https://github.com/sofa-framework/sofa",
+        "summary": "Development librairies for the SOFA framework"
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "lib/libSofa*",
+            "plugins/**/lib"
+          ],
+          "include": [
+            "include/*",
+            "lib/cmake/Sofa*",
+            "plugins/**/include",
+            "plugins/**/lib/cmake"
+          ]
+        },
+        "number": 4,
+        "script": "scripts/build-devel",
+        "string": "ha010539_4"
+      },
+      "context": {
+        "name": "sofa",
+        "version": "25.06.00"
+      },
+      "extra": {
+        "feedstock_name": "sofa",
+        "recipe-maintainers": [
+          "bakpaul",
+          "olivier-roussel",
+          "hugtalbot"
+        ]
+      },
+      "package": {
+        "name": "sofa-devel",
+        "version": "25.06.00"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          "libboost-headers",
+          "zlib",
+          "tinyxml2",
+          "eigen",
+          "cxxopts",
+          "gtest",
+          "nlohmann_json"
+        ],
+        "run": [
+          "libboost-headers",
+          "eigen",
+          "cxxopts",
+          "zlib",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libsofa"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libsofa",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-GUI-Fix-compilation-with-clang-and-boost-1.89-5664.patch",
+            "patches/0002-Framework-Fix-compilation-with-clang20-5665.patch",
+            "patches/0003-use-find-or-fetch-mechanism-for-nlohmann-json.patch"
+          ],
+          "sha256": "a3a9345d71c3c62c26a0abddf18f7cbbd481bba5f095c92c0956f33530b50e69",
+          "url": "https://github.com/sofa-framework/sofa/archive/refs/tags/v25.06.00.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "Sofa.Core/sofa/core/init.h"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14"
+            ]
+          },
+          "script": "cmake-package-check Sofa.Core"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-gl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-gl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-gl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sofa-gl/work"
+      },
+      "hash": {
+        "hash": "bbc940b"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libsofa": {
+          "build_string": "h31ec21f_4",
+          "name": "libsofa",
+          "version": "25.06.00"
+        },
+        "sofa-devel": {
+          "build_string": "ha010539_4",
+          "name": "sofa-devel",
+          "version": "25.06.00"
+        },
+        "sofa-gl": {
+          "build_string": "hbbc940b_4",
+          "name": "sofa-gl",
+          "version": "25.06.00"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:35:55.212692859Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "glew": "2.3",
+        "libboost_headers": "1.88",
+        "sofa_devel": "25.06.00 ha010539_4",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "GL rendering library for SOFA, a real-time multi-physics simulator with an emphasis on medical simulation and robotics.",
+        "documentation": "https://sofa-framework.github.io/doc/",
+        "homepage": "https://www.sofa-framework.org/",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "LICENSE-LGPL.md"
+        ],
+        "repository": "https://github.com/sofa-framework/sofa",
+        "summary": "SOFA GL rendering library"
+      },
+      "build": {
+        "number": 4,
+        "script": "scripts/build-sofa-gl",
+        "string": "hbbc940b_4"
+      },
+      "context": {
+        "name": "sofa",
+        "version": "25.06.00"
+      },
+      "extra": {
+        "feedstock_name": "sofa",
+        "recipe-maintainers": [
+          "bakpaul",
+          "olivier-roussel",
+          "hugtalbot"
+        ]
+      },
+      "package": {
+        "name": "sofa-gl",
+        "version": "25.06.00"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cmake",
+          "make"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "sofa-devel"
+            }
+          },
+          "eigen",
+          "glew",
+          "libboost-headers",
+          "libgl-devel",
+          "libglu"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "sofa-devel"
+            }
+          },
+          "eigen",
+          "libboost-headers",
+          "libgl-devel",
+          "libglu"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "sofa-gl",
+                "upper_bound": "x.x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-GUI-Fix-compilation-with-clang-and-boost-1.89-5664.patch",
+            "patches/0002-Framework-Fix-compilation-with-clang20-5665.patch",
+            "patches/0003-use-find-or-fetch-mechanism-for-nlohmann-json.patch"
+          ],
+          "sha256": "a3a9345d71c3c62c26a0abddf18f7cbbd481bba5f095c92c0956f33530b50e69",
+          "url": "https://github.com/sofa-framework/sofa/archive/refs/tags/v25.06.00.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "Sofa.GL/sofa/gl/initSofa.GL.h"
+            ],
+            "lib": [
+              "Sofa.GL*"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "cmake-package-check",
+              "gcc_linux-aarch64 =14",
+              "gxx_linux-aarch64 =14"
+            ]
+          },
+          "script": "cmake-package-check Sofa.GL"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,99 @@
+schema_version: 1
+
+context:
+  name: tempest-extremes
+  version: "2.4.2"
+  # recipe-lint failed in v0 if mpi was undefined; keep the same defaulting behavior
+  mpi: ${{ mpi or "nompi" }}
+  build: 0
+  # prioritize nompi via build number
+  build_number: ${{ build + 100 if mpi == "nompi" else build }}
+  mpi_prefix: ${{ "mpi_" + mpi if mpi != "nompi" else "nompi" }}
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ClimateGlobalChange/tempestextremes/archive/v${{ version }}.tar.gz
+  sha256: a370faadfe3958ed0db7bfab8ca0fcd50bbc91b11aeba3dff8728d0fb0f94267
+
+build:
+  skip:
+    - win
+  number: ${{ build_number }}
+
+  # add build string so packages can depend on
+  # mpi or nompi variants explicitly:
+  # `tempest-extremes * mpi_mpich_*` for mpich
+  # `tempest-extremes * mpi_*` for any mpi
+  # `tempest-extremes * nompi_*` for no mpi
+
+  string: ${{ mpi_prefix }}_h${{ hash }}_${{ build_number }}
+
+requirements:
+  build:
+    - if: mpi != "nompi" and build_platform != target_platform
+      then: ${{ mpi }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - make
+    - cmake
+    - if: build_platform != target_platform
+      then: libnetcdf * ${{ mpi_prefix }}_*
+  host:
+    - if: mpi != "nompi"
+      then: ${{ mpi }}
+    # need to list libnetcdf twice to get version
+    # pinning from conda_build_config and build pinning from ${{ mpi_prefix }}
+    - libnetcdf
+    - libnetcdf * ${{ mpi_prefix }}_*
+  run:
+    - libnetcdf * ${{ mpi_prefix }}_*
+
+  run_exports:
+    - if: mpi != "nompi"
+      then:
+        - ${{ name }} * ${{ mpi_prefix }}_*
+
+tests:
+  - script:
+      - test -f ${PREFIX}/bin/BlobStats
+      - test -f ${PREFIX}/bin/Climatology
+      - test -f ${PREFIX}/bin/DetectBlobs
+      - test -f ${PREFIX}/bin/DetectNodes
+      - test -f ${PREFIX}/bin/FourierFilter
+      - test -f ${PREFIX}/bin/GenerateConnectivityFile
+      - test -f ${PREFIX}/bin/HistogramNodes
+      - test -f ${PREFIX}/bin/NodeFileCompose
+      - test -f ${PREFIX}/bin/NodeFileEditor
+      - test -f ${PREFIX}/bin/NodeFileFilter
+      - test -f ${PREFIX}/bin/SpineARs
+      - test -f ${PREFIX}/bin/StitchBlobs
+      - test -f ${PREFIX}/bin/StitchNodes
+      - test -f ${PREFIX}/bin/VariableProcessor
+
+about:
+  homepage: https://github.com/ClimateGlobalChange/tempestextremes
+  license: BSD-2-Clause
+  license_family: BSD
+  license_file: README.md
+  summary: a collection of detection and characterization algorithms for large climate datasets
+  description: |
+    TempestExtremes is a growing collection of detection and characterization
+    algorithms for large climate datasets, leveraging C++ for rapid throughput
+    and a command line interface that maximizes flexibility of each kernel. The
+    tracking kernels in this package have been already used for tracking and
+    characterizing tropical cyclones (TCs), extratropical cyclones (ETCs),
+    monsoonal depressions, atmospheric blocks, atmospheric rivers, and mesoscale
+    convective systems (MCSs). By considering multiple extremes within the same
+    framework, we can study the joint characteristics of extremes while
+    minimizing the total data burden.
+  documentation: https://climate.ucdavis.edu/tempestextremes.php
+  repository: https://github.com/ClimateGlobalChange/tempestextremes
+
+extra:
+  recipe-maintainers:
+    - xylar
+    - chengzhuzhang
+    - forsyth2

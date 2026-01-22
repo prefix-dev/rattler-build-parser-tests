@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rapidsim",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rapidsim/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rapidsim/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rapidsim/work"
+      },
+      "hash": {
+        "hash": "dae1fd3"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rapidsim": {
+          "build_string": "hdae1fd3_23",
+          "name": "rapidsim",
+          "version": "1.5"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:48:23.879544324Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "12.3",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "12.3",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "root_base": "6.34.10",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "RapidSim is a fast Monte Carlo generator for simulation of heavy-quark hadron decays.\nIt can be useful for generating background or toy data sets for acceptance studies.\n\n* It uses [`TGenPhaseSpace`](https://root.cern.ch/doc/master/classTGenPhaseSpace.html) to generate b/c quark hadron decays.\n* [FONLL](http://cacciari.web.cern.ch/cacciari/fonll/) is used to give the b/c the correct production kinematics for the LHC.\n* The daughter particle momenta are smeared correctly using user-defined resolutions.\n* Cuts can be made on daughter particle properties (pT, eta, etc).\n* Particle mass hypotheses can be swapped to investigate effect of mis-identification.\n\nA more detailed description can be found here https://arxiv.org/abs/1612.07489",
+        "documentation": "https://github.com/gcowan/RapidSim",
+        "homepage": "https://github.com/gcowan/RapidSim",
+        "license": "MIT AND GPL-3.0-or-later",
+        "license_file": [
+          "Licence.md"
+        ],
+        "repository": "https://github.com/gcowan/RapidSim",
+        "summary": "A fast Monte Carlo generator for simulation of heavy-quark hadron decays"
+      },
+      "build": {
+        "number": 23,
+        "python": {
+          "skip_pyc_compilation": [
+            "*/utils/compareParts.py"
+          ]
+        },
+        "string": "hdae1fd3_23"
+      },
+      "context": {
+        "name": "rapidsim",
+        "version": "1.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "rapidsim",
+        "version": "1.5"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 12.3.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake",
+          "make",
+          "sed"
+        ],
+        "host": [
+          "root_base",
+          "evtgen"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Update-CMakeLists.txt.patch",
+            "0002-Fix-linking-to-evtgen-on-macOS.patch",
+            "0003-Remove-Werror-for-CMAKE_CXX_FLAGS.patch",
+            "0004-Changed-minimum-required-version-to-3.5-because-of-d.patch",
+            "0005-Use-EvtMTRandomEngine-with-same-seed-as-used-for-gRa.patch",
+            "0006-Changed-all-instances-of-gRandom-GetSeed-and-gRandom.patch"
+          ],
+          "sha256": "14d8043fd40805f3bc144c4e35846392de535bbfee842ea2d1ec9232c7b0c585",
+          "url": "https://github.com/gcowan/RapidSim/archive/v1.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/B2Kee 1000 1",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/B2Kee 100000",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/Bs2Jpsiphi 100000",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/Bd2D0rho0 100000",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/Bs2D0Kpi 10000",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/D02Kpi 100000",
+            "RapidSim.exe ${RAPIDSIM_ROOT}/validation/Lb2chicpK 100000",
+            "mkdir plots",
+            "root -b -q -l \"${RAPIDSIM_ROOT}/validation/compareHistograms.C(\\\"B2Kee\\\")\"",
+            "root -b -q -l \"${RAPIDSIM_ROOT}/validation/compareHistograms.C(\\\"Bs2Jpsiphi\\\")\"",
+            "root -b -q -l \"${RAPIDSIM_ROOT}/validation/compareHistograms.C(\\\"Bd2D0rho0\\\")\"",
+            "root -b -q -l \"${RAPIDSIM_ROOT}/validation/compareHistograms.C(\\\"Bs2D0Kpi\\\")\"",
+            "root -b -q -l \"${RAPIDSIM_ROOT}/validation/compareHistograms.C(\\\"D02Kpi\\\")\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

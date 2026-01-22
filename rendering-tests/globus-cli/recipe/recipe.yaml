@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: globus-cli
+  version: 3.41.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 62005d23f492a34bedc8db6387af7b63b62b38583e2e68a34ef62cf1f7b556cf
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.11
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - globus-sdk ==4.3.0
+    - click >=8.1.4,<8.4
+    - jmespath ==1.0.1
+    - packaging >=17.0
+    - requests >=2.32.3,<3.0.0
+    # for all python to keep the recipe noarch: python
+    - typing_extensions >=4.0
+
+tests:
+  - python:
+      imports:
+        - globus_cli
+        - globus_cli.commands
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - globus --help
+      - pip check
+
+about:
+  summary: Globus CLI
+  description: A Command Line Interface to Globus.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/globus/globus-cli
+  repository: https://github.com/globusonline/globus-cli
+  documentation: https://globus.github.io/globus-cli
+
+extra:
+  recipe-maintainers:
+    - xylar

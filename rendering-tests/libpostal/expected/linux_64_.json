@@ -1,0 +1,142 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpostal",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpostal/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpostal/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libpostal/work"
+      },
+      "hash": {
+        "hash": "96aee8b"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libpostal": {
+          "build_string": "h96aee8b_0",
+          "name": "libpostal",
+          "version": "1.1.4"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:31.081164851Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "curl": "8",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/openvenues/libpostal",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "C library for parsing/normalizing street addresses around the world."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build.sh",
+          "interpreter": "bash"
+        },
+        "string": "h96aee8b_0"
+      },
+      "context": {
+        "version": "1.1.4"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MichaelMarien",
+          "tdsmith"
+        ]
+      },
+      "package": {
+        "name": "libpostal",
+        "version": "1.1.4"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "autoconf",
+          "automake",
+          "curl",
+          "libtool",
+          "make"
+        ],
+        "run": [
+          "curl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "41ad2cd20261e6498f1843c8d21cd737470d17e975deb6ea2a5d1517880729d3",
+          "url": "https://github.com/openvenues/libpostal/archive/refs/tags/v1.1.4.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -d ${PREFIX}/share/libpostal_data",
+            "test -d ${PREFIX}/share/libpostal_data/libpostal/address_expansions",
+            "test -d ${PREFIX}/share/libpostal_data/libpostal/address_parser",
+            "test -d ${PREFIX}/share/libpostal_data/libpostal/transliteration",
+            "test -f ${PREFIX}/share/libpostal_data/libpostal/transliteration/transliteration.dat",
+            "test -f ${PREFIX}/share/libpostal_data/libpostal/address_parser/address_parser_crf.dat",
+            "test -f ${PREFIX}/share/libpostal_data/libpostal/address_expansions/address_dictionary.dat",
+            "test -f ${PREFIX}/bin/libpostal_data",
+            "test -f $PREFIX/lib/libpostal${SHLIB_EXT}"
+          ]
+        },
+        {
+          "script": {
+            "content": "test.sh",
+            "interpreter": "bash"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

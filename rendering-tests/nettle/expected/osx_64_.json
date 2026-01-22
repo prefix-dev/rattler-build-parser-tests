@@ -1,0 +1,163 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nettle",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nettle/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nettle/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_nettle/work"
+      },
+      "hash": {
+        "hash": "6ef335b"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "nettle": {
+          "build_string": "h6ef335b_0",
+          "name": "nettle",
+          "version": "3.10.1"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:52:37.960001072Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_compiler": "clang",
+        "c_compiler_version": "18",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "18",
+        "gmp": "6",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Nettle is a low-level cryptographic library that is designed to fit easily in more or less any context.\nIn crypto toolkits for object-oriented languages (C++, Python, Pike, ...), in applications like LSH or GNUPG, or even in kernel space.\nSimple, fast, extensible JSON encoder/decoder for Python",
+        "documentation": "https://www.lysator.liu.se/~nisse/nettle/nettle.html",
+        "homepage": "https://www.lysator.liu.se/~nisse/nettle/",
+        "license": "GPL-2.0-or-later OR LGPL-3.0-or-later",
+        "license_file": [
+          "COPYINGv2",
+          "COPYINGv3",
+          "COPYING.LESSERv3"
+        ],
+        "repository": "https://git.lysator.liu.se/nettle/nettle",
+        "summary": "Nettle is a low-level cryptographic library that is designed to fit easily in more or less any context"
+      },
+      "build": {
+        "number": 0,
+        "string": "h6ef335b_0"
+      },
+      "context": {
+        "name": "nettle",
+        "version": "3.10.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sachalau",
+          "erykoff"
+        ]
+      },
+      "package": {
+        "name": "nettle",
+        "version": "3.10.1"
+      },
+      "requirements": {
+        "build": [
+          "libtool",
+          "clang_osx-64 18.*",
+          "clangxx_osx-64 18.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "autoconf",
+          "m4",
+          "make"
+        ],
+        "host": [
+          "gmp"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "clangxx_osx-64"
+          ]
+        },
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "nettle",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b0fcdd7fc0cdea6e80dcf1dd85ba794af0d5b4a57e26397eee3bc193272d9132",
+          "url": "https://ftp.gnu.org/gnu/nettle/nettle-3.10.1.tar.gz"
+        },
+        {
+          "sha256": "a853c2ffec17057872340eee242ae4d96cbf2b520ae27d903e1b2fef1a5f9d1c",
+          "url": "https://git.lysator.liu.se/nettle/nettle/-/raw/master/COPYING.LESSERv3"
+        },
+        {
+          "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+          "url": "https://git.lysator.liu.se/nettle/nettle/-/raw/master/COPYINGv2"
+        },
+        {
+          "sha256": "e6037104443f9a7829b2aa7c5370d0789a7bda3ca65a0b904cdc0c2e285d9195",
+          "url": "https://git.lysator.liu.se/nettle/nettle/-/raw/master/COPYINGv3"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/lib/libnettle${SHLIB_EXT}",
+            "test -f ${PREFIX}/lib/libhogweed${SHLIB_EXT}",
+            "test ! -f ${PREFIX}/lib/libnettle.a",
+            "test ! -f ${PREFIX}/lib/libhogweed.a"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

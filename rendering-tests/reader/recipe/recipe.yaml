@@ -1,0 +1,52 @@
+schema_version: 1
+
+context:
+  python_min: 3.11
+  name: reader
+  version: "3.21"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/reader-${{ version }}.tar.gz
+  sha256: d1603a5d318650a02b32e42bc3fbd5bc9639a0d241a9fc4f87af70639acaa2ce
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - typing_extensions >=4
+    - feedparser >=6
+    - requests >=2.18
+    - werkzeug >2
+    - iso8601 >=1
+    - beautifulsoup4 >=4.5
+
+tests:
+  - python:
+      imports:
+        - reader
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A Python feed reader library.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/lemon24/reader
+  documentation: https://reader.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan

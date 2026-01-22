@@ -1,0 +1,162 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_econml",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_econml/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_econml/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_econml/work"
+      },
+      "hash": {
+        "hash": "d43fd16",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "econml": {
+          "build_string": "np2py311hd43fd16_2",
+          "name": "econml",
+          "version": "0.16.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:50:39.555439102Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/py-why/EconML",
+        "license": "MIT AND BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "This package contains several methods for calculating Conditional Average Treatment Effects"
+      },
+      "build": {
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "np2py311hd43fd16_2"
+      },
+      "context": {
+        "name": "econml",
+        "version": "0.16.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "manuelwalserqc",
+          "norbertstoopqc",
+          "xhochy",
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "econml",
+        "version": "0.16.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "python",
+          "cross-python_osx-arm64",
+          "cython",
+          "numpy"
+        ],
+        "host": [
+          "cython",
+          "numpy",
+          "pip",
+          "python",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "scikit-learn >=1.0,<1.7",
+          "sparse",
+          "joblib >=0.13.0",
+          "statsmodels >=0.10",
+          "pandas >1.0",
+          "shap >=0.38.1,<0.49.0",
+          "lightgbm",
+          "packaging"
+        ],
+        "run_constraints": [
+          "dowhy <0.13"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "4ca862a25e4dd789fd7356adaa04bfed3683056e5d25e90ea75cdab0535d56ff",
+          "url": "https://pypi.org/packages/source/e/econml/econml-0.16.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "econml"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

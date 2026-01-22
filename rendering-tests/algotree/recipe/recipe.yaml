@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: algotree
+  version: 2.0.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: d509374d77ca22a5ad6f0f6763cf70792c127fb091029b50a2f96885cbe0fb2f
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - algotree=AlgoTree.shell.cli:main
+      - algotree-shell=AlgoTree.shell.shell:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - prompt_toolkit >=3.0.0
+
+tests:
+  - python:
+      imports:
+        - AlgoTree
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - algotree --help
+      - algotree-shell --help
+
+about:
+  summary: A algorithmic tookit for working with trees in Python
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/queelius/AlgoTree
+  documentation: https://queelius.github.io/AlgoTree/
+
+extra:
+  recipe-maintainers:
+    - thewchan

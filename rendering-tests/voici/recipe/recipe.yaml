@@ -1,0 +1,120 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "0.10.0"
+  python_check_max: "3.14"
+
+recipe:
+  name: voici-packages
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/v/voici-core/voici_core-${{ version }}.tar.gz
+    sha256: fc3ddc58df7eccd56982cdb5b3ea4cb18126035a49c23d67adf338ef3fcd9440
+    target_directory: voici_core
+  - url: https://pypi.org/packages/source/v/voici/voici-${{ version }}.tar.gz
+    sha256: 3dca8a91dfdc157a433930b122e19fea5d77861d09358ad42af879ddbae9f972
+    target_directory: voici
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: voici_core
+      version: ${{ version }}
+    build:
+      noarch: python
+      script:
+        - cd voici_core
+        - python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+      python:
+        entry_points:
+          - voici = voici_core.app:main
+    requirements:
+      host:
+        - hatch-jupyter-builder >=0.5.3
+        - hatchling >=1.8.1
+        - nodejs >=24,<25
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - jupyterlite-core >=0.7.0,<0.8.0
+        - python >=${{ python_min }}
+        - voila >=0.5.5,<0.6
+    tests:
+      - python:
+          imports: voici_core
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - voici --help
+    about:
+      license_file:
+        - voici_core/LICENSE
+        - voici_core/voici_core/static/build/third-party-licenses.json
+
+  - package:
+      name: voici
+      version: ${{ version }}
+    build:
+      noarch: python
+      script:
+        - cd voici
+        - python -m pip install . -vv --no-deps --no-build-isolation --ignore-installed --no-index
+    requirements:
+      host:
+        - hatch-jupyter-builder >=0.5.3
+        - hatchling >=1.8.1
+        - pip
+        - python ${{ python_min }}.*
+      run:
+        - ${{ pin_subpackage("voici_core", exact=True) }}
+        - jupyterlite-xeus >=4.3.6
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports:
+            - voici
+            - jupyterlite_xeus
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - voici --help
+    about:
+      license_file: voici/LICENSE
+
+about:
+  license: BSD-3-Clause
+  license_file: voici/LICENSE
+  summary: Voici turns Jupyter notebooks into static web applications
+  description: |
+    Voici is a tool for generating static dashboards from Jupyter Notebooks.
+    It can be used as a drop-in replacement for Voilà and it has the same
+    commands and supports most of Voilà's configuration options.
+
+    Unlike Voilà, which renders interactive dashboards using server-side execution,
+    Voici uses WebAssembly (Wasm) kernels to render notebooks in the browser,
+    making the resulting dashboard entirely self-contained and distributable.
+  homepage: https://github.com/voila-dashboards/voici
+  repository: https://github.com/voila-dashboards/voici
+
+extra:
+  feedstock-name: voici
+  recipe-maintainers:
+    - bollwyvl
+    - jtpio
+    - martinRenou
+    - trungleduc

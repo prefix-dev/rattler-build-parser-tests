@@ -1,0 +1,35 @@
+context:
+  version: "2.6.1"
+
+package:
+  name: jiti
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/jiti/-/jiti-${{ version }}.tgz
+  sha256: 7984fc7841de02c0b2992a72e2069d4b569d23e58d097f9b050ea13b781fd5f1
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - jiti 2>&1 | grep -q "Usage: "jiti <path> \\[...arguments\\]\""
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Runtime Typescript and ESM support for Node.js
+  homepage: https://github.com/unjs/jiti
+  repository: https://github.com/unjs/jiti
+
+extra:
+  recipe-maintainers:
+    - danielnachun

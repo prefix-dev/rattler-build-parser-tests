@@ -1,0 +1,59 @@
+context:
+  version: 1.20.0
+  name: zizmor
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/zizmorcore/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 57cd9d7f0dbb88646adb07fbe4f76815c1070eece5aa7924ec74a688a6da31ad
+
+build:
+  number: 0
+  script:
+    env:
+      CARGO_PROFILE_RELEASE_STRIP: symbols
+      CARGO_PROFILE_RELEASE_LTO: fat
+    content:
+      - if: not win
+        then:
+          - export RUSTFLAGS="$CARGO_BUILD_RUSTFLAGS"
+      - if: linux
+        then:
+          - export CFLAGS="$CFLAGS -D_BSD_SOURCE"
+      - if: unix
+        then:
+          - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/zizmor
+        else:
+          - cargo auditable install --locked --no-track --bins --root %LIBRARY_PREFIX% --path crates\zizmor
+      - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('rust') }}
+    - make
+    - cargo-bundle-licenses
+    - cargo-auditable
+
+tests:
+  - script:
+      - zizmor --help
+
+about:
+  homepage: https://docs.zizmor.sh
+  repository: https://github.com/zizmorcore/zizmor
+  summary: Static analysis for GitHub Actions
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - ManuelLerchner
+    - ytausch

@@ -1,0 +1,46 @@
+context:
+  name: certbot-dns-digitalocean
+  version: "5.2.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 92a5cfc0685b25c76764498ef13963ef067f8ab998de880c46b7196b192a6a32
+
+build:
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - acme >=${{ version }}
+    - certbot >=${{ version }}
+    - python-digitalocean >=1.15.0
+
+tests:
+  - python:
+      imports:
+        - certbot_dns_digitalocean
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://certbot.eff.org
+  summary: DigitalOcean DNS Authenticator plugin for Certbot
+  license: Apache-2.0
+  license_file: LICENSE.txt
+  documentation: https://certbot.eff.org
+  repository: https://github.com/certbot/certbot
+
+extra:
+  recipe-maintainers:
+    - pavelzw

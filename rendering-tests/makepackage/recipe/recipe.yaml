@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: makepackage
+  version: 0.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/makepackage-${{ version }}.tar.gz
+  sha256: c9776e55cd06496df1ae214a3aad0abc8237135caaaf3ecf1635573a17caf8f9
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - makepackage = makepackage.__main__:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools-scm
+    - setuptools >=61.0
+  run:
+    - easycheck
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - makepackage
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - makepackage --help
+
+about:
+  summary: Creating a structure of a simple Python package
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/nyggus/makepackage
+
+extra:
+  recipe-maintainers:
+    - thewchan

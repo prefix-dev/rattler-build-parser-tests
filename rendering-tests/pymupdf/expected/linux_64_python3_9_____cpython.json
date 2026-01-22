@@ -1,0 +1,145 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymupdf",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymupdf/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymupdf/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pymupdf/work"
+      },
+      "hash": {
+        "hash": "20d8245",
+        "prefix": "py39"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pymupdf": {
+          "build_string": "py39h20d8245_0",
+          "name": "pymupdf",
+          "version": "1.26.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:45.553946468Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "python": "3.9.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pymupdf/pymupdf",
+        "license": "AGPL-3.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents."
+      },
+      "build": {
+        "number": 0,
+        "script": "PYMUPDF_SETUP_MUPDF_BUILD=\"\" PYMUPDF_SETUP_MUPDF_REBUILD=0 PYMUPDF_MUPDF_LIB=\"$PREFIX/lib\" PYMUPDF_INCLUDES=\"$PREFIX/include -I$PREFIX/include/mupdf -I$PREFIX/include/freetype2\" pip install . -vv --no-deps --no-build-isolation",
+        "string": "py39h20d8245_0"
+      },
+      "context": {
+        "name": "pymupdf",
+        "version": "1.26.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "moritzwilksch"
+        ]
+      },
+      "package": {
+        "name": "pymupdf",
+        "version": "1.26.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 13.*",
+          "gxx_linux-64 13.*",
+          "sysroot_linux-64 2.17.*",
+          "swig",
+          "mupdf 1.25.2.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "mupdf 1.25.2.*"
+        ],
+        "run": [
+          "python",
+          "mupdf 1.25.2.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "52d72b6943e72d72f1e6c568d1f0966399baad51c89087a3b6e56d4ff1a1b409",
+          "url": "https://github.com/pymupdf/PyMuPDF/archive/1.26.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fitz",
+              "pymupdf"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip check"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

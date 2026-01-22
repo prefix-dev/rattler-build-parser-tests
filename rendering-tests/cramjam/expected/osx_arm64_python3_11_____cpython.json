@@ -1,0 +1,150 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cramjam",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cramjam/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cramjam/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cramjam/work"
+      },
+      "hash": {
+        "hash": "54d4850",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cramjam": {
+          "build_string": "py311h54d4850_2",
+          "name": "cramjam",
+          "version": "2.11.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:35:44.361791707Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.11.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Extremely thin Python bindings to de/compression algorithms in Rust.\nAllows for using algorithms such as Snappy, without any system dependencies.\nThis is handy when being used in environments like AWS Lambda,\nwhere installing packages like python-snappy becomes difficult because of\nsystem level dependencies.",
+        "documentation": "https://docs.rs/cramjam",
+        "homepage": "https://github.com/milesgranger/pyrus-cramjam",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "python bindings to rust-implemented compression"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "${{ PYTHON }} -m pip install . -vv"
+        ],
+        "string": "py311h54d4850_2"
+      },
+      "context": {
+        "name": "cramjam",
+        "version": "2.11.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "martindurant",
+          "milesgranger"
+        ]
+      },
+      "package": {
+        "name": "cramjam",
+        "version": "2.11.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "maturin",
+          "toml",
+          "rust_osx-arm64",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*",
+          "make",
+          "cmake",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "maturin",
+          "toml"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "5c82500ed91605c2d9781380b378397012e25127e89d64f460fea6aeac4389b4",
+          "url": "https://pypi.org/packages/source/c/cramjam/cramjam-2.11.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "cramjam"
+            ],
+            "python_version": "3.11.* *_cpython"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

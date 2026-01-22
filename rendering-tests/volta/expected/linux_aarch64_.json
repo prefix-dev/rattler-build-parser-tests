@@ -1,0 +1,124 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_volta",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_volta/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_volta/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_volta/work"
+      },
+      "hash": {
+        "hash": "7d7b287"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "volta": {
+          "build_string": "h7d7b287_0",
+          "name": "volta",
+          "version": "2.0.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:53:02.453985147Z",
+      "variant": {
+        "c_compiler": "gcc",
+        "c_compiler_version": "13",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Fast: Install and run any JS tool quickly and seamlessly! Volta is built in Rust and ships as a snappy static binary.\nReliable: Ensure everyone in your project has the same tools\u2014without interfering with their workflow.\nUniversal: No matter the package manager, Node runtime, or OS, one command is all you need: `volta install`.",
+        "documentation": "https://docs.volta.sh/guide",
+        "homepage": "https://volta.sh/",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/volta-cli/volta",
+        "summary": "The Hassle-Free JavaScript Tool Manager"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "cargo install --no-track --locked --root ${{ PREFIX }} --path ."
+        ],
+        "string": "h7d7b287_0"
+      },
+      "context": {
+        "name": "volta",
+        "version": "2.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "eunos-1128"
+        ]
+      },
+      "package": {
+        "name": "volta",
+        "version": "2.0.2"
+      },
+      "requirements": {
+        "build": [
+          "rust_linux-aarch64",
+          "gcc_linux-aarch64 13.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "0e93d17c36fb79222b10881d6c67d667483f85b19a0498eacfc535ef31894dbe",
+          "url": "https://github.com/volta-cli/volta/archive/refs/tags/v2.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "volta --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

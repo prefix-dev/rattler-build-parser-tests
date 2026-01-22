@@ -1,0 +1,14 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 8f136eb..4a6e784 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -102,6 +102,9 @@ watchexec-signals = "1.0"
+ zip = { version = "^0.6", default-features = false, features = ["deflate"] }
+ time = "0.3.36"
+ 
++[patch.crates-io]
++libz-sys = { git = 'https://github.com/pkgw/libz-sys', branch = 'pkgconfig.msvc' }
++
+ [features]
+ default = ["geturl-reqwest", "serialization"]
+

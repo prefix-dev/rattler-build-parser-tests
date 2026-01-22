@@ -1,0 +1,23 @@
+From daa40f143905da6cdf4387c53d72b12a5c29f498 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Wed, 21 Feb 2024 20:27:00 +0100
+Subject: [PATCH 4/6] Link to abseil_dll on Windows
+
+---
+ mysqlx-connector-python/cpydist/__init__.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/mysqlx-connector-python/cpydist/__init__.py b/mysqlx-connector-python/cpydist/__init__.py
+index 617c26b..e20494f 100644
+--- a/mysqlx-connector-python/cpydist/__init__.py
++++ b/mysqlx-connector-python/cpydist/__init__.py
+@@ -108,7 +108,8 @@ ABSL_LIBS = (
+     "absl_status",
+     "absl_statusor",
+     "absl_bad_optional_access",
+-)
++) if os.name != "nt" else ("abseil_dll", )
++
+ # Load version information
+ VERSION = [999, 0, 0, "a", 0]
+ VERSION_TEXT = "999.0.0"

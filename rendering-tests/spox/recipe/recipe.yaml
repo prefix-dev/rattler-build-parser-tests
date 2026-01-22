@@ -1,0 +1,47 @@
+context:
+  name: "spox"
+  version: "0.17.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/spox-${{ version }}.tar.gz
+  sha256: a85581e4698c85a85b0861308d21ba352fc2232fde85b8ac3a5ba6c5843536f1
+
+build:
+  noarch: "python"
+  script: pip install . -v
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - wheel
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - onnx >=1.13
+    - packaging
+
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - spox
+
+about:
+  homepage: https://github.com/quantco/spox
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Pythonic framework for building ONNX graphs
+  documentation: https://spox.readthedocs.io/en/latest/
+
+extra:
+  recipe-maintainers:
+    - cbourjau
+    - janjagusch

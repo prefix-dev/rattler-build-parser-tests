@@ -1,0 +1,140 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datacube-compute",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datacube-compute/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datacube-compute/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_datacube-compute/work"
+      },
+      "hash": {
+        "hash": "e270f17",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "datacube-compute": {
+          "build_string": "py310he270f17_1",
+          "name": "datacube-compute",
+          "version": "0.0.7"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:43:41.029486793Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.10.* *_cpython",
+        "rust_compiler": "rust",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/auspatious/datacube-compute",
+        "license": "Apache-2.0",
+        "license_file": [
+          "THIRDPARTY.yml",
+          "LICENSE"
+        ],
+        "summary": "A library with fast implementations of algorithms for processing satellite images."
+      },
+      "build": {
+        "number": 1,
+        "script": [
+          "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+          "export SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py310he270f17_1"
+      },
+      "context": {
+        "name": "datacube-compute",
+        "version": "0.0.7"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "alexgleith",
+          "weiji14"
+        ]
+      },
+      "package": {
+        "name": "datacube-compute",
+        "version": "0.0.7"
+      },
+      "requirements": {
+        "build": [
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clang_osx-64",
+          "rust_osx-64",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools",
+          "setuptools-rust",
+          "setuptools-scm >=3.4",
+          "wheel"
+        ],
+        "run": [
+          "numpy",
+          "python",
+          "xarray"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "a58fff99f059d0d518dfdfae971d78ce46f6ab95d7e436c43acea5130d85b4de",
+          "url": "https://github.com/auspatious/datacube-compute/archive/0.0.7.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "datacube_compute"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: fastcrud
+  version: "0.20.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/fastcrud-${{ version }}.tar.gz
+  sha256: b6891d179491bde7da0f868183e4cfac53c05e3244ca885200aa4e05372cefe1
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - sqlalchemy >=2.0.0,<3.0.0
+    - pydantic >=2.0.0,<3.0.0
+    - sqlalchemy-utils >=0.41.2,<0.42
+    - fastapi >=0.100.0
+
+tests:
+  - python:
+      imports:
+        - fastcrud
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: FastCRUD is a Python package for FastAPI, offering robust async CRUD operations and flexible endpoint creation utilities.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/benavlabs/fastcrud
+
+extra:
+  recipe-maintainers:
+    - thewchan

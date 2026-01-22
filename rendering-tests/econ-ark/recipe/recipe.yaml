@@ -1,0 +1,59 @@
+context:
+  python_min: '3.10'
+  name: econ-ark
+  version: "0.17.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7578307d38508f7afb976023832d1aa7217e25ed58355073c982f6b0ff1fd97e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - interpolation >=2.2.3
+    - joblib >=1.2
+    - legacy-cgi
+    - matplotlib-base >=3.6
+    - networkx >=3
+    - numba
+    - numpy
+    - optimagic
+    - pandas >=1.5
+    - pyyaml >=6.0
+    - quantecon
+    - scipy >=1.10
+    - seaborn >=0.12
+    - sequence-jacobian
+    - statsmodels >=0.14.2
+    - xarray >=2023
+    - click
+tests:
+  - python:
+      imports:
+        - HARK
+      python_version: ${{ python_min }}.*
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Heterogenous Agents Resources & toolKit
+  homepage: https://github.com/econ-ark/HARK
+
+extra:
+  recipe-maintainers:
+    - MridulS
+    - shaunagm
+    - sbenthall

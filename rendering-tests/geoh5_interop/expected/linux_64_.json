@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoh5-interop",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoh5-interop/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoh5-interop/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_geoh5-interop/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "geoh5-interop": {
+          "build_string": "pyhe01879c_2",
+          "name": "geoh5-interop",
+          "version": "1.1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:20.861455755Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This meta-package collects the following packages:\n- [geoh5py](https://github.com/MiraGeoscience/geoh5py)\n- [mira-omf](https://github.com/MiraGeoscience/omf)\n- [las-geoh5](https://github.com/MiraGeoscience/las-geoh5)\n\nSee the individual package documentation for more information.",
+        "homepage": "https://www.mirageoscience.com/mining-industry-software/python-integration",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A meta-package that groups together packages for interoperability between GEOH5 and other file formats."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyhe01879c_2"
+      },
+      "context": {
+        "name": "geoh5_interop",
+        "python_min": "3.10",
+        "version": "1.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "conda-forge/geoh5py"
+        ]
+      },
+      "package": {
+        "name": "geoh5-interop",
+        "version": "1.1.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "poetry-core >=1.0.0",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "python >=3.10",
+          "geoh5py >=0.10.0,<0.11.dev",
+          "las-geoh5 >=0.3.0,<0.4.dev",
+          "mira-omf >=3.3.0,<3.4.dev"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b5d42898e812da1420e348309048a8bad1d56cdc11c8ca00a4828d3ac3fefae0",
+          "url": "https://pypi.org/packages/source/g/geoh5_interop/geoh5_interop-1.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "geoh5_interop",
+              "geoh5py",
+              "las_geoh5",
+              "omf",
+              "properties"
+            ],
+            "pip_check": false,
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pip"
+            ]
+          },
+          "script": "pip list"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

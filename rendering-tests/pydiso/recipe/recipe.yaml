@@ -1,0 +1,59 @@
+context:
+  version: "0.2.0"
+  # ensure is_freethreading gets detected as a used variable
+  touch_is_freethreading: ${{ is_freethreading }}
+
+package:
+  name: pydiso
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/p/pydiso/pydiso-${{ version }}.tar.gz
+  sha256: 336494e121afa169f2da25c5faa00785251ac8c7ebe3c98e120cc89b30ab447d
+
+build:
+  number: 1
+  skip: match(python, "<3.11")
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('c') }}
+  host:
+    - pip
+    - meson-python
+    - ninja
+    - pkg-config
+    - python
+    - python-build
+    - cython
+    - numpy
+    - setuptools_scm >=6.2
+    - mkl-devel
+  run:
+    - python
+    - numpy >=1.22.4
+    - scipy >=1.12
+  run_constraints:
+    # Block openmp from being installed in the same environment (conflicts with numpy and MKL)
+    # done by giving an unsatisfiable openmp version.
+    # Note: llvm-openmp is safe though.
+    - openmp ==99999999999999
+
+tests:
+  - python:
+      imports:
+        - pydiso
+        - pydiso.mkl_solver
+
+about:
+  homepage: https://www.simpeg.xyz
+  license: MIT
+  license_file: LICENSE
+  summary: 'A simple cython based interface to the pardiso solver'
+  repository: https://github.com/simpeg/pydiso
+
+extra:
+  recipe-maintainers:
+    - jcapriot
+    - lheagy

@@ -1,0 +1,94 @@
+schema_version: 1
+
+context:
+  stubs_version: 1
+  scipy_version: 1.17.0
+  scipy_cap: 1.18.0
+  python_min: 3.11
+  optype_min: 0.14.0
+  optype_cap: 0.16.0
+  mypy_version: 1.19.1
+
+recipe:
+  name: scipy-stubs-split
+  version: ${{ scipy_version }}.${{ stubs_version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/s/scipy-stubs/scipy_stubs-${{ scipy_version }}.${{ stubs_version }}.tar.gz
+  sha256: 029ef77b3984be53a914ac90af3b78c5543af7275eb126c8cec09e7bc72f623c
+
+build:
+  number: 0
+
+outputs:
+  - package:
+      name: scipy-stubs
+    build:
+      noarch: python
+      script: pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+        - uv-build
+        - pip
+      run:
+        - python >=${{ python_min }}
+        - optype-numpy >=${{ optype_min }}, <${{ optype_cap }}
+      run_constraints:
+        - scipy >=${{ scipy_version }}, <${{ scipy_cap }}
+    tests:
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+            - pip
+        script:
+          - pip check
+
+  - package:
+      name: scipy-typed
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python ${{ python_min }}.*
+      run:
+        - python >=${{ python_min }}
+        - scipy ==${{ scipy_version }}
+        - ${{ pin_subpackage('scipy-stubs', exact=True) }}
+    tests:
+      - python:
+          imports:
+            - scipy
+      - files:
+          recipe:
+            - .mypyignore-extra
+          source:
+            - pyproject.toml
+            - .mypyignore
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+            - array-api-compat
+            - pytest
+            - mypy ==${{ mypy_version }}
+        script:
+          - stubtest --allowlist=.mypyignore --allowlist=.mypyignore-extra --ignore-disjoint-bases scipy
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Typing Stubs for SciPy
+  description: |
+    Stubs package providing type annotations and static type checking support for SciPy,
+    enabling improved type inference and static analysis for scientific computing and
+    numerical programming in modern Python.
+
+  homepage: https://github.com/scipy/scipy-stubs/
+  repository: https://github.com/scipy/scipy-stubs/
+  documentation: https://github.com/scipy/scipy-stubs?tab=readme-ov-file#scipy-stubs
+
+extra:
+  recipe-maintainers:
+    - lucascolley
+    - jorenham
+  feedstock-name: scipy-stubs

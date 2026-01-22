@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: markdown-code-runner
+  version: "2.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 7d6229c437f0c71e5c0442585663af4bfe4beacddf884a64ea8c09fd5dbc31dd
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - markdown-code-runner = markdown_code_runner:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=42
+    - setuptools-scm >=6.2
+    - pip
+    - tomli
+    - wheel
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - markdown_code_runner
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - markdown-code-runner --help
+
+about:
+  summary: Automatically execute code blocks within a Markdown file and update the output in-place
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/basnijholt/markdown-code-runner
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: mlens
+  version: 0.2.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mlens-${{ version }}.tar.gz
+  sha256: 8f5a10ae0b5ef8ff83c95e617fa294e012d9b96704c29cc977dc75fb44f4b593
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - numpy >=1.11
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.11
+    - scipy >=0.17
+
+tests:
+  - python:
+      imports:
+        - mlens
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Machine Learning Ensemble Library
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/flennerhag/mlens
+
+extra:
+  recipe-maintainers:
+    - janjagusch

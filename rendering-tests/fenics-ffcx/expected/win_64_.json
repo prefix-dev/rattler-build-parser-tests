@@ -1,0 +1,321 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ffcx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ffcx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ffcx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ffcx/work"
+      },
+      "hash": {
+        "hash": "1e3ed43",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fenics-ffcx": {
+          "build_string": "pyh1e3ed43_0",
+          "name": "fenics-ffcx",
+          "version": "0.10.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:44:39.362021875Z",
+      "variant": {
+        "c_compiler": "vs2022",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "FFCx is a new version of the FEniCS Form Compiler.\nIt is being actively developed and is compatible with DOLFINx.\n\nFFCx is a compiler for finite element variational forms.\nFrom a high-level description of the form in the Unified Form Language (UFL),\nit generates efficient low-level C code that can be used to assemble the corresponding discrete operator (tensor).\nIn particular, a bilinear form may be assembled into a matrix and a linear form may be assembled into a vector.\nFFCx may be used either from the command line (by invoking the ffcx command) or as a Python module (import ffcx).",
+        "documentation": "https://docs.fenicsproject.org/ffcx/v0.10.1/",
+        "homepage": "https://fenicsproject.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING.LESSER"
+        ],
+        "repository": "https://github.com/fenics/ffcx",
+        "summary": "The FEniCSx Form Compiler"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "ffcx = ffcx:__main__.main"
+          ]
+        },
+        "script": {
+          "file": "build-ffcx-py"
+        },
+        "string": "pyh1e3ed43_0"
+      },
+      "context": {
+        "major_minor": "0.10",
+        "name": "fenics-ffcx-ufcx",
+        "ufl_version": "2025.2",
+        "version": "0.10.1"
+      },
+      "extra": {
+        "feedstock-name": "fenics-ffcx",
+        "recipe-maintainers": [
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "fenics-ffcx",
+        "version": "0.10.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools >=62",
+          "wheel"
+        ],
+        "run": [
+          "python >=3.10",
+          "setuptools >=77.0.3",
+          "numpy >=1.21",
+          "cffi",
+          "fenics-basix 0.10.*",
+          "fenics-ufl 2025.2.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed",
+          "url": "https://github.com/fenics/ffcx/archive/refs/tags/v0.10.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "ffcx"
+            ],
+            "python_version": [
+              "3.10.*",
+              "3.13.*"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "test"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip",
+              "numba",
+              "pytest",
+              "sympy",
+              "pygraphviz",
+              "vs2022_linux-64"
+            ]
+          },
+          "script": "pytest -v -k \"not bilinear\" test"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ufcx",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ufcx/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ufcx/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-ufcx/work"
+      },
+      "hash": {
+        "hash": "5d08550"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fenics-ffcx": {
+          "build_string": "pyh1e3ed43_0",
+          "name": "fenics-ffcx",
+          "version": "0.10.1"
+        },
+        "fenics-ufcx": {
+          "build_string": "h5d08550_0",
+          "name": "fenics-ufcx",
+          "version": "0.10.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:44:39.420103090Z",
+      "variant": {
+        "__unix": "__unix",
+        "c_compiler": "vs2022",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "FFCx is a new version of the FEniCS Form Compiler.\nIt is being actively developed and is compatible with DOLFINx.\n\nFFCx is a compiler for finite element variational forms.\nFrom a high-level description of the form in the Unified Form Language (UFL),\nit generates efficient low-level C code that can be used to assemble the corresponding discrete operator (tensor).\nIn particular, a bilinear form may be assembled into a matrix and a linear form may be assembled into a vector.\nFFCx may be used either from the command line (by invoking the ffcx command) or as a Python module (import ffcx).",
+        "documentation": "https://docs.fenicsproject.org/ffcx/v0.10.1/",
+        "homepage": "https://fenicsproject.org/",
+        "license": "LGPL-3.0-or-later",
+        "license_file": [
+          "COPYING.LESSER"
+        ],
+        "repository": "https://github.com/fenics/ffcx",
+        "summary": "The FEniCSx Form Compiler"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": "build-ufcx",
+        "string": "h5d08550_0"
+      },
+      "context": {
+        "major_minor": "0.10",
+        "name": "fenics-ffcx-ufcx",
+        "ufl_version": "2025.2",
+        "version": "0.10.1"
+      },
+      "extra": {
+        "feedstock-name": "fenics-ffcx",
+        "recipe-maintainers": [
+          "minrk"
+        ]
+      },
+      "package": {
+        "name": "fenics-ufcx",
+        "version": "0.10.1"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "make",
+          "vs2022_linux-64",
+          "vs_linux-64"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "vs2022_linux-64",
+            "vs_linux-64"
+          ]
+        },
+        "run": [
+          "__unix"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed",
+          "url": "https://github.com/fenics/ffcx/archive/refs/tags/v0.10.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "include": [
+              "ufcx.h"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test-ufcx/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pkg-config",
+              "cmake",
+              "make",
+              "vs2022_linux-64"
+            ]
+          },
+          "script": {
+            "file": "test-ufcx"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

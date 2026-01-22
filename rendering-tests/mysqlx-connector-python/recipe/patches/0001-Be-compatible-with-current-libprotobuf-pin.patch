@@ -1,0 +1,22 @@
+From a3ee8336d73cb00f44890bc8e49279f786ba1079 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Wed, 21 Feb 2024 15:03:46 +0100
+Subject: [PATCH 1/6] Be compatible with current libprotobuf pin
+
+---
+ mysqlx-connector-python/setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mysqlx-connector-python/setup.py b/mysqlx-connector-python/setup.py
+index 5ec7603..e67f2ec 100644
+--- a/mysqlx-connector-python/setup.py
++++ b/mysqlx-connector-python/setup.py
+@@ -158,7 +158,7 @@ def main() -> None:
+         ext_modules=EXTENSIONS,
+         cmdclass=COMMAND_CLASSES,
+         python_requires=">=3.10",
+-        install_requires=["protobuf==5.29.4"],
++        install_requires=[f"protobuf~={os.environ['libprotobuf']}.0"],
+         extras_require={
+             "dns-srv": ["dnspython==2.6.1"],
+             "compression": (

@@ -1,0 +1,114 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-fuzzy-logic-toolkit",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-fuzzy-logic-toolkit/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-fuzzy-logic-toolkit/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_octave-fuzzy-logic-toolkit/work"
+      },
+      "hash": {
+        "hash": "c364b38"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "octave-fuzzy-logic-toolkit": {
+          "build_string": "hc364b38_0",
+          "name": "octave-fuzzy-logic-toolkit",
+          "version": "0.6.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:38.560317029Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/lmarkowsky/fuzzy-logic-toolkit",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "fuzzy-logic-toolkit/COPYING"
+        ],
+        "summary": "Mostly MATLAB-compatible fuzzy logic toolkit for GNU Octave"
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 0,
+        "script": "tar -czf ${{ name }}-${{ version }}.tar.gz ${{ name }}\noctave -W -H --eval \"pkg install -global -verbose ${{ name }}-${{ version }}.tar.gz\"\n\nmkdir -p $PREFIX/bin\ncp $RECIPE_DIR/post-link.sh $PREFIX/bin/.octave-${{ name }}-post-link.sh\nchmod +x $PREFIX/bin/.octave-${{ name }}-post-link.sh\n",
+        "string": "hc364b38_0"
+      },
+      "context": {
+        "name": "fuzzy-logic-toolkit",
+        "version": "0.6.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "arjxn-py"
+        ]
+      },
+      "package": {
+        "name": "octave-fuzzy-logic-toolkit",
+        "version": "0.6.2"
+      },
+      "requirements": {
+        "host": [
+          "octave"
+        ],
+        "run": [
+          "octave"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "804aa3501105d6a6391307ace4e4d1f4dd91d0a248cb53ce3b2365377e900132",
+          "target_directory": "fuzzy-logic-toolkit",
+          "url": "https://github.com/lmarkowsky/fuzzy-logic-toolkit/archive/refs/tags/0.6.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "octave -W -H --eval \"\\\n  pkg list; \\\n  pkg load ${{ name }}; disp('${{ name }} loaded') \\\n\"\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

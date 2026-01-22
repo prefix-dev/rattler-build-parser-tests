@@ -1,0 +1,67 @@
+schema_version: 1
+
+context:
+  name: biome
+  version: "2.3.11"
+  library_prefix: ${{ "${PREFIX}" if unix else "%LIBRARY_PREFIX%" }}
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/biomejs/${{ name }}/archive/refs/tags/@biomejs/biome@${{ version }}.tar.gz
+  sha256: ebc9b7868864842789d6c13d0ba44c2a62b7e26365d8a366f245f293ee8143a5
+
+build:
+  number: 0
+  script:
+    env:
+      BIOME_VERSION: ${{ version }}
+      # Reduce parallelism to reduce max memory usage
+      CARGO_BUILD_JOBS: ${{ "1" if env.exists("CI") else "-1" }}
+      CARGO_PROFILE_RELEASE_LTO: ${{ "thin" if unix else "no" }}
+    content:
+      - if: unix
+        then: export CARGO_BUILD_RUSTFLAGS="${CARGO_BUILD_RUSTFLAGS} -C strip=symbols"
+        else: set CARGO_BUILD_RUSTFLAGS=%CARGO_BUILD_RUSTFLAGS% -C strip=symbols
+      - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      - cargo install --locked --root "${{ library_prefix }}" --path crates/biome_cli -v
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - cargo-bundle-licenses
+  host:
+    - if: osx
+      then: libiconv
+
+tests:
+  - script:
+      - biome --version
+
+about:
+  summary: |
+    A toolchain for web projects, aimed to provide functionalities to maintain them.
+    Biome offers formatter and linter, usable via CLI and LSP.
+  description: |
+    Biome is a performant toolchain for web projects, it aims to provide developer tools to maintain the health of said projects.
+    Biome is a fast formatter for JavaScript, TypeScript, JSX, and JSON that scores 97% compatibility with Prettier.
+    Biome is a performant linter for JavaScript, TypeScript, and JSX that features more than 200 rules from ESLint, typescript-eslint, and other sources.
+    It outputs detailed and contextualized diagnostics that help you to improve your code and become a better programmer!
+    Biome is designed from the start to be used interactively within an editor.
+    It can format and lint malformed code as you are writing it.
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  homepage: https://biomejs.dev
+  repository: https://github.com/biomejs/biome
+  documentation: https://biomejs.dev/guides/getting-started/
+
+extra:
+  recipe-maintainers:
+    - AntoinePrv

@@ -1,0 +1,193 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jaxlib",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jaxlib/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jaxlib/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_jaxlib/work"
+      },
+      "hash": {
+        "hash": "c89f326",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "jaxlib": {
+          "build_string": "cpu_py312hc89f326_2",
+          "name": "jaxlib",
+          "version": "0.7.2"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:32.659515740Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "20",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "20",
+        "libabseil": "20250512",
+        "libgrpc": "1.73",
+        "libprotobuf": "6.31.1",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "http://github.com/jax-ml/jax",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "http://github.com/jax-ml/jax",
+        "summary": "Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more"
+      },
+      "build": {
+        "number": 2,
+        "string": "cpu_py312hc89f326_2"
+      },
+      "context": {
+        "build": 2,
+        "version": "0.7.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "ehfd",
+          "ericmjl",
+          "xhochy",
+          "ngam",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "jaxlib",
+        "version": "0.7.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_linux-aarch64 20.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "clangxx_linux-aarch64 20.*",
+          "python",
+          "cross-python_linux-aarch64",
+          "numpy",
+          "zlib",
+          "unzip",
+          "bazel",
+          "bazel 7.*",
+          "bazel-toolchain >=0.4.1",
+          "libprotobuf",
+          "libgrpc",
+          "flatbuffers <2.0.6",
+          "libabseil",
+          "sed"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "numpy",
+          "setuptools",
+          "wheel",
+          "python-build",
+          "libabseil",
+          "flatbuffers <2.0.6",
+          "grpc-bazel-rules",
+          "libgrpc",
+          "openssl",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "scipy >=1.9",
+          "ml_dtypes >=0.2.0"
+        ],
+        "run_constraints": [
+          "jax >=0.7.2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Allow-for-custom-CUDA-build.patch",
+            "patches/0002-Consolidated-build-fixes-for-XLA.patch",
+            "patches/0003-avoid-mirror-that-doesn-t-seem-to-have-current-xla-a.patch",
+            "patches/0004-re-enable-use_fast_cpp_protos-true.patch"
+          ],
+          "sha256": "56d92604f1bb60bb3dbd7dc7c7dc21502d10b3474b8b905ce29ce06db6a26e45",
+          "url": "https://github.com/jax-ml/jax/archive/jax-v0.7.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "jaxlib",
+              "jaxlib.xla_client"
+            ]
+          }
+        },
+        {
+          "package_contents": {
+            "site_packages": [
+              "jaxlib-0.7.2.dist-info/METADATA"
+            ]
+          }
+        },
+        {
+          "files": {
+            "recipe": [
+              "test_jaxlib.py"
+            ]
+          },
+          "script": "python test_jaxlib.py"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

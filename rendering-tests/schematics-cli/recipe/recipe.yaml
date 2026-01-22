@@ -1,0 +1,40 @@
+context:
+  version: "21.1.0"
+
+package:
+  name: schematics-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@angular-devkit/schematics-cli/-/schematics-cli-${{ version }}.tgz
+  sha256: a9669a1a7d7aa8f410896b04e6d200d8702cac150503eeec8b601009078b127e
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - jq
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - schematics --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Executable for running a Schematic.
+  homepage: https://github.com/angular/angular-cli
+  repository: https://github.com/angular/angular-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

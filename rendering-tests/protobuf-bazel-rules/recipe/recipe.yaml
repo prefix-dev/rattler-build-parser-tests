@@ -1,0 +1,37 @@
+context:
+  version: "33.4"
+  major: 6
+
+package:
+  name: protobuf-bazel-rules
+  version: ${{ version }}
+
+source:
+  url: https://github.com/protocolbuffers/protobuf/releases/download/v${{ version }}/protobuf-${{ version }}.tar.gz
+  sha256: bc670a4e34992c175137ddda24e76562bb928f849d712a0e3c2fb2e19249bea1
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  run_constraints:
+    - protobuf ${{ major }}.${{ version }}.*
+    - libprotobuf ${{ major }}.${{ version }}.*
+
+tests:
+  - package_contents:
+      files:
+        - share/bazel/protobuf/bazel/cc_proto_library.bzl
+
+about:
+  homepage: https://developers.google.com/protocol-buffers/
+  repository: https://github.com/protocolbuffers/protobuf
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Bazel rules for protobuf
+
+extra:
+  recipe-maintainers:
+    - conda-forge/libprotobuf

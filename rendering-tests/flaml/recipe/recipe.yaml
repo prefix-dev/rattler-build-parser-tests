@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: flaml
+  version: "2.5.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: c1cbf0056ccc44a18539e0c3e18c0142706c72716fa56687fce52444b251c549
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - numpy >=1.17
+
+tests:
+  - python:
+      imports:
+        - flaml
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - files:
+      source:
+        - test/test_conda_distribution.py
+    requirements:
+      run:
+        - pytest
+        - pandas >=1.1.4
+        - lightgbm >=2.3.1
+        - xgboost >=0.90,<3.0.0
+        - scipy >=1.4.1
+        - scikit-learn >=1.0.0
+        - python ${{ python_min }}.*
+    script:
+      - pytest -m conda
+
+about:
+  summary: A fast and lightweight autoML system
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/microsoft/FLAML
+
+extra:
+  recipe-maintainers:
+    - michalchromcak
+    - skzhang1
+    - thewchan

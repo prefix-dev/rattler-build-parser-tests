@@ -1,0 +1,53 @@
+From aeaad6fda826ea40fb24987a5848c550843a9717 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?L=C3=A9a?= <lea.dreyfus@cern.ch>
+Date: Wed, 22 Oct 2025 11:24:09 +0200
+Subject: [PATCH 6/6] Changed all instances of gRandom->GetSeed() and
+ gRandom->SetSeed() to gRandom->TRandom::GetSeed() /
+ gRandom->TRandom::SetSeed()
+
+---
+ src/RapidConfig.cc         | 6 +++---
+ src/RapidExternalEvtGen.cc | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/RapidConfig.cc b/src/RapidConfig.cc
+index ca2638c..ac519da 100644
+--- a/src/RapidConfig.cc
++++ b/src/RapidConfig.cc
+@@ -295,7 +295,7 @@ bool RapidConfig::loadDecay() {
+ bool RapidConfig::loadConfig() {
+ 	std::cout << "INFO in RapidConfig::loadConfig : attempting to load configuration from file: " << fileName_+".config" << std::endl;
+ 
+-	gRandom->SetSeed(0.);
++	gRandom->TRandom::SetSeed(0.);
+ 
+ 	std::ifstream fin;
+ 	fin.open(fileName_+".config", std::ifstream::in);
+@@ -445,9 +445,9 @@ bool RapidConfig::configParticle(unsigned int part, TString command, TString val
+ bool RapidConfig::configGlobal(TString command, TString value) {
+ 	if(command=="seed") {
+ 		int seed = value.Atoi();
+-		gRandom->SetSeed(seed);
++		gRandom->TRandom::SetSeed(seed);
+ 		std::cout << "INFO in RapidConfig::configGlobal : setting seed for random number generation to " << seed << "." << std::endl
+-			  << "                                    seed is now " << gRandom->GetSeed() << "." << std::endl;
++			  << "                                    seed is now " << gRandom->TRandom::GetSeed() << "." << std::endl;
+ 	} else if(command=="acceptance") {
+ 		std::cout << "INFO in RapidConfig::configGlobal : setting acceptance type to " << value << "." << std::endl;
+ 		acceptanceType_ = RapidAcceptance::typeFromString(value);
+diff --git a/src/RapidExternalEvtGen.cc b/src/RapidExternalEvtGen.cc
+index 8d8385e..e9d0587 100644
+--- a/src/RapidExternalEvtGen.cc
++++ b/src/RapidExternalEvtGen.cc
+@@ -119,7 +119,7 @@ bool RapidExternalEvtGen::setupGenerator() {
+ 	std::list<EvtDecayBase*> extraModels;
+ 
+ 	// Define the random number generator
+-	uint seed = gRandom->GetSeed();
++	uint seed = gRandom->TRandom::GetSeed();
+ 	randomEngine = new EvtMTRandomEngine(seed);
+ 
+ 	bool useEvtGenRandom(false);
+-- 
+2.48.1
+

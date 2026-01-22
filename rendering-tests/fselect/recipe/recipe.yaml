@@ -1,0 +1,49 @@
+context:
+  version: "0.9.2"
+
+package:
+  name: fselect
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jhspetersson/fselect/archive/${{ version }}.tar.gz
+  sha256: 5263963ef5f02c74e968206221095722557a764ff92b7f343a92a37d718d87a6
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - cmake
+    - make
+    - pkg-config
+  host:
+    - if: unix
+      then:
+        - openssl
+  run:
+    - if: win
+      then:
+       - libgit2
+
+tests:
+  - script:
+      - fselect --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE-MIT
+    - THIRDPARTY.yml
+  summary: Find files with SQL-like queries
+  homepage: https://github.com/jhspetersson/fselect
+  repository: https://github.com/jhspetersson/fselect
+
+extra:
+  recipe-maintainers:
+    - danielnachun

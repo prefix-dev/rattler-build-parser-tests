@@ -1,0 +1,160 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xformers",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xformers/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xformers/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_xformers/work"
+      },
+      "hash": {
+        "hash": "dbbcc28",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "xformers": {
+          "build_string": "cpu_py311hdbbcc28_0",
+          "name": "xformers",
+          "version": "0.0.33.post2"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:53:05.965169142Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "python": "3.11.* *_cpython",
+        "pytorch": "2.9",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://facebookresearch.github.io/xformers/",
+        "license": "BSD-3-Clause AND Apache-2.0",
+        "license_file": [
+          "LICENSE",
+          "third_party/cutlass/LICENSE.txt",
+          "third_party/flash-attention/LICENSE",
+          "third_party/sputnik/LICENSE"
+        ],
+        "repository": "https://github.com/facebookresearch/xformers",
+        "summary": "XFormers: A collection of composable Transformer building blocks."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "file": "build"
+        },
+        "string": "cpu_py311hdbbcc28_0"
+      },
+      "context": {
+        "build_number": 0,
+        "cuda_build_string": "cuda_None",
+        "string_prefix": "cpu_",
+        "version": "0.0.33.post2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "xformers",
+        "version": "0.0.33.post2"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "git"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "pytorch * cpu*",
+          "pytorch"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "pyre-extensions >=0.0.29",
+          "pytorch * cpu*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "647ddf26578d2b8643230467ef1f0fbfef0bbe556a546bd27a70d4855d3433e1",
+          "url": "https://pypi.org/packages/source/x/xformers/xformers-0.0.33.post2.tar.gz"
+        },
+        {
+          "file_name": "third_party/cutlass/LICENSE.txt",
+          "sha256": "7bc733829f16663593865344541c6dcc433beb6b6b555c8f86a43e9b399993cf",
+          "url": "https://raw.githubusercontent.com/NVIDIA/cutlass/main/LICENSE.txt"
+        },
+        {
+          "file_name": "third_party/flash-attention/LICENSE",
+          "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73",
+          "url": "https://raw.githubusercontent.com/Dao-AILab/flash-attention/main/LICENSE"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "xformers"
+            ]
+          }
+        },
+        {
+          "script": "python -m xformers.info"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,38 @@
+context:
+  version: "0.2.0"
+
+package:
+  name: htmx-lsp
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ThePrimeagen/htmx-lsp/archive/${{ version }}.tar.gz
+  sha256: 00b3740698ae1c2ca674b492e9db02c4ebf13de53cc9b0217639b67eeb14d52d
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - htmx-lsp --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Language server for htmx
+  homepage: https://github.com/ThePrimeagen/htmx-lsp
+  repository: https://github.com/ThePrimeagen/htmx-lsp
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,43 @@
+From 8ac0feeadf2514fd014307fba3fa63c94bb9063e Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <macleoddm@cardiff.ac.uk>
+Date: Wed, 17 Dec 2025 11:01:10 +0000
+Subject: [PATCH] Use IS_WRITABLE unary test
+
+Requires cmake 3.29.0
+---
+ CMakeLists.txt | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7467f14..f8c058b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.12.0 FATAL_ERROR)
++cmake_minimum_required(VERSION 3.29.0 FATAL_ERROR)
+ project(
+     pycm
+     LANGUAGES C
+@@ -23,17 +23,11 @@ find_package(Python3 REQUIRED)
+ set(PYCM_DEPENDENCIES "cm")
+ pkg_check_modules(PYCMDEPS REQUIRED IMPORTED_TARGET ${PYCM_DEPENDENCIES})
+ 
+-#Check if site-packages location is writeable
+-execute_process(
+-        COMMAND "test -w ${Python3_SITEARCH}"
+-        RESULT_VARIABLE writable)
+-
+-if(${writable} EQUAL 0)
++if(IS_WRITABLE ${Python3_SITEARCH})
+     set(TARGET_SP_DIR ${Python3_SITEARCH})
+     set(TARGET_INSTALL_DIR ${Python3_SITEARCH}/PyCm)
+ else()
+-
+-    #If not writebale then create a python lib directory from the CMAKE_INSTALL_PREFIX
++    #If not writable then create a python lib directory from the CMAKE_INSTALL_PREFIX
+     execute_process(
+         COMMAND "${Python3_EXECUTABLE}" "-c"
+         "from distutils import sysconfig;print(sysconfig.get_python_lib(plat_specific=True, prefix=''))"
+-- 
+2.39.5
+

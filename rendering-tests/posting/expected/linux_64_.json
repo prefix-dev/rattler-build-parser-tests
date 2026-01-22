@@ -1,0 +1,147 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_posting",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_posting/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_posting/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_posting/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "posting": {
+          "build_string": "pyhcf101f3_0",
+          "name": "posting",
+          "version": "2.9.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:42.821214141Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Posting is an HTTP client, not unlike Postman and Insomnia.\nAs a TUI application, it can be used over SSH and enables efficient keyboard-centric workflows.\nYour requests are stored locally in simple YAML files, so they're easy to read and version control.",
+        "documentation": "https://posting.sh/guide/",
+        "homepage": "https://posting.sh/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/darrenburns/posting",
+        "summary": "A powerful HTTP client that lives in your terminal."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "posting = posting.__main__:cli"
+          ]
+        },
+        "script": "python -m pip install . -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "name": "posting",
+        "python_min": "3.11",
+        "version": "2.9.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "claudiushaag"
+        ]
+      },
+      "package": {
+        "name": "posting",
+        "version": "2.9.2"
+      },
+      "requirements": {
+        "host": [
+          "python 3.11.*",
+          "pip",
+          "hatchling"
+        ],
+        "run": [
+          "python >=3.11",
+          "click >=8.1.7,<9.0.0",
+          "xdg >=6.0.0,<7.0.0",
+          "click-default-group >=1.2.4,<2.0.0",
+          "httpx ==0.28.1",
+          "openapi-pydantic >=0.5.0,<1.0.0",
+          "pyperclip >=1.9.0,<2.0.0",
+          "pydantic >=2.9.2,<3.0.0",
+          "pyyaml >=6.0.2,<7.0.0",
+          "pydantic-settings >=2.4.0,<3.0.0",
+          "python-dotenv >=1.0.1,<2.0.0",
+          "textual ==6.1.0",
+          "textual-autocomplete ==4.0.6",
+          "watchfiles >=0.24.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "change-xdg-package-name.patch"
+          ],
+          "sha256": "e97015308e80e07064f5f8ef90c6819c5a0ffeb6cbce094e55dd5a9f86e382b8",
+          "url": "https://pypi.org/packages/source/p/posting/posting-2.9.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "requirements": {
+            "run": [
+              "python 3.11.*"
+            ]
+          },
+          "script": "posting --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

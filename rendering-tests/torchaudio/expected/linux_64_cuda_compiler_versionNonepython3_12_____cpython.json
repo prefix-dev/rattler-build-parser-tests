@@ -1,0 +1,393 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio/work"
+      },
+      "hash": {
+        "hash": "9ae55da",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchaudio": {
+          "build_string": "cpu_py312h9ae55da_0",
+          "name": "torchaudio",
+          "version": "2.9.1"
+        },
+        "torchaudio-tests": {
+          "build_string": "cpu_py312he881191_0",
+          "name": "torchaudio-tests",
+          "version": "2.9.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:36:59.590704215Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler": "cuda-nvcc",
+        "cuda_compiler_version": "None",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "liblzma_devel": "5",
+        "python": "3.12.* *_cpython",
+        "pytorch": "2.9",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pytorch/audio",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/LICENSES_BUNDLED.txt"
+        ],
+        "summary": "Data manipulation and transformation for audio signal processing, powered by PyTorch"
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "env": {
+            "BUILD_VERSION": "2.9.1",
+            "cuda_compiler_version": "None"
+          },
+          "file": "build"
+        },
+        "string": "cpu_py312h9ae55da_0",
+        "variant": {
+          "down_prioritize_variant": 0
+        }
+      },
+      "context": {
+        "build_number": 0,
+        "cuda_build_string": "cudaNone_",
+        "string_prefix": "cpu_",
+        "version": "2.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "torchaudio",
+        "version": "2.9.1"
+      },
+      "requirements": {
+        "build": [
+          "gxx_linux-64 14.*",
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "cmake",
+          "ninja",
+          "ccache",
+          "git"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools",
+          "pytorch",
+          "pytorch * cpu*",
+          "bzip2",
+          "kaldi",
+          "pybind11",
+          "torchcodec",
+          "liblzma-devel",
+          "zlib"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "kaldi",
+          "torchcodec",
+          "pytorch * cpu*"
+        ],
+        "run_constraints": [
+          "llvmlite >=0.44"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-point-to-correct-prefix.patch",
+            "patches/0002-use-conda-cuda.patch",
+            "patches/0003-Apply-CMAKE_ARGS-if-set.patch",
+            "patches/0004-replace-FLT_MAX-for-compatibility-with-newer-cudatoo.patch",
+            "patches/0005-Fix-torchscript-related-test-failures.-4069.patch"
+          ],
+          "sha256": "590492c90552959b3df6f601eb733135064bf2d9e53c516adcf6845a4e545662",
+          "url": "https://github.com/pytorch/audio/archive/refs/tags/v2.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "torchaudio",
+              "torchaudio.compliance",
+              "torchaudio.datasets",
+              "torchaudio.functional",
+              "torchaudio.models",
+              "torchaudio.pipelines",
+              "torchaudio.utils",
+              "torchaudio.transforms"
+            ]
+          }
+        },
+        {
+          "package_contents": {
+            "site_packages": [
+              "torchaudio-2.9.1.dist-info/METADATA"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_torchaudio-tests/work"
+      },
+      "hash": {
+        "hash": "e881191",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "torchaudio-tests": {
+          "build_string": "cpu_py312he881191_0",
+          "name": "torchaudio-tests",
+          "version": "2.9.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:36:59.532666234Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cuda_compiler_version": "None",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/pytorch/audio",
+        "license": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "third_party/LICENSES_BUNDLED.txt"
+        ],
+        "summary": "Data manipulation and transformation for audio signal processing, powered by PyTorch"
+      },
+      "build": {
+        "number": 0,
+        "script": "${{ 'true' if unix else 'exit /b 0' }}",
+        "string": "cpu_py312he881191_0"
+      },
+      "context": {
+        "build_number": 0,
+        "cuda_build_string": "cudaNone_",
+        "string_prefix": "cpu_",
+        "version": "2.9.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "Tobias-Fischer",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "torchaudio-tests",
+        "version": "2.9.1"
+      },
+      "requirements": {
+        "run": [
+          "torchaudio 2.9.1.* *_0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-point-to-correct-prefix.patch",
+            "patches/0002-use-conda-cuda.patch",
+            "patches/0003-Apply-CMAKE_ARGS-if-set.patch",
+            "patches/0004-replace-FLT_MAX-for-compatibility-with-newer-cudatoo.patch",
+            "patches/0005-Fix-torchscript-related-test-failures.-4069.patch"
+          ],
+          "sha256": "590492c90552959b3df6f601eb733135064bf2d9e53c516adcf6845a4e545662",
+          "url": "https://github.com/pytorch/audio/archive/refs/tags/v2.9.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "run_tests.sh"
+            ],
+            "source": [
+              "test/",
+              "examples/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "scipy",
+              "numpy",
+              "librosa",
+              "expecttest",
+              "requests",
+              "hypothesis",
+              "inflect",
+              "kaldi * cpu*",
+              "kaldi_io",
+              "parameterized",
+              "pysoundfile",
+              "transformers",
+              "unidecode",
+              "inflect",
+              "pytorch-lightning",
+              "sentencepiece"
+            ]
+          },
+          "script": {
+            "content": [
+              "import pytest",
+              "import os, sys",
+              "vars = [\"NO_AUDIO_OUT_DEVICE\", \"NO_CMD_APPLY_CMVN_SLIDING\", \"NO_CMD_COMPUTE_FBANK_FEATS\", \"NO_CMD_COMPUTE_KALDI_PITCH_FEATS\", \"NO_CMD_COMPUTE_MFCC_FEATS\", \"NO_CMD_COMPUTE_SPECTROGRAM_FEATS\", \"NO_CTC_DECODER\", \"NO_CUDA\", \"NO_FFMPEG\", \"NO_HW_ACCEL\", \"NO_KALDI\", \"NO_MACOS\", \"NO_MOD_demucs\", \"NO_MOD_fairseq\", \"NO_QUANTIZATION\", \"NO_RIR\", \"NO_SOX\", \"NO_SOX_DECODER\", \"NO_SOX_ENCODER\", \"ON_PYTHON_310\", \"TEMPORARY_DISABLED\"]",
+              "for var in vars: os.environ[f\"TORCHAUDIO_TEST_ALLOW_SKIP_IF_{var}\"] = \"true\"",
+              "os.environ[\"CI\"] = \"true\"",
+              "tests_to_skip = \"_not_a_real_test\"",
+              "tests_to_skip += \" or TestAutogradLfilterCPU\"",
+              "tests_to_skip += \" or test_deemphasis\"",
+              "tests_to_skip += \" or rnnt\"",
+              "tests_to_skip += \" or ray_tracing\"",
+              "tests_to_skip += \" or test_simulate_rir\"",
+              "tests_to_skip += \" or test_create_mel\"",
+              "tests_to_skip += \" or test_forced_align\"",
+              "tests_to_skip += \" or hubert_large\"",
+              "tests_to_skip += \" or hubert_xlarge\"",
+              "tests_to_skip += \" or hubert_pretrain_large\"",
+              "tests_to_skip += \" or hubert_pretrain_xlarge\"",
+              "tests_to_skip += \" or wavlm_large\"",
+              "tests_to_skip += \" or test_masking_iid\"",
+              "tests_to_skip += \" or test_mvdr_0_ref_channel\"",
+              "tests_to_skip += \" or test_rtf_mvdr\"",
+              "tests_to_skip += \" or test_forced_align\"",
+              "tests_to_skip += \" or test_souden_mvdr\"",
+              "tests_to_skip += \" or test_pitch_shift_shape_2\"",
+              "tests_to_skip += \" or test_paper_configuration\"",
+              "tests_to_skip += \" or test_oscillator_bank\"",
+              "tests_to_skip += \" or test_PitchShift\"",
+              "tests_to_skip += \" or test_pitch_shift_resample_kernel\"",
+              "tests_to_skip += \" or test_quantize_torchscript_1_wav2vec2_large\"",
+              "tests_to_skip += \" or test_finetune_torchscript_1_wav2vec2_large\"",
+              "tests_to_skip += \" or test_pretrain_torchscript_1_wav2vec2_large\"",
+              "tests_to_skip += \" or test_pretrain_torchscript_2_wav2vec2_large\"",
+              "tests_to_skip += \" or test_quantize_torchscript_2_wav2vec2_large_lv60k\"",
+              "tests_to_skip += \" or test_finetune_torchscript_2_wav2vec2_large_lv60k\"",
+              "tests_to_skip += \" or test_pretrain_torchscript_1_wav2vec2_large_lv60k\"",
+              "tests_to_skip += \" or test_pretrain_torchscript_2_wav2vec2_large_lv60k\"",
+              "tests_to_skip += \" or test_unknown_subtype_warning\"",
+              "tests_to_skip += \" or test_cmuarctic_path\"",
+              "tests_to_skip += \" or test_cmuarctic_str\"",
+              "tests_to_skip += \" or test_amplitude_to_DB\"",
+              "tests_to_skip += \" or test_torchscript_fails\"",
+              "sys.exit(pytest.main([\"-v\", \"test/torchaudio_unittest\", \"-k\", f\"not ({tests_to_skip})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

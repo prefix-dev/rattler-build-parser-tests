@@ -1,0 +1,121 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tex-fmt",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tex-fmt/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tex-fmt/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tex-fmt/work"
+      },
+      "hash": {
+        "hash": "9d14792"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tex-fmt": {
+          "build_string": "h9d14792_0",
+          "name": "tex-fmt",
+          "version": "0.5.6"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-22T16:46:50.325310723Z",
+      "variant": {
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "rust_compiler": "rust",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "LaTeX formatter written in Rust.",
+        "homepage": "https://github.com/WGUNDERWOOD/tex-fmt",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "summary": "LaTeX formatter written in Rust."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "cargo-bundle-licenses --format yaml --output ${{ \"%SRC_DIR%\" if win else \"$SRC_DIR\" }}/THIRDPARTY.yml",
+            "cargo install --no-track --locked --bins --root ${{ \"%LIBRARY_PREFIX%\" if win else \"$PREFIX\" }} --path ."
+          ],
+          "env": {
+            "CARGO_PROFILE_RELEASE_LTO": "thin",
+            "CARGO_PROFILE_RELEASE_STRIP": "symbols"
+          }
+        },
+        "string": "h9d14792_0"
+      },
+      "context": {
+        "version": "0.5.6"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "tetov"
+        ]
+      },
+      "package": {
+        "name": "tex-fmt",
+        "version": "0.5.6"
+      },
+      "requirements": {
+        "build": [
+          "rust_win-64",
+          "vs_win-64",
+          "cargo-bundle-licenses"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "84422be49ede7bfaa42949d192a9d7dfb2317c9e68edf3cf6abc346c8a19f036",
+          "url": "https://github.com/WGUNDERWOOD/tex-fmt/archive/refs/tags/v0.5.6.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "tex-fmt --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

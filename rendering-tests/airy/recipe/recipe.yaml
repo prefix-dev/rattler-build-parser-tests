@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 0.56.0
+
+package:
+  name: airy
+  version: ${{ version }}
+
+source:
+  url: https://github.com/airyhq/airy/archive/${{ version }}.tar.gz
+  sha256: 351b9b590ba9b626491de941475d6e67042520dfe4550e5f290036dd4cb61eb2
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - airy --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Open Source App Framework to build streaming apps with real-time data
+  homepage: https://github.com/airyhq/airy
+  repository: https://github.com/airyhq/airy
+
+extra:
+  recipe-maintainers:
+    - danielnachun

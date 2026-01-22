@@ -1,0 +1,37 @@
+context:
+  version: 0.8
+
+package:
+  name: kondo
+  version: ${{ version }}
+
+source:
+  url: https://github.com/tbillington/kondo/archive/v${{ version }}.tar.gz
+  sha256: 4054c90e679a379a735b3166df4633fb86a33725175ebe23d7b659dcb7155b26
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+
+tests:
+  - script:
+      - kondo --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: Save disk space by cleaning non-essential files from software projects
+  homepage: https://github.com/tbillington/kondo
+  repository: https://github.com/tbillington/kondo
+
+extra:
+  recipe-maintainers:
+    - danielnachun

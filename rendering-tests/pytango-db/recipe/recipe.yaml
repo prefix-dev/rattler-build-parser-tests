@@ -1,0 +1,57 @@
+schema_version: 1
+
+context:
+  name: pytango-db
+  version: 0.5.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytango_db-${{ version }}.tar.gz
+  sha256: 0455818f9c7a810012ee3f89bed841afc583fa225c6841b2314126f61427d429
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - PyDatabaseds = databaseds.database:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pytango
+    - gevent
+
+tests:
+  - python:
+      imports:
+        - databaseds
+      pip_check: True
+      python_version:
+        - ${{ python_min }}.*
+        - 3.*
+  - script:
+      - PyDatabaseds --help
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+
+about:
+  summary: Fork of PyTango's internal sqlite based database device.
+  license: LGPL-3.0-or-later
+  license_file: LICENSE.txt
+  homepage: https://gitlab.com/tango-controls/incubator/pytango-db
+  repository: https://gitlab.com/tango-controls/incubator/pytango-db
+
+extra:
+  recipe-maintainers:
+    - beenje

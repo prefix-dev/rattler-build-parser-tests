@@ -1,0 +1,80 @@
+schema_version: 1
+
+context:
+  name: icepyx
+  version: 2.0.1
+  python_min: 3.11
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/icepyx-${{ version }}.tar.gz
+  sha256: a29ff754d8526df6b917ef7b7c28635662187e9c994e43aadf3fe788c937cb52
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - if: unix
+      then: export SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}
+    - if: win
+      then: set SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}
+    - ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=66
+    - setuptools_scm
+    - wheel
+  run:
+    - backoff
+    - dask-core <2025.1.0
+    - datashader
+    - deprecated
+    - earthaccess >=0.15.1
+    - fiona
+    - geopandas
+    - h5netcdf
+    - h5py
+    - harmony-py >=1.0.0
+    - holoviews
+    - hvplot
+    - matplotlib-base
+    - numpy
+    - python >=${{ python_min }}
+    - requests
+    - s3fs
+    - shapely
+    - xarray
+tests:
+  - python:
+      imports:
+        - icepyx
+        - icepyx.core
+        - icepyx.quest
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}
+    script:
+      - python -c "import icepyx; assert icepyx.__version__ != '0.0.0'"
+
+about:
+  summary: Python tools for obtaining and working with ICESat-2 data
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/icesat2py/icepyx
+  repository: https://github.com/icesat2py/icepyx
+  documentation: https://icepyx.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - JessicaS11
+    - lsetiawan
+    - mfisher87
+    - weiji14

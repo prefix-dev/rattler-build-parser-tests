@@ -1,0 +1,71 @@
+context:
+  name: evcxr
+  version: "0.21.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/${{ name }}/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 904b397ac402d71d32587971477529acf6226ea1ae8c08c4558c2f670793fbda
+
+build:
+  number: 0
+  skip:
+    - win
+  script:
+    # Jupyter kernel files are generated at link time, since they are most easily
+    # generated from the executable itself, but lack of native osx-arm64 builds
+    # prevent us for doing so at build time.
+    content: |
+      cargo install --locked --root "${PREFIX}" --no-track evcxr_repl
+      cargo install --locked --root "${PREFIX}" --no-track evcxr_jupyter
+      cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+      (
+        echo export JUPYTER_PATH="${PREFIX}/share/jupyter/"
+        echo "${PREFIX}/bin/evcxr_jupyter" --install
+      ) > "${PREFIX}/bin/.${{ name }}-post-link.sh"
+      (
+        echo export JUPYTER_PATH="${PREFIX}/share/jupyter/"
+        echo "${PREFIX}/bin/evcxr_jupyter" --uninstall
+      ) > "${PREFIX}/bin/.${{ name }}-pre-unlink.sh"
+
+requirements:
+  build:
+    - ${{ compiler("rust") }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+  run:
+    - rust
+    - rust-src
+
+tests:
+  - package_contents:
+      bin:
+        - evcxr
+        - evcxr_jupyter
+  - script:
+      - evcxr --help
+      - echo '7 + 6' | evcxr | grep 13
+      - evcxr_jupyter --help
+    # Generated at link time
+      - test -f "${PREFIX}/share/jupyter/kernels/rust/kernel.json"
+
+
+about:
+  homepage: https://github.com/evcxr/evcxr
+  summary: An evaluation context for Rust
+  description: |
+    An evaluation context for Rust.
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  documentation: https://github.com/evcxr/evcxr/blob/main/COMMON.md
+  repository: https://github.com/evcxr/evcxr
+
+extra:
+  recipe-maintainers:
+    - AntoinePrv

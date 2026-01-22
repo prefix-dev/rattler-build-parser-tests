@@ -1,0 +1,73 @@
+schema_version: 1
+
+context:
+  name: fd
+  version: 8.61.1
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: http://software.igwn.org/lscsoft/source/${{ name }}-${{ version }}.tar.gz
+  sha256: 0717aab001355d4f55af5a1b77179da88d3e272a1b9233371920ebb109c0ed48
+
+build:
+  dynamic_linking:
+    overdepending_behavior: error
+    overlinking_behavior: error
+  number: 1
+  skip: not linux
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - meson
+    - ninja
+    - pkg-config
+  host:
+    - cfg >=10.5.5
+    - cm >=10.3.7
+    - frv >=4.38.7
+    - libframel >=8.46.1
+  run_exports:
+    - ${{ pin_subpackage("fd", upper_bound="x") }}
+
+tests:
+  - requirements:
+      run:
+        - pkg-config
+    script:
+      - test -x ${PREFIX}/bin/FdGetChannelsList
+      - test -x ${PREFIX}/bin/FdGetFramesInMemory
+      - test -x ${PREFIX}/bin/FdIOServer
+      - test -x ${PREFIX}/bin/FdMoni
+      - test -x ${PREFIX}/bin/FdRangeGating
+      - test -x ${PREFIX}/bin/FdSend
+      - test -x ${PREFIX}/bin/FdStat
+      - test -x ${PREFIX}/bin/FdWrite
+      - test -r ${PREFIX}/lib/libfd.so
+      - test -f ${PREFIX}/include/fd/Fd.h
+      - pkg-config --print-errors --exact-version "${{ version }}" fd
+
+about:
+  summary: Frame distribution library
+  description: |
+    The Fd software has evolved from its early use in the Virgo DAQ system of transporting frames
+    over the network using the Cm package to a more general I/O framework for online and offline
+    applications. Its main purpose is to provide data in the frame format from and to files, shared
+    memory and network connection. Basic data conditioning tools like channel filtering, resampling
+    are now included in Fd as well as frame manipulation like channels selection, frame resizing,
+    trend frame building and frame merging between different streams. The frames handled by the Fd
+    package could contain any frame structures, from time series to events.
+  homepage: https://git.ligo.org/virgo/virgoapp/Cfg
+  license: LGPL-2.1-or-later
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - erinelizabethseder-virgo
+    - fcarbogn

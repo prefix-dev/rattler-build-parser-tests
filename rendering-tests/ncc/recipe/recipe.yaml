@@ -1,0 +1,36 @@
+context:
+  version: "0.38.4"
+
+package:
+  name: ncc
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@vercel/ncc/-/ncc-${{ version }}.tgz
+  sha256: 288fd3538e04a96df50fea256e849ada51c9dfcf4541a6f637c4b6eb5facb845
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - ncc --help 2>&1 | grep -q "Usage: "ncc <cmd> <opts>\""
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+  summary: Simple CLI for compiling a Node.js module into a single file, together with all its dependencies, gcc-style.
+  homepage: https://github.com/vercel/ncc
+  repository: https://github.com/vercel/ncc
+
+extra:
+  recipe-maintainers:
+    - danielnachun

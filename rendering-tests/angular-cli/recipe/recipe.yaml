@@ -1,0 +1,39 @@
+context:
+  version: "21.1.1"
+
+package:
+  name: angular-cli
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/@angular/cli/-/cli-${{ version }}.tgz
+  sha256: 2d31ae70b1a4a61aa3debb765b99cf192fb18243e117b26de1e3f3da96a4c288
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - ng --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: CLI tool for Angular
+  homepage: https://github.com/angular/angular-cli
+  repository: https://github.com/angular/angular-cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

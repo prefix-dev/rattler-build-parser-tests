@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arbalister",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arbalister/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arbalister/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_arbalister/work"
+      },
+      "hash": {
+        "hash": "9bed789",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "arbalister": {
+          "build_string": "pyh9bed789_0",
+          "name": "arbalister",
+          "version": "0.2.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:06.893628938Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nodejs": "24",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This viewer lets you double click on many file types supported in the Apache Arrow ecosystem to\nautomatically view it as tabular data (Csv, Parquet, Avro, Orc, Ipc).\n\nFor library authors, the server extension serves files in the Arrow IPC stream format.\nIt can be reused to provide other type of application specific viewers (e.g. as time series,\n...).",
+        "documentation": "https://github.com/QuantStack/Arbalister/",
+        "homepage": "https://github.com/QuantStack/Arbalister/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/QuantStack/Arbalister/",
+        "summary": "Dataframe viewer for Jupyter over Arrow"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "pip install --no-deps --no-build-isolation -vv .",
+        "string": "pyh9bed789_0"
+      },
+      "context": {
+        "name": "arbalister",
+        "python_min": "3.12",
+        "version": "0.2.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv"
+        ]
+      },
+      "package": {
+        "name": "arbalister",
+        "version": "0.2.0"
+      },
+      "requirements": {
+        "build": [
+          "nodejs"
+        ],
+        "host": [
+          "python 3.12.*",
+          "pip",
+          "hatchling >=1.5.0",
+          "jupyterlab >=4.0.0,<5",
+          "hatch-nodejs-version >=0.3.2",
+          "hatch-jupyter-builder >=0.5"
+        ],
+        "run": [
+          "python >=3.12",
+          "jupyter_server >=2.4.0,<3",
+          "pyarrow >=20.0",
+          "datafusion >=40.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "6065df0c96db99304c41ec1d5e04e9a27d225139dc3610597c12424c8a191e6e",
+          "url": "https://pypi.org/packages/source/a/arbalister/arbalister-0.2.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "share/jupyter/labextensions/arbalister/install.json",
+              "etc/jupyter/jupyter_server_config.d/arbalister.json"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.12.*",
+              "pip",
+              "jupyterlab >=4.5",
+              "adbc-driver-manager",
+              "adbc-driver-sqlite"
+            ]
+          },
+          "script": [
+            "python -c \"import arbalister; print('Python arbalister import sucessful');\"",
+            "pip check"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

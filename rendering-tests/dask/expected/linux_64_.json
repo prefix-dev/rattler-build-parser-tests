@@ -1,0 +1,180 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dask",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dask/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dask/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_dask/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "dask": {
+          "build_string": "pyhcf101f3_0",
+          "name": "dask",
+          "version": "2026.1.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:14.508068622Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Dask is a flexible parallel computing library for analytics.",
+        "documentation": "https://dask.org/",
+        "homepage": "https://dask.org/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt",
+          "dask/array/NUMPY_LICENSE.txt"
+        ],
+        "repository": "https://github.com/dask/dask",
+        "summary": "Parallel PyData with Task Scheduling"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_min": "3.10",
+        "version": "2026.1.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "charlesbluca",
+          "alimanfoo",
+          "jakirkham",
+          "jcrist",
+          "martindurant",
+          "mrocklin",
+          "pitrou",
+          "tomaugspurger",
+          "jrbourbeau",
+          "fjetter",
+          "jacobtomlinson"
+        ]
+      },
+      "package": {
+        "name": "dask",
+        "version": "2026.1.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "dask-core ==2026.1.1",
+          "distributed ==2026.1.1"
+        ],
+        "run": [
+          "python >=3.10",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "dask-core",
+              "upper_bound": "x.x.x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "distributed",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "cytoolz >=0.11.0",
+          "lz4 >=4.3.2",
+          "numpy >=1.24",
+          "pandas >=2.0",
+          "bokeh >=3.1.0",
+          "jinja2 >=2.10.3",
+          "pyarrow >=14.0.1"
+        ],
+        "run_constraints": [
+          "openssl !=1.1.1e"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "12b1dbb0d6e92f287feb4076871600b2fba3a843d35ff214776ada5e9e7a1529",
+          "url": "https://pypi.org/packages/source/d/dask/dask-2026.1.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "dask",
+              "dask.array",
+              "dask.bag",
+              "dask.bytes",
+              "dask.dataframe",
+              "dask.dataframe.tseries",
+              "dask.delayed",
+              "dask.diagnostics",
+              "dask.distributed",
+              "distributed"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pip"
+            ]
+          },
+          "script": [
+            "dask --version",
+            "dask info versions"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

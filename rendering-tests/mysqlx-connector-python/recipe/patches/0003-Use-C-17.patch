@@ -1,0 +1,28 @@
+From 3a4d0a4119646ca5cbbdc916885783757c4aa410 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Wed, 21 Feb 2024 14:55:36 +0100
+Subject: [PATCH 3/6] Use C++17
+
+---
+ mysqlx-connector-python/cpydist/__init__.py | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/mysqlx-connector-python/cpydist/__init__.py b/mysqlx-connector-python/cpydist/__init__.py
+index 5b540b6..617c26b 100644
+--- a/mysqlx-connector-python/cpydist/__init__.py
++++ b/mysqlx-connector-python/cpydist/__init__.py
+@@ -381,9 +381,12 @@ class BuildExt(build_ext, BaseCommand):
+             ext.libraries.append("libprotobuf" if os.name == "nt" else "protobuf")
+             ext.libraries.extend(ABSL_LIBS)
+ 
++            # Add required standard needed for libprotobuf >=4.25.3
+             if os.name != "nt":
+-                # Add -std=c++14 needed for Protobuf 4.25.3
+-                ext.extra_compile_args.append("-std=c++14")
++                ext.extra_compile_args.append("-std=c++17")
++            else:
++                ext.extra_compile_args.append("/std:c++17")
++
+             self._run_protoc()
+ 
+             # Suppress unknown pragmas

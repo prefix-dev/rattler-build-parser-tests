@@ -1,0 +1,1328 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libuda-client",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libuda-client/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libuda-client/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libuda-client/work"
+      },
+      "hash": {
+        "hash": "9369bf3"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libuda-client": {
+          "build_string": "h9369bf3_4",
+          "name": "libuda-client",
+          "version": "2.9.3"
+        },
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.920420491Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "openssl": "3.5",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "bin/install_plugin",
+            "bin/*.py",
+            "etc/*",
+            "include/uda/c++/*",
+            "lib/pkgconfig/uda-cpp.pc",
+            "lib/pkgconfig/uda-fat-*.pc",
+            "lib/pkgconfig/uda-plugins.pc",
+            "lib/*_static.*",
+            "lib/python*",
+            "java/*",
+            "python_installer/*",
+            "modulefiles/*",
+            "lib/libuda_cpp*",
+            "lib/libuda_jni*"
+          ],
+          "include": [
+            "**"
+          ]
+        },
+        "number": 4,
+        "script": "scripts/build_core.sh",
+        "string": "h9369bf3_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "libuda-client",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto"
+        ],
+        "host": [
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libuda-client",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "uda_cli --help"
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "uda_cli"
+            ],
+            "files": [
+              "lib/pkgconfig/uda-client.pc"
+            ],
+            "include": [
+              "uda/uda.h",
+              "uda/version.h",
+              "uda/logging/accessLog.h",
+              "uda/logging/logging.h",
+              "uda/structures/*.h",
+              "uda/clientserver/*.h",
+              "uda/client/*.h",
+              "uda/client2/*.h",
+              "uda/serialisation/*.h"
+            ],
+            "lib": [
+              "uda_client",
+              "uda_client2",
+              "uda_serialisation"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-java",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-java/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-java/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-java/work"
+      },
+      "hash": {
+        "hash": "9369bf3"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.689320959Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "openssl": "3.5",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "lib/*_static.*"
+          ],
+          "include": [
+            "java/*",
+            "lib/libuda_jni*"
+          ]
+        },
+        "number": 4,
+        "script": "scripts/build_java.sh",
+        "string": "h9369bf3_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "uda-java",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto",
+          "openjdk"
+        ],
+        "host": [
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto",
+          "openjdk"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "capnproto",
+            "fmt",
+            "openssl"
+          ]
+        },
+        "run": [
+          "libuda-client",
+          "openjdk"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "uda-java",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "java/UDA.jar",
+              "java/UDA-2.9.3.jar"
+            ],
+            "lib": [
+              "uda_jni"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-cpp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-cpp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-cpp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_uda-cpp/work"
+      },
+      "hash": {
+        "hash": "9369bf3"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.920108936Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "openssl": "3.5",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": {
+          "exclude": [
+            "lib/*_static.*"
+          ],
+          "include": [
+            "include/uda/c++/*",
+            "lib/pkgconfig/uda-cpp.pc",
+            "lib/libuda_cpp*"
+          ]
+        },
+        "number": 4,
+        "script": "scripts/build_cxx.sh",
+        "string": "h9369bf3_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "uda-cpp",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto"
+        ],
+        "host": [
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "capnproto"
+          ]
+        },
+        "run": [
+          "libuda-client"
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "uda-cpp",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "lib/pkgconfig/uda-cpp.pc"
+            ],
+            "include": [
+              "uda/c++/*.hpp"
+            ],
+            "lib": [
+              "uda_cpp"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/work"
+      },
+      "hash": {
+        "hash": "8025a8f",
+        "prefix": "np2py310"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libuda-client": {
+          "build_string": "h9369bf3_4",
+          "name": "libuda-client",
+          "version": "2.9.3"
+        },
+        "pyuda": {
+          "build_string": "np2py310h8025a8f_4",
+          "name": "pyuda",
+          "version": "2.9.3"
+        },
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.920728676Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.10.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": [
+          "lib/python*/site-packages/*"
+        ],
+        "number": 4,
+        "script": "scripts/build_pyuda.sh",
+        "string": "np2py310h8025a8f_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "pyuda",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto",
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "numpy"
+        ],
+        "host": [
+          "libuda-client",
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto",
+          "pip",
+          "python",
+          "setuptools",
+          "cython",
+          "numpy",
+          "six"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "fmt",
+            "openssl",
+            "capnproto"
+          ]
+        },
+        "run": [
+          "six",
+          "progress"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyuda"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/work"
+      },
+      "hash": {
+        "hash": "8146e25",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libuda-client": {
+          "build_string": "h9369bf3_4",
+          "name": "libuda-client",
+          "version": "2.9.3"
+        },
+        "pyuda": {
+          "build_string": "np2py311h8146e25_4",
+          "name": "pyuda",
+          "version": "2.9.3"
+        },
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.921044781Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": [
+          "lib/python*/site-packages/*"
+        ],
+        "number": 4,
+        "script": "scripts/build_pyuda.sh",
+        "string": "np2py311h8146e25_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "pyuda",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto",
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "numpy"
+        ],
+        "host": [
+          "libuda-client",
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto",
+          "pip",
+          "python",
+          "setuptools",
+          "cython",
+          "numpy",
+          "six"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "fmt",
+            "openssl",
+            "capnproto"
+          ]
+        },
+        "run": [
+          "six",
+          "progress"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyuda"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/work"
+      },
+      "hash": {
+        "hash": "8cb5651",
+        "prefix": "np2py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libuda-client": {
+          "build_string": "h9369bf3_4",
+          "name": "libuda-client",
+          "version": "2.9.3"
+        },
+        "pyuda": {
+          "build_string": "np2py312h8cb5651_4",
+          "name": "pyuda",
+          "version": "2.9.3"
+        },
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.921318416Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": [
+          "lib/python*/site-packages/*"
+        ],
+        "number": 4,
+        "script": "scripts/build_pyuda.sh",
+        "string": "np2py312h8cb5651_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "pyuda",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto",
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "numpy"
+        ],
+        "host": [
+          "libuda-client",
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto",
+          "pip",
+          "python",
+          "setuptools",
+          "cython",
+          "numpy",
+          "six"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "fmt",
+            "openssl",
+            "capnproto"
+          ]
+        },
+        "run": [
+          "six",
+          "progress"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyuda"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyuda/work"
+      },
+      "hash": {
+        "hash": "e4157ff",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libuda-client": {
+          "build_string": "h9369bf3_4",
+          "name": "libuda-client",
+          "version": "2.9.3"
+        },
+        "pyuda": {
+          "build_string": "np2py313he4157ff_4",
+          "name": "pyuda",
+          "version": "2.9.3"
+        },
+        "uda-cpp": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-cpp",
+          "version": "2.9.3"
+        },
+        "uda-java": {
+          "build_string": "h9369bf3_4",
+          "name": "uda-java",
+          "version": "2.9.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-22T16:53:00.921559350Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "capnproto": "1.3.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libboost_devel": "1.88",
+        "numpy": "2",
+        "openssl": "3.5",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The UDA can be either run as a client-server API, running as thin client with all functionality\nbeing handled on a remote server, or as fat-client API where both the client access and plugin\nfunctionality is run on the local machine.",
+        "documentation": "https://ukaea.github.io/UDA/",
+        "homepage": "https://ukaea.github.io/UDA/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENCE.txt"
+        ],
+        "repository": "https://github.com/ukaea/UDA",
+        "summary": "Universal Data Access (UDA) library to provide data over the network in a unified data object."
+      },
+      "build": {
+        "files": [
+          "lib/python*/site-packages/*"
+        ],
+        "number": 4,
+        "script": "scripts/build_pyuda.sh",
+        "string": "np2py313he4157ff_4"
+      },
+      "context": {
+        "name": "UDA",
+        "username": "ukaea",
+        "version": "2.9.3"
+      },
+      "extra": {
+        "feedstock-name": "uda",
+        "recipe-maintainers": [
+          "munechika-koyo"
+        ]
+      },
+      "package": {
+        "name": "pyuda",
+        "version": "2.9.3"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "git",
+          "cmake",
+          "ninja",
+          "pkg-config",
+          "capnproto",
+          "python",
+          "cross-python_osx-64",
+          "cython",
+          "numpy"
+        ],
+        "host": [
+          "libuda-client",
+          "libxml2-devel 2.14.*",
+          "libboost-devel",
+          "fmt",
+          "openssl",
+          "capnproto",
+          "pip",
+          "python",
+          "setuptools",
+          "cython",
+          "numpy",
+          "six"
+        ],
+        "ignore_run_exports": {
+          "from_package": [
+            "libxml2-devel",
+            "libboost-devel",
+            "fmt",
+            "openssl",
+            "capnproto"
+          ]
+        },
+        "run": [
+          "six",
+          "progress"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/udaClient.patch",
+            "patches/pr-83.patch",
+            "patches/pr-118-remove_cxx_std.patch"
+          ],
+          "sha256": "c3627ebac5bf5cd10c25cbf79bc4c2adb33989c3860810f0512c4f15ad77e84e",
+          "url": "https://github.com//ukaea/UDA/archive/refs/tags/2.9.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyuda"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

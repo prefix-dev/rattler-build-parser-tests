@@ -1,0 +1,184 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_osqp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_osqp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_osqp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_osqp/work"
+      },
+      "hash": {
+        "hash": "287e2eb",
+        "prefix": "np2py311"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "osqp": {
+          "build_string": "np2py311h287e2eb_4",
+          "name": "osqp",
+          "version": "1.0.5"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T16:37:18.018432582Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "numpy": "2",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Python interface for OSQP, the Operator Splitting QP Solver.\n\nTo use the `codegen` interface, install `cmake` and an appropriate\ncompiler version. (We don't install this by default.)",
+        "documentation": "https://osqp.org/",
+        "homepage": "https://osqp.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "http://github.com/osqp/osqp-python",
+        "summary": "Python interface for OSQP, the Operator Splitting QP Solver"
+      },
+      "build": {
+        "number": 4,
+        "script": [
+          "export SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}",
+          "export CMAKE_GENERATOR=Ninja",
+          "export CMAKE_INCLUDE_PATH=$PREFIX/include",
+          "${{ PYTHON }} -m pip install . --no-deps -vv"
+        ],
+        "string": "np2py311h287e2eb_4"
+      },
+      "context": {
+        "lib_version": "1.0.0",
+        "version": "1.0.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "sebp",
+          "djsutherland",
+          "h-vetinari",
+          "bstellato",
+          "gbanjac",
+          "jayfurmanek"
+        ]
+      },
+      "package": {
+        "name": "osqp",
+        "version": "1.0.5"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-ppc64le",
+          "numpy",
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "ninja",
+          "pybind11"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core",
+          "setuptools_scm",
+          "pip",
+          "numpy",
+          "libosqp 1.0.0.*",
+          "setuptools"
+        ],
+        "run": [
+          "python",
+          "qdldl-python",
+          "jinja2",
+          "joblib",
+          "scipy"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Link-against-shared-osqp-library.patch",
+            "patches/0002-Remove-pytorch-related-imports.patch",
+            "patches/0003-disable-codegen-ABI-is-not-compatible.patch"
+          ],
+          "sha256": "fe555180a1ad7e25bb3e3df787a1539de664a9fd0b1639271f8d5553bc22049e",
+          "url": "https://github.com/osqp/osqp-python/archive/refs/tags/v1.0.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "osqp",
+              "osqp.codegen"
+            ]
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "pytest"
+            ]
+          },
+          "script": {
+            "content": [
+              "import pytest",
+              "tests_to_skip = \"codegen\"",
+              "tests_to_skip += \" or test_multithread\"",
+              "args = [\"--pyargs\", \"osqp\", \"-k\", f\"not ({tests_to_skip})\"]",
+              "print(f\"running pytest with args: {args}\")",
+              "pytest.main(args)"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

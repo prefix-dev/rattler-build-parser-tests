@@ -1,0 +1,131 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tokyocabinet",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tokyocabinet/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tokyocabinet/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tokyocabinet/work"
+      },
+      "hash": {
+        "hash": "0f2c54a"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tokyocabinet": {
+          "build_string": "h0f2c54a_1005",
+          "name": "tokyocabinet",
+          "version": "1.4.48"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:52:58.573851232Z",
+      "variant": {
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "target_platform": "linux-64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Tokyo Cabinet is a library of routines for managing a database.\nThe database is a simple data file containing records, each is a pair\nof a key and a value. Every key and value is serial bytes with\nvariable length. Both binary data and character string can be used as\na key and a value. There is neither concept of data tables nor data\ntypes. Records are organized in hash table, B+ tree, or fixed-length\narray.\n\nTokyo Cabinet is developed as the successor of GDBM and QDBM on the\nfollowing purposes. They are achieved and Tokyo Cabinet replaces\nconventional DBM products.\n\nimproves space efficiency : smaller size of database file.\nimproves time efficiency : faster processing speed.\nimproves parallelism : higher performance in multi-thread environment.\nimproves usability : simplified API.\nimproves robustness : database file is not corrupted even under catastrophic situation.\nsupports 64-bit architecture : enormous memory space and database file are available.\n\nTokyo Cabinet is written in the C language, and provided as API of\nC, Perl, Ruby, Java, and Lua. Tokyo Cabinet is available on platforms\nwhich have API conforming to C99 and POSIX. Tokyo Cabinet is a\nfree software licensed under the GNU Lesser General Public License.",
+        "homepage": "http://fallabs.com/tokyocabinet",
+        "license": "LGPL-2.1-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "summary": "Tokyo Cabinet is a high performance key-value store written in C."
+      },
+      "build": {
+        "number": 1005,
+        "string": "h0f2c54a_1005"
+      },
+      "context": {
+        "version": "1.4.48"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "aseyboldt",
+          "danielnachun"
+        ]
+      },
+      "package": {
+        "name": "tokyocabinet",
+        "version": "1.4.48"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 14.*",
+          "make"
+        ],
+        "host": [
+          "zlib",
+          "bzip2"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "7ac6676532be461a55b91eefa832b36e7118fca01b377d0ed3cad81580d3460d",
+          "url": "https://gitlab.com/patlefort/tokyocabinet/-/archive/v1.4.48/tokyocabinet-v1.4.48.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -e $PREFIX/include/tcadb.h",
+            "test -e $PREFIX/lib/libtokyocabinet${SHLIB_EXT}",
+            "test -e $PREFIX/lib/libtokyocabinet.a",
+            "test -e $PREFIX/lib/pkgconfig/tokyocabinet.pc",
+            "tcbmgr version",
+            "echo foo | tcucodec zlib"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

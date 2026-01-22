@@ -1,0 +1,81 @@
+context:
+  name: mediainfo
+  version: "25.10"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  # repo contains symlinks which is hard to handle if we use tarball or zip.
+  - if: win
+    then:
+      path: ./build/
+    else:
+      url: https://github.com/MediaArea/MediaInfo/archive/refs/tags/v${{ version }}.tar.gz
+      sha256: "2edaff16dfad9ee372d17d6d01eb2e3d2f8ee8dd4af606b1ee6f045c9b009662"
+      target_directory: src
+
+build:
+  script:
+    content:
+      - if: unix
+        then: |
+          pushd src/Project/GNU/CLI
+          autoreconf -fi
+          ./configure --prefix="$PREFIX" || (cat config.log && false)
+          make install
+
+        # repo contains symlinks which is hard to handle if we use tarball or zip.
+        # use source.url after rattler-build/issues/1671 is fixed
+        else: |
+          git clone https://github.com/MediaArea/MediaInfo.git src --branch v${{ version }} --depth 1 --config core.symlinks=false
+
+          cmake . -B build %CMAKE_ARGS% -G Ninja
+
+          ninja -v -C build install
+
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - pkg-config
+
+    - if: unix
+      then:
+        - autoconf
+        - libtool
+        - automake
+        - make
+      else:
+        - cmake
+        - ninja
+  host:
+    - libmediainfo ${{ version }}.*
+    - libzen
+    - zlib
+
+tests:
+  - script: mediainfo --help
+  - package_contents:
+      bin:
+        - mediainfo
+
+about:
+  homepage: https://mediaarea.net/MediaInfo
+  summary: Convenient unified display of the most relevant technical and tag data for video and audio files
+  description: |
+    MediaInfo is a convenient unified display of the most relevant technical and tag data for video and audio files.
+  license: BSD-2-Clause
+  license_file:
+    - src/LICENSE
+    - src/License.html
+  documentation: https://mediaarea.net/MediaInfo
+  repository: https://github.com/MediaArea/MediaInfo
+
+extra:
+  recipe-maintainers:
+    - pavelzw

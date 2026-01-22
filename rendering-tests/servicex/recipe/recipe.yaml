@@ -1,0 +1,79 @@
+schema_version: 1
+
+context:
+  name: servicex
+  version: "3.2.3"
+  python_min: '3.9'
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/servicex-${{ version }}.tar.gz
+  sha256: 211c9c7c0a15c10d896a16ec9f6413cf6b96508b0d25da355876f0de4fe20ae5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - servicex = servicex.app.main:app
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.13.0
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - qastle >=0.17
+    - func-adl >=3.2.6
+    - requests >=2.31
+    - pydantic >=2.6.0
+    - aiohttp-retry >=2.8.3
+    - httpx >=0.24
+    - httpx-retries >=0.3.2
+    - aioboto3 >=14.1.0
+    - tinydb >=4.7
+    - google-auth >=2.17
+    - typer >=0.12.1
+    - pyyaml >=6.0
+    - types-pyyaml >=6.0
+    - importlib-metadata  # python <= 3.9
+    - typing_extensions  # python <= 3.10
+    - rich >=13.0.0
+    - aiofile
+    - make-it-sync
+    - ruamel.yaml >=0.18.7
+    - filelock >=3.12.0
+    - tenacity >=9.0.0
+
+tests:
+  - python:
+      imports:
+        - servicex
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - servicex --help
+
+about:
+  summary: Python SDK and CLI Client for ServiceX
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/ssl-hep/ServiceX_frontend
+  repository: https://github.com/ssl-hep/ServiceX_frontend
+  documentation: https://servicex-frontend.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - matthewfeickert
+    - gordonwatts
+    - ponyisi
+    - BenGalewsky

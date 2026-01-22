@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: django-prose-editor
+  version: "0.23.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/django_prose_editor-${{ version }}.tar.gz
+  sha256: a82c23d9592d7aef6bc3b2c28c1cafa1738b7dd768a7b3e195b6da757df70c5c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - django >=4.2
+    - django-js-asset >=3.1.2
+
+tests:
+  - python:
+      imports:
+        - django_prose_editor
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Prose editor for the Django admin based on ProseMirror
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/matthiask/django-prose-editor/
+
+extra:
+  recipe-maintainers:
+    - thewchan

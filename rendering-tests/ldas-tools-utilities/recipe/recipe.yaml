@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: ldas-tools-utilities
+  version: 2.7.1
+  ldas_tools_cmake_version: 1.2.3
+  ldas_tools_diskcacheapi_version: 2.7.7
+  ldas_tools_frameapi_version: 2.6.7
+  ldas_tools_ldasgen_version: 2.7.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  sha256: 0586c015d7fb0dd869d01d6c7c40d6dcfababf605e208072b1df8abb27f81e7f
+
+build:
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: osx
+        then: /usr/lib/libSystem.B.dylib
+    overdepending_behavior: error
+    overlinking_behavior: error
+  number: 3
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake >=3.6
+    - if: unix
+      then:
+        - make
+        - pkg-config
+  host:
+    - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+    - ldas-tools-diskcacheapi >=${{ ldas_tools_diskcacheapi_version }}
+    - ldas-tools-frameapi >=${{ ldas_tools_frameapi_version }}
+    - ldas-tools-framecpp
+    - ldas-tools-ldasgen >=${{ ldas_tools_ldasgen_version }}
+    - libboost-devel
+
+tests:
+  - script:
+      - ldas_create_rds --help
+
+about:
+  summary: LDAS tools utility programs
+  homepage: https://wiki.ligo.org/Computing/LDASTools
+  repository: https://git.ligo.org/ldastools/LDAS_Tools
+  license: GPL-2.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - emaros

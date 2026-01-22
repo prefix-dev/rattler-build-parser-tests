@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: tsml-eval
+  version: 0.6.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace("-","_") }}-${{ version }}.tar.gz
+  sha256: f330a147c6a272b52aacdf3fe4c651681a3d0e5808cce3e93b3d0840db3c92b5
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=61
+    - wheel
+    - toml
+    - python-build
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - aeon >=1.0.0,<1.2.0
+    - tsml >=0.6.0,<0.8.0
+    - scikit-learn >=1.0.0,<=1.7.0
+    - matplotlib-base
+    - seaborn
+    - gpustat
+    - psutil
+
+tests:
+  - python:
+      imports:
+        - tsml_eval
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A package for benchmarking time series machine learning tools.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/time-series-machine-learning/tsml-eval/
+
+extra:
+  recipe-maintainers:
+    - MatthewMiddlehurst

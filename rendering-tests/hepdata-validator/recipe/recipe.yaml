@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: hepdata-validator
+  version: "0.3.6"
+  python_min: "3.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/hepdata_validator-${{ version }}.tar.gz
+  sha256: e57b97f83509c81d579ccbbd4cdd515043ba32aa1d8543bf31a36a19dcf08fbb
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - hepdata-validate=hepdata_validator.cli:validate
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - pytest
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click
+    - jsonschema
+    - packaging
+    - pyyaml >=5.4.1
+    - requests
+
+tests:
+  - python:
+      imports:
+        - hepdata_validator
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - hepdata-validate --help
+
+about:
+  summary: JSON schema and validation code for HEPData submissions
+  license: GPL-2.0-only
+  license_file: LICENSE.txt
+  homepage: https://github.com/hepdata/hepdata-validator
+
+extra:
+  recipe-maintainers:
+    - GraemeWatt
+    - matthewfeickert

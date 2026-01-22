@@ -1,0 +1,36 @@
+From 2c0b56e2d3a1064f492b32c1877c3c48246dd1f9 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Thu, 14 Dec 2023 18:31:22 +0000
+Subject: [PATCH] Build for all CUDA 11 arches
+
+---
+ setup.py | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 1be4b69..66e85d6 100644
+--- a/setup.py
++++ b/setup.py
+@@ -76,11 +76,17 @@ def compile_cuda_module(host_args):
+ 
+     print("NVCC ==> ", nvcc)
+     arch_flags = (
++        "-gencode=arch=compute_37,code=sm_37 "
+         "-gencode=arch=compute_60,code=sm_60 "
++        "-gencode=arch=compute_62,code=sm_62 "
+         "-gencode=arch=compute_70,code=sm_70 "
++        "-gencode=arch=compute_72,code=sm_72 "
+         "-gencode=arch=compute_75,code=sm_75 "
+-        "-gencode=arch=compute_75,code=compute_75 "
+-        "-gencode=arch=compute_80,code=sm_80"
++        "-gencode=arch=compute_80,code=sm_80 "
++        "-gencode=arch=compute_86,code=sm_86 "
++        "-gencode=arch=compute_87,code=sm_87 "
++        "-gencode=arch=compute_89,code=sm_89 "
++        "-gencode=arch=compute_90,code=compute_90"
+     )
+     nvcc_command = (
+         f"-allow-unsupported-compiler shap/cext/_cext_gpu.cu -lib -o {lib_out} "
+-- 
+2.25.1
+

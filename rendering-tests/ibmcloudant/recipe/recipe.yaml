@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: ibmcloudant
+  version: 0.11.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ibmcloudant-${{ version }}.tar.gz
+  sha256: 98ba7b49d50dc58d74f9596e64a67bdc1ac066f00796036f96a1cd572f8ec2db
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.9,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - ibm-cloud-sdk-core ==3.24.2
+    - requests >=2.32.4,<3.0.0
+    - python-dateutil >=2.5.3,<3.0.0
+    - pyjwt >=2.0.1,<3.0.0
+
+tests:
+  - python:
+      imports:
+        - ibmcloudant
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Python client library for IBM Cloudant
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/IBM/cloudant-python-sdk
+  repository: https://github.com/IBM/cloudant-python-sdk
+  documentation: https://github.com/IBM/cloudant-python-sdk/blob/main/README.md
+
+extra:
+  recipe-maintainers:
+    - xylar

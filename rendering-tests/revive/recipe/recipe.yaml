@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.13.0
+
+package:
+  name: revive
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mgechev/revive/archive/v${{ version }}.tar.gz
+  sha256: fff05a782f016171a860bfd4341dd58bcb9f6abac099c5b3a0cf29a6e8ce48ac
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - revive --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: Fast, configurable, extensible, flexible, and beautiful linter for Go
+  homepage: https://github.com/mgechev/revive
+  repository: https://github.com/mgechev/revive
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,39 @@
+context:
+  version: "0.17.0"
+
+package:
+  name: uiua
+  version: ${{ version }}
+
+source:
+  url: https://github.com/uiua-lang/uiua/archive/${{ version }}.tar.gz
+  sha256: 485ca34d2c67e34d6f055d75263eed3352573b375a1db677966cdc7d8cc42317
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - cargo-bundle-licenses
+    - make
+
+tests:
+  - script:
+      - uiua --help
+
+about:
+  license: MIT
+  license_file:
+    - license
+    - THIRDPARTY.yml
+  summary: A stack-based array programming language
+  homepage: https://github.com/uiua-lang/uiua
+  repository: https://github.com/uiua-lang/uiua
+
+extra:
+  recipe-maintainers:
+    - danielnachun

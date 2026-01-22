@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlalchemy-oso",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlalchemy-oso/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlalchemy-oso/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_sqlalchemy-oso/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "sqlalchemy-oso": {
+          "build_string": "pyhcf101f3_2",
+          "name": "sqlalchemy-oso",
+          "version": "0.27.2"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:55.180398462Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://docs.osohq.com/python/reference/api/sqlalchemy.html",
+        "homepage": "https://github.com/osohq/oso/tree/main/languages/python/sqlalchemy-oso",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/osohq/oso",
+        "summary": "sqlalchemy-oso the SqlAlchemy integration for oso, the batteries-included framework for building authorization in your application."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 2,
+        "script": [
+          "cd languages/python/sqlalchemy-oso",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check"
+        ],
+        "string": "pyhcf101f3_2"
+      },
+      "context": {
+        "version": "0.27.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "alexpilot11",
+          "bollwyvl"
+        ]
+      },
+      "package": {
+        "name": "sqlalchemy-oso",
+        "version": "0.27.2"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.10.*",
+          "setuptools"
+        ],
+        "run": [
+          "oso >=0.27.0,<0.28.0",
+          "packaging >=21.3",
+          "python >=3.10",
+          "sqlalchemy >=1.3.17,<3.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0000-relax-packaging-pin.patch"
+          ],
+          "sha256": "18708bfd5cb74efc04d7191ea4247cec0182a52169da511f8059861c58116f20",
+          "url": "https://github.com/osohq/oso/archive/refs/tags/sqlalchemy-v0.27.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "sqlalchemy_oso"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "languages/python/sqlalchemy-oso/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "flask <2.2",
+              "flask-sqlalchemy <3.0",
+              "pytest-cov",
+              "werkzeug ==2.2.2",
+              "python 3.10"
+            ]
+          },
+          "script": [
+            "cd languages/python/sqlalchemy-oso",
+            "coverage run --source sqlalchemy_oso --branch -m pytest -vv --tb=long --color=yes",
+            "coverage report --show-missing --skip-covered --fail-under=75"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

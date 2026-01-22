@@ -1,0 +1,87 @@
+schema_version: 1
+
+context:
+  name: schemathesis
+  version: "4.9.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/schemathesis-${{ version }}.tar.gz
+  sha256: 5125e29d0c0911ecd59bac39125eed9067c3558f6bf7581a33f84779a927878b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - schemathesis = schemathesis.cli:schemathesis
+      - st = schemathesis.cli:schemathesis
+
+requirements:
+  host:
+    - pip
+    - hatchling
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    - click >=8.0,<9.0
+    - colorama >=0.4,<1.0
+    - harfile >=0.4.0,<1.0
+    - httpx >=0.22.0,<1.0
+    - hypothesis >=6.108.0,<7
+    - hypothesis-graphql >=0.11.1,<1
+    - hypothesis-jsonschema >=0.23.1,<0.24
+    - jsonschema >=4.18.0,<5.0
+    - junit-xml >=1.9,<2.0
+    - pyrate-limiter >=3.0,<4.0
+    - pytest-subtests >=0.11,<0.16.0
+    - pytest >=8,<10
+    - pyyaml >=5.1,<7.0
+    - requests >=2.22,<3
+    - rich >=13.9.4
+    - starlette-testclient >=0.4.1,<1
+    - tomli >=2.2.1
+    - tenacity >=9.1.2,<10.0
+    - typing_extensions >=4.12.2
+    - werkzeug >=0.16.0,<4
+    # for hypothesis[tzdata]
+    - python-tzdata
+    # for jsonschema[format]
+    - fqdn
+    - idna
+    - isoduration
+    - jsonpointer >1.13
+    - rfc3339-validator
+    - rfc3987
+    - uri-template
+    - webcolors >=1.11
+
+tests:
+  - python:
+      imports:
+        - schemathesis
+      pip_check: true
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}
+    script:
+      - schemathesis --help
+      - st --help
+
+about:
+  summary: Property-based testing framework for Open API and GraphQL based apps
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/schemathesis/schemathesis
+  documentation: https://schemathesis.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - Stranger6667
+    - thewchan

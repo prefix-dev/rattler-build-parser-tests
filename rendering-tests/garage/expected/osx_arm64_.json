@@ -1,0 +1,141 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_garage",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_garage/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_garage/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_garage/work"
+      },
+      "hash": {
+        "hash": "cab92a6"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "garage": {
+          "build_string": "hcab92a6_0",
+          "name": "garage",
+          "version": "2.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:36:42.892934547Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Garage is an S3-compatible distributed object storage service designed for self-hosting at a small-to-medium scale.",
+        "documentation": "https://garagehq.deuxfleurs.fr/",
+        "homepage": "https://garagehq.deuxfleurs.fr/",
+        "license": "AGPL-3.0-or-later",
+        "license_file": [
+          "LICENSE",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://git.deuxfleurs.fr/Deuxfleurs/garage",
+        "summary": "S3-compatible object store for small self-hosted geo-distributed deployments"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "cd src/garage",
+          "export CARGO_PROFILE_RELEASE_STRIP=symbols",
+          "export CARGO_PROFILE_RELEASE_LTO=fat",
+          "cargo install --locked --no-track --bins --root ${PREFIX} --path .",
+          "cargo-bundle-licenses --format yaml --output ../../THIRDPARTY.yml"
+        ],
+        "string": "hcab92a6_0"
+      },
+      "context": {
+        "name": "garage",
+        "version": "2.1.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "pavelzw"
+        ]
+      },
+      "package": {
+        "name": "garage",
+        "version": "2.1.0"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cargo-bundle-licenses",
+          "make"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "63b2a0a513464136728bb50a91b40a5911fc25603f3c3e54fe030c01ea5a6084",
+          "url": "https://git.deuxfleurs.fr/Deuxfleurs/garage/archive/v2.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "garage --help",
+            "garage --version"
+          ]
+        },
+        {
+          "package_contents": {
+            "bin": [
+              "garage"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

@@ -1,0 +1,149 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge",
+        "https://conda.anaconda.org/conda-forge/label/python_rc"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-c-sharp",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-c-sharp/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-c-sharp/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_tree-sitter-c-sharp/work"
+      },
+      "hash": {
+        "hash": "cce567a",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "tree-sitter-c-sharp": {
+          "build_string": "py314hcce567a_3",
+          "name": "tree-sitter-c-sharp",
+          "version": "0.23.1"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:59.357874727Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge,conda-forge/label/python_rc",
+        "channel_targets": "conda-forge main",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "C# grammar for tree-sitter based upon the Roslyn grammar with changes in order to:\n  - Deal with differences between the parsing technologies\n  - Work around some bugs in that grammar\n  - Handle #if, #else, #elif, #endif blocks\n  - Support syntax highlighting/parsing of fragments\n  - Simplify the output tree\n  - Reduce parser state count and complexity\n  - Be in-line with tree-sitter's convention where applicable",
+        "homepage": "https://github.com/tree-sitter/tree-sitter-c-sharp",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/tree-sitter/tree-sitter-c-sharp",
+        "summary": "C# Grammar for tree-sitter."
+      },
+      "build": {
+        "number": 3,
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv",
+        "string": "py314hcce567a_3"
+      },
+      "context": {
+        "name": "tree-sitter-c-sharp",
+        "version": "0.23.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "tree-sitter-c-sharp",
+        "version": "0.23.1"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cross-python_osx-arm64",
+          "python"
+        ],
+        "host": [
+          "pip",
+          "python",
+          "setuptools >=42"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "c0b008dca3c6820604bf0853b9668ba034f9750d89d170ba834261e94e2cd917",
+          "url": "https://github.com/tree-sitter/tree-sitter-c-sharp/archive/refs/tags/v0.23.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "tree_sitter_c_sharp"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "bindings/python/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "python",
+              "tree_sitter"
+            ]
+          },
+          "script": "python -m pytest bindings/python/tests/"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

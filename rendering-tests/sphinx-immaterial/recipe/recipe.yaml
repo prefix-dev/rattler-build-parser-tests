@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: sphinx-immaterial
+  version: "0.13.8"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/jbms/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: c608559df27df391b045dee2e6bcf60cccdcfc993087715431ea32a13053755b
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+
+requirements:
+  host:
+    - pip
+    - setuptools
+    - python ${{ python_min }}.*
+    - nodejs >=16
+  run:
+    - python >=${{ python_min }},<4
+    - sphinx >=4.5
+    - markupsafe
+    - pydantic >=2.4
+    - pydantic-extra-types
+    - typing-extensions
+    - appdirs
+    - requests
+
+tests:
+  - python:
+      imports:
+        - sphinx_immaterial
+      python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: Sphinx-Immaterial Theme
+  description: |
+    Adaptation of the popular mkdocs-material material design theme to the sphinx documentation system
+  homepage: https://github.com/jbms/sphinx-immaterial
+  repository: https://github.com/jbms/sphinx-immaterial
+  documentation: https://sphinx-immaterial.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - sdebionne
+    - munechika-koyo

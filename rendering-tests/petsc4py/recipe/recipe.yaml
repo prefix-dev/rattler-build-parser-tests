@@ -1,0 +1,126 @@
+context:
+  name: petsc4py
+  version: "3.24.3"
+  build: 0
+  version_xy: ${{ (version | split('.'))[:2] | join('.') }}
+  python_min: ${{ python_min | default("3.10") }}
+  abi3_tag: cp${{ python_min | split(".") | join("") }}
+  build_abi3: ${{ is_abi3 and match(python, ">=" + python_min) }}
+
+package:
+  name: petsc4py
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 62ed68d87fb3485b0b2fb2e9158b88dc56e64cce6bdc511d7f4630741218e868
+
+build:
+  number: ${{ build }}
+  skip: win or (is_abi3 and not match(python, python_min + ".*"))
+  python:
+    version_independent: ${{ build_abi3 }}
+  script:
+    content:
+      - ${{ PYTHON }} conf/cythonize.py
+      - ${{ PYTHON }} -m pip -v install --no-deps .
+    env:
+      PETSC_DIR: "$PREFIX"
+      PETSC4PY_BUILD_PYSABI: ${{ abi3_tag }}
+
+requirements:
+  build:
+    - ${{ compiler('fortran') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cython
+        - cross-python_${{ target_platform }}
+        - numpy
+        - if: mpi == 'openmpi'
+          then:
+            - ${{ mpi }}
+  host:
+    - python
+    - if: build_abi3
+      then: python-abi3
+    - cython
+    - pip
+    - setuptools
+    - numpy
+    - ${{ mpi }}
+    - if: device == 'host'
+      then:
+        - petsc ${{ version_xy }}.* ${{ scalar }}_*
+      else:
+        - petsc ${{ version_xy }}.* ${{ device }}_${{ scalar }}_*
+  run:
+    - python
+  run_constraints:
+    - mpi4py >=3.0.1
+
+tests:
+  - python:
+      pip_check: true
+      imports:
+        - petsc4py
+        - petsc4py.PETSc
+
+  - script:
+      file: run_test
+      env:
+        CONDA_BUILD: "1"
+    files:
+      source:
+        - test/test_mat_schur.py
+
+  - if: build_abi3
+    then:
+      - script:
+          # verify abi3 against 3.11 instead of 3.10
+          # PyObject_GetBuffer for 3.10 is abi-compatible with 3.11,
+          # but not part of the 3.10 stable ABI
+          - abi3audit $PREFIX/lib/python3.13/site-packages/petsc4py/lib/*.so -s -v --assume-minimum-abi3 3.11
+        requirements:
+          run:
+            - python 3.13.*
+            - abi3audit
+
+      # for abi3, run tests against more Pythons
+      - script:
+          file: run_test
+          env:
+            CONDA_BUILD: "1"
+        files:
+          source:
+            - test/test_mat_schur.py
+        requirements:
+          run:
+            - python ${{ python_min }}.*
+
+      - script:
+          file: run_test
+          env:
+            CONDA_BUILD: "1"
+        files:
+          source:
+            - test/test_mat_schur.py
+        requirements:
+          run:
+            - python 3.13.*
+
+about:
+  summary: Python bindings for PETSc
+  license: BSD-2-Clause
+  license_file: LICENSE.rst
+  homepage: https://petsc.org/release/petsc4py/
+
+extra:
+  recipe-maintainers:
+    - dalcinl
+    - minrk
+    - davidbrochart
+    - SylvainCorlay
+    - stefanozampini

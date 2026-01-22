@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: "0.15.3"
+
+package:
+  name: cue
+  version: ${{ version }}
+
+source:
+  url: https://github.com/cue-lang/cue/archive/v${{ version }}.tar.gz
+  sha256: 73d9c4b83c452020446a069685e9d7a0998d62014cdb13cc00e10683d088bd8f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - cue --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: The home of the CUE language! Validate and define text-based and dynamic configuration
+  homepage: https://github.com/cue-lang/cue
+  repository: https://github.com/cue-lang/cue
+
+extra:
+  recipe-maintainers:
+    - danielnachun

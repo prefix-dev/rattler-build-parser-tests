@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deps",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deps/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deps/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_deps/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "deps": {
+          "build_string": "pyhcf101f3_0",
+          "name": "deps",
+          "version": "1.6.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:15.847457243Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://github.com/ESSS/deps",
+        "homepage": "https://github.com/ESSS/deps",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ESSS/deps",
+        "summary": "An utility to execute commands on multiple projects."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "deps = deps.deps_cli:main_func"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "python_min": "3.10",
+        "version": "1.6.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "tadeu",
+          "nicoddemus",
+          "prusse-martin"
+        ]
+      },
+      "package": {
+        "name": "deps",
+        "version": "1.6.0"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "uv-build >=0.8,<0.9.0"
+        ],
+        "run": [
+          "python >=3.10",
+          "click >=7.0",
+          "colorama >=0.4",
+          "importlib-metadata >=8.7.0",
+          "jinja2 >=3.1",
+          "pyyaml >=6.0.2",
+          "tomli >=2.2.1",
+          "typing_extensions"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d5e004025c1dc2f4aebc0ec259e8789e89800d6aa936c6601d606d2d740f03c2",
+          "url": "https://github.com/ESSS/deps/archive/v1.6.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "deps"
+            ],
+            "pip_check": false
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "click >=8.1,!=8.2.*",
+              "pytest >=8.4.1",
+              "pytest-mock >=3.14.1",
+              "python 3.10"
+            ]
+          },
+          "script": [
+            "deps --help",
+            "deps --version",
+            "python -m deps --version",
+            "pytest --pyargs deps -p deps.fixtures"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

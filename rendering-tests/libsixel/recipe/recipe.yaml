@@ -1,0 +1,48 @@
+context:
+  version: "1.10.5"
+
+package:
+  name: libsixel
+  version: ${{ version }}
+
+source:
+  url: https://github.com/libsixel/libsixel/archive/v${{ version }}.tar.gz
+  sha256: b6654928bd423f92e6da39eb1f40f10000ae2cc6247247fc1882dcff6acbdfc8
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - meson
+    - ninja
+    - pkg-config
+  host:
+    - gdk-pixbuf
+    - glib
+    - libcurl
+    - libjpeg-turbo
+    - libpng
+    - zlib
+    - liblzma-devel
+  run_exports:
+    - ${{ pin_subpackage('libsixel') }}
+
+
+tests:
+  - script:
+      - img2sixel -H
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: SIXEL encoder/decoder implementation
+  homepage: https://github.com/saitoha/sixel
+  repository: https://github.com/saitoha/sixel
+
+extra:
+  recipe-maintainers:
+    - danielnachun

@@ -1,0 +1,154 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyreports",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyreports/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyreports/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyreports/work"
+      },
+      "hash": {
+        "hash": "e01879c",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pyreports": {
+          "build_string": "pyhe01879c_0",
+          "name": "pyreports",
+          "version": "1.8.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:45.898996945Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.9",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://matteoguadrini.github.io/pyreports",
+        "homepage": "https://github.com/MatteoGuadrini/pyreports",
+        "license": "GPL-3.0-or-later",
+        "license_file": [
+          "LICENSE.md"
+        ],
+        "summary": "pyreports is a python library that allows you to create complex report from various sources"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "reports = pyreports.cli:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install . -vv",
+        "string": "pyhe01879c_0"
+      },
+      "context": {
+        "name": "pyreports",
+        "version": "1.8.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "pyreports",
+        "version": "1.8.1"
+      },
+      "requirements": {
+        "host": [
+          "pip",
+          "python 3.9.*",
+          "setuptools",
+          "setuptools_scm",
+          "tomli",
+          "wheel",
+          "cython"
+        ],
+        "run": [
+          "ldap3",
+          "mysql-connector-python",
+          "nosqlapi",
+          "psycopg2",
+          "pymssql",
+          "python >=3.9",
+          "tablib",
+          "odfpy",
+          "openpyxl >=2.6.0",
+          "pandas",
+          "pyyaml",
+          "tabulate",
+          "xlrd",
+          "xlwt"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "bb8958f7a7973e62d6d1ce4ef353aa2648b616bbf24c6e0da493426ad7c4edf8",
+          "url": "https://pypi.org/packages/source/p/pyreports/pyreports-1.8.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyreports"
+            ],
+            "pip_check": false,
+            "python_version": "3.9.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.9.*"
+            ]
+          },
+          "script": "reports --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

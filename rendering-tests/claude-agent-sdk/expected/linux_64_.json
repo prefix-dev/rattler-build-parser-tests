@@ -1,0 +1,144 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_claude-agent-sdk",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_claude-agent-sdk/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_claude-agent-sdk/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_claude-agent-sdk/work"
+      },
+      "hash": {
+        "hash": "cf101f3",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "claude-agent-sdk": {
+          "build_string": "pyhcf101f3_0",
+          "name": "claude-agent-sdk",
+          "version": "0.1.20"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:11.734214435Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Python SDK for Claude Agent.",
+        "documentation": "https://platform.claude.com/docs/en/agent-sdk/python",
+        "homepage": "https://github.com/anthropics/claude-agent-sdk-python",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/anthropics/claude-agent-sdk-python",
+        "summary": "Python SDK for Claude Agent."
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . --ignore-installed --no-cache-dir --no-deps -vv",
+        "string": "pyhcf101f3_0"
+      },
+      "context": {
+        "version": "0.1.20"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jan-janssen",
+          "MementoRC"
+        ]
+      },
+      "package": {
+        "name": "claude-agent-sdk",
+        "version": "0.1.20"
+      },
+      "requirements": {
+        "host": [
+          "hatchling",
+          "pip",
+          "python 3.10.*"
+        ],
+        "run": [
+          "anyio >=4.0.0",
+          "mcp >=0.1.0",
+          "python >=3.10",
+          "typing-extensions >=4.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "bc3cb24f2dc8c7dc7362f52764051b20dbfcc16ec3e3d39787c4946d7ced3848",
+          "url": "https://pypi.org/packages/source/c/claude-agent-sdk/claude_agent_sdk-0.1.20.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "claude_agent_sdk"
+            ]
+          }
+        },
+        {
+          "files": {
+            "source": [
+              "CHANGELOG.md",
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "python 3.10.*",
+              "pytest",
+              "pytest-asyncio >=0.20.0",
+              "trio"
+            ]
+          },
+          "script": "python -m pytest tests/ -v || true\n"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

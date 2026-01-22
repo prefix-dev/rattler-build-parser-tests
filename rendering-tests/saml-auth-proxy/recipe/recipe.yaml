@@ -1,0 +1,48 @@
+context:
+  name: saml-auth-proxy
+  version: "1.17.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/itzg/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: efc8bc201946c7e3b34603ecb5c3fd74755e7c4071fe279a767620a7f29af57d
+  target_directory: src
+
+build:
+  script:
+    - cd src
+    - go-licenses save . --save_path ../library_licenses
+    - if: unix
+      then: go build -v -o $PREFIX/bin/saml-auth-proxy
+      else: go build -v -o %LIBRARY_BIN%\saml-auth-proxy.exe
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("go") }}
+    - go-licenses
+
+tests:
+  - script:
+      - saml-auth-proxy -help
+  - package_contents:
+      bin:
+        - saml-auth-proxy
+      strict: true
+
+about:
+  homepage: https://github.com/itzg/saml-auth-proxy
+  summary: Provides a SAML SP authentication proxy for backend web services
+  license: MIT
+  license_file:
+    - src/LICENSE.txt
+    - library_licenses/
+  repository: https://github.com/itzg/saml-auth-proxy
+  documentation: https://github.com/itzg/saml-auth-proxy
+
+extra:
+  recipe-maintainers:
+    - pavelzw

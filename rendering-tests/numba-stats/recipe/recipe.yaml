@@ -1,0 +1,47 @@
+schema_version: 1
+
+context:
+  name: numba-stats
+  version: "1.11.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 480bef381de1cb2ee666d3dabf6cdc6f6b5ff4617eb2d2e36d1e473a58e6afd4
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - poetry
+  run:
+    - numba >=0.50
+    - python >=${{ python_min }}
+    - scipy >=1.5.0
+    - numpy
+    - importlib-metadata
+
+tests:
+  - python:
+      imports:
+        - numba_stats
+      pip_check: true
+
+      python_version: ${{ python_min }}.*
+about:
+  summary: Fast numba-accelerated versions of common statistical functions
+  license: MIT
+  license_file: LICENSE
+  homepage: https://pypi.org/project/numba-stats/
+
+extra:
+  recipe-maintainers:
+    - chrisburr

@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: pysnom
+  version: "0.3.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pysnom-${{ version }}.tar.gz
+  sha256: b1403ef431821203b0cd1fcfb64999775264c8c2f1d730d9d5847c40bfd0d792
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - gwyfile >=0.2.0
+    - numpy <2.3.0,>=1.24.0
+    - setuptools
+    - scipy
+    - gsffile
+    - pandas >=1.4.0
+    - scikit-image
+
+tests:
+  - python:
+      imports:
+        - pySNOM
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Python tools for SNOM data processing.
+  description: Scanning Near-field Optical Microscopy (SNOM) analysis tools
+  license: CC-BY-NC-SA-4.0
+  license_file: LICENSE
+  repository: https://github.com/Quasars/pySNOM/
+  homepage: https://github.com/Quasars/pySNOM
+
+extra:
+  recipe-maintainers:
+    - HeavyTony2

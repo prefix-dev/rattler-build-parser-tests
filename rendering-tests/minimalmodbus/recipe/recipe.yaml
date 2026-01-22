@@ -1,0 +1,44 @@
+schema_version: 1
+
+context:
+  name: minimalmodbus
+  version: 2.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
+  sha256: c3f5a56e107d537e4bb420f7e735841ab2939c8ca6fb528f5fe4124571315b64
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.2,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - pyserial >=3
+
+tests:
+  - python:
+      imports:
+        - minimalmodbus
+      python_version: ${{ python_min }}.*
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Easy-to-use Modbus RTU and Modbus ASCII implementation for Python.
+  homepage: https://github.com/pyhys/minimalmodbus
+  repository: https://github.com/pyhys/minimalmodbus
+  documentation: https://minimalmodbus.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - carlodri

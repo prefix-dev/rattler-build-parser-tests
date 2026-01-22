@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  name: cssbeautifier
+  version: "1.15.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cssbeautifier-${{ version }}.tar.gz
+  sha256: 9bb08dc3f64c101a01677f128acf01905914cf406baf87434dcde05b74c0acf5
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - css-beautify = cssbeautifier:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pytest
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }},<4.0
+    - jsbeautifier
+    - six >=1.13.0
+    - editorconfig >=0.12.2
+
+tests:
+  - python:
+      imports:
+        - cssbeautifier
+      python_version: ${{ python_min }}.*
+      pip_check: true
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - css-beautify --help
+
+about:
+  summary: CSS unobfuscator and beautifier.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://beautifier.io
+  repository: https://github.com/beautify-web/js-beautify
+
+extra:
+  recipe-maintainers:
+    - rxm7706

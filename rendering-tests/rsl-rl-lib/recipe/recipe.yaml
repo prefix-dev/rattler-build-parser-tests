@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.2.0"
+
+package:
+  name: rsl-rl-lib
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/r/rsl-rl-lib/rsl_rl_lib-${{ version }}.tar.gz
+    sha256: d1f23097921e230274e02c837a6b6f8af2ee81e087762e8b77ffa3fbd32dd0de
+
+build:
+  script: ${{ PYTHON }} -m pip install --no-deps --no-build-isolation .
+  number: 0
+  noarch: python
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python >=${{ python_min }}
+    - pytorch >=2.6.0
+    - torchvision >=0.5.0
+    - tensordict >=0.7.0
+    - numpy >=1.16.4
+    - gitpython
+    - onnx
+    - onnxscript >=0.5.4
+
+tests:
+  - python:
+      imports:
+        - rsl_rl
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Fast and simple RL algorithms implemented in PyTorch
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/leggedrobotics/rsl_rl
+  repository: https://github.com/leggedrobotics/rsl_rl
+
+extra:
+  recipe-maintainers:
+    - traversaro
+    - GiulioRomualdi
+    - Giulero

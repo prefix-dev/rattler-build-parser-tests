@@ -1,0 +1,143 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarr",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarr/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarr/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_yarr/work"
+      },
+      "hash": {
+        "hash": "7aa8ee6"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "yarr": {
+          "build_string": "h7aa8ee6_0",
+          "name": "yarr",
+          "version": "1.5.5"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:42:49.909628091Z",
+      "variant": {
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "13",
+        "target_platform": "linux-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "YARR is a readout system based around the concept of moving intelligence\nfrom the FPGA firmware into the host computer software. The role of the FPGA is\nthe one of a reconfigurable I/O interface and not anymore the one of a hardware\naccelerator. YARR supports multiple types of FPGA platforms and readout chips.",
+        "documentation": "https://yarr.web.cern.ch/yarr/",
+        "homepage": "https://gitlab.cern.ch/YARR/YARR",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://gitlab.cern.ch/YARR/YARR",
+        "summary": "Yet Another Rapid Readout"
+      },
+      "build": {
+        "number": 0,
+        "script": [
+          "CXXFLAGS=\"${CXXFLAGS}\" cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -S \"${SRC_DIR}\" -B build",
+          "cmake --build build --clean-first --parallel=\"${CPU_COUNT}\"",
+          "cmake --install build",
+          "mkdir -p $PREFIX/share/yarr",
+          "rsync -ravz $SRC_DIR/configs $PREFIX/share/yarr",
+          "find $PREFIX/share/yarr/configs -name '*.json' -type f -print -exec sed -i \"s@\\\"configs/@\\\"$PREFIX/share/yarr/configs/@g\" {} +",
+          "cat $PREFIX/share/yarr/configs/controller/emuCfg_rd53a.json"
+        ],
+        "string": "h7aa8ee6_0"
+      },
+      "context": {
+        "name": "yarr",
+        "version": "1.5.5"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "kratsg"
+        ]
+      },
+      "package": {
+        "name": "yarr",
+        "version": "1.5.5"
+      },
+      "requirements": {
+        "build": [
+          "sysroot_linux-64 2.17.*",
+          "gxx_linux-64 13.*",
+          "cmake",
+          "make",
+          "rsync",
+          "sed"
+        ],
+        "run": [
+          "gnuplot"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0002-patch-strip-debug.patch",
+            "patches/0003-patch-dependency-resolution-for-osx.patch"
+          ],
+          "sha256": "89f7dd954cececd56be5ab4d5aca3237d9724f52b1f169a741cedb08b36d309b",
+          "url": "https://gitlab.cern.ch/yarr/yarr/-/archive/v1.5.5/yarr-v1.5.5.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f $PREFIX/bin/scanConsole",
+            "test -f $PREFIX/share/yarr/configs/controller/emuCfg_rd53a.json",
+            "cat $PREFIX/share/yarr/configs/controller/emuCfg_rd53a.json",
+            "scanConsole -h",
+            "scanConsole -k",
+            "scanConsole -r $PREFIX/share/yarr/configs/controller/emuCfg_rd53a.json -c $PREFIX/share/yarr/configs/connectivity/example_rd53a_setup.json -s $PREFIX/share/yarr/configs/scans/rd53a/std_digitalscan.json -p"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

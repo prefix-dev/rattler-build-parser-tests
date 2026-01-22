@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 3.75.1
+
+package:
+  name: doppler-cli
+  version: ${{ version }}
+
+source:
+  url: https://github.com/DopplerHQ/cli/archive/${{ version }}.tar.gz
+  sha256: 1487ff5cbc24a398f746a0fa07261abaaee89acffbf3861801f8c3cc58fde122
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - doppler --help
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: The official CLI for interacting with your Doppler secrets and configuration.
+  homepage: https://github.com/DopplerHQ/cli
+  repository: https://github.com/DopplerHQ/cli
+
+extra:
+  recipe-maintainers:
+    - danielnachun

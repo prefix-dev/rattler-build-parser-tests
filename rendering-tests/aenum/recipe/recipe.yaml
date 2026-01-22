@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: aenum
+  version: 3.1.16
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ethanfurman/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 4c7a5fb76a04ad8dc0c82b13c4cd858b755c69d16c2060a248bf3380a4d1067e
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - aenum
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  license: BSD-3-Clause
+  license_file: aenum/LICENSE
+  summary: Advanced Enumerations (compatible with Python's stdlib Enum), NamedTuples,
+  homepage: https://github.com/ethanfurman/aenum
+
+extra:
+  recipe-maintainers:
+    - sodre
+    - jan-janssen
+    - thewchan

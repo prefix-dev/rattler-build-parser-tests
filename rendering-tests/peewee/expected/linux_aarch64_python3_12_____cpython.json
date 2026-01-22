@@ -1,0 +1,155 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_peewee",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_peewee/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_peewee/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_peewee/work"
+      },
+      "hash": {
+        "hash": "5cb82ce",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "peewee": {
+          "build_string": "py312h5cb82ce_0",
+          "name": "peewee",
+          "version": "3.19.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:46.548315238Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "sqlite": "3",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "http://docs.peewee-orm.com/en/latest/",
+        "homepage": "https://github.com/coleifer/peewee/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/coleifer/peewee/",
+        "summary": "A little ORM"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "pwiz = pwiz:main"
+          ]
+        },
+        "script": {
+          "content": [
+            "python -m pip install . -vv --no-build-isolation --no-deps"
+          ],
+          "env": {
+            "NO_SQLITE": "0"
+          }
+        },
+        "string": "py312h5cb82ce_0"
+      },
+      "context": {
+        "name": "peewee",
+        "version": "3.19.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "dharhas",
+          "synapticarbors"
+        ]
+      },
+      "package": {
+        "name": "peewee",
+        "version": "3.19.0"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "cython",
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "cython >=0.22.1",
+          "sqlite",
+          "setuptools",
+          "wheel"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f88292a6f0d7b906cb26bca9c8599b8f4d8920ebd36124400d0cbaaaf915511f",
+          "url": "https://pypi.org/packages/source/p/peewee/peewee-3.19.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "playhouse",
+              "peewee"
+            ]
+          }
+        },
+        {
+          "script": "pwiz --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

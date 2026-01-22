@@ -1,0 +1,60 @@
+context:
+  name: colcon-notification
+  version: 0.3.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/colcon-notification-${{ version }}.tar.gz
+  sha256: c45b898073a8e98c4518333b7587f9ea49ac1bc129a7bc4e1390059057031fb8
+
+build:
+  number: 3
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - pip
+    - python
+    - setuptools
+  run:
+    - colcon-core >=0.3.7
+    - if: linux
+      then: notify2
+    - python
+    - if: win
+      then: pywin32
+
+tests:
+  - python:
+      imports:
+        - colcon_notification
+      pip_check: false
+  - requirements:
+      run:
+        - if: "python_impl == \"cpython\""
+          then: pip
+    script:
+      - if: "python_impl == \"cpython\""
+        then: pip check
+
+about:
+  summary: Extension for colcon to provide status notifications.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://colcon.readthedocs.io
+
+extra:
+  recipe-maintainers:
+    - j-rivero
+    - seanyen
+    - wolfv
+    - ruben-arts
+    - Tobias-Fischer

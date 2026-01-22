@@ -1,0 +1,45 @@
+schema_version: 1
+
+context:
+  name: drawdata
+  version: 0.3.4
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/koaning/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 626599dabc0c3f5a2d3cec94aaf59cec403888e4737d27717c188261d235dec0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+  run:
+    - python >=${{ python_min }}
+    - anywidget >=0.9.2
+
+tests:
+  - python:
+      imports:
+        - drawdata
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: Draw a dataset in a jupyter notebook.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://calmcode.io/labs/drawdata.html
+  repository: https://github.com/koaning/drawdata
+
+extra:
+  recipe-maintainers:
+    - thewchan

@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: pyGSTi
+  version: "0.9.13.3"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | lower }}-${{ version }}.tar.gz
+  sha256: 4aa516b413947cbd773b31ab18be42eb11a102a1e562b11320711584eb18d378
+
+build:
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+  host:
+    - python
+    - setuptools >=45
+    - wheel
+    - setuptools-scm >=6.2
+    - cython
+    - numpy
+    - pip
+  run:
+    - python
+    - scipy
+    - plotly
+    - pandas
+    - networkx
+    - numpy
+    # Not in the required dependencies of pyGSTi, but importing pyGSTi requires it
+    - matplotlib-base
+
+tests:
+  - python:
+      imports:
+        - pygsti
+
+about:
+  homepage: http://www.pygsti.info
+  summary: A python implementation of Gate Set Tomography
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+
+extra:
+  recipe-maintainers:
+    - basnijholt
+    - enielse

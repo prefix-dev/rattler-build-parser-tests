@@ -1,0 +1,136 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysql-connector-odbc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysql-connector-odbc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysql-connector-odbc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mysql-connector-odbc/work"
+      },
+      "hash": {
+        "hash": "6853a48"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "mysql-connector-odbc": {
+          "build_string": "h6853a48_0",
+          "name": "mysql-connector-odbc",
+          "version": "9.5.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:48:56.259950644Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "21",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "21",
+        "target_platform": "osx-arm64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://dev.mysql.com/doc/connector-odbc/en/",
+        "license": "GPL-2.0-or-later WITH Universal-FOSS-exception-1.0",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "summary": "MySQL Connector/ODBC, the ODBC interface for communicating with MySQL servers."
+      },
+      "build": {
+        "number": 0,
+        "string": "h6853a48_0"
+      },
+      "context": {
+        "name": "mysql-connector-odbc",
+        "version": "9.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jonashaag",
+          "xhochy"
+        ]
+      },
+      "package": {
+        "name": "mysql-connector-odbc",
+        "version": "9.5.0"
+      },
+      "requirements": {
+        "build": [
+          "cmake",
+          "ninja",
+          "clangxx_osx-arm64 21.*",
+          "clang_osx-arm64 21.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "zlib",
+          "unixodbc",
+          "mysql-devel 9.5.0.*"
+        ],
+        "host": [
+          "zlib",
+          "unixodbc",
+          "mysql-devel 9.5.0.*"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Added-a-std-char_traits-unsigned-short-specializatio.patch"
+          ],
+          "sha256": "6792ca057a55c56e041cc71add96cf086e996b5bc6288e02f57e07ab9255bc7a",
+          "url": "https://github.com/mysql/mysql-connector-odbc/archive/refs/tags/9.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f \"$PREFIX/lib/libmyodbc9w${SHLIB_EXT}\"",
+            "test -f \"$PREFIX/lib/libmyodbc9a${SHLIB_EXT}\"",
+            "test -f \"$PREFIX/bin/myodbc-installer\""
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

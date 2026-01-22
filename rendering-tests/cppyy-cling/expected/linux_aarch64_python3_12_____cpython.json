@@ -1,0 +1,172 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-cling",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-cling/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-cling/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_plac",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_cppyy-cling/work"
+      },
+      "hash": {
+        "hash": "ca09ef0",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "cppyy-cling": {
+          "build_string": "py312hca09ef0_0",
+          "name": "cppyy-cling",
+          "version": "6.32.8"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-22T16:52:18.328806892Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libboost_headers": "1.88",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64",
+        "zlib": "1"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A repackaging of Cling, the interactive C++ interpreter, including C/C++\nwrappers that expose no further external headers or types.",
+        "documentation": "http://cppyy.readthedocs.io/",
+        "homepage": "https://pypi.org/project/cppyy-cling",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "repository": "https://bitbucket.org/wlav/cppyy-backend/src/master/cling/",
+        "summary": "A repackaging of Cling for Automatic Python-C++ Bindings"
+      },
+      "build": {
+        "number": 0,
+        "python": {
+          "entry_points": [
+            "cling-config = cppyy_backend._cling_config:main",
+            "genreflex = cppyy_backend._genreflex:main",
+            "rootcling = cppyy_backend._rootcling:main",
+            "cppyy-generator = cppyy_backend._cppyy_generator:main"
+          ]
+        },
+        "string": "py312hca09ef0_0"
+      },
+      "context": {
+        "version": "6.32.8"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "saraedum",
+          "isuruf"
+        ]
+      },
+      "package": {
+        "name": "cppyy-cling",
+        "version": "6.32.8"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_linux-aarch64",
+          "gxx_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "sed",
+          "cmake",
+          "findutils",
+          "make"
+        ],
+        "host": [
+          "libboost-headers",
+          "python",
+          "pip",
+          "setuptools",
+          "zlib",
+          "clangdev 16.* root_632*"
+        ],
+        "run": [
+          "cxx-compiler",
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Do-not-use-llvm-config-when-cross-compiling.patch",
+            "patches/0002-Allow-usage-of-pre-built-dictionary-and-rootmap-when.patch",
+            "patches/0003-make-sure-C-formatting-symbols-are-available-in-C.patch",
+            "patches/0004-Revert-system_dirs.diff.patch",
+            "patches/0005-clang-for-aarch64-does-not-support-march-native.patch",
+            "patches/0006-Fix-order-of-clang-libraries.patch",
+            "patches/0007-Remove-libLLVM.so-when-linking.patch",
+            "patches/0008-Prevent-constants-from-being-dropped-from-archives-d.patch",
+            "patches/0009-Add-missing-link-dependencies.patch",
+            "patches/0010-InterpreterCallbacks-is-polymorphic.patch",
+            "patches/0011-Do-not-invoke-cmake-in-setup.py-build-since-it-is-to.patch",
+            "patches/0012-Rely-on-patched-clangdev-in-conda-forge-to-detect-ma.patch",
+            "patches/0013-Use-CXX-to-invoke-compiler.patch",
+            "patches/0014-Do-not-invoke-llvm-tblgen-when-cross-compiling.patch"
+          ],
+          "sha256": "f51ea2e9bd1418c27d1fca3ba97e322ad660a5e18180aad2d17fb55db43a0b49",
+          "url": "https://pypi.org/packages/source/c/cppyy-cling/cppyy_cling-6.32.8.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "test.h"
+            ]
+          },
+          "script": [
+            "rootcling -h",
+            "rootcling test.dict test.h",
+            "genreflex -h"
+          ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

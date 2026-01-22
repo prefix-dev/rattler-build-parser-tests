@@ -1,0 +1,37 @@
+schema_version: 1
+
+context:
+  version: 1.14.0
+
+package:
+  name: heksa
+  version: ${{ version }}
+
+source:
+  url: https://github.com/raspi/heksa/archive/v${{ version }}.tar.gz
+  sha256: eba59793e70aa6fc94370a0629d7941a4302bd5c0aac33d96a6d1adb0d818f56
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('go-nocgo') }}
+    - go-licenses
+
+tests:
+  - script:
+      - heksa --help
+
+about:
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - license-files/
+  summary: CLI hex dumper with colors
+  homepage: https://github.com/raspi/heksa
+  repository: https://github.com/raspi/heksa
+
+extra:
+  recipe-maintainers:
+    - danielnachun

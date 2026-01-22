@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: harlequin
+  version: "2.5.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/harlequin-${{ version }}.tar.gz
+  sha256: 8e9dc29df55a7cb546fdbc9999b3df365f825cba537d98160644225a7b1d0d57
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - harlequin = harlequin.cli:harlequin
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+    - sed
+  run:
+    - python-duckdb >=0.8.0
+    - questionary ==2.0.1
+    - tomlkit >=0.12.5,<0.14.0
+    - rich-click ==1.8.5
+    - python >=${{ python_min }}
+    - textual ==6.4.0
+    - textual-fastdatatable ==0.14.0
+    - textual-textarea ==0.17.2
+    - click ==8.1.8
+    - shandy-sqlfmt >=0.28.2
+    - platformdirs >=3.10,<5.0
+tests:
+  - python:
+      python_version: ${{ python_min }}.*
+      imports:
+        - harlequin
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - harlequin --help
+
+about:
+  summary: The DuckDB IDE for Your Terminal.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://harlequin.sh
+  repository: https://github.com/tconbeer/harlequin
+
+extra:
+  recipe-maintainers:
+    - moritzwilksch
+    - xhochy

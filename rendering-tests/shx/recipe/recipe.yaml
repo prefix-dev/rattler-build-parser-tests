@@ -1,0 +1,39 @@
+context:
+  version: "0.4.0"
+
+package:
+  name: shx
+  version: ${{ version }}
+
+source:
+  url: https://registry.npmjs.org/shx/-/shx-${{ version }}.tgz
+  sha256: 5286968c06c82a1b05289147f4a61f233c498c39bd1501711984c501150926ef
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  build:
+    - nodejs
+    - pnpm
+    - pnpm-licenses
+  run:
+    - nodejs
+
+tests:
+  - script:
+      - "shx --help 2>&1 | grep -q 'A wrapper for shelljs UNIX commands.'"
+
+about:
+  license: MIT
+  license_file:
+    - LICENSE
+    - third-party-licenses.txt
+  summary: Portable Shell Commands for Node
+  homepage: https://github.com/shelljs/shx
+  repository: https://github.com/shelljs/shx
+
+extra:
+  recipe-maintainers:
+    - danielnachun

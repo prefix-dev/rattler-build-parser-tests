@@ -1,0 +1,153 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotraj",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotraj/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotraj/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biotraj/work"
+      },
+      "hash": {
+        "hash": "c771bb0",
+        "prefix": "py314"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biotraj": {
+          "build_string": "py314hc771bb0_2",
+          "name": "biotraj",
+          "version": "1.2.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:41:05.937706498Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "python": "3.14.* *_cp314",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/biotite-dev/biotraj/",
+        "license": "LGPL-2.1-only",
+        "license_file": [
+          "LICENSE.rst"
+        ],
+        "repository": "https://github.com/biotite-dev/biotraj",
+        "summary": "The package is internally used by https://github.com/biotite-dev/biotite"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "export SETUPTOOLS_SCM_PRETEND_VERSION=${{ version }}",
+          "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
+        ],
+        "string": "py314hc771bb0_2"
+      },
+      "context": {
+        "version": "1.2.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "padix-key",
+          "JHKru"
+        ]
+      },
+      "package": {
+        "name": "biotraj",
+        "version": "1.2.2"
+      },
+      "requirements": {
+        "build": [
+          "python",
+          "cross-python_osx-arm64",
+          "cython >=3.0",
+          "numpy >=2.0",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clang_osx-arm64 19.*",
+          "clangxx_osx-arm64 19.*"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "setuptools >=64",
+          "setuptools_scm >=8",
+          "wheel >=0.30",
+          "cython >=3.0",
+          "numpy >=2.0"
+        ],
+        "run": [
+          "python",
+          "numpy >=1.26",
+          "scipy >=1.13"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "cc692e8048c5625d20996162b2c1d332b5b626dbc121b3d1a73f1eb546af2b7a",
+          "url": "https://github.com/biotite-dev/biotraj/archive/v1.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "netcdf4"
+            ]
+          },
+          "script": "pytest"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

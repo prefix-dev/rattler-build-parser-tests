@@ -1,0 +1,138 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biome",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biome/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biome/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biome/work"
+      },
+      "hash": {
+        "hash": "d43d178"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biome": {
+          "build_string": "hd43d178_0",
+          "name": "biome",
+          "version": "2.3.11"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T16:52:10.249052336Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libiconv": "1",
+        "rust_compiler": "rust",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "Biome is a performant toolchain for web projects, it aims to provide developer tools to maintain the health of said projects.\nBiome is a fast formatter for JavaScript, TypeScript, JSX, and JSON that scores 97% compatibility with Prettier.\nBiome is a performant linter for JavaScript, TypeScript, and JSX that features more than 200 rules from ESLint, typescript-eslint, and other sources.\nIt outputs detailed and contextualized diagnostics that help you to improve your code and become a better programmer!\nBiome is designed from the start to be used interactively within an editor.\nIt can format and lint malformed code as you are writing it.",
+        "documentation": "https://biomejs.dev/guides/getting-started/",
+        "homepage": "https://biomejs.dev/",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE-MIT",
+          "THIRDPARTY.yml"
+        ],
+        "repository": "https://github.com/biomejs/biome",
+        "summary": "A toolchain for web projects, aimed to provide functionalities to maintain them.\nBiome offers formatter and linter, usable via CLI and LSP."
+      },
+      "build": {
+        "number": 0,
+        "script": {
+          "content": [
+            "export CARGO_BUILD_RUSTFLAGS=\"${CARGO_BUILD_RUSTFLAGS} -C strip=symbols\"",
+            "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
+            "cargo install --locked --root \"${{ library_prefix }}\" --path crates/biome_cli -v"
+          ],
+          "env": {
+            "BIOME_VERSION": "2.3.11",
+            "CARGO_BUILD_JOBS": "-1",
+            "CARGO_PROFILE_RELEASE_LTO": "thin"
+          }
+        },
+        "string": "hd43d178_0"
+      },
+      "context": {
+        "library_prefix": "${PREFIX}",
+        "name": "biome",
+        "version": "2.3.11"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv"
+        ]
+      },
+      "package": {
+        "name": "biome",
+        "version": "2.3.11"
+      },
+      "requirements": {
+        "build": [
+          "rust_osx-arm64",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "make",
+          "cargo-bundle-licenses"
+        ],
+        "host": [
+          "libiconv"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ebc9b7868864842789d6c13d0ba44c2a62b7e26365d8a366f245f293ee8143a5",
+          "url": "https://github.com/biomejs/biome/archive/refs/tags/@biomejs/biome@2.3.11.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": "biome --version"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

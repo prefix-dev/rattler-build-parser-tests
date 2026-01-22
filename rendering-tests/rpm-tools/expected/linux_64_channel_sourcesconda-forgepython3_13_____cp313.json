@@ -1,0 +1,196 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-tools",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-tools/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-tools/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_rpm-tools/work"
+      },
+      "hash": {
+        "hash": "46699e3",
+        "prefix": "py313lua5"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "rpm-tools": {
+          "build_string": "py313lua5h46699e3_2",
+          "name": "rpm-tools",
+          "version": "4.20.1"
+        }
+      },
+      "target_platform": "linux-64",
+      "timestamp": "2026-01-22T16:47:43.916720240Z",
+      "variant": {
+        "bzip2": "1",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.28",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "elfutils": "0.193",
+        "libarchive": "3.8",
+        "libcap": "2.76",
+        "libiconv": "1",
+        "liblzma_devel": "5",
+        "lmdb": "0.9.29",
+        "lua": "5",
+        "nss": "3",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-64",
+        "zlib": "1",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "The RPM Package Manager (RPM) is a powerful package management system capable of:\n\n* building computer software from source into easily distributable packages\n* installing, updating and uninstalling packaged software\n* querying detailed information about the packaged software, whether installed or not\n* verifying integrity of packaged software and resulting software installation",
+        "documentation": "https://rpm.org/documentation.html",
+        "homepage": "https://rpm.org/index.html",
+        "license": "GPL-2.0-or-later OR LGPL-2.0-or-later",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://github.com/rpm-software-management/rpm/",
+        "summary": "The RPM Package Manager"
+      },
+      "build": {
+        "number": 2,
+        "script": [
+          "mkdir build-dir",
+          "cd build-dir",
+          "cmake .. $CMAKE_ARGS -DWITH_SELINUX=OFF -DWITH_DBUS=OFF -DWITH_AUDIT=OFF",
+          "cmake --build . --target install -- -j$CPU_COUNT"
+        ],
+        "string": "py313lua5h46699e3_2"
+      },
+      "context": {
+        "major_minor": "4.20",
+        "name": "rpm-tools",
+        "version": "4.20.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "chrisburr"
+        ]
+      },
+      "package": {
+        "name": "rpm-tools",
+        "version": "4.20.1"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-64 14.*",
+          "sysroot_linux-64 2.28.*",
+          "make",
+          "cmake",
+          "pkg-config",
+          "gettext",
+          "libgomp"
+        ],
+        "host": [
+          "python",
+          "pip",
+          "elfutils",
+          "libarchive",
+          "libcap",
+          "libgcrypt",
+          "lmdb",
+          "lua",
+          "nss",
+          "popt",
+          "libdb",
+          "zstd",
+          "liblzma-devel",
+          "bzip2",
+          "libiconv",
+          "file",
+          "zlib",
+          "rpm-sequoia",
+          "libacl"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "elfutils",
+              "upper_bound": "x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "nss",
+              "upper_bound": "x"
+            }
+          },
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "file",
+              "upper_bound": "x"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Remove-fhardened-from-compiler-flags.patch"
+          ],
+          "sha256": "52647e12638364533ab671cbc8e485c96f9f08889d93fe0ed104a6632661124f",
+          "url": "http://ftp.rpm.org/releases/rpm-4.20.x/rpm-4.20.1.tar.bz2"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "rpm"
+            ]
+          }
+        },
+        {
+          "script": "rpm --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]

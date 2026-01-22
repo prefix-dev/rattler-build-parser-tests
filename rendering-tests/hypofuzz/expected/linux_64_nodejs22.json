@@ -1,0 +1,151 @@
+[
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hypofuzz",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hypofuzz/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hypofuzz/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_hypofuzz/work"
+      },
+      "hash": {
+        "hash": "28ce643",
+        "prefix": "py"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "hypofuzz": {
+          "build_string": "pyh28ce643_0",
+          "name": "hypofuzz",
+          "version": "25.11.1"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-22T16:52:25.468187142Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "nodejs": "22",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://hypofuzz.com/docs/",
+        "homepage": "https://hypofuzz.com/",
+        "license": "AGPL-3.0-only",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/Zac-HD/hypofuzz",
+        "summary": "Adaptive fuzzing for property-based tests"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation",
+        "string": "pyh28ce643_0"
+      },
+      "context": {
+        "name": "hypofuzz",
+        "version": "25.11.1"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "thewchan"
+        ]
+      },
+      "package": {
+        "name": "hypofuzz",
+        "version": "25.11.1"
+      },
+      "requirements": {
+        "host": [
+          "python 3.10.*",
+          "pip",
+          "setuptools",
+          "wheel",
+          "sphinx",
+          "furo",
+          "myst-parser",
+          "sphinxcontrib-bibtex",
+          "nodejs"
+        ],
+        "run": [
+          "python >=3.10",
+          "black >=23.3.0",
+          "coverage >=5.2.1",
+          "hypothesis >=6.140.2",
+          "libcst >=1.0.0",
+          "psutil >=3.0.0",
+          "pytest >=7.0.0",
+          "starlette",
+          "trio",
+          "hypercorn",
+          "click >=7.0",
+          "rich >=9.0.0",
+          "watchdog >=4.0.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "717a12481378e77c3fd7a44f2c03e17252591ed7e7e5fd2f714d33d7ad1cface",
+          "url": "https://pypi.org/packages/source/h/hypofuzz/hypofuzz-25.11.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "hypofuzz"
+            ],
+            "python_version": "3.10.*"
+          }
+        },
+        {
+          "requirements": {
+            "run": [
+              "python 3.10.*"
+            ]
+          },
+          "script": "hypothesis fuzz --help"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  }
+]
