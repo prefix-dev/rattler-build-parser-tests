@@ -36,10 +36,10 @@ requirements:
     - libcurand-dev
   ignore_run_exports:
     from_package:
-      - ${{ stdlib("c") }}
-      - ${{ compiler("c") }}
-      - ${{ compiler("cxx") }}
-      - ${{ compiler("cuda") }}
+      - ${{ (stdlib("c") | split(' '))[0] }}
+      - ${{ (compiler("c") | split(' '))[0] }}
+      - ${{ (compiler("cxx") | split(' '))[0] }}
+      - ${{ (compiler("cuda")|split(' '))[0] }}
       - libcurand-dev
 
 tests:
