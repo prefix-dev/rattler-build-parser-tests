@@ -39,8 +39,8 @@ outputs:
           else: __win
       ignore_run_exports:
         from_package:
-          - ${{ compiler("c") }}
-          - ${{ stdlib("c") }}
+          - ${{ (compiler("c") | split(" "))[0] }}
+          - ${{ (stdlib("c") | split(" "))[0] }}
     tests:
       - package_contents:
           include:
