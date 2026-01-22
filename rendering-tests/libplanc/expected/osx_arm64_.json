@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libplanc/work"
       },
       "hash": {
-        "hash": "a8bbcc0"
+        "hash": "26aa59d"
       },
       "host_platform": {
         "platform": "osx-arm64",
@@ -40,13 +40,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "libplanc": {
-          "build_string": "ha8bbcc0_5",
+          "build_string": "h26aa59d_5",
           "name": "libplanc",
           "version": "1.0.2"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:42:59.955488904Z",
+      "timestamp": "2026-01-22T18:37:19.497958626Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -58,6 +58,7 @@
         "channel_targets": "conda-forge main",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
+        "is_mingw": "",
         "libblas": "3.9.* *netlib",
         "liblapack": "3.9.* *netlib",
         "llvm_openmp": "19",
@@ -83,7 +84,7 @@
           "cmake --build .",
           "cmake --install ."
         ],
-        "string": "ha8bbcc0_5"
+        "string": "h26aa59d_5"
       },
       "context": {
         "build_number": 5,
@@ -177,687 +178,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
       },
       "hash": {
-        "hash": "fe78983",
-        "prefix": "py310"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libplanc": {
-          "build_string": "ha8bbcc0_5",
-          "name": "libplanc",
-          "version": "1.0.2"
-        },
-        "pyplanc": {
-          "build_string": "310_hfe78983_5",
-          "name": "pyplanc",
-          "version": "0.0.2"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:43:00.015192997Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libplanc": "1.0.2 ha8bbcc0_5",
-        "llvm_openmp": "19",
-        "python": "3.10.* *_cpython",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/welch-lab/libplanc",
-        "license": "GPL-2.0-or-later",
-        "license_file": [
-          "README.md"
-        ],
-        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
-      },
-      "build": {
-        "number": 5,
-        "script": [
-          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
-          "export MACOSX_DEPLOYMENT_TARGET=10.13",
-          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
-          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
-        ],
-        "string": "310_hfe78983_5"
-      },
-      "context": {
-        "build_number": 5,
-        "libc_version": "1.0.2",
-        "py_version": "0.0.2"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "theAeon"
-        ]
-      },
-      "package": {
-        "name": "pyplanc",
-        "version": "0.0.2"
-      },
-      "requirements": {
-        "build": [
-          "make",
-          "clang_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "clangxx_osx-arm64 19.*",
-          "llvm-openmp",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_osx-arm64"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libplanc"
-            }
-          },
-          "llvm-openmp",
-          "libblas * *accelerate",
-          "liblapack * *accelerate",
-          "indicators",
-          "armadillo",
-          "nanobind",
-          "python",
-          "scipy",
-          "pip",
-          "scikit-build-core"
-        ],
-        "run": [
-          "libblas * *accelerate",
-          "python",
-          "scipy",
-          "progressbar2",
-          "threadpoolctl"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "backport-constraint-fix.patch",
-            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
-          ],
-          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
-          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "pyplanc"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
-      },
-      "hash": {
-        "hash": "7b06513",
-        "prefix": "py311"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libplanc": {
-          "build_string": "ha8bbcc0_5",
-          "name": "libplanc",
-          "version": "1.0.2"
-        },
-        "pyplanc": {
-          "build_string": "311_h7b06513_5",
-          "name": "pyplanc",
-          "version": "0.0.2"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:43:00.015367358Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libplanc": "1.0.2 ha8bbcc0_5",
-        "llvm_openmp": "19",
-        "python": "3.11.* *_cpython",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/welch-lab/libplanc",
-        "license": "GPL-2.0-or-later",
-        "license_file": [
-          "README.md"
-        ],
-        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
-      },
-      "build": {
-        "number": 5,
-        "script": [
-          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
-          "export MACOSX_DEPLOYMENT_TARGET=10.13",
-          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
-          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
-        ],
-        "string": "311_h7b06513_5"
-      },
-      "context": {
-        "build_number": 5,
-        "libc_version": "1.0.2",
-        "py_version": "0.0.2"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "theAeon"
-        ]
-      },
-      "package": {
-        "name": "pyplanc",
-        "version": "0.0.2"
-      },
-      "requirements": {
-        "build": [
-          "make",
-          "clang_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "clangxx_osx-arm64 19.*",
-          "llvm-openmp",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_osx-arm64"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libplanc"
-            }
-          },
-          "llvm-openmp",
-          "libblas * *accelerate",
-          "liblapack * *accelerate",
-          "indicators",
-          "armadillo",
-          "nanobind",
-          "python",
-          "scipy",
-          "pip",
-          "scikit-build-core"
-        ],
-        "run": [
-          "libblas * *accelerate",
-          "python",
-          "scipy",
-          "progressbar2",
-          "threadpoolctl"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "backport-constraint-fix.patch",
-            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
-          ],
-          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
-          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "pyplanc"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
-      },
-      "hash": {
-        "hash": "ecbc10b",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libplanc": {
-          "build_string": "ha8bbcc0_5",
-          "name": "libplanc",
-          "version": "1.0.2"
-        },
-        "pyplanc": {
-          "build_string": "312_hecbc10b_5",
-          "name": "pyplanc",
-          "version": "0.0.2"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:43:00.015523219Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libplanc": "1.0.2 ha8bbcc0_5",
-        "llvm_openmp": "19",
-        "python": "3.12.* *_cpython",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/welch-lab/libplanc",
-        "license": "GPL-2.0-or-later",
-        "license_file": [
-          "README.md"
-        ],
-        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
-      },
-      "build": {
-        "number": 5,
-        "script": [
-          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
-          "export MACOSX_DEPLOYMENT_TARGET=10.13",
-          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
-          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
-        ],
-        "string": "312_hecbc10b_5"
-      },
-      "context": {
-        "build_number": 5,
-        "libc_version": "1.0.2",
-        "py_version": "0.0.2"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "theAeon"
-        ]
-      },
-      "package": {
-        "name": "pyplanc",
-        "version": "0.0.2"
-      },
-      "requirements": {
-        "build": [
-          "make",
-          "clang_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "clangxx_osx-arm64 19.*",
-          "llvm-openmp",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_osx-arm64"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libplanc"
-            }
-          },
-          "llvm-openmp",
-          "libblas * *accelerate",
-          "liblapack * *accelerate",
-          "indicators",
-          "armadillo",
-          "nanobind",
-          "python",
-          "scipy",
-          "pip",
-          "scikit-build-core"
-        ],
-        "run": [
-          "libblas * *accelerate",
-          "python",
-          "scipy",
-          "progressbar2",
-          "threadpoolctl"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "backport-constraint-fix.patch",
-            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
-          ],
-          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
-          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "pyplanc"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
-      },
-      "hash": {
-        "hash": "d82b35f",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libplanc": {
-          "build_string": "ha8bbcc0_5",
-          "name": "libplanc",
-          "version": "1.0.2"
-        },
-        "pyplanc": {
-          "build_string": "313_hd82b35f_5",
-          "name": "pyplanc",
-          "version": "0.0.2"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:43:00.015689290Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libplanc": "1.0.2 ha8bbcc0_5",
-        "llvm_openmp": "19",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/welch-lab/libplanc",
-        "license": "GPL-2.0-or-later",
-        "license_file": [
-          "README.md"
-        ],
-        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
-      },
-      "build": {
-        "number": 5,
-        "script": [
-          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
-          "export MACOSX_DEPLOYMENT_TARGET=10.13",
-          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
-          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
-        ],
-        "string": "313_hd82b35f_5"
-      },
-      "context": {
-        "build_number": 5,
-        "libc_version": "1.0.2",
-        "py_version": "0.0.2"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "theAeon"
-        ]
-      },
-      "package": {
-        "name": "pyplanc",
-        "version": "0.0.2"
-      },
-      "requirements": {
-        "build": [
-          "make",
-          "clang_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "clangxx_osx-arm64 19.*",
-          "llvm-openmp",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_osx-arm64"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libplanc"
-            }
-          },
-          "llvm-openmp",
-          "libblas * *accelerate",
-          "liblapack * *accelerate",
-          "indicators",
-          "armadillo",
-          "nanobind",
-          "python",
-          "scipy",
-          "pip",
-          "scikit-build-core"
-        ],
-        "run": [
-          "libblas * *accelerate",
-          "python",
-          "scipy",
-          "progressbar2",
-          "threadpoolctl"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "backport-constraint-fix.patch",
-            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
-          ],
-          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
-          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "pyplanc"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
-      },
-      "hash": {
-        "hash": "ffab5f5",
+        "hash": "0cc47e2",
         "prefix": "py314"
       },
       "host_platform": {
@@ -876,18 +197,18 @@
       "solve_strategy": "highest",
       "subpackages": {
         "libplanc": {
-          "build_string": "ha8bbcc0_5",
+          "build_string": "h26aa59d_5",
           "name": "libplanc",
           "version": "1.0.2"
         },
         "pyplanc": {
-          "build_string": "314_hffab5f5_5",
+          "build_string": "314_h0cc47e2_5",
           "name": "pyplanc",
           "version": "0.0.2"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:43:00.015890412Z",
+      "timestamp": "2026-01-22T18:37:19.559430565Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -899,7 +220,8 @@
         "channel_targets": "conda-forge main",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
-        "libplanc": "1.0.2 ha8bbcc0_5",
+        "is_mingw": "",
+        "libplanc": "1.0.2 h26aa59d_5",
         "llvm_openmp": "19",
         "python": "3.14.* *_cp314",
         "target_platform": "osx-arm64"
@@ -925,7 +247,691 @@
           "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
           "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
         ],
-        "string": "314_hffab5f5_5"
+        "string": "314_h0cc47e2_5"
+      },
+      "context": {
+        "build_number": 5,
+        "libc_version": "1.0.2",
+        "py_version": "0.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "theAeon"
+        ]
+      },
+      "package": {
+        "name": "pyplanc",
+        "version": "0.0.2"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "llvm-openmp",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libplanc"
+            }
+          },
+          "llvm-openmp",
+          "libblas * *accelerate",
+          "liblapack * *accelerate",
+          "indicators",
+          "armadillo",
+          "nanobind",
+          "python",
+          "scipy",
+          "pip",
+          "scikit-build-core"
+        ],
+        "run": [
+          "libblas * *accelerate",
+          "python",
+          "scipy",
+          "progressbar2",
+          "threadpoolctl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "backport-constraint-fix.patch",
+            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
+          ],
+          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
+          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyplanc"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
+      },
+      "hash": {
+        "hash": "ca46540",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libplanc": {
+          "build_string": "h26aa59d_5",
+          "name": "libplanc",
+          "version": "1.0.2"
+        },
+        "pyplanc": {
+          "build_string": "310_hca46540_5",
+          "name": "pyplanc",
+          "version": "0.0.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T18:37:19.560120281Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_mingw": "",
+        "libplanc": "1.0.2 h26aa59d_5",
+        "llvm_openmp": "19",
+        "python": "3.10.* *_cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/welch-lab/libplanc",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "README.md"
+        ],
+        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
+          "export MACOSX_DEPLOYMENT_TARGET=10.13",
+          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
+          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
+        ],
+        "string": "310_hca46540_5"
+      },
+      "context": {
+        "build_number": 5,
+        "libc_version": "1.0.2",
+        "py_version": "0.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "theAeon"
+        ]
+      },
+      "package": {
+        "name": "pyplanc",
+        "version": "0.0.2"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "llvm-openmp",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libplanc"
+            }
+          },
+          "llvm-openmp",
+          "libblas * *accelerate",
+          "liblapack * *accelerate",
+          "indicators",
+          "armadillo",
+          "nanobind",
+          "python",
+          "scipy",
+          "pip",
+          "scikit-build-core"
+        ],
+        "run": [
+          "libblas * *accelerate",
+          "python",
+          "scipy",
+          "progressbar2",
+          "threadpoolctl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "backport-constraint-fix.patch",
+            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
+          ],
+          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
+          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyplanc"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
+      },
+      "hash": {
+        "hash": "7b22b9c",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libplanc": {
+          "build_string": "h26aa59d_5",
+          "name": "libplanc",
+          "version": "1.0.2"
+        },
+        "pyplanc": {
+          "build_string": "311_h7b22b9c_5",
+          "name": "pyplanc",
+          "version": "0.0.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T18:37:19.560760146Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_mingw": "",
+        "libplanc": "1.0.2 h26aa59d_5",
+        "llvm_openmp": "19",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/welch-lab/libplanc",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "README.md"
+        ],
+        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
+          "export MACOSX_DEPLOYMENT_TARGET=10.13",
+          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
+          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
+        ],
+        "string": "311_h7b22b9c_5"
+      },
+      "context": {
+        "build_number": 5,
+        "libc_version": "1.0.2",
+        "py_version": "0.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "theAeon"
+        ]
+      },
+      "package": {
+        "name": "pyplanc",
+        "version": "0.0.2"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "llvm-openmp",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libplanc"
+            }
+          },
+          "llvm-openmp",
+          "libblas * *accelerate",
+          "liblapack * *accelerate",
+          "indicators",
+          "armadillo",
+          "nanobind",
+          "python",
+          "scipy",
+          "pip",
+          "scikit-build-core"
+        ],
+        "run": [
+          "libblas * *accelerate",
+          "python",
+          "scipy",
+          "progressbar2",
+          "threadpoolctl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "backport-constraint-fix.patch",
+            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
+          ],
+          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
+          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyplanc"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
+      },
+      "hash": {
+        "hash": "9a9cd29",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libplanc": {
+          "build_string": "h26aa59d_5",
+          "name": "libplanc",
+          "version": "1.0.2"
+        },
+        "pyplanc": {
+          "build_string": "312_h9a9cd29_5",
+          "name": "pyplanc",
+          "version": "0.0.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T18:37:19.561452813Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_mingw": "",
+        "libplanc": "1.0.2 h26aa59d_5",
+        "llvm_openmp": "19",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/welch-lab/libplanc",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "README.md"
+        ],
+        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
+          "export MACOSX_DEPLOYMENT_TARGET=10.13",
+          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
+          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
+        ],
+        "string": "312_h9a9cd29_5"
+      },
+      "context": {
+        "build_number": 5,
+        "libc_version": "1.0.2",
+        "py_version": "0.0.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "theAeon"
+        ]
+      },
+      "package": {
+        "name": "pyplanc",
+        "version": "0.0.2"
+      },
+      "requirements": {
+        "build": [
+          "make",
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "llvm-openmp",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_osx-arm64"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libplanc"
+            }
+          },
+          "llvm-openmp",
+          "libblas * *accelerate",
+          "liblapack * *accelerate",
+          "indicators",
+          "armadillo",
+          "nanobind",
+          "python",
+          "scipy",
+          "pip",
+          "scikit-build-core"
+        ],
+        "run": [
+          "libblas * *accelerate",
+          "python",
+          "scipy",
+          "progressbar2",
+          "threadpoolctl"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "backport-constraint-fix.patch",
+            "0001-Correct-non-pkgconf-case-for-HWLOC.patch"
+          ],
+          "sha256": "9166b2efb6fc0af1cd91b5ef8494432c42c04a34499be9787e60640a732ae812",
+          "url": "https://github.com/welch-lab/libplanc/archive/refs/tags/py-0.0.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "pyplanc"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyplanc/work"
+      },
+      "hash": {
+        "hash": "b0c5c08",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libplanc": {
+          "build_string": "h26aa59d_5",
+          "name": "libplanc",
+          "version": "1.0.2"
+        },
+        "pyplanc": {
+          "build_string": "313_hb0c5c08_5",
+          "name": "pyplanc",
+          "version": "0.0.2"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T18:37:19.562124259Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "is_mingw": "",
+        "libplanc": "1.0.2 h26aa59d_5",
+        "llvm_openmp": "19",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/welch-lab/libplanc",
+        "license": "GPL-2.0-or-later",
+        "license_file": [
+          "README.md"
+        ],
+        "summary": "'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>."
+      },
+      "build": {
+        "number": 5,
+        "script": [
+          "export SKBUILD_CMAKE_ARGS=\"-DHDF5_LINKS=1 -DHDF5_LINKS_EXITCODE='0' $CMAKE_ARGS\"",
+          "export MACOSX_DEPLOYMENT_TARGET=10.13",
+          "export CXXFLAGS=-D_LIBCPP_DISABLE_AVAILABILITY",
+          "pip install . -vv --no-deps --no-build-isolation --config-settings=build.targets=pyplanc"
+        ],
+        "string": "313_hb0c5c08_5"
       },
       "context": {
         "build_number": 5,
