@@ -1065,6 +1065,40 @@ def main():
             sys.exit(1)
         else:
             print(f"\n✓ All {accepted} rendering(s) accepted!")
+
+            # Show git diff and commit
+            if args.feedstock:
+                print("\n" + "=" * 80)
+                print("GIT DIFF")
+                print("=" * 80)
+                diff_result = subprocess.run(
+                    ["git", "diff", "--color=always"],
+                    capture_output=True,
+                    text=True
+                )
+                if diff_result.stdout:
+                    print(diff_result.stdout)
+                else:
+                    print("(no changes)")
+
+                # Commit the changes
+                print("\n" + "=" * 80)
+                print("GIT COMMIT")
+                print("=" * 80)
+                commit_msg = f"accept {args.feedstock}"
+                commit_result = subprocess.run(
+                    ["git", "commit", "-am", commit_msg],
+                    capture_output=True,
+                    text=True
+                )
+                if commit_result.returncode == 0:
+                    print(f"✓ Committed: {commit_msg}")
+                    print(commit_result.stdout)
+                else:
+                    print(f"✗ Commit failed (maybe no changes?)")
+                    if commit_result.stderr:
+                        print(commit_result.stderr)
+
             sys.exit(0)
 
     # Run tests
