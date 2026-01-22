@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pyscf/work"
       },
       "hash": {
-        "hash": "ce19ad0",
+        "hash": "695a2d2",
         "prefix": "py310"
       },
       "host_platform": {
@@ -42,13 +42,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "pyscf": {
-          "build_string": "py310hce19ad0_401",
+          "build_string": "py310h695a2d2_401",
           "name": "pyscf",
           "version": "2.11.0"
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:35:18.245436296Z",
+      "timestamp": "2026-01-22T18:18:08.578273722Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -65,7 +65,6 @@
         "libcint": "6.1",
         "microarch_level": 4,
         "python": "3.10.* *_cpython",
-        "python_min": "3.10",
         "target_platform": "linux-64"
       }
     },
@@ -84,6 +83,9 @@
       },
       "build": {
         "number": 401,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "export CFLAGS=\"${CFLAGS} -march=x86-64-v4\"",
           "export CXXFLAGS=\"${CXXFLAGS} -march=x86-64-v4\"",
@@ -92,7 +94,7 @@
           "export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}",
           "${{ PYTHON }} -m pip install . -vv"
         ],
-        "string": "py310hce19ad0_401"
+        "string": "py310h695a2d2_401"
       },
       "context": {
         "build_num": 1,
@@ -135,14 +137,6 @@
           "setuptools",
           "xcfun ==2.1.1"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "h5py >=2.7",
           "numpy >=1.13,!=1.16,!=1.17",

@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:35:17.461977775Z",
+      "timestamp": "2026-01-22T18:18:08.941770519Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -84,6 +84,9 @@
       },
       "build": {
         "number": 301,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "export CMAKE_CONFIGURE_ARGS=\"${CMAKE_ARGS} -DBLAS_LIBRARIES=lapack;blas -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_SHARED_LIBS=ON -DBUILD_LIBCINT=OFF -DBUILD_LIBXC=OFF -DBUILD_XCFUN=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -LAH\"",
           "export CMAKE_BUILD_PARALLEL_LEVEL=${CPU_COUNT}",
@@ -133,14 +136,6 @@
           "setuptools",
           "xcfun ==2.1.1"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "h5py >=2.7",
           "numpy >=1.13,!=1.16,!=1.17",
