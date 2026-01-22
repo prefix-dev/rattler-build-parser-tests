@@ -31,8 +31,8 @@ requirements:
   # tzdata; since this package is data-only, we don't want any of the run-exports
   ignore_run_exports:
     from_package:
-      - ${{ stdlib('c') }}
-      - ${{ compiler('c') }}
+      - ${{ (stdlib('c') | split(' '))[0] }}
+      - ${{ (compiler('c') | split(' '))[0] }}
 
 tests:
   - script:
