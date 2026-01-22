@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.1=0",
+          "__cuda=12.9=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc/work"
       },
       "hash": {
-        "hash": "0034879"
+        "hash": "0ec920c"
       },
       "host_platform": {
         "platform": "linux-64",
@@ -30,7 +30,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.1=0",
+          "__cuda=12.9=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -41,15 +41,14 @@
       "solve_strategy": "highest",
       "subpackages": {
         "petsc": {
-          "build_string": "cuda12_real_h0034879_1",
+          "build_string": "cuda12_real_h0ec920c_1",
           "name": "petsc",
           "version": "3.24.3"
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:49:23.939223645Z",
+      "timestamp": "2026-01-22T18:24:08.954482765Z",
       "variant": {
-        "build_platform": "linux-64",
         "c_compiler": "gcc",
         "c_compiler_version": "14",
         "c_stdlib": "sysroot",
@@ -57,7 +56,6 @@
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
         "cuda_compiler": "cuda-nvcc",
-        "cuda_compiler_version": "12.9",
         "cxx_compiler": "gxx",
         "cxx_compiler_version": "14",
         "fftw": "3",
@@ -75,10 +73,8 @@
         "libspqr": "4",
         "libumfpack": "6",
         "metis": "5.1.0",
-        "mpi": "mpich",
         "mpich": "4",
         "mumps_mpi": "5.8.1",
-        "scalar": "real",
         "superlu_dist": "9",
         "target_platform": "linux-64"
       }
@@ -99,7 +95,7 @@
       },
       "build": {
         "number": 1,
-        "string": "cuda12_real_h0034879_1",
+        "string": "cuda12_real_h0ec920c_1",
         "variant": {
           "down_prioritize_variant": 1
         }
@@ -114,7 +110,7 @@
         "name": "petsc",
         "scalar": "real",
         "version": "3.24.3",
-        "with_cuda": true
+        "with_cuda": "true"
       },
       "extra": {
         "recipe-maintainers": [
@@ -292,9 +288,9 @@
             "run": [
               "pkg-config",
               "make",
-              "gcc_linux-64 =14",
-              "gxx_linux-64 =14",
-              "gfortran_linux-64 =14"
+              "gcc_linux-64 14.*",
+              "gxx_linux-64 14.*",
+              "gfortran_linux-64 14.*"
             ]
           },
           "script": {

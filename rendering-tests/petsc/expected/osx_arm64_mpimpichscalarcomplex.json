@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_petsc/work"
       },
       "hash": {
-        "hash": "c4f40dd"
+        "hash": "97dc0f4"
       },
       "host_platform": {
         "platform": "osx-arm64",
@@ -40,24 +40,21 @@
       "solve_strategy": "highest",
       "subpackages": {
         "petsc": {
-          "build_string": "complex_hc4f40dd_1",
+          "build_string": "complex_h97dc0f4_1",
           "name": "petsc",
           "version": "3.24.3"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:49:21.900471858Z",
+      "timestamp": "2026-01-22T18:24:09.072292411Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
         "c_compiler": "clang",
         "c_compiler_version": "19",
         "c_stdlib": "macosx_deployment_target",
         "c_stdlib_version": "11.0",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cuda_compiler": "cuda-nvcc",
-        "cuda_compiler_version": "None",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
         "fftw": "3",
@@ -75,10 +72,8 @@
         "libspqr": "4",
         "libumfpack": "6",
         "metis": "5.1.0",
-        "mpi": "mpich",
         "mpich": "4",
         "mumps_mpi": "5.8.1",
-        "scalar": "complex",
         "superlu_dist": "9",
         "target_platform": "osx-arm64"
       }
@@ -99,7 +94,7 @@
       },
       "build": {
         "number": 1,
-        "string": "complex_hc4f40dd_1",
+        "string": "complex_h97dc0f4_1",
         "variant": {
           "down_prioritize_variant": 1
         }
@@ -113,7 +108,8 @@
         "mpi": "mpich",
         "name": "petsc",
         "scalar": "complex",
-        "version": "3.24.3"
+        "version": "3.24.3",
+        "with_cuda": ""
       },
       "extra": {
         "recipe-maintainers": [
@@ -223,9 +219,9 @@
             "run": [
               "pkg-config",
               "make",
-              "clang_osx-arm64 =19",
-              "clangxx_osx-arm64 =19",
-              "gfortran_osx-arm64 =14"
+              "clang_osx-arm64 19.*",
+              "clangxx_osx-arm64 19.*",
+              "gfortran_osx-arm64 14.*"
             ]
           },
           "script": {
