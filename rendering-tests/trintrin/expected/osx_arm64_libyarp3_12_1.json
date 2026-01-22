@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.382188816Z",
+      "timestamp": "2026-01-22T21:40:59.778921033Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -130,12 +130,169 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "clang_osx-arm64 =19",
-              "clangxx_osx-arm64 =19",
+              "clang_osx-arm64 19.*",
+              "clangxx_osx-arm64 19.*",
               "cmake"
             ]
           },
           "script": "cmake-package-check trintrin --targets trintrin::msgs"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/work"
+      },
+      "hash": {
+        "hash": "b2ac191",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtrintrin": {
+          "build_string": "h7950521_3",
+          "name": "libtrintrin",
+          "version": "0.1.0"
+        },
+        "trintrin-python": {
+          "build_string": "py313hb2ac191_3",
+          "name": "trintrin-python",
+          "version": "0.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-01-22T21:40:59.840575722Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libyarp": "3.12.1",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ami-iit/trintrin",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Set of messages and interfaces used in Artificial Mechanical Intelligence lab at Italian Institute of Technology."
+      },
+      "build": {
+        "number": 3,
+        "script": "build_py.sh",
+        "string": "py313hb2ac191_3"
+      },
+      "context": {
+        "version": "0.1.0"
+      },
+      "extra": {
+        "feedstock-name": "trintrin",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "trintrin-python",
+        "version": "0.1.0"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "clangxx_osx-arm64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_osx-arm64",
+          "python"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libtrintrin",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "python",
+          "libyarp",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libtrintrin",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b38f78e79a3f473d99d4c4fa6e8ae8367dddc3f866a351f17c2ddcaea61fe652",
+          "url": "https://github.com/ami-iit/trintrin/archive/refs/tags/v0.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "trintrin"
+            ]
+          }
         }
       ]
     },
@@ -196,7 +353,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.526225487Z",
+      "timestamp": "2026-01-22T21:40:59.841334535Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -346,11 +503,6 @@
           "name": "libtrintrin",
           "version": "0.1.0"
         },
-        "trintrin": {
-          "build_string": "h58b185f_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
         "trintrin-python": {
           "build_string": "py311h144d59b_3",
           "name": "trintrin-python",
@@ -358,7 +510,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.526676498Z",
+      "timestamp": "2026-01-22T21:40:59.841965538Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -508,11 +660,6 @@
           "name": "libtrintrin",
           "version": "0.1.0"
         },
-        "trintrin": {
-          "build_string": "h58b185f_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
         "trintrin-python": {
           "build_string": "py312h38e4be9_3",
           "name": "trintrin-python",
@@ -520,7 +667,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.526871928Z",
+      "timestamp": "2026-01-22T21:40:59.842593562Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -554,168 +701,6 @@
         "number": 3,
         "script": "build_py.sh",
         "string": "py312h38e4be9_3"
-      },
-      "context": {
-        "version": "0.1.0"
-      },
-      "extra": {
-        "feedstock-name": "trintrin",
-        "recipe-maintainers": [
-          "traversaro"
-        ]
-      },
-      "package": {
-        "name": "trintrin-python",
-        "version": "0.1.0"
-      },
-      "requirements": {
-        "build": [
-          "clang_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "clangxx_osx-arm64 19.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
-          "cross-python_osx-arm64",
-          "python"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "libtrintrin",
-              "upper_bound": "x.x.x"
-            }
-          },
-          "python",
-          "libyarp",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "libtrintrin",
-              "upper_bound": "x.x.x"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "b38f78e79a3f473d99d4c4fa6e8ae8367dddc3f866a351f17c2ddcaea61fe652",
-          "url": "https://github.com/ami-iit/trintrin/archive/refs/tags/v0.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "trintrin"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/work"
-      },
-      "hash": {
-        "hash": "b2ac191",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libtrintrin": {
-          "build_string": "h7950521_3",
-          "name": "libtrintrin",
-          "version": "0.1.0"
-        },
-        "trintrin": {
-          "build_string": "h58b185f_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
-        "trintrin-python": {
-          "build_string": "py313hb2ac191_3",
-          "name": "trintrin-python",
-          "version": "0.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.527068559Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libyarp": "3.12.1",
-        "pybind11_abi": "11",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/ami-iit/trintrin",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Set of messages and interfaces used in Artificial Mechanical Intelligence lab at Italian Institute of Technology."
-      },
-      "build": {
-        "number": 3,
-        "script": "build_py.sh",
-        "string": "py313hb2ac191_3"
       },
       "context": {
         "version": "0.1.0"
@@ -837,13 +822,13 @@
           "version": "0.1.0"
         },
         "trintrin-python": {
-          "build_string": "py310h2f62ddb_3",
+          "build_string": "py312h38e4be9_3",
           "name": "trintrin-python",
           "version": "0.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:59.526472787Z",
+      "timestamp": "2026-01-22T21:40:59.843266075Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_compiler": "clang",
@@ -918,8 +903,8 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "clang_osx-arm64 =19",
-              "clangxx_osx-arm64 =19",
+              "clang_osx-arm64 19.*",
+              "clangxx_osx-arm64 19.*",
               "cmake"
             ]
           },

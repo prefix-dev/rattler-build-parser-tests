@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:00.954363004Z",
+      "timestamp": "2026-01-22T21:41:00.002959315Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -130,12 +130,169 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "gcc_linux-ppc64le =14",
-              "gxx_linux-ppc64le =14",
+              "gcc_linux-ppc64le 14.*",
+              "gxx_linux-ppc64le 14.*",
               "cmake"
             ]
           },
           "script": "cmake-package-check trintrin --targets trintrin::msgs"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/work"
+      },
+      "hash": {
+        "hash": "297983a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "linux-ppc64le",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=ppc64le"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libtrintrin": {
+          "build_string": "h7160ea8_3",
+          "name": "libtrintrin",
+          "version": "0.1.0"
+        },
+        "trintrin-python": {
+          "build_string": "py313h297983a_3",
+          "name": "trintrin-python",
+          "version": "0.1.0"
+        }
+      },
+      "target_platform": "linux-ppc64le",
+      "timestamp": "2026-01-22T21:41:00.065298438Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libyarp": "3.12.1",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "linux-ppc64le"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/ami-iit/trintrin",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Set of messages and interfaces used in Artificial Mechanical Intelligence lab at Italian Institute of Technology."
+      },
+      "build": {
+        "number": 3,
+        "script": "build_py.sh",
+        "string": "py313h297983a_3"
+      },
+      "context": {
+        "version": "0.1.0"
+      },
+      "extra": {
+        "feedstock-name": "trintrin",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "trintrin-python",
+        "version": "0.1.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-ppc64le 14.*",
+          "sysroot_linux-ppc64le 2.17.*",
+          "gxx_linux-ppc64le 14.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_linux-ppc64le",
+          "python"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libtrintrin",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "python",
+          "libyarp",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "libtrintrin",
+              "upper_bound": "x.x.x"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "b38f78e79a3f473d99d4c4fa6e8ae8367dddc3f866a351f17c2ddcaea61fe652",
+          "url": "https://github.com/ami-iit/trintrin/archive/refs/tags/v0.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "trintrin"
+            ]
+          }
         }
       ]
     },
@@ -197,7 +354,7 @@
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:01.069769840Z",
+      "timestamp": "2026-01-22T21:41:00.065999292Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -347,11 +504,6 @@
           "name": "libtrintrin",
           "version": "0.1.0"
         },
-        "trintrin": {
-          "build_string": "h3594811_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
         "trintrin-python": {
           "build_string": "py311h2e8caee_3",
           "name": "trintrin-python",
@@ -359,7 +511,7 @@
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:01.070442820Z",
+      "timestamp": "2026-01-22T21:41:00.066628975Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -509,11 +661,6 @@
           "name": "libtrintrin",
           "version": "0.1.0"
         },
-        "trintrin": {
-          "build_string": "h3594811_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
         "trintrin-python": {
           "build_string": "py312h4616f3b_3",
           "name": "trintrin-python",
@@ -521,7 +668,7 @@
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:01.070740145Z",
+      "timestamp": "2026-01-22T21:41:00.067304398Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -554,168 +701,6 @@
         "number": 3,
         "script": "build_py.sh",
         "string": "py312h4616f3b_3"
-      },
-      "context": {
-        "version": "0.1.0"
-      },
-      "extra": {
-        "feedstock-name": "trintrin",
-        "recipe-maintainers": [
-          "traversaro"
-        ]
-      },
-      "package": {
-        "name": "trintrin-python",
-        "version": "0.1.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-ppc64le 14.*",
-          "sysroot_linux-ppc64le 2.17.*",
-          "gxx_linux-ppc64le 14.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
-          "cross-python_linux-ppc64le",
-          "python"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "libtrintrin",
-              "upper_bound": "x.x.x"
-            }
-          },
-          "python",
-          "libyarp",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "libtrintrin",
-              "upper_bound": "x.x.x"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "b38f78e79a3f473d99d4c4fa6e8ae8367dddc3f866a351f17c2ddcaea61fe652",
-          "url": "https://github.com/ami-iit/trintrin/archive/refs/tags/v0.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "trintrin"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_trintrin-python/work"
-      },
-      "hash": {
-        "hash": "297983a",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "linux-ppc64le",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=ppc64le"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libtrintrin": {
-          "build_string": "h7160ea8_3",
-          "name": "libtrintrin",
-          "version": "0.1.0"
-        },
-        "trintrin": {
-          "build_string": "h3594811_3",
-          "name": "trintrin",
-          "version": "0.1.0"
-        },
-        "trintrin-python": {
-          "build_string": "py313h297983a_3",
-          "name": "trintrin-python",
-          "version": "0.1.0"
-        }
-      },
-      "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:01.071008539Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libyarp": "3.12.1",
-        "pybind11_abi": "11",
-        "python": "3.13.* *_cp313",
-        "target_platform": "linux-ppc64le"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/ami-iit/trintrin",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Set of messages and interfaces used in Artificial Mechanical Intelligence lab at Italian Institute of Technology."
-      },
-      "build": {
-        "number": 3,
-        "script": "build_py.sh",
-        "string": "py313h297983a_3"
       },
       "context": {
         "version": "0.1.0"
@@ -838,13 +823,13 @@
           "version": "0.1.0"
         },
         "trintrin-python": {
-          "build_string": "py310h708a397_3",
+          "build_string": "py312h4616f3b_3",
           "name": "trintrin-python",
           "version": "0.1.0"
         }
       },
       "target_platform": "linux-ppc64le",
-      "timestamp": "2026-01-22T16:53:01.070137466Z",
+      "timestamp": "2026-01-22T21:41:00.067918641Z",
       "variant": {
         "c_compiler": "gcc",
         "c_compiler_version": "14",
@@ -918,8 +903,8 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "gcc_linux-ppc64le =14",
-              "gxx_linux-ppc64le =14",
+              "gcc_linux-ppc64le 14.*",
+              "gxx_linux-ppc64le 14.*",
               "cmake"
             ]
           },
