@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:49.862794106Z",
+      "timestamp": "2026-01-22T18:16:30.163645322Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -81,6 +81,9 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
           "${{ PYTHON }} -m pip install . -vv"
@@ -118,14 +121,6 @@
           "setuptools",
           "setuptools-rust"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "dill >=0.3",
           "numpy <3,>=1.17",

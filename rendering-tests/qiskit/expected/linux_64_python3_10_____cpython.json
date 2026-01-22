@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:52:49.196728432Z",
+      "timestamp": "2026-01-22T18:16:29.656664731Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -81,6 +81,9 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": [
           "cargo-bundle-licenses --format yaml --output THIRDPARTY.yml",
           "${{ PYTHON }} -m pip install . -vv"
@@ -116,14 +119,6 @@
           "setuptools",
           "setuptools-rust"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "dill >=0.3",
           "numpy <3,>=1.17",
