@@ -58,7 +58,7 @@ tests:
       # Re-enable pip_check when pandas (dependency of xarray) supports freethreading
       # https://github.com/conda-forge/pandas-feedstock/pull/224
       pip_check: false
-      python_version: ${{ python_min + ".*" if is_abi3 else null }}
+      python_version: ${{ python_min + ".*" if is_abi3 else "*" }}
   - script:
       # NOTE: we must manually set SP_DIR since it is not set.
       # Can be removed once https://github.com/prefix-dev/rattler-build/issues/1733 is fixed.
