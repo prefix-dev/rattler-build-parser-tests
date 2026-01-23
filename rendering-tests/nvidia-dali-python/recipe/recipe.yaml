@@ -38,10 +38,10 @@ requirements:
       - libcurand-dev
       - libnpp-dev
       - libnvjpeg-dev
-      - libnvimgcodec-dev  ${{ libnvimgcodec }}
-      - if: (arm_variant_type or "") != "tegra"
+      - libnvimgcodec-dev
+      - if: linux and aarch64 and arm_variant_type != "tegra"
         then:
-          - libnvcomp-dev  ${{ libnvcomp }}
+          - libnvcomp-dev
       # Added libprotobuf to pick up channel pinnings, but we use the static package
       - libprotobuf
   build:
@@ -85,7 +85,7 @@ requirements:
     - libabseil
     - libboost-headers  ${{ libboost_headers }}
     - libjpeg-turbo
-    - if: (arm_variant_type or "") != "tegra"
+    - if: linux and aarch64 and arm_variant_type != "tegra"
       then:
         - libnvcomp-dev  ${{ libnvcomp }}
     - libnvimgcodec-dev  ${{ libnvimgcodec }}
@@ -136,7 +136,7 @@ requirements:
     #     - libnpp
     #     - libnvjpeg
     - libboost-headers  ${{ libboost_headers }}
-    - if: (arm_variant_type or "") != "tegra"
+    - if: linux and aarch64 and arm_variant_type != "tegra"
       then:
         - libnvcomp  ${{ libnvcomp }}
     - libnvimgcodec ${{ libnvimgcodec }}
@@ -150,7 +150,7 @@ tests:
         - libnpp
         - libnvjpeg
         - libboost-headers
-        - if: (arm_variant_type or "") != "tegra"
+        - if: linux and aarch64 and arm_variant_type != "tegra"
           then:
             - libnvcomp
         - libnvimgcodec
