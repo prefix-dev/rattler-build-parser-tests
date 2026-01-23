@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-python/work"
       },
       "hash": {
-        "hash": "cf101f3",
+        "hash": "c364b38",
         "prefix": "py"
       },
       "host_platform": {
@@ -42,17 +42,16 @@
       "solve_strategy": "highest",
       "subpackages": {
         "esmvaltool-python": {
-          "build_string": "pyhcf101f3_2",
+          "build_string": "pyhc364b38_2",
           "name": "esmvaltool-python",
           "version": "2.13.0"
         }
       },
       "target_platform": "noarch",
-      "timestamp": "2026-01-22T16:36:20.339195304Z",
+      "timestamp": "2026-01-23T16:58:59.697373011Z",
       "variant": {
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "python_min": "3.10",
         "target_platform": "noarch"
       }
     },
@@ -78,7 +77,7 @@
           ]
         },
         "script": "${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation",
-        "string": "pyhcf101f3_2"
+        "string": "pyhc364b38_2"
       },
       "context": {
         "name": "ESMValTool",
@@ -226,7 +225,161 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/work"
+      },
+      "hash": {
+        "hash": "a40286b"
+      },
+      "host_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "esmvaltool-ncl": {
+          "build_string": "ha40286b_2",
+          "name": "esmvaltool-ncl",
+          "version": "2.13.0"
+        },
+        "esmvaltool-python": {
+          "build_string": "pyhc364b38_2",
+          "name": "esmvaltool-python",
+          "version": "2.13.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-01-23T16:58:59.764857449Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "esmvaltool_python": "2.13.0 pyhc364b38_2",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "A community diagnostic and performance metrics tool for routine evaluation of Earth system models in CMIP.",
+        "homepage": "https://www.esmvaltool.org/",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "A community diagnostic and performance metrics tool for routine evaluation of Earth system models in CMIP."
+      },
+      "build": {
+        "noarch": "generic",
+        "number": 2,
+        "string": "ha40286b_2"
+      },
+      "context": {
+        "name": "ESMValTool",
+        "python_min": "3.11",
+        "version": "2.13.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jlenh",
+          "bettina-gier",
+          "ehogan",
+          "remi-kazeroni",
+          "sloosvel",
+          "schlunma",
+          "zklaus",
+          "valeriupredoi",
+          "nielsdrost",
+          "bouweandela",
+          "jlenh"
+        ]
+      },
+      "package": {
+        "name": "esmvaltool-ncl",
+        "version": "2.13.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "esmvaltool-python"
+            }
+          },
+          "ncl >=6.6.2",
+          "cdo",
+          "imagemagick",
+          "nco"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-Unpin-ipython.patch"
+          ],
+          "sha256": "92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5",
+          "url": "https://pypi.org/packages/source/E/ESMValTool/esmvaltool-2.13.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "source": [
+              "tests",
+              "setup.cfg"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest >=3.9,!=6.0.0rc1,!=6.0.0",
+              "pytest-cov",
+              "pytest-env",
+              "pytest-html !=2.1.0",
+              "pytest-metadata >=1.5.1",
+              "pytest-mock",
+              "pytest-xdist"
+            ]
+          },
+          "script": "pytest -n 2 -k \"[diagnostic.ncl]\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -252,7 +405,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-r/work"
       },
       "hash": {
-        "hash": "b13dca2"
+        "hash": "a40286b"
       },
       "host_platform": {
         "platform": "linux-64",
@@ -270,23 +423,28 @@
       },
       "solve_strategy": "highest",
       "subpackages": {
+        "esmvaltool-ncl": {
+          "build_string": "ha40286b_2",
+          "name": "esmvaltool-ncl",
+          "version": "2.13.0"
+        },
         "esmvaltool-python": {
-          "build_string": "pyhcf101f3_2",
+          "build_string": "pyhc364b38_2",
           "name": "esmvaltool-python",
           "version": "2.13.0"
         },
         "esmvaltool-r": {
-          "build_string": "hb13dca2_2",
+          "build_string": "ha40286b_2",
           "name": "esmvaltool-r",
           "version": "2.13.0"
         }
       },
       "target_platform": "noarch",
-      "timestamp": "2026-01-22T16:36:20.397671313Z",
+      "timestamp": "2026-01-23T16:58:59.765726832Z",
       "variant": {
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "esmvaltool_python": "2.13.0 pyhcf101f3_2",
+        "esmvaltool_python": "2.13.0 pyhc364b38_2",
         "target_platform": "noarch"
       }
     },
@@ -306,7 +464,7 @@
       "build": {
         "noarch": "generic",
         "number": 2,
-        "string": "hb13dca2_2"
+        "string": "ha40286b_2"
       },
       "context": {
         "name": "ESMValTool",
@@ -406,166 +564,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_p",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool-ncl/work"
-      },
-      "hash": {
-        "hash": "b13dca2"
-      },
-      "host_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "esmvaltool-ncl": {
-          "build_string": "hb13dca2_2",
-          "name": "esmvaltool-ncl",
-          "version": "2.13.0"
-        },
-        "esmvaltool-python": {
-          "build_string": "pyhcf101f3_2",
-          "name": "esmvaltool-python",
-          "version": "2.13.0"
-        },
-        "esmvaltool-r": {
-          "build_string": "hb13dca2_2",
-          "name": "esmvaltool-r",
-          "version": "2.13.0"
-        }
-      },
-      "target_platform": "noarch",
-      "timestamp": "2026-01-22T16:36:20.397850884Z",
-      "variant": {
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "esmvaltool_python": "2.13.0 pyhcf101f3_2",
-        "target_platform": "noarch"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "A community diagnostic and performance metrics tool for routine evaluation of Earth system models in CMIP.",
-        "homepage": "https://www.esmvaltool.org/",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "A community diagnostic and performance metrics tool for routine evaluation of Earth system models in CMIP."
-      },
-      "build": {
-        "noarch": "generic",
-        "number": 2,
-        "string": "hb13dca2_2"
-      },
-      "context": {
-        "name": "ESMValTool",
-        "python_min": "3.11",
-        "version": "2.13.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jlenh",
-          "bettina-gier",
-          "ehogan",
-          "remi-kazeroni",
-          "sloosvel",
-          "schlunma",
-          "zklaus",
-          "valeriupredoi",
-          "nielsdrost",
-          "bouweandela",
-          "jlenh"
-        ]
-      },
-      "package": {
-        "name": "esmvaltool-ncl",
-        "version": "2.13.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "esmvaltool-python"
-            }
-          },
-          "ncl >=6.6.2",
-          "cdo",
-          "imagemagick",
-          "nco"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "0001-Unpin-ipython.patch"
-          ],
-          "sha256": "92d4eac21f594131539b0749c6362f2328d72b70b18e02a4b2b8fe0ef7dea9e5",
-          "url": "https://pypi.org/packages/source/E/ESMValTool/esmvaltool-2.13.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "source": [
-              "tests",
-              "setup.cfg"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest >=3.9,!=6.0.0rc1,!=6.0.0",
-              "pytest-cov",
-              "pytest-env",
-              "pytest-html !=2.1.0",
-              "pytest-metadata >=1.5.1",
-              "pytest-mock",
-              "pytest-xdist"
-            ]
-          },
-          "script": "pytest -n 2 -k \"[diagnostic.ncl]\""
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -591,7 +590,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_esmvaltool/work"
       },
       "hash": {
-        "hash": "22db52d",
+        "hash": "0bd6425",
         "prefix": "py"
       },
       "host_platform": {
@@ -611,35 +610,34 @@
       "solve_strategy": "highest",
       "subpackages": {
         "esmvaltool": {
-          "build_string": "pyh22db52d_2",
+          "build_string": "pyh0bd6425_2",
           "name": "esmvaltool",
           "version": "2.13.0"
         },
         "esmvaltool-ncl": {
-          "build_string": "hb13dca2_2",
+          "build_string": "ha40286b_2",
           "name": "esmvaltool-ncl",
           "version": "2.13.0"
         },
         "esmvaltool-python": {
-          "build_string": "pyhcf101f3_2",
+          "build_string": "pyhc364b38_2",
           "name": "esmvaltool-python",
           "version": "2.13.0"
         },
         "esmvaltool-r": {
-          "build_string": "hb13dca2_2",
+          "build_string": "ha40286b_2",
           "name": "esmvaltool-r",
           "version": "2.13.0"
         }
       },
       "target_platform": "noarch",
-      "timestamp": "2026-01-22T16:36:20.397994945Z",
+      "timestamp": "2026-01-23T16:58:59.766495504Z",
       "variant": {
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "esmvaltool_ncl": "2.13.0 hb13dca2_2",
-        "esmvaltool_python": "2.13.0 pyhcf101f3_2",
-        "esmvaltool_r": "2.13.0 hb13dca2_2",
-        "python_min": "3.10",
+        "esmvaltool_ncl": "2.13.0 ha40286b_2",
+        "esmvaltool_python": "2.13.0 pyhc364b38_2",
+        "esmvaltool_r": "2.13.0 ha40286b_2",
         "target_platform": "noarch"
       }
     },
@@ -659,7 +657,7 @@
       "build": {
         "noarch": "python",
         "number": 2,
-        "string": "pyh22db52d_2"
+        "string": "pyh0bd6425_2"
       },
       "context": {
         "name": "ESMValTool",
@@ -748,7 +746,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
