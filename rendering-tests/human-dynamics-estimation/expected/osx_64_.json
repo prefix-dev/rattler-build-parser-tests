@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.103125395Z",
+      "timestamp": "2026-01-23T07:34:47.562168669Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -142,8 +142,8 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "clang_osx-64 =19",
-              "clangxx_osx-64 =19",
+              "clang_osx-64 19.*",
+              "clangxx_osx-64 19.*",
               "cmake"
             ]
           },
@@ -154,6 +154,163 @@
             "cmake-package-check WearableActuators --targets WearableActuators::WearableActuators",
             "cmake-package-check HumanDynamicsEstimation --targets HumanDynamicsEstimation::HumanStateMsg"
           ]
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.55.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/work"
+      },
+      "hash": {
+        "hash": "a37114d",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "human-dynamics-estimation-python": {
+          "build_string": "py313ha37114d_3",
+          "name": "human-dynamics-estimation-python",
+          "version": "4.2.2"
+        },
+        "libhuman-dynamics-estimation": {
+          "build_string": "haa1df3e_3",
+          "name": "libhuman-dynamics-estimation",
+          "version": "4.2.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-01-23T07:34:47.621503097Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libhuman_dynamics_estimation": "4.2.2 haa1df3e_3",
+        "libyarp": "3.12.2",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/robotology/human-dynamics-estimation",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Software repository for estimating human dynamics."
+      },
+      "build": {
+        "number": 3,
+        "script": "build_py.sh",
+        "string": "py313ha37114d_3"
+      },
+      "context": {
+        "version": "4.2.2"
+      },
+      "extra": {
+        "feedstock-name": "human-dynamics-estimation",
+        "recipe-maintainers": [
+          "traversaro"
+        ]
+      },
+      "package": {
+        "name": "human-dynamics-estimation-python",
+        "version": "4.2.2"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 11.0.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libhuman-dynamics-estimation"
+            }
+          },
+          "python",
+          "libyarp",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libhuman-dynamics-estimation"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "1e3336689492f1ade1c8224745be9c861687218d6c9e03dc81a0bf0f6ad4e59d",
+          "url": "https://github.com/robotology/human-dynamics-estimation/archive/refs/tags/v4.2.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "wearables",
+              "hde"
+            ]
+          }
         }
       ]
     },
@@ -214,7 +371,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.206347626Z",
+      "timestamp": "2026-01-23T07:34:47.622166741Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -359,11 +516,6 @@
       },
       "solve_strategy": "highest",
       "subpackages": {
-        "human-dynamics-estimation": {
-          "build_string": "he61eb0f_3",
-          "name": "human-dynamics-estimation",
-          "version": "4.2.2"
-        },
         "human-dynamics-estimation-python": {
           "build_string": "py311h86c09e9_3",
           "name": "human-dynamics-estimation-python",
@@ -376,7 +528,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.206791368Z",
+      "timestamp": "2026-01-23T07:34:47.622816205Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -521,11 +673,6 @@
       },
       "solve_strategy": "highest",
       "subpackages": {
-        "human-dynamics-estimation": {
-          "build_string": "he61eb0f_3",
-          "name": "human-dynamics-estimation",
-          "version": "4.2.2"
-        },
         "human-dynamics-estimation-python": {
           "build_string": "py312hf299fed_3",
           "name": "human-dynamics-estimation-python",
@@ -538,7 +685,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.206979368Z",
+      "timestamp": "2026-01-23T07:34:47.623439979Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -659,168 +806,6 @@
         "https://conda.anaconda.org/conda-forge"
       ],
       "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation-python/work"
-      },
-      "hash": {
-        "hash": "a37114d",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "human-dynamics-estimation": {
-          "build_string": "he61eb0f_3",
-          "name": "human-dynamics-estimation",
-          "version": "4.2.2"
-        },
-        "human-dynamics-estimation-python": {
-          "build_string": "py313ha37114d_3",
-          "name": "human-dynamics-estimation-python",
-          "version": "4.2.2"
-        },
-        "libhuman-dynamics-estimation": {
-          "build_string": "haa1df3e_3",
-          "name": "libhuman-dynamics-estimation",
-          "version": "4.2.2"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.207212129Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libhuman_dynamics_estimation": "4.2.2 haa1df3e_3",
-        "libyarp": "3.12.2",
-        "pybind11_abi": "11",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/robotology/human-dynamics-estimation",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Software repository for estimating human dynamics."
-      },
-      "build": {
-        "number": 3,
-        "script": "build_py.sh",
-        "string": "py313ha37114d_3"
-      },
-      "context": {
-        "version": "4.2.2"
-      },
-      "extra": {
-        "feedstock-name": "human-dynamics-estimation",
-        "recipe-maintainers": [
-          "traversaro"
-        ]
-      },
-      "package": {
-        "name": "human-dynamics-estimation-python",
-        "version": "4.2.2"
-      },
-      "requirements": {
-        "build": [
-          "clang_osx-64 19.*",
-          "macosx_deployment_target_osx-64 11.0.*",
-          "clangxx_osx-64 19.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
-          "cross-python_osx-64",
-          "python"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libhuman-dynamics-estimation"
-            }
-          },
-          "python",
-          "libyarp",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libhuman-dynamics-estimation"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "1e3336689492f1ade1c8224745be9c861687218d6c9e03dc81a0bf0f6ad4e59d",
-          "url": "https://github.com/robotology/human-dynamics-estimation/archive/refs/tags/v4.2.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "wearables",
-              "hde"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
         "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation",
         "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation/build_env",
         "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_human-dynamics-estimation/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
@@ -850,7 +835,7 @@
           "version": "4.2.2"
         },
         "human-dynamics-estimation-python": {
-          "build_string": "py310h4beecdb_3",
+          "build_string": "py312hf299fed_3",
           "name": "human-dynamics-estimation-python",
           "version": "4.2.2"
         },
@@ -861,7 +846,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:26.206590857Z",
+      "timestamp": "2026-01-23T07:34:47.624080782Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_compiler": "clang",
@@ -943,8 +928,8 @@
           "requirements": {
             "run": [
               "cmake-package-check",
-              "clang_osx-64 =19",
-              "clangxx_osx-64 =19",
+              "clang_osx-64 19.*",
+              "clangxx_osx-64 19.*",
               "cmake"
             ]
           },
