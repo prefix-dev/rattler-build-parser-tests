@@ -14,8 +14,8 @@ build:
   skip:
     - win
   script:
-    env:
-      OPENSSL_DIR: ${{ PREFIX }}
+    # env:
+    #   OPENSSL_DIR: ${{ PREFIX }}
     content:
       - grep -F '${{ version }}' Cargo.toml  # I keep forgetting to update Cargo.toml...
       - cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml

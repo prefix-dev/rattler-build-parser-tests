@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -29,7 +29,7 @@
         "virtual_packages": [
           "__unix=0=0",
           "__osx=0=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2025-12-12T16:27:00.994192166Z",
+      "timestamp": "2026-01-23T07:26:21.447629025Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -75,11 +75,13 @@
       },
       "build": {
         "number": 0,
-        "script": [
-          "grep -F '${{ version }}' Cargo.toml",
-          "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml",
-          "$BUILD_PREFIX/bin/cargo install --locked --bins --root ${PREFIX} --path ."
-        ],
+        "script": {
+          "content": [
+            "grep -F '${{ version }}' Cargo.toml",
+            "cargo-bundle-licenses --format yaml --output ${SRC_DIR}/THIRDPARTY.yml",
+            "$BUILD_PREFIX/bin/cargo install --locked --bins --root ${PREFIX} --path ."
+          ]
+        },
         "string": "h0750c07_0"
       },
       "context": {
@@ -119,7 +121,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.55.1"
     }
   }
 ]
