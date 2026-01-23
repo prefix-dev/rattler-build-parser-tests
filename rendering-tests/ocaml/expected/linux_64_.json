@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:52:38.893929727Z",
+      "timestamp": "2026-01-23T18:01:02.670804047Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -149,6 +149,8 @@
         "build_num": 4,
         "dot": "./",
         "flexdll_version": "0.44",
+        "library": null,
+        "m2": null,
         "name": "ocaml",
         "sh": "sh",
         "so": "so",
@@ -395,9 +397,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -415,9 +415,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-native-only-tools.${{ sh }} ${{ version }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-native-only-tools.${{ sh }} ${{ version }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -437,9 +435,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-compilation.${{ sh }} ${{ version }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-compilation.${{ sh }} ${{ version }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -489,9 +485,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-toolchain-vars.${{ sh }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-toolchain-vars.${{ sh }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -500,7 +494,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]

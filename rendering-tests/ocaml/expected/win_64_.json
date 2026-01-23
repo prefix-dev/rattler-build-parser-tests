@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:52:39.736399038Z",
+      "timestamp": "2026-01-23T18:01:03.123388798Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -125,6 +125,7 @@
       },
       "context": {
         "build_num": 4,
+        "dot": null,
         "flexdll_version": "0.44",
         "library": "Library/",
         "m2": "m2-",
@@ -313,9 +314,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -333,9 +332,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Skipping native-only tools (cross-build or Windows)\""
-            ],
+            "content": "echo \"Skipping native-only tools (cross-build or Windows)\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -355,9 +352,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Skipping compilation tests (cross-compiled package, QEMU limitation)\""
-            ],
+            "content": "echo \"Skipping compilation tests (cross-compiled package, QEMU limitation)\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -376,9 +371,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Cross-compilers only tested on linux-64 and osx-64\""
-            ],
+            "content": "echo \"Cross-compilers only tested on linux-64 and osx-64\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -397,9 +390,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Toolchain var tests only on native builds\""
-            ],
+            "content": "echo \"Toolchain var tests only on native builds\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -408,7 +399,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]

@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:52:38.558572304Z",
+      "timestamp": "2026-01-23T18:01:02.903157134Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -148,6 +148,8 @@
         "build_num": 4,
         "dot": "./",
         "flexdll_version": "0.44",
+        "library": null,
+        "m2": null,
         "name": "ocaml",
         "sh": "sh",
         "so": "so",
@@ -356,9 +358,7 @@
             ]
           },
           "script": {
-            "content": [
-              "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}"
-            ],
+            "content": "cd testing && ${{ dot }}test-tool-versions.${{ sh }} ${{ version }}",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -376,9 +376,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Skipping native-only tools (cross-build or Windows)\""
-            ],
+            "content": "echo \"Skipping native-only tools (cross-build or Windows)\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -400,9 +398,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Skipping compilation tests (cross-compiled package, QEMU limitation)\""
-            ],
+            "content": "echo \"Skipping compilation tests (cross-compiled package, QEMU limitation)\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -448,9 +444,7 @@
             ]
           },
           "script": {
-            "content": [
-              "echo \"Toolchain var tests only on native builds\""
-            ],
+            "content": "echo \"Toolchain var tests only on native builds\"",
             "env": {
               "OCAMLRUNPARAM": "s=4M,o=1000"
             }
@@ -459,7 +453,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
