@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -30,7 +30,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=aarch64"
         ]
       },
@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.009762959Z",
+      "timestamp": "2026-01-23T17:04:21.769624142Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -179,7 +179,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -190,708 +190,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
-      },
-      "hash": {
-        "hash": "4c48c39",
-        "prefix": "py310"
-      },
-      "host_platform": {
-        "platform": "linux-aarch64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=aarch64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-transport-python": {
-          "build_string": "py310h4c48c39_0",
-          "name": "gz-transport-python",
-          "version": "15.0.0"
-        },
-        "libgz-transport": {
-          "build_string": "h4162740_0",
-          "name": "libgz-transport",
-          "version": "15.0.0"
-        }
-      },
-      "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.047084475Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libabseil": "20250512",
-        "libgz_msgs": "12",
-        "libgz_transport": "15.0.0 h4162740_0",
-        "libprotobuf": "6.31.1",
-        "pybind11_abi": "11",
-        "python": "3.10.* *_cpython",
-        "target_platform": "linux-aarch64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-transport",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Transport library for component communication based on publication/subscription and service calls."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py310h4c48c39_0"
-      },
-      "context": {
-        "component_name": "transport",
-        "component_version": "transport15",
-        "cxx_name": "libgz-transport",
-        "major_version": 15,
-        "name": "gz-transport",
-        "python_name": "gz-transport-python",
-        "repo_name": "gz-transport",
-        "version": "15.0.0"
-      },
-      "extra": {
-        "feedstock-name": "gz-transport",
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-transport-python",
-        "version": "15.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-aarch64 14.*",
-          "sysroot_linux-aarch64 2.17.*",
-          "gxx_linux-aarch64 14.*",
-          "ninja",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_linux-aarch64",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "gz-msgs-python",
-          "gz-msgs",
-          "libabseil",
-          "libprotobuf",
-          "libgz-msgs"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "gz-msgs-python",
-          "gz-msgs"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
-          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.transport"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/work"
-      },
-      "hash": {
-        "hash": "c5fb8f9"
-      },
-      "host_platform": {
-        "platform": "linux-aarch64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=aarch64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-transport": {
-          "build_string": "hc5fb8f9_0",
-          "name": "gz-transport",
-          "version": "15.0.0"
-        },
-        "gz-transport-python": {
-          "build_string": "py310h4c48c39_0",
-          "name": "gz-transport-python",
-          "version": "15.0.0"
-        },
-        "libgz-transport": {
-          "build_string": "h4162740_0",
-          "name": "libgz-transport",
-          "version": "15.0.0"
-        }
-      },
-      "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.047268116Z",
-      "variant": {
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "libgz_transport": "15.0.0 h4162740_0",
-        "target_platform": "linux-aarch64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-transport",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Transport library for component communication based on publication/subscription and service calls."
-      },
-      "build": {
-        "number": 0,
-        "string": "hc5fb8f9_0"
-      },
-      "context": {
-        "component_name": "transport",
-        "component_version": "transport15",
-        "cxx_name": "libgz-transport",
-        "major_version": 15,
-        "name": "gz-transport",
-        "python_name": "gz-transport-python",
-        "repo_name": "gz-transport",
-        "version": "15.0.0"
-      },
-      "extra": {
-        "feedstock-name": "gz-transport",
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-transport",
-        "version": "15.0.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "gz-transport-python",
-              "upper_bound": "x.x.x"
-            }
-          }
-        ],
-        "run_exports": {
-          "weak": [
-            {
-              "pin_subpackage": {
-                "lower_bound": "x.x.x.x.x.x",
-                "name": "libgz-transport",
-                "upper_bound": "x"
-              }
-            }
-          ]
-        }
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
-          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "script": [
-            "test -f ${PREFIX}/include/gz/${{ component_version }}/gz/${{ component_name }}.hh",
-            "test -f ${PREFIX}/lib/cmake/${{ name }}/${{ name }}-config.cmake",
-            "test -f ${PREFIX}/lib/lib${{ name }}.so"
-          ]
-        },
-        {
-          "python": {
-            "imports": [
-              "gz.transport"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
-      },
-      "hash": {
-        "hash": "68de1ce",
-        "prefix": "py311"
-      },
-      "host_platform": {
-        "platform": "linux-aarch64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=aarch64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-transport": {
-          "build_string": "hc5fb8f9_0",
-          "name": "gz-transport",
-          "version": "15.0.0"
-        },
-        "gz-transport-python": {
-          "build_string": "py311h68de1ce_0",
-          "name": "gz-transport-python",
-          "version": "15.0.0"
-        },
-        "libgz-transport": {
-          "build_string": "h4162740_0",
-          "name": "libgz-transport",
-          "version": "15.0.0"
-        }
-      },
-      "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.047424841Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libabseil": "20250512",
-        "libgz_msgs": "12",
-        "libgz_transport": "15.0.0 h4162740_0",
-        "libprotobuf": "6.31.1",
-        "pybind11_abi": "11",
-        "python": "3.11.* *_cpython",
-        "target_platform": "linux-aarch64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-transport",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Transport library for component communication based on publication/subscription and service calls."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py311h68de1ce_0"
-      },
-      "context": {
-        "component_name": "transport",
-        "component_version": "transport15",
-        "cxx_name": "libgz-transport",
-        "major_version": 15,
-        "name": "gz-transport",
-        "python_name": "gz-transport-python",
-        "repo_name": "gz-transport",
-        "version": "15.0.0"
-      },
-      "extra": {
-        "feedstock-name": "gz-transport",
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-transport-python",
-        "version": "15.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-aarch64 14.*",
-          "sysroot_linux-aarch64 2.17.*",
-          "gxx_linux-aarch64 14.*",
-          "ninja",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_linux-aarch64",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "gz-msgs-python",
-          "gz-msgs",
-          "libabseil",
-          "libprotobuf",
-          "libgz-msgs"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "gz-msgs-python",
-          "gz-msgs"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
-          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.transport"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
-      },
-      "hash": {
-        "hash": "ae6ecb6",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "linux-aarch64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
-          "__archspec=1=aarch64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "gz-transport": {
-          "build_string": "hc5fb8f9_0",
-          "name": "gz-transport",
-          "version": "15.0.0"
-        },
-        "gz-transport-python": {
-          "build_string": "py312hae6ecb6_0",
-          "name": "gz-transport-python",
-          "version": "15.0.0"
-        },
-        "libgz-transport": {
-          "build_string": "h4162740_0",
-          "name": "libgz-transport",
-          "version": "15.0.0"
-        }
-      },
-      "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.047579865Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_compiler": "gcc",
-        "c_compiler_version": "14",
-        "c_stdlib": "sysroot",
-        "c_stdlib_version": "2.17",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "gxx",
-        "cxx_compiler_version": "14",
-        "libabseil": "20250512",
-        "libgz_msgs": "12",
-        "libgz_transport": "15.0.0 h4162740_0",
-        "libprotobuf": "6.31.1",
-        "pybind11_abi": "11",
-        "python": "3.12.* *_cpython",
-        "target_platform": "linux-aarch64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://github.com/gazebosim/gz-transport",
-        "license": "Apache-2.0",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Transport library for component communication based on publication/subscription and service calls."
-      },
-      "build": {
-        "number": 0,
-        "script": "build_py.sh",
-        "string": "py312hae6ecb6_0"
-      },
-      "context": {
-        "component_name": "transport",
-        "component_version": "transport15",
-        "cxx_name": "libgz-transport",
-        "major_version": 15,
-        "name": "gz-transport",
-        "python_name": "gz-transport-python",
-        "repo_name": "gz-transport",
-        "version": "15.0.0"
-      },
-      "extra": {
-        "feedstock-name": "gz-transport",
-        "recipe-maintainers": [
-          "wolfv",
-          "traversaro",
-          "j-rivero"
-        ]
-      },
-      "package": {
-        "name": "gz-transport-python",
-        "version": "15.0.0"
-      },
-      "requirements": {
-        "build": [
-          "gcc_linux-aarch64 14.*",
-          "sysroot_linux-aarch64 2.17.*",
-          "gxx_linux-aarch64 14.*",
-          "ninja",
-          "cmake",
-          "pkg-config",
-          "python",
-          "cross-python_linux-aarch64",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "gz-msgs-python",
-          "gz-msgs",
-          "libabseil",
-          "libprotobuf",
-          "libgz-msgs"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libgz-transport"
-            }
-          },
-          "python",
-          "gz-msgs-python",
-          "gz-msgs"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
-          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "gz.transport"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.51.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -915,7 +214,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.0=0",
+          "__cuda=13.1=0",
           "__archspec=1=aarch64"
         ]
       },
@@ -925,11 +224,6 @@
       },
       "solve_strategy": "highest",
       "subpackages": {
-        "gz-transport": {
-          "build_string": "hc5fb8f9_0",
-          "name": "gz-transport",
-          "version": "15.0.0"
-        },
         "gz-transport-python": {
           "build_string": "py313h93891e1_0",
           "name": "gz-transport-python",
@@ -942,7 +236,7 @@
         }
       },
       "target_platform": "linux-aarch64",
-      "timestamp": "2025-12-12T16:27:20.047769768Z",
+      "timestamp": "2026-01-23T17:04:21.833436264Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -1062,7 +356,698 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.51.0"
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
+      },
+      "hash": {
+        "hash": "4c48c39",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-transport-python": {
+          "build_string": "py310h4c48c39_0",
+          "name": "gz-transport-python",
+          "version": "15.0.0"
+        },
+        "libgz-transport": {
+          "build_string": "h4162740_0",
+          "name": "libgz-transport",
+          "version": "15.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-23T17:04:21.834157497Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libgz_msgs": "12",
+        "libgz_transport": "15.0.0 h4162740_0",
+        "libprotobuf": "6.31.1",
+        "pybind11_abi": "11",
+        "python": "3.10.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-transport",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Transport library for component communication based on publication/subscription and service calls."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py310h4c48c39_0"
+      },
+      "context": {
+        "component_name": "transport",
+        "component_version": "transport15",
+        "cxx_name": "libgz-transport",
+        "major_version": 15,
+        "name": "gz-transport",
+        "python_name": "gz-transport-python",
+        "repo_name": "gz-transport",
+        "version": "15.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-transport",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-transport-python",
+        "version": "15.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_linux-aarch64",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "gz-msgs-python",
+          "gz-msgs",
+          "libabseil",
+          "libprotobuf",
+          "libgz-msgs"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "gz-msgs-python",
+          "gz-msgs"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
+          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.transport"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
+      },
+      "hash": {
+        "hash": "68de1ce",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-transport-python": {
+          "build_string": "py311h68de1ce_0",
+          "name": "gz-transport-python",
+          "version": "15.0.0"
+        },
+        "libgz-transport": {
+          "build_string": "h4162740_0",
+          "name": "libgz-transport",
+          "version": "15.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-23T17:04:21.834881150Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libgz_msgs": "12",
+        "libgz_transport": "15.0.0 h4162740_0",
+        "libprotobuf": "6.31.1",
+        "pybind11_abi": "11",
+        "python": "3.11.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-transport",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Transport library for component communication based on publication/subscription and service calls."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py311h68de1ce_0"
+      },
+      "context": {
+        "component_name": "transport",
+        "component_version": "transport15",
+        "cxx_name": "libgz-transport",
+        "major_version": 15,
+        "name": "gz-transport",
+        "python_name": "gz-transport-python",
+        "repo_name": "gz-transport",
+        "version": "15.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-transport",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-transport-python",
+        "version": "15.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_linux-aarch64",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "gz-msgs-python",
+          "gz-msgs",
+          "libabseil",
+          "libprotobuf",
+          "libgz-msgs"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "gz-msgs-python",
+          "gz-msgs"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
+          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.transport"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport-python/work"
+      },
+      "hash": {
+        "hash": "ae6ecb6",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-transport-python": {
+          "build_string": "py312hae6ecb6_0",
+          "name": "gz-transport-python",
+          "version": "15.0.0"
+        },
+        "libgz-transport": {
+          "build_string": "h4162740_0",
+          "name": "libgz-transport",
+          "version": "15.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-23T17:04:21.835557802Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_compiler": "gcc",
+        "c_compiler_version": "14",
+        "c_stdlib": "sysroot",
+        "c_stdlib_version": "2.17",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "gxx",
+        "cxx_compiler_version": "14",
+        "libabseil": "20250512",
+        "libgz_msgs": "12",
+        "libgz_transport": "15.0.0 h4162740_0",
+        "libprotobuf": "6.31.1",
+        "pybind11_abi": "11",
+        "python": "3.12.* *_cpython",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-transport",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Transport library for component communication based on publication/subscription and service calls."
+      },
+      "build": {
+        "number": 0,
+        "script": "build_py.sh",
+        "string": "py312hae6ecb6_0"
+      },
+      "context": {
+        "component_name": "transport",
+        "component_version": "transport15",
+        "cxx_name": "libgz-transport",
+        "major_version": 15,
+        "name": "gz-transport",
+        "python_name": "gz-transport-python",
+        "repo_name": "gz-transport",
+        "version": "15.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-transport",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-transport-python",
+        "version": "15.0.0"
+      },
+      "requirements": {
+        "build": [
+          "gcc_linux-aarch64 14.*",
+          "sysroot_linux-aarch64 2.17.*",
+          "gxx_linux-aarch64 14.*",
+          "ninja",
+          "cmake",
+          "pkg-config",
+          "python",
+          "cross-python_linux-aarch64",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "gz-msgs-python",
+          "gz-msgs",
+          "libabseil",
+          "libprotobuf",
+          "libgz-msgs"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          "python",
+          "gz-msgs-python",
+          "gz-msgs"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
+          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "gz.transport"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_gz-transport/work"
+      },
+      "hash": {
+        "hash": "c5fb8f9"
+      },
+      "host_platform": {
+        "platform": "linux-aarch64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=aarch64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "gz-transport": {
+          "build_string": "hc5fb8f9_0",
+          "name": "gz-transport",
+          "version": "15.0.0"
+        },
+        "gz-transport-python": {
+          "build_string": "py312hae6ecb6_0",
+          "name": "gz-transport-python",
+          "version": "15.0.0"
+        },
+        "libgz-transport": {
+          "build_string": "h4162740_0",
+          "name": "libgz-transport",
+          "version": "15.0.0"
+        }
+      },
+      "target_platform": "linux-aarch64",
+      "timestamp": "2026-01-23T17:04:21.836267625Z",
+      "variant": {
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "libgz_transport": "15.0.0 h4162740_0",
+        "target_platform": "linux-aarch64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://github.com/gazebosim/gz-transport",
+        "license": "Apache-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Transport library for component communication based on publication/subscription and service calls."
+      },
+      "build": {
+        "number": 0,
+        "string": "hc5fb8f9_0"
+      },
+      "context": {
+        "component_name": "transport",
+        "component_version": "transport15",
+        "cxx_name": "libgz-transport",
+        "major_version": 15,
+        "name": "gz-transport",
+        "python_name": "gz-transport-python",
+        "repo_name": "gz-transport",
+        "version": "15.0.0"
+      },
+      "extra": {
+        "feedstock-name": "gz-transport",
+        "recipe-maintainers": [
+          "wolfv",
+          "traversaro",
+          "j-rivero"
+        ]
+      },
+      "package": {
+        "name": "gz-transport",
+        "version": "15.0.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libgz-transport"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "gz-transport-python",
+              "upper_bound": "x.x.x"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libgz-transport",
+                "upper_bound": "x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "ca9e9a3dea208f4be96043a34b8e184e0f8015705c4f9ff1efa813d588f197e9",
+          "url": "https://github.com/gazebosim/gz-transport/archive/gz-transport15_15.0.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "script": [
+            "test -f ${PREFIX}/include/gz/${{ component_version }}/gz/${{ component_name }}.hh",
+            "test -f ${PREFIX}/lib/cmake/${{ name }}/${{ name }}-config.cmake",
+            "test -f ${PREFIX}/lib/lib${{ name }}.so"
+          ]
+        },
+        {
+          "python": {
+            "imports": [
+              "gz.transport"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
     }
   }
 ]
