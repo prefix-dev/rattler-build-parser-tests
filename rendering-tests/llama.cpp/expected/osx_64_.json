@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama.cpp/work"
       },
       "hash": {
-        "hash": "2e5efd4"
+        "hash": "a7fa61e"
       },
       "host_platform": {
         "platform": "osx-64",
@@ -40,13 +40,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "llama.cpp": {
-          "build_string": "cpu_accelerate_h2e5efd4_0",
+          "build_string": "cpu_accelerate_ha7fa61e_0",
           "name": "llama.cpp",
           "version": "7700"
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:46:23.032881426Z",
+      "timestamp": "2026-01-23T07:41:12.623405333Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "blas_impl": "accelerate",
@@ -57,12 +57,10 @@
         "c_stdlib_version": "11.0",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cuda_compiler": "cuda-nvcc",
         "cuda_compiler_version": "None",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
         "libcurl": "8",
-        "mkl": "2023",
         "target_platform": "osx-64"
       }
     },
@@ -82,7 +80,7 @@
       "build": {
         "number": 0,
         "script": "# This is a hotfix for https://github.com/NVIDIA/cccl/issues/4967, backporting\n# https://github.com/NVIDIA/cccl/pull/4972 on the fly for the installed headers\n{%- if match(cuda_compiler_version, \"12.*\") and linux and x86_64 %}\nCCCL_PREPROCESSOR_H_TO_PATCH=\"$PREFIX/targets/x86_64-linux/include/cuda/std/__cccl/preprocessor.h\"\n{%- endif %}\n\n{%- if match(cuda_compiler_version, \"12.*\") and linux and aarch64 %}\nCCCL_PREPROCESSOR_H_TO_PATCH=\"$PREFIX/targets/sbsa-linux/include/cuda/std/__cccl/preprocessor.h\"\n{%- endif %}\n\n{%- if match(cuda_compiler_version, \"12.*\") and linux %}\nROOT_DIR=\"$(dirname \"${CCCL_PREPROCESSOR_H_TO_PATCH}\")/../../../..\"\npatch -p1 -d \"${ROOT_DIR}\" -i \"${RECIPE_DIR}/cuda12_cccl_arch_all.patch\"\n{%- endif %}\n\necho hello\nLLAMA_ARGS=\"-DLLAMA_BUILD_TESTS=OFF\"\n\n{%- macro llama_args(value) %}\nLLAMA_ARGS=\"${LLAMA_ARGS} -DLLAMA_${{ value }}\"\n{%- endmacro %}\n\n{%- macro cmake_args(value) -%}\nLLAMA_ARGS=\"${LLAMA_ARGS} -D${{ value }}\"\n{%- endmacro %}\n\n{% macro ggml_args(value) -%}\nLLAMA_ARGS=\"${LLAMA_ARGS} -DGGML_${{ value }}\"\n{%- endmacro %}\n\n${{ cmake_args(\"BUILD_SHARED_LIBS=ON\") }}\n${{ llama_args(\"CURL=ON\") }}\n\n{%- if osx and arm64 %}\n${{ ggml_args(\"NATIVE=OFF\") }}\n${{ ggml_args(\"AVX=OFF\") }}\n${{ ggml_args(\"AVX2=OFF\") }}\n${{ ggml_args(\"FMA=OFF\") }}\n${{ ggml_args(\"F16C=OFF\") }}\n${{ ggml_args(\"METAL=ON\") }}\n${{ ggml_args(\"ACCELERATE=ON\") }}\n{%- endif %}\n\n{%- if osx and x86_64 %}\n${{ ggml_args(\"METAL=OFF\") }}\n${{ ggml_args(\"ACCELERATE=ON\") }}\n{%- endif %}\n\n{%- if cuda_compiler_version | default(\"None\") != \"None\" %}\n${{ ggml_args(\"CUDA=ON\") }}\n# Exclude sm_120 (compute capability 12.0) as it doesn't support MXFP4 instructions\n# Explicitly list all architectures except 120\n${{ cmake_args(\"CMAKE_CUDA_ARCHITECTURES=80-virtual;86-real;89-real;120a-real;121a-real\") }}\n{%- endif %}\n\n{%- if linux and x86_64 and cuda_compiler_version == \"None\" %}\n${{ ggml_args(\"BLAS=ON\") }}\n\n{%- if blas_impl == \"mkl\" %}\n${{ ggml_args(\"BLAS_VENDOR=Intel10_64_dyn\") }}\n{%- endif %}\n\n{%- endif %}\n\necho $LLAMA_ARGS\ncmake -S . -B build -G Ninja ${CMAKE_ARGS} ${LLAMA_ARGS}\ncmake --build build\ncmake --install build\n",
-        "string": "cpu_accelerate_h2e5efd4_0"
+        "string": "cpu_accelerate_ha7fa61e_0"
       },
       "context": {
         "build": 0,

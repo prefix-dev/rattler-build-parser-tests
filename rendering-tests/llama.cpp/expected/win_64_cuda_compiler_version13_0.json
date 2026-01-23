@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.1=0",
+          "__cuda=13.0=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -22,13 +22,13 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama.cpp/work"
       },
       "hash": {
-        "hash": "01506b9"
+        "hash": "9c6a631"
       },
       "host_platform": {
         "platform": "win-64",
         "virtual_packages": [
           "__win=0=0",
-          "__cuda=13.1=0",
+          "__cuda=13.0=0",
           "__archspec=1=x86_64"
         ]
       },
@@ -39,13 +39,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "llama.cpp": {
-          "build_string": "cuda130_h01506b9_0",
+          "build_string": "cuda130_h9c6a631_0",
           "name": "llama.cpp",
           "version": "7700"
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:46:23.428422582Z",
+      "timestamp": "2026-01-23T07:41:11.213245605Z",
       "variant": {
         "__cuda": "__cuda",
         "blas_impl": "mkl",
@@ -58,7 +58,6 @@
         "cuda_compiler_version": "13.0",
         "cxx_compiler": "vs2022",
         "libcurl": "8",
-        "mkl": "2025",
         "target_platform": "win-64"
       }
     },
@@ -83,7 +82,7 @@
         },
         "number": 200,
         "script": "echo hello\nset LLAMA_ARGS=-DLLAMA_BUILD_TESTS=OFF\n\n{% macro llama_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -DLLAMA_${{ value }}\n{%- endmacro %}\n\n{% macro cmake_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -D${{ value }}\n{%- endmacro %}\n\n{% macro ggml_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -DGGML_${{ value }}\n{%- endmacro %}\n\n${{ cmake_args(\"BUILD_SHARED_LIBS=ON\") }}\n${{ llama_args(\"CURL=ON\") }}\n\n${{ ggml_args(\"NATIVE=OFF\") }}\n\n{%- if cuda_compiler_version | default(\"None\") != \"None\" %}\n${{ ggml_args(\"CUDA=ON\") }}\n:: Exclude sm_120 (compute capability 12.0) as it doesn't support MXFP4 instructions\n:: Explicitly list all architectures except 120\n${{ cmake_args(\"CMAKE_CUDA_ARCHITECTURES=80-virtual;86-real;89-real;120a-real;121a-real\") }}\n\n{%- else %}\n\n${{ ggml_args(\"BLAS=ON\") }}\n\n{%- if blas_impl == \"mkl\" %}\n${{ ggml_args(\"BLAS_VENDOR=Intel10_64_dyn\") }}\n{%- endif %}\n\n{%- endif %}\n\nset LLAMA_ARGS\ncmake -S . -B build -G Ninja %CMAKE_ARGS% %LLAMA_ARGS%\ncmake --build build\ncmake --install build\n",
-        "string": "cuda130_h01506b9_0"
+        "string": "cuda130_h9c6a631_0"
       },
       "context": {
         "build": 0,

@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_llama.cpp/work"
       },
       "hash": {
-        "hash": "22e3676"
+        "hash": "001aede"
       },
       "host_platform": {
         "platform": "win-64",
@@ -39,13 +39,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "llama.cpp": {
-          "build_string": "cpu_mkl_h22e3676_0",
+          "build_string": "cpu_mkl_h001aede_0",
           "name": "llama.cpp",
           "version": "7700"
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:46:23.229656544Z",
+      "timestamp": "2026-01-23T07:41:11.634503229Z",
       "variant": {
         "blas_impl": "mkl",
         "build_platform": "linux-64",
@@ -53,7 +53,6 @@
         "c_stdlib": "vs",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cuda_compiler": "cuda-nvcc",
         "cuda_compiler_version": "None",
         "cxx_compiler": "vs2022",
         "libcurl": "8",
@@ -82,7 +81,7 @@
         },
         "number": 0,
         "script": "echo hello\nset LLAMA_ARGS=-DLLAMA_BUILD_TESTS=OFF\n\n{% macro llama_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -DLLAMA_${{ value }}\n{%- endmacro %}\n\n{% macro cmake_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -D${{ value }}\n{%- endmacro %}\n\n{% macro ggml_args(value) -%}\nset LLAMA_ARGS=%LLAMA_ARGS% -DGGML_${{ value }}\n{%- endmacro %}\n\n${{ cmake_args(\"BUILD_SHARED_LIBS=ON\") }}\n${{ llama_args(\"CURL=ON\") }}\n\n${{ ggml_args(\"NATIVE=OFF\") }}\n\n{%- if cuda_compiler_version | default(\"None\") != \"None\" %}\n${{ ggml_args(\"CUDA=ON\") }}\n:: Exclude sm_120 (compute capability 12.0) as it doesn't support MXFP4 instructions\n:: Explicitly list all architectures except 120\n${{ cmake_args(\"CMAKE_CUDA_ARCHITECTURES=80-virtual;86-real;89-real;120a-real;121a-real\") }}\n\n{%- else %}\n\n${{ ggml_args(\"BLAS=ON\") }}\n\n{%- if blas_impl == \"mkl\" %}\n${{ ggml_args(\"BLAS_VENDOR=Intel10_64_dyn\") }}\n{%- endif %}\n\n{%- endif %}\n\nset LLAMA_ARGS\ncmake -S . -B build -G Ninja %CMAKE_ARGS% %LLAMA_ARGS%\ncmake --build build\ncmake --install build\n",
-        "string": "cpu_mkl_h22e3676_0"
+        "string": "cpu_mkl_h001aede_0"
       },
       "context": {
         "build": 0,
