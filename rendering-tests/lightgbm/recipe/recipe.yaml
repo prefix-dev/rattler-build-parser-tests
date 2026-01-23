@@ -64,12 +64,12 @@ outputs:
         - if: cuda_compiler_version != "None"
           then:
             - __cuda
-      # run_constraints:
-        # - if: cuda_compiler_version == "None"
-        #   then:
-        #     - lightgbm ==${{ version }} cpu_*_${{ build_number }}
-        #   else:
-        #     - lightgbm ==${{ version }} cuda${{ cuda_compiler_version | replace('.', '') }}_*_${{ build_number }}
+      run_constraints:
+        - if: cuda_compiler_version == "None"
+          then:
+            - lightgbm ==${{ version }} cpu_*_${{ build_number }}
+          else:
+            - lightgbm ==${{ version }} cuda${{ cuda_compiler_version | replace('.', '') }}_*_${{ build_number }}
       run_exports:
         # Pin conservatively as we don't know ABI guarantees
         - ${{ pin_subpackage("liblightgbm", upper_bound="x.x.x") }}
