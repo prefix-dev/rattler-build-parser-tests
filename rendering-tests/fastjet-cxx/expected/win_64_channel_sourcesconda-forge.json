@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-15T12:56:23.201180500Z",
+      "timestamp": "2026-01-25T10:34:34.139510347Z",
       "variant": {
         "c_stdlib": "vs",
         "channel_sources": "conda-forge",
@@ -205,173 +205,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/work"
-      },
-      "hash": {
-        "hash": "a3a9b4a",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "win-64",
-        "virtual_packages": [
-          "__win=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "fastjet-cxx": {
-          "build_string": "h477610d_1",
-          "name": "fastjet-cxx",
-          "version": "3.5.1"
-        },
-        "fastjet-cxx-python": {
-          "build_string": "py313ha3a9b4a_1",
-          "name": "fastjet-cxx-python",
-          "version": "3.5.1"
-        }
-      },
-      "target_platform": "win-64",
-      "timestamp": "2026-01-15T12:56:23.251041013Z",
-      "variant": {
-        "build_platform": "linux-64",
-        "c_stdlib": "vs",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "vs2022",
-        "python": "3.13.* *_cp313",
-        "target_platform": "win-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "FastJet is a software package for jet finding in pp and e+e- collisions.\nIt includes fast native implementations of many sequential recombination\nclustering algorithms, plugins for access to a range of cone jet finders\nand tools for advanced jet manipulation.",
-        "documentation": "https://fastjet.fr/",
-        "homepage": "https://gitlab.com/fastjet/fastjet",
-        "license": "GPL-2.0-or-later",
-        "license_family": "GPL",
-        "license_file": [
-          "COPYING"
-        ],
-        "repository": "https://gitlab.com/fastjet/fastjet",
-        "summary": "FastJet: jet finding in pp and e+e- collisions"
-      },
-      "build": {
-        "always_include_files": [
-          "bin/fastjet-config"
-        ],
-        "number": 1,
-        "script": [
-          "cmake %CMAKE_ARGS% -DFASTJET_ENABLE_DEBUG=OFF -DFASTJET_ENABLE_ALLCXXPLUGINS=ON -DFASTJET_ENABLE_CGAL=${{ win_cgal }} -DFASTJET_USE_INSTALLED_SISCONE=ON -DFASTJET_ENABLE_PYTHON=ON -DFASTJET_PYINTERFACE_ONLY=ON -DFASTJET_CUSTOM_PYTHON_INSTALL=\"%PREFIX%\\Lib\\site-packages\" -DFASTJET_PYTHON_PACKAGE_NAME=\"fastjet_cxx\" -DPython_EXECUTABLE=${{ PYTHON }} -DCGAL_CMAKE_EXACT_NT_BACKEND=BOOST_BACKEND -DCGAL_DISABLE_GMP=ON -S . -B build",
-          "cmake -LH build",
-          "cmake --build build --config=Release --parallel=\"%CPU_COUNT%\"",
-          "cmake --install build"
-        ],
-        "string": "py313ha3a9b4a_1"
-      },
-      "context": {
-        "name": "fastjet-cxx",
-        "version": "3.5.1",
-        "win_cgal": "ON"
-      },
-      "extra": {
-        "feedstock-name": "fastjet-cxx",
-        "recipe-maintainers": [
-          "lgray",
-          "kratsg",
-          "matthewfeickert"
-        ]
-      },
-      "package": {
-        "name": "fastjet-cxx-python",
-        "version": "3.5.1"
-      },
-      "requirements": {
-        "build": [
-          "vs_win-64",
-          "vs2022_win-64",
-          "swig",
-          "cmake",
-          "python",
-          "cross-python_win-64",
-          "fastjet-cxx"
-        ],
-        "host": [
-          "python",
-          "cgal-cpp",
-          "fastjet-cxx"
-        ],
-        "run": [
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "0001-patch-for-python-extension-cross-compilation-on-cond.patch"
-          ],
-          "sha256": "8b9ffb6037ad1891ad2331294f81cd7d582848d3fdd3867a249978f5090bbc3b",
-          "url": "https://gitlab.com/fastjet/fastjet/-/archive/fastjet-3.5.1/fastjet-fastjet-3.5.1.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "fastjet_cxx"
-            ],
-            "python_version": "3.13.* *_cp313"
-          }
-        },
-        {
-          "package_contents": {
-            "files": [
-              "Lib/site-packages/fastjet_cxx/_fastjet_swig.*.pyd"
-            ],
-            "site_packages": [
-              "fastjet_cxx"
-            ]
-          }
-        },
-        {
-          "script": "python -c \"import fastjet_cxx as fj; jetdef=fj.JetDefinition(fj.antikt_algorithm, 0.4); jets=jetdef([fj.PtYPhiM(100.0, 0.1, 0.1),fj.PtYPhiM(100.0, 0.2, 0.2)]); print(jets[0])\""
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -426,7 +260,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-15T12:56:23.251685660Z",
+      "timestamp": "2026-01-25T10:34:34.190237887Z",
       "variant": {
         "build_platform": "linux-64",
         "c_stdlib": "vs",
@@ -537,7 +371,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -592,7 +426,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-15T12:56:23.252315927Z",
+      "timestamp": "2026-01-25T10:34:34.190856271Z",
       "variant": {
         "build_platform": "linux-64",
         "c_stdlib": "vs",
@@ -703,7 +537,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -758,7 +592,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-15T12:56:23.252878430Z",
+      "timestamp": "2026-01-25T10:34:34.191471095Z",
       "variant": {
         "build_platform": "linux-64",
         "c_stdlib": "vs",
@@ -869,7 +703,173 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeho",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fastjet-cxx-python/work"
+      },
+      "hash": {
+        "hash": "a3a9b4a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "win-64",
+        "virtual_packages": [
+          "__win=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "fastjet-cxx": {
+          "build_string": "h477610d_1",
+          "name": "fastjet-cxx",
+          "version": "3.5.1"
+        },
+        "fastjet-cxx-python": {
+          "build_string": "py313ha3a9b4a_1",
+          "name": "fastjet-cxx-python",
+          "version": "3.5.1"
+        }
+      },
+      "target_platform": "win-64",
+      "timestamp": "2026-01-25T10:34:34.192021627Z",
+      "variant": {
+        "build_platform": "linux-64",
+        "c_stdlib": "vs",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "vs2022",
+        "python": "3.13.* *_cp313",
+        "target_platform": "win-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "FastJet is a software package for jet finding in pp and e+e- collisions.\nIt includes fast native implementations of many sequential recombination\nclustering algorithms, plugins for access to a range of cone jet finders\nand tools for advanced jet manipulation.",
+        "documentation": "https://fastjet.fr/",
+        "homepage": "https://gitlab.com/fastjet/fastjet",
+        "license": "GPL-2.0-or-later",
+        "license_family": "GPL",
+        "license_file": [
+          "COPYING"
+        ],
+        "repository": "https://gitlab.com/fastjet/fastjet",
+        "summary": "FastJet: jet finding in pp and e+e- collisions"
+      },
+      "build": {
+        "always_include_files": [
+          "bin/fastjet-config"
+        ],
+        "number": 1,
+        "script": [
+          "cmake %CMAKE_ARGS% -DFASTJET_ENABLE_DEBUG=OFF -DFASTJET_ENABLE_ALLCXXPLUGINS=ON -DFASTJET_ENABLE_CGAL=${{ win_cgal }} -DFASTJET_USE_INSTALLED_SISCONE=ON -DFASTJET_ENABLE_PYTHON=ON -DFASTJET_PYINTERFACE_ONLY=ON -DFASTJET_CUSTOM_PYTHON_INSTALL=\"%PREFIX%\\Lib\\site-packages\" -DFASTJET_PYTHON_PACKAGE_NAME=\"fastjet_cxx\" -DPython_EXECUTABLE=${{ PYTHON }} -DCGAL_CMAKE_EXACT_NT_BACKEND=BOOST_BACKEND -DCGAL_DISABLE_GMP=ON -S . -B build",
+          "cmake -LH build",
+          "cmake --build build --config=Release --parallel=\"%CPU_COUNT%\"",
+          "cmake --install build"
+        ],
+        "string": "py313ha3a9b4a_1"
+      },
+      "context": {
+        "name": "fastjet-cxx",
+        "version": "3.5.1",
+        "win_cgal": "ON"
+      },
+      "extra": {
+        "feedstock-name": "fastjet-cxx",
+        "recipe-maintainers": [
+          "lgray",
+          "kratsg",
+          "matthewfeickert"
+        ]
+      },
+      "package": {
+        "name": "fastjet-cxx-python",
+        "version": "3.5.1"
+      },
+      "requirements": {
+        "build": [
+          "vs_win-64",
+          "vs2022_win-64",
+          "swig",
+          "cmake",
+          "python",
+          "cross-python_win-64",
+          "fastjet-cxx"
+        ],
+        "host": [
+          "python",
+          "cgal-cpp",
+          "fastjet-cxx"
+        ],
+        "run": [
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "0001-patch-for-python-extension-cross-compilation-on-cond.patch"
+          ],
+          "sha256": "8b9ffb6037ad1891ad2331294f81cd7d582848d3fdd3867a249978f5090bbc3b",
+          "url": "https://gitlab.com/fastjet/fastjet/-/archive/fastjet-3.5.1/fastjet-fastjet-3.5.1.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "fastjet_cxx"
+            ],
+            "python_version": "3.13.* *_cp313"
+          }
+        },
+        {
+          "package_contents": {
+            "files": [
+              "Lib/site-packages/fastjet_cxx/_fastjet_swig.*.pyd"
+            ],
+            "site_packages": [
+              "fastjet_cxx"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import fastjet_cxx as fj; jetdef=fj.JetDefinition(fj.antikt_algorithm, 0.4); jets=jetdef([fj.PtYPhiM(100.0, 0.1, 0.1),fj.PtYPhiM(100.0, 0.2, 0.2)]); print(jets[0])\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.56.0"
     }
   }
 ]
