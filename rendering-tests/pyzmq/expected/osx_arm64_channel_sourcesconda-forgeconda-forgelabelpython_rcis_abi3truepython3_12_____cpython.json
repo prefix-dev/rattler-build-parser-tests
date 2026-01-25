@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:49.295164850Z",
+      "timestamp": "2026-01-25T10:20:11.040318056Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -81,10 +81,11 @@
       },
       "build": {
         "number": 0,
+        "python": {
+          "version_independent": true
+        },
         "script": {
-          "content": [
-            "${{ PYTHON }} -m pip install -v ."
-          ],
+          "content": "${{ PYTHON }} -m pip install -v .",
           "env": {
             "PYZMQ_NO_BUNDLE": "1",
             "SKBUILD_BUILD_VERBOSE": "true",
@@ -137,14 +138,6 @@
           "zeromq",
           "python-abi3"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "python"
         ]
@@ -218,7 +211,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
