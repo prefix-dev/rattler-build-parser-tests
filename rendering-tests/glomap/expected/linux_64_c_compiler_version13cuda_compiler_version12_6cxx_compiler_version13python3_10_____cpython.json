@@ -7,7 +7,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.1=0",
+          "__cuda=12.6=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -31,7 +31,7 @@
           "__unix=0=0",
           "__linux=6.6.87.2=0",
           "__glibc=2.35=0",
-          "__cuda=13.1=0",
+          "__cuda=12.6=0",
           "__archspec=1=x86_64_v4"
         ]
       },
@@ -42,13 +42,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "glomap": {
-          "build_string": "cpu_py310h038e899_0",
+          "build_string": "cuda_126py310h038e899_0",
           "name": "glomap",
           "version": "1.2.0"
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:48:17.591751852Z",
+      "timestamp": "2026-01-25T10:08:46.181911836Z",
       "variant": {
         "c_compiler": "gcc",
         "c_compiler_version": "13",
@@ -87,23 +87,26 @@
         "number": 0,
         "script": {
           "env": {
-            "cuda_compiler_version": "None",
+            "cuda_compiler_version": "12.6",
             "package_version": "1.2.0"
           },
           "file": "build"
         },
-        "string": "cpu_py310h038e899_0",
+        "string": "cuda_126py310h038e899_0",
         "variant": {
-          "down_prioritize_variant": 1
+          "down_prioritize_variant": 0,
+          "use_keys": [
+            "cuda"
+          ]
         }
       },
       "context": {
         "build_number": 0,
-        "cuda": "disabled",
-        "cuda_build_string": "cuda_None",
-        "cuda_version": "None",
+        "cuda": "enabled",
+        "cuda_build_string": "cuda_126",
+        "cuda_version": "12.6",
         "name": "glomap",
-        "string_prefix": "cpu_",
+        "string_prefix": "cuda_126",
         "version": "1.2.0"
       },
       "extra": {
@@ -124,7 +127,9 @@
           "cmake",
           "make",
           "pkg-config",
-          "ninja"
+          "ninja",
+          "cuda-nvcc_linux-64 12.6.*",
+          "cuda-version ==12.6"
         ],
         "host": [
           "libgl-devel",
@@ -143,7 +148,11 @@
           "sqlite",
           "gflags",
           "libgomp",
-          "colmap >=3.13 cpu*"
+          "cuda-version ==12.6",
+          "cuda-cudart-dev",
+          "libcurand-dev",
+          "ceres-solver * gpu*",
+          "colmap * cuda*"
         ],
         "ignore_run_exports": {
           "from_package": [
@@ -167,7 +176,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
