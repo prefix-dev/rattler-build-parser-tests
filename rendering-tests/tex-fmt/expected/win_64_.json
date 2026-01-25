@@ -45,7 +45,7 @@
         }
       },
       "target_platform": "win-64",
-      "timestamp": "2026-01-22T16:46:50.325310723Z",
+      "timestamp": "2026-01-25T20:54:14.847605373Z",
       "variant": {
         "c_stdlib": "vs",
         "channel_sources": "conda-forge",
@@ -73,6 +73,7 @@
         "script": {
           "content": [
             "cargo-bundle-licenses --format yaml --output ${{ \"%SRC_DIR%\" if win else \"$SRC_DIR\" }}/THIRDPARTY.yml",
+            "${{ \"export LD_LIBRARY_PATH=$PREFIX/lib\" if unix }}",
             "cargo install --no-track --locked --bins --root ${{ \"%LIBRARY_PREFIX%\" if win else \"$PREFIX\" }} --path ."
           ],
           "env": {
@@ -115,7 +116,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
