@@ -14,6 +14,7 @@ Usage:
   ./run_rendering_tests.py --feedstock numpy         # Test specific feedstock
   ./run_rendering_tests.py --fail-fast               # Stop on first failure
   ./run_rendering_tests.py -f numpy --accept         # Accept new rendering for numpy
+  ./run_rendering_tests.py -f carma -V 'win_64*' --accept  # Accept only win_64 variants
 """
 
 import argparse
@@ -27,6 +28,7 @@ from typing import Dict, List, Optional, Tuple, Set
 import difflib
 import re
 import copy
+import fnmatch
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 import threading
@@ -543,6 +545,11 @@ def filter_test_cases_by_failures(test_cases: List[TestCase], failures: Set[Tupl
     return [tc for tc in test_cases if (tc.feedstock_name, tc.variant_name) in failures]
 
 
+def filter_test_cases_by_variant_pattern(test_cases: List[TestCase], pattern: str) -> List[TestCase]:
+    """Filter test cases to only include those matching the variant glob pattern."""
+    return [tc for tc in test_cases if fnmatch.fnmatch(tc.variant_name, pattern)]
+
+
 def save_failures(failures: List[Dict], output_file: Path):
     """Save failing test cases to a JSON file for later re-running."""
     # Strip details for the JSON file (keep it small for re-running)
@@ -984,6 +991,11 @@ def main():
         action="store_true",
         help="Accept new renderings: overwrite expected JSON files with actual output (requires --feedstock)"
     )
+    parser.add_argument(
+        "--variant", "-V",
+        type=str,
+        help="Filter variants by glob pattern (e.g., 'win_64*', '*linux*')"
+    )
 
     args = parser.parse_args()
 
@@ -1049,6 +1061,13 @@ def main():
         print("=" * 80)
 
         test_cases = collect_test_cases(tests_dir, args.feedstock, args.fast)
+
+        # Filter by variant pattern if specified
+        if args.variant:
+            original_count = len(test_cases)
+            test_cases = filter_test_cases_by_variant_pattern(test_cases, args.variant)
+            print(f"Filtered to {len(test_cases)} variants matching '{args.variant}' (from {original_count} total)")
+
         print(f"Variants to accept: {len(test_cases)}")
         print()
 
@@ -1111,6 +1130,12 @@ def main():
     if args.jobs > 1:
         # Parallel execution mode
         test_cases = collect_test_cases(tests_dir, args.feedstock, args.fast)
+
+        # Filter by variant pattern if specified
+        if args.variant:
+            original_count = len(test_cases)
+            test_cases = filter_test_cases_by_variant_pattern(test_cases, args.variant)
+            print(f"Filtered to {len(test_cases)} variants matching '{args.variant}' (from {original_count} total)")
 
         # Filter by previous failures if requested
         if args.rerun_failures:
