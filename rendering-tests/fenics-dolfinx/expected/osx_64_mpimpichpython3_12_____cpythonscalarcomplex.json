@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-libdolfinx/work"
       },
       "hash": {
-        "hash": "062bbd0",
+        "hash": "e077d44",
         "prefix": "py312"
       },
       "host_platform": {
@@ -41,16 +41,15 @@
       "solve_strategy": "highest",
       "subpackages": {
         "fenics-libdolfinx": {
-          "build_string": "py312h062bbd0_1",
+          "build_string": "py312he077d44_1",
           "name": "fenics-libdolfinx",
           "version": "0.10.0"
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:34:24.597771036Z",
+      "timestamp": "2026-01-25T10:36:03.653010828Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
         "c_compiler": "clang",
         "c_compiler_version": "19",
         "c_stdlib": "macosx_deployment_target",
@@ -61,13 +60,11 @@
         "cxx_compiler_version": "19",
         "fmt": "11.2",
         "hdf5": "1.14.6",
-        "is_abi3": true,
         "libboost_devel": "1.88",
         "libptscotch": "7.0.10",
         "libscotch": "7.0.10",
         "mpi": "mpich",
         "mpich": "4",
-        "nanobind_abi": "16",
         "petsc": "3.24",
         "pugixml": "1.15",
         "python": "3.12.* *_cpython",
@@ -95,7 +92,7 @@
       "build": {
         "number": 1,
         "script": "build-libdolfinx",
-        "string": "py312h062bbd0_1",
+        "string": "py312he077d44_1",
         "variant": {
           "use_keys": [
             "python"
@@ -193,8 +190,8 @@
           },
           "requirements": {
             "run": [
-              "clang_osx-64 =19",
-              "clangxx_osx-64 =19",
+              "clang_osx-64 19.*",
+              "clangxx_osx-64 19.*",
               "pkg-config",
               "cmake",
               "catch2 3.*",
@@ -213,7 +210,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -239,7 +236,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-dolfinx/work"
       },
       "hash": {
-        "hash": "16fb63b",
+        "hash": "df50b06",
         "prefix": "py312"
       },
       "host_platform": {
@@ -258,18 +255,18 @@
       "solve_strategy": "highest",
       "subpackages": {
         "fenics-dolfinx": {
-          "build_string": "py312h16fb63b_1",
+          "build_string": "py312hdf50b06_1",
           "name": "fenics-dolfinx",
           "version": "0.10.0"
         },
         "fenics-libdolfinx": {
-          "build_string": "py312h062bbd0_1",
+          "build_string": "py312he077d44_1",
           "name": "fenics-libdolfinx",
           "version": "0.10.0"
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:34:24.656113638Z",
+      "timestamp": "2026-01-25T10:36:03.705777048Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -281,9 +278,8 @@
         "channel_targets": "conda-forge main",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
-        "fenics_libdolfinx": "0.10.0 py312h062bbd0_1",
+        "fenics_libdolfinx": "0.10.0 py312he077d44_1",
         "hdf5": "1.14.6",
-        "is_abi3": true,
         "libboost_devel": "1.88",
         "mpi": "mpich",
         "mpich": "4",
@@ -314,13 +310,16 @@
       },
       "build": {
         "number": 1,
+        "python": {
+          "version_independent": true
+        },
         "script": {
           "env": {
             "SKBUILD_WHEEL_PY_API": "cp312"
           },
           "file": "build-dolfinx"
         },
-        "string": "py312h16fb63b_1"
+        "string": "py312hdf50b06_1"
       },
       "context": {
         "abi3_python": "3.12",
@@ -384,14 +383,6 @@
           "slepc4py",
           "libboost-devel"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "clang_osx-64 19.*",
           "pkg-config",
@@ -464,7 +455,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]

@@ -22,7 +22,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-libdolfinx/work"
       },
       "hash": {
-        "hash": "a982664",
+        "hash": "a879744",
         "prefix": "py312"
       },
       "host_platform": {
@@ -42,13 +42,13 @@
       "solve_strategy": "highest",
       "subpackages": {
         "fenics-libdolfinx": {
-          "build_string": "py312ha982664_1",
+          "build_string": "py312ha879744_1",
           "name": "fenics-libdolfinx",
           "version": "0.10.0"
         }
       },
       "target_platform": "linux-aarch64",
-      "timestamp": "2026-01-22T16:34:21.284796524Z",
+      "timestamp": "2026-01-25T10:35:58.351635530Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -61,12 +61,10 @@
         "cxx_compiler_version": "14",
         "fmt": "11.2",
         "hdf5": "1.14.6",
-        "is_abi3": true,
         "libboost_devel": "1.88",
         "libptscotch": "7.0.10",
         "libscotch": "7.0.10",
         "mpi": "openmpi",
-        "nanobind_abi": "16",
         "openmpi": "5",
         "petsc": "3.24",
         "pugixml": "1.15",
@@ -95,7 +93,7 @@
       "build": {
         "number": 1,
         "script": "build-libdolfinx",
-        "string": "py312ha982664_1",
+        "string": "py312ha879744_1",
         "variant": {
           "use_keys": [
             "python"
@@ -194,9 +192,9 @@
           },
           "requirements": {
             "run": [
-              "gcc_linux-aarch64 =14",
-              "gxx_linux-aarch64 =14",
-              "sysroot_linux-aarch64 =2.17",
+              "gcc_linux-aarch64 14.*",
+              "gxx_linux-aarch64 14.*",
+              "sysroot_linux-aarch64 2.17.*",
               "pkg-config",
               "cmake",
               "catch2 3.*",
@@ -215,7 +213,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   },
   {
@@ -241,7 +239,7 @@
         "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_fenics-dolfinx/work"
       },
       "hash": {
-        "hash": "2082f2d",
+        "hash": "846cf20",
         "prefix": "py312"
       },
       "host_platform": {
@@ -261,18 +259,18 @@
       "solve_strategy": "highest",
       "subpackages": {
         "fenics-dolfinx": {
-          "build_string": "py312h2082f2d_1",
+          "build_string": "py312h846cf20_1",
           "name": "fenics-dolfinx",
           "version": "0.10.0"
         },
         "fenics-libdolfinx": {
-          "build_string": "py312ha982664_1",
+          "build_string": "py312ha879744_1",
           "name": "fenics-libdolfinx",
           "version": "0.10.0"
         }
       },
       "target_platform": "linux-aarch64",
-      "timestamp": "2026-01-22T16:34:21.342550561Z",
+      "timestamp": "2026-01-25T10:35:58.403238190Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -283,9 +281,8 @@
         "channel_targets": "conda-forge main",
         "cxx_compiler": "gxx",
         "cxx_compiler_version": "14",
-        "fenics_libdolfinx": "0.10.0 py312ha982664_1",
+        "fenics_libdolfinx": "0.10.0 py312ha879744_1",
         "hdf5": "1.14.6",
-        "is_abi3": true,
         "libboost_devel": "1.88",
         "mpi": "openmpi",
         "nanobind": "2.9",
@@ -316,13 +313,16 @@
       },
       "build": {
         "number": 1,
+        "python": {
+          "version_independent": true
+        },
         "script": {
           "env": {
             "SKBUILD_WHEEL_PY_API": "cp312"
           },
           "file": "build-dolfinx"
         },
-        "string": "py312h2082f2d_1"
+        "string": "py312h846cf20_1"
       },
       "context": {
         "abi3_python": "3.12",
@@ -387,14 +387,6 @@
           "slepc4py",
           "libboost-devel"
         ],
-        "ignore_run_exports": {
-          "by_name": [
-            "python"
-          ],
-          "from_package": [
-            "python"
-          ]
-        },
         "run": [
           "gcc_linux-aarch64 14.*",
           "pkg-config",
@@ -439,8 +431,8 @@
               "pytest >=6",
               "python-gmsh",
               "libgl-devel",
-              "blas[build=openblas]",
-              "sysroot_linux-aarch64 =2.17",
+              "blas openblas",
+              "sysroot_linux-aarch64 2.17.*",
               "sympy",
               "scipy",
               "matplotlib-base"
@@ -470,7 +462,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
