@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:53:04.993237261Z",
+      "timestamp": "2026-01-25T20:54:43.553101164Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -130,11 +130,33 @@
               "time_machine"
             ]
           }
+        },
+        {
+          "files": {
+            "source": [
+              "src/tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "backports.zoneinfo",
+              "coverage",
+              "freezegun",
+              "pytest",
+              "pytest-randomly",
+              "python-dateutil",
+              "tokenize-rt"
+            ]
+          },
+          "script": [
+            "coverage run --source=time_machine --branch -m pytest src/tests -vv --color=yes --tb=long -p pytester",
+            "coverage report --show-missing --skip-covered --fail-under=98"
+          ]
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.56.0"
     }
   }
 ]
