@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.510290104Z",
+      "timestamp": "2026-02-06T17:59:47.748823166Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -157,7 +157,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "ad15b28"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py310h68988ad_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "had15b28_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.807437756Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py310h68988ad_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "had15b28_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -205,10 +366,15 @@
           "build_string": "py311hdf13d65_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "had15b28_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.576889621Z",
+      "timestamp": "2026-02-06T17:59:47.808165420Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -318,7 +484,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "155247c"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py311hdf13d65_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "h155247c_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.808784482Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py311hdf13d65_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "h155247c_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -366,10 +693,15 @@
           "build_string": "py312h134ede7_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "h155247c_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.577718978Z",
+      "timestamp": "2026-02-06T17:59:47.809389935Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -479,7 +811,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "c35b3d4"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py312h134ede7_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "hc35b3d4_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.809975997Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py312h134ede7_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "hc35b3d4_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -527,10 +1020,15 @@
           "build_string": "py313h19bf7ef_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "hc35b3d4_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.578518405Z",
+      "timestamp": "2026-02-06T17:59:47.810584070Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -640,7 +1138,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "4e975cb"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py313h19bf7ef_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "h4e975cb_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.811166142Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py313h19bf7ef_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "h4e975cb_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -688,10 +1347,15 @@
           "build_string": "py313h4422717_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "h4e975cb_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.579286152Z",
+      "timestamp": "2026-02-06T17:59:47.811763355Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -801,7 +1465,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "dccbab6"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py313h4422717_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "hdccbab6_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.812476698Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py313h4422717_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "hdccbab6_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -849,10 +1674,15 @@
           "build_string": "py314h94edff7_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "hdccbab6_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.580059619Z",
+      "timestamp": "2026-02-06T17:59:47.813104280Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -962,7 +1792,168 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
+      },
+      "hash": {
+        "hash": "eb34c24"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "pillow": {
+          "build_string": "py314h94edff7_0",
+          "name": "pillow",
+          "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "heb34c24_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-06T17:59:47.813694763Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "pillow": "12.1.0 py314h94edff7_0",
+        "target_platform": "osx-arm64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "homepage": "https://pillow.readthedocs.io/",
+        "license": "HPND",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/python-pillow/Pillow/",
+        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
+      },
+      "build": {
+        "number": 0,
+        "string": "heb34c24_0"
+      },
+      "context": {
+        "version": "12.1.0"
+      },
+      "extra": {
+        "feedstock-name": "pillow",
+        "recipe-maintainers": [
+          "jakirkham",
+          "patricksnape",
+          "pelson",
+          "ocefpaf",
+          "h-vetinari"
+        ]
+      },
+      "package": {
+        "name": "pillow-tests",
+        "version": "12.1.0"
+      },
+      "requirements": {
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "pillow"
+            }
+          }
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "patches": [
+            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
+            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
+            "patches/0003-add-XCB_ROOT.patch",
+            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
+          ],
+          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
+          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "files": {
+            "recipe": [
+              "Tests/images"
+            ],
+            "source": [
+              "Tests/"
+            ]
+          },
+          "requirements": {
+            "run": [
+              "pytest",
+              "pytest-timeout",
+              "setuptools",
+              "clang_osx-arm64 19.*",
+              "fsspec",
+              "requests"
+            ]
+          },
+          "script": {
+            "content": [
+              "import sys, pytest",
+              "tests_to_skip = [\"_not_a_real_test\"]",
+              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
+              "tests_to_skip.append(\"test_tiff_mmap\")",
+              "tests_to_skip.append(\"test_default_font_size\")",
+              "tests_to_skip.append(\"test_colr\")",
+              "tests_to_skip.append(\"test_colr_mask\")",
+              "tests_to_skip.append(\"test_default_font\")",
+              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
+            ],
+            "interpreter": "python"
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1010,10 +2001,15 @@
           "build_string": "py314hf3e0ca7_0",
           "name": "pillow",
           "version": "12.1.0"
+        },
+        "pillow-tests": {
+          "build_string": "heb34c24_0",
+          "name": "pillow-tests",
+          "version": "12.1.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.580813455Z",
+      "timestamp": "2026-02-06T17:59:47.814309935Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -1123,7 +2119,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1178,7 +2174,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.581628552Z",
+      "timestamp": "2026-02-06T17:59:47.814991358Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_compiler": "clang",
@@ -1284,973 +2280,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "ad15b28"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "had15b28_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.582525625Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py310h68988ad_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "had15b28_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "155247c"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "h155247c_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.583303192Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py311hdf13d65_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "h155247c_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "c35b3d4"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "hc35b3d4_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.584081979Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py312h134ede7_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "hc35b3d4_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "4e975cb"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "h4e975cb_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.584863666Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py313h19bf7ef_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "h4e975cb_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "dccbab6"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "hdccbab6_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.585632502Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py313h4422717_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "hdccbab6_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_pillow-tests/work"
-      },
-      "hash": {
-        "hash": "eb34c24"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "pillow": {
-          "build_string": "py314hf3e0ca7_0",
-          "name": "pillow",
-          "version": "12.1.0"
-        },
-        "pillow-tests": {
-          "build_string": "heb34c24_0",
-          "name": "pillow-tests",
-          "version": "12.1.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-23T18:42:16.586402629Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "pillow": "12.1.0 py314h94edff7_0",
-        "target_platform": "osx-arm64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "homepage": "https://pillow.readthedocs.io/",
-        "license": "HPND",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/python-pillow/Pillow/",
-        "summary": "Pillow is the friendly PIL fork by Alex Clark and Contributors"
-      },
-      "build": {
-        "number": 0,
-        "string": "heb34c24_0"
-      },
-      "context": {
-        "version": "12.1.0"
-      },
-      "extra": {
-        "feedstock-name": "pillow",
-        "recipe-maintainers": [
-          "jakirkham",
-          "patricksnape",
-          "pelson",
-          "ocefpaf",
-          "h-vetinari"
-        ]
-      },
-      "package": {
-        "name": "pillow-tests",
-        "version": "12.1.0"
-      },
-      "requirements": {
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "pillow"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "patches": [
-            "patches/0001-Build-without-USE_WIN32_FILEIO.patch",
-            "patches/0002-Added-patch-to-fix-failing-Windows-test.patch",
-            "patches/0003-add-XCB_ROOT.patch",
-            "patches/0001-Provide-a-clear-option-to-depend-on-zlib-ng.patch"
-          ],
-          "sha256": "8160e8b97c9e12337073b91d427d88df9490ba500f21d32015cfbb6f98846670",
-          "url": "https://github.com/python-pillow/Pillow/archive/refs/tags/12.1.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "files": {
-            "recipe": [
-              "Tests/images"
-            ],
-            "source": [
-              "Tests/"
-            ]
-          },
-          "requirements": {
-            "run": [
-              "pytest",
-              "pytest-timeout",
-              "setuptools",
-              "clang_osx-arm64 19.*",
-              "fsspec",
-              "requests"
-            ]
-          },
-          "script": {
-            "content": [
-              "import sys, pytest",
-              "tests_to_skip = [\"_not_a_real_test\"]",
-              "tests_to_skip.append(\"(test_tiff_crashes and crash-81154a65438ba5aaeca73fd502fa4850fbde60f8.tif)\")",
-              "tests_to_skip.append(\"test_tiff_mmap\")",
-              "tests_to_skip.append(\"test_default_font_size\")",
-              "tests_to_skip.append(\"test_colr\")",
-              "tests_to_skip.append(\"test_colr_mask\")",
-              "tests_to_skip.append(\"test_default_font\")",
-              "sys.exit(pytest.main([\"-v\", \"-k\", f\"not ({' or '.join(tests_to_skip)})\"]))"
-            ],
-            "interpreter": "python"
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   }
 ]
