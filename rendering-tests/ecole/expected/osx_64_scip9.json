@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:56:56.463186259Z",
+      "timestamp": "2026-02-06T17:57:52.811396986Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_stdlib": "macosx_deployment_target",
@@ -171,187 +171,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/work"
-      },
-      "hash": {
-        "hash": "a4b385c",
-        "prefix": "np2py313"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "ecole": {
-          "build_string": "np2py313ha4b385c_1",
-          "name": "ecole",
-          "version": "0.8.2"
-        },
-        "libecole": {
-          "build_string": "hf1ee732_1",
-          "name": "libecole",
-          "version": "0.8.2"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:56:56.527432594Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "10.13",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libecole": "0.8.2 hf1ee732_1",
-        "numpy": "2",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "documentation": "https://doc.ecole.ai/",
-        "homepage": "https://www.ecole.ai/",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "summary": "Extensible Combinatorial Optimization Learning Environments"
-      },
-      "build": {
-        "number": 1,
-        "string": "np2py313ha4b385c_1"
-      },
-      "context": {
-        "version": "0.8.2"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "AntoinePrv",
-          "gasse"
-        ]
-      },
-      "package": {
-        "name": "ecole",
-        "version": "0.8.2"
-      },
-      "requirements": {
-        "build": [
-          "clangxx_osx-64 19.*",
-          "macosx_deployment_target_osx-64 10.13.*",
-          "cmake >=3.15",
-          "ninja",
-          "make",
-          "python",
-          "cross-python_osx-64",
-          "pybind11",
-          "numpy",
-          "scikit-build-core"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libecole"
-            }
-          },
-          "xtensor",
-          "xsimd",
-          "python",
-          "pip",
-          "scikit-build-core",
-          "pybind11",
-          "numpy",
-          "xtensor-python"
-        ],
-        "run": [
-          "python",
-          "numpy"
-        ],
-        "run_constraints": [
-          {
-            "pin_compatible": {
-              "lower_bound": "x.x.x.x.x.x",
-              "name": "xtensor-python",
-              "upper_bound": "x"
-            }
-          },
-          "pyscipopt >=3.0.1"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "f47f1cbc5bc43c904327f2a5a536367f0ba22f89e73e300b1d20ebac630771db",
-          "url": "https://github.com/ds4dm/ecole/archive/v0.8.2.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "files": {
-              "exists": [],
-              "not_exists": [
-                "lib/libecole.so",
-                "lib/libecole.dylib"
-              ]
-            }
-          }
-        },
-        {
-          "python": {
-            "imports": [
-              "ecole",
-              "ecole.reward",
-              "ecole.environment"
-            ]
-          }
-        },
-        {
-          "script": "python -c 'import ecole; next(ecole.instance.SetCoverGenerator())'"
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -407,7 +227,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:56:56.528158237Z",
+      "timestamp": "2026-02-06T17:57:52.863113702Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -531,7 +351,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -587,7 +407,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:56:56.528916220Z",
+      "timestamp": "2026-02-06T17:57:52.863750624Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -711,7 +531,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -767,7 +587,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:56:56.529624183Z",
+      "timestamp": "2026-02-06T17:57:52.864407907Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -891,7 +711,187 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_ecole/work"
+      },
+      "hash": {
+        "hash": "a4b385c",
+        "prefix": "np2py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "ecole": {
+          "build_string": "np2py313ha4b385c_1",
+          "name": "ecole",
+          "version": "0.8.2"
+        },
+        "libecole": {
+          "build_string": "hf1ee732_1",
+          "name": "libecole",
+          "version": "0.8.2"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-06T17:57:52.865007470Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libecole": "0.8.2 hf1ee732_1",
+        "numpy": "2",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "documentation": "https://doc.ecole.ai/",
+        "homepage": "https://www.ecole.ai/",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "summary": "Extensible Combinatorial Optimization Learning Environments"
+      },
+      "build": {
+        "number": 1,
+        "string": "np2py313ha4b385c_1"
+      },
+      "context": {
+        "version": "0.8.2"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "AntoinePrv",
+          "gasse"
+        ]
+      },
+      "package": {
+        "name": "ecole",
+        "version": "0.8.2"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "cmake >=3.15",
+          "ninja",
+          "make",
+          "python",
+          "cross-python_osx-64",
+          "pybind11",
+          "numpy",
+          "scikit-build-core"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libecole"
+            }
+          },
+          "xtensor",
+          "xsimd",
+          "python",
+          "pip",
+          "scikit-build-core",
+          "pybind11",
+          "numpy",
+          "xtensor-python"
+        ],
+        "run": [
+          "python",
+          "numpy"
+        ],
+        "run_constraints": [
+          {
+            "pin_compatible": {
+              "lower_bound": "x.x.x.x.x.x",
+              "name": "xtensor-python",
+              "upper_bound": "x"
+            }
+          },
+          "pyscipopt >=3.0.1"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "f47f1cbc5bc43c904327f2a5a536367f0ba22f89e73e300b1d20ebac630771db",
+          "url": "https://github.com/ds4dm/ecole/archive/v0.8.2.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [],
+              "not_exists": [
+                "lib/libecole.so",
+                "lib/libecole.dylib"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "ecole",
+              "ecole.reward",
+              "ecole.environment"
+            ]
+          }
+        },
+        {
+          "script": "python -c 'import ecole; next(ecole.instance.SetCoverGenerator())'"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   }
 ]
