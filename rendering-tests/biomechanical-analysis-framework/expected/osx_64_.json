@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.721685142Z",
+      "timestamp": "2026-02-09T09:15:00.411823342Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -163,782 +163,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
-      },
-      "hash": {
-        "hash": "3e72b30",
-        "prefix": "py310"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py310h3e72b30_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.786798618Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "python": "3.10.* *_cpython",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "python": {
-          "entry_points": [
-            "baf-kpi-analyzer = baf_kpi.main:main"
-          ]
-        },
-        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
-        "string": "py310h3e72b30_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-kpi",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "cross-python_osx-64",
-          "python"
-        ],
-        "host": [
-          "python",
-          "wheel",
-          "setuptools >=45",
-          "setuptools-scm >=6.2",
-          "pip"
-        ],
-        "run": [
-          "python",
-          "numpy",
-          "matplotlib-base",
-          "pandas",
-          "scipy",
-          "h5py",
-          "idyntree",
-          "rich",
-          "joblib",
-          "meshcat-python",
-          "resolve-robotics-uri-py"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "baf_kpi"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
-      },
-      "hash": {
-        "hash": "2282730",
-        "prefix": "py311"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py311h2282730_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.787573461Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "python": "3.11.* *_cpython",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "python": {
-          "entry_points": [
-            "baf-kpi-analyzer = baf_kpi.main:main"
-          ]
-        },
-        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
-        "string": "py311h2282730_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-kpi",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "cross-python_osx-64",
-          "python"
-        ],
-        "host": [
-          "python",
-          "wheel",
-          "setuptools >=45",
-          "setuptools-scm >=6.2",
-          "pip"
-        ],
-        "run": [
-          "python",
-          "numpy",
-          "matplotlib-base",
-          "pandas",
-          "scipy",
-          "h5py",
-          "idyntree",
-          "rich",
-          "joblib",
-          "meshcat-python",
-          "resolve-robotics-uri-py"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "baf_kpi"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
-      },
-      "hash": {
-        "hash": "a9eca8a",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py312ha9eca8a_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.788264313Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "python": "3.12.* *_cpython",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "python": {
-          "entry_points": [
-            "baf-kpi-analyzer = baf_kpi.main:main"
-          ]
-        },
-        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
-        "string": "py312ha9eca8a_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-kpi",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "cross-python_osx-64",
-          "python"
-        ],
-        "host": [
-          "python",
-          "wheel",
-          "setuptools >=45",
-          "setuptools-scm >=6.2",
-          "pip"
-        ],
-        "run": [
-          "python",
-          "numpy",
-          "matplotlib-base",
-          "pandas",
-          "scipy",
-          "h5py",
-          "idyntree",
-          "rich",
-          "joblib",
-          "meshcat-python",
-          "resolve-robotics-uri-py"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "baf_kpi"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
-      },
-      "hash": {
-        "hash": "7f29e5a",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py312ha9eca8a_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "biomechanical-analysis-framework-python": {
-          "build_string": "py313h7f29e5a_4",
-          "name": "biomechanical-analysis-framework-python",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.788982735Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "10.13",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
-        "pybind11_abi": "11",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "script": "build_py.sh",
-        "string": "py313h7f29e5a_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "clang_osx-64 19.*",
-          "macosx_deployment_target_osx-64 10.13.*",
-          "clangxx_osx-64 19.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
-          "cross-python_osx-64",
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "qt6-main"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
-      },
-      "hash": {
-        "hash": "95a751a",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py313h95a751a_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "biomechanical-analysis-framework-python": {
-          "build_string": "py313h7f29e5a_4",
-          "name": "biomechanical-analysis-framework-python",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.789676367Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "python": "3.13.* *_cp313",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "python": {
-          "entry_points": [
-            "baf-kpi-analyzer = baf_kpi.main:main"
-          ]
-        },
-        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
-        "string": "py313h95a751a_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-kpi",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "cross-python_osx-64",
-          "python"
-        ],
-        "host": [
-          "python",
-          "wheel",
-          "setuptools >=45",
-          "setuptools-scm >=6.2",
-          "pip"
-        ],
-        "run": [
-          "python",
-          "numpy",
-          "matplotlib-base",
-          "pandas",
-          "scipy",
-          "h5py",
-          "idyntree",
-          "rich",
-          "joblib",
-          "meshcat-python",
-          "resolve-robotics-uri-py"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "python": {
-            "imports": [
-              "baf_kpi"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -982,11 +207,6 @@
       },
       "solve_strategy": "highest",
       "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py313h95a751a_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
         "biomechanical-analysis-framework-python": {
           "build_string": "py310ha1a8fb3_4",
           "name": "biomechanical-analysis-framework-python",
@@ -999,7 +219,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.790357839Z",
+      "timestamp": "2026-02-09T09:15:00.465634964Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -1100,7 +320,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1120,14 +340,14 @@
         "https://conda.anaconda.org/conda-forge"
       ],
       "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
       },
       "hash": {
-        "hash": "73421d6",
-        "prefix": "py311"
+        "hash": "3e72b30",
+        "prefix": "py310"
       },
       "host_platform": {
         "platform": "osx-64",
@@ -1145,12 +365,12 @@
       "solve_strategy": "highest",
       "subpackages": {
         "biomechanical-analysis-framework-kpi": {
-          "build_string": "py313h95a751a_4",
+          "build_string": "py310h3e72b30_4",
           "name": "biomechanical-analysis-framework-kpi",
           "version": "0.2.3"
         },
         "biomechanical-analysis-framework-python": {
-          "build_string": "py311h73421d6_4",
+          "build_string": "py310ha1a8fb3_4",
           "name": "biomechanical-analysis-framework-python",
           "version": "0.2.3"
         },
@@ -1161,21 +381,13 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.791085241Z",
+      "timestamp": "2026-02-09T09:15:00.466369016Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "10.13",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
-        "pybind11_abi": "11",
-        "python": "3.11.* *_cpython",
+        "python": "3.10.* *_cpython",
         "target_platform": "osx-64"
       }
     },
@@ -1195,8 +407,13 @@
       },
       "build": {
         "number": 4,
-        "script": "build_py.sh",
-        "string": "py311h73421d6_4"
+        "python": {
+          "entry_points": [
+            "baf-kpi-analyzer = baf_kpi.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
+        "string": "py310h3e72b30_4"
       },
       "context": {
         "cxx_name": "libbiomechanical-analysis-framework",
@@ -1213,44 +430,33 @@
         ]
       },
       "package": {
-        "name": "biomechanical-analysis-framework-python",
+        "name": "biomechanical-analysis-framework-kpi",
         "version": "0.2.3"
       },
       "requirements": {
         "build": [
-          "clang_osx-64 19.*",
-          "macosx_deployment_target_osx-64 10.13.*",
-          "clangxx_osx-64 19.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
           "cross-python_osx-64",
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "qt6-main"
+          "python"
         ],
         "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
           "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
+          "wheel",
+          "setuptools >=45",
+          "setuptools-scm >=6.2",
+          "pip"
         ],
         "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
-          "python"
+          "python",
+          "numpy",
+          "matplotlib-base",
+          "pandas",
+          "scipy",
+          "h5py",
+          "idyntree",
+          "rich",
+          "joblib",
+          "meshcat-python",
+          "resolve-robotics-uri-py"
         ]
       },
       "schema_version": 1,
@@ -1259,172 +465,19 @@
           "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
           "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
         }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.56.0"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
       ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
-      },
-      "hash": {
-        "hash": "9a75043",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "osx-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "biomechanical-analysis-framework-kpi": {
-          "build_string": "py313h95a751a_4",
-          "name": "biomechanical-analysis-framework-kpi",
-          "version": "0.2.3"
-        },
-        "biomechanical-analysis-framework-python": {
-          "build_string": "py312h9a75043_4",
-          "name": "biomechanical-analysis-framework-python",
-          "version": "0.2.3"
-        },
-        "libbiomechanical-analysis-framework": {
-          "build_string": "h107887a_4",
-          "name": "libbiomechanical-analysis-framework",
-          "version": "0.2.3"
-        }
-      },
-      "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.791750983Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "10.13",
-        "build_platform": "linux-64",
-        "c_compiler": "clang",
-        "c_compiler_version": "19",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "10.13",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
-        "pybind11_abi": "11",
-        "python": "3.12.* *_cpython",
-        "target_platform": "osx-64"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
-        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
-        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
-      },
-      "build": {
-        "number": 4,
-        "script": "build_py.sh",
-        "string": "py312h9a75043_4"
-      },
-      "context": {
-        "cxx_name": "libbiomechanical-analysis-framework",
-        "kpi_name": "biomechanical-analysis-framework-kpi",
-        "name": "biomechanical-analysis-framework",
-        "python_name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "extra": {
-        "feedstock-name": "biomechanical-analysis-framework",
-        "recipe-maintainers": [
-          "traversaro",
-          "davidegorbani"
-        ]
-      },
-      "package": {
-        "name": "biomechanical-analysis-framework-python",
-        "version": "0.2.3"
-      },
-      "requirements": {
-        "build": [
-          "clang_osx-64 19.*",
-          "macosx_deployment_target_osx-64 10.13.*",
-          "clangxx_osx-64 19.*",
-          "cmake",
-          "pkg-config",
-          "ninja",
-          "cross-python_osx-64",
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest",
-          "qt6-main"
-        ],
-        "host": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
-          "python",
-          "pybind11",
-          "pybind11-abi",
-          "pytest"
-        ],
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libbiomechanical-analysis-framework"
-            }
-          },
-          "python"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
+      "tests": [
         {
-          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
-          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+          "python": {
+            "imports": [
+              "baf_kpi"
+            ]
+          }
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1473,12 +526,12 @@
           "version": "0.2.3"
         },
         "biomechanical-analysis-framework-kpi": {
-          "build_string": "py313h95a751a_4",
+          "build_string": "py310h3e72b30_4",
           "name": "biomechanical-analysis-framework-kpi",
           "version": "0.2.3"
         },
         "biomechanical-analysis-framework-python": {
-          "build_string": "py312h9a75043_4",
+          "build_string": "py310ha1a8fb3_4",
           "name": "biomechanical-analysis-framework-python",
           "version": "0.2.3"
         },
@@ -1489,7 +542,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-23T16:53:28.792498145Z",
+      "timestamp": "2026-02-09T09:15:00.467021418Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "c_compiler": "clang",
@@ -1594,7 +647,994 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.56.0"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
+      },
+      "hash": {
+        "hash": "73421d6",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py310h3e72b30_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py311h73421d6_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.467637811Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
+        "pybind11_abi": "11",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "script": "build_py.sh",
+        "string": "py311h73421d6_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_osx-64",
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "qt6-main"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
+      },
+      "hash": {
+        "hash": "2282730",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py311h2282730_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py311h73421d6_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.468263633Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.11.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "python": {
+          "entry_points": [
+            "baf-kpi-analyzer = baf_kpi.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
+        "string": "py311h2282730_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-kpi",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          "python",
+          "wheel",
+          "setuptools >=45",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "matplotlib-base",
+          "pandas",
+          "scipy",
+          "h5py",
+          "idyntree",
+          "rich",
+          "joblib",
+          "meshcat-python",
+          "resolve-robotics-uri-py"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "baf_kpi"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
+      },
+      "hash": {
+        "hash": "9a75043",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py311h2282730_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py312h9a75043_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.468898735Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
+        "pybind11_abi": "11",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "script": "build_py.sh",
+        "string": "py312h9a75043_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_osx-64",
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "qt6-main"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
+      },
+      "hash": {
+        "hash": "a9eca8a",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py312ha9eca8a_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py312h9a75043_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.469511307Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.12.* *_cpython",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "python": {
+          "entry_points": [
+            "baf-kpi-analyzer = baf_kpi.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
+        "string": "py312ha9eca8a_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-kpi",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          "python",
+          "wheel",
+          "setuptools >=45",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "matplotlib-base",
+          "pandas",
+          "scipy",
+          "h5py",
+          "idyntree",
+          "rich",
+          "joblib",
+          "meshcat-python",
+          "resolve-robotics-uri-py"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "baf_kpi"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placeh",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-python/work"
+      },
+      "hash": {
+        "hash": "7f29e5a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py312ha9eca8a_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py313h7f29e5a_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.470111189Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "c_compiler": "clang",
+        "c_compiler_version": "19",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "10.13",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "libbiomechanical_analysis_framework": "0.2.3 h107887a_4",
+        "pybind11_abi": "11",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "script": "build_py.sh",
+        "string": "py313h7f29e5a_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "clang_osx-64 19.*",
+          "macosx_deployment_target_osx-64 10.13.*",
+          "clangxx_osx-64 19.*",
+          "cmake",
+          "pkg-config",
+          "ninja",
+          "cross-python_osx-64",
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest",
+          "qt6-main"
+        ],
+        "host": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python",
+          "pybind11",
+          "pybind11-abi",
+          "pytest"
+        ],
+        "run": [
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libbiomechanical-analysis-framework"
+            }
+          },
+          "python"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_biomechanical-analysis-framework-kpi/work"
+      },
+      "hash": {
+        "hash": "95a751a",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "biomechanical-analysis-framework": {
+          "build_string": "h5a921a9_4",
+          "name": "biomechanical-analysis-framework",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-kpi": {
+          "build_string": "py313h95a751a_4",
+          "name": "biomechanical-analysis-framework-kpi",
+          "version": "0.2.3"
+        },
+        "biomechanical-analysis-framework-python": {
+          "build_string": "py313h7f29e5a_4",
+          "name": "biomechanical-analysis-framework-python",
+          "version": "0.2.3"
+        },
+        "libbiomechanical-analysis-framework": {
+          "build_string": "h107887a_4",
+          "name": "libbiomechanical-analysis-framework",
+          "version": "0.2.3"
+        }
+      },
+      "target_platform": "osx-64",
+      "timestamp": "2026-02-09T09:15:00.470784081Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "10.13",
+        "build_platform": "linux-64",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python": "3.13.* *_cp313",
+        "target_platform": "osx-64"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "This feedstock packages the biomechanical-analysis-framework set of libraries and it provides the following outputs:\n  * `libbiomechanical-analysis-framework` : Package that contains the C++ libraries.\n  * `biomechanical-analysis-framework-python` : Package that contains the Python bindings of the C++ libraries.\n  * `biomechanical-analysis-framework-kpi` : Package that contains the pure Python package containing the code to compute biomechanical KPIs.\n  * `biomechanical-analysis-framework` : Meta-package that install all the aforementioned packages.",
+        "homepage": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/ami-iit/biomechanical-analysis-framework",
+        "summary": "Set of C++ libraries that can be used to estimate a human kinematics and dynamics quantities."
+      },
+      "build": {
+        "number": 4,
+        "python": {
+          "entry_points": [
+            "baf-kpi-analyzer = baf_kpi.main:main"
+          ]
+        },
+        "script": "${{ PYTHON }} -m pip install --no-deps --no-build-isolation ./baf_kpi -vv",
+        "string": "py313h95a751a_4"
+      },
+      "context": {
+        "cxx_name": "libbiomechanical-analysis-framework",
+        "kpi_name": "biomechanical-analysis-framework-kpi",
+        "name": "biomechanical-analysis-framework",
+        "python_name": "biomechanical-analysis-framework-python",
+        "version": "0.2.3"
+      },
+      "extra": {
+        "feedstock-name": "biomechanical-analysis-framework",
+        "recipe-maintainers": [
+          "traversaro",
+          "davidegorbani"
+        ]
+      },
+      "package": {
+        "name": "biomechanical-analysis-framework-kpi",
+        "version": "0.2.3"
+      },
+      "requirements": {
+        "build": [
+          "cross-python_osx-64",
+          "python"
+        ],
+        "host": [
+          "python",
+          "wheel",
+          "setuptools >=45",
+          "setuptools-scm >=6.2",
+          "pip"
+        ],
+        "run": [
+          "python",
+          "numpy",
+          "matplotlib-base",
+          "pandas",
+          "scipy",
+          "h5py",
+          "idyntree",
+          "rich",
+          "joblib",
+          "meshcat-python",
+          "resolve-robotics-uri-py"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "d6085178a633c06a5672caf7d78bbd1798378d8481446fda6af1325dbde6ef6e",
+          "url": "https://github.com/ami-iit/biomechanical-analysis-framework/archive/refs/tags/v0.2.3.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "python": {
+            "imports": [
+              "baf_kpi"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   }
 ]
