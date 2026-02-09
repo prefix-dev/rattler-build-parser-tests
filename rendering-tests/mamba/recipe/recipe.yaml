@@ -189,7 +189,7 @@ outputs:
           - spdlog
           - fmt
           - libsolv
-          - ${{ compiler('cxx') if linux }}
+          - ${{ (compiler('cxx') | split(' '))[0] if linux }}
           - if: unix
             then:
               - libcurl

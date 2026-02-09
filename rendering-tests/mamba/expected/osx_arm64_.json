@@ -46,7 +46,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.107345566Z",
+      "timestamp": "2026-02-09T09:29:43.812520864Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_stdlib": "macosx_deployment_target",
@@ -185,7 +185,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -240,7 +240,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.181731510Z",
+      "timestamp": "2026-02-09T09:29:43.865447265Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "c_stdlib": "macosx_deployment_target",
@@ -336,205 +336,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/work"
-      },
-      "hash": {
-        "hash": "c80dd31"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libmamba": {
-          "build_string": "h566bbfa_0",
-          "name": "libmamba",
-          "version": "2.5.0"
-        },
-        "libmamba-spdlog": {
-          "build_string": "h71d101d_0",
-          "name": "libmamba-spdlog",
-          "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.182022771Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "libmamba": "2.5.0 h566bbfa_0",
-        "libmamba_spdlog": "2.5.0 h71d101d_0",
-        "target_platform": "osx-arm64",
-        "zstd": "1.5"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
-        "documentation": "https://mamba.readthedocs.io/",
-        "homepage": "https://github.com/mamba-org/mamba",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/mamba-org/mamba",
-        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
-      },
-      "build": {
-        "number": 0,
-        "script": "build_mamba",
-        "string": "hc80dd31_0"
-      },
-      "context": {
-        "build_number": 0,
-        "version": "2.5.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jjerphan",
-          "AntoinePrv",
-          "adriendelsalle",
-          "SylvainCorlay",
-          "JohanMabille",
-          "wolfv",
-          "ericmjl"
-        ]
-      },
-      "package": {
-        "name": "mamba",
-        "version": "2.5.0"
-      },
-      "requirements": {
-        "build": [
-          "clangxx_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "cmake",
-          "ninja"
-        ],
-        "host": [
-          "cli11 >=2.2,<3",
-          "reproc",
-          "reproc-cpp",
-          "nlohmann_json >=3.12,<4.0",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          },
-          "zstd"
-        ],
-        "ignore_run_exports": {
-          "from_package": [
-            "spdlog",
-            "fmt",
-            "libsolv",
-            "libcurl",
-            "openssl"
-          ]
-        },
-        "run": [
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          }
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
-          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "bin": [
-              "mamba"
-            ],
-            "files": {
-              "exists": [
-                "condabin/mamba",
-                "etc/profile.d/mamba.sh"
-              ],
-              "not_exists": [
-                "lib/libmamba*",
-                "lib/site-package/*"
-              ]
-            }
-          }
-        },
-        {
-          "script": [
-            "mamba --help",
-            ". ${PREFIX}/etc/profile.d/mamba.sh",
-            "${PREFIX}/condabin/mamba --help",
-            "mamba clean --all --dry-run",
-            "mamba repoquery depends mamba",
-            "mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9",
-            "./myenv/bin/python --version",
-            "./myenv/bin/python -c 'import os'"
-          ]
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -592,15 +394,10 @@
           "build_string": "py310he1b450c_0",
           "name": "libmambapy",
           "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.182322402Z",
+      "timestamp": "2026-02-09T09:29:43.866200747Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -739,6 +536,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -760,7 +558,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -780,14 +578,14 @@
         "https://conda.anaconda.org/conda-forge"
       ],
       "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/work"
       },
       "hash": {
-        "hash": "eea8d39",
-        "prefix": "py310"
+        "hash": "d7f29a5",
+        "prefix": "py"
       },
       "host_platform": {
         "platform": "osx-arm64",
@@ -815,7 +613,151 @@
           "version": "2.5.0"
         },
         "libmambapy": {
-          "build_string": "py310heea8d39_0",
+          "build_string": "py310he1b450c_0",
+          "name": "libmambapy",
+          "version": "2.5.0"
+        },
+        "libmambapy-stubs": {
+          "build_string": "pyhd7f29a5_0",
+          "name": "libmambapy-stubs",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "noarch",
+      "timestamp": "2026-02-09T09:29:43.866843489Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "python_min": "3.10",
+        "target_platform": "noarch"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
+        "documentation": "https://mamba.readthedocs.io/",
+        "homepage": "https://github.com/mamba-org/mamba",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba",
+        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
+      },
+      "build": {
+        "noarch": "python",
+        "number": 0,
+        "script": "build_mamba",
+        "string": "pyhd7f29a5_0"
+      },
+      "context": {
+        "build_number": 0,
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "AntoinePrv",
+          "adriendelsalle",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "ericmjl"
+        ]
+      },
+      "package": {
+        "name": "libmambapy-stubs",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "host": [
+          "python >=3.10",
+          "pip",
+          "setuptools",
+          "mypy",
+          "libmambapy ==2.5.0"
+        ],
+        "run_constraints": [
+          "libmambapy ==2.5.0"
+        ]
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
+          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": [
+              "**/*.pyi"
+            ]
+          }
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_mamba/work"
+      },
+      "hash": {
+        "hash": "c80dd31"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmamba": {
+          "build_string": "h566bbfa_0",
+          "name": "libmamba",
+          "version": "2.5.0"
+        },
+        "libmamba-spdlog": {
+          "build_string": "h71d101d_0",
+          "name": "libmamba-spdlog",
+          "version": "2.5.0"
+        },
+        "libmambapy": {
+          "build_string": "py310he1b450c_0",
           "name": "libmambapy",
           "version": "2.5.0"
         },
@@ -831,24 +773,17 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.182870244Z",
+      "timestamp": "2026-02-09T09:29:43.867442611Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
         "c_stdlib": "macosx_deployment_target",
         "c_stdlib_version": "11.0",
         "channel_sources": "conda-forge",
         "channel_targets": "conda-forge main",
         "cxx_compiler": "clangxx",
         "cxx_compiler_version": "19",
-        "fmt": "12.1",
         "libmamba": "2.5.0 h566bbfa_0",
         "libmamba_spdlog": "2.5.0 h71d101d_0",
-        "openssl": "3.5",
-        "pybind11": 3,
-        "pybind11_abi": 11,
-        "python": "3.10.* *_cpython",
-        "spdlog": "1.17",
         "target_platform": "osx-arm64",
         "zstd": "1.5"
       }
@@ -871,7 +806,7 @@
       "build": {
         "number": 0,
         "script": "build_mamba",
-        "string": "py310heea8d39_0"
+        "string": "hc80dd31_0"
       },
       "context": {
         "build_number": 0,
@@ -889,7 +824,7 @@
         ]
       },
       "package": {
-        "name": "libmambapy",
+        "name": "mamba",
         "version": "2.5.0"
       },
       "requirements": {
@@ -897,27 +832,13 @@
           "clangxx_osx-arm64 19.*",
           "macosx_deployment_target_osx-arm64 11.0.*",
           "cmake",
-          "ninja",
-          "python",
-          "cross-python_osx-arm64",
-          "pybind11",
-          "pybind11-abi"
+          "ninja"
         ],
         "host": [
-          "python",
-          "scikit-build-core",
-          "pip",
-          "setuptools <79",
-          "pybind11",
-          "pybind11-abi",
-          "openssl",
-          "yaml-cpp",
-          "cpp-expected",
-          "spdlog",
-          "fmt",
-          "termcolor-cpp",
+          "cli11 >=2.2,<3",
+          "reproc",
+          "reproc-cpp",
           "nlohmann_json >=3.12,<4.0",
-          "nlohmann_json-abi",
           {
             "pin_subpackage": {
               "exact": true,
@@ -932,32 +853,23 @@
           },
           "zstd"
         ],
+        "ignore_run_exports": {
+          "from_package": [
+            "spdlog",
+            "fmt",
+            "libsolv",
+            "libcurl",
+            "openssl"
+          ]
+        },
         "run": [
-          "python",
           {
             "pin_subpackage": {
               "exact": true,
               "name": "libmamba"
             }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
           }
-        ],
-        "run_exports": {
-          "weak": [
-            {
-              "pin_subpackage": {
-                "lower_bound": "x.x.x.x.x.x",
-                "name": "libmambapy",
-                "upper_bound": "x.x"
-              }
-            }
-          ]
-        }
+        ]
       },
       "schema_version": 1,
       "source": [
@@ -969,29 +881,37 @@
       "tests": [
         {
           "package_contents": {
+            "bin": [
+              "mamba"
+            ],
             "files": {
+              "exists": [
+                "condabin/mamba",
+                "etc/profile.d/mamba.sh"
+              ],
               "not_exists": [
-                "lib/cmake/libmamba/libmambaConfig.cmake",
-                "lib/libmamba*"
+                "lib/libmamba*",
+                "lib/site-package/*"
               ]
             }
           }
         },
         {
-          "python": {
-            "imports": [
-              "libmambapy",
-              "libmambapy.bindings"
-            ]
-          }
-        },
-        {
-          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
+          "script": [
+            "mamba --help",
+            ". ${PREFIX}/etc/profile.d/mamba.sh",
+            "${PREFIX}/condabin/mamba --help",
+            "mamba clean --all --dry-run",
+            "mamba repoquery depends mamba",
+            "mamba create -p ./myenv --override-channels -c conda-forge --yes python=3.9",
+            "./myenv/bin/python --version",
+            "./myenv/bin/python -c 'import os'"
+          ]
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1062,7 +982,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.183135435Z",
+      "timestamp": "2026-02-09T09:29:43.868143263Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -1201,6 +1121,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -1222,238 +1143,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
-      },
-      "hash": {
-        "hash": "2b12f51",
-        "prefix": "py311"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libmamba": {
-          "build_string": "h566bbfa_0",
-          "name": "libmamba",
-          "version": "2.5.0"
-        },
-        "libmamba-spdlog": {
-          "build_string": "h71d101d_0",
-          "name": "libmamba-spdlog",
-          "version": "2.5.0"
-        },
-        "libmambapy": {
-          "build_string": "py311h2b12f51_0",
-          "name": "libmambapy",
-          "version": "2.5.0"
-        },
-        "libmambapy-stubs": {
-          "build_string": "pyhd7f29a5_0",
-          "name": "libmambapy-stubs",
-          "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.183402996Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "fmt": "12.1",
-        "libmamba": "2.5.0 h566bbfa_0",
-        "libmamba_spdlog": "2.5.0 h71d101d_0",
-        "openssl": "3.5",
-        "pybind11": 3,
-        "pybind11_abi": 11,
-        "python": "3.11.* *_cpython",
-        "spdlog": "1.17",
-        "target_platform": "osx-arm64",
-        "zstd": "1.5"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
-        "documentation": "https://mamba.readthedocs.io/",
-        "homepage": "https://github.com/mamba-org/mamba",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/mamba-org/mamba",
-        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
-      },
-      "build": {
-        "number": 0,
-        "script": "build_mamba",
-        "string": "py311h2b12f51_0"
-      },
-      "context": {
-        "build_number": 0,
-        "version": "2.5.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jjerphan",
-          "AntoinePrv",
-          "adriendelsalle",
-          "SylvainCorlay",
-          "JohanMabille",
-          "wolfv",
-          "ericmjl"
-        ]
-      },
-      "package": {
-        "name": "libmambapy",
-        "version": "2.5.0"
-      },
-      "requirements": {
-        "build": [
-          "clangxx_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "cmake",
-          "ninja",
-          "python",
-          "cross-python_osx-arm64",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "host": [
-          "python",
-          "scikit-build-core",
-          "pip",
-          "setuptools <79",
-          "pybind11",
-          "pybind11-abi",
-          "openssl",
-          "yaml-cpp",
-          "cpp-expected",
-          "spdlog",
-          "fmt",
-          "termcolor-cpp",
-          "nlohmann_json >=3.12,<4.0",
-          "nlohmann_json-abi",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          },
-          "zstd"
-        ],
-        "run": [
-          "python",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          }
-        ],
-        "run_exports": {
-          "weak": [
-            {
-              "pin_subpackage": {
-                "lower_bound": "x.x.x.x.x.x",
-                "name": "libmambapy",
-                "upper_bound": "x.x"
-              }
-            }
-          ]
-        }
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
-          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "files": {
-              "not_exists": [
-                "lib/cmake/libmamba/libmambaConfig.cmake",
-                "lib/libmamba*"
-              ]
-            }
-          }
-        },
-        {
-          "python": {
-            "imports": [
-              "libmambapy",
-              "libmambapy.bindings"
-            ]
-          }
-        },
-        {
-          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1524,7 +1214,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.183722367Z",
+      "timestamp": "2026-02-09T09:29:43.868766165Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -1663,6 +1353,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -1684,238 +1375,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
-      },
-      "hash": {
-        "hash": "9e6ba40",
-        "prefix": "py312"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libmamba": {
-          "build_string": "h566bbfa_0",
-          "name": "libmamba",
-          "version": "2.5.0"
-        },
-        "libmamba-spdlog": {
-          "build_string": "h71d101d_0",
-          "name": "libmamba-spdlog",
-          "version": "2.5.0"
-        },
-        "libmambapy": {
-          "build_string": "py312h9e6ba40_0",
-          "name": "libmambapy",
-          "version": "2.5.0"
-        },
-        "libmambapy-stubs": {
-          "build_string": "pyhd7f29a5_0",
-          "name": "libmambapy-stubs",
-          "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.184005558Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "fmt": "12.1",
-        "libmamba": "2.5.0 h566bbfa_0",
-        "libmamba_spdlog": "2.5.0 h71d101d_0",
-        "openssl": "3.5",
-        "pybind11": 3,
-        "pybind11_abi": 11,
-        "python": "3.12.* *_cpython",
-        "spdlog": "1.17",
-        "target_platform": "osx-arm64",
-        "zstd": "1.5"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
-        "documentation": "https://mamba.readthedocs.io/",
-        "homepage": "https://github.com/mamba-org/mamba",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/mamba-org/mamba",
-        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
-      },
-      "build": {
-        "number": 0,
-        "script": "build_mamba",
-        "string": "py312h9e6ba40_0"
-      },
-      "context": {
-        "build_number": 0,
-        "version": "2.5.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jjerphan",
-          "AntoinePrv",
-          "adriendelsalle",
-          "SylvainCorlay",
-          "JohanMabille",
-          "wolfv",
-          "ericmjl"
-        ]
-      },
-      "package": {
-        "name": "libmambapy",
-        "version": "2.5.0"
-      },
-      "requirements": {
-        "build": [
-          "clangxx_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "cmake",
-          "ninja",
-          "python",
-          "cross-python_osx-arm64",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "host": [
-          "python",
-          "scikit-build-core",
-          "pip",
-          "setuptools <79",
-          "pybind11",
-          "pybind11-abi",
-          "openssl",
-          "yaml-cpp",
-          "cpp-expected",
-          "spdlog",
-          "fmt",
-          "termcolor-cpp",
-          "nlohmann_json >=3.12,<4.0",
-          "nlohmann_json-abi",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          },
-          "zstd"
-        ],
-        "run": [
-          "python",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          }
-        ],
-        "run_exports": {
-          "weak": [
-            {
-              "pin_subpackage": {
-                "lower_bound": "x.x.x.x.x.x",
-                "name": "libmambapy",
-                "upper_bound": "x.x"
-              }
-            }
-          ]
-        }
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
-          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "files": {
-              "not_exists": [
-                "lib/cmake/libmamba/libmambaConfig.cmake",
-                "lib/libmamba*"
-              ]
-            }
-          }
-        },
-        {
-          "python": {
-            "imports": [
-              "libmambapy",
-              "libmambapy.bindings"
-            ]
-          }
-        },
-        {
-          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -1986,7 +1446,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.184312359Z",
+      "timestamp": "2026-02-09T09:29:43.869384096Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -2125,6 +1585,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -2146,238 +1607,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
-      },
-      "hash": {
-        "hash": "aedd1da",
-        "prefix": "py313"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libmamba": {
-          "build_string": "h566bbfa_0",
-          "name": "libmamba",
-          "version": "2.5.0"
-        },
-        "libmamba-spdlog": {
-          "build_string": "h71d101d_0",
-          "name": "libmamba-spdlog",
-          "version": "2.5.0"
-        },
-        "libmambapy": {
-          "build_string": "py313haedd1da_0",
-          "name": "libmambapy",
-          "version": "2.5.0"
-        },
-        "libmambapy-stubs": {
-          "build_string": "pyhd7f29a5_0",
-          "name": "libmambapy-stubs",
-          "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
-        }
-      },
-      "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.184574050Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "build_platform": "linux-64",
-        "c_stdlib": "macosx_deployment_target",
-        "c_stdlib_version": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "cxx_compiler": "clangxx",
-        "cxx_compiler_version": "19",
-        "fmt": "12.1",
-        "libmamba": "2.5.0 h566bbfa_0",
-        "libmamba_spdlog": "2.5.0 h71d101d_0",
-        "openssl": "3.5",
-        "pybind11": 3,
-        "pybind11_abi": 11,
-        "python": "3.13.* *_cp313",
-        "spdlog": "1.17",
-        "target_platform": "osx-arm64",
-        "zstd": "1.5"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
-        "documentation": "https://mamba.readthedocs.io/",
-        "homepage": "https://github.com/mamba-org/mamba",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/mamba-org/mamba",
-        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
-      },
-      "build": {
-        "number": 0,
-        "script": "build_mamba",
-        "string": "py313haedd1da_0"
-      },
-      "context": {
-        "build_number": 0,
-        "version": "2.5.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jjerphan",
-          "AntoinePrv",
-          "adriendelsalle",
-          "SylvainCorlay",
-          "JohanMabille",
-          "wolfv",
-          "ericmjl"
-        ]
-      },
-      "package": {
-        "name": "libmambapy",
-        "version": "2.5.0"
-      },
-      "requirements": {
-        "build": [
-          "clangxx_osx-arm64 19.*",
-          "macosx_deployment_target_osx-arm64 11.0.*",
-          "cmake",
-          "ninja",
-          "python",
-          "cross-python_osx-arm64",
-          "pybind11",
-          "pybind11-abi"
-        ],
-        "host": [
-          "python",
-          "scikit-build-core",
-          "pip",
-          "setuptools <79",
-          "pybind11",
-          "pybind11-abi",
-          "openssl",
-          "yaml-cpp",
-          "cpp-expected",
-          "spdlog",
-          "fmt",
-          "termcolor-cpp",
-          "nlohmann_json >=3.12,<4.0",
-          "nlohmann_json-abi",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          },
-          "zstd"
-        ],
-        "run": [
-          "python",
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba"
-            }
-          },
-          {
-            "pin_subpackage": {
-              "exact": true,
-              "name": "libmamba-spdlog"
-            }
-          }
-        ],
-        "run_exports": {
-          "weak": [
-            {
-              "pin_subpackage": {
-                "lower_bound": "x.x.x.x.x.x",
-                "name": "libmambapy",
-                "upper_bound": "x.x"
-              }
-            }
-          ]
-        }
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
-          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "files": {
-              "not_exists": [
-                "lib/cmake/libmamba/libmambaConfig.cmake",
-                "lib/libmamba*"
-              ]
-            }
-          }
-        },
-        {
-          "python": {
-            "imports": [
-              "libmambapy",
-              "libmambapy.bindings"
-            ]
-          }
-        },
-        {
-          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -2448,7 +1678,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.184817541Z",
+      "timestamp": "2026-02-09T09:29:43.870035258Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -2587,6 +1817,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -2608,7 +1839,935 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
+      },
+      "hash": {
+        "hash": "eea8d39",
+        "prefix": "py310"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmamba": {
+          "build_string": "h566bbfa_0",
+          "name": "libmamba",
+          "version": "2.5.0"
+        },
+        "libmamba-spdlog": {
+          "build_string": "h71d101d_0",
+          "name": "libmamba-spdlog",
+          "version": "2.5.0"
+        },
+        "libmambapy": {
+          "build_string": "py310heea8d39_0",
+          "name": "libmambapy",
+          "version": "2.5.0"
+        },
+        "libmambapy-stubs": {
+          "build_string": "pyhd7f29a5_0",
+          "name": "libmambapy-stubs",
+          "version": "2.5.0"
+        },
+        "mamba": {
+          "build_string": "hc80dd31_0",
+          "name": "mamba",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-09T09:29:43.870699330Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libmamba": "2.5.0 h566bbfa_0",
+        "libmamba_spdlog": "2.5.0 h71d101d_0",
+        "openssl": "3.5",
+        "pybind11": 3,
+        "pybind11_abi": 11,
+        "python": "3.10.* *_cpython",
+        "spdlog": "1.17",
+        "target_platform": "osx-arm64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
+        "documentation": "https://mamba.readthedocs.io/",
+        "homepage": "https://github.com/mamba-org/mamba",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba",
+        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_mamba",
+        "string": "py310heea8d39_0"
+      },
+      "context": {
+        "build_number": 0,
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "AntoinePrv",
+          "adriendelsalle",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "ericmjl"
+        ]
+      },
+      "package": {
+        "name": "libmambapy",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "ninja",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core",
+          "pip",
+          "setuptools <79",
+          "pybind11",
+          "pybind11-abi",
+          "openssl",
+          "yaml-cpp",
+          "cpp-expected",
+          "spdlog",
+          "fmt",
+          "termcolor-cpp",
+          "nlohmann_json >=3.12,<4.0",
+          "nlohmann_json-abi",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          },
+          "zstd"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmambapy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
+          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [],
+              "not_exists": [
+                "lib/cmake/libmamba/libmambaConfig.cmake",
+                "lib/libmamba*"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "libmambapy",
+              "libmambapy.bindings"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
+      },
+      "hash": {
+        "hash": "2b12f51",
+        "prefix": "py311"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmamba": {
+          "build_string": "h566bbfa_0",
+          "name": "libmamba",
+          "version": "2.5.0"
+        },
+        "libmamba-spdlog": {
+          "build_string": "h71d101d_0",
+          "name": "libmamba-spdlog",
+          "version": "2.5.0"
+        },
+        "libmambapy": {
+          "build_string": "py311h2b12f51_0",
+          "name": "libmambapy",
+          "version": "2.5.0"
+        },
+        "libmambapy-stubs": {
+          "build_string": "pyhd7f29a5_0",
+          "name": "libmambapy-stubs",
+          "version": "2.5.0"
+        },
+        "mamba": {
+          "build_string": "hc80dd31_0",
+          "name": "mamba",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-09T09:29:43.871353622Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libmamba": "2.5.0 h566bbfa_0",
+        "libmamba_spdlog": "2.5.0 h71d101d_0",
+        "openssl": "3.5",
+        "pybind11": 3,
+        "pybind11_abi": 11,
+        "python": "3.11.* *_cpython",
+        "spdlog": "1.17",
+        "target_platform": "osx-arm64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
+        "documentation": "https://mamba.readthedocs.io/",
+        "homepage": "https://github.com/mamba-org/mamba",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba",
+        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_mamba",
+        "string": "py311h2b12f51_0"
+      },
+      "context": {
+        "build_number": 0,
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "AntoinePrv",
+          "adriendelsalle",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "ericmjl"
+        ]
+      },
+      "package": {
+        "name": "libmambapy",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "ninja",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core",
+          "pip",
+          "setuptools <79",
+          "pybind11",
+          "pybind11-abi",
+          "openssl",
+          "yaml-cpp",
+          "cpp-expected",
+          "spdlog",
+          "fmt",
+          "termcolor-cpp",
+          "nlohmann_json >=3.12,<4.0",
+          "nlohmann_json-abi",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          },
+          "zstd"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmambapy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
+          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [],
+              "not_exists": [
+                "lib/cmake/libmamba/libmambaConfig.cmake",
+                "lib/libmamba*"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "libmambapy",
+              "libmambapy.bindings"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
+      },
+      "hash": {
+        "hash": "9e6ba40",
+        "prefix": "py312"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmamba": {
+          "build_string": "h566bbfa_0",
+          "name": "libmamba",
+          "version": "2.5.0"
+        },
+        "libmamba-spdlog": {
+          "build_string": "h71d101d_0",
+          "name": "libmamba-spdlog",
+          "version": "2.5.0"
+        },
+        "libmambapy": {
+          "build_string": "py312h9e6ba40_0",
+          "name": "libmambapy",
+          "version": "2.5.0"
+        },
+        "libmambapy-stubs": {
+          "build_string": "pyhd7f29a5_0",
+          "name": "libmambapy-stubs",
+          "version": "2.5.0"
+        },
+        "mamba": {
+          "build_string": "hc80dd31_0",
+          "name": "mamba",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-09T09:29:43.872054454Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libmamba": "2.5.0 h566bbfa_0",
+        "libmamba_spdlog": "2.5.0 h71d101d_0",
+        "openssl": "3.5",
+        "pybind11": 3,
+        "pybind11_abi": 11,
+        "python": "3.12.* *_cpython",
+        "spdlog": "1.17",
+        "target_platform": "osx-arm64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
+        "documentation": "https://mamba.readthedocs.io/",
+        "homepage": "https://github.com/mamba-org/mamba",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba",
+        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_mamba",
+        "string": "py312h9e6ba40_0"
+      },
+      "context": {
+        "build_number": 0,
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "AntoinePrv",
+          "adriendelsalle",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "ericmjl"
+        ]
+      },
+      "package": {
+        "name": "libmambapy",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "ninja",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core",
+          "pip",
+          "setuptools <79",
+          "pybind11",
+          "pybind11-abi",
+          "openssl",
+          "yaml-cpp",
+          "cpp-expected",
+          "spdlog",
+          "fmt",
+          "termcolor-cpp",
+          "nlohmann_json >=3.12,<4.0",
+          "nlohmann_json-abi",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          },
+          "zstd"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmambapy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
+          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [],
+              "not_exists": [
+                "lib/cmake/libmamba/libmambaConfig.cmake",
+                "lib/libmamba*"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "libmambapy",
+              "libmambapy.bindings"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
+    }
+  },
+  {
+    "build_configuration": {
+      "build_platform": {
+        "platform": "linux-64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__linux=6.6.87.2=0",
+          "__glibc=2.35=0",
+          "__cuda=13.1=0",
+          "__archspec=1=x86_64_v4"
+        ]
+      },
+      "channel_priority": "strict",
+      "channels": [
+        "https://conda.anaconda.org/conda-forge"
+      ],
+      "directories": {
+        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy",
+        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/build_env",
+        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy/work"
+      },
+      "hash": {
+        "hash": "aedd1da",
+        "prefix": "py313"
+      },
+      "host_platform": {
+        "platform": "osx-arm64",
+        "virtual_packages": [
+          "__unix=0=0",
+          "__osx=0=0",
+          "__cuda=13.1=0",
+          "__archspec=1=m1"
+        ]
+      },
+      "packaging_settings": {
+        "archive_type": "conda",
+        "compression_level": 15
+      },
+      "solve_strategy": "highest",
+      "subpackages": {
+        "libmamba": {
+          "build_string": "h566bbfa_0",
+          "name": "libmamba",
+          "version": "2.5.0"
+        },
+        "libmamba-spdlog": {
+          "build_string": "h71d101d_0",
+          "name": "libmamba-spdlog",
+          "version": "2.5.0"
+        },
+        "libmambapy": {
+          "build_string": "py313haedd1da_0",
+          "name": "libmambapy",
+          "version": "2.5.0"
+        },
+        "libmambapy-stubs": {
+          "build_string": "pyhd7f29a5_0",
+          "name": "libmambapy-stubs",
+          "version": "2.5.0"
+        },
+        "mamba": {
+          "build_string": "hc80dd31_0",
+          "name": "mamba",
+          "version": "2.5.0"
+        }
+      },
+      "target_platform": "osx-arm64",
+      "timestamp": "2026-02-09T09:29:43.872687425Z",
+      "variant": {
+        "MACOSX_DEPLOYMENT_TARGET": "11.0",
+        "build_platform": "linux-64",
+        "c_stdlib": "macosx_deployment_target",
+        "c_stdlib_version": "11.0",
+        "channel_sources": "conda-forge",
+        "channel_targets": "conda-forge main",
+        "cxx_compiler": "clangxx",
+        "cxx_compiler_version": "19",
+        "fmt": "12.1",
+        "libmamba": "2.5.0 h566bbfa_0",
+        "libmamba_spdlog": "2.5.0 h71d101d_0",
+        "openssl": "3.5",
+        "pybind11": 3,
+        "pybind11_abi": 11,
+        "python": "3.13.* *_cp313",
+        "spdlog": "1.17",
+        "target_platform": "osx-arm64",
+        "zstd": "1.5"
+      }
+    },
+    "extra_meta": {},
+    "finalized_dependencies": null,
+    "finalized_sources": null,
+    "recipe": {
+      "about": {
+        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
+        "documentation": "https://mamba.readthedocs.io/",
+        "homepage": "https://github.com/mamba-org/mamba",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "repository": "https://github.com/mamba-org/mamba",
+        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
+      },
+      "build": {
+        "number": 0,
+        "script": "build_mamba",
+        "string": "py313haedd1da_0"
+      },
+      "context": {
+        "build_number": 0,
+        "version": "2.5.0"
+      },
+      "extra": {
+        "recipe-maintainers": [
+          "jjerphan",
+          "AntoinePrv",
+          "adriendelsalle",
+          "SylvainCorlay",
+          "JohanMabille",
+          "wolfv",
+          "ericmjl"
+        ]
+      },
+      "package": {
+        "name": "libmambapy",
+        "version": "2.5.0"
+      },
+      "requirements": {
+        "build": [
+          "clangxx_osx-arm64 19.*",
+          "macosx_deployment_target_osx-arm64 11.0.*",
+          "cmake",
+          "ninja",
+          "python",
+          "cross-python_osx-arm64",
+          "pybind11",
+          "pybind11-abi"
+        ],
+        "host": [
+          "python",
+          "scikit-build-core",
+          "pip",
+          "setuptools <79",
+          "pybind11",
+          "pybind11-abi",
+          "openssl",
+          "yaml-cpp",
+          "cpp-expected",
+          "spdlog",
+          "fmt",
+          "termcolor-cpp",
+          "nlohmann_json >=3.12,<4.0",
+          "nlohmann_json-abi",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          },
+          "zstd"
+        ],
+        "run": [
+          "python",
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba"
+            }
+          },
+          {
+            "pin_subpackage": {
+              "exact": true,
+              "name": "libmamba-spdlog"
+            }
+          }
+        ],
+        "run_exports": {
+          "weak": [
+            {
+              "pin_subpackage": {
+                "lower_bound": "x.x.x.x.x.x",
+                "name": "libmambapy",
+                "upper_bound": "x.x"
+              }
+            }
+          ]
+        }
+      },
+      "schema_version": 1,
+      "source": [
+        {
+          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
+          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
+        }
+      ],
+      "tests": [
+        {
+          "package_contents": {
+            "files": {
+              "exists": [],
+              "not_exists": [
+                "lib/cmake/libmamba/libmambaConfig.cmake",
+                "lib/libmamba*"
+              ]
+            }
+          }
+        },
+        {
+          "python": {
+            "imports": [
+              "libmambapy",
+              "libmambapy.bindings"
+            ]
+          }
+        },
+        {
+          "script": "python -c \"import libmambapy; assert libmambapy.__version__ == '${{ version }}'\""
+        }
+      ]
+    },
+    "system_tools": {
+      "rattler-build": "0.57.1"
     }
   },
   {
@@ -2679,7 +2838,7 @@
         }
       },
       "target_platform": "osx-arm64",
-      "timestamp": "2026-01-22T16:52:35.185109372Z",
+      "timestamp": "2026-02-09T09:29:43.873301567Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "11.0",
         "build_platform": "linux-64",
@@ -2818,6 +2977,7 @@
         {
           "package_contents": {
             "files": {
+              "exists": [],
               "not_exists": [
                 "lib/cmake/libmamba/libmambaConfig.cmake",
                 "lib/libmamba*"
@@ -2839,157 +2999,7 @@
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
-    }
-  },
-  {
-    "build_configuration": {
-      "build_platform": {
-        "platform": "linux-64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__linux=6.6.87.2=0",
-          "__glibc=2.35=0",
-          "__cuda=13.1=0",
-          "__archspec=1=x86_64_v4"
-        ]
-      },
-      "channel_priority": "strict",
-      "channels": [
-        "https://conda.anaconda.org/conda-forge"
-      ],
-      "directories": {
-        "build_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs",
-        "build_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/build_env",
-        "host_prefix": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
-        "work_dir": "/home/wolfv/Programs/rattler-build/output/bld/rattler-build_libmambapy-stubs/work"
-      },
-      "hash": {
-        "hash": "d7f29a5",
-        "prefix": "py"
-      },
-      "host_platform": {
-        "platform": "osx-arm64",
-        "virtual_packages": [
-          "__unix=0=0",
-          "__osx=0=0",
-          "__cuda=13.1=0",
-          "__archspec=1=m1"
-        ]
-      },
-      "packaging_settings": {
-        "archive_type": "conda",
-        "compression_level": 15
-      },
-      "solve_strategy": "highest",
-      "subpackages": {
-        "libmamba": {
-          "build_string": "h566bbfa_0",
-          "name": "libmamba",
-          "version": "2.5.0"
-        },
-        "libmamba-spdlog": {
-          "build_string": "h71d101d_0",
-          "name": "libmamba-spdlog",
-          "version": "2.5.0"
-        },
-        "libmambapy": {
-          "build_string": "py310he1b450c_0",
-          "name": "libmambapy",
-          "version": "2.5.0"
-        },
-        "libmambapy-stubs": {
-          "build_string": "pyhd7f29a5_0",
-          "name": "libmambapy-stubs",
-          "version": "2.5.0"
-        },
-        "mamba": {
-          "build_string": "hc80dd31_0",
-          "name": "mamba",
-          "version": "2.5.0"
-        }
-      },
-      "target_platform": "noarch",
-      "timestamp": "2026-01-22T16:52:35.182594443Z",
-      "variant": {
-        "MACOSX_DEPLOYMENT_TARGET": "11.0",
-        "channel_sources": "conda-forge",
-        "channel_targets": "conda-forge main",
-        "python_min": "3.10",
-        "target_platform": "noarch"
-      }
-    },
-    "extra_meta": {},
-    "finalized_dependencies": null,
-    "finalized_sources": null,
-    "recipe": {
-      "about": {
-        "description": "# Mamba, the Fast Cross-Platform Package Manager\n\n[![Build Status](https://github.com/mamba-org/mamba/workflows/CI/badge.svg)](https://github.com/mamba-org/mamba/actions)\n[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mamba-org/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![docs](https://readthedocs.org/projects/mamba/badge/?version=latest&style=flat)](https://mamba.readthedocs.io/en/latest)\n\n`mamba` is a reimplementation of the conda package manager in C++.\n\n- parallel downloading of repository data and package files using multi-threading\n- libsolv for much faster dependency solving, a state of the art library used in the RPM package manager of Red Hat, Fedora and OpenSUSE\n- core parts of `mamba` are implemented in C++ for maximum efficiency\n\nAt the same time, `mamba` utilizes the same command line parser, package installation and deinstallation code and transaction verification routines as `conda` to stay as compatible as possible.\n\nMamba is part of a bigger ecosystem to make scientific packaging more sustainable. You can read our [announcement blog post](https://medium.com/@QuantStack/open-software-packaging-for-science-61cecee7fc23).\nThe ecosystem also consists of `quetz`, an open source `conda` package server and `boa`, a fast `conda` package builder.\n\n### Installation\n\nPlease refer to the [`mamba` and `micromamba` installation guide](https://mamba.readthedocs.io/en/latest/installation.html) in the documentation.\n\n### Additional features in Mamba and Micromamba\n\n`mamba` and `micromamba` come with features on top of stock `conda`.\n\n### `repoquery`\n\nTo efficiently query repositories and query package dependencies you can use `mamba repoquery` or `micromamba repoquery`.\nSee the [repoquery documentation](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html#repoquery) for details.\n\n### Installing lock files\n\n`micromamba` can be used to install lock files generated by [conda-lock](https://conda-incubator.github.io/conda-lock/) without having to install `conda-lock`. Simply invoke e.g. `micromamba create -n my-env -f conda-lock.yml` with an environment lockfile named `*-lock.yml` or `*-lock.yaml`.",
-        "documentation": "https://mamba.readthedocs.io/",
-        "homepage": "https://github.com/mamba-org/mamba",
-        "license": "BSD-3-Clause",
-        "license_file": [
-          "LICENSE"
-        ],
-        "repository": "https://github.com/mamba-org/mamba",
-        "summary": "A fast drop-in alternative to conda, using libsolv for dependency resolution"
-      },
-      "build": {
-        "noarch": "python",
-        "number": 0,
-        "script": "build_mamba",
-        "string": "pyhd7f29a5_0"
-      },
-      "context": {
-        "build_number": 0,
-        "version": "2.5.0"
-      },
-      "extra": {
-        "recipe-maintainers": [
-          "jjerphan",
-          "AntoinePrv",
-          "adriendelsalle",
-          "SylvainCorlay",
-          "JohanMabille",
-          "wolfv",
-          "ericmjl"
-        ]
-      },
-      "package": {
-        "name": "libmambapy-stubs",
-        "version": "2.5.0"
-      },
-      "requirements": {
-        "host": [
-          "python >=3.10",
-          "pip",
-          "setuptools",
-          "mypy",
-          "libmambapy ==2.5.0"
-        ],
-        "run_constraints": [
-          "libmambapy ==2.5.0"
-        ]
-      },
-      "schema_version": 1,
-      "source": [
-        {
-          "sha256": "2d8761e423275b2e2b46352c99bdedc062ca22b98871ffa82e044d2be74b350f",
-          "url": "https://github.com/mamba-org/mamba/archive/refs/tags/2.5.0.tar.gz"
-        }
-      ],
-      "tests": [
-        {
-          "package_contents": {
-            "files": [
-              "**/*.pyi"
-            ]
-          }
-        }
-      ]
-    },
-    "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   }
 ]
