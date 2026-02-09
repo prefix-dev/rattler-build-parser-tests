@@ -47,7 +47,7 @@
         }
       },
       "target_platform": "osx-64",
-      "timestamp": "2026-01-22T16:39:13.230607674Z",
+      "timestamp": "2026-02-09T09:28:09.480446714Z",
       "variant": {
         "MACOSX_DEPLOYMENT_TARGET": "10.13",
         "build_platform": "linux-64",
@@ -178,15 +178,17 @@
               "test_mpi4py.py"
             ]
           },
-          "script": [
-            "mpiexec -n 1 python -m mpi4py --version",
-            "mpiexec -n 1 python -m mpi4py --mpi-library",
-            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
-            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
-            "mpiexec -n 2 python -m mpi4py.bench helloworld",
-            "mpiexec -n 2 python -m mpi4py.bench ringtest",
-            "python test_mpi4py.py"
-          ]
+          "script": {
+            "content": [
+              "mpiexec -n 1 python -m mpi4py --version",
+              "mpiexec -n 1 python -m mpi4py --mpi-library",
+              "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+              "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+              "mpiexec -n 2 python -m mpi4py.bench helloworld",
+              "mpiexec -n 2 python -m mpi4py.bench ringtest",
+              "python test_mpi4py.py"
+            ]
+          }
         },
         {
           "files": {
@@ -196,25 +198,27 @@
           },
           "requirements": {
             "run": [
-              "openmpi =4.1"
+              "openmpi 4.1.*"
             ]
           },
-          "script": [
-            "export OMPI_MCA_plm_rsh_agent=false",
-            "export OMPI_MCA_rmaps_base_oversubscribe=true",
-            "mpiexec -n 1 python -m mpi4py --version",
-            "mpiexec -n 1 python -m mpi4py --mpi-library",
-            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
-            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
-            "mpiexec -n 2 python -m mpi4py.bench helloworld",
-            "mpiexec -n 2 python -m mpi4py.bench ringtest",
-            "python test_mpi4py.py"
-          ]
+          "script": {
+            "content": [
+              "export OMPI_MCA_plm_rsh_agent=false",
+              "export OMPI_MCA_rmaps_base_oversubscribe=true",
+              "mpiexec -n 1 python -m mpi4py --version",
+              "mpiexec -n 1 python -m mpi4py --mpi-library",
+              "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+              "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+              "mpiexec -n 2 python -m mpi4py.bench helloworld",
+              "mpiexec -n 2 python -m mpi4py.bench ringtest",
+              "python test_mpi4py.py"
+            ]
+          }
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   }
 ]

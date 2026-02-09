@@ -48,7 +48,7 @@
         }
       },
       "target_platform": "linux-64",
-      "timestamp": "2026-01-22T16:39:11.154903336Z",
+      "timestamp": "2026-02-09T09:27:57.614105363Z",
       "variant": {
         "build_platform": "linux-64",
         "c_compiler": "gcc",
@@ -175,15 +175,17 @@
               "test_mpi4py.py"
             ]
           },
-          "script": [
-            "mpiexec -n 1 python -m mpi4py --version",
-            "mpiexec -n 1 python -m mpi4py --mpi-library",
-            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
-            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
-            "mpiexec -n 2 python -m mpi4py.bench helloworld",
-            "mpiexec -n 2 python -m mpi4py.bench ringtest",
-            "python test_mpi4py.py"
-          ]
+          "script": {
+            "content": [
+              "mpiexec -n 1 python -m mpi4py --version",
+              "mpiexec -n 1 python -m mpi4py --mpi-library",
+              "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+              "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+              "mpiexec -n 2 python -m mpi4py.bench helloworld",
+              "mpiexec -n 2 python -m mpi4py.bench ringtest",
+              "python test_mpi4py.py"
+            ]
+          }
         },
         {
           "files": {
@@ -193,23 +195,25 @@
           },
           "requirements": {
             "run": [
-              "impi_rt =2021.10"
+              "impi_rt 2021.10.*"
             ]
           },
-          "script": [
-            "mpiexec -n 1 python -m mpi4py --version",
-            "mpiexec -n 1 python -m mpi4py --mpi-library",
-            "mpiexec -n 1 python -m mpi4py --mpi-std-version",
-            "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
-            "mpiexec -n 2 python -m mpi4py.bench helloworld",
-            "mpiexec -n 2 python -m mpi4py.bench ringtest",
-            "python test_mpi4py.py"
-          ]
+          "script": {
+            "content": [
+              "mpiexec -n 1 python -m mpi4py --version",
+              "mpiexec -n 1 python -m mpi4py --mpi-library",
+              "mpiexec -n 1 python -m mpi4py --mpi-std-version",
+              "mpiexec -n 1 python -m mpi4py --mpi-lib-version",
+              "mpiexec -n 2 python -m mpi4py.bench helloworld",
+              "mpiexec -n 2 python -m mpi4py.bench ringtest",
+              "python test_mpi4py.py"
+            ]
+          }
         }
       ]
     },
     "system_tools": {
-      "rattler-build": "0.55.1"
+      "rattler-build": "0.57.1"
     }
   }
 ]
